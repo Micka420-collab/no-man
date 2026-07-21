@@ -1,81 +1,87 @@
 {
-  "version": 1,
+  "version": 2,
   "categories": [
     {
       "id": "histoire",
       "title": "Histoire principale",
+      "title_en": "Main story",
       "icon": "🌌",
       "items": [
-        { "id": "eveil", "label": "L'Éveil — réparer son premier vaisseau et quitter la planète de départ" },
-        { "id": "artemis", "label": "Le Chemin d'Artémis — terminer la quête principale" },
-        { "id": "atlas", "label": "Le Chemin de l'Atlas — visiter les interfaces Atlas et faire son choix" },
-        { "id": "purge", "label": "La Purge — atteindre le centre de la galaxie" },
-        { "id": "nouvelle-galaxie", "label": "Passer dans une nouvelle galaxie" }
+        { "id": "eveil", "label": "L'Éveil — réparer son premier vaisseau et quitter la planète de départ", "label_en": "Awakening — repair your first ship and leave the starting planet" },
+        { "id": "artemis", "label": "Le Chemin d'Artémis — terminer la quête principale", "label_en": "The Artemis Path — complete the main questline" },
+        { "id": "atlas", "label": "Le Chemin de l'Atlas — visiter les interfaces Atlas et faire son choix", "label_en": "The Atlas Path — visit the Atlas interfaces and make your choice" },
+        { "id": "purge", "label": "La Purge — atteindre le centre de la galaxie", "label_en": "The Purge — reach the centre of the galaxy" },
+        { "id": "nouvelle-galaxie", "label": "Passer dans une nouvelle galaxie", "label_en": "Travel to a new galaxy" }
       ]
     },
     {
       "id": "quetes",
       "title": "Quêtes majeures",
+      "title_en": "Major quests",
       "icon": "📜",
       "items": [
-        { "id": "specialistes", "label": "Recruter tous les spécialistes de base (superviseur, scientifique, armurier, fermier, technicien exocraft)" },
-        { "id": "naissance-stellaire", "label": "Naissance Stellaire — obtenir un Vaisseau Vivant" },
-        { "id": "trace-metal", "label": "Une Trace de Métal — construire le Minotaure IA et son compagnon sentinelle" },
-        { "id": "autophages", "label": "Voix des Autophages — découvrir le peuple Autophage et débloquer les bâtons multi-outils" },
-        { "id": "reves-abysses", "label": "Les Rêves des Abysses — terminer l'histoire des profondeurs" },
-        { "id": "expedition", "label": "Terminer une Expédition communautaire" }
+        { "id": "specialistes", "label": "Recruter tous les spécialistes de base (superviseur, scientifique, armurier, fermier, technicien exocraft)", "label_en": "Recruit every base specialist (overseer, scientist, armourer, farmer, exocraft technician)" },
+        { "id": "naissance-stellaire", "label": "Naissance Stellaire — obtenir un Vaisseau Vivant", "label_en": "Starbirth — obtain a Living Ship" },
+        { "id": "trace-metal", "label": "Une Trace de Métal — construire le Minotaure IA et son compagnon sentinelle", "label_en": "A Trace of Metal — build the Minotaur AI and its sentinel companion" },
+        { "id": "autophages", "label": "Voix des Autophages — découvrir le peuple Autophage et débloquer les bâtons multi-outils", "label_en": "Voice of the Autophage — discover the Autophage and unlock multi-tool staves" },
+        { "id": "reves-abysses", "label": "Les Rêves des Abysses — terminer l'histoire des profondeurs", "label_en": "Dreams of the Deep — finish the underwater storyline" },
+        { "id": "expedition", "label": "Terminer une Expédition communautaire", "label_en": "Complete a community Expedition" }
       ]
     },
     {
       "id": "equipement",
       "title": "Équipement & collection",
+      "title_en": "Gear & collection",
       "icon": "🚀",
       "items": [
-        { "id": "vaisseau-s", "label": "Obtenir un vaisseau de classe S" },
-        { "id": "cargo-s", "label": "Obtenir un cargo de classe S" },
-        { "id": "corvette", "label": "Construire sa propre corvette personnalisée" },
-        { "id": "fregates", "label": "Constituer une flotte de 30 frégates" },
-        { "id": "multitool-s", "label": "Obtenir un multi-outil de classe S" },
-        { "id": "exocrafts", "label": "Débloquer tous les exocrafts (dont le Minotaure et le Nautilon)" },
-        { "id": "inventaire-max", "label": "Agrandir l'inventaire de la combinaison au maximum" },
-        { "id": "sentinel-ship", "label": "Capturer un intercepteur sentinelle" }
+        { "id": "vaisseau-s", "label": "Obtenir un vaisseau de classe S", "label_en": "Obtain an S-class starship" },
+        { "id": "cargo-s", "label": "Obtenir un cargo de classe S", "label_en": "Obtain an S-class freighter" },
+        { "id": "corvette", "label": "Construire sa propre corvette personnalisée", "label_en": "Build your own custom corvette" },
+        { "id": "fregates", "label": "Constituer une flotte de 30 frégates", "label_en": "Assemble a fleet of 30 frigates" },
+        { "id": "multitool-s", "label": "Obtenir un multi-outil de classe S", "label_en": "Obtain an S-class multi-tool" },
+        { "id": "exocrafts", "label": "Débloquer tous les exocrafts (dont le Minotaure et le Nautilon)", "label_en": "Unlock every exocraft (including the Minotaur and the Nautilon)" },
+        { "id": "inventaire-max", "label": "Agrandir l'inventaire de la combinaison au maximum", "label_en": "Fully expand your exosuit inventory" },
+        { "id": "sentinel-ship", "label": "Capturer un intercepteur sentinelle", "label_en": "Capture a Sentinel interceptor" }
       ]
     },
     {
       "id": "base",
       "title": "Bases & colonie",
+      "title_en": "Bases & settlement",
       "icon": "🏠",
       "items": [
-        { "id": "premiere-base", "label": "Construire sa première base avec téléporteur" },
-        { "id": "colonie", "label": "Devenir superviseur d'une colonie et la faire prospérer" },
-        { "id": "ferme", "label": "Créer une base agricole rentable" },
-        { "id": "extraction", "label": "Automatiser une base d'extraction de ressources" },
-        { "id": "base-parfaite", "label": "Construire une grande base sur une planète paradis" }
+        { "id": "premiere-base", "label": "Construire sa première base avec téléporteur", "label_en": "Build your first base with a teleporter" },
+        { "id": "colonie", "label": "Devenir superviseur d'une colonie et la faire prospérer", "label_en": "Become overseer of a settlement and help it thrive" },
+        { "id": "ferme", "label": "Créer une base agricole rentable", "label_en": "Create a profitable farming base" },
+        { "id": "extraction", "label": "Automatiser une base d'extraction de ressources", "label_en": "Automate a resource extraction base" },
+        { "id": "base-parfaite", "label": "Construire une grande base sur une planète paradis", "label_en": "Build a grand base on a paradise planet" }
       ]
     },
     {
       "id": "exploration",
       "title": "Exploration",
+      "title_en": "Exploration",
       "icon": "🔭",
       "items": [
-        { "id": "extreme", "label": "Survivre 32 jours sur une planète extrême" },
-        { "id": "especes", "label": "Scanner toutes les espèces d'une planète" },
-        { "id": "langues", "label": "Apprendre 150 mots d'une langue alien" },
-        { "id": "paradis", "label": "Découvrir une planète paradis" },
-        { "id": "exotique", "label": "Poser le pied sur une planète exotique (verre, bulles, structures étranges)" },
-        { "id": "abysses", "label": "Explorer les grandes profondeurs sous-marines" },
-        { "id": "portails", "label": "Activer et utiliser un portail ancien" }
+        { "id": "extreme", "label": "Survivre 32 jours sur une planète extrême", "label_en": "Survive 32 sols on an extreme planet" },
+        { "id": "especes", "label": "Scanner toutes les espèces d'une planète", "label_en": "Scan every species on a planet" },
+        { "id": "langues", "label": "Apprendre 150 mots d'une langue alien", "label_en": "Learn 150 words of an alien language" },
+        { "id": "paradis", "label": "Découvrir une planète paradis", "label_en": "Discover a paradise planet" },
+        { "id": "exotique", "label": "Poser le pied sur une planète exotique (verre, bulles, structures étranges)", "label_en": "Set foot on an exotic planet (glass, bubbles, strange structures)" },
+        { "id": "abysses", "label": "Explorer les grandes profondeurs sous-marines", "label_en": "Explore the deepest oceans" },
+        { "id": "portails", "label": "Activer et utiliser un portail ancien", "label_en": "Activate and travel through an ancient portal" }
       ]
     },
     {
       "id": "communaute",
       "title": "Communauté & multijoueur",
+      "title_en": "Community & multiplayer",
       "icon": "🤝",
       "items": [
-        { "id": "anomalie", "label": "Rejoindre l'Anomalie de l'Espace" },
-        { "id": "nexus", "label": "Terminer des missions Nexus en groupe" },
-        { "id": "quicksilver", "label": "Acheter des objets en vif-argent" },
-        { "id": "visite", "label": "Visiter la base d'un autre joueur" }
+        { "id": "anomalie", "label": "Rejoindre l'Anomalie de l'Espace", "label_en": "Join the Space Anomaly" },
+        { "id": "nexus", "label": "Terminer des missions Nexus en groupe", "label_en": "Complete Nexus missions in a group" },
+        { "id": "quicksilver", "label": "Acheter des objets en vif-argent", "label_en": "Buy quicksilver items" },
+        { "id": "visite", "label": "Visiter la base d'un autre joueur", "label_en": "Visit another player's base" }
       ]
     }
   ]

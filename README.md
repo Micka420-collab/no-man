@@ -3,6 +3,13 @@
 Un système complet pour suivre **tout ce qui se passe autour de No Man's Sky** et
 **ta propre progression dans le jeu**, en un seul endroit.
 
+**➡️ Site en ligne : https://micka420-collab.github.io/no-man/**
+
+✨ Interface **bilingue français/anglais**, thèmes **sombre/clair**, champ d'étoiles animé,
+recherche et filtres dans chaque onglet, suivi personnel des succès comparé à la communauté
+mondiale, installable comme application (PWA), accessible (clavier, lecteurs d'écran,
+`prefers-reduced-motion`).
+
 ## Ce que ça fait
 
 | Volet | Contenu | Source |
@@ -59,6 +66,8 @@ déclencher le workflow depuis l'onglet **Actions** → « Mise à jour des actu
 
 ```
 ├── index.html                     # Tableau de bord (HTML/CSS/JS, aucune dépendance)
+├── favicon.svg                    # Icône du site
+├── manifest.webmanifest           # Manifeste PWA (site installable)
 ├── data/
 │   ├── news.json                  # Actualités Steam (auto)
 │   ├── official.json              # Articles nomanssky.com (auto)

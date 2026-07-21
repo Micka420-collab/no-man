@@ -2,8 +2,8 @@ name: Mise à jour des actualités NMS
 
 on:
   schedule:
-    # Toutes les 6 heures
-    - cron: "17 */6 * * *"
+    # Toutes les 3 heures (événement communautaire suivi en direct)
+    - cron: "17 */3 * * *"
   workflow_dispatch:
 
 permissions:

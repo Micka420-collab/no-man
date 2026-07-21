@@ -55,6 +55,9 @@ REDDIT_COORDS_RSS = (
     "https://www.reddit.com/r/NMSCoordinateExchange/top.rss?t=week&limit=20"
 )
 
+ATLAS_POI_URL = "https://galacticatlas.nomanssky.com/assets/json/poi.json"
+ATLAS_API_URL = "https://galacticatlas-api.nomanssky.com/api"
+
 YOUTUBE_CHANNELS = [
     ("Hello Games (officiel)", "UCGKx5XhGuf09VERiw_QIemA"),
     ("KhrazeGaming", "UCFXUSG_393wZJaRTErU6Pjw"),
@@ -286,6 +289,47 @@ def fetch_achievements() -> list[dict]:
     return achievements
 
 
+# ---------------------------------------------------------------- effort de guerre
+
+
+def fetch_war() -> dict:
+    """Récupère l'état de l'événement communautaire depuis l'Atlas Galactique.
+
+    Le POI « countermeasures » du fichier poi.json décrit l'événement en cours
+    (index de mission, date de fin) ; l'API mission fournit la progression en
+    direct des trois factions. Si le POI disparaît, l'événement est terminé.
+    """
+    pois = json.loads(fetch(ATLAS_POI_URL).decode("utf-8", errors="replace"))
+    cm = next((p for p in pois if p.get("id") == "countermeasures"), None)
+    if cm is None:
+        return {"event": None}
+    comp = next(
+        (
+            c
+            for c in cm.get("content", [])
+            if c.get("componentName") == "CountermeasuresProgressContent"
+        ),
+        None,
+    )
+    if comp is None:
+        return {"event": None}
+    mission_index = comp.get("missionIndex")
+    progress = json.loads(
+        fetch(f"{ATLAS_API_URL}/mission/{mission_index}?platform=merged").decode(
+            "utf-8"
+        )
+    )
+    return {
+        "event": {
+            "id": cm.get("id"),
+            "name": cm.get("name", ""),
+            "title": comp.get("title", ""),
+            "end_time": comp.get("endTime", ""),
+        },
+        "progress": progress,
+    }
+
+
 # ---------------------------------------------------------------- vidéos
 
 
@@ -381,6 +425,19 @@ def main() -> int:
     if videos:
         write_json("videos.json", {"updated_at": now, "items": videos})
         print(f"videos.json : {len(videos)} vidéos")
+
+    war = step("effort de guerre", fetch_war)
+    if war is not None:
+        war["updated_at"] = now
+        write_json("war.json", war)
+        if war.get("event"):
+            teams = (war.get("progress") or {}).get("teamTotals", [])
+            print(
+                f"war.json : {war['event']['name']}, "
+                f"{len(teams)} factions, fin {war['event']['end_time']}"
+            )
+        else:
+            print("war.json : aucun événement en cours")
 
     # Échec global seulement si la majorité des sources sont tombées
     return 1 if len(failures) >= 3 else 0

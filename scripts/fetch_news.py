@@ -59,7 +59,7 @@ ATLAS_POI_URL = "https://galacticatlas.nomanssky.com/assets/json/poi.json"
 ATLAS_API_URL = "https://galacticatlas-api.nomanssky.com/api"
 
 YOUTUBE_CHANNELS = [
-    ("Hello Games (officiel)", "UCGKx5XhGuf09VERiw_QIemA"),
+    ("Hello Games", "UCGKx5XhGuf09VERiw_QIemA"),
     ("KhrazeGaming", "UCFXUSG_393wZJaRTErU6Pjw"),
     ("Beeblebum", "UCiPxIIYapAryopmQshBtQUw"),
     ("Xaine's World", "UCzTB8EBVJWkzJi2sQjdBv9g"),

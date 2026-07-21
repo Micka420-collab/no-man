@@ -18,6 +18,9 @@ jobs:
       - name: Récupérer les actualités
         run: python3 scripts/fetch_news.py
 
+      - name: Récupérer les classements du marché
+        run: python3 scripts/fetch_market.py
+
       - name: Commit des données si changement
         run: |
           git config user.name "github-actions[bot]"

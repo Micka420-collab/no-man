@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "histoire",
+      "title": "Histoire principale",
+      "icon": "🌌",
+      "items": [
+        { "id": "eveil", "label": "L'Éveil — réparer son premier vaisseau et quitter la planète de départ" },
+        { "id": "artemis", "label": "Le Chemin d'Artémis — terminer la quête principale" },
+        { "id": "atlas", "label": "Le Chemin de l'Atlas — visiter les interfaces Atlas et faire son choix" },
+        { "id": "purge", "label": "La Purge — atteindre le centre de la galaxie" },
+        { "id": "nouvelle-galaxie", "label": "Passer dans une nouvelle galaxie" }
+      ]
+    },
+    {
+      "id": "quetes",
+      "title": "Quêtes majeures",
+      "icon": "📜",
+      "items": [
+        { "id": "specialistes", "label": "Recruter tous les spécialistes de base (superviseur, scientifique, armurier, fermier, technicien exocraft)" },
+        { "id": "naissance-stellaire", "label": "Naissance Stellaire — obtenir un Vaisseau Vivant" },
+        { "id": "trace-metal", "label": "Une Trace de Métal — construire le Minotaure IA et son compagnon sentinelle" },
+        { "id": "autophages", "label": "Voix des Autophages — découvrir le peuple Autophage et débloquer les bâtons multi-outils" },
+        { "id": "reves-abysses", "label": "Les Rêves des Abysses — terminer l'histoire des profondeurs" },
+        { "id": "expedition", "label": "Terminer une Expédition communautaire" }
+      ]
+    },
+    {
+      "id": "equipement",
+      "title": "Équipement & collection",
+      "icon": "🚀",
+      "items": [
+        { "id": "vaisseau-s", "label": "Obtenir un vaisseau de classe S" },
+        { "id": "cargo-s", "label": "Obtenir un cargo de classe S" },
+        { "id": "corvette", "label": "Construire sa propre corvette personnalisée" },
+        { "id": "fregates", "label": "Constituer une flotte de 30 frégates" },
+        { "id": "multitool-s", "label": "Obtenir un multi-outil de classe S" },
+        { "id": "exocrafts", "label": "Débloquer tous les exocrafts (dont le Minotaure et le Nautilon)" },
+        { "id": "inventaire-max", "label": "Agrandir l'inventaire de la combinaison au maximum" },
+        { "id": "sentinel-ship", "label": "Capturer un intercepteur sentinelle" }
+      ]
+    },
+    {
+      "id": "base",
+      "title": "Bases & colonie",
+      "icon": "🏠",
+      "items": [
+        { "id": "premiere-base", "label": "Construire sa première base avec téléporteur" },
+        { "id": "colonie", "label": "Devenir superviseur d'une colonie et la faire prospérer" },
+        { "id": "ferme", "label": "Créer une base agricole rentable" },
+        { "id": "extraction", "label": "Automatiser une base d'extraction de ressources" },
+        { "id": "base-parfaite", "label": "Construire une grande base sur une planète paradis" }
+      ]
+    },
+    {
+      "id": "exploration",
+      "title": "Exploration",
+      "icon": "🔭",
+      "items": [
+        { "id": "extreme", "label": "Survivre 32 jours sur une planète extrême" },
+        { "id": "especes", "label": "Scanner toutes les espèces d'une planète" },
+        { "id": "langues", "label": "Apprendre 150 mots d'une langue alien" },
+        { "id": "paradis", "label": "Découvrir une planète paradis" },
+        { "id": "exotique", "label": "Poser le pied sur une planète exotique (verre, bulles, structures étranges)" },
+        { "id": "abysses", "label": "Explorer les grandes profondeurs sous-marines" },
+        { "id": "portails", "label": "Activer et utiliser un portail ancien" }
+      ]
+    },
+    {
+      "id": "communaute",
+      "title": "Communauté & multijoueur",
+      "icon": "🤝",
+      "items": [
+        { "id": "anomalie", "label": "Rejoindre l'Anomalie de l'Espace" },
+        { "id": "nexus", "label": "Terminer des missions Nexus en groupe" },
+        { "id": "quicksilver", "label": "Acheter des objets en vif-argent" },
+        { "id": "visite", "label": "Visiter la base d'un autre joueur" }
+      ]
+    }
+  ]
+}

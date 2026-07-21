@@ -37,7 +37,7 @@
   nav.tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
   nav.tabs button {
     background: var(--bg-card); color: var(--text); border: 1px solid var(--border);
-    padding: 10px 20px; border-radius: 999px; cursor: pointer; font-size: .95rem;
+    padding: 9px 17px; border-radius: 999px; cursor: pointer; font-size: .92rem;
     transition: all .15s;
   }
   nav.tabs button:hover { background: var(--bg-card-hover); }
@@ -45,6 +45,8 @@
 
   section.panel { display: none; }
   section.panel.active { display: block; }
+  h2.sec { font-size: 1.15rem; margin: 26px 0 14px; color: var(--accent3); letter-spacing: .5px; }
+  h2.sec:first-child { margin-top: 0; }
 
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
   .card {
@@ -62,6 +64,39 @@
     background: rgba(78,201,176,.15); color: var(--accent2); border: 1px solid rgba(78,201,176,.35);
   }
   .badge.official { background: rgba(232,68,58,.15); color: #ff8a80; border-color: rgba(232,68,58,.4); }
+  .badge.gold { background: rgba(245,197,66,.12); color: var(--accent3); border-color: rgba(245,197,66,.35); }
+
+  /* Vue d'ensemble */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 8px; }
+  .tile {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px; text-align: center;
+  }
+  .tile .big { font-size: 1.9rem; font-weight: 700; color: var(--accent2); }
+  .tile .big.gold { color: var(--accent3); }
+  .tile .big.red { color: #ff8a80; }
+  .tile .label { font-size: .82rem; color: var(--text-dim); margin-top: 4px; }
+  .tile .sub { font-size: .78rem; color: var(--text-dim); margin-top: 2px; }
+  #sparkline-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; margin-top: 14px; }
+  #sparkline-box .label { font-size: .82rem; color: var(--text-dim); margin-bottom: 6px; }
+  canvas#sparkline { width: 100%; height: 70px; display: block; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .list-compact { display: flex; flex-direction: column; gap: 10px; }
+  .mini {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 10px 14px; font-size: .88rem;
+  }
+  .mini a { color: var(--text); text-decoration: none; }
+  .mini a:hover { color: var(--accent2); }
+  .mini .m { font-size: .75rem; color: var(--text-dim); margin-top: 2px; }
+  .event-banner {
+    background: linear-gradient(120deg, rgba(232,68,58,.18), rgba(245,197,66,.1));
+    border: 1px solid rgba(232,68,58,.45); border-radius: var(--radius);
+    padding: 16px 20px; margin-bottom: 18px;
+  }
+  .event-banner h3 { color: #ff8a80; margin-bottom: 4px; }
+  .event-banner p { font-size: .9rem; color: var(--text); }
+  .event-banner a { color: var(--accent3); }
 
   /* Progression */
   .progress-summary {
@@ -72,9 +107,7 @@
   .bar { height: 10px; background: #0d1425; border-radius: 999px; overflow: hidden; margin-top: 12px; }
   .bar > div { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent3)); border-radius: 999px; transition: width .4s; }
   .cat { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; }
-  .cat-head {
-    display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer; user-select: none;
-  }
+  .cat-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer; user-select: none; }
   .cat-head:hover { background: var(--bg-card-hover); }
   .cat-head .icon { font-size: 1.3rem; }
   .cat-head h3 { flex: 1; font-size: 1.05rem; }
@@ -86,9 +119,7 @@
   .cat li { padding: 4px 6px; }
   .cat label { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; padding: 6px 8px; border-radius: 8px; }
   .cat label:hover { background: var(--bg-card-hover); }
-  .cat input[type=checkbox] {
-    width: 19px; height: 19px; margin-top: 2px; accent-color: var(--accent2); cursor: pointer; flex-shrink: 0;
-  }
+  .cat input[type=checkbox] { width: 19px; height: 19px; margin-top: 2px; accent-color: var(--accent2); cursor: pointer; flex-shrink: 0; }
   .cat li.done label span { color: var(--text-dim); text-decoration: line-through; }
   .toolbar { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
   .toolbar button {
@@ -97,7 +128,7 @@
   }
   .toolbar button:hover { color: var(--text); border-color: var(--accent2); }
 
-  .subtabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  .subtabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
   .subtabs button {
     background: transparent; border: 1px solid var(--border); color: var(--text-dim);
     padding: 6px 16px; border-radius: 8px; cursor: pointer; font-size: .88rem;
@@ -108,24 +139,88 @@
     background: rgba(245,197,66,.08); border: 1px solid rgba(245,197,66,.3); color: var(--accent3);
     border-radius: var(--radius); padding: 12px 16px; font-size: .85rem; margin-bottom: 18px;
   }
+
+  /* Succès */
+  .ach { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 10px; }
+  .ach .row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+  .ach h3 { font-size: .98rem; }
+  .ach .pctv { font-weight: 700; color: var(--accent2); white-space: nowrap; }
+  .ach .desc { font-size: .82rem; color: var(--text-dim); margin: 2px 0 8px; }
+  .ach .fill { height: 7px; background: #0d1425; border-radius: 999px; overflow: hidden; }
+  .ach .fill > div { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent3)); }
+
+  /* Vidéos */
+  .vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .vid { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .vid:hover { border-color: var(--accent2); }
+  .vid img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+  .vid .body { padding: 12px 14px; }
+  .vid h3 { font-size: .93rem; margin-bottom: 6px; }
+  .vid h3 a { color: var(--text); text-decoration: none; }
+  .vid h3 a:hover { color: var(--accent2); }
+  .vid .m { font-size: .78rem; color: var(--text-dim); }
+
+  /* Timeline */
+  .tl { position: relative; margin-left: 10px; padding-left: 28px; border-left: 2px solid var(--border); }
+  .tl-item { position: relative; margin-bottom: 22px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -35px; top: 6px; width: 12px; height: 12px;
+    border-radius: 50%; background: var(--accent2); border: 2px solid var(--bg);
+  }
+  .tl-item.latest::before { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+  .tl-item h3 { font-size: 1.02rem; }
+  .tl-item h3 a { color: var(--text); text-decoration: none; }
+  .tl-item h3 a:hover { color: var(--accent2); }
+  .tl-item .ver { color: var(--accent3); font-weight: 600; margin-right: 8px; }
+  .tl-item .d { font-size: .8rem; color: var(--text-dim); }
+  .tl-item p { font-size: .88rem; color: var(--text-dim); margin-top: 4px; max-width: 760px; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <h1>No Man's <span>Sky</span> — Centre de suivi</h1>
-    <p>Actualités, avancées de la communauté et ta progression dans le jeu</p>
+    <p>Actualités, statistiques en direct, avancées de la communauté et ta progression</p>
   </header>
   <div class="updated" id="updated"></div>
 
   <nav class="tabs">
-    <button data-tab="progression" class="active">🧭 Ma progression</button>
-    <button data-tab="officiel">🛸 Actus officielles</button>
-    <button data-tab="steam">📰 Presse & Steam</button>
+    <button data-tab="apercu" class="active">🏠 Vue d'ensemble</button>
+    <button data-tab="progression">🧭 Ma progression</button>
+    <button data-tab="actus">📰 Actualités</button>
     <button data-tab="communaute">👥 Communauté</button>
+    <button data-tab="succes">🏆 Succès des joueurs</button>
+    <button data-tab="videos">🎬 Vidéos</button>
+    <button data-tab="maj">🕰️ Mises à jour</button>
   </nav>
 
-  <section class="panel active" id="panel-progression">
+  <!-- ===================== VUE D'ENSEMBLE ===================== -->
+  <section class="panel active" id="panel-apercu">
+    <div id="event-banner"></div>
+    <div class="tiles" id="tiles"></div>
+    <div id="sparkline-box" style="display:none">
+      <div class="label">Joueurs en ligne sur Steam (historique des relevés)</div>
+      <canvas id="sparkline"></canvas>
+    </div>
+    <h2 class="sec">En ce moment</h2>
+    <div class="cols">
+      <div>
+        <h2 class="sec" style="font-size:.95rem">🛸 Dernières actus officielles</h2>
+        <div class="list-compact" id="ov-official"></div>
+      </div>
+      <div>
+        <h2 class="sec" style="font-size:.95rem">👥 Ça buzze dans la communauté</h2>
+        <div class="list-compact" id="ov-community"></div>
+      </div>
+      <div>
+        <h2 class="sec" style="font-size:.95rem">🎬 Dernières vidéos</h2>
+        <div class="list-compact" id="ov-videos"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROGRESSION ===================== -->
+  <section class="panel" id="panel-progression">
     <div class="progress-summary">
       <div class="pct" id="global-pct">0%</div>
       <div id="global-count" style="color:var(--text-dim)"></div>
@@ -140,28 +235,57 @@
     </div>
   </section>
 
-  <section class="panel" id="panel-officiel">
-    <div class="grid" id="official-list"></div>
+  <!-- ===================== ACTUALITÉS ===================== -->
+  <section class="panel" id="panel-actus">
+    <div class="subtabs" data-group="actus">
+      <button data-sub="officiel" class="active">🛸 Officiel (Hello Games)</button>
+      <button data-sub="steam">📰 Steam & presse</button>
+    </div>
+    <div class="grid" id="actus-list"></div>
   </section>
 
-  <section class="panel" id="panel-steam">
-    <div class="grid" id="steam-list"></div>
-  </section>
-
+  <!-- ===================== COMMUNAUTÉ ===================== -->
   <section class="panel" id="panel-communaute">
-    <div class="subtabs">
+    <div class="subtabs" data-group="communaute">
       <button data-sub="top_week" class="active">🏆 Top de la semaine</button>
       <button data-sub="hot">🔥 Tendances</button>
+      <button data-sub="coordinates">📍 Coordonnées partagées</button>
     </div>
     <div class="grid" id="community-list"></div>
+  </section>
+
+  <!-- ===================== SUCCÈS ===================== -->
+  <section class="panel" id="panel-succes">
+    <div class="note">
+      Pourcentage des joueurs Steam ayant débloqué chaque succès — pour situer ta propre
+      progression par rapport à la communauté mondiale. Exemple : si seulement quelques %
+      ont un succès que tu possèdes, tu fais partie des explorateurs les plus avancés !
+    </div>
+    <div id="ach-list"></div>
+  </section>
+
+  <!-- ===================== VIDÉOS ===================== -->
+  <section class="panel" id="panel-videos">
+    <div class="subtabs" data-group="videos">
+      <button data-sub="all" class="active">Toutes</button>
+      <button data-sub="Hello Games (officiel)">Officiel</button>
+      <button data-sub="communaute">Créateurs communautaires</button>
+    </div>
+    <div class="vid-grid" id="vid-list"></div>
+  </section>
+
+  <!-- ===================== MISES À JOUR ===================== -->
+  <section class="panel" id="panel-maj">
+    <div class="note">L'histoire de No Man's Sky en mises à jour majeures — 10 ans d'évolution continue et gratuite.</div>
+    <div class="tl" id="timeline"></div>
   </section>
 </div>
 
 <script>
 const LS_KEY = "nms-progress-v1";
 let progressDef = null;
-let communityData = null;
-let communitySub = "top_week";
+const D = {}; // données chargées
+const subState = { actus: "officiel", communaute: "top_week", videos: "all" };
 
 const fmtDate = iso => {
   if (!iso) return "";
@@ -173,6 +297,7 @@ const fmtDate = iso => {
   const d = new Date(iso);
   return isNaN(d) ? "" : d.toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
 };
+const fmtNum = n => (n || 0).toLocaleString("fr-FR");
 
 async function loadJSON(path) {
   try {
@@ -189,6 +314,14 @@ document.querySelectorAll("nav.tabs button").forEach(b => b.addEventListener("cl
   b.classList.add("active");
   document.getElementById("panel-" + b.dataset.tab).classList.add("active");
 }));
+document.querySelectorAll(".subtabs").forEach(group => {
+  group.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+    group.querySelectorAll("button").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    subState[group.dataset.group] = b.dataset.sub;
+    renderAll();
+  }));
+});
 
 /* ---------- Progression ---------- */
 function getState() {
@@ -253,7 +386,7 @@ document.getElementById("btn-reset").addEventListener("click", () => {
   if (confirm("Effacer toute ta progression ?")) { localStorage.removeItem(LS_KEY); renderProgress(); }
 });
 
-/* ---------- Actualités ---------- */
+/* ---------- Cartes génériques ---------- */
 function newsCard(item, badge) {
   return `<div class="card">
     <h3><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></h3>
@@ -266,55 +399,185 @@ function newsCard(item, badge) {
     ${item.excerpt ? `<div class="excerpt">${item.excerpt}</div>` : ""}
   </div>`;
 }
+const miniCard = (item, extra) => `<div class="mini">
+  <a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>
+  <div class="m">${fmtDate(item.date)}${extra ? " · " + extra : ""}</div>
+</div>`;
 
+/* ---------- Vue d'ensemble ---------- */
+function renderOverview() {
+  const tiles = [];
+  if (D.stats) {
+    tiles.push(`<div class="tile"><div class="big">${fmtNum(D.stats.player_count)}</div>
+      <div class="label">joueurs en ligne (Steam)</div></div>`);
+    if (D.stats.reviews) {
+      tiles.push(`<div class="tile"><div class="big gold">${D.stats.reviews.percent_positive}%</div>
+        <div class="label">d'avis positifs sur Steam</div>
+        <div class="sub">${fmtNum(D.stats.reviews.total)} avis au total</div></div>`);
+    }
+    if (D.stats.price) {
+      const p = D.stats.price;
+      tiles.push(`<div class="tile"><div class="big ${p.discount_percent ? "red" : ""}">${p.final}</div>
+        <div class="label">prix actuel sur Steam</div>
+        ${p.discount_percent ? `<div class="sub">🔥 promo −${p.discount_percent}% (au lieu de ${p.initial})</div>` : ""}</div>`);
+    }
+  }
+  if (D.timeline && D.timeline.items && D.timeline.items.length) {
+    const last = D.timeline.items[0];
+    tiles.push(`<div class="tile"><div class="big" style="font-size:1.3rem;padding-top:8px">${last.name}</div>
+      <div class="label">dernière mise à jour majeure (v${last.version})</div>
+      <div class="sub">${fmtDate(last.date)}</div></div>`);
+  }
+  document.getElementById("tiles").innerHTML = tiles.join("");
+
+  // Bannière événement communautaire en cours (si la dernière MàJ le mentionne)
+  if (D.timeline && D.timeline.items && D.timeline.items.length) {
+    const last = D.timeline.items[0];
+    if (/communautaire|faction|événement/i.test(last.desc || "")) {
+      document.getElementById("event-banner").innerHTML = `<div class="event-banner">
+        <h3>⚔️ Événement communautaire en cours — ${last.name}</h3>
+        <p>${last.desc} ${last.url ? `<a href="${last.url}" target="_blank" rel="noopener">Voir l'annonce officielle →</a>` : ""}</p>
+      </div>`;
+    }
+  }
+
+  // Sparkline joueurs
+  if (D.history && D.history.points && D.history.points.length >= 2) {
+    document.getElementById("sparkline-box").style.display = "block";
+    drawSparkline(D.history.points);
+  }
+
+  const ov = (elId, items, fmt) => {
+    document.getElementById(elId).innerHTML = items && items.length
+      ? items.slice(0, 4).map(fmt).join("")
+      : `<div class="mini">Pas encore de données.</div>`;
+  };
+  ov("ov-official", D.official && D.official.items, i => miniCard(i));
+  ov("ov-community", D.community && D.community.top_week, i => miniCard(i, i.author));
+  ov("ov-videos", D.videos && D.videos.items, i => miniCard(i, i.channel));
+}
+
+function drawSparkline(points) {
+  const c = document.getElementById("sparkline");
+  const dpr = window.devicePixelRatio || 1;
+  const w = c.clientWidth, h = 70;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext("2d");
+  ctx.scale(dpr, dpr);
+  const vals = points.map(p => p.players);
+  const min = Math.min(...vals), max = Math.max(...vals);
+  const range = max - min || 1;
+  const x = i => (i / (points.length - 1)) * (w - 8) + 4;
+  const y = v => h - 10 - ((v - min) / range) * (h - 24);
+  ctx.strokeStyle = "#4ec9b0"; ctx.lineWidth = 2; ctx.beginPath();
+  points.forEach((p, i) => i ? ctx.lineTo(x(i), y(p.players)) : ctx.moveTo(x(i), y(p.players)));
+  ctx.stroke();
+  ctx.fillStyle = "#8b96b8"; ctx.font = "11px sans-serif";
+  ctx.fillText(fmtNum(max), 4, 12);
+  ctx.fillText(fmtNum(min), 4, h - 1);
+}
+
+/* ---------- Actualités ---------- */
+function renderActus() {
+  const list = document.getElementById("actus-list");
+  if (subState.actus === "officiel") {
+    list.innerHTML = D.official && D.official.items
+      ? D.official.items.map(i => newsCard(i, { txt: "Hello Games", cls: "official" })).join("")
+      : `<div class="empty">Aucune donnée — lance <code>python3 scripts/fetch_news.py</code>.</div>`;
+  } else {
+    list.innerHTML = D.news && D.news.items
+      ? D.news.items.map(i => newsCard(i, i.is_official ? { txt: "Officiel", cls: "official" } : { txt: i.source || "Presse" })).join("")
+      : `<div class="empty">Aucune donnée.</div>`;
+  }
+}
+
+/* ---------- Communauté ---------- */
 function renderCommunity() {
   const list = document.getElementById("community-list");
-  if (!communityData || !communityData[communitySub] || !communityData[communitySub].length) {
-    list.innerHTML = `<div class="empty">Données communautaires indisponibles pour le moment.</div>`;
+  const key = subState.communaute;
+  const badge = key === "coordinates" ? "r/NMSCoordinateExchange" : "r/NoMansSkyTheGame";
+  const items = D.community && D.community[key];
+  list.innerHTML = items && items.length
+    ? items.map(p => newsCard(p, { txt: badge })).join("")
+    : `<div class="empty">Données communautaires indisponibles pour le moment.</div>`;
+}
+
+/* ---------- Succès ---------- */
+function renderAchievements() {
+  const el = document.getElementById("ach-list");
+  if (!D.achievements || !D.achievements.items || !D.achievements.items.length) {
+    el.innerHTML = `<div class="empty">Aucune donnée de succès.</div>`;
     return;
   }
-  list.innerHTML = communityData[communitySub]
-    .map(p => newsCard(p, { txt: "r/NoMansSkyTheGame" })).join("");
+  el.innerHTML = D.achievements.items.map(a => `<div class="ach">
+    <div class="row"><h3>${a.name}</h3><span class="pctv">${a.percent}%</span></div>
+    <div class="desc">${a.desc || "Succès caché"}</div>
+    <div class="fill"><div style="width:${a.percent}%"></div></div>
+  </div>`).join("");
 }
-document.querySelectorAll(".subtabs button").forEach(b => b.addEventListener("click", () => {
-  document.querySelectorAll(".subtabs button").forEach(x => x.classList.remove("active"));
-  b.classList.add("active");
-  communitySub = b.dataset.sub;
+
+/* ---------- Vidéos ---------- */
+function renderVideos() {
+  const el = document.getElementById("vid-list");
+  if (!D.videos || !D.videos.items || !D.videos.items.length) {
+    el.innerHTML = `<div class="empty">Aucune vidéo.</div>`;
+    return;
+  }
+  let items = D.videos.items;
+  if (subState.videos === "Hello Games (officiel)") items = items.filter(v => v.channel === "Hello Games (officiel)");
+  else if (subState.videos === "communaute") items = items.filter(v => v.channel !== "Hello Games (officiel)");
+  el.innerHTML = items.map(v => `<div class="vid">
+    ${v.thumbnail ? `<a href="${v.url}" target="_blank" rel="noopener"><img src="${v.thumbnail}" alt="" loading="lazy"></a>` : ""}
+    <div class="body">
+      <h3><a href="${v.url}" target="_blank" rel="noopener">${v.title}</a></h3>
+      <div class="m">${v.channel} · ${fmtDate(v.date)}${v.views ? " · " + fmtNum(v.views) + " vues" : ""}</div>
+    </div>
+  </div>`).join("");
+}
+
+/* ---------- Timeline ---------- */
+function renderTimeline() {
+  const el = document.getElementById("timeline");
+  if (!D.timeline || !D.timeline.items) { el.innerHTML = ""; return; }
+  el.innerHTML = D.timeline.items.map((u, i) => `<div class="tl-item ${i === 0 ? "latest" : ""}">
+    <h3><span class="ver">v${u.version}</span>${u.url ? `<a href="${u.url}" target="_blank" rel="noopener">${u.name}</a>` : u.name}
+      <span class="d"> — ${fmtDate(u.date)}</span></h3>
+    <p>${u.desc}</p>
+  </div>`).join("");
+}
+
+function renderAll() {
+  renderOverview();
+  renderActus();
   renderCommunity();
-}));
+  renderAchievements();
+  renderVideos();
+  renderTimeline();
+}
 
 /* ---------- Init ---------- */
 (async () => {
-  const [prog, official, news, community] = await Promise.all([
+  const [prog, official, news, community, stats, history, achievements, videos, timeline] = await Promise.all([
     loadJSON("data/progress.json"),
     loadJSON("data/official.json"),
     loadJSON("data/news.json"),
     loadJSON("data/community.json"),
+    loadJSON("data/stats.json"),
+    loadJSON("data/stats_history.json"),
+    loadJSON("data/achievements.json"),
+    loadJSON("data/videos.json"),
+    loadJSON("data/timeline.json"),
   ]);
+  Object.assign(D, { official, news, community, stats, history, achievements, videos, timeline });
 
   if (prog) { progressDef = prog; renderProgress(); }
   else document.getElementById("categories").innerHTML =
     `<div class="note">Impossible de charger data/progress.json — ouvre cette page via un petit serveur local
      (<code>python3 -m http.server</code>) ou via GitHub Pages.</div>`;
 
-  if (official && official.items) {
-    document.getElementById("official-list").innerHTML =
-      official.items.map(i => newsCard(i, { txt: "Hello Games", cls: "official" })).join("");
-  } else {
-    document.getElementById("official-list").innerHTML = `<div class="empty">Aucune donnée — lance <code>python3 scripts/fetch_news.py</code>.</div>`;
-  }
+  renderAll();
 
-  if (news && news.items) {
-    document.getElementById("steam-list").innerHTML =
-      news.items.map(i => newsCard(i, i.is_official ? { txt: "Officiel", cls: "official" } : { txt: i.source || "Presse" })).join("");
-  } else {
-    document.getElementById("steam-list").innerHTML = `<div class="empty">Aucune donnée — lance <code>python3 scripts/fetch_news.py</code>.</div>`;
-  }
-
-  communityData = community;
-  renderCommunity();
-
-  const dates = [official, news, community].filter(x => x && x.updated_at).map(x => x.updated_at);
+  const dates = [official, news, community, stats].filter(x => x && x.updated_at).map(x => x.updated_at);
   if (dates.length) {
     document.getElementById("updated").textContent =
       "Dernière mise à jour des données : " + new Date(dates.sort().pop()).toLocaleString("fr-FR");

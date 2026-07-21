@@ -7,9 +7,13 @@ Un système complet pour suivre **tout ce qui se passe autour de No Man's Sky** 
 
 | Volet | Contenu | Source |
 |---|---|---|
+| 🏠 **Vue d'ensemble** | Joueurs en ligne en direct, % d'avis positifs, prix/promos, dernière MàJ majeure, événement communautaire en cours, résumé de tout le reste | APIs Steam |
 | 🛸 **Actus officielles** | Patch notes et annonces Hello Games | [nomanssky.com/news](https://www.nomanssky.com/news/) |
 | 📰 **Presse & Steam** | Annonces Steam + couverture presse (PC Gamer, RPS…) | API Steam News |
-| 👥 **Communauté** | Posts les plus populaires de la semaine + tendances du moment | r/NoMansSkyTheGame (RSS) |
+| 👥 **Communauté** | Top de la semaine, tendances + coordonnées partagées (vaisseaux, bases…) | r/NoMansSkyTheGame + r/NMSCoordinateExchange (RSS) |
+| 🏆 **Succès des joueurs** | % de la communauté Steam ayant débloqué chaque succès — pour te situer par rapport aux autres voyageurs | Page Steam des succès globaux |
+| 🎬 **Vidéos** | Dernières vidéos de Hello Games et des créateurs communautaires (KhrazeGaming, Beeblebum, Xaine's World) | Flux RSS YouTube |
+| 🕰️ **Mises à jour** | Frise chronologique des mises à jour majeures, de la sortie (2016) à The Swarm (2026) | `data/timeline.json` |
 | 🧭 **Ma progression** | Checklist interactive de ~35 objectifs du jeu (histoire, quêtes, équipement, bases, exploration, multijoueur) avec pourcentage global | Toi ! |
 
 Les données sont **mises à jour automatiquement toutes les 6 heures** par GitHub Actions
@@ -58,7 +62,12 @@ déclencher le workflow depuis l'onglet **Actions** → « Mise à jour des actu
 ├── data/
 │   ├── news.json                  # Actualités Steam (auto)
 │   ├── official.json              # Articles nomanssky.com (auto)
-│   ├── community.json             # Posts Reddit (auto)
+│   ├── community.json             # Posts Reddit : top, tendances, coordonnées (auto)
+│   ├── stats.json                 # Joueurs en ligne, avis, prix (auto)
+│   ├── stats_history.json         # Historique des relevés de joueurs (auto)
+│   ├── achievements.json          # Succès globaux de la communauté Steam (auto)
+│   ├── videos.json                # Dernières vidéos YouTube (auto)
+│   ├── timeline.json              # Frise des mises à jour majeures 2016→2026
 │   └── progress.json              # Définition des objectifs de progression
 ├── scripts/
 │   └── fetch_news.py              # Script de collecte (stdlib Python uniquement)

@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Récupère les actualités No Man's Sky et le pouls de la communauté.
+"""Récupère les actualités No Man's Sky, les statistiques et le pouls de la communauté.
 
 Sources :
   - Steam News API (annonces officielles + presse, appid 275850)
   - Site officiel nomanssky.com/news (patch notes Hello Games)
-  - Reddit r/NoMansSkyTheGame via RSS (posts populaires de la semaine + tendances)
+  - Reddit r/NoMansSkyTheGame + r/NMSCoordinateExchange via RSS
+  - API Steam : joueurs en ligne, avis, prix/promotions
+  - Page Steam des succès globaux (en français) : progression de la communauté
+  - Flux RSS YouTube : chaîne officielle Hello Games + créateurs communautaires
 
-Écrit les résultats dans data/news.json, data/official.json et data/community.json.
+Écrit les résultats dans data/*.json.
 Utilise uniquement la bibliothèque standard Python (aucune dépendance).
 """
 
@@ -27,13 +30,44 @@ STEAM_NEWS_URL = (
     "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/"
     f"?appid={APPID_NMS}&count=30&maxlength=600&format=json"
 )
+STEAM_PLAYERS_URL = (
+    "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/"
+    f"?appid={APPID_NMS}"
+)
+STEAM_REVIEWS_URL = (
+    f"https://store.steampowered.com/appreviews/{APPID_NMS}"
+    "?json=1&num_per_page=0&language=all&purchase_type=all"
+)
+STEAM_PRICE_URL = (
+    f"https://store.steampowered.com/api/appdetails?appids={APPID_NMS}"
+    "&cc=fr&filters=price_overview"
+)
+STEAM_ACHIEVEMENTS_URL = (
+    f"https://steamcommunity.com/stats/{APPID_NMS}/achievements/?l=french"
+)
 OFFICIAL_NEWS_URL = "https://www.nomanssky.com/news/"
 REDDIT_TOP_RSS = "https://www.reddit.com/r/NoMansSkyTheGame/top.rss?t=week&limit=25"
 REDDIT_HOT_RSS = "https://www.reddit.com/r/NoMansSkyTheGame/hot.rss?limit=25"
+REDDIT_COORDS_RSS = (
+    "https://www.reddit.com/r/NMSCoordinateExchange/top.rss?t=week&limit=20"
+)
 
-ATOM_NS = {"a": "http://www.w3.org/2005/Atom"}
+YOUTUBE_CHANNELS = [
+    ("Hello Games (officiel)", "UCGKx5XhGuf09VERiw_QIemA"),
+    ("KhrazeGaming", "UCFXUSG_393wZJaRTErU6Pjw"),
+    ("Beeblebum", "UCiPxIIYapAryopmQshBtQUw"),
+    ("Xaine's World", "UCzTB8EBVJWkzJi2sQjdBv9g"),
+]
+YOUTUBE_FEED = "https://www.youtube.com/feeds/videos.xml?channel_id={}"
+
+ATOM_NS = {
+    "a": "http://www.w3.org/2005/Atom",
+    "media": "http://search.yahoo.com/mrss/",
+    "yt": "http://www.youtube.com/xml/schemas/2015",
+}
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 USER_AGENT = "nms-tracker/1.0 (suivi personnel des actualites No Man's Sky)"
+HISTORY_MAX_POINTS = 2000
 
 
 def fetch(url: str, retries: int = 3) -> bytes:
@@ -61,6 +95,26 @@ def clean_text(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def write_json(name: str, payload) -> None:
+    (DATA_DIR / name).write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+
+def read_json(name: str, default):
+    path = DATA_DIR / name
+    if path.exists():
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            pass
+    return default
+
+
+# ---------------------------------------------------------------- actualités
+
+
 def fetch_steam_news() -> list[dict]:
     payload = json.loads(fetch(STEAM_NEWS_URL).decode("utf-8"))
     items = payload.get("appnews", {}).get("newsitems", [])
@@ -85,35 +139,41 @@ def fetch_steam_news() -> list[dict]:
 
 
 def fetch_official_news() -> list[dict]:
-    html = fetch(OFFICIAL_NEWS_URL).decode("utf-8", errors="replace")
     articles = []
-    pattern = re.compile(
-        r'<a href="(/20\d{2}/\d{2}/[^"]+)" title="([^"]+)"', re.S
-    )
     seen = set()
-    for m in pattern.finditer(html):
-        path, title = m.group(1), unescape(m.group(2))
-        if path in seen:
-            continue
-        seen.add(path)
-        year, month = path.strip("/").split("/")[0:2]
-        # Extrait : le texte avant le lien "View Article" correspondant
-        excerpt = ""
-        view = re.search(
-            r'([^<>]{40,600})<a class="view-article[^"]*" href="' + re.escape(path),
-            html,
-        )
-        if view:
-            excerpt = clean_text(view.group(1))[:400]
-        articles.append(
-            {
-                "title": title,
-                "url": f"https://www.nomanssky.com{path}",
-                "date": f"{year}-{month}",
-                "excerpt": excerpt,
-            }
-        )
+    for page in range(1, 4):
+        url = OFFICIAL_NEWS_URL if page == 1 else f"{OFFICIAL_NEWS_URL}page/{page}/"
+        try:
+            html = fetch(url).decode("utf-8", errors="replace")
+        except urllib.error.HTTPError:
+            break
+        pattern = re.compile(r'<a href="(/20\d{2}/\d{2}/[^"]+)" title="([^"]+)"')
+        for m in pattern.finditer(html):
+            path, title = m.group(1), unescape(m.group(2))
+            if path in seen:
+                continue
+            seen.add(path)
+            year, month = path.strip("/").split("/")[0:2]
+            excerpt = ""
+            view = re.search(
+                r'([^<>]{40,600})<a class="view-article[^"]*" href="'
+                + re.escape(path),
+                html,
+            )
+            if view:
+                excerpt = clean_text(view.group(1))[:400]
+            articles.append(
+                {
+                    "title": title,
+                    "url": f"https://www.nomanssky.com{path}",
+                    "date": f"{year}-{month}",
+                    "excerpt": excerpt,
+                }
+            )
     return articles
+
+
+# ---------------------------------------------------------------- communauté
 
 
 def parse_reddit_rss(raw: bytes) -> list[dict]:
@@ -135,11 +195,117 @@ def parse_reddit_rss(raw: bytes) -> list[dict]:
     return posts
 
 
-def write_json(name: str, payload: dict) -> None:
-    (DATA_DIR / name).write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
+def fetch_community() -> dict:
+    community = {"top_week": [], "hot": [], "coordinates": []}
+    community["top_week"] = parse_reddit_rss(fetch(REDDIT_TOP_RSS))
+    time.sleep(3)
+    community["hot"] = parse_reddit_rss(fetch(REDDIT_HOT_RSS))
+    time.sleep(3)
+    community["coordinates"] = parse_reddit_rss(fetch(REDDIT_COORDS_RSS))
+    return community
+
+
+# ---------------------------------------------------------------- statistiques
+
+
+def fetch_stats() -> dict:
+    stats = {}
+
+    players = json.loads(fetch(STEAM_PLAYERS_URL).decode("utf-8"))
+    stats["player_count"] = players.get("response", {}).get("player_count", 0)
+
+    reviews = json.loads(fetch(STEAM_REVIEWS_URL).decode("utf-8"))
+    summary = reviews.get("query_summary", {})
+    total = summary.get("total_reviews", 0)
+    positive = summary.get("total_positive", 0)
+    stats["reviews"] = {
+        "total": total,
+        "positive": positive,
+        "percent_positive": round(positive / total * 100, 1) if total else 0,
+        "score_desc": summary.get("review_score_desc", ""),
+    }
+
+    price = json.loads(fetch(STEAM_PRICE_URL).decode("utf-8"))
+    overview = (
+        price.get(str(APPID_NMS), {}).get("data", {}).get("price_overview", {})
     )
+    if isinstance(overview, dict) and overview:
+        stats["price"] = {
+            "final": overview.get("final_formatted", ""),
+            "initial": overview.get("initial_formatted", ""),
+            "discount_percent": overview.get("discount_percent", 0),
+        }
+    return stats
+
+
+def append_history(player_count: int, now: str) -> None:
+    history = read_json("stats_history.json", {"points": []})
+    history["points"].append({"t": now, "players": player_count})
+    history["points"] = history["points"][-HISTORY_MAX_POINTS:]
+    write_json("stats_history.json", history)
+
+
+def fetch_achievements() -> list[dict]:
+    """Scrape la page Steam des succès globaux (noms/descriptions en français)."""
+    html = fetch(STEAM_ACHIEVEMENTS_URL).decode("utf-8", errors="replace")
+    pattern = re.compile(
+        r'<div class="achievePercent">([\d.]+)%</div>\s*'
+        r'<div class="achieveTxt">\s*<h3>([^<]*)</h3>\s*<h5>([^<]*)</h5>',
+        re.S,
+    )
+    achievements = []
+    for m in pattern.finditer(html):
+        achievements.append(
+            {
+                "percent": float(m.group(1)),
+                "name": unescape(m.group(2)).strip(),
+                "desc": unescape(m.group(3)).strip(),
+            }
+        )
+    return achievements
+
+
+# ---------------------------------------------------------------- vidéos
+
+
+def fetch_videos() -> list[dict]:
+    videos = []
+    for channel_name, channel_id in YOUTUBE_CHANNELS:
+        try:
+            root = ET.fromstring(fetch(YOUTUBE_FEED.format(channel_id)))
+        except Exception as exc:  # noqa: BLE001
+            print(f"AVERTISSEMENT YouTube ({channel_name}) : {exc}", file=sys.stderr)
+            continue
+        official_channel = channel_id == YOUTUBE_CHANNELS[0][1]
+        for entry in root.findall("a:entry", ATOM_NS):
+            title = entry.findtext("a:title", "", ATOM_NS)
+            # Les créateurs communautaires couvrent d'autres jeux : on ne garde
+            # que leurs vidéos No Man's Sky (la chaîne officielle passe entière).
+            if not official_channel and not re.search(
+                r"no man'?s sky|\bnms\b", title, re.I
+            ):
+                continue
+            link = entry.find("a:link", ATOM_NS)
+            published = entry.findtext("a:published", "", ATOM_NS)
+            thumb = entry.find("a:group/media:thumbnail", ATOM_NS)
+            if thumb is None:
+                thumb = entry.find("media:group/media:thumbnail", ATOM_NS)
+            stats_el = entry.find("media:group/media:community/media:statistics", ATOM_NS)
+            videos.append(
+                {
+                    "title": unescape(title),
+                    "url": link.get("href", "") if link is not None else "",
+                    "date": published,
+                    "channel": channel_name,
+                    "thumbnail": thumb.get("url", "") if thumb is not None else "",
+                    "views": int(stats_el.get("views", 0)) if stats_el is not None else 0,
+                }
+            )
+    videos.sort(key=lambda v: v["date"], reverse=True)
+    return videos[:40]
+
+
+# ---------------------------------------------------------------- main
 
 
 def main() -> int:
@@ -147,44 +313,56 @@ def main() -> int:
     now = datetime.now(timezone.utc).isoformat()
     failures = []
 
-    try:
-        news = fetch_steam_news()
+    def step(label, fn):
+        try:
+            return fn()
+        except Exception as exc:  # noqa: BLE001
+            print(f"ERREUR {label} : {exc}", file=sys.stderr)
+            failures.append(label)
+            return None
+
+    news = step("Steam News", fetch_steam_news)
+    if news is not None:
         write_json("news.json", {"updated_at": now, "items": news})
         print(f"news.json : {len(news)} actualités Steam")
-    except Exception as exc:  # noqa: BLE001
-        print(f"ERREUR Steam News : {exc}", file=sys.stderr)
-        failures.append("steam")
 
-    try:
-        official = fetch_official_news()
+    official = step("site officiel", fetch_official_news)
+    if official is not None:
         write_json("official.json", {"updated_at": now, "items": official})
         print(f"official.json : {len(official)} articles nomanssky.com")
-    except Exception as exc:  # noqa: BLE001
-        print(f"ERREUR site officiel : {exc}", file=sys.stderr)
-        failures.append("official")
 
-    try:
-        community = {
-            "updated_at": now,
-            "top_week": parse_reddit_rss(fetch(REDDIT_TOP_RSS)),
-            "hot": parse_reddit_rss(fetch(REDDIT_HOT_RSS)),
-        }
+    community = step("Reddit", fetch_community)
+    if community is not None:
+        community["updated_at"] = now
         write_json("community.json", community)
         print(
-            f"community.json : {len(community['top_week'])} posts top semaine, "
-            f"{len(community['hot'])} posts tendance"
+            f"community.json : {len(community['top_week'])} top semaine, "
+            f"{len(community['hot'])} tendances, "
+            f"{len(community['coordinates'])} coordonnées"
         )
-    except Exception as exc:  # noqa: BLE001
-        # Reddit limite parfois les requêtes anonymes : on conserve les
-        # anciennes données plutôt que d'écraser avec du vide.
-        print(f"AVERTISSEMENT Reddit : {exc}", file=sys.stderr)
-        if not (DATA_DIR / "community.json").exists():
-            write_json(
-                "community.json", {"updated_at": now, "top_week": [], "hot": []}
-            )
 
-    # Échec seulement si TOUTES les sources principales sont tombées
-    return 1 if len(failures) >= 2 else 0
+    stats = step("statistiques Steam", fetch_stats)
+    if stats is not None:
+        stats["updated_at"] = now
+        write_json("stats.json", stats)
+        append_history(stats["player_count"], now)
+        print(
+            f"stats.json : {stats['player_count']} joueurs en ligne, "
+            f"{stats['reviews']['percent_positive']}% d'avis positifs"
+        )
+
+    achievements = step("succès Steam", fetch_achievements)
+    if achievements:
+        write_json("achievements.json", {"updated_at": now, "items": achievements})
+        print(f"achievements.json : {len(achievements)} succès communautaires")
+
+    videos = step("YouTube", fetch_videos)
+    if videos:
+        write_json("videos.json", {"updated_at": now, "items": videos})
+        print(f"videos.json : {len(videos)} vidéos")
+
+    # Échec global seulement si la majorité des sources sont tombées
+    return 1 if len(failures) >= 3 else 0
 
 
 if __name__ == "__main__":

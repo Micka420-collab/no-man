@@ -1,0 +1,12 @@
+{
+  "name": "No Man's Sky — Centre de suivi",
+  "short_name": "NMS Suivi",
+  "description": "Actualités, statistiques en direct, communauté et suivi de progression pour No Man's Sky.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#05070f",
+  "theme_color": "#05070f",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

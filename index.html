@@ -1,553 +1,1102 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>No Man's Sky — Centre de suivi</title>
+<meta name="description" content="Actualités, statistiques en direct, communauté et suivi de progression pour No Man's Sky — mis à jour automatiquement toutes les 6 heures.">
+<meta name="theme-color" content="#05070f">
+<meta property="og:title" content="No Man's Sky — Centre de suivi">
+<meta property="og:description" content="Tout l'univers de No Man's Sky en un coup d'œil : actus officielles, stats Steam en direct, communauté, vidéos et ta progression.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0e1a;
-    --bg-card: #131a2e;
-    --bg-card-hover: #1a2340;
-    --border: #263354;
-    --text: #dde4f5;
-    --text-dim: #8b96b8;
-    --accent: #e8443a;
-    --accent2: #4ec9b0;
-    --accent3: #f5c542;
-    --radius: 12px;
+    --font-head: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+    --c1: #ff5c49;
+    --c2: #37e0b8;
+    --c3: #ffc857;
+    --c4: #7aa2ff;
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+  [data-theme="dark"] {
+    --bg0: #05070f;
+    --bg1: #0a0f1f;
+    --ink: #e8edfb;
+    --ink-dim: #9aa6c8;
+    --card: rgba(148, 170, 255, 0.055);
+    --card-strong: rgba(148, 170, 255, 0.09);
+    --stroke: rgba(148, 170, 255, 0.14);
+    --stroke-hi: rgba(55, 224, 184, 0.55);
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+    --track: rgba(255, 255, 255, 0.07);
+    --chip: rgba(10, 15, 31, 0.72);
+  }
+  [data-theme="light"] {
+    --bg0: #eef1fb;
+    --bg1: #e2e8fa;
+    --ink: #17203c;
+    --ink-dim: #56618a;
+    --card: rgba(255, 255, 255, 0.66);
+    --card-strong: rgba(255, 255, 255, 0.85);
+    --stroke: rgba(23, 32, 60, 0.12);
+    --stroke-hi: rgba(11, 148, 118, 0.5);
+    --shadow: 0 10px 30px rgba(23, 32, 60, 0.10);
+    --track: rgba(23, 32, 60, 0.08);
+    --chip: rgba(255, 255, 255, 0.8);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    background: var(--bg);
-    background-image: radial-gradient(circle at 20% 10%, #1a1035 0%, transparent 40%),
-                      radial-gradient(circle at 80% 90%, #0d2438 0%, transparent 40%);
-    color: var(--text);
-    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-    line-height: 1.55;
+    background: var(--bg0);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
     min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 0.35s, color 0.35s;
   }
-  .wrap { max-width: 1200px; margin: 0 auto; padding: 24px 16px 80px; }
-  header { text-align: center; padding: 36px 0 20px; }
-  header h1 { font-size: 2rem; letter-spacing: 2px; text-transform: uppercase; }
-  header h1 span { color: var(--accent); }
-  header p { color: var(--text-dim); margin-top: 6px; }
-  .updated { font-size: .85rem; color: var(--text-dim); text-align: center; margin-bottom: 24px; }
+  #stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  .aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .aurora::before, .aurora::after {
+    content: ""; position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%;
+    filter: blur(90px); opacity: 0.16;
+  }
+  .aurora::before { background: radial-gradient(circle, #6b3fd4, transparent 60%); top: -25vmax; left: -15vmax; }
+  .aurora::after { background: radial-gradient(circle, #0f6f8f, transparent 60%); bottom: -25vmax; right: -15vmax; }
+  [data-theme="light"] .aurora::before, [data-theme="light"] .aurora::after { opacity: 0.22; }
 
-  nav.tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .wrap { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 18px 18px 90px; }
+  .skip-link {
+    position: absolute; left: -9999px; top: 8px; z-index: 50;
+    background: var(--c2); color: #04251d; padding: 8px 16px; border-radius: 8px; font-weight: 600;
+  }
+  .skip-link:focus { left: 8px; }
+
+  /* ------- Barre haute ------- */
+  .topbar { display: flex; justify-content: flex-end; gap: 10px; }
+  .icon-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--card); color: var(--ink);
+    border: 1px solid var(--stroke); border-radius: 999px;
+    padding: 8px 15px; cursor: pointer; font: 500 0.85rem var(--font-body);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .icon-btn:hover { border-color: var(--stroke-hi); transform: translateY(-1px); }
+
+  /* ------- Héros ------- */
+  .hero { text-align: center; padding: 34px 0 12px; }
+  .hero .overline {
+    font: 600 0.78rem var(--font-head); letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--c2);
+  }
+  .hero h1 {
+    font: 700 clamp(2.3rem, 6vw, 4rem) var(--font-head);
+    letter-spacing: 0.04em; line-height: 1.1; margin: 10px 0 8px; text-transform: uppercase;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(92deg, var(--c1) 10%, var(--c3) 90%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero .tagline { color: var(--ink-dim); max-width: 640px; margin: 0 auto; font-size: 1.02rem; }
+  .live-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 22px 0 6px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--chip); border: 1px solid var(--stroke); border-radius: 999px;
+    padding: 8px 16px; font-size: 0.88rem; font-weight: 500;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    box-shadow: var(--shadow);
+  }
+  .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c2); box-shadow: 0 0 8px var(--c2); animation: pulse 2.2s infinite; }
+  @keyframes pulse { 50% { opacity: 0.35; } }
+  .chip b { font-family: var(--font-head); }
+  .updated { text-align: center; color: var(--ink-dim); font-size: 0.8rem; margin-top: 10px; }
+
+  /* ------- Navigation ------- */
+  nav.tabs {
+    position: sticky; top: 10px; z-index: 20;
+    display: flex; gap: 6px; margin: 22px auto 30px; padding: 7px;
+    background: var(--chip); border: 1px solid var(--stroke); border-radius: 999px;
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    box-shadow: var(--shadow);
+    overflow-x: auto; scrollbar-width: none; max-width: max-content;
+  }
+  nav.tabs::-webkit-scrollbar { display: none; }
   nav.tabs button {
-    background: var(--bg-card); color: var(--text); border: 1px solid var(--border);
-    padding: 9px 17px; border-radius: 999px; cursor: pointer; font-size: .92rem;
-    transition: all .15s;
+    flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px;
+    background: transparent; color: var(--ink-dim); border: none; border-radius: 999px;
+    padding: 9px 16px; cursor: pointer; font: 500 0.88rem var(--font-body);
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
   }
-  nav.tabs button:hover { background: var(--bg-card-hover); }
-  nav.tabs button.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  nav.tabs button:hover { color: var(--ink); }
+  nav.tabs button.active {
+    background: linear-gradient(92deg, var(--c1), #ff7a3d);
+    color: #fff; font-weight: 600;
+    box-shadow: 0 4px 18px rgba(255, 92, 73, 0.35);
+  }
+  nav.tabs button:focus-visible, .icon-btn:focus-visible, .subtabs button:focus-visible,
+  .toolbar button:focus-visible, .searchbox input:focus-visible {
+    outline: 2px solid var(--c2); outline-offset: 2px;
+  }
 
-  section.panel { display: none; }
+  section.panel { display: none; animation: fadeUp 0.35s ease; }
   section.panel.active { display: block; }
-  h2.sec { font-size: 1.15rem; margin: 26px 0 14px; color: var(--accent3); letter-spacing: .5px; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } }
+
+  h2.sec {
+    font: 600 1.05rem var(--font-head); letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--c3); margin: 30px 0 14px; display: flex; align-items: center; gap: 10px;
+  }
+  h2.sec::after { content: ""; flex: 1; height: 1px; background: var(--stroke); }
   h2.sec:first-child { margin-top: 0; }
 
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  /* ------- Cartes ------- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
   .card {
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 16px 18px; transition: border-color .15s;
+    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius);
+    padding: 18px 20px;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
-  .card:hover { border-color: var(--accent2); }
-  .card h3 { font-size: 1.02rem; margin-bottom: 6px; }
-  .card h3 a { color: var(--text); text-decoration: none; }
-  .card h3 a:hover { color: var(--accent2); }
-  .card .meta { font-size: .8rem; color: var(--text-dim); margin-bottom: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
-  .card .excerpt { font-size: .88rem; color: var(--text-dim); }
+  .card:hover { border-color: var(--stroke-hi); transform: translateY(-3px); box-shadow: var(--shadow); }
+  .card h3 { font: 600 1rem var(--font-head); margin-bottom: 7px; line-height: 1.4; }
+  .card h3 a { color: var(--ink); text-decoration: none; }
+  .card h3 a:hover { color: var(--c2); }
+  .card .meta { font-size: 0.78rem; color: var(--ink-dim); margin-bottom: 9px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .card .excerpt { font-size: 0.87rem; color: var(--ink-dim); }
   .badge {
-    display: inline-block; font-size: .72rem; padding: 2px 9px; border-radius: 999px;
-    background: rgba(78,201,176,.15); color: var(--accent2); border: 1px solid rgba(78,201,176,.35);
+    display: inline-flex; font-size: 0.7rem; font-weight: 600; padding: 2.5px 10px; border-radius: 999px;
+    background: rgba(55, 224, 184, 0.12); color: var(--c2); border: 1px solid rgba(55, 224, 184, 0.3);
   }
-  .badge.official { background: rgba(232,68,58,.15); color: #ff8a80; border-color: rgba(232,68,58,.4); }
-  .badge.gold { background: rgba(245,197,66,.12); color: var(--accent3); border-color: rgba(245,197,66,.35); }
+  [data-theme="light"] .badge { color: #0a7c63; }
+  .badge.official { background: rgba(255, 92, 73, 0.12); color: #ff8a75; border-color: rgba(255, 92, 73, 0.35); }
+  [data-theme="light"] .badge.official { color: #c2372a; }
+  .badge.gold { background: rgba(255, 200, 87, 0.12); color: var(--c3); border-color: rgba(255, 200, 87, 0.35); }
+  [data-theme="light"] .badge.gold { color: #9a6b00; }
 
-  /* Vue d'ensemble */
-  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 8px; }
-  .tile {
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 18px; text-align: center;
-  }
-  .tile .big { font-size: 1.9rem; font-weight: 700; color: var(--accent2); }
-  .tile .big.gold { color: var(--accent3); }
-  .tile .big.red { color: #ff8a80; }
-  .tile .label { font-size: .82rem; color: var(--text-dim); margin-top: 4px; }
-  .tile .sub { font-size: .78rem; color: var(--text-dim); margin-top: 2px; }
-  #sparkline-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; margin-top: 14px; }
-  #sparkline-box .label { font-size: .82rem; color: var(--text-dim); margin-bottom: 6px; }
-  canvas#sparkline { width: 100%; height: 70px; display: block; }
-  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
-  .list-compact { display: flex; flex-direction: column; gap: 10px; }
-  .mini {
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 10px 14px; font-size: .88rem;
-  }
-  .mini a { color: var(--text); text-decoration: none; }
-  .mini a:hover { color: var(--accent2); }
-  .mini .m { font-size: .75rem; color: var(--text-dim); margin-top: 2px; }
+  /* ------- Vue d'ensemble ------- */
   .event-banner {
-    background: linear-gradient(120deg, rgba(232,68,58,.18), rgba(245,197,66,.1));
-    border: 1px solid rgba(232,68,58,.45); border-radius: var(--radius);
-    padding: 16px 20px; margin-bottom: 18px;
+    position: relative; overflow: hidden;
+    background: linear-gradient(115deg, rgba(255, 92, 73, 0.16), rgba(255, 200, 87, 0.07));
+    border: 1px solid rgba(255, 92, 73, 0.4); border-radius: var(--radius);
+    padding: 20px 24px; margin-bottom: 20px;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   }
-  .event-banner h3 { color: #ff8a80; margin-bottom: 4px; }
-  .event-banner p { font-size: .9rem; color: var(--text); }
-  .event-banner a { color: var(--accent3); }
+  .event-banner h3 { font: 600 1.05rem var(--font-head); color: #ff8a75; margin-bottom: 5px; }
+  [data-theme="light"] .event-banner h3 { color: #c2372a; }
+  .event-banner p { font-size: 0.9rem; }
+  .event-banner a { color: var(--c3); font-weight: 600; }
+  [data-theme="light"] .event-banner a { color: #9a6b00; }
 
-  /* Progression */
-  .progress-summary {
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 22px; margin-bottom: 20px; text-align: center;
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 14px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius);
+    padding: 22px 18px; text-align: center; position: relative; overflow: hidden;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   }
-  .progress-summary .pct { font-size: 2.6rem; font-weight: 700; color: var(--accent3); }
-  .bar { height: 10px; background: #0d1425; border-radius: 999px; overflow: hidden; margin-top: 12px; }
-  .bar > div { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent3)); border-radius: 999px; transition: width .4s; }
-  .cat { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; }
-  .cat-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer; user-select: none; }
-  .cat-head:hover { background: var(--bg-card-hover); }
-  .cat-head .icon { font-size: 1.3rem; }
-  .cat-head h3 { flex: 1; font-size: 1.05rem; }
-  .cat-head .count { font-size: .85rem; color: var(--text-dim); }
-  .cat .minibar { height: 5px; background: #0d1425; }
-  .cat .minibar > div { height: 100%; background: var(--accent2); transition: width .4s; }
-  .cat ul { list-style: none; padding: 6px 12px 14px; display: none; }
+  .tile::before {
+    content: ""; position: absolute; inset: 0 0 auto; height: 3px;
+    background: linear-gradient(90deg, var(--c1), var(--c3), var(--c2));
+    opacity: 0.7;
+  }
+  .tile .big { font: 700 2rem var(--font-head); color: var(--c2); line-height: 1.15; }
+  .tile .big.gold { color: var(--c3); }
+  [data-theme="light"] .tile .big { color: #0a7c63; }
+  [data-theme="light"] .tile .big.gold { color: #9a6b00; }
+  .tile .big.red { color: #ff8a75; }
+  [data-theme="light"] .tile .big.red { color: #c2372a; }
+  .tile .label { font-size: 0.82rem; color: var(--ink-dim); margin-top: 5px; }
+  .tile .sub { font-size: 0.76rem; color: var(--ink-dim); margin-top: 3px; opacity: 0.85; }
+
+  #spark-card { margin-top: 14px; padding: 18px 20px 12px; display: none; }
+  #spark-card .label { font-size: 0.82rem; color: var(--ink-dim); margin-bottom: 8px; }
+  canvas#sparkline { width: 100%; height: 92px; display: block; }
+
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(295px, 1fr)); gap: 18px; }
+  .mini-list { display: flex; flex-direction: column; gap: 10px; }
+  .mini {
+    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius-sm);
+    padding: 11px 14px; font-size: 0.87rem;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    transition: border-color 0.2s;
+  }
+  .mini:hover { border-color: var(--stroke-hi); }
+  .mini a { color: var(--ink); text-decoration: none; font-weight: 500; }
+  .mini a:hover { color: var(--c2); }
+  .mini .m { font-size: 0.74rem; color: var(--ink-dim); margin-top: 3px; }
+
+  /* ------- Progression ------- */
+  .prog-hero {
+    display: flex; align-items: center; gap: 28px; flex-wrap: wrap; justify-content: center;
+    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius);
+    padding: 26px; margin-bottom: 20px;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+  .ring-box { position: relative; width: 148px; height: 148px; }
+  .ring-box svg { transform: rotate(-90deg); }
+  .ring-box .ring-bg { stroke: var(--track); }
+  .ring-box .ring-fg { stroke: url(#ringGrad); stroke-linecap: round; transition: stroke-dashoffset 0.7s ease; }
+  .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .ring-center .pct { font: 700 1.9rem var(--font-head); color: var(--c3); }
+  [data-theme="light"] .ring-center .pct { color: #9a6b00; }
+  .prog-side { text-align: left; min-width: 220px; }
+  .prog-side .headline { font: 600 1.1rem var(--font-head); margin-bottom: 4px; }
+  .prog-side .detail { color: var(--ink-dim); font-size: 0.88rem; }
+  .rank-badge { display: inline-flex; margin-top: 10px; }
+
+  .cat {
+    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius);
+    margin-bottom: 13px; overflow: hidden;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+  .cat-head { display: flex; align-items: center; gap: 13px; padding: 15px 19px; cursor: pointer; user-select: none; border: none; width: 100%; background: transparent; color: var(--ink); text-align: left; font-family: var(--font-body); }
+  .cat-head:hover { background: var(--card-strong); }
+  .cat-head .icon { font-size: 1.35rem; }
+  .cat-head h3 { flex: 1; font: 600 1rem var(--font-head); }
+  .cat-head .count { font-size: 0.83rem; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
+  .cat-head .chev { transition: transform 0.25s; color: var(--ink-dim); }
+  .cat.open .chev { transform: rotate(180deg); }
+  .cat .minibar { height: 4px; background: var(--track); }
+  .cat .minibar > div { height: 100%; background: linear-gradient(90deg, var(--c2), var(--c3)); transition: width 0.5s; }
+  .cat ul { list-style: none; padding: 8px 13px 15px; display: none; }
   .cat.open ul { display: block; }
-  .cat li { padding: 4px 6px; }
-  .cat label { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; padding: 6px 8px; border-radius: 8px; }
-  .cat label:hover { background: var(--bg-card-hover); }
-  .cat input[type=checkbox] { width: 19px; height: 19px; margin-top: 2px; accent-color: var(--accent2); cursor: pointer; flex-shrink: 0; }
-  .cat li.done label span { color: var(--text-dim); text-decoration: line-through; }
-  .toolbar { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+  .cat li { padding: 2px 4px; }
+  .cat label { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; padding: 8px 9px; border-radius: 9px; transition: background 0.15s; }
+  .cat label:hover { background: var(--card-strong); }
+  .cat input[type=checkbox] { width: 19px; height: 19px; margin-top: 2px; accent-color: var(--c2); cursor: pointer; flex-shrink: 0; }
+  .cat li.done label span { color: var(--ink-dim); text-decoration: line-through; }
+  .toolbar { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
   .toolbar button {
-    background: transparent; border: 1px solid var(--border); color: var(--text-dim);
-    padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: .85rem;
+    background: transparent; border: 1px solid var(--stroke); color: var(--ink-dim);
+    padding: 9px 18px; border-radius: 999px; cursor: pointer; font: 500 0.85rem var(--font-body);
+    transition: color 0.2s, border-color 0.2s;
   }
-  .toolbar button:hover { color: var(--text); border-color: var(--accent2); }
+  .toolbar button:hover { color: var(--ink); border-color: var(--stroke-hi); }
 
-  .subtabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  /* ------- Sous-onglets & recherche ------- */
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; }
+  .subtabs { display: flex; gap: 7px; flex-wrap: wrap; }
   .subtabs button {
-    background: transparent; border: 1px solid var(--border); color: var(--text-dim);
-    padding: 6px 16px; border-radius: 8px; cursor: pointer; font-size: .88rem;
+    background: transparent; border: 1px solid var(--stroke); color: var(--ink-dim);
+    padding: 7px 15px; border-radius: 999px; cursor: pointer; font: 500 0.84rem var(--font-body);
+    transition: all 0.2s;
   }
-  .subtabs button.active { color: var(--accent3); border-color: var(--accent3); }
-  .empty { text-align: center; color: var(--text-dim); padding: 40px 0; }
+  .subtabs button:hover { color: var(--ink); }
+  .subtabs button.active { color: var(--c3); border-color: var(--c3); background: rgba(255, 200, 87, 0.08); }
+  [data-theme="light"] .subtabs button.active { color: #9a6b00; border-color: #c99f2e; }
+  .searchbox { margin-left: auto; position: relative; }
+  .searchbox input {
+    background: var(--card); border: 1px solid var(--stroke); color: var(--ink);
+    border-radius: 999px; padding: 8px 16px 8px 36px; font: 400 0.86rem var(--font-body);
+    width: 210px; transition: border-color 0.2s, width 0.25s;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .searchbox input:focus { border-color: var(--stroke-hi); width: 250px; }
+  .searchbox::before { content: "🔍"; position: absolute; left: 13px; top: 50%; transform: translateY(-50%); font-size: 0.8rem; opacity: 0.6; }
+  .empty { text-align: center; color: var(--ink-dim); padding: 46px 0; grid-column: 1 / -1; }
   .note {
-    background: rgba(245,197,66,.08); border: 1px solid rgba(245,197,66,.3); color: var(--accent3);
-    border-radius: var(--radius); padding: 12px 16px; font-size: .85rem; margin-bottom: 18px;
+    background: rgba(255, 200, 87, 0.07); border: 1px solid rgba(255, 200, 87, 0.28); color: var(--ink);
+    border-radius: var(--radius); padding: 14px 18px; font-size: 0.87rem; margin-bottom: 18px;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   }
 
-  /* Succès */
-  .ach { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 10px; }
-  .ach .row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
-  .ach h3 { font-size: .98rem; }
-  .ach .pctv { font-weight: 700; color: var(--accent2); white-space: nowrap; }
-  .ach .desc { font-size: .82rem; color: var(--text-dim); margin: 2px 0 8px; }
-  .ach .fill { height: 7px; background: #0d1425; border-radius: 999px; overflow: hidden; }
-  .ach .fill > div { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent3)); }
+  /* ------- Succès ------- */
+  .ach-summary { text-align: center; margin-bottom: 16px; color: var(--ink-dim); font-size: 0.9rem; }
+  .ach-summary b { color: var(--c2); font-family: var(--font-head); }
+  [data-theme="light"] .ach-summary b { color: #0a7c63; }
+  .ach {
+    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius-sm);
+    padding: 14px 18px; margin-bottom: 10px;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    transition: border-color 0.2s;
+  }
+  .ach:hover { border-color: var(--stroke-hi); }
+  .ach .row { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+  .ach h3 { font: 600 0.97rem var(--font-head); }
+  .ach .rarity { font-size: 0.68rem; }
+  .ach .pctv { margin-left: auto; font: 700 0.95rem var(--font-head); color: var(--c2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  [data-theme="light"] .ach .pctv { color: #0a7c63; }
+  .ach .desc { font-size: 0.82rem; color: var(--ink-dim); margin: 3px 0 9px; }
+  .ach .fill { height: 6px; background: var(--track); border-radius: 999px; overflow: hidden; }
+  .ach .fill > div { height: 100%; background: linear-gradient(90deg, var(--c2), var(--c3)); border-radius: 999px; }
+  .ach .mine { display: inline-flex; align-items: center; gap: 7px; margin-top: 10px; font-size: 0.8rem; color: var(--ink-dim); cursor: pointer; }
+  .ach .mine input { accent-color: var(--c2); width: 16px; height: 16px; cursor: pointer; }
+  .ach.owned { border-color: rgba(55, 224, 184, 0.4); }
 
-  /* Vidéos */
-  .vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-  .vid { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-  .vid:hover { border-color: var(--accent2); }
-  .vid img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
-  .vid .body { padding: 12px 14px; }
-  .vid h3 { font-size: .93rem; margin-bottom: 6px; }
-  .vid h3 a { color: var(--text); text-decoration: none; }
-  .vid h3 a:hover { color: var(--accent2); }
-  .vid .m { font-size: .78rem; color: var(--text-dim); }
+  /* ------- Vidéos ------- */
+  .vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(275px, 1fr)); gap: 16px; }
+  .vid {
+    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius);
+    overflow: hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .vid:hover { border-color: var(--stroke-hi); transform: translateY(-3px); box-shadow: var(--shadow); }
+  .vid .thumb { display: block; overflow: hidden; aspect-ratio: 16/9; background: var(--track); }
+  .vid img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+  .vid:hover img { transform: scale(1.05); }
+  .vid .body { padding: 13px 15px; }
+  .vid h3 { font: 600 0.92rem var(--font-head); margin-bottom: 6px; line-height: 1.35; }
+  .vid h3 a { color: var(--ink); text-decoration: none; }
+  .vid h3 a:hover { color: var(--c2); }
+  .vid .m { font-size: 0.76rem; color: var(--ink-dim); }
 
-  /* Timeline */
-  .tl { position: relative; margin-left: 10px; padding-left: 28px; border-left: 2px solid var(--border); }
-  .tl-item { position: relative; margin-bottom: 22px; }
+  /* ------- Frise ------- */
+  .tl { position: relative; margin-left: 12px; padding-left: 30px; border-left: 2px solid var(--stroke); }
+  .tl-year {
+    font: 700 0.95rem var(--font-head); color: var(--c4); letter-spacing: 0.15em;
+    margin: 26px 0 14px; position: relative;
+  }
+  [data-theme="light"] .tl-year { color: #3d5bb8; }
+  .tl-year::before {
+    content: ""; position: absolute; left: -37px; top: 6px; width: 12px; height: 12px;
+    border-radius: 50%; background: var(--c4); border: 3px solid var(--bg0);
+  }
+  .tl-item { position: relative; margin-bottom: 20px; }
   .tl-item::before {
-    content: ""; position: absolute; left: -35px; top: 6px; width: 12px; height: 12px;
-    border-radius: 50%; background: var(--accent2); border: 2px solid var(--bg);
+    content: ""; position: absolute; left: -35px; top: 8px; width: 8px; height: 8px;
+    border-radius: 50%; background: var(--c2); border: 2px solid var(--bg0);
   }
-  .tl-item.latest::before { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
-  .tl-item h3 { font-size: 1.02rem; }
-  .tl-item h3 a { color: var(--text); text-decoration: none; }
-  .tl-item h3 a:hover { color: var(--accent2); }
-  .tl-item .ver { color: var(--accent3); font-weight: 600; margin-right: 8px; }
-  .tl-item .d { font-size: .8rem; color: var(--text-dim); }
-  .tl-item p { font-size: .88rem; color: var(--text-dim); margin-top: 4px; max-width: 760px; }
+  .tl-item.latest::before { background: var(--c1); box-shadow: 0 0 12px var(--c1); animation: pulse 2s infinite; }
+  .tl-item h3 { font: 600 1rem var(--font-head); }
+  .tl-item h3 a { color: var(--ink); text-decoration: none; }
+  .tl-item h3 a:hover { color: var(--c2); }
+  .tl-item .ver {
+    display: inline-block; font: 600 0.72rem var(--font-head); color: var(--c3);
+    border: 1px solid rgba(255, 200, 87, 0.4); border-radius: 6px; padding: 1px 7px; margin-right: 9px;
+    vertical-align: 2px;
+  }
+  [data-theme="light"] .tl-item .ver { color: #9a6b00; }
+  .tl-item .d { font-size: 0.78rem; color: var(--ink-dim); margin-left: 8px; }
+  .tl-item p { font-size: 0.87rem; color: var(--ink-dim); margin-top: 4px; max-width: 740px; }
+
+  /* ------- Squelettes de chargement ------- */
+  .skel { border-radius: var(--radius); background: var(--track); position: relative; overflow: hidden; min-height: 90px; }
+  .skel::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    animation: shimmer 1.4s infinite;
+  }
+  @keyframes shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+  footer {
+    margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--stroke);
+    text-align: center; color: var(--ink-dim); font-size: 0.8rem;
+  }
+  footer a { color: var(--c2); text-decoration: none; }
+  [data-theme="light"] footer a { color: #0a7c63; }
+  footer .srcs { margin-top: 6px; opacity: 0.8; }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 12px 12px 70px; }
+    nav.tabs { max-width: 100%; }
+    .searchbox { margin-left: 0; width: 100%; }
+    .searchbox input, .searchbox input:focus { width: 100%; }
+    .prog-hero { gap: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001s !important; transition-duration: 0.001s !important; }
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>No Man's <span>Sky</span> — Centre de suivi</h1>
-    <p>Actualités, statistiques en direct, avancées de la communauté et ta progression</p>
-  </header>
-  <div class="updated" id="updated"></div>
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"></div>
+<a class="skip-link" href="#main" data-i18n="skip">Aller au contenu</a>
 
-  <nav class="tabs">
-    <button data-tab="apercu" class="active">🏠 Vue d'ensemble</button>
-    <button data-tab="progression">🧭 Ma progression</button>
-    <button data-tab="actus">📰 Actualités</button>
-    <button data-tab="communaute">👥 Communauté</button>
-    <button data-tab="succes">🏆 Succès des joueurs</button>
-    <button data-tab="videos">🎬 Vidéos</button>
-    <button data-tab="maj">🕰️ Mises à jour</button>
+<div class="wrap">
+  <div class="topbar">
+    <button class="icon-btn" id="lang-btn" aria-label="Changer de langue">🌐 <span id="lang-label">EN</span></button>
+    <button class="icon-btn" id="theme-btn" aria-label="Changer de thème"><span id="theme-icon">☀️</span></button>
+  </div>
+
+  <header class="hero">
+    <div class="overline" data-i18n="overline">Centre de suivi communautaire</div>
+    <h1>No Man's <span class="grad">Sky</span></h1>
+    <p class="tagline" data-i18n="tagline">Tout l'univers du jeu en un coup d'œil : actus officielles, stats en direct, communauté, vidéos — et ta propre progression de Voyageur.</p>
+    <div class="live-chips" id="live-chips"></div>
+    <div class="updated" id="updated"></div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button role="tab" data-tab="apercu" class="active" aria-selected="true">🏠 <span data-i18n="tab_overview">Vue d'ensemble</span></button>
+    <button role="tab" data-tab="progression" aria-selected="false">🧭 <span data-i18n="tab_progress">Ma progression</span></button>
+    <button role="tab" data-tab="actus" aria-selected="false">📰 <span data-i18n="tab_news">Actualités</span></button>
+    <button role="tab" data-tab="communaute" aria-selected="false">👥 <span data-i18n="tab_community">Communauté</span></button>
+    <button role="tab" data-tab="succes" aria-selected="false">🏆 <span data-i18n="tab_ach">Succès</span></button>
+    <button role="tab" data-tab="videos" aria-selected="false">🎬 <span data-i18n="tab_videos">Vidéos</span></button>
+    <button role="tab" data-tab="maj" aria-selected="false">🕰️ <span data-i18n="tab_timeline">Mises à jour</span></button>
   </nav>
 
-  <!-- ===================== VUE D'ENSEMBLE ===================== -->
-  <section class="panel active" id="panel-apercu">
-    <div id="event-banner"></div>
-    <div class="tiles" id="tiles"></div>
-    <div id="sparkline-box" style="display:none">
-      <div class="label">Joueurs en ligne sur Steam (historique des relevés)</div>
-      <canvas id="sparkline"></canvas>
-    </div>
-    <h2 class="sec">En ce moment</h2>
-    <div class="cols">
-      <div>
-        <h2 class="sec" style="font-size:.95rem">🛸 Dernières actus officielles</h2>
-        <div class="list-compact" id="ov-official"></div>
+  <main id="main">
+    <!-- Vue d'ensemble -->
+    <section class="panel active" id="panel-apercu">
+      <div id="event-banner"></div>
+      <div class="tiles" id="tiles"><div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+      <div class="card" id="spark-card">
+        <div class="label" data-i18n="spark_label">Joueurs en ligne sur Steam (historique des relevés)</div>
+        <canvas id="sparkline" aria-label="Historique du nombre de joueurs"></canvas>
       </div>
-      <div>
-        <h2 class="sec" style="font-size:.95rem">👥 Ça buzze dans la communauté</h2>
-        <div class="list-compact" id="ov-community"></div>
+      <h2 class="sec" data-i18n="now">En ce moment</h2>
+      <div class="cols">
+        <div>
+          <h2 class="sec" style="font-size:0.85rem">🛸 <span data-i18n="latest_official">Dernières actus officielles</span></h2>
+          <div class="mini-list" id="ov-official"><div class="skel"></div></div>
+        </div>
+        <div>
+          <h2 class="sec" style="font-size:0.85rem">👥 <span data-i18n="community_buzz">Ça buzze dans la communauté</span></h2>
+          <div class="mini-list" id="ov-community"><div class="skel"></div></div>
+        </div>
+        <div>
+          <h2 class="sec" style="font-size:0.85rem">🎬 <span data-i18n="latest_videos">Dernières vidéos</span></h2>
+          <div class="mini-list" id="ov-videos"><div class="skel"></div></div>
+        </div>
       </div>
-      <div>
-        <h2 class="sec" style="font-size:.95rem">🎬 Dernières vidéos</h2>
-        <div class="list-compact" id="ov-videos"></div>
+    </section>
+
+    <!-- Progression -->
+    <section class="panel" id="panel-progression">
+      <div class="prog-hero">
+        <div class="ring-box">
+          <svg width="148" height="148" viewBox="0 0 148 148" aria-hidden="true">
+            <defs>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ff5c49"/><stop offset="100%" stop-color="#ffc857"/>
+              </linearGradient>
+            </defs>
+            <circle class="ring-bg" cx="74" cy="74" r="64" fill="none" stroke-width="11"/>
+            <circle class="ring-fg" id="ring-fg" cx="74" cy="74" r="64" fill="none" stroke-width="11"
+              stroke-dasharray="402.1" stroke-dashoffset="402.1"/>
+          </svg>
+          <div class="ring-center"><span class="pct" id="global-pct">0%</span></div>
+        </div>
+        <div class="prog-side">
+          <div class="headline" data-i18n="prog_headline">Ton voyage</div>
+          <div class="detail" id="global-count"></div>
+          <div class="rank-badge"><span class="badge gold" id="rank-badge"></span></div>
+        </div>
       </div>
-    </div>
-  </section>
+      <div id="categories"></div>
+      <div class="toolbar">
+        <button id="btn-export">💾 <span data-i18n="export">Exporter</span></button>
+        <button id="btn-import">📂 <span data-i18n="import">Importer</span></button>
+        <button id="btn-reset">♻️ <span data-i18n="reset">Réinitialiser</span></button>
+        <input type="file" id="file-import" accept=".json" style="display:none" aria-hidden="true">
+      </div>
+    </section>
 
-  <!-- ===================== PROGRESSION ===================== -->
-  <section class="panel" id="panel-progression">
-    <div class="progress-summary">
-      <div class="pct" id="global-pct">0%</div>
-      <div id="global-count" style="color:var(--text-dim)"></div>
-      <div class="bar"><div id="global-bar" style="width:0%"></div></div>
-    </div>
-    <div id="categories"></div>
-    <div class="toolbar">
-      <button id="btn-export">💾 Exporter ma progression</button>
-      <button id="btn-import">📂 Importer</button>
-      <button id="btn-reset">♻️ Réinitialiser</button>
-      <input type="file" id="file-import" accept=".json" style="display:none">
-    </div>
-  </section>
+    <!-- Actualités -->
+    <section class="panel" id="panel-actus">
+      <div class="controls">
+        <div class="subtabs" data-group="actus" role="tablist">
+          <button data-sub="officiel" class="active">🛸 <span data-i18n="sub_official">Officiel (Hello Games)</span></button>
+          <button data-sub="steam">📰 <span data-i18n="sub_steam">Steam &amp; presse</span></button>
+        </div>
+        <div class="searchbox"><input type="search" id="search-actus" data-i18n-ph="search" placeholder="Rechercher…" aria-label="Rechercher dans les actualités"></div>
+      </div>
+      <div class="grid" id="actus-list"></div>
+    </section>
 
-  <!-- ===================== ACTUALITÉS ===================== -->
-  <section class="panel" id="panel-actus">
-    <div class="subtabs" data-group="actus">
-      <button data-sub="officiel" class="active">🛸 Officiel (Hello Games)</button>
-      <button data-sub="steam">📰 Steam & presse</button>
-    </div>
-    <div class="grid" id="actus-list"></div>
-  </section>
+    <!-- Communauté -->
+    <section class="panel" id="panel-communaute">
+      <div class="controls">
+        <div class="subtabs" data-group="communaute" role="tablist">
+          <button data-sub="top_week" class="active">🏆 <span data-i18n="sub_top">Top de la semaine</span></button>
+          <button data-sub="hot">🔥 <span data-i18n="sub_hot">Tendances</span></button>
+          <button data-sub="coordinates">📍 <span data-i18n="sub_coords">Coordonnées partagées</span></button>
+        </div>
+        <div class="searchbox"><input type="search" id="search-communaute" data-i18n-ph="search" placeholder="Rechercher…" aria-label="Rechercher dans la communauté"></div>
+      </div>
+      <div class="grid" id="community-list"></div>
+    </section>
 
-  <!-- ===================== COMMUNAUTÉ ===================== -->
-  <section class="panel" id="panel-communaute">
-    <div class="subtabs" data-group="communaute">
-      <button data-sub="top_week" class="active">🏆 Top de la semaine</button>
-      <button data-sub="hot">🔥 Tendances</button>
-      <button data-sub="coordinates">📍 Coordonnées partagées</button>
-    </div>
-    <div class="grid" id="community-list"></div>
-  </section>
+    <!-- Succès -->
+    <section class="panel" id="panel-succes">
+      <div class="note" data-i18n="ach_note">Pourcentage des joueurs Steam ayant débloqué chaque succès. Coche ceux que tu possèdes pour te situer par rapport à la communauté mondiale !</div>
+      <div class="ach-summary" id="ach-summary"></div>
+      <div class="controls">
+        <div class="searchbox" style="margin-left:0"><input type="search" id="search-succes" data-i18n-ph="search" placeholder="Rechercher…" aria-label="Rechercher un succès"></div>
+      </div>
+      <div id="ach-list"></div>
+    </section>
 
-  <!-- ===================== SUCCÈS ===================== -->
-  <section class="panel" id="panel-succes">
-    <div class="note">
-      Pourcentage des joueurs Steam ayant débloqué chaque succès — pour situer ta propre
-      progression par rapport à la communauté mondiale. Exemple : si seulement quelques %
-      ont un succès que tu possèdes, tu fais partie des explorateurs les plus avancés !
-    </div>
-    <div id="ach-list"></div>
-  </section>
+    <!-- Vidéos -->
+    <section class="panel" id="panel-videos">
+      <div class="controls">
+        <div class="subtabs" id="vid-chips" data-group="videos" role="tablist"></div>
+        <div class="searchbox"><input type="search" id="search-videos" data-i18n-ph="search" placeholder="Rechercher…" aria-label="Rechercher une vidéo"></div>
+      </div>
+      <div class="vid-grid" id="vid-list"></div>
+    </section>
 
-  <!-- ===================== VIDÉOS ===================== -->
-  <section class="panel" id="panel-videos">
-    <div class="subtabs" data-group="videos">
-      <button data-sub="all" class="active">Toutes</button>
-      <button data-sub="Hello Games (officiel)">Officiel</button>
-      <button data-sub="communaute">Créateurs communautaires</button>
-    </div>
-    <div class="vid-grid" id="vid-list"></div>
-  </section>
+    <!-- Mises à jour -->
+    <section class="panel" id="panel-maj">
+      <div class="note" data-i18n="tl_note">L'histoire de No Man's Sky en mises à jour majeures — 10 ans d'évolution continue et gratuite.</div>
+      <div class="tl" id="timeline"></div>
+    </section>
+  </main>
 
-  <!-- ===================== MISES À JOUR ===================== -->
-  <section class="panel" id="panel-maj">
-    <div class="note">L'histoire de No Man's Sky en mises à jour majeures — 10 ans d'évolution continue et gratuite.</div>
-    <div class="tl" id="timeline"></div>
-  </section>
+  <footer>
+    <div data-i18n-html="footer_credits">Fait avec ❤️ pour les Voyageurs · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Code source</a> · données mises à jour automatiquement toutes les 6 h</div>
+    <div class="srcs" data-i18n="footer_sources">Sources : Hello Games (nomanssky.com), API Steam, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube</div>
+  </footer>
 </div>
 
 <script>
-const LS_KEY = "nms-progress-v1";
-let progressDef = null;
-const D = {}; // données chargées
-const subState = { actus: "officiel", communaute: "top_week", videos: "all" };
+"use strict";
 
-const fmtDate = iso => {
+/* ============================== i18n ============================== */
+const I18N = {
+  fr: {
+    skip: "Aller au contenu",
+    overline: "Centre de suivi communautaire",
+    tagline: "Tout l'univers du jeu en un coup d'œil : actus officielles, stats en direct, communauté, vidéos — et ta propre progression de Voyageur.",
+    tab_overview: "Vue d'ensemble", tab_progress: "Ma progression", tab_news: "Actualités",
+    tab_community: "Communauté", tab_ach: "Succès", tab_videos: "Vidéos", tab_timeline: "Mises à jour",
+    updated: "Données mises à jour :",
+    chip_online: "en ligne", chip_reviews: "d'avis positifs", chip_discount: "de promo",
+    spark_label: "Joueurs en ligne sur Steam (historique des relevés)",
+    now: "En ce moment",
+    latest_official: "Dernières actus officielles", community_buzz: "Ça buzze dans la communauté", latest_videos: "Dernières vidéos",
+    tile_players: "joueurs en ligne (Steam)", tile_reviews: "d'avis positifs sur Steam", tile_reviews_sub: "avis au total",
+    tile_price: "prix actuel sur Steam", tile_promo: "promo", tile_instead: "au lieu de",
+    tile_update: "dernière mise à jour majeure",
+    event_title: "Événement communautaire en cours",
+    event_link: "Voir l'annonce officielle →",
+    prog_headline: "Ton voyage", prog_count: (d, t) => `${d} objectifs accomplis sur ${t}`,
+    rank0: "🌱 Nouveau Voyageur", rank1: "🧭 Explorateur", rank2: "⭐ Vétéran de l'Atlas", rank3: "🌌 Légende de la galaxie",
+    export: "Exporter", import: "Importer", reset: "Réinitialiser",
+    reset_confirm: "Effacer toute ta progression ?", invalid_file: "Fichier invalide",
+    sub_official: "Officiel (Hello Games)", sub_steam: "Steam & presse",
+    sub_top: "Top de la semaine", sub_hot: "Tendances", sub_coords: "Coordonnées partagées",
+    search: "Rechercher…",
+    badge_official: "Officiel", badge_press: "Presse",
+    empty_data: "Aucune donnée pour le moment — les données se remplissent automatiquement toutes les 6 heures.",
+    empty_search: "Aucun résultat pour cette recherche.",
+    ach_note: "Pourcentage des joueurs Steam ayant débloqué chaque succès. Coche ceux que tu possèdes pour te situer par rapport à la communauté mondiale !",
+    ach_summary: (n, t, r) => `Tu as débloqué <b>${n}</b> succès sur ${t}${r ? ` — dont <b>${r}</b> que moins d'un joueur sur cinq possède 🏅` : ""}`,
+    ach_mine: "Je l'ai !", ach_hidden: "Succès caché",
+    rarity_common: "Commun", rarity_uncommon: "Peu commun", rarity_rare: "Rare", rarity_legendary: "Légendaire",
+    all: "Toutes", views: "vues",
+    tl_note: "L'histoire de No Man's Sky en mises à jour majeures — 10 ans d'évolution continue et gratuite.",
+    footer_credits: 'Fait avec ❤️ pour les Voyageurs · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Code source</a> · données mises à jour automatiquement toutes les 6 h',
+    footer_sources: "Sources : Hello Games (nomanssky.com), API Steam, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube",
+    rel: { s: "à l'instant", m: n => `il y a ${n} min`, h: n => `il y a ${n} h`, d: n => `il y a ${n} j` },
+  },
+  en: {
+    skip: "Skip to content",
+    overline: "Community tracking hub",
+    tagline: "The whole universe of the game at a glance: official news, live stats, community, videos — and your own Traveller's journey.",
+    tab_overview: "Overview", tab_progress: "My journey", tab_news: "News",
+    tab_community: "Community", tab_ach: "Achievements", tab_videos: "Videos", tab_timeline: "Updates",
+    updated: "Data updated:",
+    chip_online: "online", chip_reviews: "positive reviews", chip_discount: "off",
+    spark_label: "Players online on Steam (recorded history)",
+    now: "Right now",
+    latest_official: "Latest official news", community_buzz: "Community buzz", latest_videos: "Latest videos",
+    tile_players: "players online (Steam)", tile_reviews: "positive reviews on Steam", tile_reviews_sub: "total reviews",
+    tile_price: "current price on Steam", tile_promo: "sale", tile_instead: "was",
+    tile_update: "latest major update",
+    event_title: "Community event in progress",
+    event_link: "Read the official announcement →",
+    prog_headline: "Your journey", prog_count: (d, t) => `${d} of ${t} milestones completed`,
+    rank0: "🌱 New Traveller", rank1: "🧭 Explorer", rank2: "⭐ Atlas Veteran", rank3: "🌌 Galactic Legend",
+    export: "Export", import: "Import", reset: "Reset",
+    reset_confirm: "Erase all your progress?", invalid_file: "Invalid file",
+    sub_official: "Official (Hello Games)", sub_steam: "Steam & press",
+    sub_top: "Top of the week", sub_hot: "Trending", sub_coords: "Shared coordinates",
+    search: "Search…",
+    badge_official: "Official", badge_press: "Press",
+    empty_data: "No data yet — feeds refresh automatically every 6 hours.",
+    empty_search: "No results for this search.",
+    ach_note: "Share of Steam players who unlocked each achievement. Tick the ones you own to see how you compare with the worldwide community!",
+    ach_summary: (n, t, r) => `You unlocked <b>${n}</b> of ${t} achievements${r ? ` — including <b>${r}</b> owned by fewer than one player in five 🏅` : ""}`,
+    ach_mine: "Got it!", ach_hidden: "Hidden achievement",
+    rarity_common: "Common", rarity_uncommon: "Uncommon", rarity_rare: "Rare", rarity_legendary: "Legendary",
+    all: "All", views: "views",
+    tl_note: "The story of No Man's Sky in major updates — 10 years of continuous free evolution.",
+    footer_credits: 'Made with ❤️ for Travellers · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Source code</a> · data refreshes automatically every 6 hours',
+    footer_sources: "Sources: Hello Games (nomanssky.com), Steam API, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube",
+    rel: { s: "just now", m: n => `${n} min ago`, h: n => `${n} h ago`, d: n => `${n} d ago` },
+  },
+};
+
+/* ============================== État ============================== */
+const LS_PROGRESS = "nms-progress-v1";
+const LS_ACH = "nms-ach-v1";
+const LS_LANG = "nms-lang";
+const LS_THEME = "nms-theme";
+const D = {};
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__" };
+const query = { actus: "", communaute: "", succes: "", videos: "" };
+let lang = localStorage.getItem(LS_LANG);
+if (lang !== "fr" && lang !== "en") {
+  lang = (navigator.language || "fr").toLowerCase().startsWith("fr") ? "fr" : "en";
+}
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const T = () => I18N[lang];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmtNum = n => (n || 0).toLocaleString(lang === "fr" ? "fr-FR" : "en-GB");
+
+function fmtDate(iso) {
   if (!iso) return "";
+  const locale = lang === "fr" ? "fr-FR" : "en-GB";
   if (/^\d{4}-\d{2}$/.test(iso)) {
     const [y, m] = iso.split("-");
-    const mois = ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
-    return `${mois[+m-1]} ${y}`;
+    return new Date(+y, +m - 1, 1).toLocaleDateString(locale, { month: "short", year: "numeric" });
   }
   const d = new Date(iso);
-  return isNaN(d) ? "" : d.toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
-};
-const fmtNum = n => (n || 0).toLocaleString("fr-FR");
+  return isNaN(d) ? "" : d.toLocaleDateString(locale, { day: "numeric", month: "short", year: "numeric" });
+}
+function relTime(iso) {
+  const d = new Date(iso);
+  if (isNaN(d)) return fmtDate(iso);
+  const s = Math.floor((Date.now() - d.getTime()) / 1000);
+  const R = T().rel;
+  if (s < 90) return R.s;
+  if (s < 5400) return R.m(Math.round(s / 60));
+  if (s < 172800) return R.h(Math.round(s / 3600));
+  if (s < 1209600) return R.d(Math.round(s / 86400));
+  return fmtDate(iso);
+}
+const tr = (obj, key) => (lang === "en" && obj[key + "_en"]) ? obj[key + "_en"] : obj[key];
 
 async function loadJSON(path) {
   try {
-    const r = await fetch(path + "?t=" + Date.now());
+    const r = await fetch(path, { cache: "no-cache" });
     if (!r.ok) throw new Error(r.status);
     return await r.json();
-  } catch (e) { return null; }
+  } catch { return null; }
 }
 
-/* ---------- Onglets ---------- */
+/* ============================== Thème & langue ============================== */
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  document.getElementById("theme-icon").textContent = theme === "dark" ? "☀️" : "🌙";
+  document.querySelector('meta[name="theme-color"]').content = theme === "dark" ? "#05070f" : "#eef1fb";
+  localStorage.setItem(LS_THEME, theme);
+  drawSparkline();
+  drawStars();
+}
+document.getElementById("theme-btn").addEventListener("click", () =>
+  applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
+
+function applyLang(next) {
+  lang = next;
+  localStorage.setItem(LS_LANG, lang);
+  document.documentElement.lang = lang;
+  document.getElementById("lang-label").textContent = lang === "fr" ? "EN" : "FR";
+  document.querySelectorAll("[data-i18n]").forEach(el => { const t = T()[el.dataset.i18n]; if (typeof t === "string") el.textContent = t; });
+  document.querySelectorAll("[data-i18n-html]").forEach(el => { const t = T()[el.dataset.i18nHtml]; if (typeof t === "string") el.innerHTML = t; });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => { const t = T()[el.dataset.i18nPh]; if (typeof t === "string") el.placeholder = t; });
+  renderAll();
+}
+document.getElementById("lang-btn").addEventListener("click", () => applyLang(lang === "fr" ? "en" : "fr"));
+
+/* ============================== Champ d'étoiles ============================== */
+const starCanvas = document.getElementById("stars");
+let stars = [];
+function initStars() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  starCanvas.width = innerWidth * dpr;
+  starCanvas.height = innerHeight * dpr;
+  starCanvas.getContext("2d").setTransform(dpr, 0, 0, dpr, 0, 0);
+  const count = Math.min(220, Math.floor(innerWidth * innerHeight / 6500));
+  stars = Array.from({ length: count }, () => ({
+    x: Math.random() * innerWidth,
+    y: Math.random() * innerHeight,
+    r: Math.random() * 1.4 + 0.3,
+    tw: Math.random() * Math.PI * 2,
+    sp: 0.008 + Math.random() * 0.03,
+  }));
+}
+function drawStars(t = 0) {
+  const ctx = starCanvas.getContext("2d");
+  const darkTheme = document.documentElement.dataset.theme === "dark";
+  ctx.clearRect(0, 0, innerWidth, innerHeight);
+  const base = darkTheme ? 255 : 60;
+  for (const s of stars) {
+    const a = darkTheme
+      ? 0.25 + 0.55 * Math.abs(Math.sin(s.tw + t * s.sp * 0.06))
+      : 0.06 + 0.10 * Math.abs(Math.sin(s.tw + t * s.sp * 0.06));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${base},${base},${darkTheme ? 255 : 90},${a})`;
+    ctx.fill();
+    s.y += s.sp;
+    if (s.y > innerHeight + 2) { s.y = -2; s.x = Math.random() * innerWidth; }
+  }
+}
+function starLoop(t) { drawStars(t); requestAnimationFrame(starLoop); }
+initStars();
+if (reduceMotion) drawStars(); else requestAnimationFrame(starLoop);
+addEventListener("resize", () => { initStars(); if (reduceMotion) drawStars(); drawSparkline(); });
+
+/* ============================== Navigation ============================== */
 document.querySelectorAll("nav.tabs button").forEach(b => b.addEventListener("click", () => {
-  document.querySelectorAll("nav.tabs button").forEach(x => x.classList.remove("active"));
+  document.querySelectorAll("nav.tabs button").forEach(x => { x.classList.remove("active"); x.setAttribute("aria-selected", "false"); });
   document.querySelectorAll("section.panel").forEach(x => x.classList.remove("active"));
   b.classList.add("active");
+  b.setAttribute("aria-selected", "true");
   document.getElementById("panel-" + b.dataset.tab).classList.add("active");
 }));
-document.querySelectorAll(".subtabs").forEach(group => {
-  group.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
-    group.querySelectorAll("button").forEach(x => x.classList.remove("active"));
-    b.classList.add("active");
-    subState[group.dataset.group] = b.dataset.sub;
+document.querySelectorAll(".subtabs[data-group]").forEach(group => group.addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b || !b.dataset.sub) return;
+  group.querySelectorAll("button").forEach(x => x.classList.remove("active"));
+  b.classList.add("active");
+  sub[group.dataset.group] = b.dataset.sub;
+  renderAll();
+}));
+["actus", "communaute", "succes", "videos"].forEach(k => {
+  document.getElementById("search-" + k).addEventListener("input", e => {
+    query[k] = e.target.value.trim().toLowerCase();
     renderAll();
-  }));
+  });
 });
 
-/* ---------- Progression ---------- */
-function getState() {
-  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch { return {}; }
-}
-function setState(s) { localStorage.setItem(LS_KEY, JSON.stringify(s)); }
+/* ============================== Progression ============================== */
+const getState = key => { try { return JSON.parse(localStorage.getItem(key)) || {}; } catch { return {}; } };
+const setState = (key, s) => localStorage.setItem(key, JSON.stringify(s));
 
 function renderProgress() {
-  if (!progressDef) return;
-  const state = getState();
+  if (!D.progress) return;
+  const state = getState(LS_PROGRESS);
   const wrap = document.getElementById("categories");
+  const openState = {};
+  wrap.querySelectorAll(".cat").forEach(c => { openState[c.dataset.id] = c.classList.contains("open"); });
   wrap.innerHTML = "";
   let total = 0, done = 0;
 
-  progressDef.categories.forEach(cat => {
+  D.progress.categories.forEach(cat => {
     const catDone = cat.items.filter(i => state[i.id]).length;
     total += cat.items.length; done += catDone;
+    const open = openState[cat.id] !== undefined ? openState[cat.id] : true;
     const div = document.createElement("div");
-    div.className = "cat open";
+    div.className = "cat" + (open ? " open" : "");
+    div.dataset.id = cat.id;
     div.innerHTML = `
-      <div class="cat-head">
-        <span class="icon">${cat.icon}</span>
-        <h3>${cat.title}</h3>
+      <button class="cat-head" aria-expanded="${open}">
+        <span class="icon" aria-hidden="true">${cat.icon}</span>
+        <h3>${esc(tr(cat, "title"))}</h3>
         <span class="count">${catDone}/${cat.items.length}</span>
-      </div>
-      <div class="minibar"><div style="width:${cat.items.length ? Math.round(catDone/cat.items.length*100) : 0}%"></div></div>
+        <span class="chev" aria-hidden="true">▾</span>
+      </button>
+      <div class="minibar"><div style="width:${cat.items.length ? Math.round(catDone / cat.items.length * 100) : 0}%"></div></div>
       <ul>${cat.items.map(i => `
         <li class="${state[i.id] ? "done" : ""}">
-          <label><input type="checkbox" data-id="${i.id}" ${state[i.id] ? "checked" : ""}><span>${i.label}</span></label>
+          <label><input type="checkbox" data-id="${esc(i.id)}" ${state[i.id] ? "checked" : ""}><span>${esc(tr(i, "label"))}</span></label>
         </li>`).join("")}
       </ul>`;
-    div.querySelector(".cat-head").addEventListener("click", () => div.classList.toggle("open"));
+    div.querySelector(".cat-head").addEventListener("click", () => {
+      div.classList.toggle("open");
+      div.querySelector(".cat-head").setAttribute("aria-expanded", div.classList.contains("open"));
+    });
     div.querySelectorAll("input[type=checkbox]").forEach(cb => cb.addEventListener("change", () => {
-      const s = getState();
+      const s = getState(LS_PROGRESS);
       if (cb.checked) s[cb.dataset.id] = true; else delete s[cb.dataset.id];
-      setState(s); renderProgress();
+      setState(LS_PROGRESS, s);
+      renderProgress();
     }));
     wrap.appendChild(div);
   });
 
   const pct = total ? Math.round(done / total * 100) : 0;
   document.getElementById("global-pct").textContent = pct + "%";
-  document.getElementById("global-count").textContent = `${done} objectifs accomplis sur ${total}`;
-  document.getElementById("global-bar").style.width = pct + "%";
+  document.getElementById("global-count").textContent = T().prog_count(done, total);
+  const circumference = 2 * Math.PI * 64;
+  document.getElementById("ring-fg").style.strokeDashoffset = circumference * (1 - pct / 100);
+  const rank = pct >= 90 ? "rank3" : pct >= 55 ? "rank2" : pct >= 20 ? "rank1" : "rank0";
+  document.getElementById("rank-badge").textContent = T()[rank];
 }
 
 document.getElementById("btn-export").addEventListener("click", () => {
-  const blob = new Blob([JSON.stringify(getState(), null, 2)], { type: "application/json" });
+  const payload = { progress: getState(LS_PROGRESS), achievements: getState(LS_ACH) };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = "nms-progression.json";
   a.click();
+  URL.revokeObjectURL(a.href);
 });
 document.getElementById("btn-import").addEventListener("click", () => document.getElementById("file-import").click());
 document.getElementById("file-import").addEventListener("change", async e => {
   const f = e.target.files[0];
   if (!f) return;
-  try { setState(JSON.parse(await f.text())); renderProgress(); }
-  catch { alert("Fichier invalide"); }
+  try {
+    const data = JSON.parse(await f.text());
+    // Compatible avec l'ancien format (progression seule) et le nouveau
+    if (data.progress || data.achievements) {
+      if (data.progress) setState(LS_PROGRESS, data.progress);
+      if (data.achievements) setState(LS_ACH, data.achievements);
+    } else {
+      setState(LS_PROGRESS, data);
+    }
+    renderAll();
+  } catch { alert(T().invalid_file); }
+  e.target.value = "";
 });
 document.getElementById("btn-reset").addEventListener("click", () => {
-  if (confirm("Effacer toute ta progression ?")) { localStorage.removeItem(LS_KEY); renderProgress(); }
+  if (confirm(T().reset_confirm)) {
+    localStorage.removeItem(LS_PROGRESS);
+    localStorage.removeItem(LS_ACH);
+    renderAll();
+  }
 });
 
-/* ---------- Cartes génériques ---------- */
+/* ============================== Cartes ============================== */
 function newsCard(item, badge) {
-  return `<div class="card">
-    <h3><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></h3>
+  return `<article class="card">
+    <h3><a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}</a></h3>
     <div class="meta">
-      ${badge ? `<span class="badge ${badge.cls || ""}">${badge.txt}</span>` : ""}
-      <span>${fmtDate(item.date)}</span>
-      ${item.author ? `<span>${item.author}</span>` : ""}
-      ${item.source ? `<span>${item.source}</span>` : ""}
+      ${badge ? `<span class="badge ${badge.cls || ""}">${esc(badge.txt)}</span>` : ""}
+      <span>${esc(relTime(item.date))}</span>
+      ${item.author ? `<span>${esc(item.author)}</span>` : ""}
+      ${item.source ? `<span>${esc(item.source)}</span>` : ""}
     </div>
-    ${item.excerpt ? `<div class="excerpt">${item.excerpt}</div>` : ""}
-  </div>`;
+    ${item.excerpt ? `<div class="excerpt">${esc(item.excerpt)}</div>` : ""}
+  </article>`;
 }
 const miniCard = (item, extra) => `<div class="mini">
-  <a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>
-  <div class="m">${fmtDate(item.date)}${extra ? " · " + extra : ""}</div>
+  <a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}</a>
+  <div class="m">${esc(relTime(item.date))}${extra ? " · " + esc(extra) : ""}</div>
 </div>`;
+const emptyMsg = hasSearch => `<div class="empty">${hasSearch ? T().empty_search : T().empty_data}</div>`;
+const matches = (q, ...fields) => !q || fields.some(f => (f || "").toLowerCase().includes(q));
 
-/* ---------- Vue d'ensemble ---------- */
+/* ============================== Vue d'ensemble ============================== */
+function renderChips() {
+  const chips = [];
+  if (D.stats) {
+    chips.push(`<span class="chip"><span class="dot"></span><b>${fmtNum(D.stats.player_count)}</b> ${T().chip_online}</span>`);
+    if (D.stats.reviews) chips.push(`<span class="chip">👍 <b>${D.stats.reviews.percent_positive}%</b> ${T().chip_reviews}</span>`);
+    if (D.stats.price && D.stats.price.discount_percent) chips.push(`<span class="chip">🔥 <b>−${D.stats.price.discount_percent}%</b> ${T().chip_discount}</span>`);
+  }
+  if (D.timeline && D.timeline.items && D.timeline.items.length) {
+    const last = D.timeline.items[0];
+    chips.push(`<span class="chip">🛰️ <b>v${esc(last.version)}</b> ${esc(tr(last, "name"))}</span>`);
+  }
+  document.getElementById("live-chips").innerHTML = chips.join("");
+}
+
 function renderOverview() {
   const tiles = [];
   if (D.stats) {
-    tiles.push(`<div class="tile"><div class="big">${fmtNum(D.stats.player_count)}</div>
-      <div class="label">joueurs en ligne (Steam)</div></div>`);
+    tiles.push(`<div class="tile"><div class="big" data-count="${D.stats.player_count}">${fmtNum(D.stats.player_count)}</div>
+      <div class="label">${T().tile_players}</div></div>`);
     if (D.stats.reviews) {
       tiles.push(`<div class="tile"><div class="big gold">${D.stats.reviews.percent_positive}%</div>
-        <div class="label">d'avis positifs sur Steam</div>
-        <div class="sub">${fmtNum(D.stats.reviews.total)} avis au total</div></div>`);
+        <div class="label">${T().tile_reviews}</div>
+        <div class="sub">${fmtNum(D.stats.reviews.total)} ${T().tile_reviews_sub}</div></div>`);
     }
     if (D.stats.price) {
       const p = D.stats.price;
-      tiles.push(`<div class="tile"><div class="big ${p.discount_percent ? "red" : ""}">${p.final}</div>
-        <div class="label">prix actuel sur Steam</div>
-        ${p.discount_percent ? `<div class="sub">🔥 promo −${p.discount_percent}% (au lieu de ${p.initial})</div>` : ""}</div>`);
+      tiles.push(`<div class="tile"><div class="big ${p.discount_percent ? "red" : ""}">${esc(p.final)}</div>
+        <div class="label">${T().tile_price}</div>
+        ${p.discount_percent ? `<div class="sub">🔥 ${T().tile_promo} −${p.discount_percent}% (${T().tile_instead} ${esc(p.initial)})</div>` : ""}</div>`);
     }
   }
   if (D.timeline && D.timeline.items && D.timeline.items.length) {
     const last = D.timeline.items[0];
-    tiles.push(`<div class="tile"><div class="big" style="font-size:1.3rem;padding-top:8px">${last.name}</div>
-      <div class="label">dernière mise à jour majeure (v${last.version})</div>
-      <div class="sub">${fmtDate(last.date)}</div></div>`);
+    tiles.push(`<div class="tile"><div class="big" style="font-size:1.35rem;padding-top:9px">${esc(tr(last, "name"))}</div>
+      <div class="label">${T().tile_update} (v${esc(last.version)})</div>
+      <div class="sub">${esc(fmtDate(last.date))}</div></div>`);
   }
-  document.getElementById("tiles").innerHTML = tiles.join("");
+  document.getElementById("tiles").innerHTML = tiles.length ? tiles.join("") : `<div class="empty">${T().empty_data}</div>`;
 
-  // Bannière événement communautaire en cours (si la dernière MàJ le mentionne)
+  const banner = document.getElementById("event-banner");
+  banner.innerHTML = "";
   if (D.timeline && D.timeline.items && D.timeline.items.length) {
     const last = D.timeline.items[0];
-    if (/communautaire|faction|événement/i.test(last.desc || "")) {
-      document.getElementById("event-banner").innerHTML = `<div class="event-banner">
-        <h3>⚔️ Événement communautaire en cours — ${last.name}</h3>
-        <p>${last.desc} ${last.url ? `<a href="${last.url}" target="_blank" rel="noopener">Voir l'annonce officielle →</a>` : ""}</p>
+    if (/communautaire|community event|faction/i.test((last.desc || "") + (last.desc_en || ""))) {
+      banner.innerHTML = `<div class="event-banner">
+        <h3>⚔️ ${T().event_title} — ${esc(tr(last, "name"))}</h3>
+        <p>${esc(tr(last, "desc"))} ${last.url ? `<a href="${esc(last.url)}" target="_blank" rel="noopener">${T().event_link}</a>` : ""}</p>
       </div>`;
     }
   }
 
-  // Sparkline joueurs
   if (D.history && D.history.points && D.history.points.length >= 2) {
-    document.getElementById("sparkline-box").style.display = "block";
-    drawSparkline(D.history.points);
+    document.getElementById("spark-card").style.display = "block";
+    drawSparkline();
   }
 
   const ov = (elId, items, fmt) => {
     document.getElementById(elId).innerHTML = items && items.length
       ? items.slice(0, 4).map(fmt).join("")
-      : `<div class="mini">Pas encore de données.</div>`;
+      : `<div class="mini">${T().empty_data}</div>`;
   };
   ov("ov-official", D.official && D.official.items, i => miniCard(i));
   ov("ov-community", D.community && D.community.top_week, i => miniCard(i, i.author));
   ov("ov-videos", D.videos && D.videos.items, i => miniCard(i, i.channel));
 }
 
-function drawSparkline(points) {
+function drawSparkline() {
   const c = document.getElementById("sparkline");
+  if (!D.history || !D.history.points || D.history.points.length < 2 || !c.clientWidth) return;
+  const points = D.history.points;
+  const darkTheme = document.documentElement.dataset.theme === "dark";
   const dpr = window.devicePixelRatio || 1;
-  const w = c.clientWidth, h = 70;
+  const w = c.clientWidth, h = 92;
   c.width = w * dpr; c.height = h * dpr;
   const ctx = c.getContext("2d");
-  ctx.scale(dpr, dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   const vals = points.map(p => p.players);
   const min = Math.min(...vals), max = Math.max(...vals);
   const range = max - min || 1;
-  const x = i => (i / (points.length - 1)) * (w - 8) + 4;
-  const y = v => h - 10 - ((v - min) / range) * (h - 24);
-  ctx.strokeStyle = "#4ec9b0"; ctx.lineWidth = 2; ctx.beginPath();
-  points.forEach((p, i) => i ? ctx.lineTo(x(i), y(p.players)) : ctx.moveTo(x(i), y(p.players)));
-  ctx.stroke();
-  ctx.fillStyle = "#8b96b8"; ctx.font = "11px sans-serif";
-  ctx.fillText(fmtNum(max), 4, 12);
-  ctx.fillText(fmtNum(min), 4, h - 1);
+  const px = i => 6 + (i / (points.length - 1)) * (w - 12);
+  const py = v => h - 16 - ((v - min) / range) * (h - 36);
+
+  const grad = ctx.createLinearGradient(0, 0, 0, h);
+  grad.addColorStop(0, "rgba(55,224,184,0.35)");
+  grad.addColorStop(1, "rgba(55,224,184,0)");
+  ctx.beginPath();
+  points.forEach((p, i) => i ? ctx.lineTo(px(i), py(p.players)) : ctx.moveTo(px(i), py(p.players)));
+  ctx.lineTo(px(points.length - 1), h - 4); ctx.lineTo(px(0), h - 4); ctx.closePath();
+  ctx.fillStyle = grad; ctx.fill();
+
+  ctx.beginPath();
+  points.forEach((p, i) => i ? ctx.lineTo(px(i), py(p.players)) : ctx.moveTo(px(i), py(p.players)));
+  ctx.strokeStyle = "#37e0b8"; ctx.lineWidth = 2; ctx.stroke();
+
+  const lastP = points[points.length - 1];
+  ctx.beginPath(); ctx.arc(px(points.length - 1), py(lastP.players), 3.5, 0, Math.PI * 2);
+  ctx.fillStyle = "#37e0b8"; ctx.fill();
+
+  ctx.fillStyle = darkTheme ? "rgba(232,237,251,0.6)" : "rgba(23,32,60,0.6)";
+  ctx.font = "11px Inter, sans-serif";
+  ctx.fillText(fmtNum(max), 6, 12);
+  ctx.fillText(fmtNum(min), 6, h - 4);
 }
 
-/* ---------- Actualités ---------- */
+/* ============================== Actualités ============================== */
 function renderActus() {
   const list = document.getElementById("actus-list");
-  if (subState.actus === "officiel") {
-    list.innerHTML = D.official && D.official.items
-      ? D.official.items.map(i => newsCard(i, { txt: "Hello Games", cls: "official" })).join("")
-      : `<div class="empty">Aucune donnée — lance <code>python3 scripts/fetch_news.py</code>.</div>`;
+  const q = query.actus;
+  let items, mapper;
+  if (sub.actus === "officiel") {
+    items = (D.official && D.official.items || []).filter(i => matches(q, i.title, i.excerpt));
+    mapper = i => newsCard(i, { txt: "Hello Games", cls: "official" });
   } else {
-    list.innerHTML = D.news && D.news.items
-      ? D.news.items.map(i => newsCard(i, i.is_official ? { txt: "Officiel", cls: "official" } : { txt: i.source || "Presse" })).join("")
-      : `<div class="empty">Aucune donnée.</div>`;
+    items = (D.news && D.news.items || []).filter(i => matches(q, i.title, i.excerpt, i.source));
+    mapper = i => newsCard(i, i.is_official ? { txt: T().badge_official, cls: "official" } : { txt: i.source || T().badge_press });
   }
+  list.innerHTML = items.length ? items.map(mapper).join("") : emptyMsg(!!q);
 }
 
-/* ---------- Communauté ---------- */
+/* ============================== Communauté ============================== */
 function renderCommunity() {
   const list = document.getElementById("community-list");
-  const key = subState.communaute;
+  const q = query.communaute;
+  const key = sub.communaute;
   const badge = key === "coordinates" ? "r/NMSCoordinateExchange" : "r/NoMansSkyTheGame";
-  const items = D.community && D.community[key];
-  list.innerHTML = items && items.length
-    ? items.map(p => newsCard(p, { txt: badge })).join("")
-    : `<div class="empty">Données communautaires indisponibles pour le moment.</div>`;
+  const items = (D.community && D.community[key] || []).filter(p => matches(q, p.title, p.author));
+  list.innerHTML = items.length ? items.map(p => newsCard(p, { txt: badge })).join("") : emptyMsg(!!q);
 }
 
-/* ---------- Succès ---------- */
+/* ============================== Succès ============================== */
+function rarity(pct) {
+  if (pct >= 50) return { key: "rarity_common", cls: "" };
+  if (pct >= 20) return { key: "rarity_uncommon", cls: "" };
+  if (pct >= 5) return { key: "rarity_rare", cls: "gold" };
+  return { key: "rarity_legendary", cls: "official" };
+}
 function renderAchievements() {
   const el = document.getElementById("ach-list");
-  if (!D.achievements || !D.achievements.items || !D.achievements.items.length) {
-    el.innerHTML = `<div class="empty">Aucune donnée de succès.</div>`;
+  const items = D.achievements && D.achievements.items || [];
+  if (!items.length) {
+    el.innerHTML = emptyMsg(false);
+    document.getElementById("ach-summary").innerHTML = "";
     return;
   }
-  el.innerHTML = D.achievements.items.map(a => `<div class="ach">
-    <div class="row"><h3>${a.name}</h3><span class="pctv">${a.percent}%</span></div>
-    <div class="desc">${a.desc || "Succès caché"}</div>
-    <div class="fill"><div style="width:${a.percent}%"></div></div>
-  </div>`).join("");
+  const owned = getState(LS_ACH);
+  const q = query.succes;
+  const shown = items.filter(a => matches(q, a.name, a.desc, a.name_en, a.desc_en));
+  el.innerHTML = shown.length ? shown.map(a => {
+    const r = rarity(a.percent);
+    const isMine = !!owned[a.name];
+    return `<div class="ach ${isMine ? "owned" : ""}">
+      <div class="row">
+        <h3>${esc(tr(a, "name"))}</h3>
+        <span class="badge rarity ${r.cls}">${T()[r.key]}</span>
+        <span class="pctv">${a.percent}%</span>
+      </div>
+      <div class="desc">${esc(tr(a, "desc") || T().ach_hidden)}</div>
+      <div class="fill"><div style="width:${a.percent}%"></div></div>
+      <label class="mine"><input type="checkbox" data-name="${esc(a.name)}" ${isMine ? "checked" : ""}> ${T().ach_mine}</label>
+    </div>`;
+  }).join("") : emptyMsg(true);
+
+  el.querySelectorAll("input[data-name]").forEach(cb => cb.addEventListener("change", () => {
+    const s = getState(LS_ACH);
+    if (cb.checked) s[cb.dataset.name] = true; else delete s[cb.dataset.name];
+    setState(LS_ACH, s);
+    renderAchievements();
+  }));
+
+  const mineCount = items.filter(a => owned[a.name]).length;
+  const rareCount = items.filter(a => owned[a.name] && a.percent < 20).length;
+  document.getElementById("ach-summary").innerHTML = mineCount
+    ? T().ach_summary(mineCount, items.length, rareCount) : "";
 }
 
-/* ---------- Vidéos ---------- */
+/* ============================== Vidéos ============================== */
+function renderVideoChips() {
+  const box = document.getElementById("vid-chips");
+  const channels = [...new Set((D.videos && D.videos.items || []).map(v => v.channel))];
+  box.innerHTML = [`<button data-sub="__all__" class="${sub.videos === "__all__" ? "active" : ""}">${T().all}</button>`]
+    .concat(channels.map(ch =>
+      `<button data-sub="${esc(ch)}" class="${sub.videos === ch ? "active" : ""}">${esc(ch)}</button>`))
+    .join("");
+}
 function renderVideos() {
+  renderVideoChips();
   const el = document.getElementById("vid-list");
-  if (!D.videos || !D.videos.items || !D.videos.items.length) {
-    el.innerHTML = `<div class="empty">Aucune vidéo.</div>`;
-    return;
-  }
-  let items = D.videos.items;
-  if (subState.videos === "Hello Games (officiel)") items = items.filter(v => v.channel === "Hello Games (officiel)");
-  else if (subState.videos === "communaute") items = items.filter(v => v.channel !== "Hello Games (officiel)");
-  el.innerHTML = items.map(v => `<div class="vid">
-    ${v.thumbnail ? `<a href="${v.url}" target="_blank" rel="noopener"><img src="${v.thumbnail}" alt="" loading="lazy"></a>` : ""}
+  const q = query.videos;
+  let items = (D.videos && D.videos.items || []);
+  if (sub.videos !== "__all__") items = items.filter(v => v.channel === sub.videos);
+  items = items.filter(v => matches(q, v.title, v.channel));
+  el.innerHTML = items.length ? items.map(v => `<article class="vid">
+    ${v.thumbnail ? `<a class="thumb" href="${esc(v.url)}" target="_blank" rel="noopener"><img src="${esc(v.thumbnail)}" alt="" loading="lazy"></a>` : ""}
     <div class="body">
-      <h3><a href="${v.url}" target="_blank" rel="noopener">${v.title}</a></h3>
-      <div class="m">${v.channel} · ${fmtDate(v.date)}${v.views ? " · " + fmtNum(v.views) + " vues" : ""}</div>
+      <h3><a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.title)}</a></h3>
+      <div class="m">${esc(v.channel)} · ${esc(relTime(v.date))}${v.views ? " · " + fmtNum(v.views) + " " + T().views : ""}</div>
     </div>
-  </div>`).join("");
+  </article>`).join("") : emptyMsg(!!q);
 }
 
-/* ---------- Timeline ---------- */
+/* ============================== Frise ============================== */
 function renderTimeline() {
   const el = document.getElementById("timeline");
   if (!D.timeline || !D.timeline.items) { el.innerHTML = ""; return; }
-  el.innerHTML = D.timeline.items.map((u, i) => `<div class="tl-item ${i === 0 ? "latest" : ""}">
-    <h3><span class="ver">v${u.version}</span>${u.url ? `<a href="${u.url}" target="_blank" rel="noopener">${u.name}</a>` : u.name}
-      <span class="d"> — ${fmtDate(u.date)}</span></h3>
-    <p>${u.desc}</p>
-  </div>`).join("");
+  let html = "", lastYear = null;
+  D.timeline.items.forEach((u, i) => {
+    const year = (u.date || "").slice(0, 4);
+    if (year !== lastYear) { html += `<div class="tl-year">${esc(year)}</div>`; lastYear = year; }
+    html += `<div class="tl-item ${i === 0 ? "latest" : ""}">
+      <h3><span class="ver">v${esc(u.version)}</span>${u.url
+        ? `<a href="${esc(u.url)}" target="_blank" rel="noopener">${esc(tr(u, "name"))}</a>`
+        : esc(tr(u, "name"))}<span class="d">${esc(fmtDate(u.date))}</span></h3>
+      <p>${esc(tr(u, "desc"))}</p>
+    </div>`;
+  });
+  el.innerHTML = html;
 }
 
+/* ============================== Rendu global ============================== */
 function renderAll() {
+  renderChips();
   renderOverview();
+  renderProgress();
   renderActus();
   renderCommunity();
   renderAchievements();
@@ -555,9 +1104,12 @@ function renderAll() {
   renderTimeline();
 }
 
-/* ---------- Init ---------- */
+/* ============================== Init ============================== */
 (async () => {
-  const [prog, official, news, community, stats, history, achievements, videos, timeline] = await Promise.all([
+  applyTheme(localStorage.getItem(LS_THEME) ||
+    (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"));
+
+  const [progress, official, news, community, stats, history, achievements, videos, timeline] = await Promise.all([
     loadJSON("data/progress.json"),
     loadJSON("data/official.json"),
     loadJSON("data/news.json"),
@@ -568,19 +1120,15 @@ function renderAll() {
     loadJSON("data/videos.json"),
     loadJSON("data/timeline.json"),
   ]);
-  Object.assign(D, { official, news, community, stats, history, achievements, videos, timeline });
+  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline });
 
-  if (prog) { progressDef = prog; renderProgress(); }
-  else document.getElementById("categories").innerHTML =
-    `<div class="note">Impossible de charger data/progress.json — ouvre cette page via un petit serveur local
-     (<code>python3 -m http.server</code>) ou via GitHub Pages.</div>`;
-
-  renderAll();
+  applyLang(lang);
 
   const dates = [official, news, community, stats].filter(x => x && x.updated_at).map(x => x.updated_at);
   if (dates.length) {
+    const latest = new Date(dates.sort().pop());
     document.getElementById("updated").textContent =
-      "Dernière mise à jour des données : " + new Date(dates.sort().pop()).toLocaleString("fr-FR");
+      `${T().updated} ${latest.toLocaleString(lang === "fr" ? "fr-FR" : "en-GB", { dateStyle: "medium", timeStyle: "short" })}`;
   }
 })();
 </script>

@@ -42,8 +42,11 @@ STEAM_PRICE_URL = (
     f"https://store.steampowered.com/api/appdetails?appids={APPID_NMS}"
     "&cc=fr&filters=price_overview"
 )
-STEAM_ACHIEVEMENTS_URL = (
+STEAM_ACHIEVEMENTS_URL_FR = (
     f"https://steamcommunity.com/stats/{APPID_NMS}/achievements/?l=french"
+)
+STEAM_ACHIEVEMENTS_URL_EN = (
+    f"https://steamcommunity.com/stats/{APPID_NMS}/achievements/?l=english"
 )
 OFFICIAL_NEWS_URL = "https://www.nomanssky.com/news/"
 REDDIT_TOP_RSS = "https://www.reddit.com/r/NoMansSkyTheGame/top.rss?t=week&limit=25"
@@ -245,23 +248,41 @@ def append_history(player_count: int, now: str) -> None:
     write_json("stats_history.json", history)
 
 
-def fetch_achievements() -> list[dict]:
-    """Scrape la page Steam des succès globaux (noms/descriptions en français)."""
-    html = fetch(STEAM_ACHIEVEMENTS_URL).decode("utf-8", errors="replace")
+def _parse_achievements_page(html: str) -> list[dict]:
     pattern = re.compile(
         r'<div class="achievePercent">([\d.]+)%</div>\s*'
         r'<div class="achieveTxt">\s*<h3>([^<]*)</h3>\s*<h5>([^<]*)</h5>',
         re.S,
     )
-    achievements = []
-    for m in pattern.finditer(html):
-        achievements.append(
-            {
-                "percent": float(m.group(1)),
-                "name": unescape(m.group(2)).strip(),
-                "desc": unescape(m.group(3)).strip(),
-            }
+    return [
+        {
+            "percent": float(m.group(1)),
+            "name": unescape(m.group(2)).strip(),
+            "desc": unescape(m.group(3)).strip(),
+        }
+        for m in pattern.finditer(html)
+    ]
+
+
+def fetch_achievements() -> list[dict]:
+    """Scrape la page Steam des succès globaux, en français et en anglais.
+
+    Les deux pages listent les succès dans le même ordre (tri par % global
+    décroissant), ce qui permet de fusionner les traductions par position.
+    """
+    achievements = _parse_achievements_page(
+        fetch(STEAM_ACHIEVEMENTS_URL_FR).decode("utf-8", errors="replace")
+    )
+    try:
+        english = _parse_achievements_page(
+            fetch(STEAM_ACHIEVEMENTS_URL_EN).decode("utf-8", errors="replace")
         )
+    except Exception:  # noqa: BLE001
+        english = []
+    if len(english) == len(achievements):
+        for ach, en in zip(achievements, english):
+            ach["name_en"] = en["name"]
+            ach["desc_en"] = en["desc"]
     return achievements
 
 

@@ -329,6 +329,47 @@
           ]
         }
       ]
+    },
+    {
+      "id": "coop",
+      "icon": "🤝",
+      "name_fr": "Multijoueur & coopération",
+      "name_en": "Multiplayer & co-op",
+      "intro_fr": "Jouer avec des amis rend tout plus rapide et plus fun : on construit une base ensemble et on met les ressources en commun. Voici comment vous retrouver et partager efficacement.",
+      "intro_en": "Playing with friends makes everything faster and more fun: you build a base together and pool your resources. Here's how to meet up and share efficiently.",
+      "sections": [
+        {
+          "icon": "🎮",
+          "title_fr": "Se retrouver en jeu",
+          "title_en": "Meeting up in game",
+          "items": [
+            { "fr": "Ouvre le menu rapide → onglet Multijoueur, puis invite ton ami (Steam, PSN, Xbox, Switch — le cross-play est activé par défaut).", "en": "Open the quick menu → Multiplayer tab, then invite your friend (Steam, PSN, Xbox, Switch — cross-play is on by default)." },
+            { "fr": "Sinon, retrouvez-vous à l'Anomalie, la station sociale appelable dans l'espace où se croisent les joueurs.", "en": "Otherwise, meet at the Anomaly, the social hub you can summon in space where players gather." },
+            { "fr": "Un groupe va jusqu'à 4 joueurs pour toutes les fonctionnalités. Vérifie les réglages de confidentialité de session (Privé / Amis / Public).", "en": "A party supports up to 4 players for full features. Check your session privacy settings (Private / Friends / Public)." }
+          ]
+        },
+        {
+          "icon": "🏠",
+          "title_fr": "Construire une base à plusieurs",
+          "title_en": "Building a base together",
+          "items": [
+            { "fr": "Une base appartient à un seul propriétaire (celui qui pose l'ordinateur de base). Désignez une base principale commune.", "en": "A base has a single owner (whoever places the Base Computer). Agree on one shared main base." },
+            { "fr": "Pour que ton ami construise dans ta base, il doit être dans ta session et tu dois autoriser la modification par les autres joueurs dans les permissions de la base.", "en": "For your friend to build in your base, they must be in your session and you must allow editing by other players in the base permissions." },
+            { "fr": "Chacun peut aussi garder ses propres bases et se rendre visite via téléporteur. Choisissez une planète au climat clément et riche en ressources.", "en": "You can also each keep your own bases and visit via teleporter. Pick a mild-climate planet rich in useful resources." }
+          ]
+        },
+        {
+          "icon": "📦",
+          "title_fr": "Mettre les ressources en commun",
+          "title_en": "Pooling your resources",
+          "items": [
+            { "fr": "Conteneurs de stockage : construisez-en dans la base commune. Les membres du groupe autorisés peuvent y déposer et retirer — la méthode la plus simple pour partager.", "en": "Storage Containers: build them in the shared base. Authorised party members can deposit and withdraw — the simplest way to share." },
+            { "fr": "Cargo capital : si ton ami rejoint ta session et monte à bord de ton cargo, il accède à son stockage. Idéal pour les grosses quantités.", "en": "Capital freighter: if your friend joins your session and boards your freighter, they can use its storage. Great for large quantities." },
+            { "fr": "Raffineur partagé : dépose des ressources dans un raffineur, l'autre joueur les récupère — une astuce de transfert rapide.", "en": "Shared refiner: drop resources into a refiner and the other player takes them out — a quick transfer trick." },
+            { "fr": "Répartissez les rôles (l'un mine, l'un raffine, l'un cuisine/vend) et déposez tout dans le stockage commun : c'est là que la coop devient vraiment rentable (voir le guide Agriculture rentable).", "en": "Split the roles (one mines, one refines, one cooks/sells) and drop everything in shared storage: that's where co-op really pays off (see the Profitable farming guide)." }
+          ]
+        }
+      ]
     }
   ]
 }

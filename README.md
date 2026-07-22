@@ -17,7 +17,7 @@ feuille « Plus » pour toutes les sections, et **balayage gauche/droite** pour 
 | Volet | Contenu | Source |
 |---|---|---|
 | 🏠 **Vue d'ensemble** | Bloc **EN DIRECT** : joueurs en jeu en temps réel (compteur animé), pic 24 h, record absolu, et **flux d'activité de la communauté** (posts FR + EN, vidéos, actus) avec pseudos et horodatages qui défilent | APIs Steam + SteamCharts + Reddit + YouTube |
-| 📚 **Guides** | 7 guides pratiques bilingues avec sélecteur : **Débuter**, **Frégates & flotte**, **Portails & glyphes**, **Agriculture rentable**, **Combat spatial & vaisseaux S**, **Exocraft & véhicules**, **Construction de base** | Guides rédigés |
+| 📚 **Guides** | 8 guides pratiques bilingues avec sélecteur : **Débuter**, **Frégates & flotte**, **Portails & glyphes**, **Agriculture rentable**, **Combat spatial & vaisseaux S**, **Exocraft & véhicules**, **Construction de base**, **Multijoueur & coopération** | Guides rédigés |
 | 🔍 **Recherche globale** | Un champ unique (bouton 🔍 ou touche `/`) qui cherche **dans tout le site d'un coup** : objets, recettes, créatures, vaisseaux, poissons, galaxies et guides — résultats groupés, clic direct vers la fiche ou l'onglet | Toutes les données du site |
 | 📖 **Base de données** | **plus de 3 500 objets** du jeu (matériaux, technologies, modules, améliorations, constructions, marchandises, curiosités, produits procéduraux, cuisine, divers…) cherchables, avec valeur, groupe, description et icône — bilingue | Données du jeu via Assistant NMS |
 | 🦋 **Faune** | Les **57 archétypes de créatures** du jeu : ce que chacun permet de récolter (lait, œufs, miel, nectar, graisse…), la méthode, l'objet obtenu avec icône, et un **exemple d'espèce réelle** vers le wiki | Données du jeu via Assistant NMS + wiki NMS |

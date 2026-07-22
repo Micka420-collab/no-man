@@ -23,7 +23,7 @@ des succès comparé à la communauté mondiale, accessible (clavier, lecteurs d
 | 💎 **Marché** | Classements des objets les plus précieux, guide de pêche complet (qualité/biome/conditions, **avec icônes**), guide des vaisseaux avec **vraies images en jeu**, conseils d'obtention et **guide d'amélioration au max** (emplacements survolimentés, adjacence, classes S/X) | Données Assistant NMS + images du wiki NMS |
 | 🛸 **Actus officielles** | Patch notes et annonces Hello Games | [nomanssky.com/news](https://www.nomanssky.com/news/) |
 | 📰 **Presse & Steam** | Annonces Steam + couverture presse (PC Gamer, RPS…) | API Steam News |
-| 👥 **Communauté** | Top de la semaine, tendances, coordonnées partagées + **communauté française** | r/NoMansSkyTheGame, r/NMSCoordinateExchange, r/NoMansSkyFrance (RSS) |
+| 👥 **Communauté** | Top de la semaine, tendances, coordonnées partagées + **communauté française**. Les titres anglophones sont **traduits automatiquement en français** (titre original conservé au survol) | r/NoMansSkyTheGame, r/NMSCoordinateExchange, r/NoMansSkyFrance (RSS) |
 | 🏆 **Succès des joueurs** | % de la communauté Steam ayant débloqué chaque succès — pour te situer par rapport aux autres voyageurs | Page Steam des succès globaux |
 | 🎬 **Vidéos** | Dernières vidéos de Hello Games et des créateurs communautaires (KhrazeGaming, Beeblebum, Xaine's World) | Flux RSS YouTube |
 | 🕰️ **Mises à jour** | Frise chronologique des mises à jour majeures, de la sortie (2016) à The Swarm (2026) | `data/timeline.json` |

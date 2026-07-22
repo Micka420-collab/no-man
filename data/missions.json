@@ -1,0 +1,225 @@
+{
+  "note": "Wiki des missions et de la trame de No Man's Sky : grandes quêtes d'histoire, quêtes annexes majeures et missions de l'Anomalie. Détails vérifiés sur le wiki No Man's Sky (Fandom/Miraheze) et les forums communautaires (Steam, Reddit). Aucune mission « Icarus » n'existe dans le jeu — le véritable fil rouge caché des missions est le nombre 16 (voir « Le secret du 16 »). Le contenu procédural (systèmes, PNJ, objets aléatoires) varie d'une partie à l'autre : les étapes ci-dessous décrivent le déroulé, pas un lieu précis.",
+  "secret16": {
+    "icon": "16",
+    "title_fr": "Le secret du 16",
+    "title_en": "The secret of 16",
+    "lead_fr": "Le 16 est LE nombre caché de No Man's Sky : il traverse l'histoire, la sortie du jeu, sa musique, ses mathématiques et même l'ARG officiel. Ce n'est pas un hasard — c'est une signature laissée par Hello Games.",
+    "lead_en": "16 is THE hidden number of No Man's Sky: it runs through the story, the release, the music, the maths and even the official ARG. It is no coincidence — it is a signature left by Hello Games.",
+    "quote_fr": "« Même face au seize, nous devons déclarer que nous avons vécu. »",
+    "quote_en": "\"Even in the face of sixteen, we must declare that we lived.\"",
+    "quote_src": "Lore Atlas Rises / Waking Titan",
+    "facts": [
+      {"fr": "Dans la trame, l'Atlas annonce qu'il ne lui reste que 16 minutes de fonctionnement : tout l'univers-simulation tient dans une fenêtre de 16 minutes en temps réel (contenu de la màj Atlas Rises).", "en": "In the story, the Atlas states it has only 16 minutes of operation left: the whole simulated universe runs inside a 16 real-time-minute window (Atlas Rises lore)."},
+      {"fr": "Il y a exactement 16 glyphes de portail — l'alphabet complet pour composer une adresse.", "en": "There are exactly 16 portal glyphs — the full alphabet used to dial an address."},
+      {"fr": "Le nombre de « graines » de planètes possibles est 18 446 744 073 709 551 616, soit 16^16 (la limite d'un entier 64 bits).", "en": "The number of possible planet seeds is 18,446,744,073,709,551,616 — that is 16^16 (the 64-bit integer limit)."},
+      {"fr": "Le jeu est sorti en 20-16.", "en": "The game was released in 20-16."},
+      {"fr": "La bande-son de 65daysofstatic, « Music for an Infinite Universe », compte 16 pistes.", "en": "The 65daysofstatic soundtrack, \"Music for an Infinite Universe\", has 16 tracks."},
+      {"fr": "Il existe 255 galaxies : 255 s'écrit FF en hexadécimal (base 16), le plus grand nombre sur deux chiffres.", "en": "There are 255 galaxies: 255 is written FF in hexadecimal (base 16), the largest two-digit value."},
+      {"fr": "Dans l'ARG officiel Waking Titan, l'IA prédictive s'appelait Loop16, et les cassettes envoyées à la communauté étaient numérotées « sur 16 ».", "en": "In the official Waking Titan ARG, the predictive AI was called Loop16, and the cassettes mailed to the community were numbered \"out of 16\"."}
+    ],
+    "npc_fr": "Et les PNJ dans tout ça ? Le fameux « 16 » n'est pas un code à taper : c'est l'identité de Telamon, le sous-protocole de sécurité chargé de surveiller l'Atlas, qui devient la voix de ton exocombinaison à la naissance du dernier Voyageur. C'est cette IA qui « souffle » aux entités et te guide. Les entités de l'Anomalie (Nada et Polo) et les logs de Telamon (accessibles en scannant des balises et des Interfaces Atlas) sont les sources qui parlent le plus du 16 et de la vérité de la simulation. Le 16 se révèle donc surtout dans le Chemin de l'Atlas et le Chemin d'Artémis.",
+    "npc_en": "What about the NPCs? The famous \"16\" is not a code to type in: it is the identity of Telamon, the security sub-protocol tasked with monitoring the Atlas, which becomes your exosuit's voice at the birth of the last Traveller. That AI is the one whispering to the entities and guiding you. The Anomaly entities (Nada and Polo) and Telamon's logs (found by scanning beacons and Atlas Interfaces) are the sources that talk most about 16 and the truth of the simulation. So 16 surfaces above all in the Atlas Path and the Artemis Path.",
+    "sources": [
+      {"label": "Wiki NMS — Lore (Miraheze)", "url": "https://nomanssky.miraheze.org/wiki/Lore"},
+      {"label": "Wiki NMS — Telamon", "url": "https://nomanssky.fandom.com/wiki/Telamon"},
+      {"label": "Wiki NMS — The Atlas", "url": "https://nomanssky.fandom.com/wiki/The_Atlas"},
+      {"label": "Waking Titan (Game Detectives)", "url": "https://wiki.gamedetectives.net/index.php?title=Waking_Titan"}
+    ]
+  },
+  "categories": {
+    "story": {"fr": "Histoire principale", "en": "Main story", "icon": "📖"},
+    "anomaly": {"fr": "Anomalie & Nexus", "en": "Anomaly & Nexus", "icon": "🛸"},
+    "side": {"fr": "Grandes quêtes annexes", "en": "Major side quests", "icon": "🗝️"}
+  },
+  "missions": [
+    {
+      "id": "awakenings",
+      "cat": "story",
+      "icon": "🌅",
+      "name_fr": "Éveils (Awakenings)",
+      "name_en": "Awakenings",
+      "goal_fr": "Le tutoriel : survivre à ton réveil sur une planète inconnue, réparer ton vaisseau et faire tes premiers pas jusqu'à l'Anomalie spatiale.",
+      "goal_en": "The tutorial: survive waking on an unknown planet, repair your ship and take your first steps up to the Space Anomaly.",
+      "steps": [
+        {"fr": "Recharge ton système de survie et répare les technologies endommagées de ta combinaison.", "en": "Recharge your life support and repair your suit's damaged tech."},
+        {"fr": "Récolte carbone, ferrite et sodium, puis répare le lance-plasma et le propulseur de ton vaisseau.", "en": "Gather carbon, ferrite and sodium, then repair your ship's plasma launcher and thrusters."},
+        {"fr": "Construis un émetteur de signal, décolle, et suis la voix de ta combinaison (Telamon) jusqu'à l'Anomalie.", "en": "Build a signal booster, take off, and follow your suit's voice (Telamon) to the Anomaly."}
+      ],
+      "rewards_fr": "Accès à l'Anomalie spatiale, aux plans de base et au reste de l'histoire.",
+      "rewards_en": "Access to the Space Anomaly, base blueprints and the rest of the story.",
+      "hidden": [
+        {"fr": "La voix qui te guide dès la première seconde est Telamon — la même IA liée au nombre 16 et à l'Atlas.", "en": "The voice guiding you from the first second is Telamon — the same AI tied to the number 16 and the Atlas."},
+        {"fr": "En mode Permadeath, la moindre mort efface la partie : garde toujours de l'oxygène et du sodium d'avance.", "en": "In Permadeath, a single death wipes the save: always keep oxygen and sodium in reserve."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/Awakenings"
+    },
+    {
+      "id": "artemis",
+      "cat": "story",
+      "icon": "📡",
+      "name_fr": "Le Chemin d'Artémis (Artemis Path)",
+      "name_en": "The Artemis Path",
+      "goal_fr": "La quête principale : réponds à un signal de détresse, aide Artémis, remonte la piste d'Apollo et de -null-, et découvre la Quatrième Race et la vérité sur l'univers.",
+      "goal_en": "The main quest: answer a distress signal, help Artemis, follow the trail of Apollo and -null-, and uncover the Fourth Race and the truth about the universe.",
+      "steps": [
+        {"fr": "Répare ton dispositif de communication et entre en contact avec Artémis, un autre Voyageur bloqué.", "en": "Repair your communicator and make contact with Artemis, a stranded fellow Traveller."},
+        {"fr": "Voyage par portail, étudie les tombes de Voyageurs et les monolithes pour apprendre le passé.", "en": "Travel by portal, study Traveller graves and monoliths to learn the past."},
+        {"fr": "Aide Apollo, affronte la vérité sur Artémis, et prépare la convergence avec le Chemin de l'Atlas.", "en": "Help Apollo, face the truth about Artemis, and prepare the convergence with the Atlas Path."}
+      ],
+      "rewards_fr": "Plans clés (dont des technologies de voyage), et la moitié « personnages » de la trame.",
+      "rewards_en": "Key blueprints (including travel tech), and the character-driven half of the story.",
+      "hidden": [
+        {"fr": "Un choix majeur t'attend : téléverser Artémis dans une simulation Korvax pour le/la sauver, ou le/la laisser partir. Il n'y a pas de « bonne » réponse — c'est un choix moral.", "en": "A major choice awaits: upload Artemis into a Korvax simulation to save them, or let them go. There is no \"right\" answer — it is a moral choice."},
+        {"fr": "Apollo te demandera son adresse de portail : la partager ou la refuser change le ton de la fin.", "en": "Apollo will ask for their portal address: sharing or refusing it changes the tone of the ending."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/The_Artemis_Path"
+    },
+    {
+      "id": "atlas",
+      "cat": "story",
+      "icon": "🔴",
+      "name_fr": "Le Chemin de l'Atlas (Atlas Path)",
+      "name_en": "The Atlas Path",
+      "goal_fr": "Suis les Interfaces Atlas jusqu'au cœur de la simulation, fabrique des Graines d'Atlas, et découvre le décompte des 16 minutes.",
+      "goal_en": "Follow the Atlas Interfaces to the heart of the simulation, craft Atlas Seeds, and discover the 16-minute countdown.",
+      "steps": [
+        {"fr": "Visite des Interfaces Atlas (grandes stations rouges) et réponds à leurs questions.", "en": "Visit Atlas Interfaces (large red stations) and answer their questions."},
+        {"fr": "Rassemble des Graines d'Atlas / Cœurs pour faire progresser la quête d'interface en interface.", "en": "Collect Atlas Seeds / Hearts to progress from interface to interface."},
+        {"fr": "À la dernière interface, l'Atlas révèle qu'il se meurt — et te propose de créer une nouvelle étoile.", "en": "At the final interface, the Atlas reveals it is dying — and offers you the chance to create a new star."}
+      ],
+      "rewards_fr": "La possibilité de faire naître une étoile, des plans, et la révélation centrale de l'univers.",
+      "rewards_en": "The ability to birth a star, blueprints, and the central revelation of the universe.",
+      "hidden": [
+        {"fr": "C'est ici que le 16 se dévoile : l'Atlas n'a plus que 16 minutes « réelles » de fonctionnement. À sa vitesse d'horloge, ces minutes valent des millions d'années « en jeu ».", "en": "This is where 16 is revealed: the Atlas has only 16 \"real\" minutes of operation left. At its clock speed, those minutes equal millions of \"in-game\" years."},
+        {"fr": "Refuser l'Atlas à la toute fin déclenche « La Purge » (voir ci-dessous) et un redémarrage.", "en": "Refusing the Atlas at the very end triggers \"The Purge\" (below) and a restart."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/Atlas_Path"
+    },
+    {
+      "id": "purge",
+      "cat": "story",
+      "icon": "♻️",
+      "name_fr": "La Purge (The Purge)",
+      "name_en": "The Purge",
+      "goal_fr": "La conclusion : choisis de réinitialiser la simulation ou de refuser l'Atlas, puis renais au bord d'une nouvelle galaxie.",
+      "goal_en": "The conclusion: choose to reset the simulation or refuse the Atlas, then be reborn on the edge of a new galaxy.",
+      "steps": [
+        {"fr": "Traverse une « défaillance de la frontière » (Boundary Failure) et affronte le glitch de la simulation.", "en": "Pass through a Boundary Failure and face the glitch in the simulation."},
+        {"fr": "Fais ton choix final : réinitialiser (reset) ou refuser.", "en": "Make your final choice: reset or refuse."},
+        {"fr": "Réveille-toi dans une nouvelle galaxie, vaisseau et multi-outil réparés à neuf.", "en": "Wake up in a new galaxy, ship and multi-tool freshly repaired."}
+      ],
+      "rewards_fr": "Passage vers la galaxie suivante ; tu conserves ton unité de convertisseur de galaxie et ta progression.",
+      "rewards_en": "Passage to the next galaxy; you keep your galaxy-hop progress and unlocks.",
+      "hidden": [
+        {"fr": "Changer de galaxie n'efface pas ta progression : bases, vaisseaux et objets stockés te suivent. Beaucoup de joueurs enchaînent les galaxies pour « voyager vers le centre ».", "en": "Hopping galaxies does not wipe your progress: bases, ships and stored items follow you. Many players chain galaxies to \"travel to the centre\"."},
+        {"fr": "C'est le prérequis pour lancer la quête des Autophages (« Ceux qui sont revenus »).", "en": "This is the prerequisite for starting the Autophage questline (\"They Who Returned\")."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/The_Purge"
+    },
+    {
+      "id": "autophage",
+      "cat": "side",
+      "icon": "🤖",
+      "name_fr": "Ceux qui sont revenus (Autophages)",
+      "name_en": "They Who Returned (Autophage)",
+      "goal_fr": "Rencontre les mystérieux Autophages (robots sensibles), gagne leur confiance et assemble un Bâton Voltaïque, un multi-outil unique.",
+      "goal_en": "Meet the mysterious Autophages (sentient robots), earn their trust and assemble a Voltaic Staff, a unique multi-tool.",
+      "steps": [
+        {"fr": "Prérequis : avoir terminé l'histoire (La Purge) et brisé au moins une fois le sceau d'un Camp Harmonique.", "en": "Prerequisite: finish the storyline (The Purge) and break the seal of a Harmonic Camp at least once."},
+        {"fr": "Construis et installe le Noyau Polyphonique, puis active-le dans chaque système pour localiser un camp.", "en": "Build and install the Polyphonic Core, then activate it in each system to locate a camp."},
+        {"fr": "Décloake l'Autophage marqué avec ton scanner, accomplis sa tâche (quête aléatoire) et reçois un composant du Bâton Voltaïque — trois PNJ, trois systèmes.", "en": "Decloak the marked Autophage with your scanner, complete its (randomized) task and receive a Voltaic Staff component — three NPCs, three systems."},
+        {"fr": "Assemble le Bâton à un Terminal de Synthèse Autophage une fois les 3 composants réunis.", "en": "Assemble the Staff at an Autophage Synthesis Terminal once all 3 components are gathered."}
+      ],
+      "rewards_fr": "Le Bâton Voltaïque (multi-outil de type Bâton/Atlantide), les cosmétiques Autophage, et l'accès à une Station Atlas via un rituel de portail.",
+      "rewards_en": "The Voltaic Staff (Staff/Atlantid-type multi-tool), Autophage cosmetics, and access to an Atlas Station via a portal ritual.",
+      "hidden": [
+        {"fr": "Détail caché superbe : pour ouvrir la Station Atlas finale, présente de l'Atlantideum à un portail, brandis ton Bâton Voltaïque et prononce le mot « Atlas » — dans n'importe quel ordre, chacun des trois gestes une fois.", "en": "Beautiful hidden detail: to open the final Atlas Station, present Atlantideum at a portal, brandish your Voltaic Staff and say the word \"Atlas\" — in any order, each of the three once."},
+        {"fr": "Les Autophages sont d'anciens Korvax : leur histoire recoupe directement la vérité sur l'Atlas.", "en": "The Autophages are former Korvax: their story ties directly into the truth about the Atlas."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/They_Who_Returned"
+    },
+    {
+      "id": "starbirth",
+      "cat": "side",
+      "icon": "🥚",
+      "name_fr": "Naissance stellaire (Starbirth)",
+      "name_en": "Starbirth",
+      "goal_fr": "Fais éclore un Œuf du vide pour obtenir ton premier Vaisseau vivant — un vaisseau organique qui grandit avec toi.",
+      "goal_en": "Hatch a Void Egg to obtain your first Living Ship — an organic vessel that grows with you.",
+      "steps": [
+        {"fr": "Procure-toi un Œuf du vide (récompense Quicksilver à l'Anomalie), puis suis les coordonnées qu'il te donne.", "en": "Get a Void Egg (a Quicksilver reward at the Anomaly), then follow the coordinates it gives you."},
+        {"fr": "La quête se débloque par paliers espacés de plusieurs heures réelles : reviens régulièrement.", "en": "The quest unlocks in stages spaced several real hours apart: come back regularly."},
+        {"fr": "Nourris/fais mûrir l'œuf jusqu'à l'éclosion du Vaisseau vivant.", "en": "Grow the egg until the Living Ship hatches."}
+      ],
+      "rewards_fr": "Un Vaisseau vivant, qui s'améliore avec des nodes organiques au lieu de modules classiques.",
+      "rewards_en": "A Living Ship, upgraded with organic nodes instead of normal modules.",
+      "hidden": [
+        {"fr": "Les étapes sont volontairement chronométrées (temps réel) : impossible de tout enchaîner d'un coup, c'est une quête « au long cours ».", "en": "Steps are intentionally real-time gated: you cannot rush them, it is a long-haul quest."},
+        {"fr": "Tu peux ensuite obtenir d'autres Vaisseaux vivants avec des Œufs du vide supplémentaires.", "en": "You can later obtain more Living Ships with additional Void Eggs."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/Starbirth"
+    },
+    {
+      "id": "base_overseer",
+      "cat": "side",
+      "icon": "🏗️",
+      "name_fr": "Base & recrutement (Aperçu)",
+      "name_en": "Base & recruitment (Overseer)",
+      "goal_fr": "Fonde ta première base, recrute un Aperçu (Overseer) puis des spécialistes qui débloquent des technologies entières.",
+      "goal_en": "Found your first base, recruit an Overseer then specialists who unlock whole tech trees.",
+      "steps": [
+        {"fr": "Pose une Console de base et lance l'Archive de console de base pour comprendre ton rôle.", "en": "Place a Base Computer and start the Base Computer Archive to learn your role."},
+        {"fr": "Recrute l'Aperçu (Gek), puis le Fermier, le Scientifique (Korvax), l'Armurier et le Technicien (Vy'keen).", "en": "Recruit the Overseer (Gek), then the Farmer, Scientist (Korvax), Armourer and Technician (Vy'keen)."},
+        {"fr": "Suis les missions de chaque spécialiste pour débloquer agriculture, technologies avancées, armes et améliorations.", "en": "Follow each specialist's missions to unlock farming, advanced tech, weapons and upgrades."}
+      ],
+      "rewards_fr": "Des arbres technologiques complets (culture, raffinage, armes, exocraft) et une base fonctionnelle.",
+      "rewards_en": "Full tech trees (farming, refining, weapons, exocraft) and a working base.",
+      "hidden": [
+        {"fr": "Chaque spécialiste enchaîne une longue série de missions : reviens leur parler régulièrement, il y a souvent un temps d'attente entre deux.", "en": "Each specialist runs a long mission chain: talk to them regularly — there is often a cooldown between steps."},
+        {"fr": "Le Scientifique débloque le raffinage et la fabrication d'objets clés comme le Métal chromatique.", "en": "The Scientist unlocks refining and the crafting of key items like Chromatic Metal."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/Base_Computer_Archive"
+    },
+    {
+      "id": "nexus",
+      "cat": "anomaly",
+      "icon": "🛸",
+      "name_fr": "Missions du Nexus",
+      "name_en": "Nexus missions",
+      "goal_fr": "Le tableau de missions communautaires au centre de l'Anomalie spatiale : des missions rejouables, en solo ou en coop, pour gagner nanites, unités et surtout du Quicksilver.",
+      "goal_en": "The community mission board at the centre of the Space Anomaly: repeatable missions, solo or co-op, for nanites, units and above all Quicksilver.",
+      "steps": [
+        {"fr": "Rejoins l'Anomalie (bouton dédié) et parle au tableau du Nexus.", "en": "Summon the Anomaly (dedicated button) and interact with the Nexus board."},
+        {"fr": "Choisis parmi 4 missions : classiques (nanites/unités), chiffrées (Encrypted), et surtout les missions Quicksilver.", "en": "Pick from 4 missions: standard (nanites/units), Encrypted, and above all the Quicksilver missions."}
+      ],
+      "rewards_fr": "Mission Quicksilver quotidienne : 400 Quicksilver (1 à 3 gouttes dorées à droite du Nexus). Mission de week-end : 1 800 Quicksilver (hexagone turquoise au-dessus du Nexus).",
+      "rewards_en": "Daily Quicksilver mission: 400 Quicksilver (1–3 gold droplets on the right of the Nexus). Weekend mission: 1,800 Quicksilver (turquoise hexagon above the Nexus).",
+      "hidden": [
+        {"fr": "Les missions Quicksilver non faites s'empilent (jusqu'à 3) : pas besoin de jouer tous les jours pour ne rien rater.", "en": "Unclaimed Quicksilver missions stack (up to 3): you don't need to play daily to avoid missing out."},
+        {"fr": "La plus rapide est souvent « Purge de la Peste » (Scourge Cleansing) : détruis des vagues d'ennemis en vaisseau puis reviens.", "en": "The fastest is often \"Scourge Cleansing\": destroy waves of enemies in your ship, then return."},
+        {"fr": "Dépense ton Quicksilver auprès du Compagnon de synthèse Quicksilver, dans l'Anomalie, pour des cosmétiques exclusifs et l'Œuf du vide.", "en": "Spend Quicksilver at the Quicksilver Synthesis Companion in the Anomaly for exclusive cosmetics and the Void Egg."}
+      ],
+      "wiki": "https://nomanssky.miraheze.org/wiki/The_Nexus"
+    },
+    {
+      "id": "expeditions",
+      "cat": "anomaly",
+      "icon": "🗓️",
+      "name_fr": "Expéditions",
+      "name_en": "Expeditions",
+      "goal_fr": "Des parcours communautaires à durée limitée, avec un départ commun et des paliers à objectifs, qui offrent des récompenses exclusives. Retrouve le calendrier complet dans l'onglet Expéditions.",
+      "goal_en": "Limited-time community journeys with a shared start and milestone objectives, granting exclusive rewards. See the full calendar in the Expeditions tab.",
+      "steps": [
+        {"fr": "Lance une expédition active depuis l'écran de création de partie ou l'Anomalie.", "en": "Start an active expedition from the save-creation screen or the Anomaly."},
+        {"fr": "Complète les paliers dans l'ordre pour débloquer les récompenses cosmétiques et objets.", "en": "Complete the milestones in order to unlock cosmetic and item rewards."}
+      ],
+      "rewards_fr": "Vaisseaux, compagnons, décorations et titres exclusifs, souvent indisponibles autrement.",
+      "rewards_en": "Ships, companions, decorations and exclusive titles, often unavailable otherwise.",
+      "hidden": [
+        {"fr": "Beaucoup d'expéditions passées reviennent en « rediffusion » : surveille l'onglet Expéditions pour ne pas manquer une réédition.", "en": "Many past expeditions return as \"redux\" runs: watch the Expeditions tab so you don't miss a re-release."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/Expedition"
+    }
+  ]
+}

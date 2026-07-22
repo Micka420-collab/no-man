@@ -922,7 +922,7 @@
   <nav class="tabs" role="tablist" data-i18n-aria="aria_sections" aria-label="Sections">
     <button role="tab" id="tab-apercu" aria-controls="panel-apercu" data-tab="apercu" class="active" aria-selected="true">🏠 <span data-i18n="tab_overview">Vue d'ensemble</span></button>
     <button role="tab" id="tab-progression" aria-controls="panel-progression" data-tab="progression" aria-selected="false" tabindex="-1">🧭 <span data-i18n="tab_progress">Ma progression</span></button>
-    <button role="tab" id="tab-guide" aria-controls="panel-guide" data-tab="guide" aria-selected="false" tabindex="-1">🚀 <span data-i18n="tab_guide">Débuter</span></button>
+    <button role="tab" id="tab-guide" aria-controls="panel-guide" data-tab="guide" aria-selected="false" tabindex="-1">📚 <span data-i18n="tab_guide">Guides</span></button>
     <button role="tab" id="tab-galaxies" aria-controls="panel-galaxies" data-tab="galaxies" aria-selected="false" tabindex="-1">🗺️ <span data-i18n="tab_galaxies">Galaxies</span></button>
     <button role="tab" id="tab-marche" aria-controls="panel-marche" data-tab="marche" aria-selected="false" tabindex="-1">💎 <span data-i18n="tab_market">Marché</span></button>
     <button role="tab" id="tab-catalogue" aria-controls="panel-catalogue" data-tab="catalogue" aria-selected="false" tabindex="-1">📖 <span data-i18n="tab_catalogue">Base de données</span></button>
@@ -996,9 +996,10 @@
       </div>
     </section>
 
-    <!-- Débuter -->
+    <!-- Guides -->
     <section class="panel" id="panel-guide" role="tabpanel" aria-labelledby="tab-guide">
-      <div class="note" data-i18n="guide_note">Nouveau dans No Man's Sky ? Ce guide te fait passer des premières minutes à tes premiers grands objectifs, étape par étape.</div>
+      <div class="controls"><div class="subtabs" id="guide-chips"></div></div>
+      <div class="note" id="guide-intro"></div>
       <div id="guide-list" class="guide-list"></div>
     </section>
 
@@ -1146,7 +1147,7 @@
 <!-- Barre de navigation basse (mobile) -->
 <nav class="bottomnav" aria-label="Navigation principale">
   <button data-goto="apercu" aria-label="Vue d'ensemble"><span class="bn-i" aria-hidden="true">🏠</span><span class="bn-l" data-i18n="tab_overview">Vue d'ensemble</span></button>
-  <button data-goto="guide" aria-label="Débuter"><span class="bn-i" aria-hidden="true">🚀</span><span class="bn-l" data-i18n="tab_guide">Débuter</span></button>
+  <button data-goto="guide" aria-label="Guides"><span class="bn-i" aria-hidden="true">📚</span><span class="bn-l" data-i18n="tab_guide">Guides</span></button>
   <button data-goto="catalogue" aria-label="Base de données"><span class="bn-i" aria-hidden="true">📖</span><span class="bn-l" data-i18n="tab_catalogue">Base de données</span></button>
   <button data-goto="recettes" aria-label="Recettes"><span class="bn-i" aria-hidden="true">🧪</span><span class="bn-l" data-i18n="tab_recipes">Recettes</span></button>
   <button id="bn-more" aria-haspopup="dialog" aria-expanded="false"><span class="bn-i" aria-hidden="true">☰</span><span class="bn-l" data-i18n="more_plus">Plus</span></button>
@@ -1173,7 +1174,7 @@ const I18N = {
     overline: "Centre de suivi communautaire",
     tagline: "Tout l'univers du jeu en un coup d'œil : actus officielles, stats en direct, communauté, vidéos — et ta propre progression de Voyageur.",
     tab_overview: "Vue d'ensemble", tab_progress: "Ma progression", tab_news: "Actualités",
-    tab_guide: "Débuter",
+    tab_guide: "Guides",
     guide_note: "Nouveau dans No Man's Sky ? Ce guide te fait passer des premières minutes à tes premiers grands objectifs, étape par étape.",
     guide_step: "Étape",
     more_title: "Toutes les sections", more_close: "Fermer", more_plus: "Plus",
@@ -1314,7 +1315,7 @@ const I18N = {
     overline: "Community tracking hub",
     tagline: "The whole universe of the game at a glance: official news, live stats, community, videos — and your own Traveller's journey.",
     tab_overview: "Overview", tab_progress: "My journey", tab_news: "News",
-    tab_guide: "Get started",
+    tab_guide: "Guides",
     guide_note: "New to No Man's Sky? This guide takes you from your first minutes to your first big goals, step by step.",
     guide_step: "Step",
     more_title: "All sections", more_close: "Close", more_plus: "More",
@@ -1461,7 +1462,7 @@ const LS_TEAM = "nms-team";
 const LS_CHALLENGE = "nms-challenge-v1";
 const LS_LAST_VISIT = "nms-last-visit";
 const D = {};
-const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all", recettes: "refiner" };
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all", recettes: "refiner", guide: "debuter" };
 const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "", catalogue: "" };
 let lang = localStorage.getItem(LS_LANG);
 if (lang !== "fr" && lang !== "en") {
@@ -3488,8 +3489,26 @@ function renderRecipes() {
 function renderGuide() {
   const box = document.getElementById("guide-list");
   if (!box) return;
-  const secs = D.guide && D.guide.sections || [];
-  if (!secs.length) { box.innerHTML = emptyMsg(false); return; }
+  const chips = document.getElementById("guide-chips");
+  const intro = document.getElementById("guide-intro");
+  const guides = D.guide && D.guide.guides || [];
+  if (!guides.length) { box.innerHTML = emptyMsg(false); if (chips) chips.innerHTML = ""; if (intro) intro.textContent = ""; return; }
+  let gid = sub.guide;
+  if (!guides.some(g => g.id === gid)) gid = guides[0].id;
+  const g = guides.find(x => x.id === gid) || guides[0];
+
+  keepFocus(chips, () => {
+    chips.innerHTML = guides.map(x =>
+      `<button data-sub="${x.id}" aria-pressed="${x.id === gid}" class="${x.id === gid ? "active" : ""}">${esc(x.icon || "")} ${esc(lang === "en" ? x.name_en : x.name_fr)}</button>`).join("");
+  });
+  chips.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+    sub.guide = b.dataset.sub;
+    renderGuide();
+    box.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+  }));
+
+  if (intro) intro.textContent = lang === "en" ? (g.intro_en || "") : (g.intro_fr || "");
+  const secs = g.sections || [];
   box.innerHTML = secs.map((s, i) => `
     <section class="guide-card">
       <div class="gd-head">

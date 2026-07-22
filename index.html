@@ -1878,14 +1878,16 @@ let galPositions = null;
 
 /* Le voyage va de l'extérieur (Euclid, n°1) vers le cœur de l'univers (n°255),
    comme la progression du jeu vers le centre. */
+// Inclinaison du disque galactique (vue oblique, comme la carte en jeu).
+const GAL_TILT = 0.5;
 function galPos(i) {
   if (!galPositions) {
     galPositions = [];
     for (let idx = 0; idx < 255; idx++) {
-      const k = 254 - idx;
-      const th = k * 0.309 + 0.6;
-      const r = 22 + k * 1.06;
-      galPositions.push([r * Math.cos(th), r * Math.sin(th)]);
+      const k = 254 - idx;               // Euclid (1) à l'extérieur, 255 au cœur
+      const th = k * 0.242 + 0.6;
+      const r = 20 + k * 1.075;
+      galPositions.push([r * Math.cos(th), r * Math.sin(th) * GAL_TILT]);
     }
   }
   return galPositions[i];
@@ -1910,65 +1912,106 @@ function galRng(seed) {
   };
 }
 
+// Couleur d'une étoile selon sa distance au cœur (0 = centre, 1 = bord) :
+// cœur blanc-or → bras cyan/turquoise → périphérie or/ambre, comme en jeu.
+function galStarColor(t, rnd) {
+  if (t < 0.10) return [255, 244, 214];
+  if (t < 0.34) { const k = (t - 0.10) / 0.24; return [255 - k * 150, 244 - k * 20, 214 - k * 6]; } // or → turquoise
+  if (t < 0.62) { const k = (t - 0.34) / 0.28; return [105 + k * 20, 224 - k * 45, 208 + k * 40]; } // turquoise → bleu
+  const k = Math.min(1, (t - 0.62) / 0.38);
+  return rnd() < 0.28 ? [220, 120, 200] : [190 + k * 65, 175 - k * 20, 235 - k * 110]; // bleu → or, touches magenta
+}
+
 function galBuildDust() {
+  const N = 1700;
   const off = document.createElement("canvas");
-  off.width = off.height = 1400;
+  off.width = off.height = N;
   const c = off.getContext("2d");
-  const S = 1400 / (WORLD_R * 2);
-  c.setTransform(S, 0, 0, S, 700, 700);
-  // fond spatial
-  const bg = c.createRadialGradient(0, 0, 10, 0, 0, WORLD_R * 1.4);
-  bg.addColorStop(0, "#101832");
-  bg.addColorStop(0.5, "#080d1d");
-  bg.addColorStop(1, "#04060d");
-  c.fillStyle = bg;
+  const S = N / (WORLD_R * 2);
+  c.setTransform(S, 0, 0, S, N / 2, N / 2);
+  const T = GAL_TILT;
+
+  // fond spatial profond
+  c.fillStyle = "#03050c";
   c.fillRect(-WORLD_R * 1.5, -WORLD_R * 1.5, WORLD_R * 3, WORLD_R * 3);
   const rnd = galRng(42);
-  // nébuleuses colorées le long des bras
-  const nebColors = ["rgba(135,92,216,", "rgba(38,132,175,", "rgba(216,92,141,", "rgba(92,138,216,"];
-  for (let arm = 0; arm < 2; arm++) {
-    for (let i = 0; i < 26; i++) {
-      const k = 8 + rnd() * 250;
-      const th = k * 0.309 + 0.6 + arm * Math.PI + (rnd() - 0.5) * 0.35;
-      const r = 22 + k * 1.06;
-      const x = r * Math.cos(th), y = r * Math.sin(th);
-      const rad = 24 + rnd() * 46;
-      const g = c.createRadialGradient(x, y, 0, x, y, rad);
-      const col = nebColors[Math.floor(rnd() * nebColors.length)];
-      g.addColorStop(0, col + (arm ? 0.05 : 0.09) + ")");
-      g.addColorStop(1, col + "0)");
-      c.fillStyle = g;
-      c.fillRect(x - rad, y - rad, rad * 2, rad * 2);
-    }
+
+  // corps diffus du disque (halo elliptique incliné, dégradé chaud/froid)
+  c.save();
+  c.scale(1, T);
+  const body = c.createRadialGradient(0, 0, 12, 0, 0, WORLD_R);
+  body.addColorStop(0, "rgba(255,230,180,0.22)");
+  body.addColorStop(0.18, "rgba(90,220,210,0.16)");
+  body.addColorStop(0.5, "rgba(70,140,230,0.12)");
+  body.addColorStop(0.8, "rgba(150,110,210,0.06)");
+  body.addColorStop(1, "rgba(120,90,180,0)");
+  c.fillStyle = body;
+  c.beginPath(); c.arc(0, 0, WORLD_R, 0, Math.PI * 2); c.fill();
+  c.restore();
+
+  // nébuleuses colorées le long des 4 bras
+  for (let i = 0; i < 120; i++) {
+    const arm = i % 4;
+    const t = Math.pow(rnd(), 0.7);
+    const r = 26 + t * (WORLD_R - 26);
+    const th = arm * Math.PI / 2 + t * 4.3 + (rnd() - 0.5) * 0.5;
+    const x = r * Math.cos(th), y = r * Math.sin(th) * T;
+    const rad = 18 + rnd() * 52;
+    const col = galStarColor(t, rnd);
+    const g = c.createRadialGradient(x, y, 0, x, y, rad);
+    g.addColorStop(0, `rgba(${col[0]|0},${col[1]|0},${col[2]|0},${(0.05 + rnd() * 0.06).toFixed(3)})`);
+    g.addColorStop(1, `rgba(${col[0]|0},${col[1]|0},${col[2]|0},0)`);
+    c.fillStyle = g;
+    c.fillRect(x - rad, y - rad, rad * 2, rad * 2);
   }
-  // cœur lumineux de l'univers
-  const core = c.createRadialGradient(0, 0, 0, 0, 0, 46);
-  core.addColorStop(0, "rgba(255,246,224,0.95)");
-  core.addColorStop(0.25, "rgba(255,214,150,0.5)");
-  core.addColorStop(0.6, "rgba(190,150,255,0.16)");
-  core.addColorStop(1, "rgba(190,150,255,0)");
-  c.fillStyle = core;
-  c.fillRect(-50, -50, 100, 100);
-  // poussière d'étoiles le long des deux bras + halo diffus
-  const starCols = ["255,255,255", "157,180,255", "201,167,255", "124,232,255", "255,217,160"];
-  for (let i = 0; i < 3200; i++) {
-    const arm = rnd() < 0.62 ? 0 : 1;
-    const k = rnd() * 285 - 12;
-    const spread = 5 + Math.max(0, k) * 0.055 + rnd() * 7;
-    const th = k * 0.309 + 0.6 + arm * Math.PI + (rnd() - 0.5) * 0.22;
-    const r = Math.max(3, 22 + k * 1.06 + (rnd() + rnd() - 1) * spread);
-    const x = r * Math.cos(th), y = r * Math.sin(th);
-    const a = arm ? 0.10 + rnd() * 0.30 : 0.14 + rnd() * 0.42;
-    c.fillStyle = `rgba(${starCols[Math.floor(rnd() * starCols.length)]},${a.toFixed(2)})`;
-    const sz = rnd() < 0.9 ? 0.5 + rnd() * 0.8 : 1.2 + rnd() * 1.1;
+
+  // étoiles denses le long des 4 bras spiraux
+  for (let i = 0; i < 16000; i++) {
+    const arm = i & 3;
+    const t = Math.pow(rnd(), 0.72);
+    const r0 = 24 + t * (WORLD_R - 24);
+    const angScatter = (rnd() - 0.5) * (0.62 - t * 0.34);
+    const th = arm * Math.PI / 2 + t * 4.3 + angScatter;
+    const rr = r0 + (rnd() + rnd() - 1) * (4 + t * 10);
+    const x = rr * Math.cos(th), y = rr * Math.sin(th) * T;
+    const col = galStarColor(t, rnd);
+    const a = (0.10 + rnd() * 0.55) * (1 - t * 0.35);
+    c.fillStyle = `rgba(${col[0]|0},${col[1]|0},${col[2]|0},${a.toFixed(2)})`;
+    const sz = rnd() < 0.92 ? 0.35 + rnd() * 0.75 : 1.1 + rnd() * 1.0;
     c.beginPath(); c.arc(x, y, sz, 0, Math.PI * 2); c.fill();
   }
-  // étoiles éparses hors des bras
-  for (let i = 0; i < 700; i++) {
-    const x = (rnd() * 2 - 1) * WORLD_R * 1.15, y = (rnd() * 2 - 1) * WORLD_R * 1.15;
-    c.fillStyle = `rgba(255,255,255,${(0.05 + rnd() * 0.2).toFixed(2)})`;
-    c.beginPath(); c.arc(x, y, 0.4 + rnd() * 0.7, 0, Math.PI * 2); c.fill();
+
+  // étoiles de fond éparses
+  for (let i = 0; i < 900; i++) {
+    const x = (rnd() * 2 - 1) * WORLD_R * 1.3, y = (rnd() * 2 - 1) * WORLD_R * 1.3;
+    c.fillStyle = `rgba(255,255,255,${(0.04 + rnd() * 0.16).toFixed(2)})`;
+    c.beginPath(); c.arc(x, y, 0.35 + rnd() * 0.6, 0, Math.PI * 2); c.fill();
   }
+
+  // renflement central lumineux (bulbe chaud)
+  const bulge = c.createRadialGradient(0, 0, 0, 0, 0, 78);
+  bulge.addColorStop(0, "rgba(255,250,232,0.95)");
+  bulge.addColorStop(0.16, "rgba(255,226,168,0.7)");
+  bulge.addColorStop(0.42, "rgba(255,180,120,0.24)");
+  bulge.addColorStop(0.72, "rgba(150,130,220,0.10)");
+  bulge.addColorStop(1, "rgba(120,110,200,0)");
+  c.save(); c.scale(1, T * 1.25); c.fillStyle = bulge;
+  c.beginPath(); c.arc(0, 0, 78, 0, Math.PI * 2); c.fill(); c.restore();
+
+  // cœur brillant + halo horizontal (lens flare caractéristique)
+  const core = c.createRadialGradient(0, 0, 0, 0, 0, 26);
+  core.addColorStop(0, "rgba(255,255,250,1)");
+  core.addColorStop(0.4, "rgba(255,240,205,0.85)");
+  core.addColorStop(1, "rgba(255,220,160,0)");
+  c.fillStyle = core;
+  c.beginPath(); c.arc(0, 0, 26, 0, Math.PI * 2); c.fill();
+  const flare = c.createLinearGradient(-WORLD_R * 0.85, 0, WORLD_R * 0.85, 0);
+  flare.addColorStop(0, "rgba(255,240,210,0)");
+  flare.addColorStop(0.5, "rgba(255,246,225,0.55)");
+  flare.addColorStop(1, "rgba(255,240,210,0)");
+  c.fillStyle = flare;
+  c.fillRect(-WORLD_R * 0.85, -2.2, WORLD_R * 1.7, 4.4);
+
   GAL.dust = off;
 }
 

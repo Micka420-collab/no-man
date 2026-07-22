@@ -1,0 +1,95 @@
+{
+  "note": "Guide de référence des types de vaisseaux : bonus, obtention et ordres de grandeur de prix (fourchettes indicatives, les prix exacts dépendent de la classe et des emplacements).",
+  "items": [
+    {
+      "id": "fighter", "icon": "🛩️",
+      "name_fr": "Chasseur", "name_en": "Fighter",
+      "bonus_fr": "Bonus de dégâts — le roi du combat spatial", "bonus_en": "Damage bonus — king of space combat",
+      "price_fr": "≈ 200 k – 60 M d'unités", "price_en": "≈ 200k – 60M units",
+      "find_fr": "Fréquents dans les systèmes Vy'keen ; les modèles S apparaissent surtout dans les économies riches",
+      "find_en": "Common in Vy'keen systems; S-class models mostly appear in wealthy economies",
+      "rarity": 2
+    },
+    {
+      "id": "hauler", "icon": "🚚",
+      "name_fr": "Transporteur", "name_en": "Hauler",
+      "bonus_fr": "Bonus de bouclier et soute géante — le plus cher du marché", "bonus_en": "Shield bonus and huge cargo hold — the priciest on the market",
+      "price_fr": "≈ 1 M – 126 M d'unités", "price_en": "≈ 1M – 126M units",
+      "find_fr": "Fréquents dans les systèmes Gek ; un S 48 emplacements est le graal des marchands",
+      "find_en": "Common in Gek systems; a 48-slot S-class is the traders' holy grail",
+      "rarity": 3
+    },
+    {
+      "id": "explorer", "icon": "🔭",
+      "name_fr": "Explorateur", "name_en": "Explorer",
+      "bonus_fr": "Bonus d'hyperdrive — portée de saut maximale", "bonus_en": "Hyperdrive bonus — maximum warp range",
+      "price_fr": "≈ 300 k – 40 M d'unités", "price_en": "≈ 300k – 40M units",
+      "find_fr": "Fréquents dans les systèmes Korvax",
+      "find_en": "Common in Korvax systems",
+      "rarity": 2
+    },
+    {
+      "id": "shuttle", "icon": "🚐",
+      "name_fr": "Navette", "name_en": "Shuttle",
+      "bonus_fr": "Polyvalente et bon marché — idéale pour débuter", "bonus_en": "Versatile and cheap — ideal starter ship",
+      "price_fr": "≈ 100 k – 15 M d'unités", "price_en": "≈ 100k – 15M units",
+      "find_fr": "Partout — jamais en classe S au-delà de rares exceptions",
+      "find_en": "Everywhere — essentially never S-class",
+      "rarity": 1
+    },
+    {
+      "id": "exotic", "icon": "👑",
+      "name_fr": "Exotique", "name_en": "Exotic",
+      "bonus_fr": "Toujours classe S, bonus dans toutes les catégories — le collector absolu", "bonus_en": "Always S-class with bonuses across the board — the ultimate collectible",
+      "price_fr": "≈ 5 M – 15 M d'unités", "price_en": "≈ 5M – 15M units",
+      "find_fr": "Un seul modèle par système (royal, calmar…) ; ~2 % d'apparition dans les stations",
+      "find_en": "One model per system (royal, squid…); ~2% spawn chance at stations",
+      "rarity": 5
+    },
+    {
+      "id": "solar", "icon": "☀️",
+      "name_fr": "Solaire", "name_en": "Solar",
+      "bonus_fr": "Voiles solaires, excellent en manœuvre et économe en carburant", "bonus_en": "Solar sails, great manoeuvrability and fuel efficiency",
+      "price_fr": "≈ 700 k – 30 M d'unités", "price_en": "≈ 700k – 30M units",
+      "find_fr": "Introduits par Outlaws — fréquents dans les systèmes hors-la-loi",
+      "find_en": "Introduced in Outlaws — common in outlaw systems",
+      "rarity": 3
+    },
+    {
+      "id": "interceptor", "icon": "🤖",
+      "name_fr": "Intercepteur sentinelle", "name_en": "Sentinel Interceptor",
+      "bonus_fr": "Technologie sentinelle, vol inversé et esthétique unique", "bonus_en": "Sentinel tech, hover flight and a unique look",
+      "price_fr": "Gratuit — à réparer après capture", "price_en": "Free — repair after capture",
+      "find_fr": "Épaves sur les mondes corrompus (mise à jour Interceptor) ; chaque système a son modèle",
+      "find_en": "Crash sites on corrupted worlds (Interceptor update); each system has its own model",
+      "rarity": 4
+    },
+    {
+      "id": "living", "icon": "🐚",
+      "name_fr": "Vaisseau vivant", "name_en": "Living Ship",
+      "bonus_fr": "Organisme spatial vivant avec technologies uniques qui se soignent", "bonus_en": "A living space organism with unique self-growing tech",
+      "price_fr": "Gratuit via la quête Naissance Stellaire (Œuf du Vide, 3 200 vif-argent)", "price_en": "Free via the Starbirth quest (Void Egg, 3,200 quicksilver)",
+      "find_fr": "Quête Naissance Stellaire, puis éclosions supplémentaires possibles",
+      "find_en": "Starbirth quest, then additional hatchings possible",
+      "rarity": 5
+    },
+    {
+      "id": "corvette", "icon": "🛥️",
+      "name_fr": "Corvette", "name_en": "Corvette",
+      "bonus_fr": "Construite pièce par pièce à ton goût — intérieur habitable", "bonus_en": "Built piece by piece to your taste — walkable interior",
+      "price_fr": "Coût en ressources et modules récupérés", "price_en": "Costs resources and salvaged modules",
+      "find_fr": "Système de construction introduit par Voyagers (6.0)",
+      "find_en": "Construction system introduced in Voyagers (6.0)",
+      "rarity": 4
+    },
+    {
+      "id": "freighter", "icon": "🚢",
+      "name_fr": "Cargo capital", "name_en": "Capital Freighter",
+      "bonus_fr": "Ta base mobile interstellaire avec flotte de frégates", "bonus_en": "Your mobile interstellar base with a frigate fleet",
+      "price_fr": "Premier gratuit (événement de sauvetage) ; S ≈ jusqu'à 465 M d'unités", "price_en": "First one free (rescue event); S-class ≈ up to 465M units",
+      "find_fr": "Événement de sauvetage après quelques sauts ; les Sentinelles/Résurgents S sont les plus convoités",
+      "find_en": "Rescue event after a few warps; S-class Sentinel/Resurgent models are the most coveted",
+      "rarity": 4
+    }
+  ]
+}

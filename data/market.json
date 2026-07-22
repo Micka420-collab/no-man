@@ -1,0 +1,3809 @@
+{
+ "updated_at": "2026-07-21T22:34:47.892924+00:00",
+ "categories": {
+  "raw": [
+   {
+    "id": "raw70",
+    "name_en": "Somnal Dust",
+    "name_fr": "Poussière somnale",
+    "value": 1616.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Decayed Spacetime Remnant",
+    "group_fr": "Reste d'espace-temps décomposé"
+   },
+   {
+    "id": "raw71",
+    "name_en": "Ancestral Memories",
+    "name_fr": "Souvenirs ancestraux",
+    "value": 1616.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Recessive Creature Genes",
+    "group_fr": "Gènes récessifs de créature"
+   },
+   {
+    "id": "raw69",
+    "name_en": "Cursed Dust",
+    "name_fr": "Poussière corrompue",
+    "value": 959.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Ashes of Despair",
+    "group_fr": "Les cendres du désespoir"
+   },
+   {
+    "id": "raw4",
+    "name_en": "Hexite",
+    "name_fr": "Hexite",
+    "value": 654.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/rawMaterials/4.png",
+    "group_en": "Unrefined Organic Element",
+    "group_fr": "Élément organique non raffiné"
+   },
+   {
+    "id": "raw34",
+    "name_en": "Platinum",
+    "name_fr": "Platine",
+    "value": 505.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/rawMaterials/34.png",
+    "group_en": "Valuable Asteroid Mineral",
+    "group_fr": "Minéral d’astéroïde précieux"
+   },
+   {
+    "id": "raw62",
+    "name_en": "Tainted Metal",
+    "name_fr": "Métal corrompu",
+    "value": 380.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Salvaged Scrap",
+    "group_fr": "Pièces détachées récupérées"
+   },
+   {
+    "id": "raw73",
+    "name_en": "Void Mote",
+    "name_fr": "Particule de néant",
+    "value": 380.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Essence of Atlantid",
+    "group_fr": "Essence de l'Atlantide"
+   },
+   {
+    "id": "raw33",
+    "name_en": "Gold",
+    "name_fr": "Or",
+    "value": 353.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/rawMaterials/33.png",
+    "group_en": "Valuable Asteroid Mineral",
+    "group_fr": "Minéral d’astéroïde précieux"
+   },
+   {
+    "id": "raw17",
+    "name_en": "Chlorine",
+    "name_fr": "Chlore",
+    "value": 205.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/rawMaterials/17.png",
+    "group_en": "Processed Aquatic Mineral",
+    "group_fr": "Minéral aquatique traité"
+   },
+   {
+    "id": "raw18",
+    "name_en": "Cyto-Phosphate",
+    "name_fr": "Cytophosphate",
+    "value": 201.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/rawMaterials/18.png",
+    "group_en": "Organic Compound",
+    "group_fr": "Composé organique"
+   },
+   {
+    "id": "raw32",
+    "name_en": "Silver",
+    "name_fr": "Argent",
+    "value": 186.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/rawMaterials/32.png",
+    "group_en": "Valuable Asteroid Mineral",
+    "group_fr": "Minéral d’astéroïde précieux"
+   },
+   {
+    "id": "raw41",
+    "name_en": "Activated Indium",
+    "name_fr": "Indium activé",
+    "value": 165.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/rawMaterials/41.png",
+    "group_en": "Refined Stellar Metal: Blue",
+    "group_fr": "Métal stellaire raffiné : bleu"
+   }
+  ],
+  "products": [
+   {
+    "id": "prod79",
+    "name_en": "Fusion Ignitor",
+    "name_fr": "Allumeur à fusion",
+    "value": 15600000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/products/79.png",
+    "group_en": "Highly Refined Technology",
+    "group_fr": "Technologie très sophistiquée"
+   },
+   {
+    "id": "prod80",
+    "name_en": "Stasis Device",
+    "name_fr": "Dispositif de stase",
+    "value": 15600000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/products/80.png",
+    "group_en": "Highly Refined Technology",
+    "group_fr": "Technologie très sophistiquée"
+   },
+   {
+    "id": "prod70",
+    "name_en": "Quantum Processor",
+    "name_fr": "Processeur quantique",
+    "value": 4400000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/products/70.png",
+    "group_en": "Advanced Crafted Product",
+    "group_fr": "Produit fabriqué avancé"
+   },
+   {
+    "id": "prod69",
+    "name_en": "Portable Reactor",
+    "name_fr": "Réacteur portable",
+    "value": 4200000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/products/69.png",
+    "group_en": "Advanced Crafted Product",
+    "group_fr": "Produit fabriqué avancé"
+   },
+   {
+    "id": "prod68",
+    "name_en": "Cryogenic Chamber",
+    "name_fr": "Chambre cryogénique",
+    "value": 3800000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/products/68.png",
+    "group_en": "Advanced Crafted Product",
+    "group_fr": "Produit fabriqué avancé"
+   },
+   {
+    "id": "prod63",
+    "name_en": "Cryo-Pump",
+    "name_fr": "Cryo-pompe",
+    "value": 1500000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/products/63.png",
+    "group_en": "Manufactured Gas Product",
+    "group_fr": "Produit gazeux fabriqué"
+   },
+   {
+    "id": "prod66",
+    "name_en": "Superconductor",
+    "name_fr": "Supraconducteur",
+    "value": 1500000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/products/66.png",
+    "group_en": "Manufactured Gas Product",
+    "group_fr": "Produit gazeux fabriqué"
+   },
+   {
+    "id": "prod67",
+    "name_en": "Fusion Accelerant",
+    "name_fr": "Accélérateur de fusion",
+    "value": 1500000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/products/67.png",
+    "group_en": "Manufactured Gas Product",
+    "group_fr": "Produit gazeux fabriqué"
+   },
+   {
+    "id": "prod53",
+    "name_en": "Circuit Board",
+    "name_fr": "Circuit imprimé",
+    "value": 916250.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/products/53.png",
+    "group_en": "Advanced Agricultural Product",
+    "group_fr": "Produit agricole avancé"
+   },
+   {
+    "id": "prod56",
+    "name_en": "Liquid Explosive",
+    "name_fr": "Explosif liquide",
+    "value": 800500.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/products/56.png",
+    "group_en": "Advanced Agricultural Product",
+    "group_fr": "Produit agricole avancé"
+   },
+   {
+    "id": "prod58",
+    "name_en": "Living Glass",
+    "name_fr": "Verre vivant",
+    "value": 566000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/products/58.png",
+    "group_en": "Advanced Agricultural Product",
+    "group_fr": "Produit agricole avancé"
+   },
+   {
+    "id": "prod62",
+    "name_en": "Hot Ice",
+    "name_fr": "Glace chaude",
+    "value": 320000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/products/62.png",
+    "group_en": "Manufactured Gas Product",
+    "group_fr": "Produit gazeux fabriqué"
+   }
+  ],
+  "trade": [
+   {
+    "id": "trade43",
+    "name_en": "First Spawn Relics",
+    "name_fr": "Reliques des Premiers-Nés",
+    "value": 98000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Smuggled Goods",
+    "group_fr": "Marchandises de contrebande"
+   },
+   {
+    "id": "trade42",
+    "name_en": "Banned Weapons",
+    "name_fr": "Armes interdites",
+    "value": 83000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Smuggled Goods",
+    "group_fr": "Marchandises de contrebande"
+   },
+   {
+    "id": "trade41",
+    "name_en": "Counterfeit Circuits",
+    "name_fr": "Circuits de contrefaçon",
+    "value": 68000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Smuggled Goods",
+    "group_fr": "Marchandises de contrebande"
+   },
+   {
+    "id": "trade40",
+    "name_en": "GrahGrah",
+    "name_fr": "Grahgrah",
+    "value": 58000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Smuggled Goods",
+    "group_fr": "Marchandises de contrebande"
+   },
+   {
+    "id": "trade5",
+    "name_en": "Superconducting Fibre",
+    "name_fr": "Fibre supraconductrice",
+    "value": 50000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/tradeItems/5.png",
+    "group_en": "Trade Goods (Construction)",
+    "group_fr": "Marchandises (Construction)"
+   },
+   {
+    "id": "trade10",
+    "name_en": "Fusion Core",
+    "name_fr": "Noyau de fusion",
+    "value": 50000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/tradeItems/10.png",
+    "group_en": "Trade Goods (Energy Source)",
+    "group_fr": "Marchandises (Source d'énergie)"
+   },
+   {
+    "id": "trade15",
+    "name_en": "Neural Duct",
+    "name_fr": "Canal neuronal",
+    "value": 50000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/tradeItems/15.png",
+    "group_en": "Trade Goods (Scientific)",
+    "group_fr": "Marchandises (Scientifiques)"
+   },
+   {
+    "id": "trade20",
+    "name_en": "Re-latticed Arc Crystal",
+    "name_fr": "Arc-cristal restructuré",
+    "value": 50000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/tradeItems/20.png",
+    "group_en": "Trade Goods (Minerals)",
+    "group_fr": "Marchandises (Minéraux)"
+   },
+   {
+    "id": "trade25",
+    "name_en": "Quantum Accelerator",
+    "name_fr": "Accélérateur quantique",
+    "value": 50000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/tradeItems/25.png",
+    "group_en": "Trade Goods (Technology)",
+    "group_fr": "Marchandises (Technologie)"
+   },
+   {
+    "id": "trade30",
+    "name_en": "Teleport Coordinators",
+    "name_fr": "Coordinateurs de téléportation",
+    "value": 50000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/tradeItems/30.png",
+    "group_en": "Trade Goods",
+    "group_fr": "Marchandises"
+   },
+   {
+    "id": "trade35",
+    "name_en": "Vector Compressors",
+    "name_fr": "Compresseurs de vecteur",
+    "value": 50000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/tradeItems/35.png",
+    "group_en": "Trade Goods (Industrial)",
+    "group_fr": "Marchandises (Industrielles)"
+   },
+   {
+    "id": "trade39",
+    "name_en": "Prismatic Feathers",
+    "name_fr": "Plumes prismatiques",
+    "value": 32000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Smuggled Goods",
+    "group_fr": "Marchandises de contrebande"
+   }
+  ],
+  "curiosities": [
+   {
+    "id": "cur292",
+    "name_en": "Sea Glass",
+    "name_fr": "Verre marin",
+    "value": 266000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Precious Material",
+    "group_fr": "Matériau précieux"
+   },
+   {
+    "id": "cur65",
+    "name_en": "Station Override",
+    "name_fr": "Neutralisation de la station",
+    "value": 256000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "AI Master Key",
+    "group_fr": "Clé maîtresse d'IA"
+   },
+   {
+    "id": "cur75",
+    "name_en": "Forged Passport",
+    "name_fr": "Passeport falsifié",
+    "value": 256000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Overwritten Digital Record",
+    "group_fr": "Dossier numérique écrasé"
+   },
+   {
+    "id": "cur21",
+    "name_en": "Storm Crystal",
+    "name_fr": "Cristal tempête",
+    "value": 211150.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/curiosities/21.png",
+    "group_en": "Unique valuable curiosity",
+    "group_fr": "Curiosité unique et précieuse"
+   },
+   {
+    "id": "cur133",
+    "name_en": "The Lunker",
+    "name_fr": "Le Malabar",
+    "value": 200000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Legendary Fish",
+    "group_fr": "Poisson légendaire"
+   },
+   {
+    "id": "cur154",
+    "name_en": "Translucent Gulper",
+    "name_fr": "Grandgousier translucide",
+    "value": 200000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Legendary Fish",
+    "group_fr": "Poisson légendaire"
+   },
+   {
+    "id": "cur175",
+    "name_en": "Helix Sawfish",
+    "name_fr": "Poisson-scie à hélice",
+    "value": 200000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Legendary Fish",
+    "group_fr": "Poisson légendaire"
+   },
+   {
+    "id": "cur196",
+    "name_en": "Ancient Irontail",
+    "name_fr": "Nage-fer ancestral",
+    "value": 200000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Legendary Fish",
+    "group_fr": "Poisson légendaire"
+   },
+   {
+    "id": "cur217",
+    "name_en": "Nautilia",
+    "name_fr": "Nautilia",
+    "value": 200000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Legendary Fish",
+    "group_fr": "Poisson légendaire"
+   },
+   {
+    "id": "cur238",
+    "name_en": "Blind Titancore",
+    "name_fr": "Titancœur aveugle",
+    "value": 200000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Legendary Fish",
+    "group_fr": "Poisson légendaire"
+   },
+   {
+    "id": "cur259",
+    "name_en": "Megalodon",
+    "name_fr": "Mégalodon",
+    "value": 200000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Legendary Fish",
+    "group_fr": "Poisson légendaire"
+   },
+   {
+    "id": "cur280",
+    "name_en": "Many-Mouthed Lunker",
+    "name_fr": "Malabar aux mille bouches",
+    "value": 200000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Legendary Fish",
+    "group_fr": "Poisson légendaire"
+   }
+  ],
+  "cooking": [
+   {
+    "id": "cook192",
+    "name_en": "Horrifying, Gooey Delight",
+    "name_fr": "Délice horriblement visqueux",
+    "value": 200000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/cooking/192.png",
+    "group_en": "Edible Product",
+    "group_fr": "Produit comestible"
+   },
+   {
+    "id": "cook248",
+    "name_en": "Cake of the Lost",
+    "name_fr": "Gâteau des perdus",
+    "value": 199200.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/cooking/248.png",
+    "group_en": "Edible Product",
+    "group_fr": "Produit comestible"
+   },
+   {
+    "id": "cook349",
+    "name_en": "Ambrosial Curse",
+    "name_fr": "Malédiction ambrosiale",
+    "value": 199200.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Edible Product",
+    "group_fr": "Produit comestible"
+   },
+   {
+    "id": "cook234",
+    "name_en": "Appalling Jam Sponge",
+    "name_fr": "Génoise à la confiture abominable",
+    "value": 180700.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/cooking/234.png",
+    "group_en": "Edible Product",
+    "group_fr": "Produit comestible"
+   },
+   {
+    "id": "cook345",
+    "name_en": "Primordial Sponge",
+    "name_fr": "Éponge primordiale",
+    "value": 180700.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Edible Product",
+    "group_fr": "Produit comestible"
+   },
+   {
+    "id": "cook140",
+    "name_en": "Monstrous Doughnut",
+    "name_fr": "Donut monstrueux",
+    "value": 180000.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/cooking/140.png",
+    "group_en": "Edible Product",
+    "group_fr": "Produit comestible"
+   },
+   {
+    "id": "cook236",
+    "name_en": "Cake of Glass",
+    "name_fr": "Gâteau de verre",
+    "value": 179600.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/cooking/236.png",
+    "group_en": "Edible Product",
+    "group_fr": "Produit comestible"
+   },
+   {
+    "id": "cook232",
+    "name_en": "'Apple' Cake of Lost Souls",
+    "name_fr": "Gâteau des âmes perdues aux « pommes »",
+    "value": 176900.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/cooking/232.png",
+    "group_en": "Edible Product",
+    "group_fr": "Produit comestible"
+   },
+   {
+    "id": "cook235",
+    "name_en": "Cake of Burning Dread",
+    "name_fr": "Gâteau de terreur ardente",
+    "value": 176900.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/cooking/235.png",
+    "group_en": "Edible Product",
+    "group_fr": "Produit comestible"
+   },
+   {
+    "id": "cook385",
+    "name_en": "Bone Broth",
+    "name_fr": "Bouillon d'os",
+    "value": 172000.0,
+    "currency": "Credits",
+    "icon": "",
+    "group_en": "Edible Product",
+    "group_fr": "Produit comestible"
+   },
+   {
+    "id": "cook233",
+    "name_en": "Choking Monstrosity Cake",
+    "name_fr": "Gâteau monstrueux étouffant",
+    "value": 170300.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/cooking/233.png",
+    "group_en": "Edible Product",
+    "group_fr": "Produit comestible"
+   },
+   {
+    "id": "cook249",
+    "name_en": "Gooey Screamer",
+    "name_fr": "Hurleur visqueux",
+    "value": 167200.0,
+    "currency": "Credits",
+    "icon": "https://cdn.nmsassistant.com/cooking/249.png",
+    "group_en": "Edible Product",
+    "group_fr": "Produit comestible"
+   }
+  ]
+ },
+ "fish": [
+  {
+   "name_en": "The Lunker",
+   "name_fr": "Le Malabar",
+   "quality": "Legendary",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 200000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Translucent Gulper",
+   "name_fr": "Grandgousier translucide",
+   "quality": "Legendary",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 200000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Helix Sawfish",
+   "name_fr": "Poisson-scie à hélice",
+   "quality": "Legendary",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 200000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Ancient Irontail",
+   "name_fr": "Nage-fer ancestral",
+   "quality": "Legendary",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 200000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Nautilia",
+   "name_fr": "Nautilia",
+   "quality": "Legendary",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 200000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Blind Titancore",
+   "name_fr": "Titancœur aveugle",
+   "quality": "Legendary",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 200000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Megalodon",
+   "name_fr": "Mégalodon",
+   "quality": "Legendary",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 200000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Many-Mouthed Lunker",
+   "name_fr": "Malabar aux mille bouches",
+   "quality": "Legendary",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 200000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Leviathan Spawn",
+   "name_fr": "Progéniture de Léviathan",
+   "quality": "Legendary",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 200000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "The Maw of Titan",
+   "name_fr": "La Gueule de Titan",
+   "quality": "Legendary",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 200000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Dragonfish",
+   "name_fr": "Poisson-dragon",
+   "quality": "Legendary",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 150000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Bleached Bonefish",
+   "name_fr": "Albule décoloré",
+   "quality": "Legendary",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 150000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Gamma Squid",
+   "name_fr": "Calmar gamma",
+   "quality": "Legendary",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 150000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Jelly of the Veil",
+   "name_fr": "Méduse voilée",
+   "quality": "Legendary",
+   "size": "large",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 150000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Iceblood Gulper",
+   "name_fr": "Grandgousier hémoglace",
+   "quality": "Legendary",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 150000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Reef Guardian",
+   "name_fr": "Gardien du récif",
+   "quality": "Legendary",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 150000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Ossified Deinosuchus",
+   "name_fr": "Deinosuchus ossifié",
+   "quality": "Legendary",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 150000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Child of Helios",
+   "name_fr": "Enfant d'Hélios",
+   "quality": "Legendary",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 150000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "The Hunter Below",
+   "name_fr": "Le chasseur d'en dessous",
+   "quality": "Legendary",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 150000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Hyper-cockle",
+   "name_fr": "Hyper-coque",
+   "quality": "Legendary",
+   "size": "large",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 150000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Golden Jellyfish",
+   "name_fr": "Méduse dorée",
+   "quality": "Legendary",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 100000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Vampire Squid",
+   "name_fr": "Calmar vampire",
+   "quality": "Legendary",
+   "size": "medium-sized",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 100000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Aberrant Duskfin",
+   "name_fr": "Poisso-obscur aberrant",
+   "quality": "Legendary",
+   "size": "medium-sized",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 100000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Mirrorscale Skipper",
+   "name_fr": "Virevolteur glace-écaille",
+   "quality": "Legendary",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 100000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Ghostfin",
+   "name_fr": "Poisso-spectre",
+   "quality": "Legendary",
+   "size": "medium-sized",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 100000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Mist Serpent",
+   "name_fr": "Serpent de brume",
+   "quality": "Legendary",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 100000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Titanworm Larva",
+   "name_fr": "Larve de ver titan",
+   "quality": "Legendary",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 100000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Atlantidian Crab",
+   "name_fr": "Crabe atlantéen",
+   "quality": "Legendary",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 100000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Brain Eel",
+   "name_fr": "Anguille cérébrale",
+   "quality": "Legendary",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 100000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Mother-of-Quicksilver",
+   "name_fr": "Mère-de-vif-argent",
+   "quality": "Legendary",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 100000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Singing Sea-Snail",
+   "name_fr": "Escargot de mer chantant",
+   "quality": "Legendary",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Emeril Sunstar",
+   "name_fr": "Solétoile émeril",
+   "quality": "Legendary",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Many-Eyed Jellyfish",
+   "name_fr": "Méduse polyoculaire",
+   "quality": "Legendary",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Starshell Crab",
+   "name_fr": "Crabe stella-coque",
+   "quality": "Legendary",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Crystal Jelly",
+   "name_fr": "Méduse cristalline",
+   "quality": "Legendary",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Glass Angel",
+   "name_fr": "Ange de verre",
+   "quality": "Legendary",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Fragile Icthyoscale",
+   "name_fr": "Ichthyo-écaille fragile",
+   "quality": "Legendary",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Abyssal Horror Egg",
+   "name_fr": "Œuf de créature abyssale",
+   "quality": "Legendary",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Sentient Crab",
+   "name_fr": "Crabe conscient",
+   "quality": "Legendary",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Mandelbrot Worm",
+   "name_fr": "Ver de Mandelbrot",
+   "quality": "Legendary",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Child of Aquarius",
+   "name_fr": "Enfant du Verseau",
+   "quality": "Legendary",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 500.0,
+   "icon": ""
+  },
+  {
+   "name_en": "The Angler",
+   "name_fr": "The Angler",
+   "quality": "Legendary",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": true,
+   "biomes": [
+    "All"
+   ],
+   "value": 0,
+   "icon": ""
+  },
+  {
+   "name_en": "Thunderfin",
+   "name_fr": "Poisso-foudre",
+   "quality": "Epic",
+   "size": "colossal",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Viper Eel",
+   "name_fr": "Anguille vipère",
+   "quality": "Epic",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Alpha Squid",
+   "name_fr": "Calmar alpha",
+   "quality": "Epic",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Hellion Bass",
+   "name_fr": "Bar chahuteur",
+   "quality": "Epic",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Black-Eyed Shark",
+   "name_fr": "Requin aux yeux noirs",
+   "quality": "Epic",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Colossal Mossback",
+   "name_fr": "Languissant colossal",
+   "quality": "Epic",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Cave Prowler",
+   "name_fr": "Rôdeur des cavernes",
+   "quality": "Epic",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Void Squid",
+   "name_fr": "Calmar du néant",
+   "quality": "Epic",
+   "size": "colossal",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Colossal Jawfish",
+   "name_fr": "Mâchoire colossale",
+   "quality": "Epic",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Wrackjaw",
+   "name_fr": "Varechrocs",
+   "quality": "Epic",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 50000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Colossal Shrimp",
+   "name_fr": "Crevette colossale",
+   "quality": "Epic",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 30000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Shrieking Venttail",
+   "name_fr": "Nage-fumée hurlant",
+   "quality": "Epic",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 30000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Cyclopic Eel",
+   "name_fr": "Anguille cyclopique",
+   "quality": "Epic",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 30000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Magma Shark",
+   "name_fr": "Requin magma",
+   "quality": "Epic",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 30000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Frostbite Ray",
+   "name_fr": "Raie morsegivre",
+   "quality": "Epic",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 30000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Sunspine Basker",
+   "name_fr": "Doreur solépine",
+   "quality": "Epic",
+   "size": "large",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 30000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Ferrite Bowfin",
+   "name_fr": "Poisson-castor de ferrite",
+   "quality": "Epic",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 30000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Giant Witchfin",
+   "name_fr": "Poisso-sorcière géant",
+   "quality": "Epic",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 30000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Ocean's Star",
+   "name_fr": "Étoile de l'océan",
+   "quality": "Epic",
+   "size": "large",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 30000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Tendrilla",
+   "name_fr": "Vrillette",
+   "quality": "Epic",
+   "size": "large",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 30000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Moon Turtle",
+   "name_fr": "Tortue de lune",
+   "quality": "Epic",
+   "size": "medium-sized",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Scorpionfish",
+   "name_fr": "Poisson-scorpion",
+   "quality": "Epic",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Immortal Flatfish",
+   "name_fr": "Poisson plat immortel",
+   "quality": "Epic",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Candelabra Octopus",
+   "name_fr": "Pieuvre candélabre",
+   "quality": "Epic",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Iceshell Turtle",
+   "name_fr": "Tortue gelo-coque",
+   "quality": "Epic",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Deepwater Angler",
+   "name_fr": "Baudroie des abysses",
+   "quality": "Epic",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Bewitching Candlefish",
+   "name_fr": "Poisson-bougie envoûtant",
+   "quality": "Epic",
+   "size": "medium-sized",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Screaming Crab",
+   "name_fr": "Crabe hurlant",
+   "quality": "Epic",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Abyssal Crab",
+   "name_fr": "Crabe des abysses",
+   "quality": "Epic",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Quartzshell Crab",
+   "name_fr": "Crabe quartza-coque",
+   "quality": "Epic",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Shrieking Oyster",
+   "name_fr": "Huître hurlante",
+   "quality": "Epic",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Waspfish",
+   "name_fr": "Poisson-guêpe",
+   "quality": "Epic",
+   "size": "small",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Geno-Prawn",
+   "name_fr": "Géno-crevette",
+   "quality": "Epic",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Cadmium Pearlcase",
+   "name_fr": "Porteperles de cadmium",
+   "quality": "Epic",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Rimescale Snapper",
+   "name_fr": "Vivaneau gel-écaille",
+   "quality": "Epic",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Wispscale Darter",
+   "name_fr": "Dard volute-écaille",
+   "quality": "Epic",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Golden Urchin",
+   "name_fr": "Oursin doré",
+   "quality": "Epic",
+   "size": "small",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "All-Seeing Worm",
+   "name_fr": "Ver qui voit tout",
+   "quality": "Epic",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Ghost Skipper",
+   "name_fr": "Virevolteur fantôme",
+   "quality": "Epic",
+   "size": "small",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Evaporating Snail",
+   "name_fr": "Escargot évaporant",
+   "quality": "Epic",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Giant Ray",
+   "name_fr": "Raie géante",
+   "quality": "Desirable",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Bitterscale Ray",
+   "name_fr": "Raie amère-écaille",
+   "quality": "Desirable",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Boiling Shark",
+   "name_fr": "Requin bouillonnant",
+   "quality": "Desirable",
+   "size": "colossal",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Colossal Meltfin",
+   "name_fr": "Poisso-fond colossal",
+   "quality": "Desirable",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Giant Icefin",
+   "name_fr": "Poisso-glace géant",
+   "quality": "Desirable",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Giant Sunray",
+   "name_fr": "Raie solaire géante",
+   "quality": "Desirable",
+   "size": "colossal",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Saltscale Bloater",
+   "name_fr": "Hareng sel-écaille",
+   "quality": "Desirable",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Sunspot Eel",
+   "name_fr": "Anguille à tache solaire",
+   "quality": "Desirable",
+   "size": "colossal",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Colossal Squid",
+   "name_fr": "Crevette colossale",
+   "quality": "Desirable",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Crystalfin Shark",
+   "name_fr": "Requin cristalichtys",
+   "quality": "Desirable",
+   "size": "colossal",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 20000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Whispering Bonefish",
+   "name_fr": "Albule murmurant",
+   "quality": "Desirable",
+   "size": "large",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Venomtooth Wriggler",
+   "name_fr": "Gigoteur à dents de venin",
+   "quality": "Desirable",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Radiant Sunfish",
+   "name_fr": "Poisso-soleil radieux",
+   "quality": "Desirable",
+   "size": "large",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Fumarole Gulper",
+   "name_fr": "Grandgousier à fumerolles",
+   "quality": "Desirable",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Frozen Knifejaw",
+   "name_fr": "Perciforme gelé",
+   "quality": "Desirable",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Marrow Shark",
+   "name_fr": "Requin-courge",
+   "quality": "Desirable",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Mantis Ray",
+   "name_fr": "Raie manta",
+   "quality": "Desirable",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Non-Euclidean Flatfish",
+   "name_fr": "Poisson plat non euclidien",
+   "quality": "Desirable",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Shrieking Flatfish",
+   "name_fr": "Poisson plat hurlant",
+   "quality": "Desirable",
+   "size": "large",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Vapourfin",
+   "name_fr": "Vaporichtys",
+   "quality": "Desirable",
+   "size": "large",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 10000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Hypnotic Octopus",
+   "name_fr": "Pieuvre hypnotique",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Longjaw Snapper",
+   "name_fr": "Vivaneau à longue mâchoire",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Acidic Pufferfish",
+   "name_fr": "Poisson-globe acide",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Toxic Stonefish",
+   "name_fr": "Poisson-pierre toxique",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Twisted Gulper",
+   "name_fr": "Grandgousier tordu",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Depleted Razorjaw",
+   "name_fr": "Gueulépine vidé",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Flashfire Eel",
+   "name_fr": "Anguille clignefeu",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Solar Roach",
+   "name_fr": "Gardon solaire",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Brineskipper",
+   "name_fr": "Virevolteur d'eau de mer",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Pale Snowtail",
+   "name_fr": "Nage-neige blafard",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Blue Ribbontail",
+   "name_fr": "Nage-ruban bleu",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Jungle Redfin",
+   "name_fr": "Poisso-pourpre de la jungle",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Electric Eel",
+   "name_fr": "Anguille électrique",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Silicate Crab",
+   "name_fr": "Crabe de silicate",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Writhing Brainworm",
+   "name_fr": "Ver cérébral frémissant",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Stargazer",
+   "name_fr": "Astroscopus",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Bloated Eel",
+   "name_fr": "Anguille gonflée",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Luminescent Coral",
+   "name_fr": "Corail luminescent",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Metallic Shrimp",
+   "name_fr": "Crevette métallique",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Mineralised Jellyfish",
+   "name_fr": "Méduse minéralisée",
+   "quality": "Desirable",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Needlefish",
+   "name_fr": "Aiguillette",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Spiny Starfish",
+   "name_fr": "Étoile de mer épineuse",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Caustic Urchin",
+   "name_fr": "Oursin caustique",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Weltscale Clam",
+   "name_fr": "Palourde papule-écaille",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Ionised Clam",
+   "name_fr": "Palourde ionisée",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Nucleic Skipper",
+   "name_fr": "Virevolteur nucléique",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Lamptip Ray",
+   "name_fr": "Raie lampe-torche",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Pyrefin",
+   "name_fr": "Poisso-brasier",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Frostshell Clam",
+   "name_fr": "Palourde givro-coque",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Frozen Isopod",
+   "name_fr": "Isopode gelé",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Sweetwater Minnow",
+   "name_fr": "Fretin d'eau douce",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Mellifluous Jellyfish",
+   "name_fr": "Méduse mélodieuse",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Bladdersac",
+   "name_fr": "Poche vésicale",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Shalebound Starfish",
+   "name_fr": "Étoile de mer schisteuse",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Anemone Anomaly",
+   "name_fr": "Anémone anormale",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Erased Clam",
+   "name_fr": "Palourde effacée",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Spratfin",
+   "name_fr": "Spratichtys",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Marine Glowworm",
+   "name_fr": "Ver luisant marin",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Ionised Oyster",
+   "name_fr": "Huître ionisée",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Pulp Urchin",
+   "name_fr": "Oursin à pulpe",
+   "quality": "Desirable",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Stonescale Shark",
+   "name_fr": "Requin roche-écaille",
+   "quality": "Common",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Giant Whiskerfish",
+   "name_fr": "Poisson-moustache géant",
+   "quality": "Common",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Polyscale Bloater",
+   "name_fr": "Hareng poly-écaille",
+   "quality": "Common",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Basalt-Tooth Bloater",
+   "name_fr": "Hareng à dents de basalte",
+   "quality": "Common",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Giant Hairy Crab",
+   "name_fr": "Crabe velu géant",
+   "quality": "Common",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Warden Eel",
+   "name_fr": "Anguille gardienne",
+   "quality": "Common",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Greater Rocktooth",
+   "name_fr": "Dentoroche massif",
+   "quality": "Common",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Breach Crawler",
+   "name_fr": "Rampant de brèche",
+   "quality": "Common",
+   "size": "colossal",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Bleached Octopus",
+   "name_fr": "Pieuvre blanchie",
+   "quality": "Common",
+   "size": "colossal",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Cyclonic Eel",
+   "name_fr": "Anguille cyclonique",
+   "quality": "Common",
+   "size": "colossal",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 5000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Greenscale Bloater",
+   "name_fr": "Hareng vert-écaille",
+   "quality": "Common",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Green-Ring Octopus",
+   "name_fr": "Pieuvre aux anneaux verts",
+   "quality": "Common",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Glowing Catfish",
+   "name_fr": "Poisson-chat lumineux",
+   "quality": "Common",
+   "size": "large",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Sulphurfish",
+   "name_fr": "Poisson-soufre",
+   "quality": "Common",
+   "size": "large",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Glacier Carp",
+   "name_fr": "Carpe des glaciers",
+   "quality": "Common",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Flourishing Shalefish",
+   "name_fr": "Poisso-argile florissant",
+   "quality": "Common",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Twilight Cavefish",
+   "name_fr": "Troglodyte crépusculaire",
+   "quality": "Common",
+   "size": "large",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Shimmering Lashtail",
+   "name_fr": "Nage-fouet scintillant",
+   "quality": "Common",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Wandering Shellback",
+   "name_fr": "Coquillage errant",
+   "quality": "Common",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Plasmatic Squid",
+   "name_fr": "Calmar plasmatique",
+   "quality": "Common",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 3000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Reef Eel",
+   "name_fr": "Anguille de récif",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Rockfin",
+   "name_fr": "Poisso-roche",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Blistering Eel",
+   "name_fr": "Anguille boursouflée",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Toxic Jelly",
+   "name_fr": "Méduse toxique",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Forktailed Splicer",
+   "name_fr": "Épisseur à queue fourchue",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Inverted Snapper",
+   "name_fr": "Vivaneau inversé",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Boiled Snapper",
+   "name_fr": "Vivaneau bouilli",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Lavascale Trout",
+   "name_fr": "Truite lave-écaille",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Midnight Eel",
+   "name_fr": "Anguille de minuit",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Thawed Diamondfin",
+   "name_fr": "Poisso-diamant dégelé",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Wandering Kelpfin",
+   "name_fr": "Poisso-varech errant",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Clearwater Skipper",
+   "name_fr": "Virevolteur d'eau limpide",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Chalkscale Nibber",
+   "name_fr": "Grignoteur craie-écaille",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Sweeperfish",
+   "name_fr": "Poisson balayeur",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Murmurfish",
+   "name_fr": "Poisson-murmure",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Inverted Brainfish",
+   "name_fr": "Poisson-cerveau inversé",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Silent Angler",
+   "name_fr": "Pêcheur silencieux",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Whispering Jelly",
+   "name_fr": "Méduse chuchoteuse",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Jelly Prawn",
+   "name_fr": "Crevette-méduse",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Encrusted Worm",
+   "name_fr": "Ver incrusté",
+   "quality": "Common",
+   "size": "medium-sized",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 2000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Tiny Scuttlefish",
+   "name_fr": "Petite seiche",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Mud Crab",
+   "name_fr": "Crabe de boue",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Pondskipper",
+   "name_fr": "Virevolteur d'étang",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Bileworm",
+   "name_fr": "Ver biliaire",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Venomous Triggerfin",
+   "name_fr": "Poisso-gachette venimeux",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Sea Cucumber",
+   "name_fr": "Concombre de mer",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Toxic",
+    "Swamp"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Bulging Snapper",
+   "name_fr": "Vivaneau bombé",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Spotted Protofin",
+   "name_fr": "Poisso-proto à pois",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Field's Dartfish",
+   "name_fr": "Vivotin champêtre",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Radioactive"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Oilfin",
+   "name_fr": "Poisso-huile",
+   "quality": "Common",
+   "size": "small",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Common Sunfish",
+   "name_fr": "Poisso-soleil commun",
+   "quality": "Common",
+   "size": "small",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Ash Snail",
+   "name_fr": "Escargot cendré",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Scorched",
+    "Lava"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Ice Darter",
+   "name_fr": "Dard des glaces",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Frozen Whelk",
+   "name_fr": "Bulot gelé",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Frostscale Trout",
+   "name_fr": "Truite givre-écaille",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Frozen"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Shadowfin",
+   "name_fr": "Poisso-ombre",
+   "quality": "Common",
+   "size": "small",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Warty Frogfish",
+   "name_fr": "Poisson-grenouille verruqueux",
+   "quality": "Common",
+   "size": "small",
+   "time": "day",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Common Shimmertail",
+   "name_fr": "Nage-clair commun",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Lush"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Fool's Goldfish",
+   "name_fr": "Poisson rouge du fou",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Lesser Dustfin",
+   "name_fr": "Petit poisso-poussière",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Briny Worm",
+   "name_fr": "Ver saumâtre",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": true,
+   "mission": false,
+   "biomes": [
+    "Barren"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Vectorfin",
+   "name_fr": "Poisso-vecteur",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Hexscale Minnow",
+   "name_fr": "Fretin sort-écaille",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Aurora Jellyfish",
+   "name_fr": "Méduse aurore",
+   "quality": "Common",
+   "size": "small",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "Exotic"
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "De-pressurised Blob",
+   "name_fr": "Blob dépressurisé",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Deepwater Minnow",
+   "name_fr": "Fretin d'eau douce",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Sac-fish",
+   "name_fr": "Poisson-sac",
+   "quality": "Common",
+   "size": "small",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Gas-Worm",
+   "name_fr": "Ver de gaz",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Pressurised Clam",
+   "name_fr": "Palourde sous pression",
+   "quality": "Common",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Inert Whelk",
+   "name_fr": "Bulot inerte",
+   "quality": "Common",
+   "size": "small",
+   "time": "night",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    ""
+   ],
+   "value": 1000.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Kelp Strand",
+   "name_fr": "Brin de varech",
+   "quality": "Junk",
+   "size": "colossal",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 500.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Tangleweed",
+   "name_fr": "Herbenœud",
+   "quality": "Junk",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 500.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Sea Sponge",
+   "name_fr": "Éponge de mer",
+   "quality": "Junk",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 500.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Bleached Coral",
+   "name_fr": "Corail décoloré",
+   "quality": "Junk",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 500.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Expired Braincoral",
+   "name_fr": "Corail-cerveau expiré",
+   "quality": "Junk",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 500.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Ossified Coral",
+   "name_fr": "Corail ossifié",
+   "quality": "Junk",
+   "size": "large",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 500.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Old Boot",
+   "name_fr": "Vieille botte",
+   "quality": "Junk",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 500.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Message in a Bottle",
+   "name_fr": "Bouteille à la mer",
+   "quality": "Junk",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 500.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Rusted Technology",
+   "name_fr": "Technologie rouillée",
+   "quality": "Junk",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": false,
+   "biomes": [
+    "All"
+   ],
+   "value": 10.0,
+   "icon": ""
+  },
+  {
+   "name_en": "Message in a Bottle",
+   "name_fr": "Message in a Bottle",
+   "quality": "Junk",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": true,
+   "biomes": [
+    "All"
+   ],
+   "value": 0,
+   "icon": ""
+  },
+  {
+   "name_en": "Message in a Bottle",
+   "name_fr": "Message in a Bottle",
+   "quality": "Junk",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": true,
+   "biomes": [
+    "All"
+   ],
+   "value": 0,
+   "icon": ""
+  },
+  {
+   "name_en": "Message in a Bottle",
+   "name_fr": "Message in a Bottle",
+   "quality": "Junk",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": true,
+   "biomes": [
+    "All"
+   ],
+   "value": 0,
+   "icon": ""
+  },
+  {
+   "name_en": "Message in a Bottle",
+   "name_fr": "Message in a Bottle",
+   "quality": "Junk",
+   "size": "small",
+   "time": "both",
+   "storm": false,
+   "mission": true,
+   "biomes": [
+    "All"
+   ],
+   "value": 0,
+   "icon": ""
+  }
+ ]
+}

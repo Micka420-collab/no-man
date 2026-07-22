@@ -2,8 +2,8 @@ name: Mise à jour des actualités NMS
 
 on:
   schedule:
-    # Toutes les 6 heures
-    - cron: "17 */6 * * *"
+    # Toutes les 3 heures (événement communautaire suivi en direct)
+    - cron: "17 */3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -17,6 +17,9 @@ jobs:
 
       - name: Récupérer les actualités
         run: python3 scripts/fetch_news.py
+
+      - name: Récupérer les classements du marché
+        run: python3 scripts/fetch_market.py
 
       - name: Commit des données si changement
         run: |

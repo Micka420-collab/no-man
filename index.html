@@ -138,7 +138,7 @@
   }
   nav.tabs button:hover { color: var(--ink); }
   nav.tabs button.active {
-    background: linear-gradient(92deg, var(--c1), #ff7a3d);
+    background: linear-gradient(92deg, #c9341f, #cc4d12);
     color: #fff; font-weight: 600;
     box-shadow: 0 4px 18px rgba(255, 92, 73, 0.35);
   }
@@ -214,7 +214,7 @@
   .tile .big.red { color: #ff8a75; }
   [data-theme="light"] .tile .big.red { color: #c2372a; }
   .tile .label { font-size: 0.82rem; color: var(--ink-dim); margin-top: 5px; }
-  .tile .sub { font-size: 0.76rem; color: var(--ink-dim); margin-top: 3px; opacity: 0.85; }
+  .tile .sub { font-size: 0.76rem; color: var(--ink-dim); margin-top: 3px; }
 
   #spark-card { margin-top: 14px; padding: 18px 20px 12px; display: none; }
   #spark-card .label { font-size: 0.82rem; color: var(--ink-dim); margin-bottom: 8px; }
@@ -257,10 +257,11 @@
     margin-bottom: 13px; overflow: hidden;
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   }
+  .cat-hwrap { margin: 0; font: inherit; }
   .cat-head { display: flex; align-items: center; gap: 13px; padding: 15px 19px; cursor: pointer; user-select: none; border: none; width: 100%; background: transparent; color: var(--ink); text-align: left; font-family: var(--font-body); }
   .cat-head:hover { background: var(--card-strong); }
   .cat-head .icon { font-size: 1.35rem; }
-  .cat-head h3 { flex: 1; font: 600 1rem var(--font-head); }
+  .cat-head .cat-title { flex: 1; font: 600 1rem var(--font-head); }
   .cat-head .count { font-size: 0.83rem; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
   .cat-head .chev { transition: transform 0.25s; color: var(--ink-dim); }
   .cat.open .chev { transform: rotate(180deg); }
@@ -377,6 +378,166 @@
   .tl-item .d { font-size: 0.78rem; color: var(--ink-dim); margin-left: 8px; }
   .tl-item p { font-size: 0.87rem; color: var(--ink-dim); margin-top: 4px; max-width: 740px; }
 
+  /* ------- Bulletin de guerre ------- */
+  .war-box {
+    position: relative; overflow: hidden;
+    background: var(--card); border: 1px solid rgba(122, 162, 255, 0.4); border-radius: var(--radius);
+    padding: 22px 24px; margin-bottom: 18px;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  }
+  .war-box::before {
+    content: ""; position: absolute; inset: 0 0 auto; height: 3px;
+    background: linear-gradient(90deg, #7aa2ff, #ff5c49, #37e0b8);
+  }
+  .war-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 4px; }
+  .war-head h2 { font: 700 1.15rem var(--font-head); letter-spacing: 0.03em; }
+  .war-countdown {
+    margin-left: auto; font: 600 0.95rem var(--font-head); color: var(--c3);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  [data-theme="light"] .war-countdown { color: #9a6b00; }
+  .war-sub { color: var(--ink-dim); font-size: 0.86rem; margin-bottom: 14px; }
+  .war-core { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .war-core .bar { flex: 1; height: 9px; background: var(--track); border-radius: 999px; overflow: hidden; }
+  .war-core .bar > div { height: 100%; background: linear-gradient(90deg, #875cd8, #7aa2ff); border-radius: 999px; }
+  .war-core .val { font: 600 0.85rem var(--font-head); white-space: nowrap; }
+  .war-team { display: grid; grid-template-columns: 34px minmax(90px, auto) 1fr auto; gap: 10px; align-items: center; padding: 7px 0; }
+  .war-team .medal { font-size: 1.15rem; text-align: center; }
+  .war-team .tname { font: 600 0.9rem var(--font-head); display: flex; align-items: center; gap: 7px; }
+  .war-team .tname .sw { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+  .war-team .tbar { height: 13px; background: var(--track); border-radius: 999px; overflow: hidden; }
+  .war-team .tbar > div { height: 100%; border-radius: 999px; transition: width 0.6s; }
+  .war-team .tval { font: 600 0.85rem var(--font-head); font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+  .war-team .tval small { color: var(--ink-dim); font-weight: 400; }
+  .war-obj { grid-column: 2 / -1; font-size: 0.72rem; color: var(--ink-dim); margin-top: -3px; }
+  .war-pick { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin-top: 16px; }
+  .war-pick .lbl { font-size: 0.84rem; color: var(--ink-dim); }
+  .war-pick button {
+    background: transparent; border: 1px solid var(--stroke); border-radius: 999px;
+    width: 34px; height: 34px; font-size: 1rem; cursor: pointer; transition: all 0.2s;
+  }
+  .war-pick button:hover { border-color: var(--stroke-hi); transform: scale(1.08); }
+  .war-pick button.sel { border-width: 2px; box-shadow: 0 0 10px rgba(255, 200, 87, 0.4); border-color: var(--c3); }
+  .war-pick .verdict { font-size: 0.86rem; font-weight: 600; }
+  .war-foot { margin-top: 12px; font-size: 0.75rem; color: var(--ink-dim); display: flex; gap: 14px; flex-wrap: wrap; }
+  @media (max-width: 560px) {
+    .war-team { grid-template-columns: 26px 1fr auto; }
+    .war-team .tbar { display: none; }
+    .war-obj { grid-column: 2 / -1; }
+  }
+
+  /* ------- Défi du jour ------- */
+  .challenge {
+    display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
+    background: linear-gradient(115deg, rgba(255, 200, 87, 0.10), rgba(55, 224, 184, 0.06));
+    border: 1px solid rgba(255, 200, 87, 0.35); border-radius: var(--radius);
+    padding: 18px 22px; margin-bottom: 18px;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+  .challenge .ch-icon { font-size: 2.2rem; }
+  .challenge .ch-main { flex: 1; min-width: 220px; }
+  .challenge .ch-title { font: 600 0.78rem var(--font-head); letter-spacing: 0.22em; text-transform: uppercase; color: var(--c3); }
+  [data-theme="light"] .challenge .ch-title { color: #9a6b00; }
+  .challenge .ch-text { font: 600 1.05rem var(--font-head); margin: 3px 0 2px; }
+  .challenge .ch-meta { font-size: 0.78rem; color: var(--ink-dim); }
+  .challenge .ch-actions { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+  .challenge .ch-btn {
+    background: linear-gradient(92deg, var(--c2), #2bb598); color: #04251d;
+    border: none; border-radius: 999px; padding: 10px 19px; cursor: pointer;
+    font: 600 0.88rem var(--font-body); transition: transform 0.15s, opacity 0.2s;
+  }
+  .challenge .ch-btn:hover { transform: translateY(-1px); }
+  .challenge .ch-btn.done { background: var(--card-strong); color: var(--ink-dim); border: 1px solid var(--stroke); }
+  .challenge .ch-share {
+    background: transparent; border: 1px solid var(--stroke); color: var(--ink-dim);
+    border-radius: 999px; padding: 9px 16px; cursor: pointer; font: 500 0.85rem var(--font-body);
+  }
+  .challenge .ch-share:hover { color: var(--ink); border-color: var(--stroke-hi); }
+  .challenge .streak { font: 600 0.9rem var(--font-head); color: var(--c1); white-space: nowrap; }
+  .challenge .streak small { color: var(--ink-dim); font-weight: 400; }
+
+  /* ------- Nouveautés ------- */
+  .fresh-strip {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 12px;
+    background: rgba(255, 92, 73, 0.1); border: 1px solid rgba(255, 92, 73, 0.35);
+    border-radius: 999px; padding: 6px 16px; font-size: 0.83rem; font-weight: 500;
+  }
+  nav.tabs button .notif {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--c1);
+    box-shadow: 0 0 6px var(--c1); display: inline-block; margin-left: 2px; vertical-align: 8px;
+  }
+  nav.tabs button .notif[hidden] { display: none; }
+
+  /* ------- Carte des galaxies ------- */
+  .gal-layout { display: grid; grid-template-columns: minmax(300px, 1.4fr) minmax(260px, 1fr); gap: 18px; align-items: start; }
+  @media (max-width: 820px) { .gal-layout { grid-template-columns: 1fr; } }
+  .gal-map-card { padding: 10px; }
+  #gal-map { width: 100%; height: auto; display: block; }
+  #gal-map circle.g { cursor: pointer; transition: opacity 0.2s; }
+  #gal-map circle.g.dim { opacity: 0.12; }
+  #gal-map circle.sel-ring { fill: none; stroke: #fff; stroke-width: 2; pointer-events: none; }
+  [data-theme="light"] #gal-map circle.sel-ring { stroke: #17203c; }
+  #gal-map .cur-ring { fill: none; stroke: var(--c3); stroke-width: 2.5; pointer-events: none; animation: pulse 2s infinite; }
+  .gal-detail { position: sticky; top: 84px; }
+  .gal-detail .gnum { font: 700 0.8rem var(--font-head); color: var(--ink-dim); letter-spacing: 0.2em; }
+  .gal-detail h3 { font: 700 1.5rem var(--font-head); margin: 2px 0 6px; }
+  .gal-detail .gtype { margin-bottom: 12px; }
+  .gal-detail .gactions { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 14px; }
+  .gal-detail .gactions button, .gal-detail .gactions a {
+    background: transparent; border: 1px solid var(--stroke); color: var(--ink);
+    padding: 8px 15px; border-radius: 999px; cursor: pointer; font: 500 0.84rem var(--font-body);
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .gal-detail .gactions button:hover, .gal-detail .gactions a:hover { border-color: var(--stroke-hi); }
+  .gal-detail .gactions button.here { border-color: var(--c3); color: var(--c3); }
+  [data-theme="light"] .gal-detail .gactions button.here { color: #9a6b00; border-color: #c99f2e; }
+  .gal-pos {
+    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--stroke);
+    font-size: 0.85rem; color: var(--ink-dim);
+  }
+  .gal-pos b { color: var(--c3); font-family: var(--font-head); }
+  [data-theme="light"] .gal-pos b { color: #9a6b00; }
+  .gal-results { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+  .gal-results button {
+    background: var(--card); border: 1px solid var(--stroke); color: var(--ink);
+    border-radius: 999px; padding: 5px 13px; cursor: pointer; font: 500 0.8rem var(--font-body);
+  }
+  .gal-results button:hover { border-color: var(--stroke-hi); }
+  .gal-legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; font-size: 0.78rem; color: var(--ink-dim); padding: 0 6px 6px; }
+  .gal-legend .sw { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; vertical-align: -1px; }
+
+  /* ------- Marché ------- */
+  .mk-row {
+    display: grid; grid-template-columns: 34px 44px 1fr auto; gap: 12px; align-items: center;
+    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius-sm);
+    padding: 10px 15px; margin-bottom: 9px;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .mk-row:hover { border-color: var(--stroke-hi); }
+  .mk-row .rank { font: 700 1rem var(--font-head); color: var(--ink-dim); text-align: center; }
+  .mk-row .rank.top { color: var(--c3); }
+  [data-theme="light"] .mk-row .rank.top { color: #9a6b00; }
+  .mk-row img { width: 44px; height: 44px; border-radius: 9px; background: var(--track); object-fit: contain; }
+  .mk-row .mname { font: 600 0.95rem var(--font-head); }
+  .mk-row .mgroup { font-size: 0.76rem; color: var(--ink-dim); }
+  .mk-row .mval { font: 700 0.95rem var(--font-head); color: var(--c2); white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; }
+  [data-theme="light"] .mk-row .mval { color: #0a7c63; }
+  .mk-row .mval small { display: block; font: 400 0.7rem var(--font-body); color: var(--ink-dim); }
+  .mk-bar { grid-column: 2 / -1; height: 4px; background: var(--track); border-radius: 999px; overflow: hidden; }
+  .mk-bar > div { height: 100%; background: linear-gradient(90deg, var(--c2), var(--c3)); border-radius: 999px; }
+  .fish-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 3px; }
+  .ship-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .ship { padding: 18px 20px; }
+  .ship .sh-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .ship .sh-icon { font-size: 1.9rem; }
+  .ship h3 { font: 700 1.05rem var(--font-head); }
+  .ship .stars { margin-left: auto; color: var(--c3); font-size: 0.85rem; letter-spacing: 2px; }
+  [data-theme="light"] .ship .stars { color: #9a6b00; }
+  .ship .sh-line { font-size: 0.85rem; color: var(--ink-dim); margin-top: 6px; display: flex; gap: 8px; }
+  .ship .sh-line .k { flex-shrink: 0; }
+  .ship .sh-price { font: 600 0.92rem var(--font-head); color: var(--c2); margin-top: 10px; }
+  [data-theme="light"] .ship .sh-price { color: #0a7c63; }
+
   /* ------- Squelettes de chargement ------- */
   .skel { border-radius: var(--radius); background: var(--track); position: relative; overflow: hidden; min-height: 90px; }
   .skel::after {
@@ -392,7 +553,7 @@
   }
   footer a { color: var(--c2); text-decoration: none; }
   [data-theme="light"] footer a { color: #0a7c63; }
-  footer .srcs { margin-top: 6px; opacity: 0.8; }
+  footer .srcs { margin-top: 6px; }
 
   @media (max-width: 640px) {
     .wrap { padding: 12px 12px 70px; }
@@ -414,8 +575,8 @@
 
 <div class="wrap">
   <div class="topbar">
-    <button class="icon-btn" id="lang-btn" aria-label="Changer de langue">🌐 <span id="lang-label">EN</span></button>
-    <button class="icon-btn" id="theme-btn" aria-label="Changer de thème"><span id="theme-icon">☀️</span></button>
+    <button class="icon-btn" id="lang-btn" data-i18n-aria="aria_lang" aria-label="Changer de langue">🌐 <span id="lang-label">EN</span></button>
+    <button class="icon-btn" id="theme-btn" data-i18n-aria="aria_theme" aria-label="Changer de thème"><span id="theme-icon">☀️</span></button>
   </div>
 
   <header class="hero">
@@ -423,27 +584,32 @@
     <h1>No Man's <span class="grad">Sky</span></h1>
     <p class="tagline" data-i18n="tagline">Tout l'univers du jeu en un coup d'œil : actus officielles, stats en direct, communauté, vidéos — et ta propre progression de Voyageur.</p>
     <div class="live-chips" id="live-chips"></div>
+    <div id="fresh-strip-box"></div>
     <div class="updated" id="updated"></div>
   </header>
 
-  <nav class="tabs" role="tablist" aria-label="Sections">
-    <button role="tab" data-tab="apercu" class="active" aria-selected="true">🏠 <span data-i18n="tab_overview">Vue d'ensemble</span></button>
-    <button role="tab" data-tab="progression" aria-selected="false">🧭 <span data-i18n="tab_progress">Ma progression</span></button>
-    <button role="tab" data-tab="actus" aria-selected="false">📰 <span data-i18n="tab_news">Actualités</span></button>
-    <button role="tab" data-tab="communaute" aria-selected="false">👥 <span data-i18n="tab_community">Communauté</span></button>
-    <button role="tab" data-tab="succes" aria-selected="false">🏆 <span data-i18n="tab_ach">Succès</span></button>
-    <button role="tab" data-tab="videos" aria-selected="false">🎬 <span data-i18n="tab_videos">Vidéos</span></button>
-    <button role="tab" data-tab="maj" aria-selected="false">🕰️ <span data-i18n="tab_timeline">Mises à jour</span></button>
+  <nav class="tabs" role="tablist" data-i18n-aria="aria_sections" aria-label="Sections">
+    <button role="tab" id="tab-apercu" aria-controls="panel-apercu" data-tab="apercu" class="active" aria-selected="true">🏠 <span data-i18n="tab_overview">Vue d'ensemble</span></button>
+    <button role="tab" id="tab-progression" aria-controls="panel-progression" data-tab="progression" aria-selected="false" tabindex="-1">🧭 <span data-i18n="tab_progress">Ma progression</span></button>
+    <button role="tab" id="tab-galaxies" aria-controls="panel-galaxies" data-tab="galaxies" aria-selected="false" tabindex="-1">🗺️ <span data-i18n="tab_galaxies">Galaxies</span></button>
+    <button role="tab" id="tab-marche" aria-controls="panel-marche" data-tab="marche" aria-selected="false" tabindex="-1">💎 <span data-i18n="tab_market">Marché</span></button>
+    <button role="tab" id="tab-actus" aria-controls="panel-actus" data-tab="actus" aria-selected="false" tabindex="-1">📰 <span data-i18n="tab_news">Actualités</span><span class="notif" id="notif-actus" hidden></span></button>
+    <button role="tab" id="tab-communaute" aria-controls="panel-communaute" data-tab="communaute" aria-selected="false" tabindex="-1">👥 <span data-i18n="tab_community">Communauté</span><span class="notif" id="notif-communaute" hidden></span></button>
+    <button role="tab" id="tab-succes" aria-controls="panel-succes" data-tab="succes" aria-selected="false" tabindex="-1">🏆 <span data-i18n="tab_ach">Succès</span></button>
+    <button role="tab" id="tab-videos" aria-controls="panel-videos" data-tab="videos" aria-selected="false" tabindex="-1">🎬 <span data-i18n="tab_videos">Vidéos</span><span class="notif" id="notif-videos" hidden></span></button>
+    <button role="tab" id="tab-maj" aria-controls="panel-maj" data-tab="maj" aria-selected="false" tabindex="-1">🕰️ <span data-i18n="tab_timeline">Mises à jour</span></button>
   </nav>
 
   <main id="main">
     <!-- Vue d'ensemble -->
-    <section class="panel active" id="panel-apercu">
+    <section class="panel active" id="panel-apercu" role="tabpanel" aria-labelledby="tab-apercu">
+      <div id="war-box"></div>
+      <div id="challenge-box"></div>
       <div id="event-banner"></div>
       <div class="tiles" id="tiles"><div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
       <div class="card" id="spark-card">
         <div class="label" data-i18n="spark_label">Joueurs en ligne sur Steam (historique des relevés)</div>
-        <canvas id="sparkline" aria-label="Historique du nombre de joueurs"></canvas>
+        <canvas id="sparkline" role="img" aria-label="Historique du nombre de joueurs"></canvas>
       </div>
       <h2 class="sec" data-i18n="now">En ce moment</h2>
       <div class="cols">
@@ -463,7 +629,7 @@
     </section>
 
     <!-- Progression -->
-    <section class="panel" id="panel-progression">
+    <section class="panel" id="panel-progression" role="tabpanel" aria-labelledby="tab-progression">
       <div class="prog-hero">
         <div class="ring-box">
           <svg width="148" height="148" viewBox="0 0 148 148" aria-hidden="true">
@@ -493,52 +659,82 @@
       </div>
     </section>
 
-    <!-- Actualités -->
-    <section class="panel" id="panel-actus">
+    <!-- Galaxies -->
+    <section class="panel" id="panel-galaxies" role="tabpanel" aria-labelledby="tab-galaxies">
+      <div class="note" data-i18n="gal_note">Les 255 galaxies de l'univers, dans l'ordre du voyage vers le centre. Clique sur une galaxie pour la découvrir, et marque ta position !</div>
       <div class="controls">
-        <div class="subtabs" data-group="actus" role="tablist">
+        <div class="subtabs" id="gal-type-chips"></div>
+        <div class="searchbox" style="margin-left:auto"><input type="search" id="search-galaxies" data-i18n-ph="search" placeholder="Rechercher…" data-i18n-aria="aria_search_gal" aria-label="Rechercher une galaxie"></div>
+      </div>
+      <div id="gal-results" class="gal-results"></div>
+      <div class="gal-layout" style="margin-top:14px">
+        <div class="card gal-map-card">
+          <svg id="gal-map" viewBox="-310 -310 620 620" role="img" data-i18n-aria="aria_gal_map" aria-label="Carte en spirale des 255 galaxies"></svg>
+          <div class="gal-legend" id="gal-legend"></div>
+        </div>
+        <div class="card gal-detail" id="gal-detail"></div>
+      </div>
+    </section>
+
+    <!-- Marché -->
+    <section class="panel" id="panel-marche" role="tabpanel" aria-labelledby="tab-marche">
+      <div class="controls">
+        <div class="subtabs" data-group="marche">
+          <button data-sub="items" class="active">💎 <span data-i18n="mk_items">Objets précieux</span></button>
+          <button data-sub="fish">🎣 <span data-i18n="mk_fish">Poissons</span></button>
+          <button data-sub="ships">🚀 <span data-i18n="mk_ships">Vaisseaux</span></button>
+        </div>
+      </div>
+      <div class="controls" id="mk-subcontrols"></div>
+      <div id="mk-list"></div>
+    </section>
+
+    <!-- Actualités -->
+    <section class="panel" id="panel-actus" role="tabpanel" aria-labelledby="tab-actus">
+      <div class="controls">
+        <div class="subtabs" data-group="actus">
           <button data-sub="officiel" class="active">🛸 <span data-i18n="sub_official">Officiel (Hello Games)</span></button>
           <button data-sub="steam">📰 <span data-i18n="sub_steam">Steam &amp; presse</span></button>
         </div>
-        <div class="searchbox"><input type="search" id="search-actus" data-i18n-ph="search" placeholder="Rechercher…" aria-label="Rechercher dans les actualités"></div>
+        <div class="searchbox"><input type="search" id="search-actus" data-i18n-ph="search" placeholder="Rechercher…" data-i18n-aria="aria_search_news" aria-label="Rechercher dans les actualités"></div>
       </div>
       <div class="grid" id="actus-list"></div>
     </section>
 
     <!-- Communauté -->
-    <section class="panel" id="panel-communaute">
+    <section class="panel" id="panel-communaute" role="tabpanel" aria-labelledby="tab-communaute">
       <div class="controls">
-        <div class="subtabs" data-group="communaute" role="tablist">
+        <div class="subtabs" data-group="communaute">
           <button data-sub="top_week" class="active">🏆 <span data-i18n="sub_top">Top de la semaine</span></button>
           <button data-sub="hot">🔥 <span data-i18n="sub_hot">Tendances</span></button>
           <button data-sub="coordinates">📍 <span data-i18n="sub_coords">Coordonnées partagées</span></button>
         </div>
-        <div class="searchbox"><input type="search" id="search-communaute" data-i18n-ph="search" placeholder="Rechercher…" aria-label="Rechercher dans la communauté"></div>
+        <div class="searchbox"><input type="search" id="search-communaute" data-i18n-ph="search" placeholder="Rechercher…" data-i18n-aria="aria_search_comm" aria-label="Rechercher dans la communauté"></div>
       </div>
       <div class="grid" id="community-list"></div>
     </section>
 
     <!-- Succès -->
-    <section class="panel" id="panel-succes">
+    <section class="panel" id="panel-succes" role="tabpanel" aria-labelledby="tab-succes">
       <div class="note" data-i18n="ach_note">Pourcentage des joueurs Steam ayant débloqué chaque succès. Coche ceux que tu possèdes pour te situer par rapport à la communauté mondiale !</div>
       <div class="ach-summary" id="ach-summary"></div>
       <div class="controls">
-        <div class="searchbox" style="margin-left:0"><input type="search" id="search-succes" data-i18n-ph="search" placeholder="Rechercher…" aria-label="Rechercher un succès"></div>
+        <div class="searchbox" style="margin-left:0"><input type="search" id="search-succes" data-i18n-ph="search" placeholder="Rechercher…" data-i18n-aria="aria_search_ach" aria-label="Rechercher un succès"></div>
       </div>
       <div id="ach-list"></div>
     </section>
 
     <!-- Vidéos -->
-    <section class="panel" id="panel-videos">
+    <section class="panel" id="panel-videos" role="tabpanel" aria-labelledby="tab-videos">
       <div class="controls">
-        <div class="subtabs" id="vid-chips" data-group="videos" role="tablist"></div>
-        <div class="searchbox"><input type="search" id="search-videos" data-i18n-ph="search" placeholder="Rechercher…" aria-label="Rechercher une vidéo"></div>
+        <div class="subtabs" id="vid-chips" data-group="videos"></div>
+        <div class="searchbox"><input type="search" id="search-videos" data-i18n-ph="search" placeholder="Rechercher…" data-i18n-aria="aria_search_videos" aria-label="Rechercher une vidéo"></div>
       </div>
       <div class="vid-grid" id="vid-list"></div>
     </section>
 
     <!-- Mises à jour -->
-    <section class="panel" id="panel-maj">
+    <section class="panel" id="panel-maj" role="tabpanel" aria-labelledby="tab-maj">
       <div class="note" data-i18n="tl_note">L'histoire de No Man's Sky en mises à jour majeures — 10 ans d'évolution continue et gratuite.</div>
       <div class="tl" id="timeline"></div>
     </section>
@@ -590,6 +786,60 @@ const I18N = {
     footer_credits: 'Fait avec ❤️ pour les Voyageurs · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Code source</a> · données mises à jour automatiquement toutes les 6 h',
     footer_sources: "Sources : Hello Games (nomanssky.com), API Steam, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube",
     rel: { s: "à l'instant", m: n => `il y a ${n} min`, h: n => `il y a ${n} h`, d: n => `il y a ${n} j` },
+    war_title: "Guerre contre la Hive of Glass",
+    war_sub: "Effort de guerre communautaire suivi en direct depuis l'Atlas Galactique — contribue depuis le Noyau Prismatique à bord de l'Anomalie.",
+    war_tier: (t, tot) => `Palier ${t}/${tot}`,
+    war_ends: "Fin dans",
+    war_ended: "🏁 Événement terminé — classement final",
+    war_total: n => `${n} contributions au total`,
+    war_team: { blue: "Escouade Bleue", red: "Escouade Rouge", green: "Escouade Verte" },
+    war_pick: "Ton escouade :",
+    war_first: d => `🎉 Ton escouade est en tête, avec ${d} contributions d'avance !`,
+    war_rank: (r, d) => `Ton escouade est ${r}e, à ${d} contributions du leader. Tout se joue maintenant !`,
+    war_obj: { combat: "⚔️ Purge", clean: "🧹 Restauration", intel: "🕵️ Sabotage" },
+    war_stars: "étoiles",
+    war_updated: "Données de guerre :",
+    chip_war_lead: t => `${t} en tête`,
+    ch_title: "Défi du jour",
+    ch_of: "Défi mondial du",
+    ch_diff: "Difficulté",
+    ch_do: "✅ J'ai relevé le défi",
+    ch_done: "Défi relevé ! 🎉",
+    ch_undo: "Annuler",
+    ch_share: "📤 Partager",
+    ch_copied: "Copié !",
+    ch_streak: n => `🔥 Série : ${n} j`,
+    ch_best: n => `record ${n} j`,
+    ch_share_text: (txt, n) => `Défi No Man's Sky du jour relevé : « ${txt} » 🔥 Série de ${n} jour(s) !`,
+    fresh: n => `✨ ${n} nouveauté${n > 1 ? "s" : ""} depuis ta dernière visite`,
+    title: "No Man's Sky — Centre de suivi",
+    aria_lang: "Passer en anglais", aria_theme: "Changer de thème", aria_sections: "Sections",
+    aria_search_news: "Rechercher dans les actualités", aria_search_comm: "Rechercher dans la communauté",
+    aria_search_ach: "Rechercher un succès", aria_search_videos: "Rechercher une vidéo",
+    aria_search_gal: "Rechercher une galaxie", aria_gal_map: "Carte en spirale des 255 galaxies",
+    spark_aria: (min, max, last) => `Historique des joueurs en ligne : minimum ${min}, maximum ${max}, dernier relevé ${last}`,
+    tab_galaxies: "Galaxies", tab_market: "Marché",
+    gal_note: "Les 255 galaxies de l'univers, dans l'ordre du voyage vers le centre. Clique sur une galaxie pour la découvrir, et marque ta position !",
+    gal_types: { all: "Toutes", norm: "Normale", lush: "Luxuriante", harsh: "Hostile", empty: "Vide" },
+    gal_type_of: { norm: "🌀 Galaxie normale", lush: "🌿 Galaxie luxuriante", harsh: "🔥 Galaxie hostile", empty: "🌑 Galaxie vide" },
+    gal_galaxy: "Galaxie", gal_here: "📍 Je suis ici", gal_here_done: "📍 Ta galaxie actuelle",
+    gal_wiki: "Fiche wiki ↗",
+    gal_pos: (name, n) => `Ta position : <b>${name}</b> (galaxie ${n}/255)`,
+    gal_pos_pct: p => `Tu as traversé ${p}% de l'univers.`,
+    gal_pos_none: "Position non définie — clique sur ta galaxie puis « Je suis ici ».",
+    gal_famous_10: "La destination de rêve : galaxie luxuriante, paradis des constructeurs de bases.",
+    gal_famous_1: "Le point de départ de tous les Voyageurs.",
+    gal_famous_255: "La dernière galaxie — au-delà, le voyage recommence à Euclid.",
+    mk_items: "Objets précieux", mk_fish: "Poissons", mk_ships: "Vaisseaux",
+    mk_note_items: "Le top des objets les plus précieux du jeu, par catégorie — valeurs de base officielles extraites des données du jeu.",
+    mk_note_fish: "Le guide de pêche complet (mise à jour Aquarius) : qualité, biome, heure et conditions de chaque prise.",
+    mk_note_ships: "Guide de référence des types de vaisseaux : bonus, prix indicatifs et où les dénicher.",
+    mk_cat: { raw: "Matériaux bruts", products: "Produits fabriqués", trade: "Marchandises", curiosities: "Curiosités", cooking: "Cuisine" },
+    mk_currency: { Credits: "unités", Nanites: "nanites", Quicksilver: "vif-argent" },
+    fish_q: { Legendary: "Légendaire", Epic: "Épique", Desirable: "Convoité", Common: "Commun", Junk: "Camelote" },
+    fish_time: { day: "☀️ Jour", night: "🌙 Nuit", both: "🌗 Jour et nuit" },
+    fish_storm: "⛈️ Pendant une tempête", fish_mission: "🎯 Mission requise", fish_size: { small: "Petit", medium: "Moyen", large: "Grand", "extra-large": "Très grand" },
+    ship_price: "Prix", ship_find: "Où le trouver",
   },
   en: {
     skip: "Skip to content",
@@ -626,6 +876,60 @@ const I18N = {
     footer_credits: 'Made with ❤️ for Travellers · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Source code</a> · data refreshes automatically every 6 hours',
     footer_sources: "Sources: Hello Games (nomanssky.com), Steam API, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube",
     rel: { s: "just now", m: n => `${n} min ago`, h: n => `${n} h ago`, d: n => `${n} d ago` },
+    war_title: "War against the Hive of Glass",
+    war_sub: "Community war effort tracked live from the Galactic Atlas — contribute at the Prismatic Core aboard the Anomaly.",
+    war_tier: (t, tot) => `Tier ${t}/${tot}`,
+    war_ends: "Ends in",
+    war_ended: "🏁 Event over — final standings",
+    war_total: n => `${n} total contributions`,
+    war_team: { blue: "Blue Squad", red: "Red Squad", green: "Green Squad" },
+    war_pick: "Your squad:",
+    war_first: d => `🎉 Your squad is in the lead, ${d} contributions ahead!`,
+    war_rank: (r, d) => `Your squad is #${r}, ${d} contributions behind the leader. It's all to play for!`,
+    war_obj: { combat: "⚔️ Purge", clean: "🧹 Restore", intel: "🕵️ Sabotage" },
+    war_stars: "stars",
+    war_updated: "War data:",
+    chip_war_lead: t => `${t} leading`,
+    ch_title: "Daily challenge",
+    ch_of: "Worldwide challenge for",
+    ch_diff: "Difficulty",
+    ch_do: "✅ I did it",
+    ch_done: "Challenge complete! 🎉",
+    ch_undo: "Undo",
+    ch_share: "📤 Share",
+    ch_copied: "Copied!",
+    ch_streak: n => `🔥 Streak: ${n} d`,
+    ch_best: n => `best ${n} d`,
+    ch_share_text: (txt, n) => `Today's No Man's Sky challenge complete: "${txt}" 🔥 ${n}-day streak!`,
+    fresh: n => `✨ ${n} new item${n > 1 ? "s" : ""} since your last visit`,
+    title: "No Man's Sky — Tracking Hub",
+    aria_lang: "Switch to French", aria_theme: "Toggle theme", aria_sections: "Sections",
+    aria_search_news: "Search the news", aria_search_comm: "Search the community",
+    aria_search_ach: "Search achievements", aria_search_videos: "Search videos",
+    aria_search_gal: "Search galaxies", aria_gal_map: "Spiral map of the 255 galaxies",
+    spark_aria: (min, max, last) => `Players online history: minimum ${min}, maximum ${max}, latest reading ${last}`,
+    tab_galaxies: "Galaxies", tab_market: "Market",
+    gal_note: "The 255 galaxies of the universe, in centre-warp order. Click a galaxy to explore it, and mark your position!",
+    gal_types: { all: "All", norm: "Norm", lush: "Lush", harsh: "Harsh", empty: "Empty" },
+    gal_type_of: { norm: "🌀 Norm galaxy", lush: "🌿 Lush galaxy", harsh: "🔥 Harsh galaxy", empty: "🌑 Empty galaxy" },
+    gal_galaxy: "Galaxy", gal_here: "📍 I am here", gal_here_done: "📍 Your current galaxy",
+    gal_wiki: "Wiki page ↗",
+    gal_pos: (name, n) => `Your position: <b>${name}</b> (galaxy ${n}/255)`,
+    gal_pos_pct: p => `You have crossed ${p}% of the universe.`,
+    gal_pos_none: "Position not set — click your galaxy then “I am here”.",
+    gal_famous_10: "The dream destination: a lush galaxy, paradise for base builders.",
+    gal_famous_1: "Where every Traveller's journey begins.",
+    gal_famous_255: "The last galaxy — beyond it, the journey loops back to Euclid.",
+    mk_items: "Precious items", mk_fish: "Fish", mk_ships: "Starships",
+    mk_note_items: "The most valuable items in the game, by category — official base values extracted from game data.",
+    mk_note_fish: "The complete fishing guide (Aquarius update): quality, biome, time and conditions for every catch.",
+    mk_note_ships: "Starship reference guide: bonuses, indicative prices and where to find them.",
+    mk_cat: { raw: "Raw materials", products: "Crafted products", trade: "Trade goods", curiosities: "Curiosities", cooking: "Cooking" },
+    mk_currency: { Credits: "units", Nanites: "nanites", Quicksilver: "quicksilver" },
+    fish_q: { Legendary: "Legendary", Epic: "Epic", Desirable: "Desirable", Common: "Common", Junk: "Junk" },
+    fish_time: { day: "☀️ Day", night: "🌙 Night", both: "🌗 Day & night" },
+    fish_storm: "⛈️ During a storm", fish_mission: "🎯 Mission required", fish_size: { small: "Small", medium: "Medium", large: "Large", "extra-large": "Extra large" },
+    ship_price: "Price", ship_find: "Where to find it",
   },
 };
 
@@ -634,18 +938,25 @@ const LS_PROGRESS = "nms-progress-v1";
 const LS_ACH = "nms-ach-v1";
 const LS_LANG = "nms-lang";
 const LS_THEME = "nms-theme";
+const LS_TEAM = "nms-team";
+const LS_CHALLENGE = "nms-challenge-v1";
+const LS_LAST_VISIT = "nms-last-visit";
 const D = {};
-const sub = { actus: "officiel", communaute: "top_week", videos: "__all__" };
-const query = { actus: "", communaute: "", succes: "", videos: "" };
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary" };
+const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "" };
 let lang = localStorage.getItem(LS_LANG);
 if (lang !== "fr" && lang !== "en") {
   lang = (navigator.language || "fr").toLowerCase().startsWith("fr") ? "fr" : "en";
 }
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+let reduceMotion = motionQuery.matches;
 
 const T = () => I18N[lang];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const fmtNum = n => (n || 0).toLocaleString(lang === "fr" ? "fr-FR" : "en-GB");
+const safeUrl = u => /^https?:\/\//i.test(u || "") ? u : "#";
+const isObj = v => v !== null && typeof v === "object" && !Array.isArray(v);
+const fmtNum = n => (Number(n) || 0).toLocaleString(lang === "fr" ? "fr-FR" : "en-GB");
+const num = n => Number(n) || 0;
 
 function fmtDate(iso) {
   if (!iso) return "";
@@ -679,16 +990,19 @@ async function loadJSON(path) {
 }
 
 /* ============================== Thème & langue ============================== */
-function applyTheme(theme) {
+function applyTheme(theme, persist) {
   document.documentElement.dataset.theme = theme;
   document.getElementById("theme-icon").textContent = theme === "dark" ? "☀️" : "🌙";
   document.querySelector('meta[name="theme-color"]').content = theme === "dark" ? "#05070f" : "#eef1fb";
-  localStorage.setItem(LS_THEME, theme);
+  if (persist) localStorage.setItem(LS_THEME, theme);
   drawSparkline();
   drawStars();
 }
 document.getElementById("theme-btn").addEventListener("click", () =>
-  applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
+  applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark", true));
+window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", e => {
+  if (!localStorage.getItem(LS_THEME)) applyTheme(e.matches ? "light" : "dark", false);
+});
 
 function applyLang(next) {
   lang = next;
@@ -698,6 +1012,8 @@ function applyLang(next) {
   document.querySelectorAll("[data-i18n]").forEach(el => { const t = T()[el.dataset.i18n]; if (typeof t === "string") el.textContent = t; });
   document.querySelectorAll("[data-i18n-html]").forEach(el => { const t = T()[el.dataset.i18nHtml]; if (typeof t === "string") el.innerHTML = t; });
   document.querySelectorAll("[data-i18n-ph]").forEach(el => { const t = T()[el.dataset.i18nPh]; if (typeof t === "string") el.placeholder = t; });
+  document.querySelectorAll("[data-i18n-aria]").forEach(el => { const t = T()[el.dataset.i18nAria]; if (typeof t === "string") el.setAttribute("aria-label", t); });
+  document.title = T().title;
   renderAll();
 }
 document.getElementById("lang-btn").addEventListener("click", () => applyLang(lang === "fr" ? "en" : "fr"));
@@ -736,27 +1052,58 @@ function drawStars(t = 0) {
     if (s.y > innerHeight + 2) { s.y = -2; s.x = Math.random() * innerWidth; }
   }
 }
-function starLoop(t) { drawStars(t); requestAnimationFrame(starLoop); }
+let starRaf = null;
+function starLoop(t) { drawStars(t); starRaf = requestAnimationFrame(starLoop); }
 initStars();
-if (reduceMotion) drawStars(); else requestAnimationFrame(starLoop);
+if (reduceMotion) drawStars(); else starRaf = requestAnimationFrame(starLoop);
+motionQuery.addEventListener("change", e => {
+  reduceMotion = e.matches;
+  if (reduceMotion) { if (starRaf) cancelAnimationFrame(starRaf); starRaf = null; drawStars(); }
+  else if (!starRaf) starRaf = requestAnimationFrame(starLoop);
+});
 addEventListener("resize", () => { initStars(); if (reduceMotion) drawStars(); drawSparkline(); });
 
 /* ============================== Navigation ============================== */
-document.querySelectorAll("nav.tabs button").forEach(b => b.addEventListener("click", () => {
-  document.querySelectorAll("nav.tabs button").forEach(x => { x.classList.remove("active"); x.setAttribute("aria-selected", "false"); });
+const tabButtons = [...document.querySelectorAll("nav.tabs button")];
+function activateTab(b, focus) {
+  tabButtons.forEach(x => {
+    const on = x === b;
+    x.classList.toggle("active", on);
+    x.setAttribute("aria-selected", String(on));
+    x.tabIndex = on ? 0 : -1;
+  });
   document.querySelectorAll("section.panel").forEach(x => x.classList.remove("active"));
-  b.classList.add("active");
-  b.setAttribute("aria-selected", "true");
   document.getElementById("panel-" + b.dataset.tab).classList.add("active");
-}));
-document.querySelectorAll(".subtabs[data-group]").forEach(group => group.addEventListener("click", e => {
-  const b = e.target.closest("button");
-  if (!b || !b.dataset.sub) return;
-  group.querySelectorAll("button").forEach(x => x.classList.remove("active"));
-  b.classList.add("active");
-  sub[group.dataset.group] = b.dataset.sub;
-  renderAll();
-}));
+  if (focus) b.focus();
+  if (b.dataset.tab === "apercu") drawSparkline();
+}
+tabButtons.forEach(b => b.addEventListener("click", () => activateTab(b, false)));
+document.querySelector("nav.tabs").addEventListener("keydown", e => {
+  const idx = tabButtons.indexOf(document.activeElement);
+  if (idx < 0) return;
+  let next = null;
+  if (e.key === "ArrowRight") next = (idx + 1) % tabButtons.length;
+  else if (e.key === "ArrowLeft") next = (idx - 1 + tabButtons.length) % tabButtons.length;
+  else if (e.key === "Home") next = 0;
+  else if (e.key === "End") next = tabButtons.length - 1;
+  if (next !== null) { e.preventDefault(); activateTab(tabButtons[next], true); }
+});
+function syncSubtabPressed(group) {
+  group.querySelectorAll("button").forEach(x =>
+    x.setAttribute("aria-pressed", String(x.classList.contains("active"))));
+}
+document.querySelectorAll(".subtabs[data-group]").forEach(group => {
+  syncSubtabPressed(group);
+  group.addEventListener("click", e => {
+    const b = e.target.closest("button");
+    if (!b || !b.dataset.sub) return;
+    group.querySelectorAll("button").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    syncSubtabPressed(group);
+    sub[group.dataset.group] = b.dataset.sub;
+    renderAll();
+  });
+});
 ["actus", "communaute", "succes", "videos"].forEach(k => {
   document.getElementById("search-" + k).addEventListener("input", e => {
     query[k] = e.target.value.trim().toLowerCase();
@@ -765,15 +1112,42 @@ document.querySelectorAll(".subtabs[data-group]").forEach(group => group.addEven
 });
 
 /* ============================== Progression ============================== */
-const getState = key => { try { return JSON.parse(localStorage.getItem(key)) || {}; } catch { return {}; } };
+const getState = key => {
+  try {
+    const v = JSON.parse(localStorage.getItem(key));
+    return isObj(v) ? v : {};
+  } catch { return {}; }
+};
 const setState = (key, s) => localStorage.setItem(key, JSON.stringify(s));
 
+/* Restaure le focus clavier sur l'élément équivalent après un re-rendu. */
+function keepFocus(container, render) {
+  const active = document.activeElement;
+  const attr = active && container.contains(active) &&
+    ["data-id", "data-name", "data-sub", "data-team", "data-n"].find(a => active.hasAttribute(a));
+  const val = attr ? active.getAttribute(attr) : null;
+  render();
+  if (attr && val !== null) {
+    const el = container.querySelector(`[${attr}="${CSS.escape(val)}"]`);
+    if (el) el.focus();
+  }
+}
+
 function renderProgress() {
-  if (!D.progress) return;
-  const state = getState(LS_PROGRESS);
   const wrap = document.getElementById("categories");
+  if (!D.progress || !Array.isArray(D.progress.categories)) {
+    wrap.innerHTML = `<div class="empty">${T().empty_data}</div>`;
+    document.getElementById("global-count").textContent = T().prog_count(0, 0);
+    document.getElementById("rank-badge").textContent = T().rank0;
+    return;
+  }
+  const state = getState(LS_PROGRESS);
   const openState = {};
   wrap.querySelectorAll(".cat").forEach(c => { openState[c.dataset.id] = c.classList.contains("open"); });
+  keepFocus(wrap, () => renderProgressInner(wrap, state, openState));
+}
+
+function renderProgressInner(wrap, state, openState) {
   wrap.innerHTML = "";
   let total = 0, done = 0;
 
@@ -785,12 +1159,12 @@ function renderProgress() {
     div.className = "cat" + (open ? " open" : "");
     div.dataset.id = cat.id;
     div.innerHTML = `
-      <button class="cat-head" aria-expanded="${open}">
-        <span class="icon" aria-hidden="true">${cat.icon}</span>
-        <h3>${esc(tr(cat, "title"))}</h3>
+      <h3 class="cat-hwrap"><button class="cat-head" aria-expanded="${open}">
+        <span class="icon" aria-hidden="true">${esc(cat.icon)}</span>
+        <span class="cat-title">${esc(tr(cat, "title"))}</span>
         <span class="count">${catDone}/${cat.items.length}</span>
         <span class="chev" aria-hidden="true">▾</span>
-      </button>
+      </button></h3>
       <div class="minibar"><div style="width:${cat.items.length ? Math.round(catDone / cat.items.length * 100) : 0}%"></div></div>
       <ul>${cat.items.map(i => `
         <li class="${state[i.id] ? "done" : ""}">
@@ -824,9 +1198,9 @@ document.getElementById("btn-export").addEventListener("click", () => {
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = "nms-progression.json";
+  a.download = "nms-data.json";
   a.click();
-  URL.revokeObjectURL(a.href);
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 });
 document.getElementById("btn-import").addEventListener("click", () => document.getElementById("file-import").click());
 document.getElementById("file-import").addEventListener("change", async e => {
@@ -834,12 +1208,15 @@ document.getElementById("file-import").addEventListener("change", async e => {
   if (!f) return;
   try {
     const data = JSON.parse(await f.text());
-    // Compatible avec l'ancien format (progression seule) et le nouveau
-    if (data.progress || data.achievements) {
-      if (data.progress) setState(LS_PROGRESS, data.progress);
-      if (data.achievements) setState(LS_ACH, data.achievements);
-    } else {
+    // Compatible avec l'ancien format (progression seule) et le nouveau ;
+    // seuls des objets simples sont acceptés, sinon fichier rejeté.
+    if (isObj(data) && (isObj(data.progress) || isObj(data.achievements))) {
+      if (isObj(data.progress)) setState(LS_PROGRESS, data.progress);
+      if (isObj(data.achievements)) setState(LS_ACH, data.achievements);
+    } else if (isObj(data) && !("progress" in data) && !("achievements" in data)) {
       setState(LS_PROGRESS, data);
+    } else {
+      throw new Error("forme invalide");
     }
     renderAll();
   } catch { alert(T().invalid_file); }
@@ -856,7 +1233,7 @@ document.getElementById("btn-reset").addEventListener("click", () => {
 /* ============================== Cartes ============================== */
 function newsCard(item, badge) {
   return `<article class="card">
-    <h3><a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}</a></h3>
+    <h3><a href="${esc(safeUrl(item.url))}" target="_blank" rel="noopener">${esc(item.title)}</a></h3>
     <div class="meta">
       ${badge ? `<span class="badge ${badge.cls || ""}">${esc(badge.txt)}</span>` : ""}
       <span>${esc(relTime(item.date))}</span>
@@ -867,7 +1244,7 @@ function newsCard(item, badge) {
   </article>`;
 }
 const miniCard = (item, extra) => `<div class="mini">
-  <a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}</a>
+  <a href="${esc(safeUrl(item.url))}" target="_blank" rel="noopener">${esc(item.title)}</a>
   <div class="m">${esc(relTime(item.date))}${extra ? " · " + esc(extra) : ""}</div>
 </div>`;
 const emptyMsg = hasSearch => `<div class="empty">${hasSearch ? T().empty_search : T().empty_data}</div>`;
@@ -878,12 +1255,16 @@ function renderChips() {
   const chips = [];
   if (D.stats) {
     chips.push(`<span class="chip"><span class="dot"></span><b>${fmtNum(D.stats.player_count)}</b> ${T().chip_online}</span>`);
-    if (D.stats.reviews) chips.push(`<span class="chip">👍 <b>${D.stats.reviews.percent_positive}%</b> ${T().chip_reviews}</span>`);
-    if (D.stats.price && D.stats.price.discount_percent) chips.push(`<span class="chip">🔥 <b>−${D.stats.price.discount_percent}%</b> ${T().chip_discount}</span>`);
+    if (D.stats.reviews) chips.push(`<span class="chip">👍 <b>${num(D.stats.reviews.percent_positive)}%</b> ${T().chip_reviews}</span>`);
+    if (D.stats.price && D.stats.price.discount_percent) chips.push(`<span class="chip">🔥 <b>−${num(D.stats.price.discount_percent)}%</b> ${T().chip_discount}</span>`);
   }
   if (D.timeline && D.timeline.items && D.timeline.items.length) {
     const last = D.timeline.items[0];
     chips.push(`<span class="chip">🛰️ <b>v${esc(last.version)}</b> ${esc(tr(last, "name"))}</span>`);
+  }
+  if (D.war && D.war.event && D.war.progress && Array.isArray(D.war.progress.teamTotals) && D.war.progress.teamTotals.length) {
+    const leader = [...D.war.progress.teamTotals].sort((a, b) => (b.total || 0) - (a.total || 0))[0];
+    chips.push(`<span class="chip">⚔️ <b>${TEAM_EMOJI[leader.team] || ""} ${esc(T().war_team[leader.team] || leader.team)}</b> ${T().chip_war_lead("")}</span>`);
   }
   document.getElementById("live-chips").innerHTML = chips.join("");
 }
@@ -891,10 +1272,10 @@ function renderChips() {
 function renderOverview() {
   const tiles = [];
   if (D.stats) {
-    tiles.push(`<div class="tile"><div class="big" data-count="${D.stats.player_count}">${fmtNum(D.stats.player_count)}</div>
+    tiles.push(`<div class="tile"><div class="big">${fmtNum(D.stats.player_count)}</div>
       <div class="label">${T().tile_players}</div></div>`);
     if (D.stats.reviews) {
-      tiles.push(`<div class="tile"><div class="big gold">${D.stats.reviews.percent_positive}%</div>
+      tiles.push(`<div class="tile"><div class="big gold">${num(D.stats.reviews.percent_positive)}%</div>
         <div class="label">${T().tile_reviews}</div>
         <div class="sub">${fmtNum(D.stats.reviews.total)} ${T().tile_reviews_sub}</div></div>`);
     }
@@ -902,7 +1283,7 @@ function renderOverview() {
       const p = D.stats.price;
       tiles.push(`<div class="tile"><div class="big ${p.discount_percent ? "red" : ""}">${esc(p.final)}</div>
         <div class="label">${T().tile_price}</div>
-        ${p.discount_percent ? `<div class="sub">🔥 ${T().tile_promo} −${p.discount_percent}% (${T().tile_instead} ${esc(p.initial)})</div>` : ""}</div>`);
+        ${p.discount_percent ? `<div class="sub">🔥 ${T().tile_promo} −${num(p.discount_percent)}% (${T().tile_instead} ${esc(p.initial)})</div>` : ""}</div>`);
     }
   }
   if (D.timeline && D.timeline.items && D.timeline.items.length) {
@@ -920,7 +1301,7 @@ function renderOverview() {
     if (/communautaire|community event|faction/i.test((last.desc || "") + (last.desc_en || ""))) {
       banner.innerHTML = `<div class="event-banner">
         <h3>⚔️ ${T().event_title} — ${esc(tr(last, "name"))}</h3>
-        <p>${esc(tr(last, "desc"))} ${last.url ? `<a href="${esc(last.url)}" target="_blank" rel="noopener">${T().event_link}</a>` : ""}</p>
+        <p>${esc(tr(last, "desc"))} ${last.url ? `<a href="${esc(safeUrl(last.url))}" target="_blank" rel="noopener">${T().event_link}</a>` : ""}</p>
       </div>`;
     }
   }
@@ -976,6 +1357,198 @@ function drawSparkline() {
   ctx.font = "11px Inter, sans-serif";
   ctx.fillText(fmtNum(max), 6, 12);
   ctx.fillText(fmtNum(min), 6, h - 4);
+  c.setAttribute("aria-label", T().spark_aria(fmtNum(min), fmtNum(max), fmtNum(lastP.players)));
+}
+
+/* ============================== Bulletin de guerre ============================== */
+const TEAM_COLORS = { blue: "#7aa2ff", red: "#ff5c49", green: "#37e0b8" };
+const MEDALS = ["🥇", "🥈", "🥉"];
+const TEAM_EMOJI = { blue: "🔵", red: "🔴", green: "🟢" };
+const fmtCompact = n => new Intl.NumberFormat(lang === "fr" ? "fr-FR" : "en-GB",
+  { notation: "compact", maximumFractionDigits: 1 }).format(n || 0);
+let warTimer = null;
+
+function warCountdownText(endTime) {
+  const diff = new Date(endTime).getTime() - Date.now();
+  if (isNaN(diff) || diff <= 0) return null;
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor(diff % 86400000 / 3600000);
+  const m = Math.floor(diff % 3600000 / 60000);
+  const s = Math.floor(diff % 60000 / 1000);
+  return (d ? d + (lang === "fr" ? " j " : " d ") : "") +
+    String(h).padStart(2, "0") + " h " + String(m).padStart(2, "0") + " min " + String(s).padStart(2, "0") + " s";
+}
+
+function renderWar() {
+  const box = document.getElementById("war-box");
+  if (warTimer) { clearInterval(warTimer); warTimer = null; }
+  if (!D.war || !D.war.event || !D.war.progress || !Array.isArray(D.war.progress.teamTotals) || !D.war.progress.teamTotals.length) {
+    box.innerHTML = "";
+    return;
+  }
+  const ev = D.war.event, pr = D.war.progress;
+  const teams = [...pr.teamTotals].sort((a, b) => (b.total || 0) - (a.total || 0));
+  const leaderTotal = teams[0].total || 1;
+  const myTeam = localStorage.getItem(LS_TEAM);
+  const running = ev.end_time && new Date(ev.end_time).getTime() > Date.now();
+
+  const rows = teams.map((t, i) => {
+    const name = T().war_team[t.team] || t.team;
+    const color = TEAM_COLORS[t.team] || "#999";
+    const share = pr.totalContribution ? (t.total / pr.totalContribution * 100).toFixed(1) : "0";
+    const objs = (t.objectives || []).map(o =>
+      `${T().war_obj[o.key] || esc(o.key)} ${fmtCompact(o.total)}`).join(" · ");
+    return `<div class="war-team">
+      <div class="medal">${MEDALS[i] || ""}</div>
+      <div class="tname"><span class="sw" style="background:${color}"></span>${esc(name)}${myTeam === t.team ? " ⭐" : ""}</div>
+      <div class="tbar"><div style="width:${Math.round((t.total || 0) / leaderTotal * 100)}%;background:${color}"></div></div>
+      <div class="tval">${fmtNum(t.total)} <small>(${share}%)</small></div>
+      <div class="war-obj">${objs}${t.stars ? ` · ⭐ ${fmtCompact(t.stars)} ${T().war_stars}` : ""}</div>
+    </div>`;
+  }).join("");
+
+  let verdict = "";
+  if (myTeam) {
+    const rank = teams.findIndex(t => t.team === myTeam);
+    if (rank === 0) verdict = T().war_first(fmtNum(teams[0].total - (teams[1] ? teams[1].total : 0)));
+    else if (rank > 0) verdict = T().war_rank(rank + 1, fmtNum(teams[0].total - teams[rank].total));
+  }
+
+  box.innerHTML = `<div class="war-box">
+    <div class="war-head">
+      <h2>⚔️ ${T().war_title}</h2>
+      <div class="war-countdown" id="war-countdown">${running ? T().war_ends + " " + warCountdownText(ev.end_time) : T().war_ended}</div>
+    </div>
+    <div class="war-sub">${T().war_sub}</div>
+    <div class="war-core">
+      <span class="val">${esc(ev.title || "")} — ${T().war_tier(pr.currentTier ?? "?", pr.totalTiers ?? "?")}</span>
+      <div class="bar"><div style="width:${pr.percentage || 0}%"></div></div>
+      <span class="val">${pr.percentage ?? 0}%</span>
+    </div>
+    ${rows}
+    <div class="war-pick">
+      <span class="lbl">${T().war_pick}</span>
+      ${["blue", "red", "green"].map(k =>
+        `<button data-team="${k}" class="${myTeam === k ? "sel" : ""}" aria-label="${esc(T().war_team[k])}" aria-pressed="${myTeam === k}">${TEAM_EMOJI[k]}</button>`).join("")}
+      <span class="verdict">${verdict}</span>
+    </div>
+    <div class="war-foot">
+      <span>${T().war_total(fmtNum(pr.totalContribution))}</span>
+      <span>${T().war_updated} ${esc(relTime(D.war.updated_at))}</span>
+      <span><a href="https://galacticatlas.nomanssky.com/" target="_blank" rel="noopener" style="color:inherit">Atlas Galactique ↗</a></span>
+    </div>
+  </div>`;
+
+  box.querySelectorAll("button[data-team]").forEach(b => b.addEventListener("click", () => {
+    const cur = localStorage.getItem(LS_TEAM);
+    if (cur === b.dataset.team) localStorage.removeItem(LS_TEAM);
+    else localStorage.setItem(LS_TEAM, b.dataset.team);
+    keepFocus(box, renderWar); renderChips();
+  }));
+
+  if (running && !reduceMotion) {
+    warTimer = setInterval(() => {
+      const el = document.getElementById("war-countdown");
+      if (!el) { clearInterval(warTimer); warTimer = null; return; }
+      const txt = warCountdownText(ev.end_time);
+      el.textContent = txt ? T().war_ends + " " + txt : T().war_ended;
+      if (!txt) { clearInterval(warTimer); warTimer = null; }
+    }, 1000);
+  }
+}
+
+/* ============================== Défi du jour ============================== */
+const dayKeyUTC = () => new Date().toISOString().slice(0, 10);
+function challengeOfDay() {
+  const items = D.challenges && D.challenges.items;
+  if (!items || !items.length) return null;
+  const dayNum = Math.floor(Date.parse(dayKeyUTC()) / 86400000);
+  return items[(dayNum * 2654435761 % 4294967296) % items.length];
+}
+function challengeStreak(doneMap) {
+  let streak = 0;
+  const today = new Date(dayKeyUTC() + "T00:00:00Z");
+  let cursor = doneMap[dayKeyUTC()] ? today : new Date(today.getTime() - 86400000);
+  while (doneMap[cursor.toISOString().slice(0, 10)]) {
+    streak++;
+    cursor = new Date(cursor.getTime() - 86400000);
+  }
+  return streak;
+}
+function renderChallenge() {
+  const box = document.getElementById("challenge-box");
+  const ch = challengeOfDay();
+  if (!ch) { box.innerHTML = ""; return; }
+  const state = getState(LS_CHALLENGE);
+  const doneMap = state.days || {};
+  const doneToday = !!doneMap[dayKeyUTC()];
+  const streak = challengeStreak(doneMap);
+  const best = Math.max(state.best || 0, streak);
+  const text = lang === "en" ? ch.en : ch.fr;
+  const dateTxt = new Date().toLocaleDateString(lang === "fr" ? "fr-FR" : "en-GB", { weekday: "long", day: "numeric", month: "long" });
+
+  box.innerHTML = `<div class="challenge">
+    <div class="ch-icon" aria-hidden="true">${ch.icon}</div>
+    <div class="ch-main">
+      <div class="ch-title">🎯 ${T().ch_title} — ${esc(dateTxt)}</div>
+      <div class="ch-text">${esc(text)}</div>
+      <div class="ch-meta">${T().ch_diff} ${"★".repeat(ch.diff)}${"☆".repeat(3 - ch.diff)} · ${T().ch_of} ${dayKeyUTC()}</div>
+    </div>
+    <div class="ch-actions">
+      <span class="streak">${T().ch_streak(streak)} <small>(${T().ch_best(best)})</small></span>
+      <button class="ch-btn ${doneToday ? "done" : ""}" id="ch-btn">${doneToday ? T().ch_done + " · " + T().ch_undo : T().ch_do}</button>
+      <button class="ch-share" id="ch-share">${T().ch_share}</button>
+    </div>
+  </div>`;
+
+  document.getElementById("ch-btn").addEventListener("click", () => {
+    const s = getState(LS_CHALLENGE);
+    s.days = s.days || {};
+    if (s.days[dayKeyUTC()]) delete s.days[dayKeyUTC()];
+    else s.days[dayKeyUTC()] = true;
+    s.best = Math.max(s.best || 0, challengeStreak(s.days));
+    setState(LS_CHALLENGE, s);
+    renderChallenge();
+  });
+  document.getElementById("ch-share").addEventListener("click", async e => {
+    const shareText = T().ch_share_text(text, challengeStreak(getState(LS_CHALLENGE).days || {}));
+    const url = location.href.split("#")[0];
+    try {
+      if (navigator.share) await navigator.share({ text: shareText, url });
+      else {
+        await navigator.clipboard.writeText(shareText + " " + url);
+        e.target.textContent = T().ch_copied;
+        setTimeout(() => { e.target.textContent = T().ch_share; }, 1800);
+      }
+    } catch { /* partage annulé */ }
+  });
+}
+
+/* ============================== Depuis ta dernière visite ============================== */
+let freshCounts = null;
+function computeFresh() {
+  const last = +localStorage.getItem(LS_LAST_VISIT) || 0;
+  localStorage.setItem(LS_LAST_VISIT, String(Date.now()));
+  if (!last) { freshCounts = null; return; }
+  const newer = arr => (arr || []).filter(x => {
+    const t = new Date(x.date).getTime();
+    return !isNaN(t) && t > last;
+  }).length;
+  freshCounts = {
+    actus: newer(D.news && D.news.items),
+    communaute: newer(D.community && D.community.top_week),
+    videos: newer(D.videos && D.videos.items),
+  };
+}
+function renderFresh() {
+  if (!freshCounts) return;
+  const total = freshCounts.actus + freshCounts.communaute + freshCounts.videos;
+  ["actus", "communaute", "videos"].forEach(k => {
+    const dot = document.getElementById("notif-" + k);
+    if (dot) dot.hidden = !freshCounts[k];
+  });
+  document.getElementById("fresh-strip-box").innerHTML =
+    total ? `<span class="fresh-strip">${T().fresh(total)}</span>` : "";
 }
 
 /* ============================== Actualités ============================== */
@@ -1021,20 +1594,22 @@ function renderAchievements() {
   const owned = getState(LS_ACH);
   const q = query.succes;
   const shown = items.filter(a => matches(q, a.name, a.desc, a.name_en, a.desc_en));
-  el.innerHTML = shown.length ? shown.map(a => {
-    const r = rarity(a.percent);
-    const isMine = !!owned[a.name];
-    return `<div class="ach ${isMine ? "owned" : ""}">
-      <div class="row">
-        <h3>${esc(tr(a, "name"))}</h3>
-        <span class="badge rarity ${r.cls}">${T()[r.key]}</span>
-        <span class="pctv">${a.percent}%</span>
-      </div>
-      <div class="desc">${esc(tr(a, "desc") || T().ach_hidden)}</div>
-      <div class="fill"><div style="width:${a.percent}%"></div></div>
-      <label class="mine"><input type="checkbox" data-name="${esc(a.name)}" ${isMine ? "checked" : ""}> ${T().ach_mine}</label>
-    </div>`;
-  }).join("") : emptyMsg(true);
+  keepFocus(el, () => {
+    el.innerHTML = shown.length ? shown.map(a => {
+      const r = rarity(num(a.percent));
+      const isMine = !!owned[a.name];
+      return `<div class="ach ${isMine ? "owned" : ""}">
+        <div class="row">
+          <h3>${esc(tr(a, "name"))}</h3>
+          <span class="badge rarity ${r.cls}">${T()[r.key]}</span>
+          <span class="pctv">${num(a.percent)}%</span>
+        </div>
+        <div class="desc">${esc(tr(a, "desc") || T().ach_hidden)}</div>
+        <div class="fill"><div style="width:${num(a.percent)}%"></div></div>
+        <label class="mine"><input type="checkbox" data-name="${esc(a.name)}" ${isMine ? "checked" : ""}> ${T().ach_mine}</label>
+      </div>`;
+    }).join("") : emptyMsg(true);
+  });
 
   el.querySelectorAll("input[data-name]").forEach(cb => cb.addEventListener("change", () => {
     const s = getState(LS_ACH);
@@ -1053,10 +1628,12 @@ function renderAchievements() {
 function renderVideoChips() {
   const box = document.getElementById("vid-chips");
   const channels = [...new Set((D.videos && D.videos.items || []).map(v => v.channel))];
-  box.innerHTML = [`<button data-sub="__all__" class="${sub.videos === "__all__" ? "active" : ""}">${T().all}</button>`]
-    .concat(channels.map(ch =>
-      `<button data-sub="${esc(ch)}" class="${sub.videos === ch ? "active" : ""}">${esc(ch)}</button>`))
-    .join("");
+  keepFocus(box, () => {
+    box.innerHTML = [`<button data-sub="__all__" aria-pressed="${sub.videos === "__all__"}" class="${sub.videos === "__all__" ? "active" : ""}">${T().all}</button>`]
+      .concat(channels.map(ch =>
+        `<button data-sub="${esc(ch)}" aria-pressed="${sub.videos === ch}" class="${sub.videos === ch ? "active" : ""}">${esc(ch)}</button>`))
+      .join("");
+  });
 }
 function renderVideos() {
   renderVideoChips();
@@ -1066,9 +1643,9 @@ function renderVideos() {
   if (sub.videos !== "__all__") items = items.filter(v => v.channel === sub.videos);
   items = items.filter(v => matches(q, v.title, v.channel));
   el.innerHTML = items.length ? items.map(v => `<article class="vid">
-    ${v.thumbnail ? `<a class="thumb" href="${esc(v.url)}" target="_blank" rel="noopener"><img src="${esc(v.thumbnail)}" alt="" loading="lazy"></a>` : ""}
+    ${v.thumbnail ? `<a class="thumb" href="${esc(safeUrl(v.url))}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="${esc(safeUrl(v.thumbnail))}" alt="" loading="lazy" onerror="this.closest('.thumb').style.display='none'"></a>` : ""}
     <div class="body">
-      <h3><a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.title)}</a></h3>
+      <h3><a href="${esc(safeUrl(v.url))}" target="_blank" rel="noopener">${esc(v.title)}</a></h3>
       <div class="m">${esc(v.channel)} · ${esc(relTime(v.date))}${v.views ? " · " + fmtNum(v.views) + " " + T().views : ""}</div>
     </div>
   </article>`).join("") : emptyMsg(!!q);
@@ -1077,14 +1654,17 @@ function renderVideos() {
 /* ============================== Frise ============================== */
 function renderTimeline() {
   const el = document.getElementById("timeline");
-  if (!D.timeline || !D.timeline.items) { el.innerHTML = ""; return; }
+  if (!D.timeline || !Array.isArray(D.timeline.items) || !D.timeline.items.length) {
+    el.innerHTML = `<div class="empty">${T().empty_data}</div>`;
+    return;
+  }
   let html = "", lastYear = null;
   D.timeline.items.forEach((u, i) => {
     const year = (u.date || "").slice(0, 4);
     if (year !== lastYear) { html += `<div class="tl-year">${esc(year)}</div>`; lastYear = year; }
     html += `<div class="tl-item ${i === 0 ? "latest" : ""}">
       <h3><span class="ver">v${esc(u.version)}</span>${u.url
-        ? `<a href="${esc(u.url)}" target="_blank" rel="noopener">${esc(tr(u, "name"))}</a>`
+        ? `<a href="${esc(safeUrl(u.url))}" target="_blank" rel="noopener">${esc(tr(u, "name"))}</a>`
         : esc(tr(u, "name"))}<span class="d">${esc(fmtDate(u.date))}</span></h3>
       <p>${esc(tr(u, "desc"))}</p>
     </div>`;
@@ -1092,9 +1672,228 @@ function renderTimeline() {
   el.innerHTML = html;
 }
 
+/* ============================== Carte des galaxies ============================== */
+const LS_GALAXY = "nms-galaxy";
+const GAL_COLORS = { norm: "#7aa2ff", lush: "#37e0b8", harsh: "#ff5c49", empty: "#8b93ad" };
+let galSelected = null;
+let galPositions = null;
+
+function galPos(i) {
+  if (!galPositions) {
+    galPositions = [];
+    for (let k = 0; k < 255; k++) {
+      const th = k * 0.309 + 0.6;
+      const r = 26 + k * 1.055;
+      galPositions.push([r * Math.cos(th), r * Math.sin(th)]);
+    }
+  }
+  return galPositions[i];
+}
+
+function renderGalaxies() {
+  if (!D.galaxies || !Array.isArray(D.galaxies.items) || !D.galaxies.items.length) {
+    document.getElementById("gal-detail").innerHTML = `<div class="empty">${T().empty_data}</div>`;
+    return;
+  }
+  const items = D.galaxies.items;
+  const current = parseInt(localStorage.getItem(LS_GALAXY), 10) || null;
+  if (galSelected === null) galSelected = current || 1;
+  const typeFilter = sub.galaxies || "all";
+
+  // Puces de filtre par type
+  const chips = document.getElementById("gal-type-chips");
+  keepFocus(chips, () => {
+    chips.innerHTML = ["all", "norm", "lush", "harsh", "empty"].map(t =>
+      `<button data-sub="${t}" aria-pressed="${typeFilter === t}" class="${typeFilter === t ? "active" : ""}">
+        ${t === "all" ? "" : `<span class="sw" style="background:${GAL_COLORS[t]};width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px"></span>`}${T().gal_types[t]}
+      </button>`).join("");
+  });
+
+  // Carte SVG en spirale
+  const svg = document.getElementById("gal-map");
+  const dots = items.map(g => {
+    const [x, y] = galPos(g.n - 1);
+    const dim = typeFilter !== "all" && g.type !== typeFilter;
+    return `<circle class="g ${dim ? "dim" : ""}" data-n="${g.n}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}"
+      r="${g.n === galSelected ? 7 : 4.6}" fill="${GAL_COLORS[g.type]}"><title>${g.n}. ${esc(g.name)}</title></circle>`;
+  }).join("");
+  let rings = "";
+  if (galSelected) {
+    const [x, y] = galPos(galSelected - 1);
+    rings += `<circle class="sel-ring" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="11"/>`;
+  }
+  if (current) {
+    const [x, y] = galPos(current - 1);
+    rings += `<circle class="cur-ring" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="15"/>`;
+  }
+  svg.innerHTML = `<circle cx="0" cy="0" r="7" fill="#fff" opacity="0.9"/>` + dots + rings;
+
+  document.getElementById("gal-legend").innerHTML =
+    ["norm", "lush", "harsh", "empty"].map(t =>
+      `<span><span class="sw" style="background:${GAL_COLORS[t]}"></span>${T().gal_types[t]}</span>`).join("");
+
+  // Panneau de détail
+  const g = items[galSelected - 1];
+  const isCurrent = current === g.n;
+  const famous = g.n === 1 ? T().gal_famous_1 : g.n === 10 ? T().gal_famous_10 : g.n === 255 ? T().gal_famous_255 : "";
+  const wikiUrl = "https://nomanssky.fandom.com/wiki/" + encodeURIComponent(g.name.replace(/ /g, "_"));
+  let pos = `<div class="gal-pos">${T().gal_pos_none}</div>`;
+  if (current && items[current - 1]) {
+    const pct = Math.round((current - 1) / 254 * 100);
+    pos = `<div class="gal-pos">${T().gal_pos(esc(items[current - 1].name), current)}<br>${T().gal_pos_pct(pct)}</div>`;
+  }
+  document.getElementById("gal-detail").innerHTML = `
+    <div class="gnum">${T().gal_galaxy} ${g.n}/255</div>
+    <h3>${esc(g.name)}</h3>
+    <div class="gtype"><span class="badge" style="border-color:${GAL_COLORS[g.type]};color:${GAL_COLORS[g.type]};background:transparent">${T().gal_type_of[g.type]}</span></div>
+    ${famous ? `<p style="font-size:0.88rem;color:var(--ink-dim)">${famous}</p>` : ""}
+    <div class="gactions">
+      <button id="gal-here" class="${isCurrent ? "here" : ""}" aria-pressed="${isCurrent}">${isCurrent ? T().gal_here_done : T().gal_here}</button>
+      <a href="${wikiUrl}" target="_blank" rel="noopener">${T().gal_wiki}</a>
+    </div>
+    ${pos}`;
+
+  document.getElementById("gal-here").addEventListener("click", () => {
+    if (isCurrent) localStorage.removeItem(LS_GALAXY);
+    else localStorage.setItem(LS_GALAXY, String(g.n));
+    renderGalaxies();
+    document.getElementById("gal-here").focus();
+  });
+
+  // Résultats de recherche
+  const q = (query.galaxies || "").toLowerCase();
+  const results = q
+    ? items.filter(x => x.name.toLowerCase().includes(q) || String(x.n) === q).slice(0, 10)
+    : [];
+  document.getElementById("gal-results").innerHTML = results.map(x =>
+    `<button data-goto="${x.n}">${x.n}. ${esc(x.name)}</button>`).join("");
+  document.querySelectorAll("#gal-results button").forEach(b => b.addEventListener("click", () => {
+    galSelected = parseInt(b.dataset.goto, 10);
+    renderGalaxies();
+    document.getElementById("gal-detail").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+  }));
+}
+document.getElementById("gal-type-chips").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b || !b.dataset.sub) return;
+  sub.galaxies = b.dataset.sub;
+  renderGalaxies();
+});
+document.getElementById("gal-map").addEventListener("click", e => {
+  const c = e.target.closest("circle.g");
+  if (!c) return;
+  galSelected = parseInt(c.dataset.n, 10);
+  renderGalaxies();
+});
+document.getElementById("search-galaxies").addEventListener("input", e => {
+  query.galaxies = e.target.value.trim();
+  renderGalaxies();
+});
+
+/* ============================== Marché ============================== */
+const CUR_ICONS = { Credits: "🪙", Nanites: "⬡", Quicksilver: "✦" };
+
+function renderMarket() {
+  const list = document.getElementById("mk-list");
+  const controls = document.getElementById("mk-subcontrols");
+  const view = sub.marche || "items";
+
+  if (view === "ships") {
+    controls.innerHTML = `<div class="note" style="margin:0">${T().mk_note_ships}</div>`;
+    const ships = D.ships && D.ships.items || [];
+    list.innerHTML = ships.length ? `<div class="ship-grid">` + ships.map(sh => `
+      <article class="card ship">
+        <div class="sh-head"><span class="sh-icon" aria-hidden="true">${esc(sh.icon)}</span>
+          <h3>${esc(lang === "en" ? sh.name_en : sh.name_fr)}</h3>
+          <span class="stars" title="${T().ch_diff}">${"★".repeat(num(sh.rarity))}${"☆".repeat(5 - num(sh.rarity))}</span></div>
+        <div class="sh-line">${esc(lang === "en" ? sh.bonus_en : sh.bonus_fr)}</div>
+        <div class="sh-line"><span class="k">🔎</span> ${esc(lang === "en" ? sh.find_en : sh.find_fr)}</div>
+        <div class="sh-price">💰 ${esc(lang === "en" ? sh.price_en : sh.price_fr)}</div>
+      </article>`).join("") + `</div>` : emptyMsg(false);
+    return;
+  }
+
+  if (view === "fish") {
+    const fishAll = D.market && D.market.fish || [];
+    if (!fishAll.length) { controls.innerHTML = ""; list.innerHTML = emptyMsg(false); return; }
+    const fq = sub.fishq || "Legendary";
+    keepFocus(controls, () => {
+      controls.innerHTML = `<div class="subtabs" data-fishq>` +
+        ["Legendary", "Epic", "Desirable", "Common", "Junk"].map(qk =>
+          `<button data-sub="${qk}" aria-pressed="${fq === qk}" class="${fq === qk ? "active" : ""}">${T().fish_q[qk]}</button>`).join("") +
+        `</div>`;
+    });
+    controls.querySelectorAll("[data-fishq] button").forEach(b => b.addEventListener("click", () => {
+      sub.fishq = b.dataset.sub;
+      keepFocus(controls, renderMarket);
+    }));
+    const fish = fishAll.filter(f => f.quality === fq);
+    const maxV = Math.max(...fish.map(f => num(f.value)), 1);
+    list.innerHTML = fish.map((f, i) => `
+      <div class="mk-row">
+        <div class="rank ${i < 3 ? "top" : ""}">${i + 1}</div>
+        ${f.icon ? `<img src="${esc(safeUrl(f.icon))}" alt="" loading="lazy">` : "<span></span>"}
+        <div>
+          <div class="mname">${esc(lang === "en" ? f.name_en : f.name_fr)}</div>
+          <div class="mgroup">${(f.biomes || []).slice(0, 4).map(esc).join(", ")}</div>
+          <div class="fish-badges">
+            <span class="badge">${T().fish_time[f.time] || esc(f.time)}</span>
+            ${f.size ? `<span class="badge gold">${T().fish_size[f.size] || esc(f.size)}</span>` : ""}
+            ${f.storm ? `<span class="badge official">${T().fish_storm}</span>` : ""}
+            ${f.mission ? `<span class="badge official">${T().fish_mission}</span>` : ""}
+          </div>
+        </div>
+        <div class="mval">${fmtNum(f.value)}<small>${T().mk_currency.Credits}</small></div>
+        <div class="mk-bar"><div style="width:${Math.round(num(f.value) / maxV * 100)}%"></div></div>
+      </div>`).join("") || emptyMsg(false);
+    return;
+  }
+
+  // Objets précieux par catégorie
+  const cats = D.market && D.market.categories;
+  if (!cats) { controls.innerHTML = ""; list.innerHTML = emptyMsg(false); return; }
+  const ck = sub.mkcat || "products";
+  keepFocus(controls, () => {
+    controls.innerHTML = `<div class="subtabs" data-mkcat>` +
+      Object.keys(T().mk_cat).filter(k => cats[k] && cats[k].length).map(k =>
+        `<button data-sub="${k}" aria-pressed="${ck === k}" class="${ck === k ? "active" : ""}">${T().mk_cat[k]}</button>`).join("") +
+      `</div><div class="note" style="margin:0 0 0 auto;padding:8px 14px;font-size:0.78rem">${T().mk_note_items}</div>`;
+  });
+  controls.querySelectorAll("[data-mkcat] button").forEach(b => b.addEventListener("click", () => {
+    sub.mkcat = b.dataset.sub;
+    keepFocus(controls, renderMarket);
+  }));
+  const rows = cats[ck] || [];
+  const maxV = Math.max(...rows.map(r => num(r.value)), 1);
+  list.innerHTML = rows.map((r, i) => `
+    <div class="mk-row">
+      <div class="rank ${i < 3 ? "top" : ""}">${i + 1}</div>
+      ${r.icon ? `<img src="${esc(safeUrl(r.icon))}" alt="" loading="lazy">` : "<span></span>"}
+      <div>
+        <div class="mname">${esc(lang === "en" ? r.name_en : r.name_fr)}</div>
+        <div class="mgroup">${esc(lang === "en" ? r.group_en : r.group_fr)}</div>
+      </div>
+      <div class="mval">${CUR_ICONS[r.currency] || ""} ${fmtNum(r.value)}<small>${T().mk_currency[r.currency] || esc(r.currency)}</small></div>
+      <div class="mk-bar"><div style="width:${Math.round(num(r.value) / maxV * 100)}%"></div></div>
+    </div>`).join("") || emptyMsg(false);
+}
+
 /* ============================== Rendu global ============================== */
+function renderUpdated() {
+  const dates = [D.official, D.news, D.community, D.stats]
+    .filter(x => x && x.updated_at).map(x => x.updated_at);
+  document.getElementById("updated").textContent = dates.length
+    ? `${T().updated} ${new Date(dates.sort().pop()).toLocaleString(
+        lang === "fr" ? "fr-FR" : "en-GB", { dateStyle: "medium", timeStyle: "short" })}`
+    : "";
+}
+
 function renderAll() {
+  renderUpdated();
   renderChips();
+  renderWar();
+  renderChallenge();
+  renderFresh();
   renderOverview();
   renderProgress();
   renderActus();
@@ -1102,14 +1901,16 @@ function renderAll() {
   renderAchievements();
   renderVideos();
   renderTimeline();
+  renderGalaxies();
+  renderMarket();
 }
 
 /* ============================== Init ============================== */
 (async () => {
   applyTheme(localStorage.getItem(LS_THEME) ||
-    (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"));
+    (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"), false);
 
-  const [progress, official, news, community, stats, history, achievements, videos, timeline] = await Promise.all([
+  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships] = await Promise.all([
     loadJSON("data/progress.json"),
     loadJSON("data/official.json"),
     loadJSON("data/news.json"),
@@ -1119,17 +1920,16 @@ function renderAll() {
     loadJSON("data/achievements.json"),
     loadJSON("data/videos.json"),
     loadJSON("data/timeline.json"),
+    loadJSON("data/war.json"),
+    loadJSON("data/challenges.json"),
+    loadJSON("data/galaxies.json"),
+    loadJSON("data/market.json"),
+    loadJSON("data/ships.json"),
   ]);
-  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline });
+  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships });
 
+  computeFresh();
   applyLang(lang);
-
-  const dates = [official, news, community, stats].filter(x => x && x.updated_at).map(x => x.updated_at);
-  if (dates.length) {
-    const latest = new Date(dates.sort().pop());
-    document.getElementById("updated").textContent =
-      `${T().updated} ${latest.toLocaleString(lang === "fr" ? "fr-FR" : "en-GB", { dateStyle: "medium", timeStyle: "short" })}`;
-  }
 })();
 </script>
 </body>

@@ -14,7 +14,11 @@ mondiale, installable comme application (PWA), accessible (clavier, lecteurs d'�
 
 | Volet | Contenu | Source |
 |---|---|---|
-| 🏠 **Vue d'ensemble** | Joueurs en ligne en direct, % d'avis positifs, prix/promos, dernière MàJ majeure, événement communautaire en cours, résumé de tout le reste | APIs Steam |
+| 🏠 **Vue d'ensemble** | Joueurs en ligne en direct, % d'avis positifs, prix/promos, dernière MàJ majeure, résumé de tout le reste | APIs Steam |
+| ⚔️ **Bulletin de guerre** | Classement en direct des 3 escouades de l'événement communautaire, compte à rebours, choix de ton camp | API officielle de l'Atlas Galactique |
+| 🎯 **Défi du jour** | Un défi mondial par jour (48 défis bilingues), série de jours et record | Généré localement |
+| 🗺️ **Galaxies** | Carte interactive en spirale des 255 galaxies avec types, recherche et marqueur « je suis ici » | Wiki communautaire (généré une fois) |
+| 💎 **Marché** | Classements des objets les plus précieux, guide de pêche complet (qualité/biome/conditions), guide des vaisseaux | Données du jeu via Assistant NMS |
 | 🛸 **Actus officielles** | Patch notes et annonces Hello Games | [nomanssky.com/news](https://www.nomanssky.com/news/) |
 | 📰 **Presse & Steam** | Annonces Steam + couverture presse (PC Gamer, RPS…) | API Steam News |
 | 👥 **Communauté** | Top de la semaine, tendances + coordonnées partagées (vaisseaux, bases…) | r/NoMansSkyTheGame + r/NMSCoordinateExchange (RSS) |

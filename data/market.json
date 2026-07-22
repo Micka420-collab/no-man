@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-07-22T08:47:56.988105+00:00",
+ "updated_at": "2026-07-22T09:02:33.208125+00:00",
  "categories": {
   "raw": [
    {
@@ -8,7 +8,7 @@
     "name_fr": "Poussière somnale",
     "value": 1616.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/rawMaterials/70.png",
     "group_en": "Decayed Spacetime Remnant",
     "group_fr": "Reste d'espace-temps décomposé"
    },
@@ -18,7 +18,7 @@
     "name_fr": "Souvenirs ancestraux",
     "value": 1616.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/rawMaterials/71.png",
     "group_en": "Recessive Creature Genes",
     "group_fr": "Gènes récessifs de créature"
    },
@@ -28,7 +28,7 @@
     "name_fr": "Poussière corrompue",
     "value": 959.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/rawMaterials/69.png",
     "group_en": "Ashes of Despair",
     "group_fr": "Les cendres du désespoir"
    },
@@ -58,7 +58,7 @@
     "name_fr": "Métal corrompu",
     "value": 380.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/rawMaterials/62.png",
     "group_en": "Salvaged Scrap",
     "group_fr": "Pièces détachées récupérées"
    },
@@ -68,7 +68,7 @@
     "name_fr": "Particule de néant",
     "value": 380.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/rawMaterials/73.png",
     "group_en": "Essence of Atlantid",
     "group_fr": "Essence de l'Atlantide"
    },
@@ -252,7 +252,7 @@
     "name_fr": "Reliques des Premiers-Nés",
     "value": 98000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/tradeItems/43.png",
     "group_en": "Smuggled Goods",
     "group_fr": "Marchandises de contrebande"
    },
@@ -262,7 +262,7 @@
     "name_fr": "Armes interdites",
     "value": 83000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/tradeItems/42.png",
     "group_en": "Smuggled Goods",
     "group_fr": "Marchandises de contrebande"
    },
@@ -272,7 +272,7 @@
     "name_fr": "Circuits de contrefaçon",
     "value": 68000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/tradeItems/41.png",
     "group_en": "Smuggled Goods",
     "group_fr": "Marchandises de contrebande"
    },
@@ -282,7 +282,7 @@
     "name_fr": "Grahgrah",
     "value": 58000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/tradeItems/40.png",
     "group_en": "Smuggled Goods",
     "group_fr": "Marchandises de contrebande"
    },
@@ -362,7 +362,7 @@
     "name_fr": "Plumes prismatiques",
     "value": 32000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/tradeItems/39.png",
     "group_en": "Smuggled Goods",
     "group_fr": "Marchandises de contrebande"
    }
@@ -374,7 +374,7 @@
     "name_fr": "Verre marin",
     "value": 266000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/curiosities/292.png",
     "group_en": "Precious Material",
     "group_fr": "Matériau précieux"
    },
@@ -384,7 +384,7 @@
     "name_fr": "Neutralisation de la station",
     "value": 256000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/curiosities/65.png",
     "group_en": "AI Master Key",
     "group_fr": "Clé maîtresse d'IA"
    },
@@ -394,7 +394,7 @@
     "name_fr": "Passeport falsifié",
     "value": 256000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/curiosities/75.png",
     "group_en": "Overwritten Digital Record",
     "group_fr": "Dossier numérique écrasé"
    },
@@ -414,7 +414,7 @@
     "name_fr": "Le Malabar",
     "value": 200000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/curiosities/133.png",
     "group_en": "Legendary Fish",
     "group_fr": "Poisson légendaire"
    },
@@ -424,7 +424,7 @@
     "name_fr": "Grandgousier translucide",
     "value": 200000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/curiosities/154.png",
     "group_en": "Legendary Fish",
     "group_fr": "Poisson légendaire"
    },
@@ -434,7 +434,7 @@
     "name_fr": "Poisson-scie à hélice",
     "value": 200000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/curiosities/175.png",
     "group_en": "Legendary Fish",
     "group_fr": "Poisson légendaire"
    },
@@ -444,7 +444,7 @@
     "name_fr": "Nage-fer ancestral",
     "value": 200000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/curiosities/196.png",
     "group_en": "Legendary Fish",
     "group_fr": "Poisson légendaire"
    },
@@ -454,7 +454,7 @@
     "name_fr": "Nautilia",
     "value": 200000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/curiosities/217.png",
     "group_en": "Legendary Fish",
     "group_fr": "Poisson légendaire"
    },
@@ -464,7 +464,7 @@
     "name_fr": "Titancœur aveugle",
     "value": 200000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/curiosities/238.png",
     "group_en": "Legendary Fish",
     "group_fr": "Poisson légendaire"
    },
@@ -474,7 +474,7 @@
     "name_fr": "Mégalodon",
     "value": 200000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/curiosities/259.png",
     "group_en": "Legendary Fish",
     "group_fr": "Poisson légendaire"
    },
@@ -484,7 +484,7 @@
     "name_fr": "Malabar aux mille bouches",
     "value": 200000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/curiosities/280.png",
     "group_en": "Legendary Fish",
     "group_fr": "Poisson légendaire"
    }
@@ -516,7 +516,7 @@
     "name_fr": "Malédiction ambrosiale",
     "value": 199200.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/cooking/229.png",
     "group_en": "Edible Product",
     "group_fr": "Produit comestible"
    },
@@ -536,7 +536,7 @@
     "name_fr": "Éponge primordiale",
     "value": 180700.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/cooking/229.png",
     "group_en": "Edible Product",
     "group_fr": "Produit comestible"
    },
@@ -586,7 +586,7 @@
     "name_fr": "Bouillon d'os",
     "value": 172000.0,
     "currency": "Credits",
-    "icon": "",
+    "icon": "https://app.nmsassistant.com/assets/images/cooking/385.png",
     "group_en": "Edible Product",
     "group_fr": "Produit comestible"
    },
@@ -625,7 +625,7 @@
     "All"
    ],
    "value": 200000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/133.png"
   },
   {
    "name_en": "Translucent Gulper",
@@ -640,7 +640,7 @@
     "Swamp"
    ],
    "value": 200000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/154.png"
   },
   {
    "name_en": "Helix Sawfish",
@@ -654,7 +654,7 @@
     "Radioactive"
    ],
    "value": 200000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/175.png"
   },
   {
    "name_en": "Ancient Irontail",
@@ -669,7 +669,7 @@
     "Lava"
    ],
    "value": 200000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/196.png"
   },
   {
    "name_en": "Nautilia",
@@ -683,7 +683,7 @@
     "Frozen"
    ],
    "value": 200000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/217.png"
   },
   {
    "name_en": "Blind Titancore",
@@ -697,7 +697,7 @@
     "Lush"
    ],
    "value": 200000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/238.png"
   },
   {
    "name_en": "Megalodon",
@@ -711,7 +711,7 @@
     "Barren"
    ],
    "value": 200000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/259.png"
   },
   {
    "name_en": "Many-Mouthed Lunker",
@@ -725,7 +725,7 @@
     "Exotic"
    ],
    "value": 200000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/280.png"
   },
   {
    "name_en": "Leviathan Spawn",
@@ -739,7 +739,7 @@
     ""
    ],
    "value": 200000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/313.png"
   },
   {
    "name_en": "The Maw of Titan",
@@ -753,7 +753,7 @@
     ""
    ],
    "value": 200000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/334.png"
   },
   {
    "name_en": "Dragonfish",
@@ -767,7 +767,7 @@
     "All"
    ],
    "value": 150000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/132.png"
   },
   {
    "name_en": "Bleached Bonefish",
@@ -782,7 +782,7 @@
     "Swamp"
    ],
    "value": 150000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/153.png"
   },
   {
    "name_en": "Gamma Squid",
@@ -796,7 +796,7 @@
     "Radioactive"
    ],
    "value": 150000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/174.png"
   },
   {
    "name_en": "Jelly of the Veil",
@@ -811,7 +811,7 @@
     "Lava"
    ],
    "value": 150000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/195.png"
   },
   {
    "name_en": "Iceblood Gulper",
@@ -825,7 +825,7 @@
     "Frozen"
    ],
    "value": 150000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/216.png"
   },
   {
    "name_en": "Reef Guardian",
@@ -839,7 +839,7 @@
     "Lush"
    ],
    "value": 150000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/237.png"
   },
   {
    "name_en": "Ossified Deinosuchus",
@@ -853,7 +853,7 @@
     "Barren"
    ],
    "value": 150000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/258.png"
   },
   {
    "name_en": "Child of Helios",
@@ -867,7 +867,7 @@
     "Exotic"
    ],
    "value": 150000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/279.png"
   },
   {
    "name_en": "The Hunter Below",
@@ -881,7 +881,7 @@
     ""
    ],
    "value": 150000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/312.png"
   },
   {
    "name_en": "Hyper-cockle",
@@ -895,7 +895,7 @@
     ""
    ],
    "value": 150000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/333.png"
   },
   {
    "name_en": "Golden Jellyfish",
@@ -909,7 +909,7 @@
     "All"
    ],
    "value": 100000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/131.png"
   },
   {
    "name_en": "Vampire Squid",
@@ -924,7 +924,7 @@
     "Swamp"
    ],
    "value": 100000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/152.png"
   },
   {
    "name_en": "Aberrant Duskfin",
@@ -938,7 +938,7 @@
     "Radioactive"
    ],
    "value": 100000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/173.png"
   },
   {
    "name_en": "Mirrorscale Skipper",
@@ -953,7 +953,7 @@
     "Lava"
    ],
    "value": 100000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/194.png"
   },
   {
    "name_en": "Ghostfin",
@@ -967,7 +967,7 @@
     "Frozen"
    ],
    "value": 100000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/215.png"
   },
   {
    "name_en": "Mist Serpent",
@@ -981,7 +981,7 @@
     "Lush"
    ],
    "value": 100000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/236.png"
   },
   {
    "name_en": "Titanworm Larva",
@@ -995,7 +995,7 @@
     "Barren"
    ],
    "value": 100000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/257.png"
   },
   {
    "name_en": "Atlantidian Crab",
@@ -1009,7 +1009,7 @@
     "Exotic"
    ],
    "value": 100000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/278.png"
   },
   {
    "name_en": "Brain Eel",
@@ -1023,7 +1023,7 @@
     ""
    ],
    "value": 100000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/311.png"
   },
   {
    "name_en": "Mother-of-Quicksilver",
@@ -1037,7 +1037,7 @@
     ""
    ],
    "value": 100000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/332.png"
   },
   {
    "name_en": "Singing Sea-Snail",
@@ -1051,7 +1051,7 @@
     "All"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/130.png"
   },
   {
    "name_en": "Emeril Sunstar",
@@ -1066,7 +1066,7 @@
     "Swamp"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/151.png"
   },
   {
    "name_en": "Many-Eyed Jellyfish",
@@ -1080,7 +1080,7 @@
     "Radioactive"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/172.png"
   },
   {
    "name_en": "Starshell Crab",
@@ -1095,7 +1095,7 @@
     "Lava"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/193.png"
   },
   {
    "name_en": "Crystal Jelly",
@@ -1109,7 +1109,7 @@
     "Frozen"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/214.png"
   },
   {
    "name_en": "Glass Angel",
@@ -1123,7 +1123,7 @@
     "Lush"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/235.png"
   },
   {
    "name_en": "Fragile Icthyoscale",
@@ -1137,7 +1137,7 @@
     "Barren"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/256.png"
   },
   {
    "name_en": "Abyssal Horror Egg",
@@ -1151,7 +1151,7 @@
     "Exotic"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/19.png"
   },
   {
    "name_en": "Sentient Crab",
@@ -1165,7 +1165,7 @@
     ""
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/310.png"
   },
   {
    "name_en": "Mandelbrot Worm",
@@ -1179,7 +1179,7 @@
     ""
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/331.png"
   },
   {
    "name_en": "Child of Aquarius",
@@ -1193,7 +1193,7 @@
     "All"
    ],
    "value": 500.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/290.png"
   },
   {
    "name_en": "The Angler",
@@ -1221,7 +1221,7 @@
     "All"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/129.png"
   },
   {
    "name_en": "Viper Eel",
@@ -1236,7 +1236,7 @@
     "Swamp"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/150.png"
   },
   {
    "name_en": "Alpha Squid",
@@ -1250,7 +1250,7 @@
     "Radioactive"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/171.png"
   },
   {
    "name_en": "Hellion Bass",
@@ -1265,7 +1265,7 @@
     "Lava"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/192.png"
   },
   {
    "name_en": "Black-Eyed Shark",
@@ -1279,7 +1279,7 @@
     "Frozen"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/213.png"
   },
   {
    "name_en": "Colossal Mossback",
@@ -1293,7 +1293,7 @@
     "Lush"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/234.png"
   },
   {
    "name_en": "Cave Prowler",
@@ -1307,7 +1307,7 @@
     "Barren"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/255.png"
   },
   {
    "name_en": "Void Squid",
@@ -1321,7 +1321,7 @@
     "Exotic"
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/276.png"
   },
   {
    "name_en": "Colossal Jawfish",
@@ -1335,7 +1335,7 @@
     ""
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/309.png"
   },
   {
    "name_en": "Wrackjaw",
@@ -1349,7 +1349,7 @@
     ""
    ],
    "value": 50000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/330.png"
   },
   {
    "name_en": "Colossal Shrimp",
@@ -1363,7 +1363,7 @@
     "All"
    ],
    "value": 30000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/128.png"
   },
   {
    "name_en": "Shrieking Venttail",
@@ -1378,7 +1378,7 @@
     "Swamp"
    ],
    "value": 30000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/149.png"
   },
   {
    "name_en": "Cyclopic Eel",
@@ -1392,7 +1392,7 @@
     "Radioactive"
    ],
    "value": 30000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/170.png"
   },
   {
    "name_en": "Magma Shark",
@@ -1407,7 +1407,7 @@
     "Lava"
    ],
    "value": 30000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/191.png"
   },
   {
    "name_en": "Frostbite Ray",
@@ -1421,7 +1421,7 @@
     "Frozen"
    ],
    "value": 30000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/212.png"
   },
   {
    "name_en": "Sunspine Basker",
@@ -1435,7 +1435,7 @@
     "Lush"
    ],
    "value": 30000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/233.png"
   },
   {
    "name_en": "Ferrite Bowfin",
@@ -1449,7 +1449,7 @@
     "Barren"
    ],
    "value": 30000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/254.png"
   },
   {
    "name_en": "Giant Witchfin",
@@ -1463,7 +1463,7 @@
     "Exotic"
    ],
    "value": 30000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/275.png"
   },
   {
    "name_en": "Ocean's Star",
@@ -1477,7 +1477,7 @@
     ""
    ],
    "value": 30000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/308.png"
   },
   {
    "name_en": "Tendrilla",
@@ -1491,7 +1491,7 @@
     ""
    ],
    "value": 30000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/329.png"
   },
   {
    "name_en": "Moon Turtle",
@@ -1505,7 +1505,7 @@
     "All"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/127.png"
   },
   {
    "name_en": "Scorpionfish",
@@ -1520,7 +1520,7 @@
     "Swamp"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/148.png"
   },
   {
    "name_en": "Immortal Flatfish",
@@ -1534,7 +1534,7 @@
     "Radioactive"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/169.png"
   },
   {
    "name_en": "Candelabra Octopus",
@@ -1549,7 +1549,7 @@
     "Lava"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/190.png"
   },
   {
    "name_en": "Iceshell Turtle",
@@ -1563,7 +1563,7 @@
     "Frozen"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/211.png"
   },
   {
    "name_en": "Deepwater Angler",
@@ -1577,7 +1577,7 @@
     "Lush"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/232.png"
   },
   {
    "name_en": "Bewitching Candlefish",
@@ -1591,7 +1591,7 @@
     "Barren"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/253.png"
   },
   {
    "name_en": "Screaming Crab",
@@ -1605,7 +1605,7 @@
     "Exotic"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/274.png"
   },
   {
    "name_en": "Abyssal Crab",
@@ -1619,7 +1619,7 @@
     ""
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/307.png"
   },
   {
    "name_en": "Quartzshell Crab",
@@ -1633,7 +1633,7 @@
     ""
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/328.png"
   },
   {
    "name_en": "Shrieking Oyster",
@@ -1647,7 +1647,7 @@
     "All"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/126.png"
   },
   {
    "name_en": "Waspfish",
@@ -1662,7 +1662,7 @@
     "Swamp"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/147.png"
   },
   {
    "name_en": "Geno-Prawn",
@@ -1676,7 +1676,7 @@
     "Radioactive"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/168.png"
   },
   {
    "name_en": "Cadmium Pearlcase",
@@ -1691,7 +1691,7 @@
     "Lava"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/189.png"
   },
   {
    "name_en": "Rimescale Snapper",
@@ -1705,7 +1705,7 @@
     "Frozen"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/210.png"
   },
   {
    "name_en": "Wispscale Darter",
@@ -1719,7 +1719,7 @@
     "Lush"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/231.png"
   },
   {
    "name_en": "Golden Urchin",
@@ -1733,7 +1733,7 @@
     "Barren"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/252.png"
   },
   {
    "name_en": "All-Seeing Worm",
@@ -1747,7 +1747,7 @@
     "Exotic"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/273.png"
   },
   {
    "name_en": "Ghost Skipper",
@@ -1761,7 +1761,7 @@
     ""
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/306.png"
   },
   {
    "name_en": "Evaporating Snail",
@@ -1775,7 +1775,7 @@
     ""
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/327.png"
   },
   {
    "name_en": "Giant Ray",
@@ -1789,7 +1789,7 @@
     "All"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/125.png"
   },
   {
    "name_en": "Bitterscale Ray",
@@ -1804,7 +1804,7 @@
     "Swamp"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/146.png"
   },
   {
    "name_en": "Boiling Shark",
@@ -1818,7 +1818,7 @@
     "Radioactive"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/167.png"
   },
   {
    "name_en": "Colossal Meltfin",
@@ -1833,7 +1833,7 @@
     "Lava"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/188.png"
   },
   {
    "name_en": "Giant Icefin",
@@ -1847,7 +1847,7 @@
     "Frozen"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/209.png"
   },
   {
    "name_en": "Giant Sunray",
@@ -1861,7 +1861,7 @@
     "Lush"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/230.png"
   },
   {
    "name_en": "Saltscale Bloater",
@@ -1875,7 +1875,7 @@
     "Barren"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/251.png"
   },
   {
    "name_en": "Sunspot Eel",
@@ -1889,7 +1889,7 @@
     "Exotic"
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/272.png"
   },
   {
    "name_en": "Colossal Squid",
@@ -1903,7 +1903,7 @@
     ""
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/305.png"
   },
   {
    "name_en": "Crystalfin Shark",
@@ -1917,7 +1917,7 @@
     ""
    ],
    "value": 20000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/326.png"
   },
   {
    "name_en": "Whispering Bonefish",
@@ -1931,7 +1931,7 @@
     "All"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/124.png"
   },
   {
    "name_en": "Venomtooth Wriggler",
@@ -1946,7 +1946,7 @@
     "Swamp"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/145.png"
   },
   {
    "name_en": "Radiant Sunfish",
@@ -1960,7 +1960,7 @@
     "Radioactive"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/166.png"
   },
   {
    "name_en": "Fumarole Gulper",
@@ -1975,7 +1975,7 @@
     "Lava"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/187.png"
   },
   {
    "name_en": "Frozen Knifejaw",
@@ -1989,7 +1989,7 @@
     "Frozen"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/208.png"
   },
   {
    "name_en": "Marrow Shark",
@@ -2003,7 +2003,7 @@
     "Lush"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/229.png"
   },
   {
    "name_en": "Mantis Ray",
@@ -2017,7 +2017,7 @@
     "Barren"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/250.png"
   },
   {
    "name_en": "Non-Euclidean Flatfish",
@@ -2031,7 +2031,7 @@
     "Exotic"
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/271.png"
   },
   {
    "name_en": "Shrieking Flatfish",
@@ -2045,7 +2045,7 @@
     ""
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/304.png"
   },
   {
    "name_en": "Vapourfin",
@@ -2059,7 +2059,7 @@
     ""
    ],
    "value": 10000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/325.png"
   },
   {
    "name_en": "Hypnotic Octopus",
@@ -2073,7 +2073,7 @@
     "All"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/122.png"
   },
   {
    "name_en": "Longjaw Snapper",
@@ -2087,7 +2087,7 @@
     "All"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/123.png"
   },
   {
    "name_en": "Acidic Pufferfish",
@@ -2102,7 +2102,7 @@
     "Swamp"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/143.png"
   },
   {
    "name_en": "Toxic Stonefish",
@@ -2117,7 +2117,7 @@
     "Swamp"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/144.png"
   },
   {
    "name_en": "Twisted Gulper",
@@ -2131,7 +2131,7 @@
     "Radioactive"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/164.png"
   },
   {
    "name_en": "Depleted Razorjaw",
@@ -2145,7 +2145,7 @@
     "Radioactive"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/165.png"
   },
   {
    "name_en": "Flashfire Eel",
@@ -2160,7 +2160,7 @@
     "Lava"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/185.png"
   },
   {
    "name_en": "Solar Roach",
@@ -2175,7 +2175,7 @@
     "Lava"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/186.png"
   },
   {
    "name_en": "Brineskipper",
@@ -2189,7 +2189,7 @@
     "Frozen"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/206.png"
   },
   {
    "name_en": "Pale Snowtail",
@@ -2203,7 +2203,7 @@
     "Frozen"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/207.png"
   },
   {
    "name_en": "Blue Ribbontail",
@@ -2217,7 +2217,7 @@
     "Lush"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/227.png"
   },
   {
    "name_en": "Jungle Redfin",
@@ -2231,7 +2231,7 @@
     "Lush"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/228.png"
   },
   {
    "name_en": "Electric Eel",
@@ -2245,7 +2245,7 @@
     "Barren"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/248.png"
   },
   {
    "name_en": "Silicate Crab",
@@ -2259,7 +2259,7 @@
     "Barren"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/249.png"
   },
   {
    "name_en": "Writhing Brainworm",
@@ -2273,7 +2273,7 @@
     "Exotic"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/269.png"
   },
   {
    "name_en": "Stargazer",
@@ -2287,7 +2287,7 @@
     "Exotic"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/270.png"
   },
   {
    "name_en": "Bloated Eel",
@@ -2301,7 +2301,7 @@
     ""
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/302.png"
   },
   {
    "name_en": "Luminescent Coral",
@@ -2315,7 +2315,7 @@
     ""
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/303.png"
   },
   {
    "name_en": "Metallic Shrimp",
@@ -2329,7 +2329,7 @@
     ""
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/323.png"
   },
   {
    "name_en": "Mineralised Jellyfish",
@@ -2343,7 +2343,7 @@
     ""
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/324.png"
   },
   {
    "name_en": "Needlefish",
@@ -2357,7 +2357,7 @@
     "All"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/120.png"
   },
   {
    "name_en": "Spiny Starfish",
@@ -2371,7 +2371,7 @@
     "All"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/121.png"
   },
   {
    "name_en": "Caustic Urchin",
@@ -2386,7 +2386,7 @@
     "Swamp"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/141.png"
   },
   {
    "name_en": "Weltscale Clam",
@@ -2401,7 +2401,7 @@
     "Swamp"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/142.png"
   },
   {
    "name_en": "Ionised Clam",
@@ -2415,7 +2415,7 @@
     "Radioactive"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/162.png"
   },
   {
    "name_en": "Nucleic Skipper",
@@ -2429,7 +2429,7 @@
     "Radioactive"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/163.png"
   },
   {
    "name_en": "Lamptip Ray",
@@ -2444,7 +2444,7 @@
     "Lava"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/183.png"
   },
   {
    "name_en": "Pyrefin",
@@ -2459,7 +2459,7 @@
     "Lava"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/184.png"
   },
   {
    "name_en": "Frostshell Clam",
@@ -2473,7 +2473,7 @@
     "Frozen"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/204.png"
   },
   {
    "name_en": "Frozen Isopod",
@@ -2487,7 +2487,7 @@
     "Frozen"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/205.png"
   },
   {
    "name_en": "Sweetwater Minnow",
@@ -2501,7 +2501,7 @@
     "Lush"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/225.png"
   },
   {
    "name_en": "Mellifluous Jellyfish",
@@ -2515,7 +2515,7 @@
     "Lush"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/226.png"
   },
   {
    "name_en": "Bladdersac",
@@ -2529,7 +2529,7 @@
     "Barren"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/246.png"
   },
   {
    "name_en": "Shalebound Starfish",
@@ -2543,7 +2543,7 @@
     "Barren"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/247.png"
   },
   {
    "name_en": "Anemone Anomaly",
@@ -2557,7 +2557,7 @@
     "Exotic"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/267.png"
   },
   {
    "name_en": "Erased Clam",
@@ -2571,7 +2571,7 @@
     "Exotic"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/268.png"
   },
   {
    "name_en": "Spratfin",
@@ -2585,7 +2585,7 @@
     ""
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/300.png"
   },
   {
    "name_en": "Marine Glowworm",
@@ -2599,7 +2599,7 @@
     ""
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/301.png"
   },
   {
    "name_en": "Ionised Oyster",
@@ -2613,7 +2613,7 @@
     ""
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/321.png"
   },
   {
    "name_en": "Pulp Urchin",
@@ -2627,7 +2627,7 @@
     ""
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/322.png"
   },
   {
    "name_en": "Stonescale Shark",
@@ -2641,7 +2641,7 @@
     "All"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/119.png"
   },
   {
    "name_en": "Giant Whiskerfish",
@@ -2656,7 +2656,7 @@
     "Swamp"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/140.png"
   },
   {
    "name_en": "Polyscale Bloater",
@@ -2670,7 +2670,7 @@
     "Radioactive"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/161.png"
   },
   {
    "name_en": "Basalt-Tooth Bloater",
@@ -2685,7 +2685,7 @@
     "Lava"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/182.png"
   },
   {
    "name_en": "Giant Hairy Crab",
@@ -2699,7 +2699,7 @@
     "Frozen"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/203.png"
   },
   {
    "name_en": "Warden Eel",
@@ -2713,7 +2713,7 @@
     "Lush"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/224.png"
   },
   {
    "name_en": "Greater Rocktooth",
@@ -2727,7 +2727,7 @@
     "Barren"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/245.png"
   },
   {
    "name_en": "Breach Crawler",
@@ -2741,7 +2741,7 @@
     "Exotic"
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/266.png"
   },
   {
    "name_en": "Bleached Octopus",
@@ -2755,7 +2755,7 @@
     ""
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/299.png"
   },
   {
    "name_en": "Cyclonic Eel",
@@ -2769,7 +2769,7 @@
     ""
    ],
    "value": 5000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/320.png"
   },
   {
    "name_en": "Greenscale Bloater",
@@ -2783,7 +2783,7 @@
     "All"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/118.png"
   },
   {
    "name_en": "Green-Ring Octopus",
@@ -2798,7 +2798,7 @@
     "Swamp"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/139.png"
   },
   {
    "name_en": "Glowing Catfish",
@@ -2812,7 +2812,7 @@
     "Radioactive"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/160.png"
   },
   {
    "name_en": "Sulphurfish",
@@ -2827,7 +2827,7 @@
     "Lava"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/181.png"
   },
   {
    "name_en": "Glacier Carp",
@@ -2841,7 +2841,7 @@
     "Frozen"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/202.png"
   },
   {
    "name_en": "Flourishing Shalefish",
@@ -2855,7 +2855,7 @@
     "Lush"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/223.png"
   },
   {
    "name_en": "Twilight Cavefish",
@@ -2869,7 +2869,7 @@
     "Barren"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/244.png"
   },
   {
    "name_en": "Shimmering Lashtail",
@@ -2883,7 +2883,7 @@
     "Exotic"
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/265.png"
   },
   {
    "name_en": "Wandering Shellback",
@@ -2897,7 +2897,7 @@
     ""
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/298.png"
   },
   {
    "name_en": "Plasmatic Squid",
@@ -2911,7 +2911,7 @@
     ""
    ],
    "value": 3000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/319.png"
   },
   {
    "name_en": "Reef Eel",
@@ -2925,7 +2925,7 @@
     "All"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/116.png"
   },
   {
    "name_en": "Rockfin",
@@ -2939,7 +2939,7 @@
     "All"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/117.png"
   },
   {
    "name_en": "Blistering Eel",
@@ -2954,7 +2954,7 @@
     "Swamp"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/137.png"
   },
   {
    "name_en": "Toxic Jelly",
@@ -2969,7 +2969,7 @@
     "Swamp"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/138.png"
   },
   {
    "name_en": "Forktailed Splicer",
@@ -2983,7 +2983,7 @@
     "Radioactive"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/158.png"
   },
   {
    "name_en": "Inverted Snapper",
@@ -2997,7 +2997,7 @@
     "Radioactive"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/159.png"
   },
   {
    "name_en": "Boiled Snapper",
@@ -3012,7 +3012,7 @@
     "Lava"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/179.png"
   },
   {
    "name_en": "Lavascale Trout",
@@ -3027,7 +3027,7 @@
     "Lava"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/180.png"
   },
   {
    "name_en": "Midnight Eel",
@@ -3041,7 +3041,7 @@
     "Frozen"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/200.png"
   },
   {
    "name_en": "Thawed Diamondfin",
@@ -3055,7 +3055,7 @@
     "Frozen"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/201.png"
   },
   {
    "name_en": "Wandering Kelpfin",
@@ -3069,7 +3069,7 @@
     "Lush"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/221.png"
   },
   {
    "name_en": "Clearwater Skipper",
@@ -3083,7 +3083,7 @@
     "Lush"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/222.png"
   },
   {
    "name_en": "Chalkscale Nibber",
@@ -3097,7 +3097,7 @@
     "Barren"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/242.png"
   },
   {
    "name_en": "Sweeperfish",
@@ -3111,7 +3111,7 @@
     "Barren"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/243.png"
   },
   {
    "name_en": "Murmurfish",
@@ -3125,7 +3125,7 @@
     "Exotic"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/263.png"
   },
   {
    "name_en": "Inverted Brainfish",
@@ -3139,7 +3139,7 @@
     "Exotic"
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/264.png"
   },
   {
    "name_en": "Silent Angler",
@@ -3153,7 +3153,7 @@
     ""
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/296.png"
   },
   {
    "name_en": "Whispering Jelly",
@@ -3167,7 +3167,7 @@
     ""
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/297.png"
   },
   {
    "name_en": "Jelly Prawn",
@@ -3181,7 +3181,7 @@
     ""
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/317.png"
   },
   {
    "name_en": "Encrusted Worm",
@@ -3195,7 +3195,7 @@
     ""
    ],
    "value": 2000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/318.png"
   },
   {
    "name_en": "Tiny Scuttlefish",
@@ -3209,7 +3209,7 @@
     "All"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/113.png"
   },
   {
    "name_en": "Mud Crab",
@@ -3223,7 +3223,7 @@
     "All"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/114.png"
   },
   {
    "name_en": "Pondskipper",
@@ -3237,7 +3237,7 @@
     "All"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/115.png"
   },
   {
    "name_en": "Bileworm",
@@ -3252,7 +3252,7 @@
     "Swamp"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/134.png"
   },
   {
    "name_en": "Venomous Triggerfin",
@@ -3267,7 +3267,7 @@
     "Swamp"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/135.png"
   },
   {
    "name_en": "Sea Cucumber",
@@ -3282,7 +3282,7 @@
     "Swamp"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/136.png"
   },
   {
    "name_en": "Bulging Snapper",
@@ -3296,7 +3296,7 @@
     "Radioactive"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/155.png"
   },
   {
    "name_en": "Spotted Protofin",
@@ -3310,7 +3310,7 @@
     "Radioactive"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/156.png"
   },
   {
    "name_en": "Field's Dartfish",
@@ -3324,7 +3324,7 @@
     "Radioactive"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/157.png"
   },
   {
    "name_en": "Oilfin",
@@ -3339,7 +3339,7 @@
     "Lava"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/176.png"
   },
   {
    "name_en": "Common Sunfish",
@@ -3354,7 +3354,7 @@
     "Lava"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/177.png"
   },
   {
    "name_en": "Ash Snail",
@@ -3369,7 +3369,7 @@
     "Lava"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/178.png"
   },
   {
    "name_en": "Ice Darter",
@@ -3383,7 +3383,7 @@
     "Frozen"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/197.png"
   },
   {
    "name_en": "Frozen Whelk",
@@ -3397,7 +3397,7 @@
     "Frozen"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/198.png"
   },
   {
    "name_en": "Frostscale Trout",
@@ -3411,7 +3411,7 @@
     "Frozen"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/199.png"
   },
   {
    "name_en": "Shadowfin",
@@ -3425,7 +3425,7 @@
     "Lush"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/218.png"
   },
   {
    "name_en": "Warty Frogfish",
@@ -3439,7 +3439,7 @@
     "Lush"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/219.png"
   },
   {
    "name_en": "Common Shimmertail",
@@ -3453,7 +3453,7 @@
     "Lush"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/220.png"
   },
   {
    "name_en": "Fool's Goldfish",
@@ -3467,7 +3467,7 @@
     "Barren"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/239.png"
   },
   {
    "name_en": "Lesser Dustfin",
@@ -3481,7 +3481,7 @@
     "Barren"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/240.png"
   },
   {
    "name_en": "Briny Worm",
@@ -3495,7 +3495,7 @@
     "Barren"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/241.png"
   },
   {
    "name_en": "Vectorfin",
@@ -3509,7 +3509,7 @@
     "Exotic"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/260.png"
   },
   {
    "name_en": "Hexscale Minnow",
@@ -3523,7 +3523,7 @@
     "Exotic"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/261.png"
   },
   {
    "name_en": "Aurora Jellyfish",
@@ -3537,7 +3537,7 @@
     "Exotic"
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/262.png"
   },
   {
    "name_en": "De-pressurised Blob",
@@ -3551,7 +3551,7 @@
     ""
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/293.png"
   },
   {
    "name_en": "Deepwater Minnow",
@@ -3565,7 +3565,7 @@
     ""
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/294.png"
   },
   {
    "name_en": "Sac-fish",
@@ -3579,7 +3579,7 @@
     ""
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/295.png"
   },
   {
    "name_en": "Gas-Worm",
@@ -3593,7 +3593,7 @@
     ""
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/314.png"
   },
   {
    "name_en": "Pressurised Clam",
@@ -3607,7 +3607,7 @@
     ""
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/315.png"
   },
   {
    "name_en": "Inert Whelk",
@@ -3621,7 +3621,7 @@
     ""
    ],
    "value": 1000.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/316.png"
   },
   {
    "name_en": "Kelp Strand",
@@ -3635,7 +3635,7 @@
     "All"
    ],
    "value": 500.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/281.png"
   },
   {
    "name_en": "Tangleweed",
@@ -3649,7 +3649,7 @@
     "All"
    ],
    "value": 500.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/282.png"
   },
   {
    "name_en": "Sea Sponge",
@@ -3663,7 +3663,7 @@
     "All"
    ],
    "value": 500.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/283.png"
   },
   {
    "name_en": "Bleached Coral",
@@ -3677,7 +3677,7 @@
     "All"
    ],
    "value": 500.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/284.png"
   },
   {
    "name_en": "Expired Braincoral",
@@ -3691,7 +3691,7 @@
     "All"
    ],
    "value": 500.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/285.png"
   },
   {
    "name_en": "Ossified Coral",
@@ -3705,7 +3705,7 @@
     "All"
    ],
    "value": 500.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/286.png"
   },
   {
    "name_en": "Old Boot",
@@ -3719,7 +3719,7 @@
     "All"
    ],
    "value": 500.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/287.png"
   },
   {
    "name_en": "Message in a Bottle",
@@ -3733,7 +3733,7 @@
     "All"
    ],
    "value": 500.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/289.png"
   },
   {
    "name_en": "Rusted Technology",
@@ -3747,7 +3747,7 @@
     "All"
    ],
    "value": 10.0,
-   "icon": ""
+   "icon": "https://app.nmsassistant.com/assets/images/curiosities/288.png"
   },
   {
    "name_en": "Message in a Bottle",

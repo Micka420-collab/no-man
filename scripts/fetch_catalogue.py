@@ -47,6 +47,17 @@ def fetch(path: str):
         return json.loads(resp.read().decode("utf-8"))
 
 
+ASSETS_IMG = "https://app.nmsassistant.com/assets/images/"
+
+
+def icon_url(item: dict) -> str:
+    cdn = item.get("CdnUrl")
+    if cdn:
+        return cdn
+    icon = item.get("Icon")
+    return ASSETS_IMG + icon if icon else ""
+
+
 def clean_text(text: str) -> str:
     """Nettoie le balisage du jeu : balises <COLOR>…<>, jetons vides <> et
     marqueurs de gabarit %NAME% laissés dans les données extraites."""
@@ -82,7 +93,7 @@ def merge_category(name: str, path: str, cap) -> list[dict]:
                 "value": item.get("BaseValueUnits", 0),
                 # "None" est une sentinelle sans unité : on la normalise en null.
                 "currency": currency if currency and currency != "None" else None,
-                "icon": item.get("CdnUrl", ""),
+                "icon": icon_url(item),
             }
         )
     # objets nommés seulement, triés par valeur décroissante

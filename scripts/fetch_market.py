@@ -32,12 +32,26 @@ CATALOGUES = {
 TOP_N = 12
 
 
+ASSETS_IMG = "https://app.nmsassistant.com/assets/images/"
+
+
 def fetch_json(path: str):
     url = f"{BASE}/{path}.json{VER}"
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     ctx = ssl.create_default_context()
     with urllib.request.urlopen(req, timeout=40, context=ctx) as resp:
         return json.loads(resp.read().decode("utf-8"))
+
+
+def icon_url(item: dict) -> str:
+    """URL d'icône fiable : CdnUrl si présent, sinon on la construit à partir
+    du champ Icon (certaines catégories, dont les curiosités/poissons, n'ont
+    pas de CdnUrl mais sont servies sous /assets/images/)."""
+    cdn = item.get("CdnUrl")
+    if cdn:
+        return cdn
+    icon = item.get("Icon")
+    return ASSETS_IMG + icon if icon else ""
 
 
 def merge_langs(en_items: list, fr_items: list) -> dict:
@@ -51,7 +65,7 @@ def merge_langs(en_items: list, fr_items: list) -> dict:
             "name_fr": fr.get("Name") or item.get("Name", ""),
             "value": item.get("BaseValueUnits", 0),
             "currency": item.get("CurrencyType", "Credits"),
-            "icon": item.get("CdnUrl", ""),
+            "icon": icon_url(item),
             "group_en": item.get("Group", ""),
             "group_fr": fr.get("Group") or item.get("Group", ""),
         }
@@ -88,7 +102,7 @@ def main() -> int:
                 "mission": bool(f.get("RequiresMission")),
                 "biomes": f.get("Biomes", []),
                 "value": (cur_en.get(app_id) or {}).get("BaseValueUnits", 0),
-                "icon": (cur_en.get(app_id) or {}).get("CdnUrl", ""),
+                "icon": icon_url(cur_en.get(app_id) or {}),
             }
         )
     order = {"Legendary": 0, "Epic": 1, "Desirable": 2, "Common": 3, "Junk": 4}

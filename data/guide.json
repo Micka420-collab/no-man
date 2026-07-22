@@ -370,6 +370,44 @@
           ]
         }
       ]
+    },
+    {
+      "id": "guerre",
+      "icon": "⚔️",
+      "name_fr": "Événement de guerre",
+      "name_en": "War event",
+      "intro_fr": "L'effort de guerre est un événement communautaire mondial : trois escouades s'affrontent et l'ensemble des joueurs fait progresser des paliers pour débloquer des récompenses. Voici comment y participer. Suis le classement en direct dans l'onglet Bulletin de guerre.",
+      "intro_en": "The war effort is a global community event: three squads compete and all players push through tiers to unlock rewards. Here's how to take part. Follow the live standings in the War bulletin tab.",
+      "sections": [
+        {
+          "icon": "🧭",
+          "title_fr": "Où contribuer",
+          "title_en": "Where to contribute",
+          "items": [
+            { "fr": "Rends-toi à l'Anomalie (l'objet appelable dans l'espace) et dirige-toi vers le Noyau Prismatique, le terminal dédié à l'effort de guerre.", "en": "Head to the Anomaly (the object you can summon in space) and go to the Prismatic Core, the terminal dedicated to the war effort." },
+            { "fr": "C'est là que tu choisis ton escouade et que tu déposes tes contributions. L'événement est suivi en direct via l'Atlas Galactique.", "en": "That's where you pick your squad and hand in your contributions. The event is tracked live via the Galactic Atlas." }
+          ]
+        },
+        {
+          "icon": "🎌",
+          "title_fr": "Choisir ton escouade",
+          "title_en": "Choosing your squad",
+          "items": [
+            { "fr": "Trois escouades s'affrontent (Bleue, Rouge, Verte). Rejoins celle que tu veux — tu peux suivre son classement sur le site (onglet Bulletin de guerre).", "en": "Three squads compete (Blue, Red, Green). Join whichever you like — you can follow its ranking on the site (War bulletin tab)." },
+            { "fr": "Marque ton camp sur le site pour voir en un coup d'œil si ton escouade mène ou doit se ressaisir.", "en": "Mark your side on the site to see at a glance whether your squad is leading or needs to catch up." }
+          ]
+        },
+        {
+          "icon": "🏅",
+          "title_fr": "Objectifs, paliers & récompenses",
+          "title_en": "Objectives, tiers & rewards",
+          "items": [
+            { "fr": "Chaque escouade progresse sur des objectifs (purge, restauration, sabotage). Tes contributions font grimper la barre commune.", "en": "Each squad progresses on objectives (purge, restore, sabotage). Your contributions push the shared bar up." },
+            { "fr": "En franchissant des paliers, la communauté débloque des récompenses (souvent cosmétiques : décors, tenues, bannières).", "en": "As tiers are reached, the community unlocks rewards (often cosmetic: décor, outfits, banners)." },
+            { "fr": "Les événements sont limités dans le temps : garde un œil sur le compte à rebours de l'onglet Bulletin de guerre pour ne rien rater.", "en": "Events are time-limited: keep an eye on the countdown in the War bulletin tab so you don't miss out." }
+          ]
+        }
+      ]
     }
   ]
 }

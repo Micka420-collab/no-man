@@ -972,6 +972,7 @@
     <button role="tab" id="tab-recettes" aria-controls="panel-recettes" data-tab="recettes" aria-selected="false" tabindex="-1">🧪 <span data-i18n="tab_recipes">Recettes</span></button>
     <button role="tab" id="tab-actus" aria-controls="panel-actus" data-tab="actus" aria-selected="false" tabindex="-1">📰 <span data-i18n="tab_news">Actualités</span><span class="notif" id="notif-actus" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-communaute" aria-controls="panel-communaute" data-tab="communaute" aria-selected="false" tabindex="-1">👥 <span data-i18n="tab_community">Communauté</span><span class="notif" id="notif-communaute" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
+    <button role="tab" id="tab-guerre" aria-controls="panel-guerre" data-tab="guerre" aria-selected="false" tabindex="-1">⚔️ <span data-i18n="tab_war">Bulletin de guerre</span></button>
     <button role="tab" id="tab-succes" aria-controls="panel-succes" data-tab="succes" aria-selected="false" tabindex="-1">🏆 <span data-i18n="tab_ach">Succès</span></button>
     <button role="tab" id="tab-videos" aria-controls="panel-videos" data-tab="videos" aria-selected="false" tabindex="-1">🎬 <span data-i18n="tab_videos">Vidéos</span><span class="notif" id="notif-videos" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-maj" aria-controls="panel-maj" data-tab="maj" aria-selected="false" tabindex="-1">🕰️ <span data-i18n="tab_timeline">Mises à jour</span></button>
@@ -1147,6 +1148,16 @@
       <div class="grid" id="community-list"></div>
     </section>
 
+    <!-- Bulletin de guerre -->
+    <section class="panel" id="panel-guerre" role="tabpanel" aria-labelledby="tab-guerre">
+      <div class="note" data-i18n="war_note">L'effort de guerre communautaire, suivi en direct depuis l'Atlas Galactique. Choisis ton escouade et suis le classement des trois camps.</div>
+      <div id="guerre-box"></div>
+      <div id="guerre-empty" class="empty" hidden data-i18n="war_none">Aucun événement de guerre en cours pour le moment. Reviens plus tard !</div>
+      <div style="text-align:center;margin-top:16px">
+        <button class="cat-more-btn" id="war-guide-link">📖 <span data-i18n="war_read_guide">Lire le guide de l'événement</span></button>
+      </div>
+    </section>
+
     <!-- Succès -->
     <section class="panel" id="panel-succes" role="tabpanel" aria-labelledby="tab-succes">
       <div class="note" data-i18n="ach_note">Pourcentage des joueurs Steam ayant débloqué chaque succès. Coche ceux que tu possèdes pour te situer par rapport à la communauté mondiale !</div>
@@ -1269,6 +1280,10 @@ const I18N = {
     footer_credits: 'Fait avec ❤️ pour les Voyageurs · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Code source</a> · données mises à jour automatiquement toutes les 6 h',
     footer_sources: "Sources : Hello Games (nomanssky.com), API Steam, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube",
     rel: { s: "à l'instant", m: n => `il y a ${n} min`, h: n => `il y a ${n} h`, d: n => `il y a ${n} j` },
+    tab_war: "Bulletin de guerre",
+    war_note: "L'effort de guerre communautaire, suivi en direct depuis l'Atlas Galactique. Choisis ton escouade et suis le classement des trois camps.",
+    war_none: "Aucun événement de guerre en cours pour le moment. Reviens plus tard !",
+    war_read_guide: "Lire le guide de l'événement",
     war_title: "Guerre contre la Hive of Glass",
     war_sub: "Effort de guerre communautaire suivi en direct depuis l'Atlas Galactique — contribue depuis le Noyau Prismatique à bord de l'Anomalie.",
     war_tier: (t, tot) => `Palier ${t}/${tot}`,
@@ -1416,6 +1431,10 @@ const I18N = {
     footer_credits: 'Made with ❤️ for Travellers · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Source code</a> · data refreshes automatically every 6 hours',
     footer_sources: "Sources: Hello Games (nomanssky.com), Steam API, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube",
     rel: { s: "just now", m: n => `${n} min ago`, h: n => `${n} h ago`, d: n => `${n} d ago` },
+    tab_war: "War bulletin",
+    war_note: "The community war effort, tracked live from the Galactic Atlas. Pick your squad and follow the three sides' standings.",
+    war_none: "No war event is running right now. Check back later!",
+    war_read_guide: "Read the event guide",
     war_title: "War against the Hive of Glass",
     war_sub: "Community war effort tracked live from the Galactic Atlas — contribute at the Prismatic Core aboard the Anomaly.",
     war_tier: (t, tot) => `Tier ${t}/${tot}`,
@@ -1688,6 +1707,11 @@ function activateTab(b, focus) {
 const tabByName = name => tabButtons.find(x => x.dataset.tab === name);
 document.body.dataset.tab = "apercu";
 tabButtons.forEach(b => b.addEventListener("click", () => activateTab(b, false)));
+// Lien « Lire le guide de l'événement » depuis le bulletin de guerre.
+const warGuideLink = document.getElementById("war-guide-link");
+if (warGuideLink) warGuideLink.addEventListener("click", () => {
+  sub.guide = "guerre"; activateTab(tabByName("guide"), false); renderGuide();
+});
 
 /* ---------- Navigation basse (mobile) + feuille « Plus » + balayage ---------- */
 const bottomnav = document.querySelector(".bottomnav");
@@ -2257,12 +2281,15 @@ function warCountdownText(endTime) {
 }
 
 function renderWar() {
-  const box = document.getElementById("war-box");
+  const targets = ["war-box", "guerre-box"].map(id => document.getElementById(id)).filter(Boolean);
+  const emptyEl = document.getElementById("guerre-empty");
   if (warTimer) { clearInterval(warTimer); warTimer = null; }
   if (!D.war || !D.war.event || !D.war.progress || !Array.isArray(D.war.progress.teamTotals) || !D.war.progress.teamTotals.length) {
-    box.innerHTML = "";
+    targets.forEach(t => t.innerHTML = "");
+    if (emptyEl) emptyEl.hidden = false;
     return;
   }
+  if (emptyEl) emptyEl.hidden = true;
   const ev = D.war.event, pr = D.war.progress;
   const teams = [...pr.teamTotals].sort((a, b) => (b.total || 0) - (a.total || 0));
   const leaderTotal = teams[0].total || 1;
@@ -2291,10 +2318,10 @@ function renderWar() {
     else if (rank > 0) verdict = T().war_rank(rank + 1, fmtNum(teams[0].total - teams[rank].total));
   }
 
-  box.innerHTML = `<div class="war-box">
+  const inner = `<div class="war-box">
     <div class="war-head">
       <h2>⚔️ ${T().war_title}</h2>
-      <div class="war-countdown" id="war-countdown">${running ? T().war_ends + " " + warCountdownText(ev.end_time) : T().war_ended}</div>
+      <div class="war-countdown">${running ? T().war_ends + " " + warCountdownText(ev.end_time) : T().war_ended}</div>
     </div>
     <div class="war-sub">${T().war_sub}</div>
     <div class="war-core">
@@ -2316,19 +2343,22 @@ function renderWar() {
     </div>
   </div>`;
 
-  box.querySelectorAll("button[data-team]").forEach(b => b.addEventListener("click", () => {
-    const cur = localStorage.getItem(LS_TEAM);
-    if (cur === b.dataset.team) localStorage.removeItem(LS_TEAM);
-    else localStorage.setItem(LS_TEAM, b.dataset.team);
-    keepFocus(box, renderWar); renderChips();
-  }));
+  targets.forEach(box => {
+    box.innerHTML = inner;
+    box.querySelectorAll("button[data-team]").forEach(b => b.addEventListener("click", () => {
+      const cur = localStorage.getItem(LS_TEAM);
+      if (cur === b.dataset.team) localStorage.removeItem(LS_TEAM);
+      else localStorage.setItem(LS_TEAM, b.dataset.team);
+      keepFocus(box, renderWar); renderChips();
+    }));
+  });
 
   if (running) {
     warTimer = setInterval(() => {
-      const el = document.getElementById("war-countdown");
-      if (!el) { clearInterval(warTimer); warTimer = null; return; }
+      const els = document.querySelectorAll(".war-countdown");
+      if (!els.length) { clearInterval(warTimer); warTimer = null; return; }
       const txt = warCountdownText(ev.end_time);
-      el.textContent = txt ? T().war_ends + " " + txt : T().war_ended;
+      els.forEach(el => el.textContent = txt ? T().war_ends + " " + txt : T().war_ended);
       if (!txt) { clearInterval(warTimer); warTimer = null; }
     }, reduceMotion ? 60000 : 1000);
   }

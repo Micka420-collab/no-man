@@ -14,10 +14,22 @@
           "title_fr": "Tes toutes premières minutes",
           "title_en": "Your very first minutes",
           "items": [
-            { "fr": "Tu te réveilles près de ton vaisseau écrasé. Suis les instructions : répare d'abord ton multi-outil, puis les systèmes du vaisseau (propulseur d'impulsion et lanceur).", "en": "You wake up next to your crashed ship. Follow the prompts: repair your multi-tool first, then the ship's systems (pulse engine and launch thruster)." },
-            { "fr": "Récolte les ressources demandées avec le laser d'extraction : ferrite (des rochers), carbone (de la végétation) et sodium (des plantes jaunes).", "en": "Gather the required resources with your mining beam: ferrite (rocks), carbon (plants) and sodium (yellow plants)." },
-            { "fr": "Surveille ta combinaison : la jauge de survie (froid, chaud, radiation, toxicité) se recharge avec du sodium ou en t'abritant.", "en": "Watch your suit: the hazard gauge (cold, heat, radiation, toxicity) recharges with sodium or by taking shelter." },
-            { "fr": "Le lanceur de vaisseau consomme du di-hydrogène en jetpack — garde toujours un peu de carburant pour redécoller.", "en": "The launch thruster runs on launch fuel — always keep some so you can take off again." }
+            {
+              "fr": "Tu te réveilles près de ton vaisseau écrasé. Suis les instructions : répare d'abord ton multi-outil, puis les systèmes du vaisseau (propulseur d'impulsion et lanceur).",
+              "en": "You wake up next to your crashed ship. Follow the prompts: repair your multi-tool first, then the ship's systems (pulse engine and launch thruster)."
+            },
+            {
+              "fr": "Récolte les ressources demandées avec le laser d'extraction : ferrite (des rochers), carbone (de la végétation) et sodium (des plantes jaunes).",
+              "en": "Gather the required resources with your mining beam: ferrite (rocks), carbon (plants) and sodium (yellow plants)."
+            },
+            {
+              "fr": "Surveille ta combinaison : la jauge de survie (froid, chaud, radiation, toxicité) se recharge avec du sodium ou en t'abritant.",
+              "en": "Watch your suit: the hazard gauge (cold, heat, radiation, toxicity) recharges with sodium or by taking shelter."
+            },
+            {
+              "fr": "Le lanceur de vaisseau consomme du di-hydrogène en jetpack — garde toujours un peu de carburant pour redécoller.",
+              "en": "The launch thruster runs on launch fuel — always keep some so you can take off again."
+            }
           ]
         },
         {
@@ -25,11 +37,26 @@
           "title_fr": "Les ressources de base à connaître",
           "title_en": "The core resources to know",
           "items": [
-            { "fr": "Ferrite (métal) : partout, dans les rochers. Sert à fabriquer presque tout, dont le métal chromatique via raffinage.", "en": "Ferrite (metal): everywhere, in rocks. Used to craft almost everything, including chromatic metal via refining." },
-            { "fr": "Carbone : plantes et arbres. Combustible de base et ingrédient de fabrication.", "en": "Carbon: plants and trees. Basic fuel and crafting ingredient." },
-            { "fr": "Di-hydrogène (cristaux bleus) : carburant du lanceur et des cellules de distorsion.", "en": "Di-hydrogen (blue crystals): fuel for your launch thruster and warp cells." },
-            { "fr": "Sodium (fleurs jaunes) : recharge les boucliers de combinaison. Le nitrate de sodium (raffiné) est plus puissant.", "en": "Sodium (yellow flowers): recharges your suit shields. Sodium nitrate (refined) is stronger." },
-            { "fr": "Oxygène (plantes rouges) : indispensable pour cuisiner, raffiner et recharger l'aérateur sous l'eau ou en environnement hostile.", "en": "Oxygen (red plants): essential to cook, refine, and recharge your hazard protection underwater or in extreme places." }
+            {
+              "fr": "Ferrite (métal) : partout, dans les rochers. Sert à fabriquer presque tout, dont le métal chromatique via raffinage.",
+              "en": "Ferrite (metal): everywhere, in rocks. Used to craft almost everything, including chromatic metal via refining."
+            },
+            {
+              "fr": "Carbone : plantes et arbres. Combustible de base et ingrédient de fabrication.",
+              "en": "Carbon: plants and trees. Basic fuel and crafting ingredient."
+            },
+            {
+              "fr": "Di-hydrogène (cristaux bleus) : carburant du lanceur et des cellules de distorsion.",
+              "en": "Di-hydrogen (blue crystals): fuel for your launch thruster and warp cells."
+            },
+            {
+              "fr": "Sodium (fleurs jaunes) : recharge les boucliers de combinaison. Le nitrate de sodium (raffiné) est plus puissant.",
+              "en": "Sodium (yellow flowers): recharges your suit shields. Sodium nitrate (refined) is stronger."
+            },
+            {
+              "fr": "Oxygène (plantes rouges) : indispensable pour cuisiner, raffiner et recharger l'aérateur sous l'eau ou en environnement hostile.",
+              "en": "Oxygen (red plants): essential to cook, refine, and recharge your hazard protection underwater or in extreme places."
+            }
           ]
         },
         {
@@ -37,10 +64,22 @@
           "title_fr": "Ton premier saut hyperspatial",
           "title_en": "Your first hyperspace jump",
           "items": [
-            { "fr": "Fabrique un hyperpropulseur (débloqué tôt dans l'histoire) puis des cellules de distorsion (di-hydrogène + condensat de tritium).", "en": "Build a Hyperdrive (unlocked early in the story) then Warp Cells (di-hydrogen + tritium condensate)." },
-            { "fr": "Ouvre la carte galactique depuis le cockpit et saute vers une nouvelle étoile : chaque système a ses planètes, sa faune et son économie.", "en": "Open the galaxy map from the cockpit and warp to a new star: each system has its own planets, fauna and economy." },
-            { "fr": "Pour atteindre les étoiles jaunes/vertes/rouges plus tard, il te faudra des améliorations d'hyperpropulseur (Cassiopée, Emeril, Indium).", "en": "To reach yellow/green/red stars later, you'll need hyperdrive upgrades (Cadmium, Emeril, Indium drives)." },
-            { "fr": "Astuce : visite l'Anomalie (appelable dans l'espace) pour débloquer des technologies gratuites et rencontrer d'autres joueurs.", "en": "Tip: visit the Anomaly (summonable in space) to unlock free tech and meet other players." }
+            {
+              "fr": "Fabrique un hyperpropulseur (débloqué tôt dans l'histoire) puis des cellules de distorsion (di-hydrogène + condensat de tritium).",
+              "en": "Build a Hyperdrive (unlocked early in the story) then Warp Cells (di-hydrogen + tritium condensate)."
+            },
+            {
+              "fr": "Ouvre la carte galactique depuis le cockpit et saute vers une nouvelle étoile : chaque système a ses planètes, sa faune et son économie.",
+              "en": "Open the galaxy map from the cockpit and warp to a new star: each system has its own planets, fauna and economy."
+            },
+            {
+              "fr": "Pour atteindre les étoiles jaunes/vertes/rouges plus tard, il te faudra des améliorations d'hyperpropulseur (Cassiopée, Emeril, Indium).",
+              "en": "To reach yellow/green/red stars later, you'll need hyperdrive upgrades (Cadmium, Emeril, Indium drives)."
+            },
+            {
+              "fr": "Astuce : visite l'Anomalie (appelable dans l'espace) pour débloquer des technologies gratuites et rencontrer d'autres joueurs.",
+              "en": "Tip: visit the Anomaly (summonable in space) to unlock free tech and meet other players."
+            }
           ]
         },
         {
@@ -48,10 +87,22 @@
           "title_fr": "Gagner tes premières unités",
           "title_en": "Earning your first units",
           "items": [
-            { "fr": "Scanne la faune et la flore (les 100 % de découverte d'une planète rapportent gros au début).", "en": "Scan fauna and flora (fully discovering a planet pays well early on)." },
-            { "fr": "Récolte et vends les objets de curiosité (perles vivantes, sacs de graisse, larmes de gravité…) au terminal de la station.", "en": "Harvest and sell curiosity items (living pearls, fat sacs, gravitino balls…) at a station terminal." },
-            { "fr": "Cherche des dépôts enfouis avec l'analyseur de signal + terminal cartographique (ruines, coffres, épaves).", "en": "Hunt buried deposits with the Signal Booster + navigation data (ruins, cargo drops, crashed ships)." },
-            { "fr": "Plus tard : l'agriculture, le raffinage en chaîne et le commerce entre systèmes sont les vraies mines d'or (voir le guide Agriculture).", "en": "Later: farming, chained refining and trading between systems are the real money-makers (see the Farming guide)." }
+            {
+              "fr": "Scanne la faune et la flore (les 100 % de découverte d'une planète rapportent gros au début).",
+              "en": "Scan fauna and flora (fully discovering a planet pays well early on)."
+            },
+            {
+              "fr": "Récolte et vends les objets de curiosité (perles vivantes, sacs de graisse, larmes de gravité…) au terminal de la station.",
+              "en": "Harvest and sell curiosity items (living pearls, fat sacs, gravitino balls…) at a station terminal."
+            },
+            {
+              "fr": "Cherche des dépôts enfouis avec l'analyseur de signal + terminal cartographique (ruines, coffres, épaves).",
+              "en": "Hunt buried deposits with the Signal Booster + navigation data (ruins, cargo drops, crashed ships)."
+            },
+            {
+              "fr": "Plus tard : l'agriculture, le raffinage en chaîne et le commerce entre systèmes sont les vraies mines d'or (voir le guide Agriculture).",
+              "en": "Later: farming, chained refining and trading between systems are the real money-makers (see the Farming guide)."
+            }
           ]
         },
         {
@@ -59,10 +110,22 @@
           "title_fr": "Base, raffineur et technologie",
           "title_en": "Base, refiner and technology",
           "items": [
-            { "fr": "Construis une base (ordinateur de base) : elle débloque des missions, des spécialistes recrutables et le stockage.", "en": "Build a base (Base Computer): it unlocks missions, recruitable specialists and storage." },
-            { "fr": "Le raffineur portable transforme tes ressources (ex. ferrite → métal chromatique). Consulte l'onglet Recettes du site !", "en": "The portable refiner transforms your resources (e.g. ferrite → chromatic metal). Check the site's Recipes tab!" },
-            { "fr": "Range tes modules de technologie dans les emplacements survolimentés et regroupe-les (voir le guide vaisseaux du Marché).", "en": "Put your tech modules in supercharged slots and group them (see the ship guide in Market)." },
-            { "fr": "Récupère des plans en visitant les stations, l'Anomalie et en accomplissant des missions à la guilde.", "en": "Collect blueprints by visiting stations, the Anomaly and completing guild missions." }
+            {
+              "fr": "Construis une base (ordinateur de base) : elle débloque des missions, des spécialistes recrutables et le stockage.",
+              "en": "Build a base (Base Computer): it unlocks missions, recruitable specialists and storage."
+            },
+            {
+              "fr": "Le raffineur portable transforme tes ressources (ex. ferrite → métal chromatique). Consulte l'onglet Recettes du site !",
+              "en": "The portable refiner transforms your resources (e.g. ferrite → chromatic metal). Check the site's Recipes tab!"
+            },
+            {
+              "fr": "Range tes modules de technologie dans les emplacements survolimentés et regroupe-les (voir le guide vaisseaux du Marché).",
+              "en": "Put your tech modules in supercharged slots and group them (see the ship guide in Market)."
+            },
+            {
+              "fr": "Récupère des plans en visitant les stations, l'Anomalie et en accomplissant des missions à la guilde.",
+              "en": "Collect blueprints by visiting stations, the Anomaly and completing guild missions."
+            }
           ]
         },
         {
@@ -70,10 +133,22 @@
           "title_fr": "Progresser et t'amuser",
           "title_en": "Progressing and having fun",
           "items": [
-            { "fr": "Suis la quête principale « Réveils » puis « Artémis » : elle t'apprend les mécaniques et raconte une vraie histoire.", "en": "Follow the main quest 'Awakenings' then 'Artemis': it teaches the mechanics and tells a real story." },
-            { "fr": "Récupère ton premier cargo capital gratuitement lors d'un événement de sauvetage (après quelques sauts).", "en": "Get your first capital freighter for free during a rescue event (after a few warps)." },
-            { "fr": "Participe aux Expéditions (modes à durée limitée) pour des récompenses exclusives.", "en": "Join Expeditions (limited-time modes) for exclusive rewards." },
-            { "fr": "N'oublie pas : il n'y a pas de mauvaise façon de jouer. Explore, construis, combats ou commerce — à ton rythme.", "en": "Remember: there's no wrong way to play. Explore, build, fight or trade — at your own pace." }
+            {
+              "fr": "Suis la quête principale « Réveils » puis « Artémis » : elle t'apprend les mécaniques et raconte une vraie histoire.",
+              "en": "Follow the main quest 'Awakenings' then 'Artemis': it teaches the mechanics and tells a real story."
+            },
+            {
+              "fr": "Récupère ton premier cargo capital gratuitement lors d'un événement de sauvetage (après quelques sauts).",
+              "en": "Get your first capital freighter for free during a rescue event (after a few warps)."
+            },
+            {
+              "fr": "Participe aux Expéditions (modes à durée limitée) pour des récompenses exclusives.",
+              "en": "Join Expeditions (limited-time modes) for exclusive rewards."
+            },
+            {
+              "fr": "N'oublie pas : il n'y a pas de mauvaise façon de jouer. Explore, construis, combats ou commerce — à ton rythme.",
+              "en": "Remember: there's no wrong way to play. Explore, build, fight or trade — at your own pace."
+            }
           ]
         }
       ]
@@ -91,9 +166,18 @@
           "title_fr": "Obtenir ton cargo capital gratuit",
           "title_en": "Getting your free capital freighter",
           "items": [
-            { "fr": "Après quelques sauts hyperspatiaux, un événement de sauvetage se déclenche : sors de l'entrepôt en te faisant attaquer, défends le cargo et son capitaine te l'offre gratuitement.", "en": "After a few warps, a rescue event triggers: drop out of warp into an attack, defend the freighter and its captain gives it to you for free." },
-            { "fr": "Tu peux refuser puis en chercher un meilleur : la classe (C→S) et le nombre d'emplacements dépendent du système (les systèmes riches donnent de meilleurs cargos).", "en": "You can decline and hunt a better one: class (C→S) and slot count depend on the system (wealthy systems yield better freighters)." },
-            { "fr": "Les cargos S de type Sentinelle ou Résurgent (dessin en flèche) sont les plus recherchés — inspecte-les avant d'accepter.", "en": "S-class Sentinel or Resurgent freighters (arrow-shaped) are the most coveted — inspect before accepting." }
+            {
+              "fr": "Après quelques sauts hyperspatiaux, un événement de sauvetage se déclenche : sors de l'entrepôt en te faisant attaquer, défends le cargo et son capitaine te l'offre gratuitement.",
+              "en": "After a few warps, a rescue event triggers: drop out of warp into an attack, defend the freighter and its captain gives it to you for free."
+            },
+            {
+              "fr": "Tu peux refuser puis en chercher un meilleur : la classe (C→S) et le nombre d'emplacements dépendent du système (les systèmes riches donnent de meilleurs cargos).",
+              "en": "You can decline and hunt a better one: class (C→S) and slot count depend on the system (wealthy systems yield better freighters)."
+            },
+            {
+              "fr": "Les cargos S de type Sentinelle ou Résurgent (dessin en flèche) sont les plus recherchés — inspecte-les avant d'accepter.",
+              "en": "S-class Sentinel or Resurgent freighters (arrow-shaped) are the most coveted — inspect before accepting."
+            }
           ]
         },
         {
@@ -101,10 +185,22 @@
           "title_fr": "Recruter des frégates",
           "title_en": "Recruiting frigates",
           "items": [
-            { "fr": "Dans l'espace, tu croises des frégates isolées : approche-les et communique pour les recruter (elles rejoignent ta flotte, plafond 30 frégates).", "en": "In space you'll meet lone frigates: approach and hail them to recruit (they join your fleet, cap of 30 frigates)." },
-            { "fr": "5 types : Combat ⚔️, Exploration 🔭, Commerce 💰, Industriel ⛏️ et Soutien 🛠️ (le soutien améliore les résultats des autres).", "en": "5 types: Combat ⚔️, Exploration 🔭, Trade 💰, Industrial ⛏️ and Support 🛠️ (support boosts the others' results)." },
-            { "fr": "Chaque frégate a une classe (C→S) et des traits (bonus/malus). Vise des traits positifs et fais monter leur niveau au fil des missions.", "en": "Each frigate has a class (C→S) and traits (bonus/penalty). Aim for positive traits and level them up over missions." },
-            { "fr": "Une frégate S bien montée fait toute la différence sur les missions longues — n'hésite pas à en libérer les mauvaises.", "en": "A well-levelled S-class frigate makes a big difference on long missions — don't hesitate to dismiss the bad ones." }
+            {
+              "fr": "Dans l'espace, tu croises des frégates isolées : approche-les et communique pour les recruter (elles rejoignent ta flotte, plafond 30 frégates).",
+              "en": "In space you'll meet lone frigates: approach and hail them to recruit (they join your fleet, cap of 30 frigates)."
+            },
+            {
+              "fr": "5 types : Combat ⚔️, Exploration 🔭, Commerce 💰, Industriel ⛏️ et Soutien 🛠️ (le soutien améliore les résultats des autres).",
+              "en": "5 types: Combat ⚔️, Exploration 🔭, Trade 💰, Industrial ⛏️ and Support 🛠️ (support boosts the others' results)."
+            },
+            {
+              "fr": "Chaque frégate a une classe (C→S) et des traits (bonus/malus). Vise des traits positifs et fais monter leur niveau au fil des missions.",
+              "en": "Each frigate has a class (C→S) and traits (bonus/penalty). Aim for positive traits and level them up over missions."
+            },
+            {
+              "fr": "Une frégate S bien montée fait toute la différence sur les missions longues — n'hésite pas à en libérer les mauvaises.",
+              "en": "A well-levelled S-class frigate makes a big difference on long missions — don't hesitate to dismiss the bad ones."
+            }
           ]
         },
         {
@@ -112,10 +208,22 @@
           "title_fr": "Envoyer des missions rentables",
           "title_en": "Running profitable missions",
           "items": [
-            { "fr": "Depuis le pont de commandement du cargo, lance des expéditions de flotte : associe le type de frégate au type de mission pour maximiser la réussite.", "en": "From the freighter's bridge, launch fleet expeditions: match the frigate type to the mission type to maximise success." },
-            { "fr": "Envoie assez de frégates pour dépasser la « force requise » et ajoute une frégate de soutien pour de meilleures récompenses.", "en": "Send enough frigates to exceed the 'required strength' and add a support frigate for better rewards." },
-            { "fr": "Les missions durent en temps réel (quelques heures à un jour) : lance-les avant de te déconnecter, récolte au retour.", "en": "Missions run in real time (a few hours to a day): launch them before logging off, collect on return." },
-            { "fr": "Récompenses : unités, nanites, modules de mise à niveau et objets rares — un revenu passif très solide une fois la flotte étoffée.", "en": "Rewards: units, nanites, upgrade modules and rare items — very solid passive income once your fleet grows." }
+            {
+              "fr": "Depuis le pont de commandement du cargo, lance des expéditions de flotte : associe le type de frégate au type de mission pour maximiser la réussite.",
+              "en": "From the freighter's bridge, launch fleet expeditions: match the frigate type to the mission type to maximise success."
+            },
+            {
+              "fr": "Envoie assez de frégates pour dépasser la « force requise » et ajoute une frégate de soutien pour de meilleures récompenses.",
+              "en": "Send enough frigates to exceed the 'required strength' and add a support frigate for better rewards."
+            },
+            {
+              "fr": "Les missions durent en temps réel (quelques heures à un jour) : lance-les avant de te déconnecter, récolte au retour.",
+              "en": "Missions run in real time (a few hours to a day): launch them before logging off, collect on return."
+            },
+            {
+              "fr": "Récompenses : unités, nanites, modules de mise à niveau et objets rares — un revenu passif très solide une fois la flotte étoffée.",
+              "en": "Rewards: units, nanites, upgrade modules and rare items — very solid passive income once your fleet grows."
+            }
           ]
         },
         {
@@ -123,9 +231,18 @@
           "title_fr": "Carburant et réparations",
           "title_en": "Fuel and repairs",
           "items": [
-            { "fr": "Chaque mission consomme du carburant de frégate (fabriqué à partir de métaux et gaz) — garde un stock pour ne pas interrompre les envois.", "en": "Each mission uses frigate fuel (crafted from metals and gases) — keep a stock so you never pause your sends." },
-            { "fr": "Une frégate peut revenir endommagée : répare-la avec les matériaux demandés (métal, condensats) avant de la renvoyer.", "en": "A frigate can return damaged: repair it with the requested materials (metal, condensates) before sending it again." },
-            { "fr": "Améliore ton cargo (module de rappel de frégate, entrepôts) auprès du marchand du pont pour augmenter capacité et rendement.", "en": "Upgrade your freighter (frigate recall module, storage rooms) from the bridge merchant to boost capacity and yield." }
+            {
+              "fr": "Chaque mission consomme du carburant de frégate (fabriqué à partir de métaux et gaz) — garde un stock pour ne pas interrompre les envois.",
+              "en": "Each mission uses frigate fuel (crafted from metals and gases) — keep a stock so you never pause your sends."
+            },
+            {
+              "fr": "Une frégate peut revenir endommagée : répare-la avec les matériaux demandés (métal, condensats) avant de la renvoyer.",
+              "en": "A frigate can return damaged: repair it with the requested materials (metal, condensates) before sending it again."
+            },
+            {
+              "fr": "Améliore ton cargo (module de rappel de frégate, entrepôts) auprès du marchand du pont pour augmenter capacité et rendement.",
+              "en": "Upgrade your freighter (frigate recall module, storage rooms) from the bridge merchant to boost capacity and yield."
+            }
           ]
         }
       ]
@@ -143,9 +260,18 @@
           "title_fr": "Débloquer les 16 glyphes",
           "title_en": "Unlocking the 16 glyphs",
           "items": [
-            { "fr": "Il existe 16 glyphes. On les débloque un par un en parlant aux Voyageurs (PNJ à capuche) dans les stations spatiales — chacun t'en offre un.", "en": "There are 16 glyphs. You unlock them one by one by talking to Travellers (hooded NPCs) in space stations — each gives you one." },
-            { "fr": "Astuce rapide : la quête « Un mystère à percer » et les récompenses de certaines missions accélèrent la collecte.", "en": "Quick tip: the 'A Trace of Metal'-era traveller missions and certain mission rewards speed up the collection." },
-            { "fr": "Une fois débloqués, les glyphes apparaissent en bas de ton exocombinaison : ton adresse actuelle est toujours affichée et partageable.", "en": "Once unlocked, glyphs appear at the bottom of your Exosuit: your current address is always shown and shareable." }
+            {
+              "fr": "Il existe 16 glyphes. On les débloque un par un en parlant aux Voyageurs (PNJ à capuche) dans les stations spatiales — chacun t'en offre un.",
+              "en": "There are 16 glyphs. You unlock them one by one by talking to Travellers (hooded NPCs) in space stations — each gives you one."
+            },
+            {
+              "fr": "Astuce rapide : la quête « Un mystère à percer » et les récompenses de certaines missions accélèrent la collecte.",
+              "en": "Quick tip: the 'A Trace of Metal'-era traveller missions and certain mission rewards speed up the collection."
+            },
+            {
+              "fr": "Une fois débloqués, les glyphes apparaissent en bas de ton exocombinaison : ton adresse actuelle est toujours affichée et partageable.",
+              "en": "Once unlocked, glyphs appear at the bottom of your Exosuit: your current address is always shown and shareable."
+            }
           ]
         },
         {
@@ -153,9 +279,18 @@
           "title_fr": "Trouver et activer un portail",
           "title_en": "Finding and activating a portal",
           "items": [
-            { "fr": "Les portails sont des arches de pierre trouvées via un monolithe, une ruine, ou en cherchant « portail » depuis une balise de station.", "en": "Portals are stone arches found via a monolith, a ruin, or by searching 'portal' from a station's teleporter." },
-            { "fr": "Active l'arche puis saisis les 12 glyphes de l'adresse de destination : le portail s'ouvre vers ce lieu précis.", "en": "Activate the arch then enter the 12 glyphs of the destination address: the portal opens to that exact spot." },
-            { "fr": "Tu arrives à côté du portail de destination. Pour rentrer, réutilise ce portail (ton point de départ est mémorisé).", "en": "You arrive next to the destination portal. To return, reuse that portal (your origin is remembered)." }
+            {
+              "fr": "Les portails sont des arches de pierre trouvées via un monolithe, une ruine, ou en cherchant « portail » depuis une balise de station.",
+              "en": "Portals are stone arches found via a monolith, a ruin, or by searching 'portal' from a station's teleporter."
+            },
+            {
+              "fr": "Active l'arche puis saisis les 12 glyphes de l'adresse de destination : le portail s'ouvre vers ce lieu précis.",
+              "en": "Activate the arch then enter the 12 glyphs of the destination address: the portal opens to that exact spot."
+            },
+            {
+              "fr": "Tu arrives à côté du portail de destination. Pour rentrer, réutilise ce portail (ton point de départ est mémorisé).",
+              "en": "You arrive next to the destination portal. To return, reuse that portal (your origin is remembered)."
+            }
           ]
         },
         {
@@ -163,9 +298,18 @@
           "title_fr": "Lire une adresse de glyphes",
           "title_en": "Reading a glyph address",
           "items": [
-            { "fr": "Une adresse = 12 glyphes. Le 1er indique l'indice de la planète dans le système ; les 3 suivants la hauteur (axe Y) ; puis le système et la région.", "en": "An address = 12 glyphs. The 1st is the planet index in the system; the next 3 are the height (Y axis); then the system and region." },
-            { "fr": "C'est le format universel de partage : la communauté échange des adresses de glyphes pour se retrouver (voir l'onglet Communauté, r/NMSCoordinateExchange).", "en": "It's the universal sharing format: the community swaps glyph addresses to meet up (see the Community tab, r/NMSCoordinateExchange)." },
-            { "fr": "Attention : les glyphes ne fonctionnent que dans la même galaxie. Pour changer de galaxie, il faut atteindre le centre ou une brèche.", "en": "Note: glyphs only work within the same galaxy. To change galaxy you must reach the core or a breach." }
+            {
+              "fr": "Une adresse = 12 glyphes. Le 1er indique l'indice de la planète dans le système ; les 3 suivants la hauteur (axe Y) ; puis le système et la région.",
+              "en": "An address = 12 glyphs. The 1st is the planet index in the system; the next 3 are the height (Y axis); then the system and region."
+            },
+            {
+              "fr": "C'est le format universel de partage : la communauté échange des adresses de glyphes pour se retrouver (voir l'onglet Communauté, r/NMSCoordinateExchange).",
+              "en": "It's the universal sharing format: the community swaps glyph addresses to meet up (see the Community tab, r/NMSCoordinateExchange)."
+            },
+            {
+              "fr": "Attention : les glyphes ne fonctionnent que dans la même galaxie. Pour changer de galaxie, il faut atteindre le centre ou une brèche.",
+              "en": "Note: glyphs only work within the same galaxy. To change galaxy you must reach the core or a breach."
+            }
           ]
         }
       ]
@@ -183,9 +327,18 @@
           "title_fr": "Mettre en place ta ferme",
           "title_en": "Setting up your farm",
           "items": [
-            { "fr": "Construis une base avec des bacs hydroponiques (intérieur) ou des planteurs (extérieur) et cultive les plantes déblocables via l'agronome recruté à la base.", "en": "Build a base with hydroponic trays (indoor) or planters (outdoor) and grow the plants unlocked via the Agricultural specialist recruited to your base." },
-            { "fr": "Chaque plante pousse sur un biome/condition : Cristal de givre (froid), Vigne solaire (radiation), Racine gamma (toxique), Chair de cactus (aride)…", "en": "Each plant grows on a biome/condition: Frost Crystal (cold), Solar Vine (radiation), Gamma Root (toxic), Cactus Flesh (arid)…" },
-            { "fr": "Regroupe tout dans une seule base bien pensée : plus c'est compact, plus la récolte est rapide.", "en": "Group everything in one well-planned base: the more compact, the faster the harvest." }
+            {
+              "fr": "Construis une base avec des bacs hydroponiques (intérieur) ou des planteurs (extérieur) et cultive les plantes déblocables via l'agronome recruté à la base.",
+              "en": "Build a base with hydroponic trays (indoor) or planters (outdoor) and grow the plants unlocked via the Agricultural specialist recruited to your base."
+            },
+            {
+              "fr": "Chaque plante pousse sur un biome/condition : Cristal de givre (froid), Vigne solaire (radiation), Racine gamma (toxique), Chair de cactus (aride)…",
+              "en": "Each plant grows on a biome/condition: Frost Crystal (cold), Solar Vine (radiation), Gamma Root (toxic), Cactus Flesh (arid)…"
+            },
+            {
+              "fr": "Regroupe tout dans une seule base bien pensée : plus c'est compact, plus la récolte est rapide.",
+              "en": "Group everything in one well-planned base: the more compact, the faster the harvest."
+            }
           ]
         },
         {
@@ -193,9 +346,18 @@
           "title_fr": "Raffiner en produits intermédiaires",
           "title_en": "Refining into intermediate products",
           "items": [
-            { "fr": "Tes récoltes se raffinent en composants clés : Verre (à partir de silicate de givre), Explosif liquide, Circuit imprimé…", "en": "Your harvests refine into key components: Glass (from frost silicate), Liquid Explosive, Circuit Board…" },
-            { "fr": "Utilise l'onglet Recettes du site pour voir exactement quelles entrées donnent quelles sorties, avec quantités et durées.", "en": "Use the site's Recipes tab to see exactly which inputs produce which outputs, with quantities and times." },
-            { "fr": "Automatise avec plusieurs raffineurs moyens/grands qui tournent pendant que tu explores.", "en": "Automate with several medium/large refiners running while you explore." }
+            {
+              "fr": "Tes récoltes se raffinent en composants clés : Verre (à partir de silicate de givre), Explosif liquide, Circuit imprimé…",
+              "en": "Your harvests refine into key components: Glass (from frost silicate), Liquid Explosive, Circuit Board…"
+            },
+            {
+              "fr": "Utilise l'onglet Recettes du site pour voir exactement quelles entrées donnent quelles sorties, avec quantités et durées.",
+              "en": "Use the site's Recipes tab to see exactly which inputs produce which outputs, with quantities and times."
+            },
+            {
+              "fr": "Automatise avec plusieurs raffineurs moyens/grands qui tournent pendant que tu explores.",
+              "en": "Automate with several medium/large refiners running while you explore."
+            }
           ]
         },
         {
@@ -203,10 +365,22 @@
           "title_fr": "Fabriquer les objets à millions",
           "title_en": "Crafting the million-unit items",
           "items": [
-            { "fr": "Les deux stars : le Dispositif de stase et l'Allumeur à fusion, qui valent chacun environ 15,6 millions d'unités pièce.", "en": "The two stars: the Stasis Device and the Fusion Ignitor, each worth about 15.6 million units apiece." },
-            { "fr": "Ils se fabriquent au bout d'une chaîne de composants (verre, explosif liquide, circuit imprimé, cœurs…) issus de ton agriculture.", "en": "They're crafted at the end of a chain of components (glass, liquid explosive, circuit board, cores…) grown from your farm." },
-            { "fr": "Consulte l'onglet Recettes puis la Base de données pour connaître la valeur exacte de chaque composant et objet final.", "en": "Check the Recipes tab then the Database for the exact value of each component and final item." },
-            { "fr": "Vends par lots au terminal de la galaxie ou à un cargo marchand : quelques dispositifs suffisent à financer un vaisseau S.", "en": "Sell in batches at a galactic trade terminal or a trade freighter: a few devices are enough to fund an S-class ship." }
+            {
+              "fr": "Les deux stars : le Dispositif de stase et l'Allumeur à fusion, qui valent chacun environ 15,6 millions d'unités pièce.",
+              "en": "The two stars: the Stasis Device and the Fusion Ignitor, each worth about 15.6 million units apiece."
+            },
+            {
+              "fr": "Ils se fabriquent au bout d'une chaîne de composants (verre, explosif liquide, circuit imprimé, cœurs…) issus de ton agriculture.",
+              "en": "They're crafted at the end of a chain of components (glass, liquid explosive, circuit board, cores…) grown from your farm."
+            },
+            {
+              "fr": "Consulte l'onglet Recettes puis la Base de données pour connaître la valeur exacte de chaque composant et objet final.",
+              "en": "Check the Recipes tab then the Database for the exact value of each component and final item."
+            },
+            {
+              "fr": "Vends par lots au terminal de la galaxie ou à un cargo marchand : quelques dispositifs suffisent à financer un vaisseau S.",
+              "en": "Sell in batches at a galactic trade terminal or a trade freighter: a few devices are enough to fund an S-class ship."
+            }
           ]
         },
         {
@@ -214,8 +388,14 @@
           "title_fr": "Bonus : la cuisine",
           "title_en": "Bonus: cooking",
           "items": [
-            { "fr": "Le processeur de nutriments transforme récoltes et produits animaux en plats qui se revendent très bien (et donnent des nanites via Cronus).", "en": "The Nutrient Processor turns harvests and animal products into dishes that sell very well (and give nanites via Cronus)." },
-            { "fr": "Plus de 1 300 recettes de cuisine existent — explore-les dans l'onglet Recettes pour trouver les plats les plus rentables.", "en": "Over 1,300 cooking recipes exist — explore them in the Recipes tab to find the most profitable dishes." }
+            {
+              "fr": "Le processeur de nutriments transforme récoltes et produits animaux en plats qui se revendent très bien (et donnent des nanites via Cronus).",
+              "en": "The Nutrient Processor turns harvests and animal products into dishes that sell very well (and give nanites via Cronus)."
+            },
+            {
+              "fr": "Plus de 1 300 recettes de cuisine existent — explore-les dans l'onglet Recettes pour trouver les plats les plus rentables.",
+              "en": "Over 1,300 cooking recipes exist — explore them in the Recipes tab to find the most profitable dishes."
+            }
           ]
         }
       ]
@@ -233,9 +413,18 @@
           "title_fr": "Bien s'équiper pour le combat",
           "title_en": "Gearing up for combat",
           "items": [
-            { "fr": "Priorise une arme forte sur ton vaisseau : le Canon à photons (dégâts bruts) ou le Fulgur (cadence). Ajoute-leur leurs 3 modules d'amélioration.", "en": "Prioritise a strong ship weapon: the Photon Cannon (raw damage) or Positron Ejector (fire rate). Add their 3 upgrade modules." },
-            { "fr": "Renforce tes boucliers de déflecteur : en combat, c'est ce qui te maintient en vie. Recharge-les avec des tables d'oxygène/isotopes.", "en": "Boost your Deflector Shield: in a fight it's what keeps you alive. Recharge it with oxygen/isotope elements." },
-            { "fr": "Place armes et boucliers dans les emplacements survolimentés et regroupe les modules pour le bonus d'adjacence (voir le guide vaisseaux du Marché).", "en": "Put weapons and shields in supercharged slots and group modules for the adjacency bonus (see the ship guide in Market)." }
+            {
+              "fr": "Priorise une arme forte sur ton vaisseau : le Canon à photons (dégâts bruts) ou le Fulgur (cadence). Ajoute-leur leurs 3 modules d'amélioration.",
+              "en": "Prioritise a strong ship weapon: the Photon Cannon (raw damage) or Positron Ejector (fire rate). Add their 3 upgrade modules."
+            },
+            {
+              "fr": "Renforce tes boucliers de déflecteur : en combat, c'est ce qui te maintient en vie. Recharge-les avec des tables d'oxygène/isotopes.",
+              "en": "Boost your Deflector Shield: in a fight it's what keeps you alive. Recharge it with oxygen/isotope elements."
+            },
+            {
+              "fr": "Place armes et boucliers dans les emplacements survolimentés et regroupe les modules pour le bonus d'adjacence (voir le guide vaisseaux du Marché).",
+              "en": "Put weapons and shields in supercharged slots and group modules for the adjacency bonus (see the ship guide in Market)."
+            }
           ]
         },
         {
@@ -243,9 +432,18 @@
           "title_fr": "Gagner tes duels",
           "title_en": "Winning your dogfights",
           "items": [
-            { "fr": "Utilise les freins (accélérateur relâché) pour rester derrière l'ennemi : celui qui garde l'autre dans son viseur gagne.", "en": "Use your brakes (ease off the throttle) to stay behind the enemy: whoever keeps the other in their sights wins." },
-            { "fr": "Vise le point faible : les pirates et Sentinelles ont des boucliers ; enchaîne les tirs pour percer avant qu'ils ne se rechargent.", "en": "Aim for the weak point: pirates and Sentinels have shields; chain your shots to break through before they recharge." },
-            { "fr": "Contre les vagues de Sentinelles, fuis en distorsion si tu es débordé, ou détruis le vaisseau « somme » pour stopper les renforts.", "en": "Against Sentinel waves, warp away if overwhelmed, or destroy the 'summoner' ship to stop reinforcements." }
+            {
+              "fr": "Utilise les freins (accélérateur relâché) pour rester derrière l'ennemi : celui qui garde l'autre dans son viseur gagne.",
+              "en": "Use your brakes (ease off the throttle) to stay behind the enemy: whoever keeps the other in their sights wins."
+            },
+            {
+              "fr": "Vise le point faible : les pirates et Sentinelles ont des boucliers ; enchaîne les tirs pour percer avant qu'ils ne se rechargent.",
+              "en": "Aim for the weak point: pirates and Sentinels have shields; chain your shots to break through before they recharge."
+            },
+            {
+              "fr": "Contre les vagues de Sentinelles, fuis en distorsion si tu es débordé, ou détruis le vaisseau « somme » pour stopper les renforts.",
+              "en": "Against Sentinel waves, warp away if overwhelmed, or destroy the 'summoner' ship to stop reinforcements."
+            }
           ]
         },
         {
@@ -253,9 +451,158 @@
           "title_fr": "Chasser un vaisseau de classe S",
           "title_en": "Hunting an S-class ship",
           "items": [
-            { "fr": "La classe (C→S) dépend de l'économie du système : vise les systèmes à économie « prospère » (3 étoiles) pour maximiser les chances de S.", "en": "Class (C→S) depends on system economy: target 'wealthy' (3-star) economy systems to maximise S-class odds." },
-            { "fr": "Poste-toi sur la rampe de la station et inspecte chaque vaisseau qui se pose : la classe et les emplacements s'affichent avant l'achat.", "en": "Camp the station landing pad and inspect each ship that lands: class and slot count show before purchase." },
-            { "fr": "Les exotiques (calmar, royal) sont toujours S : un seul modèle par système, ~1 % d'apparition. Les épaves de vaisseaux permettent d'en avoir un gratuitement à réparer.", "en": "Exotics (squid, royal) are always S: one model per system, ~1% spawn. Crashed ships give you one for free to repair." }
+            {
+              "fr": "La classe (C→S) dépend de l'économie du système : vise les systèmes à économie « prospère » (3 étoiles) pour maximiser les chances de S.",
+              "en": "Class (C→S) depends on system economy: target 'wealthy' (3-star) economy systems to maximise S-class odds."
+            },
+            {
+              "fr": "Poste-toi sur la rampe de la station et inspecte chaque vaisseau qui se pose : la classe et les emplacements s'affichent avant l'achat.",
+              "en": "Camp the station landing pad and inspect each ship that lands: class and slot count show before purchase."
+            },
+            {
+              "fr": "Les exotiques (calmar, royal) sont toujours S : un seul modèle par système, ~1 % d'apparition. Les épaves de vaisseaux permettent d'en avoir un gratuitement à réparer.",
+              "en": "Exotics (squid, royal) are always S: one model per system, ~1% spawn. Crashed ships give you one for free to repair."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vaisseaux",
+      "icon": "🚀",
+      "name_fr": "Vaisseaux & Corvettes",
+      "name_en": "Ships & Corvettes",
+      "intro_fr": "Où dénicher chaque type de vaisseau, comment repérer une classe S, et surtout comment construire ta propre Corvette — le vaisseau entièrement modulaire ajouté par la mise à jour Voyagers (2025). Détails vérifiés sur les guides et le wiki communautaires.",
+      "intro_en": "Where to find every kind of starship, how to spot an S-class, and above all how to build your own Corvette — the fully modular ship added by the Voyagers update (2025). Details verified against community guides and the wiki.",
+      "sections": [
+        {
+          "icon": "🛰️",
+          "title_fr": "Où trouver des vaisseaux",
+          "title_en": "Where to find ships",
+          "items": [
+            {
+              "fr": "Stations spatiales : des vaisseaux pilotés par des PNJ atterrissent en continu. Parle au pilote pour acheter ou échanger. Le stock change toutes les quelques minutes — parfait pour comparer.",
+              "en": "Space stations: NPC-piloted ships land constantly. Talk to a pilot to buy or trade. The line-up refreshes every few minutes — great for comparing."
+            },
+            {
+              "fr": "Comptoirs commerciaux (Trading Posts) au sol : beaucoup de vaisseaux se posent au même endroit. C'est LE spot pour « farmer » une classe S en rechargeant les atterrissages.",
+              "en": "Ground trading posts: lots of ships land in one spot. This is THE place to hunt an S-class by cycling through landings."
+            },
+            {
+              "fr": "Vaisseaux écrasés : suis un signal de détresse (tours de transmission → « transmission ») ou achète des données cartographiques d'urgence à un cartographe. Le vaisseau est gratuit, mais il faut réparer ses technologies endommagées.",
+              "en": "Crashed ships: follow a distress signal (transmission towers → 'transmission') or buy emergency cartographic data from a cartographer. The ship is free, but you must repair its damaged tech."
+            },
+            {
+              "fr": "Stations hors-la-loi (Outlaw) : systèmes pirates avec des vaisseaux solaires et des modèles exclusifs, souvent moins chers.",
+              "en": "Outlaw stations: pirate systems offering solar ships and exclusive models, often cheaper."
+            },
+            {
+              "fr": "Vaisseaux vivants : uniquement via la quête « Starbirth » (fais éclore un Œuf du vide). Organiques, ils s'améliorent avec des nodes plutôt que des modules classiques.",
+              "en": "Living Ships: only via the 'Starbirth' quest (hatch a Void Egg). Organic — they upgrade with nodes rather than normal modules."
+            },
+            {
+              "fr": "Interceptors (sentinelles) : dans les systèmes corrompus/dissonants, abats l'escouade de sentinelles pour faire apparaître puis atterrir sur un vaisseau Interceptor.",
+              "en": "Sentinel Interceptors: in corrupted/dissonant systems, defeat the Sentinel wing to make an Interceptor appear, then land on it to claim it."
+            },
+            {
+              "fr": "Anomalie spatiale & récompenses d'expédition : certains vaisseaux exotiques et thématiques ne s'obtiennent qu'en récompense d'événements ou via le Quicksilver.",
+              "en": "Space Anomaly & expedition rewards: some exotic and themed ships are only obtained as event rewards or via Quicksilver."
+            }
+          ]
+        },
+        {
+          "icon": "⭐",
+          "title_fr": "Types & classes",
+          "title_en": "Types & classes",
+          "items": [
+            {
+              "fr": "Archétypes : Chasseur (combat), Explorateur (hyperpropulsion), Cargo (inventaire), Navette (polyvalent bon marché), Exotique (rare, stats équilibrées), Solaire (voiles), Vivant et Interceptor.",
+              "en": "Archetypes: Fighter (combat), Explorer (hyperdrive), Hauler (inventory), Shuttle (cheap all-rounder), Exotic (rare, balanced stats), Solar (sails), Living and Interceptor."
+            },
+            {
+              "fr": "Classes de qualité : C < B < A < S. La classe S offre les meilleurs bonus et le plus d'emplacements de technologie. Vise une classe S de l'archétype qui correspond à ton style.",
+              "en": "Quality classes: C < B < A < S. S-class gives the best bonuses and the most tech slots. Aim for an S-class of the archetype that fits your playstyle."
+            },
+            {
+              "fr": "Astuce classe S : les systèmes en économie « Prospère/Puissant » (3 étoiles) font apparaître des vaisseaux de meilleure classe. Fais le tour d'un comptoir commercial dans un tel système.",
+              "en": "S-class tip: 'Wealthy/Powerful' (3-star) economy systems spawn higher-class ships. Camp a trading post in one of those systems."
+            }
+          ]
+        },
+        {
+          "icon": "🏗️",
+          "title_fr": "La Corvette : un vaisseau à construire",
+          "title_en": "The Corvette: a ship you build",
+          "items": [
+            {
+              "fr": "Nouveauté Voyagers (2025) : la Corvette est le premier vaisseau entièrement modulaire, assemblé pièce par pièce comme une base. Contrairement à tous les autres, on ne peut PAS l'acheter ni la trouver — il faut la construire soi-même.",
+              "en": "Voyagers (2025) feature: the Corvette is the first fully modular ship, assembled part by part like a base. Unlike every other ship, it cannot be bought or found — you build it yourself."
+            },
+            {
+              "fr": "Où : va dans n'importe quelle station spatiale, repère les 4 téléporteurs bleus sur la gauche et emprunte-en un pour rejoindre l'atelier de Corvette (Corvette Workshop) près de la sortie de la station.",
+              "en": "Where: go to any space station, find the 4 blue teleporters on the left, and take one to reach the Corvette Workshop near the station exit."
+            },
+            {
+              "fr": "Prérequis : prévois environ 16 emplacements d'inventaire libres et plus de 10 000 000 d'unités pour t'offrir tous les modules de base.",
+              "en": "Requirements: keep about 16 free inventory slots and over 10,000,000 units to afford all the basic modules."
+            },
+            {
+              "fr": "Tu peux modifier et améliorer ta Corvette à tout moment à l'atelier : ta première version n'a pas besoin d'être parfaite.",
+              "en": "You can modify and upgrade your Corvette at any time at the workshop — your first build doesn't need to be perfect."
+            }
+          ]
+        },
+        {
+          "icon": "🧩",
+          "title_fr": "Les modules à assembler",
+          "title_en": "The modules to assemble",
+          "items": [
+            {
+              "fr": "Modules essentiels : train d'atterrissage (à poser en premier), module d'habitation (l'intérieur), cockpit (à l'avant), réacteur, 2 propulseurs (sur les côtés), module d'accès / baie d'atterrissage (à l'arrière) et un système d'arme.",
+              "en": "Core modules: landing gear (place first), habitation module (the interior), cockpit (front), reactor, 2 thrusters (sides), access module / landing bay (rear), and a weapon system."
+            },
+            {
+              "fr": "Modules avancés : moteur principal, stabilisateurs de vol, plaques de blindage externes, conduits et de nombreuses pièces esthétiques. Les améliorations de module central donnent meilleures armes, boucliers et vitesse.",
+              "en": "Advanced modules: main engine, flight stabilizers, external plating, ducting and many aesthetic parts. Core-module upgrades grant better weapons, shields and speed."
+            },
+            {
+              "fr": "Personnalisation : chaque module reçoit sa propre couleur et finition. À l'intérieur, tu peux placer des raffineurs portables et des extensions de stockage.",
+              "en": "Customization: each module gets its own color and finish. Inside, you can place portable refiners and storage upgrades."
+            }
+          ]
+        },
+        {
+          "icon": "🔧",
+          "title_fr": "Trouver des pièces d'amélioration",
+          "title_en": "Finding upgrade parts",
+          "items": [
+            {
+              "fr": "Scanne les planètes à la recherche de « métal de récupération » (Salvageable Scrap) : repère le symbole en forme de Wi-Fi dans un bouclier jaune.",
+              "en": "Scan planets for 'Salvageable Scrap': look for the Wi-Fi-like symbol inside a yellow shield."
+            },
+            {
+              "fr": "Sur place : creuse avec le manipulateur de terrain, détruis les caisses puis pille les conteneurs de récupération pour débloquer de nouveaux modules de Corvette.",
+              "en": "On site: dig with the terrain manipulator, destroy the casings, then loot the salvage containers to unlock new Corvette modules."
+            }
+          ]
+        },
+        {
+          "icon": "👨‍🚀",
+          "title_fr": "Multijoueur & équipage",
+          "title_en": "Multiplayer & crew",
+          "items": [
+            {
+              "fr": "En vol, tu peux quitter le siège du pilote et te déplacer dans les couloirs de ta Corvette, même pendant le voyage dans l'espace.",
+              "en": "In flight you can leave the pilot's seat and walk your Corvette's corridors, even while travelling through space."
+            },
+            {
+              "fr": "Sorties extravéhiculaires : avec ton jetpack, tu peux faire des sorties dans l'espace autour du vaisseau.",
+              "en": "Spacewalks: with your jetpack, you can step outside and spacewalk around the ship."
+            },
+            {
+              "fr": "Coopération : invite des amis à bord — plusieurs joueurs peuvent marcher dans la même Corvette et former un équipage.",
+              "en": "Co-op: invite friends aboard — multiple players can walk around the same Corvette and form a crew."
+            }
           ]
         }
       ]
@@ -273,9 +620,18 @@
           "title_fr": "Débloquer les exocraft",
           "title_en": "Unlocking exocraft",
           "items": [
-            { "fr": "Construis une géo-baie d'exocraft à ta base (ou sur ton cargo pour l'invoquer partout) : elle débloque les plans successifs.", "en": "Build an Exocraft Geobay at your base (or on your freighter to summon them anywhere): it unlocks the successive blueprints." },
-            { "fr": "Chaque exocraft peut recevoir un canon minier et un scanner de signal amélioré — très utile pour trouver ressources et sites.", "en": "Each exocraft can take a mining laser and an upgraded signal scanner — great for finding resources and sites." },
-            { "fr": "Une fois une géo-baie posée sur une planète, tu peux invoquer ton exocraft à distance depuis le menu rapide.", "en": "Once a geobay is placed on a planet, you can summon your exocraft remotely from the quick menu." }
+            {
+              "fr": "Construis une géo-baie d'exocraft à ta base (ou sur ton cargo pour l'invoquer partout) : elle débloque les plans successifs.",
+              "en": "Build an Exocraft Geobay at your base (or on your freighter to summon them anywhere): it unlocks the successive blueprints."
+            },
+            {
+              "fr": "Chaque exocraft peut recevoir un canon minier et un scanner de signal amélioré — très utile pour trouver ressources et sites.",
+              "en": "Each exocraft can take a mining laser and an upgraded signal scanner — great for finding resources and sites."
+            },
+            {
+              "fr": "Une fois une géo-baie posée sur une planète, tu peux invoquer ton exocraft à distance depuis le menu rapide.",
+              "en": "Once a geobay is placed on a planet, you can summon your exocraft remotely from the quick menu."
+            }
           ]
         },
         {
@@ -283,9 +639,18 @@
           "title_fr": "Quel véhicule pour quoi",
           "title_en": "Which vehicle for what",
           "items": [
-            { "fr": "Roamer : polyvalent, le premier à débloquer. Nomad : rapide et léger, idéal sur l'eau et le sable. Colossus : énorme, pour miner et transporter.", "en": "Roamer: all-rounder, the first to unlock. Nomad: fast and light, great on water and sand. Colossus: huge, for mining and hauling." },
-            { "fr": "Pilgrim : moto rapide et économe. Nautilon : sous-marin pour explorer les fonds et récolter sous l'eau. Minotaur : exocostume à pied, armé et blindé.", "en": "Pilgrim: fast, efficient bike. Nautilon: submarine to explore the deep and harvest underwater. Minotaur: walking exo-mech, armed and armoured." },
-            { "fr": "Le Minotaure peut passer en mode IA pour te suivre et combattre à tes côtés — pratique en environnement hostile.", "en": "The Minotaur can switch to AI mode to follow you and fight at your side — handy in hostile environments." }
+            {
+              "fr": "Roamer : polyvalent, le premier à débloquer. Nomad : rapide et léger, idéal sur l'eau et le sable. Colossus : énorme, pour miner et transporter.",
+              "en": "Roamer: all-rounder, the first to unlock. Nomad: fast and light, great on water and sand. Colossus: huge, for mining and hauling."
+            },
+            {
+              "fr": "Pilgrim : moto rapide et économe. Nautilon : sous-marin pour explorer les fonds et récolter sous l'eau. Minotaur : exocostume à pied, armé et blindé.",
+              "en": "Pilgrim: fast, efficient bike. Nautilon: submarine to explore the deep and harvest underwater. Minotaur: walking exo-mech, armed and armoured."
+            },
+            {
+              "fr": "Le Minotaure peut passer en mode IA pour te suivre et combattre à tes côtés — pratique en environnement hostile.",
+              "en": "The Minotaur can switch to AI mode to follow you and fight at your side — handy in hostile environments."
+            }
           ]
         }
       ]
@@ -303,9 +668,18 @@
           "title_fr": "Poser sa base au bon endroit",
           "title_en": "Placing your base wisely",
           "items": [
-            { "fr": "Choisis un lieu au climat clément, riche en ressources voulues (ex. gaz spécifique) et idéalement près d'un point d'intérêt.", "en": "Pick a spot with a mild climate, rich in the resources you want (e.g. a specific gas) and ideally near a point of interest." },
-            { "fr": "Installe un module de téléportation dès que possible : il te relie au réseau des stations et de tes autres bases.", "en": "Install a teleporter as soon as possible: it links you to the station network and your other bases." },
-            { "fr": "Tu peux posséder plusieurs bases — spécialise-les (ferme, industrie, avant-poste d'exploration).", "en": "You can own several bases — specialise them (farm, industry, exploration outpost)." }
+            {
+              "fr": "Choisis un lieu au climat clément, riche en ressources voulues (ex. gaz spécifique) et idéalement près d'un point d'intérêt.",
+              "en": "Pick a spot with a mild climate, rich in the resources you want (e.g. a specific gas) and ideally near a point of interest."
+            },
+            {
+              "fr": "Installe un module de téléportation dès que possible : il te relie au réseau des stations et de tes autres bases.",
+              "en": "Install a teleporter as soon as possible: it links you to the station network and your other bases."
+            },
+            {
+              "fr": "Tu peux posséder plusieurs bases — spécialise-les (ferme, industrie, avant-poste d'exploration).",
+              "en": "You can own several bases — specialise them (farm, industry, exploration outpost)."
+            }
           ]
         },
         {
@@ -313,9 +687,18 @@
           "title_fr": "Alimenter et automatiser",
           "title_en": "Powering and automating",
           "items": [
-            { "fr": "Produis de l'énergie avec des panneaux solaires + batteries (jour/nuit) ou un générateur à biocarburant pour démarrer.", "en": "Generate power with solar panels + batteries (day/night) or a biofuel reactor to get started." },
-            { "fr": "Les foreuses minérales/gazeuses extraient automatiquement les ressources : relie-les à des conteneurs de stockage.", "en": "Mineral/gas extractors auto-harvest resources: wire them to storage containers." },
-            { "fr": "Recrute des spécialistes (agronome, armurier, scientifique…) à ta base : ils débloquent des missions et des plans.", "en": "Recruit specialists (farmer, armourer, scientist…) to your base: they unlock missions and blueprints." }
+            {
+              "fr": "Produis de l'énergie avec des panneaux solaires + batteries (jour/nuit) ou un générateur à biocarburant pour démarrer.",
+              "en": "Generate power with solar panels + batteries (day/night) or a biofuel reactor to get started."
+            },
+            {
+              "fr": "Les foreuses minérales/gazeuses extraient automatiquement les ressources : relie-les à des conteneurs de stockage.",
+              "en": "Mineral/gas extractors auto-harvest resources: wire them to storage containers."
+            },
+            {
+              "fr": "Recrute des spécialistes (agronome, armurier, scientifique…) à ta base : ils débloquent des missions et des plans.",
+              "en": "Recruit specialists (farmer, armourer, scientist…) to your base: they unlock missions and blueprints."
+            }
           ]
         },
         {
@@ -323,9 +706,18 @@
           "title_fr": "Astuces de construction",
           "title_en": "Building tips",
           "items": [
-            { "fr": "Le mode construction avancé (édition libre) permet de superposer et pivoter les pièces pour des designs créatifs.", "en": "Advanced build mode (free edit) lets you overlap and rotate parts for creative designs." },
-            { "fr": "Attention à la limite de complexité par base : reste raisonnable si tu veux garder de bonnes performances.", "en": "Mind the per-base complexity limit: keep it reasonable to maintain good performance." },
-            { "fr": "Partage tes plus belles bases avec la communauté, ou visite celles des autres via le portail de base à l'Anomalie.", "en": "Share your best bases with the community, or visit others' via the base portal at the Anomaly." }
+            {
+              "fr": "Le mode construction avancé (édition libre) permet de superposer et pivoter les pièces pour des designs créatifs.",
+              "en": "Advanced build mode (free edit) lets you overlap and rotate parts for creative designs."
+            },
+            {
+              "fr": "Attention à la limite de complexité par base : reste raisonnable si tu veux garder de bonnes performances.",
+              "en": "Mind the per-base complexity limit: keep it reasonable to maintain good performance."
+            },
+            {
+              "fr": "Partage tes plus belles bases avec la communauté, ou visite celles des autres via le portail de base à l'Anomalie.",
+              "en": "Share your best bases with the community, or visit others' via the base portal at the Anomaly."
+            }
           ]
         }
       ]
@@ -343,9 +735,18 @@
           "title_fr": "Se retrouver en jeu",
           "title_en": "Meeting up in game",
           "items": [
-            { "fr": "Ouvre le menu rapide → onglet Multijoueur, puis invite ton ami (Steam, PSN, Xbox, Switch — le cross-play est activé par défaut).", "en": "Open the quick menu → Multiplayer tab, then invite your friend (Steam, PSN, Xbox, Switch — cross-play is on by default)." },
-            { "fr": "Sinon, retrouvez-vous à l'Anomalie, la station sociale appelable dans l'espace où se croisent les joueurs.", "en": "Otherwise, meet at the Anomaly, the social hub you can summon in space where players gather." },
-            { "fr": "Un groupe va jusqu'à 4 joueurs pour toutes les fonctionnalités. Vérifie les réglages de confidentialité de session (Privé / Amis / Public).", "en": "A party supports up to 4 players for full features. Check your session privacy settings (Private / Friends / Public)." }
+            {
+              "fr": "Ouvre le menu rapide → onglet Multijoueur, puis invite ton ami (Steam, PSN, Xbox, Switch — le cross-play est activé par défaut).",
+              "en": "Open the quick menu → Multiplayer tab, then invite your friend (Steam, PSN, Xbox, Switch — cross-play is on by default)."
+            },
+            {
+              "fr": "Sinon, retrouvez-vous à l'Anomalie, la station sociale appelable dans l'espace où se croisent les joueurs.",
+              "en": "Otherwise, meet at the Anomaly, the social hub you can summon in space where players gather."
+            },
+            {
+              "fr": "Un groupe va jusqu'à 4 joueurs pour toutes les fonctionnalités. Vérifie les réglages de confidentialité de session (Privé / Amis / Public).",
+              "en": "A party supports up to 4 players for full features. Check your session privacy settings (Private / Friends / Public)."
+            }
           ]
         },
         {
@@ -353,9 +754,18 @@
           "title_fr": "Construire une base à plusieurs",
           "title_en": "Building a base together",
           "items": [
-            { "fr": "Une base appartient à un seul propriétaire (celui qui pose l'ordinateur de base). Désignez une base principale commune.", "en": "A base has a single owner (whoever places the Base Computer). Agree on one shared main base." },
-            { "fr": "Pour que ton ami construise dans ta base, il doit être dans ta session et tu dois autoriser la modification par les autres joueurs dans les permissions de la base.", "en": "For your friend to build in your base, they must be in your session and you must allow editing by other players in the base permissions." },
-            { "fr": "Chacun peut aussi garder ses propres bases et se rendre visite via téléporteur. Choisissez une planète au climat clément et riche en ressources.", "en": "You can also each keep your own bases and visit via teleporter. Pick a mild-climate planet rich in useful resources." }
+            {
+              "fr": "Une base appartient à un seul propriétaire (celui qui pose l'ordinateur de base). Désignez une base principale commune.",
+              "en": "A base has a single owner (whoever places the Base Computer). Agree on one shared main base."
+            },
+            {
+              "fr": "Pour que ton ami construise dans ta base, il doit être dans ta session et tu dois autoriser la modification par les autres joueurs dans les permissions de la base.",
+              "en": "For your friend to build in your base, they must be in your session and you must allow editing by other players in the base permissions."
+            },
+            {
+              "fr": "Chacun peut aussi garder ses propres bases et se rendre visite via téléporteur. Choisissez une planète au climat clément et riche en ressources.",
+              "en": "You can also each keep your own bases and visit via teleporter. Pick a mild-climate planet rich in useful resources."
+            }
           ]
         },
         {
@@ -363,10 +773,22 @@
           "title_fr": "Mettre les ressources en commun",
           "title_en": "Pooling your resources",
           "items": [
-            { "fr": "Conteneurs de stockage : construisez-en dans la base commune. Les membres du groupe autorisés peuvent y déposer et retirer — la méthode la plus simple pour partager.", "en": "Storage Containers: build them in the shared base. Authorised party members can deposit and withdraw — the simplest way to share." },
-            { "fr": "Cargo capital : si ton ami rejoint ta session et monte à bord de ton cargo, il accède à son stockage. Idéal pour les grosses quantités.", "en": "Capital freighter: if your friend joins your session and boards your freighter, they can use its storage. Great for large quantities." },
-            { "fr": "Raffineur partagé : dépose des ressources dans un raffineur, l'autre joueur les récupère — une astuce de transfert rapide.", "en": "Shared refiner: drop resources into a refiner and the other player takes them out — a quick transfer trick." },
-            { "fr": "Répartissez les rôles (l'un mine, l'un raffine, l'un cuisine/vend) et déposez tout dans le stockage commun : c'est là que la coop devient vraiment rentable (voir le guide Agriculture rentable).", "en": "Split the roles (one mines, one refines, one cooks/sells) and drop everything in shared storage: that's where co-op really pays off (see the Profitable farming guide)." }
+            {
+              "fr": "Conteneurs de stockage : construisez-en dans la base commune. Les membres du groupe autorisés peuvent y déposer et retirer — la méthode la plus simple pour partager.",
+              "en": "Storage Containers: build them in the shared base. Authorised party members can deposit and withdraw — the simplest way to share."
+            },
+            {
+              "fr": "Cargo capital : si ton ami rejoint ta session et monte à bord de ton cargo, il accède à son stockage. Idéal pour les grosses quantités.",
+              "en": "Capital freighter: if your friend joins your session and boards your freighter, they can use its storage. Great for large quantities."
+            },
+            {
+              "fr": "Raffineur partagé : dépose des ressources dans un raffineur, l'autre joueur les récupère — une astuce de transfert rapide.",
+              "en": "Shared refiner: drop resources into a refiner and the other player takes them out — a quick transfer trick."
+            },
+            {
+              "fr": "Répartissez les rôles (l'un mine, l'un raffine, l'un cuisine/vend) et déposez tout dans le stockage commun : c'est là que la coop devient vraiment rentable (voir le guide Agriculture rentable).",
+              "en": "Split the roles (one mines, one refines, one cooks/sells) and drop everything in shared storage: that's where co-op really pays off (see the Profitable farming guide)."
+            }
           ]
         }
       ]
@@ -384,8 +806,14 @@
           "title_fr": "Où contribuer",
           "title_en": "Where to contribute",
           "items": [
-            { "fr": "Rends-toi à l'Anomalie (l'objet appelable dans l'espace) et dirige-toi vers le Noyau Prismatique, le terminal dédié à l'effort de guerre.", "en": "Head to the Anomaly (the object you can summon in space) and go to the Prismatic Core, the terminal dedicated to the war effort." },
-            { "fr": "C'est là que tu choisis ton escouade et que tu déposes tes contributions. L'événement est suivi en direct via l'Atlas Galactique.", "en": "That's where you pick your squad and hand in your contributions. The event is tracked live via the Galactic Atlas." }
+            {
+              "fr": "Rends-toi à l'Anomalie (l'objet appelable dans l'espace) et dirige-toi vers le Noyau Prismatique, le terminal dédié à l'effort de guerre.",
+              "en": "Head to the Anomaly (the object you can summon in space) and go to the Prismatic Core, the terminal dedicated to the war effort."
+            },
+            {
+              "fr": "C'est là que tu choisis ton escouade et que tu déposes tes contributions. L'événement est suivi en direct via l'Atlas Galactique.",
+              "en": "That's where you pick your squad and hand in your contributions. The event is tracked live via the Galactic Atlas."
+            }
           ]
         },
         {
@@ -393,8 +821,14 @@
           "title_fr": "Choisir ton escouade",
           "title_en": "Choosing your squad",
           "items": [
-            { "fr": "Trois escouades s'affrontent (Bleue, Rouge, Verte). Rejoins celle que tu veux — tu peux suivre son classement sur le site (onglet Bulletin de guerre).", "en": "Three squads compete (Blue, Red, Green). Join whichever you like — you can follow its ranking on the site (War bulletin tab)." },
-            { "fr": "Marque ton camp sur le site pour voir en un coup d'œil si ton escouade mène ou doit se ressaisir.", "en": "Mark your side on the site to see at a glance whether your squad is leading or needs to catch up." }
+            {
+              "fr": "Trois escouades s'affrontent (Bleue, Rouge, Verte). Rejoins celle que tu veux — tu peux suivre son classement sur le site (onglet Bulletin de guerre).",
+              "en": "Three squads compete (Blue, Red, Green). Join whichever you like — you can follow its ranking on the site (War bulletin tab)."
+            },
+            {
+              "fr": "Marque ton camp sur le site pour voir en un coup d'œil si ton escouade mène ou doit se ressaisir.",
+              "en": "Mark your side on the site to see at a glance whether your squad is leading or needs to catch up."
+            }
           ]
         },
         {
@@ -402,9 +836,18 @@
           "title_fr": "Objectifs, paliers & récompenses",
           "title_en": "Objectives, tiers & rewards",
           "items": [
-            { "fr": "Chaque escouade progresse sur des objectifs (purge, restauration, sabotage). Tes contributions font grimper la barre commune.", "en": "Each squad progresses on objectives (purge, restore, sabotage). Your contributions push the shared bar up." },
-            { "fr": "En franchissant des paliers, la communauté débloque des récompenses (souvent cosmétiques : décors, tenues, bannières).", "en": "As tiers are reached, the community unlocks rewards (often cosmetic: décor, outfits, banners)." },
-            { "fr": "Les événements sont limités dans le temps : garde un œil sur le compte à rebours de l'onglet Bulletin de guerre pour ne rien rater.", "en": "Events are time-limited: keep an eye on the countdown in the War bulletin tab so you don't miss out." }
+            {
+              "fr": "Chaque escouade progresse sur des objectifs (purge, restauration, sabotage). Tes contributions font grimper la barre commune.",
+              "en": "Each squad progresses on objectives (purge, restore, sabotage). Your contributions push the shared bar up."
+            },
+            {
+              "fr": "En franchissant des paliers, la communauté débloque des récompenses (souvent cosmétiques : décors, tenues, bannières).",
+              "en": "As tiers are reached, the community unlocks rewards (often cosmetic: décor, outfits, banners)."
+            },
+            {
+              "fr": "Les événements sont limités dans le temps : garde un œil sur le compte à rebours de l'onglet Bulletin de guerre pour ne rien rater.",
+              "en": "Events are time-limited: keep an eye on the countdown in the War bulletin tab so you don't miss out."
+            }
           ]
         }
       ]
@@ -422,9 +865,18 @@
           "title_fr": "Épaves de vaisseaux",
           "title_en": "Crashed ships",
           "items": [
-            { "fr": "Construis une balise de transmission (émetteur) et interagis avec elle : l'option « site de transmission » révèle une tour à visiter.", "en": "Build a Signal Booster and interact with it: the 'transmission tower' option reveals a tower to visit." },
-            { "fr": "À la tour, résous le puzzle (données du journal) pour obtenir la position d'un signal de détresse : un vaisseau échoué à réparer et récupérer gratuitement.", "en": "At the tower, solve the log puzzle to get a distress signal location: a crashed ship you can repair and claim for free." },
-            { "fr": "Astuce d'emplacements : les vaisseaux échoués sont un excellent moyen d'agrandir gratuitement l'inventaire en récupérant des vaisseaux au fil des systèmes.", "en": "Slot tip: crashed ships are a great way to grow inventory for free by claiming ships across systems." }
+            {
+              "fr": "Construis une balise de transmission (émetteur) et interagis avec elle : l'option « site de transmission » révèle une tour à visiter.",
+              "en": "Build a Signal Booster and interact with it: the 'transmission tower' option reveals a tower to visit."
+            },
+            {
+              "fr": "À la tour, résous le puzzle (données du journal) pour obtenir la position d'un signal de détresse : un vaisseau échoué à réparer et récupérer gratuitement.",
+              "en": "At the tower, solve the log puzzle to get a distress signal location: a crashed ship you can repair and claim for free."
+            },
+            {
+              "fr": "Astuce d'emplacements : les vaisseaux échoués sont un excellent moyen d'agrandir gratuitement l'inventaire en récupérant des vaisseaux au fil des systèmes.",
+              "en": "Slot tip: crashed ships are a great way to grow inventory for free by claiming ships across systems."
+            }
           ]
         },
         {
@@ -432,9 +884,18 @@
           "title_fr": "Systèmes abandonnés & cargos dérelicts",
           "title_en": "Abandoned systems & derelict freighters",
           "items": [
-            { "fr": "Les systèmes abandonnés (marqués en gris/rouge sur la carte) abritent une ambiance d'horreur, des œufs de créatures et de bons butins — attention aux nuées.", "en": "Abandoned systems (greyed/red on the map) hold a horror vibe, creature eggs and good loot — beware the swarms." },
-            { "fr": "Les cargos dérelicts (épaves de cargos) se trouvent via une carte d'épave achetée à l'agent des Sentinelles sur une station : explore-les pour des plans rares et beaucoup d'unités/nanites.", "en": "Derelict Freighters are found via a salvage chart bought from the Scrap Dealer on a station: explore them for rare blueprints and lots of units/nanites." },
-            { "fr": "Une nouvelle épave dérelict gratuite apparaît chaque semaine — profites-en pour farmer les modules de mise à niveau.", "en": "A free derelict freighter rotates each week — use it to farm upgrade modules." }
+            {
+              "fr": "Les systèmes abandonnés (marqués en gris/rouge sur la carte) abritent une ambiance d'horreur, des œufs de créatures et de bons butins — attention aux nuées.",
+              "en": "Abandoned systems (greyed/red on the map) hold a horror vibe, creature eggs and good loot — beware the swarms."
+            },
+            {
+              "fr": "Les cargos dérelicts (épaves de cargos) se trouvent via une carte d'épave achetée à l'agent des Sentinelles sur une station : explore-les pour des plans rares et beaucoup d'unités/nanites.",
+              "en": "Derelict Freighters are found via a salvage chart bought from the Scrap Dealer on a station: explore them for rare blueprints and lots of units/nanites."
+            },
+            {
+              "fr": "Une nouvelle épave dérelict gratuite apparaît chaque semaine — profites-en pour farmer les modules de mise à niveau.",
+              "en": "A free derelict freighter rotates each week — use it to farm upgrade modules."
+            }
           ]
         },
         {
@@ -442,9 +903,18 @@
           "title_fr": "Trésors enfouis & dépôts",
           "title_en": "Buried treasure & deposits",
           "items": [
-            { "fr": "Achète des données cartographiques (cartes au trésor) au marchand cartographe de la station contre des artefacts/gravballs, puis suis-les pour trouver ruines, coffres et modules enfouis.", "en": "Buy navigation data (treasure maps) from the station cartographer with artifacts/gravballs, then follow them to ruins, chests and buried modules." },
-            { "fr": "L'analyseur de terrain permet de déterrer des dépôts de stockage et des capsules de largage (améliorations d'exocombinaison).", "en": "The Terrain Manipulator lets you dig up storage deposits and drop pods (Exosuit upgrades)." },
-            { "fr": "Les capsules de largage augmentent tes emplacements d'exocombinaison : traque-les avec des cartes pour agrandir ton inventaire à moindre coût.", "en": "Drop pods increase your Exosuit slots: hunt them with charts to grow your inventory cheaply." }
+            {
+              "fr": "Achète des données cartographiques (cartes au trésor) au marchand cartographe de la station contre des artefacts/gravballs, puis suis-les pour trouver ruines, coffres et modules enfouis.",
+              "en": "Buy navigation data (treasure maps) from the station cartographer with artifacts/gravballs, then follow them to ruins, chests and buried modules."
+            },
+            {
+              "fr": "L'analyseur de terrain permet de déterrer des dépôts de stockage et des capsules de largage (améliorations d'exocombinaison).",
+              "en": "The Terrain Manipulator lets you dig up storage deposits and drop pods (Exosuit upgrades)."
+            },
+            {
+              "fr": "Les capsules de largage augmentent tes emplacements d'exocombinaison : traque-les avec des cartes pour agrandir ton inventaire à moindre coût.",
+              "en": "Drop pods increase your Exosuit slots: hunt them with charts to grow your inventory cheaply."
+            }
           ]
         },
         {
@@ -452,9 +922,18 @@
           "title_fr": "Ruines, monolithes & savoir",
           "title_en": "Ruins, monoliths & lore",
           "items": [
-            { "fr": "Ruines et monolithes racontent l'histoire des trois races (Gek, Korvax, Vy'keen) et apprennent des mots de langue — utile pour mieux négocier et comprendre les PNJ.", "en": "Ruins and monoliths tell the story of the three races (Gek, Korvax, Vy'keen) and teach language words — useful to trade better and understand NPCs." },
-            { "fr": "Les sites archéologiques (ossements) et les artefacts se revendent bien et servent à acheter des cartes au trésor.", "en": "Archaeological sites (bones) and artifacts sell well and are used to buy treasure charts." },
-            { "fr": "Garde un œil sur les portails et voyage par glyphes (voir le guide Portails & glyphes) pour rejoindre les lieux partagés par la communauté.", "en": "Keep an eye on portals and glyph travel (see the Portals & glyphs guide) to reach spots shared by the community." }
+            {
+              "fr": "Ruines et monolithes racontent l'histoire des trois races (Gek, Korvax, Vy'keen) et apprennent des mots de langue — utile pour mieux négocier et comprendre les PNJ.",
+              "en": "Ruins and monoliths tell the story of the three races (Gek, Korvax, Vy'keen) and teach language words — useful to trade better and understand NPCs."
+            },
+            {
+              "fr": "Les sites archéologiques (ossements) et les artefacts se revendent bien et servent à acheter des cartes au trésor.",
+              "en": "Archaeological sites (bones) and artifacts sell well and are used to buy treasure charts."
+            },
+            {
+              "fr": "Garde un œil sur les portails et voyage par glyphes (voir le guide Portails & glyphes) pour rejoindre les lieux partagés par la communauté.",
+              "en": "Keep an eye on portals and glyph travel (see the Portals & glyphs guide) to reach spots shared by the community."
+            }
           ]
         }
       ]
@@ -472,9 +951,18 @@
           "title_fr": "Ouvrir et cadrer",
           "title_en": "Opening and framing",
           "items": [
-            { "fr": "Ouvre le mode photo depuis le menu rapide : le temps se fige et tu peux déplacer librement la caméra autour de la scène.", "en": "Open photo mode from the quick menu: time freezes and you can move the camera freely around the scene." },
-            { "fr": "Joue sur la distance focale et la profondeur de champ pour flouter l'arrière-plan et détacher ton sujet.", "en": "Play with focal length and depth of field to blur the background and make your subject pop." },
-            { "fr": "Cache l'interface et le vaisseau/personnage si besoin pour un cliché épuré, ou garde-les pour l'échelle.", "en": "Hide the UI and your ship/character if needed for a clean shot, or keep them for scale." }
+            {
+              "fr": "Ouvre le mode photo depuis le menu rapide : le temps se fige et tu peux déplacer librement la caméra autour de la scène.",
+              "en": "Open photo mode from the quick menu: time freezes and you can move the camera freely around the scene."
+            },
+            {
+              "fr": "Joue sur la distance focale et la profondeur de champ pour flouter l'arrière-plan et détacher ton sujet.",
+              "en": "Play with focal length and depth of field to blur the background and make your subject pop."
+            },
+            {
+              "fr": "Cache l'interface et le vaisseau/personnage si besoin pour un cliché épuré, ou garde-les pour l'échelle.",
+              "en": "Hide the UI and your ship/character if needed for a clean shot, or keep them for scale."
+            }
           ]
         },
         {
@@ -482,9 +970,18 @@
           "title_fr": "Ambiance & filtres",
           "title_en": "Mood & filters",
           "items": [
-            { "fr": "Choisis un filtre (couleurs, contraste, vignette) pour donner une identité à ta photo ; certains rendent des ambiances cinéma superbes.", "en": "Pick a filter (colours, contrast, vignette) to give your photo an identity; some produce gorgeous cinematic looks." },
-            { "fr": "Attends la bonne lumière : lever/coucher de soleil, tempêtes, aurores et biomes exotiques offrent les meilleurs ciels.", "en": "Wait for the right light: sunrise/sunset, storms, auroras and exotic biomes give the best skies." },
-            { "fr": "Ajuste l'exposition et la balance pour ne pas cramer les hautes lumières (cœurs de galaxie, soleils).", "en": "Adjust exposure and balance so you don't blow out highlights (galaxy cores, suns)." }
+            {
+              "fr": "Choisis un filtre (couleurs, contraste, vignette) pour donner une identité à ta photo ; certains rendent des ambiances cinéma superbes.",
+              "en": "Pick a filter (colours, contrast, vignette) to give your photo an identity; some produce gorgeous cinematic looks."
+            },
+            {
+              "fr": "Attends la bonne lumière : lever/coucher de soleil, tempêtes, aurores et biomes exotiques offrent les meilleurs ciels.",
+              "en": "Wait for the right light: sunrise/sunset, storms, auroras and exotic biomes give the best skies."
+            },
+            {
+              "fr": "Ajuste l'exposition et la balance pour ne pas cramer les hautes lumières (cœurs de galaxie, soleils).",
+              "en": "Adjust exposure and balance so you don't blow out highlights (galaxy cores, suns)."
+            }
           ]
         },
         {
@@ -492,8 +989,14 @@
           "title_fr": "Partager tes clichés",
           "title_en": "Sharing your shots",
           "items": [
-            { "fr": "Partage sur r/NoMansSkyTheGame et r/NoMansSkyFrance (onglet Communauté) — c'est l'un des contenus les plus appréciés.", "en": "Share on r/NoMansSkyTheGame and r/NoMansSkyFrance (Community tab) — it's some of the most-loved content." },
-            { "fr": "Note les coordonnées (glyphes, voir le guide Portails & glyphes) pour que d'autres puissent visiter ton spot.", "en": "Note the coordinates (glyphs, see the Portals & glyphs guide) so others can visit your spot." }
+            {
+              "fr": "Partage sur r/NoMansSkyTheGame et r/NoMansSkyFrance (onglet Communauté) — c'est l'un des contenus les plus appréciés.",
+              "en": "Share on r/NoMansSkyTheGame and r/NoMansSkyFrance (Community tab) — it's some of the most-loved content."
+            },
+            {
+              "fr": "Note les coordonnées (glyphes, voir le guide Portails & glyphes) pour que d'autres puissent visiter ton spot.",
+              "en": "Note the coordinates (glyphs, see the Portals & glyphs guide) so others can visit your spot."
+            }
           ]
         }
       ]

@@ -2089,11 +2089,70 @@ function soItemHTML(idx, o) {
     <span class="so-text"><span class="so-name">${esc(o.name)}</span>${o.sub ? `<span class="so-sub">${esc(o.sub)}</span>` : ""}</span>
     <span class="so-arrow" aria-hidden="true">›</span></button>`;
 }
+/* ---------- Recherche tolérante aux accents et aux fautes de frappe ---------- */
+// Minuscules + suppression des accents/diacritiques ; ponctuation → espace.
+// Ainsi « fésium », « fèsium » et « fesium » deviennent tous « fesium ».
+function normSearch(s) {
+  return (s == null ? "" : String(s)).toLowerCase()
+    .normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, " ").trim();
+}
+// Distance de Levenshtein bornée : renvoie >max dès qu'on dépasse le seuil
+// (arrêt anticipé pour rester rapide même sur de grandes listes).
+function levBounded(a, b, max) {
+  const la = a.length, lb = b.length;
+  if (Math.abs(la - lb) > max) return max + 1;
+  if (!la) return lb; if (!lb) return la;
+  let prev = new Array(lb + 1);
+  for (let j = 0; j <= lb; j++) prev[j] = j;
+  for (let i = 1; i <= la; i++) {
+    const cur = new Array(lb + 1); cur[0] = i;
+    const ca = a.charCodeAt(i - 1); let best = i;
+    for (let j = 1; j <= lb; j++) {
+      const cost = ca === b.charCodeAt(j - 1) ? 0 : 1;
+      const v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
+      cur[j] = v; if (v < best) best = v;
+    }
+    if (best > max) return max + 1;   // toute la ligne dépasse : inutile de continuer
+    prev = cur;
+  }
+  return prev[lb];
+}
+// Nombre de fautes toléré selon la longueur du mot recherché.
+// Volontairement serré pour éviter les faux positifs (« fesium » ne doit pas
+// attraper « helium »/« medium ») tout en corrigeant une faute simple.
+function fuzzTol(n) { return n <= 4 ? 0 : n <= 7 ? 1 : n <= 10 ? 2 : 3; }
+// Un mot-clé (normalisé) correspond-il au texte-cible (normalisé) ?
+function fuzzyWord(word, hayWords, hay) {
+  if (!word) return true;
+  if (hay.indexOf(word) !== -1) return true;      // sous-chaîne exacte (accents ignorés)
+  const tol = fuzzTol(word.length);
+  if (!tol) return false;
+  for (const w of hayWords) {
+    if (!w) continue;
+    if (Math.abs(w.length - word.length) <= tol && levBounded(word, w, tol) <= tol) return true;
+    // début d'un mot plus long : « fecium » ≈ « feciumxx »
+    if (w.length > word.length + tol && levBounded(word, w.slice(0, word.length), tol) <= tol) return true;
+  }
+  return false;
+}
+// Tous les mots de la requête doivent correspondre (ET), fautes et accents tolérés.
+// Marche à l'identique en français et en anglais (on cherche dans les deux).
+function fuzzyMatch(query, ...fields) {
+  const q = normSearch(query);
+  if (!q) return true;
+  const hay = normSearch(fields.join(" "));
+  if (!hay) return false;
+  if (hay.indexOf(q) !== -1) return true;          // chemin rapide : sous-chaîne exacte
+  const hayWords = hay.split(" ");
+  return q.split(" ").every(w => fuzzyWord(w, hayWords, hay));
+}
+
 function runSearch(raw) {
   const q = (raw || "").toLowerCase().trim();
   soResults = [];
   if (q.length < 2) { soResultsEl.innerHTML = `<div class="so-hint">${esc(T().so_hint)}</div>`; return; }
-  const has = s => (s || "").toLowerCase().includes(q);
+  const has = s => fuzzyMatch(q, s);
   const G = T().so_groups;
   const groups = [];
 
@@ -2432,7 +2491,7 @@ const miniCard = (item, extra) => `<div class="mini">
   <div class="m">${esc(relTime(item.date))}${extra ? " · " + esc(extra) : ""}</div>
 </div>`;
 const emptyMsg = hasSearch => `<div class="empty">${hasSearch ? T().empty_search : T().empty_data}</div>`;
-const matches = (q, ...fields) => !q || fields.some(f => (f || "").toLowerCase().includes(q));
+const matches = (q, ...fields) => !q || fuzzyMatch(q, ...fields);
 
 /* ============================== Vue d'ensemble ============================== */
 function renderChips() {
@@ -3618,7 +3677,7 @@ function renderGalaxies() {
   const q = (query.galaxies || "").toLowerCase();
   const results = q
     ? items.filter(x => (typeFilter === "all" || x.type === typeFilter) &&
-        (x.name.toLowerCase().includes(q) || String(x.n) === q)).slice(0, 10)
+        (fuzzyMatch(q, x.name) || String(x.n) === q)).slice(0, 10)
     : [];
   const resBox = document.getElementById("gal-results");
   keepFocus(resBox, () => {
@@ -4495,8 +4554,8 @@ function renderRecipes() {
   const nameOf = id => { const it = recItem(items, id); return (it.fr + " " + it.en).toLowerCase(); };
   let recs = R[which] || [];
   if (q) recs = recs.filter(r =>
-    r.i.some(i => nameOf(i[0]).includes(q)) || nameOf(r.o[0]).includes(q) ||
-    (r.op + " " + (opfr[r.op] || "")).toLowerCase().includes(q));
+    r.i.some(i => fuzzyMatch(q, nameOf(i[0]))) || fuzzyMatch(q, nameOf(r.o[0])) ||
+    fuzzyMatch(q, r.op + " " + (opfr[r.op] || "")));
   const ing = sub.recing || "all";
   if (ing !== "all") recs = recs.filter(r => ing === "3" ? r.i.length >= 3 : r.i.length === +ing);
   const rsort = sub.recsort || "def";

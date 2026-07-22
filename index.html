@@ -190,6 +190,10 @@
   [data-theme="light"] .badge.official { color: #c2372a; }
   .badge.gold { background: rgba(255, 200, 87, 0.12); color: var(--c3); border-color: rgba(255, 200, 87, 0.35); }
   [data-theme="light"] .badge.gold { color: #7a5500; }
+  .badge.tr { background: rgba(120, 160, 255, 0.12); color: #8fb0ff; border-color: rgba(120, 160, 255, 0.35); cursor: help; }
+  [data-theme="light"] .badge.tr { color: #3a5bbf; }
+  .tr-tag { color: #8fb0ff; font-size: 0.9em; }
+  [data-theme="light"] .tr-tag { color: #3a5bbf; }
 
   /* ------- Vue d'ensemble ------- */
   .event-banner {
@@ -517,6 +521,27 @@
     padding: 9px 22px; border-radius: 999px; cursor: pointer; font: 500 0.85rem var(--font-body);
   }
   .cat-more-btn:hover { color: var(--ink); border-color: var(--stroke-hi); }
+  /* ------- Faune ------- */
+  .fauna-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .fauna-card {
+    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius);
+    padding: 14px 16px; transition: border-color .15s, transform .15s; display: flex; flex-direction: column;
+  }
+  .fauna-card:hover { border-color: var(--stroke-hi); transform: translateY(-2px); }
+  .fauna-card .fc-head { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+  .fauna-card .fc-emoji { font-size: 1.9rem; line-height: 1; flex-shrink: 0; }
+  .fauna-card .fc-head h3 { font: 700 1.05rem var(--font-head); margin: 0; }
+  .fauna-card .fc-ex { font-size: 0.76rem; color: var(--ink-dim); margin-top: 2px; }
+  .fauna-card .fc-ex b { color: var(--c2); }
+  [data-theme="light"] .fauna-card .fc-ex b { color: #0a7c63; }
+  .fauna-card .fc-harvests { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .fauna-card .fc-harvests li { display: grid; grid-template-columns: 34px 1fr auto; gap: 9px; align-items: center; }
+  .fauna-card .fc-harvests img { width: 34px; height: 34px; border-radius: 8px; background: var(--track); object-fit: contain; }
+  .fauna-card .fc-item { font-size: 0.85rem; font-weight: 500; }
+  .fauna-card .fc-method { font-size: 0.72rem; color: var(--ink-dim); text-align: right; }
+  .fauna-card .fc-wiki { margin-top: 10px; font-size: 0.76rem; color: var(--c2); text-decoration: none; align-self: flex-start; }
+  .fauna-card .fc-wiki:hover { text-decoration: underline; }
+  [data-theme="light"] .fauna-card .fc-wiki { color: #0a7c63; }
 
   /* ------- Bulletin de guerre ------- */
   .war-box {
@@ -794,6 +819,7 @@
     <button role="tab" id="tab-galaxies" aria-controls="panel-galaxies" data-tab="galaxies" aria-selected="false" tabindex="-1">🗺️ <span data-i18n="tab_galaxies">Galaxies</span></button>
     <button role="tab" id="tab-marche" aria-controls="panel-marche" data-tab="marche" aria-selected="false" tabindex="-1">💎 <span data-i18n="tab_market">Marché</span></button>
     <button role="tab" id="tab-catalogue" aria-controls="panel-catalogue" data-tab="catalogue" aria-selected="false" tabindex="-1">📖 <span data-i18n="tab_catalogue">Base de données</span></button>
+    <button role="tab" id="tab-faune" aria-controls="panel-faune" data-tab="faune" aria-selected="false" tabindex="-1">🦋 <span data-i18n="tab_fauna">Faune</span></button>
     <button role="tab" id="tab-actus" aria-controls="panel-actus" data-tab="actus" aria-selected="false" tabindex="-1">📰 <span data-i18n="tab_news">Actualités</span><span class="notif" id="notif-actus" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-communaute" aria-controls="panel-communaute" data-tab="communaute" aria-selected="false" tabindex="-1">👥 <span data-i18n="tab_community">Communauté</span><span class="notif" id="notif-communaute" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-succes" aria-controls="panel-succes" data-tab="succes" aria-selected="false" tabindex="-1">🏆 <span data-i18n="tab_ach">Succès</span></button>
@@ -903,7 +929,7 @@
 
     <!-- Base de données -->
     <section class="panel" id="panel-catalogue" role="tabpanel" aria-labelledby="tab-catalogue">
-      <div class="note" data-i18n="cat_note">La base de données du jeu : près de 2 000 objets — matériaux, technologies, modules, curiosités, cuisine… Cherche n'importe quoi et découvre sa valeur, son groupe et sa description.</div>
+      <div class="note" data-i18n="cat_note">La base de données du jeu : plus de 3 500 objets — matériaux, technologies, modules, améliorations, constructions, curiosités, cuisine… Cherche n'importe quoi et découvre sa valeur, son groupe et sa description.</div>
       <div class="controls">
         <div class="subtabs" id="cat-chips"></div>
         <div class="searchbox" style="margin-left:auto"><input type="search" id="search-catalogue" data-i18n-ph="cat_search_ph" placeholder="Chercher un objet…" data-i18n-aria="aria_search_cat" aria-label="Chercher un objet dans la base de données"></div>
@@ -911,6 +937,16 @@
       <div id="cat-count" class="cat-count"></div>
       <div id="cat-list"></div>
       <div id="cat-more" style="text-align:center;margin-top:14px"></div>
+    </section>
+
+    <!-- Faune -->
+    <section class="panel" id="panel-faune" role="tabpanel" aria-labelledby="tab-faune">
+      <div class="note" data-i18n="fauna_note">La faune de No Man's Sky par archétype : ce que chaque créature permet de récolter (lait, œufs, miel, nectar, graisse…), comment, et un exemple d'espèce réelle sur le wiki. Les espèces sont générées de façon procédurale — à toi de trouver ta variante !</div>
+      <div class="controls">
+        <div class="searchbox" style="margin-left:auto"><input type="search" id="search-faune" data-i18n-ph="fauna_search_ph" placeholder="Chercher une créature ou une récolte…" data-i18n-aria="aria_search_fauna" aria-label="Chercher une créature"></div>
+      </div>
+      <div id="fauna-count" class="cat-count"></div>
+      <div id="fauna-list" class="fauna-grid"></div>
     </section>
 
     <!-- Actualités -->
@@ -1052,6 +1088,10 @@ const I18N = {
     aria_search_gal: "Rechercher une galaxie", aria_gal_map: "Carte en spirale des 255 galaxies",
     spark_aria: (min, max, last) => `Historique des joueurs en ligne : minimum ${min}, maximum ${max}, dernier relevé ${last}`,
     tab_galaxies: "Galaxies", tab_market: "Marché", tab_catalogue: "Base de données",
+    tab_fauna: "Faune",
+    fauna_count: (shown, total) => `<b>${shown}</b> archétype(s) sur ${total}`,
+    fauna_harvest: "Récolte", fauna_example: "Exemple d'espèce", fauna_wiki: "Voir sur le wiki ↗",
+    fauna_search_ph: "Chercher une créature ou une récolte…", aria_search_fauna: "Chercher une créature",
     live_title: "En direct",
     live_now: "Voyageurs en jeu", live_24h: "Pic sur 24 h", live_all: "Record absolu",
     live_of_peak: p => `${p}% du pic des dernières 24 h`,
@@ -1065,11 +1105,12 @@ const I18N = {
     anniv_party: "🎉 Joyeux 10e anniversaire, Voyageurs ! 🎉",
     anniv_party_sub: "10 ans d'exploration — et l'aventure continue.",
     live_posted: "a publié", live_video: "a mis en ligne", live_news: "a annoncé",
+    tr_auto: "🌐 traduit auto", tr_original: "Titre original",
     live_src: { fr: "r/NoMansSkyFrance", en: "r/NoMansSkyTheGame", coords: "r/NMSCoordinateExchange", yt: "YouTube", off: "Hello Games" },
-    cat_note: "La base de données du jeu : près de 2 000 objets — matériaux, technologies, modules, curiosités, cuisine… Cherche n'importe quoi et découvre sa valeur, son groupe et sa description.",
+    cat_note: "La base de données du jeu : plus de 3 500 objets — matériaux, technologies, modules, améliorations, constructions, curiosités, cuisine… Cherche n'importe quoi et découvre sa valeur, son groupe et sa description.",
     cat_search_ph: "Chercher un objet…",
     cat_all: "Tout", cat_loading: "Chargement de la base de données…",
-    cat_cats: { raw: "Matériaux", products: "Produits", tech: "Technologies", modules: "Modules", built: "Tech. construites", trade: "Marchandises", curiosities: "Curiosités", cooking: "Cuisine", others: "Divers" },
+    cat_cats: { raw: "Matériaux", products: "Produits", tech: "Technologies", modules: "Modules", upgrades: "Améliorations", built: "Tech. construites", buildings: "Constructions", trade: "Marchandises", curiosities: "Curiosités", procprod: "Produits procéduraux", cooking: "Cuisine", others: "Divers" },
     cat_count: (shown, total) => `<b>${shown}</b> objet(s) affiché(s) sur ${total}`,
     cat_more: "Afficher plus",
     aria_search_cat: "Chercher un objet dans la base de données",
@@ -1178,6 +1219,10 @@ const I18N = {
     aria_search_gal: "Search galaxies", aria_gal_map: "Spiral map of the 255 galaxies",
     spark_aria: (min, max, last) => `Players online history: minimum ${min}, maximum ${max}, latest reading ${last}`,
     tab_galaxies: "Galaxies", tab_market: "Market", tab_catalogue: "Database",
+    tab_fauna: "Fauna",
+    fauna_count: (shown, total) => `<b>${shown}</b> archetype(s) of ${total}`,
+    fauna_harvest: "Harvest", fauna_example: "Example species", fauna_wiki: "View on the wiki ↗",
+    fauna_search_ph: "Search a creature or a harvest…", aria_search_fauna: "Search a creature",
     live_title: "Live",
     live_now: "Travellers in game", live_24h: "24 h peak", live_all: "All-time peak",
     live_of_peak: p => `${p}% of the last 24 h peak`,
@@ -1191,11 +1236,12 @@ const I18N = {
     anniv_party: "🎉 Happy 10th anniversary, Travellers! 🎉",
     anniv_party_sub: "10 years of exploration — and the journey continues.",
     live_posted: "posted", live_video: "uploaded", live_news: "announced",
+    tr_auto: "🌐 auto-translated", tr_original: "Original title",
     live_src: { fr: "r/NoMansSkyFrance", en: "r/NoMansSkyTheGame", coords: "r/NMSCoordinateExchange", yt: "YouTube", off: "Hello Games" },
-    cat_note: "The game database: nearly 2,000 items — materials, technologies, modules, curiosities, cooking… Search anything and find its value, group and description.",
+    cat_note: "The game database: over 3,500 items — materials, technologies, modules, upgrades, buildings, curiosities, cooking… Search anything and find its value, group and description.",
     cat_search_ph: "Search an item…",
     cat_all: "All", cat_loading: "Loading the database…",
-    cat_cats: { raw: "Materials", products: "Products", tech: "Technologies", modules: "Modules", built: "Built tech", trade: "Trade goods", curiosities: "Curiosities", cooking: "Cooking", others: "Others" },
+    cat_cats: { raw: "Materials", products: "Products", tech: "Technologies", modules: "Modules", upgrades: "Upgrades", built: "Built tech", buildings: "Buildings", trade: "Trade goods", curiosities: "Curiosities", procprod: "Procedural products", cooking: "Cooking", others: "Others" },
     cat_count: (shown, total) => `<b>${shown}</b> item(s) shown of ${total}`,
     cat_more: "Show more",
     aria_search_cat: "Search an item in the database",
@@ -1560,11 +1606,18 @@ document.getElementById("btn-reset").addEventListener("click", () => {
 });
 
 /* ============================== Cartes ============================== */
+// Titre affiché : traduction FR automatique pour les lecteurs francophones,
+// sinon le titre original. On garde toujours l'original accessible (tooltip).
+const isTranslated = item => lang === "fr" && !!item.title_fr && item.title_fr !== item.title;
+const postTitle = item => (isTranslated(item) ? item.title_fr : item.title);
+const trBadge = item => isTranslated(item)
+  ? `<span class="badge tr" title="${esc(T().tr_original)} : ${esc(item.title)}">${T().tr_auto}</span>` : "";
 function newsCard(item, badge) {
   return `<article class="card">
-    <h3><a href="${esc(safeUrl(item.url))}" target="_blank" rel="noopener">${esc(item.title)}</a></h3>
+    <h3><a href="${esc(safeUrl(item.url))}" target="_blank" rel="noopener"${isTranslated(item) ? ` title="${esc(item.title)}"` : ""}>${esc(postTitle(item))}</a></h3>
     <div class="meta">
       ${badge ? `<span class="badge ${badge.cls || ""}">${esc(badge.txt)}</span>` : ""}
+      ${trBadge(item)}
       <span>${esc(relTime(item.date))}</span>
       ${item.author ? `<span>${esc(item.author)}</span>` : ""}
       ${item.source ? `<span>${esc(item.source)}</span>` : ""}
@@ -1573,7 +1626,7 @@ function newsCard(item, badge) {
   </article>`;
 }
 const miniCard = (item, extra) => `<div class="mini">
-  <a href="${esc(safeUrl(item.url))}" target="_blank" rel="noopener">${esc(item.title)}</a>
+  <a href="${esc(safeUrl(item.url))}" target="_blank" rel="noopener"${isTranslated(item) ? ` title="${esc(item.title)}"` : ""}>${esc(postTitle(item))}</a>
   <div class="m">${esc(relTime(item.date))}${extra ? " · " + esc(extra) : ""}</div>
 </div>`;
 const emptyMsg = hasSearch => `<div class="empty">${hasSearch ? T().empty_search : T().empty_data}</div>`;
@@ -1916,7 +1969,7 @@ function renderCommunity() {
   const key = sub.communaute;
   const badge = key === "coordinates" ? "r/NMSCoordinateExchange"
     : key === "french" ? "r/NoMansSkyFrance" : "r/NoMansSkyTheGame";
-  const items = (D.community && D.community[key] || []).filter(p => matches(q, p.title, p.author));
+  const items = (D.community && D.community[key] || []).filter(p => matches(q, p.title, p.title_fr, p.author));
   list.innerHTML = items.length ? items.map(p => newsCard(p, { txt: badge })).join("") : emptyMsg(!!q);
 }
 
@@ -2911,8 +2964,8 @@ function renderLive() {
     return `<li class="live-item">
       <span class="flag" aria-hidden="true">${flag}</span>
       <div class="li-body">
-        <a href="${esc(safeUrl(it.url))}" target="_blank" rel="noopener">${esc(it.title)}</a>
-        <div class="li-meta">${who ? `<b>${esc(who)}</b> ` : ""}${verb} · ${esc(src)}</div>
+        <a href="${esc(safeUrl(it.url))}" target="_blank" rel="noopener"${isTranslated(it) ? ` title="${esc(it.title)}"` : ""}>${esc(postTitle(it))}</a>
+        <div class="li-meta">${who ? `<b>${esc(who)}</b> ` : ""}${verb} · ${esc(src)}${isTranslated(it) ? ` · <span class="tr-tag">${T().tr_auto}</span>` : ""}</div>
       </div>
       <span class="li-when" data-live-t="${it._t}">${esc(relTime(it.date))}</span>
     </li>`;
@@ -3045,6 +3098,69 @@ function renderCatalogue() {
   });
 }
 
+/* ============================== Faune ============================== */
+let creaturesShown = [];
+function creatureToModal(c) {
+  const rows = (c.harvests || []).map(h => ({
+    k: lang === "en" ? h.method_en : h.method_fr,
+    v: (lang === "en" ? h.item_en : h.item_fr) || "—",
+  }));
+  return {
+    icon: (c.harvests || []).map(h => h.icon).find(Boolean) || "",
+    title: (c.emoji || "🐾") + " " + (lang === "en" ? c.name_en : c.name_fr),
+    group: c.example ? T().fauna_example + " : " + c.example : "",
+    desc: "",
+    rows,
+  };
+}
+function renderCreatures() {
+  const list = document.getElementById("fauna-list");
+  const countEl = document.getElementById("fauna-count");
+  const data = D.creatures && D.creatures.creatures || [];
+  if (!data.length) { list.innerHTML = emptyMsg(false); countEl.innerHTML = ""; return; }
+  const q = (query.faune || "").toLowerCase();
+  let items = data;
+  if (q) items = data.filter(c => matches(q, c.name_fr, c.name_en, c.example,
+    ...(c.harvests || []).flatMap(h => [h.item_fr, h.item_en, h.method_fr, h.method_en])));
+  creaturesShown = items;
+  countEl.innerHTML = T().fauna_count(items.length, data.length);
+  list.innerHTML = items.length ? items.map((c, i) => `
+    <article class="fauna-card clickable" role="button" tabindex="0" data-crea-idx="${i}" aria-label="${esc(lang === "en" ? c.name_en : c.name_fr)}">
+      <div class="fc-head">
+        <span class="fc-emoji" aria-hidden="true">${esc(c.emoji || "🐾")}</span>
+        <div>
+          <h3>${esc(lang === "en" ? c.name_en : c.name_fr)}</h3>
+          ${c.example ? `<div class="fc-ex">${T().fauna_example} : <b>${esc(c.example)}</b></div>` : ""}
+        </div>
+      </div>
+      <ul class="fc-harvests">
+        ${(c.harvests || []).map(h => `<li>
+          ${h.icon ? `<img src="${esc(safeUrl(h.icon))}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : "<span></span>"}
+          <span class="fc-item">${esc((lang === "en" ? h.item_en : h.item_fr) || "—")}</span>
+          <span class="fc-method">${esc(lang === "en" ? h.method_en : h.method_fr)}</span>
+        </li>`).join("")}
+      </ul>
+      ${c.wiki ? `<a class="fc-wiki" href="${esc(safeUrl(c.wiki))}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${T().fauna_wiki}</a>` : ""}
+    </article>`).join("") : emptyMsg(!!q);
+}
+function creaActivate(el) {
+  if (el.dataset.creaIdx !== undefined && creaturesShown[+el.dataset.creaIdx])
+    showItemModal(creatureToModal(creaturesShown[+el.dataset.creaIdx]));
+}
+document.getElementById("fauna-list").addEventListener("click", e => {
+  const el = e.target.closest("[data-crea-idx]");
+  if (el) creaActivate(el);
+});
+document.getElementById("fauna-list").addEventListener("keydown", e => {
+  if (e.key !== "Enter" && e.key !== " ") return;
+  const el = e.target.closest("[data-crea-idx]");
+  if (el) { e.preventDefault(); creaActivate(el); }
+});
+document.getElementById("search-faune").addEventListener("input", e => {
+  query.faune = e.target.value.trim();
+  renderCreatures();
+});
+
 function renderAll() {
   renderUpdated();
   renderChips();
@@ -3062,6 +3178,7 @@ function renderAll() {
   renderTimeline();
   renderGalaxies();
   renderMarket();
+  renderCreatures();
   if (D.catalogue) renderCatalogue();
 }
 
@@ -3070,7 +3187,7 @@ function renderAll() {
   applyTheme(localStorage.getItem(LS_THEME) ||
     (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"), false);
 
-  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs] = await Promise.all([
+  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures] = await Promise.all([
     loadJSON("data/progress.json"),
     loadJSON("data/official.json"),
     loadJSON("data/news.json"),
@@ -3086,8 +3203,9 @@ function renderAll() {
     loadJSON("data/market.json"),
     loadJSON("data/ships.json"),
     loadJSON("data/galaxy_hubs.json"),
+    loadJSON("data/creatures.json"),
   ]);
-  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs });
+  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures });
 
   computeFresh();
   applyLang(lang);

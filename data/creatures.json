@@ -1,0 +1,1249 @@
+{
+ "updated_at": "2026-07-22T09:31:40.528242+00:00",
+ "count": 57,
+ "note": "Archétypes de faune de No Man's Sky et leur récolte. Les espèces sont générées de façon procédurale : chaque fiche renvoie vers un exemple d'espèce réelle documentée sur le wiki communautaire.",
+ "creatures": [
+  {
+   "type": "ANTELOPE",
+   "name_fr": "Antilope",
+   "name_en": "Antelope",
+   "emoji": "🦌",
+   "example": "Tetraceris",
+   "wiki": "https://nomanssky.fandom.com/wiki/Tetraceris",
+   "harvests": [
+    {
+     "method_fr": "Collecter du lait",
+     "method_en": "Collect Milk",
+     "item_fr": "Lait sauvage",
+     "item_en": "Wild Milk",
+     "icon": "https://cdn.nmsassistant.com/cooking/46.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux de viande",
+     "item_en": "Meaty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/29.png"
+    }
+   ]
+  },
+  {
+   "type": "TWOLEGANTELOPE",
+   "name_fr": "Antilope bipède",
+   "name_en": "Two-legged antelope",
+   "emoji": "🦌",
+   "example": "Reococcyx",
+   "wiki": "https://nomanssky.fandom.com/wiki/Reococcyx",
+   "harvests": [
+    {
+     "method_fr": "Collecter du lait",
+     "method_en": "Collect Milk",
+     "item_fr": "Lait sauvage",
+     "item_en": "Wild Milk",
+     "icon": "https://cdn.nmsassistant.com/cooking/46.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux de viande",
+     "item_en": "Meaty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/29.png"
+    }
+   ]
+  },
+  {
+   "type": "ROBOTANTELOPE",
+   "name_fr": "Antilope mécanique",
+   "name_en": "Robotic antelope",
+   "emoji": "🤖",
+   "example": "Mechanoceris",
+   "wiki": "https://nomanssky.fandom.com/wiki/Mechanoceris",
+   "harvests": [
+    {
+     "method_fr": "Tirer sur les câbles",
+     "method_en": "Tug at wires",
+     "item_fr": "Câbles moelleux",
+     "item_en": "Chewy Wires",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/123.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Amas de nanites",
+     "item_en": "Nanite Cluster",
+     "icon": "https://cdn.nmsassistant.com/rawMaterials/56.png"
+    }
+   ]
+  },
+  {
+   "type": "SPIDER",
+   "name_fr": "Araignée",
+   "name_en": "Spider",
+   "emoji": "🕷️",
+   "example": "Bos",
+   "wiki": "https://nomanssky.fandom.com/wiki/Bos",
+   "harvests": [
+    {
+     "method_fr": "Collecter des parties comestibles",
+     "method_en": "Scoop Edible Clusters",
+     "item_fr": "« Pomme » crabe",
+     "item_en": "Crab 'Apple'",
+     "icon": "https://cdn.nmsassistant.com/cooking/114.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Cuissot",
+     "item_en": "Leg Meat",
+     "icon": "https://cdn.nmsassistant.com/cooking/32.png"
+    }
+   ]
+  },
+  {
+   "type": "FLOATSPIDER",
+   "name_fr": "Araignée flottante",
+   "name_en": "Floating spider",
+   "emoji": "🕷️",
+   "example": "Bos",
+   "wiki": "https://nomanssky.fandom.com/wiki/Bos",
+   "harvests": [
+    {
+     "method_fr": "Collecter des parties comestibles",
+     "method_en": "Scoop Edible Clusters",
+     "item_fr": "« Pomme » crabe",
+     "item_en": "Crab 'Apple'",
+     "icon": "https://cdn.nmsassistant.com/cooking/114.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Cuissot",
+     "item_en": "Leg Meat",
+     "icon": "https://cdn.nmsassistant.com/cooking/32.png"
+    }
+   ]
+  },
+  {
+   "type": "ARTHROPOD",
+   "name_fr": "Arthropode",
+   "name_en": "Arthropod",
+   "emoji": "🐾",
+   "example": "ARTHROPOD",
+   "wiki": "https://nomanssky.fandom.com/wiki/ARTHROPOD",
+   "harvests": [
+    {
+     "method_fr": "Stimuler le mucus",
+     "method_en": "Stimulate Mucus",
+     "item_fr": "Bave nourrissante",
+     "item_en": "Nourishing Slime",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/309.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Thorax juteux",
+     "item_en": "Juicy Thorax",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/125.png"
+    }
+   ]
+  },
+  {
+   "type": "DEEPFISHFLOCK",
+   "name_fr": "Banc de poissons des abysses",
+   "name_en": "Deep-sea fish shoal",
+   "emoji": "🐠",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux salés",
+     "item_en": "Salty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/151.png"
+    }
+   ]
+  },
+  {
+   "type": "HERMITCRAB",
+   "name_fr": "Bernard-l'ermite",
+   "name_en": "Hermit crab",
+   "emoji": "🦀",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Cuissot",
+     "item_en": "Leg Meat",
+     "icon": "https://cdn.nmsassistant.com/cooking/32.png"
+    }
+   ]
+  },
+  {
+   "type": "COW",
+   "name_fr": "Bovin",
+   "name_en": "Cow",
+   "emoji": "🐄",
+   "example": "Ungulatis",
+   "wiki": "https://nomanssky.fandom.com/wiki/Ungulatis",
+   "harvests": [
+    {
+     "method_fr": "Collecter du lait",
+     "method_en": "Collect Milk",
+     "item_fr": "Lait frais",
+     "item_en": "Fresh Milk",
+     "icon": "https://cdn.nmsassistant.com/cooking/45.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Steak cru",
+     "item_en": "Raw Steak",
+     "icon": "https://cdn.nmsassistant.com/cooking/34.png"
+    }
+   ]
+  },
+  {
+   "type": "SWIMCOW",
+   "name_fr": "Bovin aquatique",
+   "name_en": "Aquatic cow",
+   "emoji": "🐄",
+   "example": "Prionacefda",
+   "wiki": "https://nomanssky.fandom.com/wiki/Prionacefda",
+   "harvests": [
+    {
+     "method_fr": "Collecter du lait",
+     "method_en": "Collect Milk",
+     "item_fr": "Lait sauvage",
+     "item_en": "Wild Milk",
+     "icon": "https://cdn.nmsassistant.com/cooking/46.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux de viande",
+     "item_en": "Meaty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/29.png"
+    }
+   ]
+  },
+  {
+   "type": "BONECOW",
+   "name_fr": "Bovin osseux",
+   "name_en": "Bone cow",
+   "emoji": "🐄",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Extrusion par arrachage",
+     "method_en": "Prise off extrusion",
+     "item_fr": "Fragments d'os",
+     "item_en": "Bone Nuggets",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/114.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Moelle ramollie",
+     "item_en": "Softened Marrow",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/384.png"
+    }
+   ]
+  },
+  {
+   "type": "SIXLEGCOW",
+   "name_fr": "Bovin à six pattes",
+   "name_en": "Six-legged cow",
+   "emoji": "🐄",
+   "example": "Hexungulatis",
+   "wiki": "https://nomanssky.fandom.com/wiki/Hexungulatis",
+   "harvests": [
+    {
+     "method_fr": "Collecter du lait",
+     "method_en": "Collect Milk",
+     "item_fr": "Lait frais",
+     "item_en": "Fresh Milk",
+     "icon": "https://cdn.nmsassistant.com/cooking/45.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Steak cru",
+     "item_en": "Raw Steak",
+     "icon": "https://cdn.nmsassistant.com/cooking/34.png"
+    }
+   ]
+  },
+  {
+   "type": "SQUID",
+   "name_fr": "Calmar",
+   "name_en": "Squid",
+   "emoji": "🦑",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux salés",
+     "item_en": "Salty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/151.png"
+    }
+   ]
+  },
+  {
+   "type": "LAND_SQUID",
+   "name_fr": "Calmar terrestre",
+   "name_en": "Land squid",
+   "emoji": "🦑",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Qualia brisé",
+     "item_en": "Shattered Qualia",
+     "icon": "https://app.nmsassistant.com/assets/images/rawMaterials/60.png"
+    }
+   ]
+  },
+  {
+   "type": "CRAB",
+   "name_fr": "Crabe",
+   "name_en": "Crab",
+   "emoji": "🦀",
+   "example": "Bosaquatica",
+   "wiki": "https://nomanssky.fandom.com/wiki/Bosaquatica",
+   "harvests": [
+    {
+     "method_fr": "Collecter des parties comestibles",
+     "method_en": "Scoop Edible Clusters",
+     "item_fr": "« Pomme » crabe",
+     "item_en": "Crab 'Apple'",
+     "icon": "https://cdn.nmsassistant.com/cooking/114.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Cuissot",
+     "item_en": "Leg Meat",
+     "icon": "https://cdn.nmsassistant.com/cooking/32.png"
+    }
+   ]
+  },
+  {
+   "type": "PRAWN",
+   "name_fr": "Crevette géante",
+   "name_en": "Prawn",
+   "emoji": "🦐",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Cuissot",
+     "item_en": "Leg Meat",
+     "icon": "https://cdn.nmsassistant.com/cooking/32.png"
+    }
+   ]
+  },
+  {
+   "type": "PURPLE_WEIRD",
+   "name_fr": "Créature anormale",
+   "name_en": "Anomalous creature",
+   "emoji": "🐾",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Traire doucement",
+     "method_en": "Gently Milk",
+     "item_fr": "Protolait chaud",
+     "item_en": "Warm Proto-Milk",
+     "icon": "https://cdn.nmsassistant.com/cooking/76.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Tronc cérébral grumeleux",
+     "item_en": "Lumpy Brainstem",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/30.png"
+    }
+   ]
+  },
+  {
+   "type": "WEIRDCRYSTAL",
+   "name_fr": "Créature de cristal",
+   "name_en": "Crystal creature",
+   "emoji": "🐾",
+   "example": "Anomalous",
+   "wiki": "https://nomanssky.fandom.com/wiki/Anomalous",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Tendon restructuré",
+     "item_en": "Latticed Sinew",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/37.png"
+    }
+   ]
+  },
+  {
+   "type": "ROCKCREATURE",
+   "name_fr": "Créature de roche",
+   "name_en": "Rock creature",
+   "emoji": "🐾",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Collecter des parties comestibles",
+     "method_en": "Scoop Edible Clusters",
+     "item_fr": "« Pomme » crabe",
+     "item_en": "Crab 'Apple'",
+     "icon": "https://cdn.nmsassistant.com/cooking/114.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux de viande",
+     "item_en": "Meaty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/29.png"
+    }
+   ]
+  },
+  {
+   "type": "BLOB",
+   "name_fr": "Créature gélatineuse",
+   "name_en": "Blob",
+   "emoji": "🐾",
+   "example": "Lok",
+   "wiki": "https://nomanssky.fandom.com/wiki/Lok",
+   "harvests": [
+    {
+     "method_fr": "Extraire du miel",
+     "method_en": "Tease Out Honey",
+     "item_fr": "« Miel » collant",
+     "item_en": "Sticky 'Honey'",
+     "icon": "https://cdn.nmsassistant.com/cooking/48.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Sac d'abats",
+     "item_en": "Offal Sac",
+     "icon": "https://cdn.nmsassistant.com/cooking/31.png"
+    }
+   ]
+  },
+  {
+   "type": "PROTOFLYER",
+   "name_fr": "Créature volante primitive",
+   "name_en": "Proto-flyer",
+   "emoji": "🐾",
+   "example": "Protocaeli",
+   "wiki": "https://nomanssky.fandom.com/wiki/Protocaeli",
+   "harvests": [
+    {
+     "method_fr": "Traire doucement",
+     "method_en": "Gently Milk",
+     "item_fr": "Lait de volatile",
+     "item_en": "Craw Milk",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/45.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Ailes croustillantes",
+     "item_en": "Crunchy Wings",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/29.png"
+    }
+   ]
+  },
+  {
+   "type": "WALKINGBUILDING",
+   "name_fr": "Créature-édifice ambulante",
+   "name_en": "Walking building creature",
+   "emoji": "🐾",
+   "example": "WALKINGBUILDING",
+   "wiki": "https://nomanssky.fandom.com/wiki/WALKINGBUILDING",
+   "harvests": [
+    {
+     "method_fr": "Tirer sur les câbles",
+     "method_en": "Tug at wires",
+     "item_fr": "Câbles moelleux",
+     "item_en": "Chewy Wires",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/123.png"
+    }
+   ]
+  },
+  {
+   "type": "DIPLO",
+   "name_fr": "Diplodocus",
+   "name_en": "Diplo (long-neck)",
+   "emoji": "🦕",
+   "example": "Rangifae",
+   "wiki": "https://nomanssky.fandom.com/wiki/Rangifae",
+   "harvests": [
+    {
+     "method_fr": "Collecter des œufs",
+     "method_en": "Collect Eggs",
+     "item_fr": "Œuf géant",
+     "item_en": "Giant Egg",
+     "icon": "https://cdn.nmsassistant.com/cooking/43.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux de diplo",
+     "item_en": "Diplo Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/36.png"
+    }
+   ]
+  },
+  {
+   "type": "WEIRDFLOAT",
+   "name_fr": "Flotteur anormal",
+   "name_en": "Anomalous floater",
+   "emoji": "🐾",
+   "example": "Anomalous",
+   "wiki": "https://nomanssky.fandom.com/wiki/Anomalous",
+   "harvests": [
+    {
+     "method_fr": "Extraire des « baies »",
+     "method_en": "Extract 'Berries'",
+     "item_fr": "Hexabaie",
+     "item_en": "Hexaberry",
+     "icon": "https://cdn.nmsassistant.com/cooking/21.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Tronc cérébral grumeleux",
+     "item_en": "Lumpy Brainstem",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/30.png"
+    }
+   ]
+  },
+  {
+   "type": "DRILL",
+   "name_fr": "Foreuse vivante",
+   "name_en": "Living drill",
+   "emoji": "🐾",
+   "example": "Spiralis",
+   "wiki": "https://nomanssky.fandom.com/wiki/Spiralis",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Tendon restructuré",
+     "item_en": "Latticed Sinew",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/37.png"
+    }
+   ]
+  },
+  {
+   "type": "PROTODIGGER",
+   "name_fr": "Fouisseur primitif",
+   "name_en": "Proto-digger",
+   "emoji": "🐾",
+   "example": "Prototerrae",
+   "wiki": "https://nomanssky.fandom.com/wiki/Prototerrae",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Viande sale",
+     "item_en": "Dirty Meat",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/29.png"
+    }
+   ]
+  },
+  {
+   "type": "CAT",
+   "name_fr": "Félin",
+   "name_en": "Cat",
+   "emoji": "🐈",
+   "example": "Felidae",
+   "wiki": "https://nomanssky.fandom.com/wiki/Felidae",
+   "harvests": [
+    {
+     "method_fr": "Extraire des « baies »",
+     "method_en": "Extract 'Berries'",
+     "item_fr": "Fruit-léopard",
+     "item_en": "Leopard-Fruit",
+     "icon": "https://cdn.nmsassistant.com/cooking/116.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Foie de félin",
+     "item_en": "Feline Liver",
+     "icon": "https://cdn.nmsassistant.com/cooking/30.png"
+    }
+   ]
+  },
+  {
+   "type": "BONECAT",
+   "name_fr": "Félin osseux",
+   "name_en": "Bone cat",
+   "emoji": "🐈",
+   "example": "Osteofelidae",
+   "wiki": "https://nomanssky.fandom.com/wiki/Osteofelidae",
+   "harvests": [
+    {
+     "method_fr": "Extrusion par arrachage",
+     "method_en": "Prise off extrusion",
+     "item_fr": "Fragments d'os",
+     "item_en": "Bone Nuggets",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/114.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Chair cristal",
+     "item_en": "Crystal Flesh",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/30.png"
+    }
+   ]
+  },
+  {
+   "type": "PLANTCAT",
+   "name_fr": "Félin végétal",
+   "name_en": "Plant cat",
+   "emoji": "🐈",
+   "example": "PLANTCAT",
+   "wiki": "https://nomanssky.fandom.com/wiki/PLANTCAT",
+   "harvests": [
+    {
+     "method_fr": "Récolter le nectar",
+     "method_en": "Harvest Nectar",
+     "item_fr": "Nectar sirupeux",
+     "item_en": "Syrupy Nectar",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/48.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Nectar sirupeux",
+     "item_en": "Syrupy Nectar",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/48.png"
+    }
+   ]
+  },
+  {
+   "type": "SIXLEGCAT",
+   "name_fr": "Félin à six pattes",
+   "name_en": "Six-legged cat",
+   "emoji": "🐈",
+   "example": "Felihex",
+   "wiki": "https://nomanssky.fandom.com/wiki/Felihex",
+   "harvests": [
+    {
+     "method_fr": "Extraire des « baies »",
+     "method_en": "Extract 'Berries'",
+     "item_fr": "Fruit-léopard",
+     "item_en": "Leopard-Fruit",
+     "icon": "https://cdn.nmsassistant.com/cooking/116.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Foie de félin",
+     "item_en": "Feline Liver",
+     "icon": "https://cdn.nmsassistant.com/cooking/30.png"
+    }
+   ]
+  },
+  {
+   "type": "LARGEBUTTERFLY",
+   "name_fr": "Grand papillon",
+   "name_en": "Large butterfly",
+   "emoji": "🦋",
+   "example": "Rhopalocera",
+   "wiki": "https://nomanssky.fandom.com/wiki/Rhopalocera",
+   "harvests": [
+    {
+     "method_fr": "Traire doucement",
+     "method_en": "Gently Milk",
+     "item_fr": "Lait de volatile",
+     "item_en": "Craw Milk",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/45.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Ailes charnues",
+     "item_en": "Meaty Wings",
+     "icon": "https://cdn.nmsassistant.com/cooking/39.png"
+    }
+   ]
+  },
+  {
+   "type": "DEEPFISHLARGE",
+   "name_fr": "Grand poisson des abysses",
+   "name_en": "Large deep-sea fish",
+   "emoji": "🐠",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux salés",
+     "item_en": "Salty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/151.png"
+    }
+   ]
+  },
+  {
+   "type": "GRUNT",
+   "name_fr": "Grogneur",
+   "name_en": "Grunt",
+   "emoji": "🐾",
+   "example": "Mogara",
+   "wiki": "https://nomanssky.fandom.com/wiki/Mogara",
+   "harvests": [
+    {
+     "method_fr": "Traire doucement",
+     "method_en": "Gently Milk",
+     "item_fr": "Protolait chaud",
+     "item_en": "Warm Proto-Milk",
+     "icon": "https://cdn.nmsassistant.com/cooking/76.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Protosaucisse",
+     "item_en": "ProtoSausage",
+     "icon": "https://cdn.nmsassistant.com/cooking/37.png"
+    }
+   ]
+  },
+  {
+   "type": "SEAHORSE",
+   "name_fr": "Hippocampe",
+   "name_en": "Seahorse",
+   "emoji": "🐡",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux salés",
+     "item_en": "Salty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/151.png"
+    }
+   ]
+  },
+  {
+   "type": "SEAHORSEGLOW",
+   "name_fr": "Hippocampe luminescent",
+   "name_en": "Glowing seahorse",
+   "emoji": "🐡",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux salés",
+     "item_en": "Salty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/151.png"
+    }
+   ]
+  },
+  {
+   "type": "PLOUGH",
+   "name_fr": "Laboureur",
+   "name_en": "Plough creature",
+   "emoji": "🐾",
+   "example": "Prionterrae",
+   "wiki": "https://nomanssky.fandom.com/wiki/Prionterrae",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Viande sale",
+     "item_en": "Dirty Meat",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/29.png"
+    }
+   ]
+  },
+  {
+   "type": "FLYINGLIZARD",
+   "name_fr": "Lézard volant",
+   "name_en": "Flying lizard",
+   "emoji": "🦎",
+   "example": "Cycromys",
+   "wiki": "https://nomanssky.fandom.com/wiki/Cycromys",
+   "harvests": [
+    {
+     "method_fr": "Collecter du lait",
+     "method_en": "Collect Milk",
+     "item_fr": "Lait de volatile",
+     "item_en": "Craw Milk",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/45.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Ailes charnues",
+     "item_en": "Meaty Wings",
+     "icon": "https://cdn.nmsassistant.com/cooking/39.png"
+    }
+   ]
+  },
+  {
+   "type": "JELLYFISH",
+   "name_fr": "Méduse",
+   "name_en": "Jellyfish",
+   "emoji": "🪼",
+   "example": "Chrysaora",
+   "wiki": "https://nomanssky.fandom.com/wiki/Chrysaora",
+   "harvests": [
+    {
+     "method_fr": "Collecter du lait",
+     "method_en": "Collect Milk",
+     "item_fr": "Lait sauvage",
+     "item_en": "Wild Milk",
+     "icon": "https://cdn.nmsassistant.com/cooking/46.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux de viande",
+     "item_en": "Meaty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/29.png"
+    }
+   ]
+  },
+  {
+   "type": "BIRD",
+   "name_fr": "Oiseau",
+   "name_en": "Bird",
+   "emoji": "🐦",
+   "example": "Agnelis",
+   "wiki": "https://nomanssky.fandom.com/wiki/Agnelis",
+   "harvests": [
+    {
+     "method_fr": "Collecter du lait",
+     "method_en": "Collect Milk",
+     "item_fr": "Lait de volatile",
+     "item_en": "Craw Milk",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/45.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Ailes charnues",
+     "item_en": "Meaty Wings",
+     "icon": "https://cdn.nmsassistant.com/cooking/39.png"
+    }
+   ]
+  },
+  {
+   "type": "BUTTERFLY",
+   "name_fr": "Papillon",
+   "name_en": "Butterfly",
+   "emoji": "🦋",
+   "example": "Rhopalocera",
+   "wiki": "https://nomanssky.fandom.com/wiki/Rhopalocera",
+   "harvests": [
+    {
+     "method_fr": "Collecter du lait",
+     "method_en": "Collect Milk",
+     "item_fr": "Lait de volatile",
+     "item_en": "Craw Milk",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/45.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Ailes charnues",
+     "item_en": "Meaty Wings",
+     "icon": "https://cdn.nmsassistant.com/cooking/39.png"
+    }
+   ]
+  },
+  {
+   "type": "FISH",
+   "name_fr": "Poisson",
+   "name_en": "Fish",
+   "emoji": "🐟",
+   "example": "Ictaloris",
+   "wiki": "https://nomanssky.fandom.com/wiki/Ictaloris",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux salés",
+     "item_en": "Salty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/151.png"
+    }
+   ]
+  },
+  {
+   "type": "DEEPFISH",
+   "name_fr": "Poisson des abysses",
+   "name_en": "Deep-sea fish",
+   "emoji": "🐟",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux salés",
+     "item_en": "Salty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/151.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux salés",
+     "item_en": "Salty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/151.png"
+    }
+   ]
+  },
+  {
+   "type": "TREX",
+   "name_fr": "Prédateur bipède (T-Rex)",
+   "name_en": "Bipedal predator (T-Rex)",
+   "emoji": "🦖",
+   "example": "Tyranocae",
+   "wiki": "https://nomanssky.fandom.com/wiki/Tyranocae",
+   "harvests": [
+    {
+     "method_fr": "Récolter la graisse",
+     "method_en": "Harvest Grease",
+     "item_fr": "Graisse royale",
+     "item_en": "Regis Grease",
+     "icon": "https://cdn.nmsassistant.com/cooking/144.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Viande écailleuse",
+     "item_en": "Scaly Meat",
+     "icon": "https://cdn.nmsassistant.com/cooking/33.png"
+    }
+   ]
+  },
+  {
+   "type": "MANTA",
+   "name_fr": "Raie",
+   "name_en": "Manta",
+   "emoji": "🐟",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux salés",
+     "item_en": "Salty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/151.png"
+    }
+   ]
+  },
+  {
+   "type": "MANTAGLOW",
+   "name_fr": "Raie luminescente",
+   "name_en": "Glowing manta",
+   "emoji": "🐟",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux salés",
+     "item_en": "Salty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/151.png"
+    }
+   ]
+  },
+  {
+   "type": "SHARK",
+   "name_fr": "Requin",
+   "name_en": "Shark",
+   "emoji": "🦈",
+   "example": "Prionace",
+   "wiki": "https://nomanssky.fandom.com/wiki/Prionace",
+   "harvests": [
+    {
+     "method_fr": "Récolter des œufs",
+     "method_en": "Harvest Eggs",
+     "item_fr": "Lait sauvage",
+     "item_en": "Wild Milk",
+     "icon": "https://cdn.nmsassistant.com/cooking/46.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux salés",
+     "item_en": "Salty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/151.png"
+    }
+   ]
+  },
+  {
+   "type": "RODENT",
+   "name_fr": "Rongeur",
+   "name_en": "Rodent",
+   "emoji": "🐀",
+   "example": "Procavya",
+   "wiki": "https://nomanssky.fandom.com/wiki/Procavya",
+   "harvests": [
+    {
+     "method_fr": "Collecter du lait",
+     "method_en": "Collect Milk",
+     "item_fr": "Lait sauvage",
+     "item_en": "Wild Milk",
+     "icon": "https://cdn.nmsassistant.com/cooking/46.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux de viande",
+     "item_en": "Meaty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/29.png"
+    }
+   ]
+  },
+  {
+   "type": "SWIMRODENT",
+   "name_fr": "Rongeur aquatique",
+   "name_en": "Aquatic rodent",
+   "emoji": "🐀",
+   "example": "Procavaquatica",
+   "wiki": "https://nomanssky.fandom.com/wiki/Procavaquatica",
+   "harvests": [
+    {
+     "method_fr": "Collecter du lait",
+     "method_en": "Collect Milk",
+     "item_fr": "Lait sauvage",
+     "item_en": "Wild Milk",
+     "icon": "https://cdn.nmsassistant.com/cooking/46.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux de viande",
+     "item_en": "Meaty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/29.png"
+    }
+   ]
+  },
+  {
+   "type": "WEIRDROLL",
+   "name_fr": "Rouleur anormal",
+   "name_en": "Anomalous roller",
+   "emoji": "🐾",
+   "example": "Anomalous",
+   "wiki": "https://nomanssky.fandom.com/wiki/Anomalous",
+   "harvests": [
+    {
+     "method_fr": "Collecter des parties comestibles",
+     "method_en": "Scoop Edible Clusters",
+     "item_fr": "Œufs de démon",
+     "item_en": "Fiendish Roe",
+     "icon": "https://cdn.nmsassistant.com/cooking/38.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Tronc cérébral grumeleux",
+     "item_en": "Lumpy Brainstem",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/30.png"
+    }
+   ]
+  },
+  {
+   "type": "PROTOROLLER",
+   "name_fr": "Rouleur primitif",
+   "name_en": "Proto-roller",
+   "emoji": "🐾",
+   "example": "Protosphaeridae",
+   "wiki": "https://nomanssky.fandom.com/wiki/Protosphaeridae",
+   "harvests": [
+    {
+     "method_fr": "Extrusion par arrachage",
+     "method_en": "Prise off extrusion",
+     "item_fr": "Fragments d'os",
+     "item_en": "Bone Nuggets",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/114.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Tronc cérébral grumeleux",
+     "item_en": "Lumpy Brainstem",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/30.png"
+    }
+   ]
+  },
+  {
+   "type": "FLYINGBEETLE",
+   "name_fr": "Scarabée volant",
+   "name_en": "Flying beetle",
+   "emoji": "🪲",
+   "example": "Bosoptera",
+   "wiki": "https://nomanssky.fandom.com/wiki/Bosoptera",
+   "harvests": [
+    {
+     "method_fr": "Traire doucement",
+     "method_en": "Gently Milk",
+     "item_fr": "Lait de volatile",
+     "item_en": "Craw Milk",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/45.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Ailes croustillantes",
+     "item_en": "Crunchy Wings",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/29.png"
+    }
+   ]
+  },
+  {
+   "type": "FLYINGSNAKE",
+   "name_fr": "Serpent volant",
+   "name_en": "Flying snake",
+   "emoji": "🐍",
+   "example": "Oxyacta",
+   "wiki": "https://nomanssky.fandom.com/wiki/Oxyacta",
+   "harvests": [
+    {
+     "method_fr": "Collecter du lait",
+     "method_en": "Collect Milk",
+     "item_fr": "Lait de volatile",
+     "item_en": "Craw Milk",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/45.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Ailes charnues",
+     "item_en": "Meaty Wings",
+     "icon": "https://cdn.nmsassistant.com/cooking/39.png"
+    }
+   ]
+  },
+  {
+   "type": "MOLE",
+   "name_fr": "Taupe",
+   "name_en": "Mole",
+   "emoji": "🦔",
+   "example": "Talpidae",
+   "wiki": "https://nomanssky.fandom.com/wiki/Talpidae",
+   "harvests": [
+    {
+     "method_fr": "Accepter l'objet ramassé",
+     "method_en": "Accept Foraged Item",
+     "item_fr": "Champignons ramassés",
+     "item_en": "Foraged Mushrooms",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/116.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Entrailles récupérées",
+     "item_en": "Scooped Innards",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/30.png"
+    }
+   ]
+  },
+  {
+   "type": "FIEND",
+   "name_fr": "Titan des abysses",
+   "name_en": "Abyssal fiend",
+   "emoji": "👹",
+   "example": "Biological Horror",
+   "wiki": "https://nomanssky.fandom.com/wiki/Biological_Horror",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Chair rance",
+     "item_en": "Rancid Flesh",
+     "icon": "https://app.nmsassistant.com/assets/images/cooking/124.png"
+    }
+   ]
+  },
+  {
+   "type": "TRICERATOPS",
+   "name_fr": "Tricératops",
+   "name_en": "Triceratops",
+   "emoji": "🦕",
+   "example": "Theroma",
+   "wiki": "https://nomanssky.fandom.com/wiki/Theroma",
+   "harvests": [
+    {
+     "method_fr": "Collecter des œufs",
+     "method_en": "Collect Eggs",
+     "item_fr": "Œuf de créature",
+     "item_en": "Creature Egg",
+     "icon": "https://cdn.nmsassistant.com/cooking/41.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Morceaux de viande",
+     "item_en": "Meaty Chunks",
+     "icon": "https://cdn.nmsassistant.com/cooking/29.png"
+    }
+   ]
+  },
+  {
+   "type": "STRIDER",
+   "name_fr": "Échassier",
+   "name_en": "Strider",
+   "emoji": "🐾",
+   "example": "Anastomus",
+   "wiki": "https://nomanssky.fandom.com/wiki/Anastomus",
+   "harvests": [
+    {
+     "method_fr": "Collecter des œufs",
+     "method_en": "Collect Eggs",
+     "item_fr": "Grands œufs",
+     "item_en": "Tall Eggs",
+     "icon": "https://cdn.nmsassistant.com/cooking/42.png"
+    },
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Saucisse de bipède",
+     "item_en": "Strider Sausage",
+     "icon": "https://cdn.nmsassistant.com/cooking/35.png"
+    }
+   ]
+  },
+  {
+   "type": "STRIDERGLOW",
+   "name_fr": "Échassier luminescent",
+   "name_en": "Glowing strider",
+   "emoji": "🐾",
+   "example": "",
+   "wiki": "",
+   "harvests": [
+    {
+     "method_fr": "Nourrir / interagir",
+     "method_en": "Feed / interact",
+     "item_fr": "Saucisse de bipède",
+     "item_en": "Strider Sausage",
+     "icon": "https://cdn.nmsassistant.com/cooking/35.png"
+    }
+   ]
+  }
+ ]
+}

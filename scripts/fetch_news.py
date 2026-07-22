@@ -19,6 +19,7 @@ import ssl
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -101,6 +102,83 @@ def clean_text(text: str) -> str:
     text = re.sub(r"<[^>]+>", " ", text)
     text = re.sub(r"https?://\S+", "", text)
     return re.sub(r"\s+", " ", text).strip()
+
+
+# ---------------------------------------------------------------- traduction
+
+GTX_URL = (
+    "https://translate.googleapis.com/translate_a/single"
+    "?client=gtx&sl=en&tl=fr&dt=t&q={}"
+)
+MYMEMORY_URL = "https://api.mymemory.translated.net/get?langpair=en|fr&q={}"
+
+
+def _translate_one(text: str) -> str | None:
+    """Traduit une chaîne EN→FR au mieux (Google gtx, repli MyMemory).
+
+    Best-effort : renvoie None si les deux services échouent, pour que
+    l'appelant conserve le titre original.
+    """
+    q = urllib.parse.quote(text)
+    try:
+        req = urllib.request.Request(
+            GTX_URL.format(q), headers={"User-Agent": "Mozilla/5.0"}
+        )
+        with urllib.request.urlopen(
+            req, timeout=20, context=ssl.create_default_context()
+        ) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            out = "".join(seg[0] for seg in data[0] if seg and seg[0])
+            if out.strip():
+                return out.strip()
+    except Exception:  # noqa: BLE001
+        pass
+    try:
+        req = urllib.request.Request(
+            MYMEMORY_URL.format(q), headers={"User-Agent": USER_AGENT}
+        )
+        with urllib.request.urlopen(
+            req, timeout=20, context=ssl.create_default_context()
+        ) as resp:
+            d = json.loads(resp.read().decode("utf-8"))
+            out = (d.get("responseData") or {}).get("translatedText") or ""
+            if out.strip():
+                return unescape(out.strip())
+    except Exception:  # noqa: BLE001
+        pass
+    return None
+
+
+def translate_posts(posts: list[dict], cache: dict) -> None:
+    """Ajoute un champ `title_fr` à chaque post (traduction automatique EN→FR).
+
+    Un cache titre→traduction (issu du précédent community.json) évite de
+    retraduire les posts déjà vus d'un run à l'autre. On ne touche jamais au
+    titre original : `title_fr` n'est qu'une aide de lecture pour les FR.
+    """
+    for p in posts:
+        title = p.get("title", "")
+        if not title:
+            continue
+        if title in cache and cache[title]:
+            p["title_fr"] = cache[title]
+            continue
+        fr = _translate_one(title)
+        if fr and fr.strip() and fr.strip() != title.strip():
+            p["title_fr"] = fr
+            cache[title] = fr
+            time.sleep(0.2)
+
+
+def _translation_cache() -> dict:
+    """Reconstruit le cache titre→title_fr depuis le community.json existant."""
+    prev = read_json("community.json", {})
+    cache = {}
+    for key in ("top_week", "hot", "coordinates"):
+        for p in prev.get(key, []) or []:
+            if p.get("title") and p.get("title_fr"):
+                cache[p["title"]] = p["title_fr"]
+    return cache
 
 
 def write_json(name: str, payload) -> None:
@@ -215,6 +293,22 @@ def fetch_community() -> dict:
         community["french"] = parse_reddit_rss(fetch(REDDIT_FR_RSS))
     except Exception as exc:  # noqa: BLE001
         print(f"AVERTISSEMENT communauté FR : {exc}", file=sys.stderr)
+
+    # Traduction automatique EN→FR des titres (posts anglophones uniquement ;
+    # r/NoMansSkyFrance est déjà en français). Best-effort avec cache.
+    try:
+        cache = _translation_cache()
+        for key in ("top_week", "hot", "coordinates"):
+            translate_posts(community[key], cache)
+        done = sum(
+            1
+            for key in ("top_week", "hot", "coordinates")
+            for p in community[key]
+            if p.get("title_fr")
+        )
+        print(f"traduction FR : {done} titres traduits")
+    except Exception as exc:  # noqa: BLE001
+        print(f"AVERTISSEMENT traduction : {exc}", file=sys.stderr)
     return community
 
 

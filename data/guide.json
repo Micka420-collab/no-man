@@ -219,6 +219,116 @@
           ]
         }
       ]
+    },
+    {
+      "id": "combat",
+      "icon": "⚔️",
+      "name_fr": "Combat spatial & vaisseaux S",
+      "name_en": "Space combat & S-class ships",
+      "intro_fr": "Maîtriser le combat spatial protège tes cargaisons et débloque la chasse aux vaisseaux rares. Voici comment gagner tes duels et dénicher un vaisseau de classe S.",
+      "intro_en": "Mastering space combat protects your cargo and unlocks the hunt for rare ships. Here's how to win dogfights and track down an S-class ship.",
+      "sections": [
+        {
+          "icon": "🎯",
+          "title_fr": "Bien s'équiper pour le combat",
+          "title_en": "Gearing up for combat",
+          "items": [
+            { "fr": "Priorise une arme forte sur ton vaisseau : le Canon à photons (dégâts bruts) ou le Fulgur (cadence). Ajoute-leur leurs 3 modules d'amélioration.", "en": "Prioritise a strong ship weapon: the Photon Cannon (raw damage) or Positron Ejector (fire rate). Add their 3 upgrade modules." },
+            { "fr": "Renforce tes boucliers de déflecteur : en combat, c'est ce qui te maintient en vie. Recharge-les avec des tables d'oxygène/isotopes.", "en": "Boost your Deflector Shield: in a fight it's what keeps you alive. Recharge it with oxygen/isotope elements." },
+            { "fr": "Place armes et boucliers dans les emplacements survolimentés et regroupe les modules pour le bonus d'adjacence (voir le guide vaisseaux du Marché).", "en": "Put weapons and shields in supercharged slots and group modules for the adjacency bonus (see the ship guide in Market)." }
+          ]
+        },
+        {
+          "icon": "🐉",
+          "title_fr": "Gagner tes duels",
+          "title_en": "Winning your dogfights",
+          "items": [
+            { "fr": "Utilise les freins (accélérateur relâché) pour rester derrière l'ennemi : celui qui garde l'autre dans son viseur gagne.", "en": "Use your brakes (ease off the throttle) to stay behind the enemy: whoever keeps the other in their sights wins." },
+            { "fr": "Vise le point faible : les pirates et Sentinelles ont des boucliers ; enchaîne les tirs pour percer avant qu'ils ne se rechargent.", "en": "Aim for the weak point: pirates and Sentinels have shields; chain your shots to break through before they recharge." },
+            { "fr": "Contre les vagues de Sentinelles, fuis en distorsion si tu es débordé, ou détruis le vaisseau « somme » pour stopper les renforts.", "en": "Against Sentinel waves, warp away if overwhelmed, or destroy the 'summoner' ship to stop reinforcements." }
+          ]
+        },
+        {
+          "icon": "👑",
+          "title_fr": "Chasser un vaisseau de classe S",
+          "title_en": "Hunting an S-class ship",
+          "items": [
+            { "fr": "La classe (C→S) dépend de l'économie du système : vise les systèmes à économie « prospère » (3 étoiles) pour maximiser les chances de S.", "en": "Class (C→S) depends on system economy: target 'wealthy' (3-star) economy systems to maximise S-class odds." },
+            { "fr": "Poste-toi sur la rampe de la station et inspecte chaque vaisseau qui se pose : la classe et les emplacements s'affichent avant l'achat.", "en": "Camp the station landing pad and inspect each ship that lands: class and slot count show before purchase." },
+            { "fr": "Les exotiques (calmar, royal) sont toujours S : un seul modèle par système, ~1 % d'apparition. Les épaves de vaisseaux permettent d'en avoir un gratuitement à réparer.", "en": "Exotics (squid, royal) are always S: one model per system, ~1% spawn. Crashed ships give you one for free to repair." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exocraft",
+      "icon": "🚙",
+      "name_fr": "Exocraft & véhicules",
+      "name_en": "Exocraft & vehicles",
+      "intro_fr": "Les exocraft sont des véhicules terrestres, aquatiques et volants qui rendent l'exploration bien plus rapide et efficace. Voici lesquels débloquer et pourquoi.",
+      "intro_en": "Exocraft are ground, water and air vehicles that make exploration far faster and more efficient. Here's which to unlock and why.",
+      "sections": [
+        {
+          "icon": "🛠️",
+          "title_fr": "Débloquer les exocraft",
+          "title_en": "Unlocking exocraft",
+          "items": [
+            { "fr": "Construis une géo-baie d'exocraft à ta base (ou sur ton cargo pour l'invoquer partout) : elle débloque les plans successifs.", "en": "Build an Exocraft Geobay at your base (or on your freighter to summon them anywhere): it unlocks the successive blueprints." },
+            { "fr": "Chaque exocraft peut recevoir un canon minier et un scanner de signal amélioré — très utile pour trouver ressources et sites.", "en": "Each exocraft can take a mining laser and an upgraded signal scanner — great for finding resources and sites." },
+            { "fr": "Une fois une géo-baie posée sur une planète, tu peux invoquer ton exocraft à distance depuis le menu rapide.", "en": "Once a geobay is placed on a planet, you can summon your exocraft remotely from the quick menu." }
+          ]
+        },
+        {
+          "icon": "🏎️",
+          "title_fr": "Quel véhicule pour quoi",
+          "title_en": "Which vehicle for what",
+          "items": [
+            { "fr": "Roamer : polyvalent, le premier à débloquer. Nomad : rapide et léger, idéal sur l'eau et le sable. Colossus : énorme, pour miner et transporter.", "en": "Roamer: all-rounder, the first to unlock. Nomad: fast and light, great on water and sand. Colossus: huge, for mining and hauling." },
+            { "fr": "Pilgrim : moto rapide et économe. Nautilon : sous-marin pour explorer les fonds et récolter sous l'eau. Minotaur : exocostume à pied, armé et blindé.", "en": "Pilgrim: fast, efficient bike. Nautilon: submarine to explore the deep and harvest underwater. Minotaur: walking exo-mech, armed and armoured." },
+            { "fr": "Le Minotaure peut passer en mode IA pour te suivre et combattre à tes côtés — pratique en environnement hostile.", "en": "The Minotaur can switch to AI mode to follow you and fight at your side — handy in hostile environments." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base",
+      "icon": "🏠",
+      "name_fr": "Construction de base",
+      "name_en": "Base building",
+      "intro_fr": "Une bonne base te fait gagner un temps fou : téléportation, énergie gratuite, agriculture et stockage. Voici les fondations à connaître.",
+      "intro_en": "A good base saves you huge amounts of time: teleport access, free power, farming and storage. Here are the fundamentals.",
+      "sections": [
+        {
+          "icon": "📍",
+          "title_fr": "Poser sa base au bon endroit",
+          "title_en": "Placing your base wisely",
+          "items": [
+            { "fr": "Choisis un lieu au climat clément, riche en ressources voulues (ex. gaz spécifique) et idéalement près d'un point d'intérêt.", "en": "Pick a spot with a mild climate, rich in the resources you want (e.g. a specific gas) and ideally near a point of interest." },
+            { "fr": "Installe un module de téléportation dès que possible : il te relie au réseau des stations et de tes autres bases.", "en": "Install a teleporter as soon as possible: it links you to the station network and your other bases." },
+            { "fr": "Tu peux posséder plusieurs bases — spécialise-les (ferme, industrie, avant-poste d'exploration).", "en": "You can own several bases — specialise them (farm, industry, exploration outpost)." }
+          ]
+        },
+        {
+          "icon": "⚡",
+          "title_fr": "Alimenter et automatiser",
+          "title_en": "Powering and automating",
+          "items": [
+            { "fr": "Produis de l'énergie avec des panneaux solaires + batteries (jour/nuit) ou un générateur à biocarburant pour démarrer.", "en": "Generate power with solar panels + batteries (day/night) or a biofuel reactor to get started." },
+            { "fr": "Les foreuses minérales/gazeuses extraient automatiquement les ressources : relie-les à des conteneurs de stockage.", "en": "Mineral/gas extractors auto-harvest resources: wire them to storage containers." },
+            { "fr": "Recrute des spécialistes (agronome, armurier, scientifique…) à ta base : ils débloquent des missions et des plans.", "en": "Recruit specialists (farmer, armourer, scientist…) to your base: they unlock missions and blueprints." }
+          ]
+        },
+        {
+          "icon": "✨",
+          "title_fr": "Astuces de construction",
+          "title_en": "Building tips",
+          "items": [
+            { "fr": "Le mode construction avancé (édition libre) permet de superposer et pivoter les pièces pour des designs créatifs.", "en": "Advanced build mode (free edit) lets you overlap and rotate parts for creative designs." },
+            { "fr": "Attention à la limite de complexité par base : reste raisonnable si tu veux garder de bonnes performances.", "en": "Mind the per-base complexity limit: keep it reasonable to maintain good performance." },
+            { "fr": "Partage tes plus belles bases avec la communauté, ou visite celles des autres via le portail de base à l'Anomalie.", "en": "Share your best bases with the community, or visit others' via the base portal at the Anomaly." }
+          ]
+        }
+      ]
     }
   ]
 }

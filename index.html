@@ -387,6 +387,64 @@
   .tl-item .d { font-size: 0.78rem; color: var(--ink-dim); margin-left: 8px; }
   .tl-item p { font-size: 0.87rem; color: var(--ink-dim); margin-top: 4px; max-width: 740px; }
 
+  /* ------- Fenêtre détaillée (modale) ------- */
+  #modal-backdrop {
+    position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+    background: rgba(3, 5, 12, 0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    padding: 18px; animation: fadeUp 0.2s ease;
+  }
+  #modal-backdrop[hidden] { display: none; }
+  #item-modal {
+    position: relative; max-width: 560px; width: 100%; max-height: 88vh; overflow-y: auto;
+    background: var(--bg1); border: 1px solid var(--stroke-hi); border-radius: var(--radius);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.6); padding: 0;
+  }
+  .modal-close {
+    position: absolute; top: 12px; right: 12px; z-index: 2; width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(10,15,31,0.7); border: 1px solid var(--stroke); color: var(--ink); cursor: pointer; font-size: 0.95rem;
+  }
+  .modal-close:hover { border-color: var(--stroke-hi); }
+  .m-hero { position: relative; }
+  .m-hero img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: #04060d; border-radius: var(--radius) var(--radius) 0 0; }
+  .m-hero.icon { display: flex; align-items: center; justify-content: center; padding: 26px 0 8px; }
+  .m-hero.icon img { width: 108px; height: 108px; aspect-ratio: 1; object-fit: contain; background: transparent; }
+  .m-body { padding: 18px 22px 24px; }
+  .m-body h3 { font: 700 1.3rem var(--font-head); }
+  .m-group { font-size: 0.85rem; color: var(--ink-dim); margin: 2px 0 12px; }
+  .m-badges { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 12px; }
+  .m-desc { font-size: 0.92rem; color: var(--ink); line-height: 1.6; margin-bottom: 14px; }
+  .m-rows { display: flex; flex-direction: column; gap: 8px; }
+  .m-row { display: flex; justify-content: space-between; gap: 12px; font-size: 0.87rem; padding: 8px 0; border-top: 1px solid var(--stroke); }
+  .m-row .m-k { color: var(--ink-dim); flex-shrink: 0; }
+  .m-row .m-v { text-align: right; font-weight: 500; }
+  .m-row .m-v.big { font-family: var(--font-head); color: var(--c3); }
+  [data-theme="light"] .m-row .m-v.big { color: #9a6b00; }
+  .clickable { cursor: pointer; }
+
+  /* ------- Compte à rebours 10 ans ------- */
+  .anniv {
+    position: relative; overflow: hidden; text-align: center;
+    background: linear-gradient(120deg, rgba(255,92,73,0.16), rgba(122,162,255,0.14), rgba(55,224,184,0.12));
+    border: 1px solid rgba(255,200,87,0.45); border-radius: var(--radius);
+    padding: 20px 22px; margin-bottom: 18px;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  }
+  .anniv::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at 50% -20%, rgba(255,214,150,0.25), transparent 60%);
+  }
+  .anniv .a-badge { font: 700 0.72rem var(--font-head); letter-spacing: 0.24em; text-transform: uppercase; color: var(--c3); }
+  [data-theme="light"] .anniv .a-badge { color: #9a6b00; }
+  .anniv h2 { font: 700 clamp(1.1rem, 3vw, 1.5rem) var(--font-head); margin: 4px 0 3px; }
+  .anniv .a-sub { font-size: 0.85rem; color: var(--ink-dim); margin-bottom: 14px; }
+  .anniv .a-sub a { color: var(--c2); }
+  [data-theme="light"] .anniv .a-sub a { color: #0a7c63; }
+  .anniv .cd { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .anniv .cd-unit { min-width: 68px; background: var(--card-strong); border: 1px solid var(--stroke); border-radius: var(--radius-sm); padding: 10px 6px; }
+  .anniv .cd-num { font: 700 1.9rem var(--font-head); color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums; }
+  .anniv .cd-lbl { font-size: 0.68rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+  .anniv.party h2 { color: var(--c3); }
+
   /* ------- Présence en direct ------- */
   .live-box {
     background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius);
@@ -703,6 +761,7 @@
   <main id="main">
     <!-- Vue d'ensemble -->
     <section class="panel active" id="panel-apercu" role="tabpanel" aria-labelledby="tab-apercu">
+      <div id="anniv-box"></div>
       <div id="live-box"></div>
       <div id="war-box"></div>
       <div id="challenge-box"></div>
@@ -862,6 +921,13 @@
     </section>
   </main>
 
+  <div id="modal-backdrop" hidden>
+    <div id="item-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button id="modal-close" class="modal-close" aria-label="Fermer">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
   <footer>
     <div data-i18n-html="footer_credits">Fait avec ❤️ pour les Voyageurs · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Code source</a> · données mises à jour automatiquement toutes les 6 h</div>
     <div class="srcs" data-i18n="footer_sources">Sources : Hello Games (nomanssky.com), API Steam, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube</div>
@@ -947,6 +1013,13 @@ const I18N = {
     live_of_peak: p => `${p}% du pic des dernières 24 h`,
     live_feed_title: "Activité de la communauté en direct",
     live_communities: "Communautés :",
+    anniv_badge: "Anniversaire",
+    anniv_title: "No Man's Sky fête ses 10 ans",
+    anniv_sub: html => `Sorti le 9 août 2016. Rendez-vous en jeu le 9 août à 18 h UTC pour l'événement communautaire. ${html}`,
+    anniv_link: "En savoir plus →",
+    anniv_units: { d: "jours", h: "heures", m: "min", s: "sec" },
+    anniv_party: "🎉 Joyeux 10e anniversaire, Voyageurs ! 🎉",
+    anniv_party_sub: "10 ans d'exploration — et l'aventure continue.",
     live_posted: "a publié", live_video: "a mis en ligne", live_news: "a annoncé",
     live_src: { fr: "r/NoMansSkyFrance", en: "r/NoMansSkyTheGame", coords: "r/NMSCoordinateExchange", yt: "YouTube", off: "Hello Games" },
     cat_note: "La base de données du jeu : près de 2 000 objets — matériaux, technologies, modules, curiosités, cuisine… Cherche n'importe quoi et découvre sa valeur, son groupe et sa description.",
@@ -983,6 +1056,8 @@ const I18N = {
     fish_size: { small: "Petit", "medium-sized": "Moyen", large: "Grand", colossal: "Colossal" },
     fish_biome: { All: "Tous biomes", Barren: "Aride", Exotic: "Exotique", Frozen: "Gelé", Lava: "Volcanique", Lush: "Luxuriant", Radioactive: "Radioactif", Scorched: "Brûlant", Swamp: "Marécageux", Toxic: "Toxique" },
     ship_price: "Prix", ship_find: "Où le trouver", ship_rarity: n => `Rareté : ${n}/5`,
+    m_value: "💰 Valeur", m_bonus: "Bonus", m_find: "🔎 Où le trouver", m_rarity: "Rareté",
+    m_quality: "Qualité", m_biomes: "Biomes", m_when: "Moment", m_conditions: "Conditions",
   },
   en: {
     skip: "Skip to content",
@@ -1058,6 +1133,13 @@ const I18N = {
     live_of_peak: p => `${p}% of the last 24 h peak`,
     live_feed_title: "Live community activity",
     live_communities: "Communities:",
+    anniv_badge: "Anniversary",
+    anniv_title: "No Man's Sky turns 10",
+    anniv_sub: html => `Launched on 9 August 2016. Join in-game on 9 August at 18:00 UTC for the community event. ${html}`,
+    anniv_link: "Learn more →",
+    anniv_units: { d: "days", h: "hours", m: "min", s: "sec" },
+    anniv_party: "🎉 Happy 10th anniversary, Travellers! 🎉",
+    anniv_party_sub: "10 years of exploration — and the journey continues.",
     live_posted: "posted", live_video: "uploaded", live_news: "announced",
     live_src: { fr: "r/NoMansSkyFrance", en: "r/NoMansSkyTheGame", coords: "r/NMSCoordinateExchange", yt: "YouTube", off: "Hello Games" },
     cat_note: "The game database: nearly 2,000 items — materials, technologies, modules, curiosities, cooking… Search anything and find its value, group and description.",
@@ -1094,6 +1176,8 @@ const I18N = {
     fish_size: { small: "Small", "medium-sized": "Medium", large: "Large", colossal: "Colossal" },
     fish_biome: { All: "All biomes", Barren: "Barren", Exotic: "Exotic", Frozen: "Frozen", Lava: "Volcanic", Lush: "Lush", Radioactive: "Radioactive", Scorched: "Scorched", Swamp: "Swamp", Toxic: "Toxic" },
     ship_price: "Price", ship_find: "Where to find it", ship_rarity: n => `Rarity: ${n}/5`,
+    m_value: "💰 Value", m_bonus: "Bonus", m_find: "🔎 Where to find it", m_rarity: "Rarity",
+    m_quality: "Quality", m_biomes: "Biomes", m_when: "Time", m_conditions: "Conditions",
   },
 };
 
@@ -1117,7 +1201,14 @@ let reduceMotion = motionQuery.matches;
 
 const T = () => I18N[lang];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const safeUrl = u => /^https?:\/\//i.test(u || "") ? u : "#";
+// Autorise http(s) et les chemins relatifs (assets locaux) ; bloque
+// javascript:, data: et autres schémas dangereux venant des flux externes.
+const safeUrl = u => {
+  u = u || "";
+  if (/^https?:\/\//i.test(u)) return u;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(u)) return "#";  // un schéma présent → refusé
+  return u;                                          // chemin relatif → autorisé
+};
 const isObj = v => v !== null && typeof v === "object" && !Array.isArray(v);
 const fmtNum = n => (Number(n) || 0).toLocaleString(lang === "fr" ? "fr-FR" : "en-GB");
 const num = n => Number(n) || 0;
@@ -2361,6 +2452,57 @@ document.getElementById("search-galaxies").addEventListener("input", e => {
 
 /* ============================== Marché ============================== */
 const CUR_ICONS = { Credits: "🪙", Nanites: "⬡", Quicksilver: "✦" };
+let mkFishShown = [], mkItemsShown = [];
+
+function shipToModal(sh) {
+  return {
+    image: sh.image,
+    title: lang === "en" ? sh.name_en : sh.name_fr,
+    badges: [{ txt: T().ship_rarity(num(sh.rarity)), cls: "gold" }],
+    desc: lang === "en" ? sh.bonus_en : sh.bonus_fr,
+    rows: [
+      { k: T().m_find, v: lang === "en" ? sh.find_en : sh.find_fr },
+      { k: T().ship_price, v: lang === "en" ? sh.price_en : sh.price_fr, big: true },
+    ],
+  };
+}
+function fishToModal(f) {
+  return {
+    icon: f.icon,
+    title: lang === "en" ? f.name_en : f.name_fr,
+    badges: [{ txt: T().fish_q[f.quality] || f.quality, cls: "gold" }],
+    rows: [
+      { k: T().m_biomes, v: (f.biomes || []).map(b => T().fish_biome[b] || b).join(", ") },
+      { k: T().m_when, v: T().fish_time[f.time] || f.time },
+      f.size ? { k: T().fish_size ? "📏" : "", v: T().fish_size[f.size] || f.size } : null,
+      { k: T().m_conditions, v: [f.storm ? T().fish_storm : "", f.mission ? T().fish_mission : ""].filter(Boolean).join(" · ") || "—" },
+      { k: T().m_value, v: fmtNum(f.value) + " " + T().mk_currency.Credits, big: true },
+    ],
+  };
+}
+function mkItemToModal(r) {
+  return {
+    icon: r.icon,
+    title: lang === "en" ? r.name_en : r.name_fr,
+    group: lang === "en" ? r.group_en : r.group_fr,
+    rows: [{ k: T().m_value, v: (CUR_ICONS[r.currency] || "") + " " + fmtNum(r.value) + " " + (T().mk_currency[r.currency] || r.currency), big: true }],
+  };
+}
+function mkActivate(el) {
+  const ships = D.ships && D.ships.items || [];
+  if (el.dataset.shipIdx !== undefined && ships[+el.dataset.shipIdx]) showItemModal(shipToModal(ships[+el.dataset.shipIdx]));
+  else if (el.dataset.fishIdx !== undefined && mkFishShown[+el.dataset.fishIdx]) showItemModal(fishToModal(mkFishShown[+el.dataset.fishIdx]));
+  else if (el.dataset.mkitemIdx !== undefined && mkItemsShown[+el.dataset.mkitemIdx]) showItemModal(mkItemToModal(mkItemsShown[+el.dataset.mkitemIdx]));
+}
+document.getElementById("mk-list").addEventListener("click", e => {
+  const el = e.target.closest("[data-ship-idx],[data-fish-idx],[data-mkitem-idx]");
+  if (el) mkActivate(el);
+});
+document.getElementById("mk-list").addEventListener("keydown", e => {
+  if (e.key !== "Enter" && e.key !== " ") return;
+  const el = e.target.closest("[data-ship-idx],[data-fish-idx],[data-mkitem-idx]");
+  if (el) { e.preventDefault(); mkActivate(el); }
+});
 
 function renderMarket() {
   const list = document.getElementById("mk-list");
@@ -2371,7 +2513,7 @@ function renderMarket() {
     controls.innerHTML = `<div class="note" style="margin:0">${T().mk_note_ships}</div>`;
     const ships = D.ships && D.ships.items || [];
     list.innerHTML = ships.length ? `<div class="ship-grid">` + ships.map(sh => `
-      <article class="card ship">
+      <article class="card ship clickable" role="button" tabindex="0" data-ship-idx="${ships.indexOf(sh)}" aria-label="${esc(lang === "en" ? sh.name_en : sh.name_fr)}">
         ${sh.image ? `<div class="sh-photo"><img src="${esc(sh.image)}" alt="${esc(lang === "en" ? sh.name_en : sh.name_fr)}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ""}
         <div class="sh-head"><span class="sh-icon" aria-hidden="true">${esc(sh.icon)}</span>
           <h3>${esc(lang === "en" ? sh.name_en : sh.name_fr)}</h3>
@@ -2398,9 +2540,10 @@ function renderMarket() {
       keepFocus(controls, renderMarket);
     }));
     const fish = fishAll.filter(f => f.quality === fq);
+    mkFishShown = fish;
     const maxV = Math.max(...fish.map(f => num(f.value)), 1);
     list.innerHTML = fish.length ? `<ol class="mk-list">` + fish.map((f, i) => `
-      <li class="mk-row">
+      <li class="mk-row clickable" role="button" tabindex="0" data-fish-idx="${i}" aria-label="${esc(lang === "en" ? f.name_en : f.name_fr)}">
         <div class="rank ${i < 3 ? "top" : ""}" aria-hidden="true">${i + 1}</div>
         ${f.icon ? `<img src="${esc(safeUrl(f.icon))}" alt="" loading="lazy">` : "<span></span>"}
         <div>
@@ -2434,9 +2577,10 @@ function renderMarket() {
     keepFocus(controls, renderMarket);
   }));
   const rows = cats[ck] || [];
+  mkItemsShown = rows;
   const maxV = Math.max(...rows.map(r => num(r.value)), 1);
   list.innerHTML = rows.length ? `<ol class="mk-list">` + rows.map((r, i) => `
-    <li class="mk-row">
+    <li class="mk-row clickable" role="button" tabindex="0" data-mkitem-idx="${i}" aria-label="${esc(lang === "en" ? r.name_en : r.name_fr)}">
       <div class="rank ${i < 3 ? "top" : ""}" aria-hidden="true">${i + 1}</div>
       ${r.icon ? `<img src="${esc(safeUrl(r.icon))}" alt="" loading="lazy">` : "<span></span>"}
       <div>
@@ -2456,6 +2600,105 @@ function renderUpdated() {
     ? `${T().updated} ${new Date(dates.sort().pop()).toLocaleString(
         lang === "fr" ? "fr-FR" : "en-GB", { dateStyle: "medium", timeStyle: "short" })}`
     : "";
+}
+
+/* ============================== Fenêtre détaillée (modale) ============================== */
+let modalLastFocus = null;
+function openModal(html) {
+  const bd = document.getElementById("modal-backdrop");
+  document.getElementById("modal-content").innerHTML = html;
+  modalLastFocus = document.activeElement;
+  bd.hidden = false;
+  document.body.style.overflow = "hidden";
+  document.getElementById("modal-close").focus();
+}
+function closeModal() {
+  const bd = document.getElementById("modal-backdrop");
+  if (bd.hidden) return;
+  bd.hidden = true;
+  document.body.style.overflow = "";
+  if (modalLastFocus && modalLastFocus.focus) modalLastFocus.focus();
+}
+document.getElementById("modal-close").addEventListener("click", closeModal);
+document.getElementById("modal-backdrop").addEventListener("click", e => {
+  if (e.target.id === "modal-backdrop") closeModal();
+});
+document.addEventListener("keydown", e => {
+  const bd = document.getElementById("modal-backdrop");
+  if (bd.hidden) return;
+  if (e.key === "Escape") { closeModal(); return; }
+  if (e.key === "Tab") {  // piège à focus simple
+    const foc = bd.querySelectorAll('button, a[href], input, [tabindex]:not([tabindex="-1"])');
+    if (!foc.length) return;
+    const first = foc[0], last = foc[foc.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+});
+
+// Construit la modale à partir d'un objet normalisé.
+function showItemModal(o) {
+  const hero = o.image
+    ? `<div class="m-hero"><img src="${esc(safeUrl(o.image))}" alt="${esc(o.title)}" onerror="this.closest('.m-hero').style.display='none'"></div>`
+    : o.icon
+    ? `<div class="m-hero icon"><img src="${esc(safeUrl(o.icon))}" alt="" onerror="this.closest('.m-hero').style.display='none'"></div>`
+    : "";
+  const badges = (o.badges || []).map(bch => `<span class="badge ${bch.cls || ""}">${esc(bch.txt)}</span>`).join("");
+  const rows = (o.rows || []).filter(r => r && r.v).map(r =>
+    `<div class="m-row"><span class="m-k">${esc(r.k)}</span><span class="m-v ${r.big ? "big" : ""}">${esc(r.v)}</span></div>`).join("");
+  openModal(`${hero}<div class="m-body">
+    <h3 id="modal-title">${esc(o.title)}</h3>
+    ${o.group ? `<div class="m-group">${esc(o.group)}</div>` : ""}
+    ${badges ? `<div class="m-badges">${badges}</div>` : ""}
+    ${o.desc ? `<p class="m-desc">${esc(o.desc)}</p>` : ""}
+    ${rows ? `<div class="m-rows">${rows}</div>` : ""}
+  </div>`);
+}
+
+/* ============================== Compte à rebours 10 ans ============================== */
+// 10e anniversaire de No Man's Sky : 9 août 2026, 18 h UTC (événement communautaire).
+const ANNIV_TS = Date.UTC(2026, 7, 9, 18, 0, 0);
+const ANNIV_LINK = "https://www.nomanssky.com/";
+let annivTimer = null;
+
+function renderAnniv() {
+  const box = document.getElementById("anniv-box");
+  if (annivTimer) { clearInterval(annivTimer); annivTimer = null; }
+  const diff = ANNIV_TS - Date.now();
+
+  // Fenêtre de fête : les 24 h suivant l'heure de l'événement.
+  if (diff <= 0 && diff > -86400000) {
+    box.innerHTML = `<div class="anniv party">
+      <div class="a-badge">🎂 ${T().anniv_badge}</div>
+      <h2>${T().anniv_party}</h2>
+      <div class="a-sub">${T().anniv_party_sub}</div>
+    </div>`;
+    return;
+  }
+  if (diff <= -86400000) { box.innerHTML = ""; return; }  // événement passé
+
+  const draw = () => {
+    const d = ANNIV_TS - Date.now();
+    if (d <= 0) { renderAnniv(); return; }
+    const days = Math.floor(d / 86400000);
+    const hrs = Math.floor(d % 86400000 / 3600000);
+    const mins = Math.floor(d % 3600000 / 60000);
+    const secs = Math.floor(d % 60000 / 1000);
+    const u = T().anniv_units;
+    const cd = [[days, u.d], [hrs, u.h], [mins, u.m], [secs, u.s]].map(([v, l]) =>
+      `<div class="cd-unit"><div class="cd-num">${String(v).padStart(2, "0")}</div><div class="cd-lbl">${l}</div></div>`).join("");
+    const el = document.getElementById("anniv-cd");
+    if (el) el.innerHTML = cd;
+    return cd;
+  };
+
+  box.innerHTML = `<div class="anniv">
+    <div class="a-badge">🎂 ${T().anniv_badge}</div>
+    <h2>${T().anniv_title}</h2>
+    <div class="a-sub">${T().anniv_sub(`<a href="${ANNIV_LINK}" target="_blank" rel="noopener">${T().anniv_link}</a>`)}</div>
+    <div class="cd" id="anniv-cd">${draw()}</div>
+  </div>`;
+  if (!reduceMotion) annivTimer = setInterval(draw, 1000);
 }
 
 /* ============================== Présence en direct ============================== */
@@ -2578,6 +2821,31 @@ setInterval(() => {
 
 /* ============================== Base de données / catalogue ============================== */
 let catLimit = 60;
+let catShown = [];
+
+// Normalise un objet du catalogue pour la modale détaillée.
+function catToModal(it) {
+  const val = num(it.value);
+  const cur = it.currency ? (T().mk_currency[it.currency] || it.currency) : "";
+  return {
+    icon: it.icon,
+    title: lang === "en" ? it.name_en : it.name_fr,
+    group: lang === "en" ? it.group_en : it.group_fr,
+    badges: [{ txt: (D.catalogue.categories[it._cat].icon) + " " + (T().cat_cats[it._cat] || it._cat) }],
+    desc: lang === "en" ? it.desc_en : it.desc_fr,
+    rows: [val ? { k: "💰 " + (lang === "en" ? "Value" : "Valeur"), v: fmtNum(val) + (cur ? " " + cur : ""), big: true } : null],
+  };
+}
+document.getElementById("cat-list").addEventListener("click", e => {
+  const el = e.target.closest("[data-cat-idx]");
+  if (el && catShown[+el.dataset.catIdx]) showItemModal(catToModal(catShown[+el.dataset.catIdx]));
+});
+document.getElementById("cat-list").addEventListener("keydown", e => {
+  if (e.key !== "Enter" && e.key !== " ") return;
+  const el = e.target.closest("[data-cat-idx]");
+  if (el && catShown[+el.dataset.catIdx]) { e.preventDefault(); showItemModal(catToModal(catShown[+el.dataset.catIdx])); }
+});
+
 async function ensureCatalogue() {
   if (D.catalogue || D._catLoading || D._catFailed) return;
   D._catLoading = true;
@@ -2619,11 +2887,12 @@ function renderCatalogue() {
 
   const total = items.length;
   const shown = items.slice(0, catLimit);
+  catShown = shown;
   countEl.innerHTML = T().cat_count(shown.length, total);
-  list.innerHTML = shown.length ? `<ul class="cat-grid">` + shown.map(it => {
+  list.innerHTML = shown.length ? `<ul class="cat-grid">` + shown.map((it, i) => {
     const val = num(it.value);
     const cur = it.currency ? (T().mk_currency[it.currency] || it.currency) : "";
-    return `<li class="cat-item">
+    return `<li class="cat-item clickable" role="button" tabindex="0" data-cat-idx="${i}" aria-label="${esc(lang === "en" ? it.name_en : it.name_fr)}">
       ${it.icon ? `<img src="${esc(safeUrl(it.icon))}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : "<span></span>"}
       <div class="ci-body">
         <div class="ci-name">${esc(lang === "en" ? it.name_en : it.name_fr)}</div>
@@ -2647,6 +2916,7 @@ function renderCatalogue() {
 function renderAll() {
   renderUpdated();
   renderChips();
+  renderAnniv();
   renderLive();
   renderWar();
   renderChallenge();
@@ -2689,6 +2959,13 @@ function renderAll() {
   computeFresh();
   applyLang(lang);
 })();
+
+// Mode hors-ligne / installation (PWA) : enregistrement discret du service worker.
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => { /* sans effet si indisponible */ });
+  });
+}
 </script>
 </body>
 </html>

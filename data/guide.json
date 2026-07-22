@@ -608,6 +608,177 @@
       ]
     },
     {
+      "id": "corvette_design",
+      "icon": "🛠️",
+      "name_fr": "Corvette : conception & optimisation",
+      "name_en": "Corvette: design & optimisation",
+      "intro_fr": "Le guide complet pour CONCEVOIR ta Corvette de A à Z à l'atelier de la station : ordre de montage, propulseurs & moteurs, réacteurs, et surtout comment obtenir les meilleures stats (le \"meilleur vaisseau\"). Détails vérifiés sur le wiki et les guides communautaires (màj Voyagers/6.x).",
+      "intro_en": "The complete guide to DESIGNING your Corvette from scratch at the station workshop: build order, thrusters & engines, reactors, and above all how to get the best stats (the \"best ship\"). Details verified against the wiki and community guides (Voyagers/6.x update).",
+      "sections": [
+        {
+          "icon": "🚉",
+          "title_fr": "1. Où et comment on la conçoit",
+          "title_en": "1. Where and how you design it",
+          "items": [
+            {
+              "fr": "Va dans n'importe quelle station spatiale, prends l'un des 4 téléporteurs bleus à gauche : tu arrives à l'atelier de Corvette (Corvette Workshop).",
+              "en": "Go to any space station, take one of the 4 blue teleporters on the left: you arrive at the Corvette Workshop."
+            },
+            {
+              "fr": "Prévois ~16 emplacements d'inventaire libres et plus de 10 000 000 d'unités pour les modules de base.",
+              "en": "Have ~16 free inventory slots and over 10,000,000 units for the basic modules."
+            },
+            {
+              "fr": "La Corvette est le SEUL vaisseau qui se construit : tu l'assembles module par module, comme une base. Tu peux tout modifier à tout moment à l'atelier — ta première version n'a pas à être parfaite.",
+              "en": "The Corvette is the ONLY ship you build: you assemble it module by module, like a base. You can change everything anytime at the workshop — your first build doesn't have to be perfect."
+            },
+            {
+              "fr": "Limite : 160 pièces maximum par Corvette (depuis la 6.03). C'est ton \"budget\" de conception.",
+              "en": "Limit: 160 parts maximum per Corvette (since 6.03). That's your design \"budget\"."
+            }
+          ]
+        },
+        {
+          "icon": "🧱",
+          "title_fr": "2. Les modules essentiels & l'ordre de montage",
+          "title_en": "2. Core modules & the build order",
+          "items": [
+            {
+              "fr": "Modules indispensables : Train d'atterrissage, Module d'habitation, Cockpit, Moteur principal, Système d'arme, Réacteur, et Module d'accès (baie).",
+              "en": "Essential modules: Landing Gear, Habitation Module, Cockpit, Main Engine, Weapon System, Reactor, and Access Module (bay)."
+            },
+            {
+              "fr": "Ordre conseillé : pose d'abord le TRAIN D'ATTERRISSAGE (c'est la fondation). Place ensuite l'HABITATION dessus. Accroche le MODULE D'ACCÈS à l'arrière de l'habitation, et le COCKPIT à l'avant.",
+              "en": "Recommended order: place the LANDING GEAR first (it's the foundation). Put the HABITATION on top. Attach the ACCESS MODULE to the rear of the habitation, and the COCKPIT to the front."
+            },
+            {
+              "fr": "Ajoute enfin les MOTEURS PRINCIPAUX et le RÉACTEUR là où c'est joli et cohérent : leur position est libre.",
+              "en": "Finally add the MAIN ENGINES and the REACTOR wherever it looks good and coherent: their position is free."
+            },
+            {
+              "fr": "Astuce : construis autour du cockpit pour garder une bonne visibilité, et pense à l'intérieur (tu peux y poser des raffineurs portables et du stockage).",
+              "en": "Tip: build around the cockpit to keep good visibility, and think about the interior (you can place portable refiners and storage inside)."
+            }
+          ]
+        },
+        {
+          "icon": "🚀",
+          "title_fr": "3. Propulseurs, moteurs & tenue de vol",
+          "title_en": "3. Thrusters, engines & handling",
+          "items": [
+            {
+              "fr": "Le vol dépend de tes moteurs/propulseurs (Moteur principal, propulseurs latéraux) et des stabilisateurs de vol : plus tu en ajoutes de bons, meilleures sont la vitesse et la maniabilité.",
+              "en": "Flight depends on your engines/thrusters (Main Engine, side thrusters) and flight stabilizers: the more good ones you add, the better the speed and manoeuvrability."
+            },
+            {
+              "fr": "Point clé de conception : la SYMÉTRIE n'a AUCUN effet sur les performances. Une Corvette asymétrique vole exactement aussi bien qu'une symétrique — tu as donc une liberté totale de style.",
+              "en": "Key design point: SYMMETRY has NO effect on performance. An asymmetric Corvette flies exactly as well as a symmetric one — so you have total freedom of style."
+            },
+            {
+              "fr": "Le mode miroir de l'éditeur sert juste à aller plus vite pour un look équilibré ; ce n'est pas obligatoire pour bien voler.",
+              "en": "The editor's mirror mode just speeds up a balanced look; it's not required to fly well."
+            }
+          ]
+        },
+        {
+          "icon": "⚛️",
+          "title_fr": "4. Le réacteur : le cœur des stats",
+          "title_en": "4. The reactor: the heart of the stats",
+          "items": [
+            {
+              "fr": "Le type de réacteur oriente fortement ta Corvette. Choisis-le selon ton style de jeu :",
+              "en": "The reactor type strongly shapes your Corvette. Pick it to match your playstyle:"
+            },
+            {
+              "fr": "Réacteur Zenith : +100% d'efficacité des cellules de warp et +170 al de portée d'hyperpropulsion → idéal explorateur.",
+              "en": "Zenith-Class Reactor: +100% Warp Cell Efficiency and +170 ly hyperdrive range → ideal for explorers."
+            },
+            {
+              "fr": "Réacteur Medusa : +15% de boost et +7% de maniabilité → idéal pilotage nerveux / combat.",
+              "en": "Medusa-Class Reactor: +15% boost and +7% manoeuvrability → ideal for agile flying / combat."
+            },
+            {
+              "fr": "Réacteur Azimuth : -20% de coût de décollage, recharge automatique, +16% d'efficacité du propulseur à impulsion → idéal confort / longues sessions.",
+              "en": "Azimuth-Class Reactor: -20% launch cost, automatic recharging, +16% pulse drive efficiency → ideal for comfort / long sessions."
+            },
+            {
+              "fr": "Réacteur Ceto : +16% de puissance de bouclier → idéal survie / combat prolongé.",
+              "en": "Ceto-Class Reactor: +16% shield strength → ideal for survival / prolonged combat."
+            }
+          ]
+        },
+        {
+          "icon": "📈",
+          "title_fr": "5. Faire LE meilleur vaisseau (optimisation)",
+          "title_en": "5. Building THE best ship (optimisation)",
+          "items": [
+            {
+              "fr": "Beaucoup de modules donnent, en plus du look, des bonus de stats (dégâts, bouclier, portée…). Certaines pièces se CUMULENT avec les modules d'amélioration : jusqu'à 6 pièces \"à stat\" pour une même techno.",
+              "en": "Many modules give stat bonuses on top of their look (damage, shield, range…). Some parts STACK with upgrade modules: up to 6 stat-giving parts for a single tech."
+            },
+            {
+              "fr": "Le bonus dépend de l'ordre : la 1re, la 2e et la 3e pièce d'un même type ne donnent pas exactement le même gain (rendement dégressif). Répartis intelligemment.",
+              "en": "The bonus depends on order: the 1st, 2nd and 3rd part of the same type don't give exactly the same gain (diminishing returns). Spread them wisely."
+            },
+            {
+              "fr": "Valeurs \"plafond\" sans surcharge (chiffres communautaires) : bouclier ≈ 500, dégâts d'arme ≈ 200, portée d'hyperpropulsion ≈ 3000 al.",
+              "en": "\"Cap\" values without supercharging (community figures): shield ≈ 500, weapon damage ≈ 200, hyperdrive range ≈ 3000 ly."
+            },
+            {
+              "fr": "Le vrai secret : les emplacements SURVOLTÉS (supercharged). Regroupe tes meilleurs modules d'une même stat sur ces emplacements pour exploser les plafonds — la vitesse peut dépasser 5000+ avec le bon placement.",
+              "en": "The real secret: SUPERCHARGED slots. Group your best modules of one stat on those slots to blow past the caps — speed can exceed 5000+ with the right placement."
+            },
+            {
+              "fr": "Méthode : choisis 1 ou 2 stats à maximiser (ex. hyperpropulsion + vitesse pour l'explorateur, ou dégâts + bouclier pour le combat), et concentre modules + emplacements survoltés dessus plutôt que de tout saupoudrer.",
+              "en": "Method: pick 1–2 stats to maximise (e.g. hyperdrive + speed for explorers, or damage + shield for combat) and concentrate modules + supercharged slots on them rather than spreading everything thin."
+            }
+          ]
+        },
+        {
+          "icon": "🔧",
+          "title_fr": "6. Où trouver les meilleurs modules",
+          "title_en": "6. Where to find the best modules",
+          "items": [
+            {
+              "fr": "À l'atelier : tu peux ACHETER les modules (chers, et seulement les basiques) ou les ÉCHANGER (il faut souvent 1 à 3 doublons pour en obtenir un).",
+              "en": "At the workshop: you can BUY modules (expensive, and only the basic ones) or TRADE them (you often need 1–3 duplicates to get one)."
+            },
+            {
+              "fr": "Les meilleurs modules se LOOTENT : batailles de pirates, expéditions de frégates, missions, porte-vaisseaux écrasés et épaves de porte-vaisseaux (Derelict Freighters).",
+              "en": "The best modules are LOOTED: pirate battles, frigate expeditions, missions, crashed freighters and derelict freighters."
+            },
+            {
+              "fr": "Scanne aussi les planètes pour du \"métal de récupération\" (Salvageable Scrap, symbole Wi-Fi dans un bouclier jaune) : creuse, casse les caisses, pille les conteneurs pour débloquer de nouveaux modules.",
+              "en": "Also scan planets for \"Salvageable Scrap\" (Wi-Fi symbol in a yellow shield): dig, break the casings, loot the containers to unlock new modules."
+            }
+          ]
+        },
+        {
+          "icon": "🎨",
+          "title_fr": "7. Style, couleurs & finitions",
+          "title_en": "7. Style, colours & finishes",
+          "items": [
+            {
+              "fr": "Chaque module reçoit sa propre COULEUR et sa FINITION : joue sur les contrastes pour un vaisseau unique.",
+              "en": "Each module gets its own COLOUR and FINISH: play with contrasts for a unique ship."
+            },
+            {
+              "fr": "Comme la symétrie n'affecte pas le vol, tu peux viser un look militaire massif, un chasseur fin, un yacht… sans jamais sacrifier les performances.",
+              "en": "Since symmetry doesn't affect flight, you can aim for a massive military look, a slim fighter, a yacht… without ever sacrificing performance."
+            },
+            {
+              "fr": "Garde ton budget de 160 pièces en tête : les détails esthétiques comptent dedans. Priorise d'abord les modules \"à stat\", décore ensuite avec ce qu'il reste.",
+              "en": "Keep your 160-part budget in mind: cosmetic details count toward it. Prioritise the stat-giving modules first, then decorate with what's left."
+            },
+            {
+              "fr": "Tu peux quitter le siège en plein vol et marcher dans ta Corvette (et inviter des amis à bord) : soigne aussi l'intérieur.",
+              "en": "You can leave the seat mid-flight and walk around your Corvette (and invite friends aboard): polish the interior too."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "exocraft",
       "icon": "🚙",
       "name_fr": "Exocraft & véhicules",

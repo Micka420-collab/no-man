@@ -66,18 +66,24 @@
   }
   ::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--c2) 60%, transparent); background-clip: content-box; }
   body {
-    background:
-      radial-gradient(1100px 620px at 12% -8%, color-mix(in srgb, var(--c4) 14%, transparent), transparent 58%),
-      radial-gradient(1000px 640px at 112% 4%, color-mix(in srgb, var(--c2) 12%, transparent), transparent 55%),
-      radial-gradient(1200px 900px at 50% 120%, color-mix(in srgb, var(--c1) 9%, transparent), transparent 60%),
-      linear-gradient(180deg, var(--bg1), var(--bg0) 62%);
-    background-attachment: fixed;
+    background: var(--bg0);
     color: var(--ink);
     font-family: var(--font-body);
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
     transition: background 0.35s, color 0.35s;
+  }
+  /* Fond cosmique sur une couche fixe (fiable sur mobile, contrairement à
+     background-attachment: fixed qui laisse des zones blanches au défilement). */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(1100px 620px at 12% -8%, color-mix(in srgb, var(--c4) 14%, transparent), transparent 58%),
+      radial-gradient(1000px 640px at 112% 4%, color-mix(in srgb, var(--c2) 12%, transparent), transparent 55%),
+      radial-gradient(1200px 900px at 50% 120%, color-mix(in srgb, var(--c1) 9%, transparent), transparent 60%),
+      linear-gradient(180deg, var(--bg1), var(--bg0) 62%);
+    transition: background 0.35s;
   }
   #stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
   .aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
@@ -798,7 +804,13 @@
     text-decoration: none; border-top: 1px solid var(--stroke); }
   .ib-wiki:hover { text-decoration: underline; background: color-mix(in srgb, var(--c2) 8%, transparent); }
   [data-theme="light"] .ib-wiki { color: #0a7c63; }
-  @media (max-width: 620px) { .wiki-ib { float: none; width: auto; margin: 0 0 14px; } }
+  .wa-wiki-m { display: none; }
+  @media (max-width: 620px) {
+    /* Sur mobile, l'infobox répète le titre/les infos déjà dans l'article :
+       on la masque et on affiche un lien wiki compact à la place. */
+    .wiki-ib { display: none; }
+    .wa-wiki-m { display: inline-block; margin-top: 6px; }
+  }
   .s16, .easter, .mission-card, .wiki-article { scroll-margin-top: 12px; }
   /* Easter eggs */
   .easter { background: linear-gradient(135deg, color-mix(in srgb, var(--c2) 12%, var(--card)), color-mix(in srgb, var(--c3) 8%, var(--card)));
@@ -4980,6 +4992,7 @@ function missionArticleHtml(m, cats) {
     ${steps ? `<h4 class="wa-h">🧭 ${esc(T().mi_steps)}</h4><ol class="mi-steps">${steps}</ol>` : ""}
     ${rewards ? `<h4 class="wa-h">🎁 ${esc(T().mi_rewards)}</h4><p class="mi-rewards">${esc(rewards)}</p>` : ""}
     ${hidden ? `<div class="mi-hidden"><div class="mi-sec-t">🔍 ${esc(T().mi_hidden)}</div><ul>${hidden}</ul></div>` : ""}
+    ${m.wiki ? `<a class="mi-wiki wa-wiki-m" href="${esc(safeUrl(m.wiki))}" target="_blank" rel="noopener">${esc(T().mi_wiki)}</a>` : ""}
     <div class="wa-clear"></div>
   </article>`;
 }

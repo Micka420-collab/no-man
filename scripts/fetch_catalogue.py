@@ -47,10 +47,17 @@ def fetch(path: str):
         return json.loads(resp.read().decode("utf-8"))
 
 
-def clean_desc(text: str) -> str:
+def clean_text(text: str) -> str:
+    """Nettoie le balisage du jeu : balises <COLOR>…<>, jetons vides <> et
+    marqueurs de gabarit %NAME% laissés dans les données extraites."""
     text = unescape(text or "")
-    text = re.sub(r"<[^>]+>", "", text)
+    text = re.sub(r"<[^>]*>", "", text)          # <CATALYST>…, et le jeton vide <>
+    text = re.sub(r"%[A-Z_]+%", "…", text)         # gabarits %NAME%, %AMOUNT%…
     return re.sub(r"\s+", " ", text).strip()
+
+
+# alias rétrocompatible
+clean_desc = clean_text
 
 
 def merge_category(name: str, path: str, cap) -> list[dict]:
@@ -62,17 +69,19 @@ def merge_category(name: str, path: str, cap) -> list[dict]:
     out = []
     for item in en_items:
         fr = fr_by_id.get(item.get("Id"), {})
+        currency = item.get("CurrencyType", "Credits")
         out.append(
             {
                 "id": item.get("Id", ""),
-                "name_en": item.get("Name", ""),
-                "name_fr": fr.get("Name") or item.get("Name", ""),
-                "group_en": item.get("Group", ""),
-                "group_fr": fr.get("Group") or item.get("Group", ""),
-                "desc_en": clean_desc(item.get("Description", ""))[:280],
-                "desc_fr": clean_desc(fr.get("Description") or item.get("Description", ""))[:280],
+                "name_en": clean_text(item.get("Name", "")),
+                "name_fr": clean_text(fr.get("Name") or item.get("Name", "")),
+                "group_en": clean_text(item.get("Group", "")),
+                "group_fr": clean_text(fr.get("Group") or item.get("Group", "")),
+                "desc_en": clean_text(item.get("Description", ""))[:280],
+                "desc_fr": clean_text(fr.get("Description") or item.get("Description", ""))[:280],
                 "value": item.get("BaseValueUnits", 0),
-                "currency": item.get("CurrencyType", "Credits"),
+                # "None" est une sentinelle sans unité : on la normalise en null.
+                "currency": currency if currency and currency != "None" else None,
                 "icon": item.get("CdnUrl", ""),
             }
         )

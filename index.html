@@ -409,6 +409,7 @@
   .live-feed-title { font: 600 0.78rem var(--font-head); letter-spacing: 0.12em; text-transform: uppercase; color: var(--c3); margin-bottom: 10px; }
   [data-theme="light"] .live-feed-title { color: #9a6b00; }
   .live-feed { display: flex; flex-direction: column; gap: 2px; max-height: 340px; overflow-y: auto; scrollbar-width: thin; }
+  .live-feed-list { list-style: none; margin: 0; padding: 0; }
   .live-item {
     display: flex; align-items: flex-start; gap: 11px; padding: 9px 8px; border-radius: 9px;
     transition: background 0.15s; border-bottom: 1px solid var(--stroke);
@@ -430,7 +431,7 @@
   .cat-count { font-size: 0.82rem; color: var(--ink-dim); margin-bottom: 12px; }
   .cat-count b { color: var(--c2); font-family: var(--font-head); }
   [data-theme="light"] .cat-count b { color: #0a7c63; }
-  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; list-style: none; margin: 0; padding: 0; }
   .cat-item {
     display: flex; gap: 12px; align-items: flex-start;
     background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius-sm);
@@ -2478,7 +2479,11 @@ function animateCount(el, to) {
 function buildLiveFeed() {
   const feed = [];
   const push = (arr, lang, kind, author) => (arr || []).forEach(x => {
-    const t = new Date(x.date).getTime();
+    // Les dates « YYYY-MM » (actus officielles) sont ramenées à la fin du mois
+    // pour ne pas être exclues à tort de la fenêtre de fraîcheur.
+    let t = /^\d{4}-\d{2}$/.test(x.date || "")
+      ? new Date(new Date(x.date + "-01T00:00:00Z").getTime() + 27 * 86400000).getTime()
+      : new Date(x.date).getTime();
     if (!isNaN(t)) feed.push({ ...x, _t: t, _lang: lang, _kind: kind, _author: author ? x.author : x.channel || x.author });
   });
   push(D.community && D.community.hot, "en", "post", true);
@@ -2491,8 +2496,25 @@ function buildLiveFeed() {
   // que le flux reste « en direct », puis dédoublonnage et tri décroissant.
   const cutoff = Date.now() - 45 * 86400000;
   const seen = new Set();
-  return feed.filter(x => x._t >= cutoff && x.url && !seen.has(x.url) && seen.add(x.url))
-    .sort((a, b) => b._t - a._t).slice(0, 14);
+  const recent = feed.filter(x => x._t >= cutoff && x.url && !seen.has(x.url) && seen.add(x.url))
+    .sort((a, b) => b._t - a._t);
+  // on plafonne le Reddit anglais à 9 sur 14 pour laisser de la place aux
+  // vidéos, coordonnées et actus officielles quand elles sont récentes.
+  const out = [], LIMIT = 14, EN_CAP = 9;
+  let enCount = 0;
+  for (const x of recent) {
+    if (out.length >= LIMIT) break;
+    if (x._lang === "en") { if (enCount >= EN_CAP) continue; enCount++; }
+    out.push(x);
+  }
+  // complément éventuel avec les items EN restants pour atteindre 14
+  if (out.length < LIMIT) {
+    for (const x of recent) {
+      if (out.length >= LIMIT) break;
+      if (!out.includes(x)) out.push(x);
+    }
+  }
+  return out.sort((a, b) => b._t - a._t);
 }
 
 const LIVE_FLAG = { en: "🇬🇧", fr: "🇫🇷", coords: "🧭", yt: "🎬", off: "🛸" };
@@ -2506,20 +2528,20 @@ function renderLive() {
   const pct = p24 ? Math.min(100, Math.round(now / p24 * 100)) : 0;
   const feed = buildLiveFeed();
 
-  const feedHtml = feed.map(it => {
+  const feedHtml = feed.length ? "<ul class=\"live-feed-list\">" + feed.map(it => {
     const flag = LIVE_FLAG[it._lang] || "🌐";
     const verb = it._kind === "video" ? T().live_video : it._kind === "news" ? T().live_news : T().live_posted;
     const src = T().live_src[it._lang] || "";
     const who = it._author || (it._kind === "news" ? "Hello Games" : "");
-    return `<div class="live-item">
+    return `<li class="live-item">
       <span class="flag" aria-hidden="true">${flag}</span>
       <div class="li-body">
         <a href="${esc(safeUrl(it.url))}" target="_blank" rel="noopener">${esc(it.title)}</a>
         <div class="li-meta">${who ? `<b>${esc(who)}</b> ` : ""}${verb} · ${esc(src)}</div>
       </div>
       <span class="li-when" data-live-t="${it._t}">${esc(relTime(it.date))}</span>
-    </div>`;
-  }).join("");
+    </li>`;
+  }).join("") + "</ul>" : "";
 
   box.innerHTML = `<div class="live-box">
     <div class="live-head">
@@ -2528,11 +2550,11 @@ function renderLive() {
       <span class="live-when">${T().updated} ${esc(relTime(st.updated_at))}</span>
     </div>
     <div class="live-stats">
-      <div class="live-stat"><div class="lv now" id="live-now">${fmtNum(now)}</div><div class="ll">${T().live_now}</div></div>
+      <div class="live-stat"><div class="lv now" id="live-now" aria-live="polite">${fmtNum(now)}</div><div class="ll">${T().live_now}</div></div>
       <div class="live-stat"><div class="lv">${fmtNum(p24)}</div><div class="ll">${T().live_24h}</div></div>
       ${pall ? `<div class="live-stat"><div class="lv">${fmtNum(pall)}</div><div class="ll">${T().live_all}</div></div>` : ""}
     </div>
-    <div class="live-gauge" title="${T().live_of_peak(pct)}"><div style="width:${pct}%"></div></div>
+    <div class="live-gauge" role="img" aria-label="${T().live_of_peak(pct)}" title="${T().live_of_peak(pct)}"><div style="width:${pct}%"></div></div>
     <div class="live-feed-title">${T().live_feed_title}</div>
     <div class="live-feed">${feedHtml || `<div class="empty">${T().empty_data}</div>`}</div>
     <div class="live-communities">
@@ -2557,10 +2579,11 @@ setInterval(() => {
 /* ============================== Base de données / catalogue ============================== */
 let catLimit = 60;
 async function ensureCatalogue() {
-  if (D.catalogue || D._catLoading) return;
+  if (D.catalogue || D._catLoading || D._catFailed) return;
   D._catLoading = true;
-  D.catalogue = await loadJSON("data/catalogue.json");
+  const loaded = await loadJSON("data/catalogue.json");
   D._catLoading = false;
+  if (loaded) { D.catalogue = loaded; } else { D._catFailed = true; }
   renderCatalogue();
 }
 function renderCatChips() {
@@ -2579,9 +2602,9 @@ function renderCatalogue() {
   const countEl = document.getElementById("cat-count");
   const moreEl = document.getElementById("cat-more");
   if (!D.catalogue) {
-    list.innerHTML = `<div class="empty">${T().cat_loading}</div>`;
+    list.innerHTML = `<div class="empty">${D._catFailed ? T().empty_data : T().cat_loading}</div>`;
     countEl.innerHTML = ""; moreEl.innerHTML = "";
-    ensureCatalogue();
+    if (!D._catFailed) ensureCatalogue();
     return;
   }
   renderCatChips();
@@ -2597,23 +2620,28 @@ function renderCatalogue() {
   const total = items.length;
   const shown = items.slice(0, catLimit);
   countEl.innerHTML = T().cat_count(shown.length, total);
-  list.innerHTML = shown.length ? `<div class="cat-grid">` + shown.map(it => {
+  list.innerHTML = shown.length ? `<ul class="cat-grid">` + shown.map(it => {
     const val = num(it.value);
-    const cur = T().mk_currency[it.currency] || it.currency;
-    return `<div class="cat-item">
+    const cur = it.currency ? (T().mk_currency[it.currency] || it.currency) : "";
+    return `<li class="cat-item">
       ${it.icon ? `<img src="${esc(safeUrl(it.icon))}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : "<span></span>"}
       <div class="ci-body">
         <div class="ci-name">${esc(lang === "en" ? it.name_en : it.name_fr)}</div>
         <div class="ci-group">${esc(lang === "en" ? it.group_en : it.group_fr)}</div>
         <div class="ci-desc">${esc(lang === "en" ? it.desc_en : it.desc_fr)}</div>
-        ${val ? `<div class="ci-val">💰 ${fmtNum(val)} ${esc(cur)}</div>` : ""}
+        ${val ? `<div class="ci-val">💰 ${fmtNum(val)}${cur ? " " + esc(cur) : ""}</div>` : ""}
       </div>
-    </div>`;
-  }).join("") + `</div>` : emptyMsg(!!q);
+    </li>`;
+  }).join("") + `</ul>` : emptyMsg(!!q);
   moreEl.innerHTML = total > shown.length
     ? `<button class="cat-more-btn" id="cat-more-btn">${T().cat_more} (${total - shown.length})</button>` : "";
   const mb = document.getElementById("cat-more-btn");
-  if (mb) mb.addEventListener("click", () => { catLimit += 60; renderCatalogue(); });
+  if (mb) mb.addEventListener("click", () => {
+    catLimit += 60;
+    renderCatalogue();
+    const next = document.getElementById("cat-more-btn");
+    (next || document.querySelector("#cat-list .cat-item:last-child")).focus?.();
+  });
 }
 
 function renderAll() {

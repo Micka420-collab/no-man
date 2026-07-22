@@ -125,6 +125,59 @@ def icon_url(item: dict) -> str:
     return ASSETS_IMG + icon if icon else ""
 
 
+ASSETS_CRE = Path(__file__).resolve().parent.parent / "assets" / "creatures"
+FANDOM_API = "https://nomanssky.fandom.com/api.php"
+
+
+def wiki_title(url: str) -> str:
+    """Titre de page wiki (segment final, tirets bas conservés) depuis l'URL."""
+    return url.rstrip("/").rsplit("/", 1)[-1] if url else ""
+
+
+def fetch_creature_image(wiki: str, ctype: str) -> str:
+    """Télécharge une image d'exemple d'espèce depuis le wiki (miniature 320px,
+    servie en webp par le CDN Wikia) vers assets/creatures/<type>.webp.
+
+    Mise en cache : si le fichier existe déjà, on ne re-télécharge pas.
+    Renvoie le chemin relatif utilisable dans le site, ou "".
+    """
+    if not wiki:
+        return ""
+    ASSETS_CRE.mkdir(parents=True, exist_ok=True)
+    dest = ASSETS_CRE / f"{ctype.lower()}.webp"
+    rel = f"assets/creatures/{ctype.lower()}.webp"
+    if dest.exists() and dest.stat().st_size > 0:
+        return rel
+    title = wiki_title(wiki)
+    if not title:
+        return ""
+    try:
+        q = urllib.parse.urlencode({
+            "action": "query", "titles": title, "prop": "pageimages",
+            "format": "json", "piprop": "thumbnail", "pithumbsize": "320",
+        })
+        req = urllib.request.Request(f"{FANDOM_API}?{q}", headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(req, timeout=30, context=ssl.create_default_context()) as r:
+            data = json.loads(r.read().decode("utf-8"))
+        pages = data.get("query", {}).get("pages", {})
+        thumb = ""
+        for p in pages.values():
+            thumb = (p.get("thumbnail") or {}).get("source", "")
+            if thumb:
+                break
+        if not thumb:
+            return ""
+        ireq = urllib.request.Request(thumb, headers={"User-Agent": "Mozilla/5.0", "Accept": "image/webp,*/*"})
+        with urllib.request.urlopen(ireq, timeout=30, context=ssl.create_default_context()) as r:
+            blob = r.read()
+        if len(blob) < 500:
+            return ""
+        dest.write_bytes(blob)
+        return rel
+    except Exception:  # noqa: BLE001
+        return ""
+
+
 def item_index() -> dict:
     """Index ItemId -> {name_fr, name_en, icon} pour résoudre les récoltes."""
     idx = {}
@@ -186,6 +239,14 @@ def main() -> int:
                 "icon": it.get("icon", ""),
             }
         )
+
+    # Image d'exemple d'espèce (téléchargée et mise en cache localement).
+    with_img = 0
+    for c in by_type.values():
+        c["image"] = fetch_creature_image(c.get("wiki", ""), c["type"])
+        if c["image"]:
+            with_img += 1
+    print(f"images de faune : {with_img}/{len(by_type)}")
 
     creatures = sorted(by_type.values(), key=lambda c: c["name_fr"])
     payload = {

@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-07-22T09:31:40.528242+00:00",
+ "updated_at": "2026-07-22T11:12:12.922954+00:00",
  "count": 57,
  "note": "Archétypes de faune de No Man's Sky et leur récolte. Les espèces sont générées de façon procédurale : chaque fiche renvoie vers un exemple d'espèce réelle documentée sur le wiki communautaire.",
  "creatures": [
@@ -25,7 +25,8 @@
      "item_en": "Meaty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/29.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/antelope.webp"
   },
   {
    "type": "TWOLEGANTELOPE",
@@ -49,7 +50,8 @@
      "item_en": "Meaty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/29.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/twolegantelope.webp"
   },
   {
    "type": "ROBOTANTELOPE",
@@ -73,7 +75,8 @@
      "item_en": "Nanite Cluster",
      "icon": "https://cdn.nmsassistant.com/rawMaterials/56.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/robotantelope.webp"
   },
   {
    "type": "SPIDER",
@@ -97,7 +100,8 @@
      "item_en": "Leg Meat",
      "icon": "https://cdn.nmsassistant.com/cooking/32.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/spider.webp"
   },
   {
    "type": "FLOATSPIDER",
@@ -121,7 +125,8 @@
      "item_en": "Leg Meat",
      "icon": "https://cdn.nmsassistant.com/cooking/32.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/floatspider.webp"
   },
   {
    "type": "ARTHROPOD",
@@ -145,7 +150,8 @@
      "item_en": "Juicy Thorax",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/125.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "DEEPFISHFLOCK",
@@ -162,7 +168,8 @@
      "item_en": "Salty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/151.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "HERMITCRAB",
@@ -179,7 +186,8 @@
      "item_en": "Leg Meat",
      "icon": "https://cdn.nmsassistant.com/cooking/32.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "COW",
@@ -203,7 +211,8 @@
      "item_en": "Raw Steak",
      "icon": "https://cdn.nmsassistant.com/cooking/34.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/cow.webp"
   },
   {
    "type": "SWIMCOW",
@@ -227,7 +236,8 @@
      "item_en": "Meaty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/29.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/swimcow.webp"
   },
   {
    "type": "BONECOW",
@@ -251,7 +261,8 @@
      "item_en": "Softened Marrow",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/384.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "SIXLEGCOW",
@@ -275,7 +286,8 @@
      "item_en": "Raw Steak",
      "icon": "https://cdn.nmsassistant.com/cooking/34.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/sixlegcow.webp"
   },
   {
    "type": "SQUID",
@@ -292,7 +304,8 @@
      "item_en": "Salty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/151.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "LAND_SQUID",
@@ -309,7 +322,8 @@
      "item_en": "Shattered Qualia",
      "icon": "https://app.nmsassistant.com/assets/images/rawMaterials/60.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "CRAB",
@@ -333,7 +347,8 @@
      "item_en": "Leg Meat",
      "icon": "https://cdn.nmsassistant.com/cooking/32.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/crab.webp"
   },
   {
    "type": "PRAWN",
@@ -350,7 +365,8 @@
      "item_en": "Leg Meat",
      "icon": "https://cdn.nmsassistant.com/cooking/32.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "PURPLE_WEIRD",
@@ -374,7 +390,8 @@
      "item_en": "Lumpy Brainstem",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/30.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "WEIRDCRYSTAL",
@@ -391,7 +408,8 @@
      "item_en": "Latticed Sinew",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/37.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/weirdcrystal.webp"
   },
   {
    "type": "ROCKCREATURE",
@@ -415,7 +433,8 @@
      "item_en": "Meaty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/29.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "BLOB",
@@ -439,7 +458,8 @@
      "item_en": "Offal Sac",
      "icon": "https://cdn.nmsassistant.com/cooking/31.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/blob.webp"
   },
   {
    "type": "PROTOFLYER",
@@ -463,7 +483,8 @@
      "item_en": "Crunchy Wings",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/29.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/protoflyer.webp"
   },
   {
    "type": "WALKINGBUILDING",
@@ -480,7 +501,8 @@
      "item_en": "Chewy Wires",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/123.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "DIPLO",
@@ -504,7 +526,8 @@
      "item_en": "Diplo Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/36.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/diplo.webp"
   },
   {
    "type": "WEIRDFLOAT",
@@ -528,7 +551,8 @@
      "item_en": "Lumpy Brainstem",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/30.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/weirdfloat.webp"
   },
   {
    "type": "DRILL",
@@ -545,7 +569,8 @@
      "item_en": "Latticed Sinew",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/37.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/drill.webp"
   },
   {
    "type": "PROTODIGGER",
@@ -562,7 +587,8 @@
      "item_en": "Dirty Meat",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/29.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/protodigger.webp"
   },
   {
    "type": "CAT",
@@ -586,7 +612,8 @@
      "item_en": "Feline Liver",
      "icon": "https://cdn.nmsassistant.com/cooking/30.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/cat.webp"
   },
   {
    "type": "BONECAT",
@@ -610,7 +637,8 @@
      "item_en": "Crystal Flesh",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/30.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/bonecat.webp"
   },
   {
    "type": "PLANTCAT",
@@ -634,7 +662,8 @@
      "item_en": "Syrupy Nectar",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/48.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "SIXLEGCAT",
@@ -658,7 +687,8 @@
      "item_en": "Feline Liver",
      "icon": "https://cdn.nmsassistant.com/cooking/30.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/sixlegcat.webp"
   },
   {
    "type": "LARGEBUTTERFLY",
@@ -682,7 +712,8 @@
      "item_en": "Meaty Wings",
      "icon": "https://cdn.nmsassistant.com/cooking/39.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/largebutterfly.webp"
   },
   {
    "type": "DEEPFISHLARGE",
@@ -699,7 +730,8 @@
      "item_en": "Salty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/151.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "GRUNT",
@@ -723,7 +755,8 @@
      "item_en": "ProtoSausage",
      "icon": "https://cdn.nmsassistant.com/cooking/37.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/grunt.webp"
   },
   {
    "type": "SEAHORSE",
@@ -740,7 +773,8 @@
      "item_en": "Salty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/151.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "SEAHORSEGLOW",
@@ -757,7 +791,8 @@
      "item_en": "Salty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/151.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "PLOUGH",
@@ -774,7 +809,8 @@
      "item_en": "Dirty Meat",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/29.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/plough.webp"
   },
   {
    "type": "FLYINGLIZARD",
@@ -798,7 +834,8 @@
      "item_en": "Meaty Wings",
      "icon": "https://cdn.nmsassistant.com/cooking/39.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/flyinglizard.webp"
   },
   {
    "type": "JELLYFISH",
@@ -822,7 +859,8 @@
      "item_en": "Meaty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/29.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/jellyfish.webp"
   },
   {
    "type": "BIRD",
@@ -846,7 +884,8 @@
      "item_en": "Meaty Wings",
      "icon": "https://cdn.nmsassistant.com/cooking/39.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/bird.webp"
   },
   {
    "type": "BUTTERFLY",
@@ -870,7 +909,8 @@
      "item_en": "Meaty Wings",
      "icon": "https://cdn.nmsassistant.com/cooking/39.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/butterfly.webp"
   },
   {
    "type": "FISH",
@@ -887,7 +927,8 @@
      "item_en": "Salty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/151.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/fish.webp"
   },
   {
    "type": "DEEPFISH",
@@ -911,7 +952,8 @@
      "item_en": "Salty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/151.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "TREX",
@@ -935,7 +977,8 @@
      "item_en": "Scaly Meat",
      "icon": "https://cdn.nmsassistant.com/cooking/33.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/trex.webp"
   },
   {
    "type": "MANTA",
@@ -952,7 +995,8 @@
      "item_en": "Salty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/151.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "MANTAGLOW",
@@ -969,7 +1013,8 @@
      "item_en": "Salty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/151.png"
     }
-   ]
+   ],
+   "image": ""
   },
   {
    "type": "SHARK",
@@ -993,7 +1038,8 @@
      "item_en": "Salty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/151.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/shark.webp"
   },
   {
    "type": "RODENT",
@@ -1017,7 +1063,8 @@
      "item_en": "Meaty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/29.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/rodent.webp"
   },
   {
    "type": "SWIMRODENT",
@@ -1041,7 +1088,8 @@
      "item_en": "Meaty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/29.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/swimrodent.webp"
   },
   {
    "type": "WEIRDROLL",
@@ -1065,7 +1113,8 @@
      "item_en": "Lumpy Brainstem",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/30.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/weirdroll.webp"
   },
   {
    "type": "PROTOROLLER",
@@ -1089,7 +1138,8 @@
      "item_en": "Lumpy Brainstem",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/30.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/protoroller.webp"
   },
   {
    "type": "FLYINGBEETLE",
@@ -1113,7 +1163,8 @@
      "item_en": "Crunchy Wings",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/29.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/flyingbeetle.webp"
   },
   {
    "type": "FLYINGSNAKE",
@@ -1137,7 +1188,8 @@
      "item_en": "Meaty Wings",
      "icon": "https://cdn.nmsassistant.com/cooking/39.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/flyingsnake.webp"
   },
   {
    "type": "MOLE",
@@ -1161,7 +1213,8 @@
      "item_en": "Scooped Innards",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/30.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/mole.webp"
   },
   {
    "type": "FIEND",
@@ -1178,7 +1231,8 @@
      "item_en": "Rancid Flesh",
      "icon": "https://app.nmsassistant.com/assets/images/cooking/124.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/fiend.webp"
   },
   {
    "type": "TRICERATOPS",
@@ -1202,7 +1256,8 @@
      "item_en": "Meaty Chunks",
      "icon": "https://cdn.nmsassistant.com/cooking/29.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/triceratops.webp"
   },
   {
    "type": "STRIDER",
@@ -1226,7 +1281,8 @@
      "item_en": "Strider Sausage",
      "icon": "https://cdn.nmsassistant.com/cooking/35.png"
     }
-   ]
+   ],
+   "image": "assets/creatures/strider.webp"
   },
   {
    "type": "STRIDERGLOW",
@@ -1243,7 +1299,8 @@
      "item_en": "Strider Sausage",
      "icon": "https://cdn.nmsassistant.com/cooking/35.png"
     }
-   ]
+   ],
+   "image": ""
   }
  ]
 }

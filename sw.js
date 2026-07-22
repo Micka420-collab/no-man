@@ -4,7 +4,7 @@
    - Navigation : réseau d'abord, repli sur l'index en cache.
    Objectif : chargement quasi instantané en visite répétée et fonctionnement
    hors-ligne, sans jamais bloquer sur une version périmée. */
-const VERSION = "nms-v23";
+const VERSION = "nms-v24";
 const CORE = [
   "./",
   "./index.html",

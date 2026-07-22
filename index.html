@@ -707,6 +707,25 @@
   .wiki-sec-h { font: 800 1.4rem var(--font-head); margin: 30px 0 14px; padding-bottom: 8px; display: flex; align-items: center; gap: 10px;
     border-bottom: 2px solid color-mix(in srgb, var(--c1) 35%, var(--stroke)); scroll-margin-top: 12px; }
   .wiki-sec-n { font: 700 0.78rem var(--font-head); color: var(--ink-dim); background: var(--track); border-radius: 999px; padding: 2px 10px; }
+  /* Portail du jeu */
+  #wiki-portal { scroll-margin-top: 12px; }
+  .portal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+  .portal-card { display: flex; align-items: center; gap: 13px; text-align: left; cursor: pointer;
+    background: var(--card); border: 1px solid var(--stroke); border-radius: 14px; padding: 14px 15px;
+    transition: transform .14s, border-color .14s, box-shadow .14s; }
+  .portal-card:hover, .portal-card:focus-visible { transform: translateY(-3px); outline: none;
+    border-color: var(--c1); box-shadow: 0 8px 22px -10px color-mix(in srgb, var(--c1) 60%, transparent); }
+  .portal-card .pc-emoji { font-size: 1.9rem; line-height: 1; flex-shrink: 0; }
+  .portal-card .pc-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+  .portal-card .pc-title { font: 700 0.98rem var(--font-head); display: flex; align-items: center; gap: 7px; }
+  .portal-card .pc-count { font: 700 0.68rem var(--font-head); color: var(--c2); background: color-mix(in srgb, var(--c2) 14%, transparent); border-radius: 999px; padding: 1px 8px; }
+  [data-theme="light"] .portal-card .pc-count { color: #0a7c63; }
+  .portal-card .pc-desc { font-size: 0.76rem; color: var(--ink-dim); line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .portal-card .pc-go { font: 600 0.72rem var(--font-body); color: var(--c1); flex-shrink: 0; opacity: 0; transition: opacity .14s; }
+  [data-theme="light"] .portal-card .pc-go { color: #c2372a; }
+  .portal-card:hover .pc-go, .portal-card:focus-visible .pc-go { opacity: 1; }
+  @media (max-width: 560px) { .portal-card .pc-go { display: none; } }
   .s16, .easter, .mission-card { scroll-margin-top: 12px; }
   /* Easter eggs */
   .easter { background: linear-gradient(135deg, color-mix(in srgb, var(--c2) 12%, var(--card)), color-mix(in srgb, var(--c3) 8%, var(--card)));
@@ -1222,7 +1241,7 @@
     <button role="tab" id="tab-progression" aria-controls="panel-progression" data-tab="progression" aria-selected="false" tabindex="-1">🧭 <span data-i18n="tab_progress">Ma progression</span></button>
     <button role="tab" id="tab-favoris" aria-controls="panel-favoris" data-tab="favoris" aria-selected="false" tabindex="-1">⭐ <span data-i18n="tab_favs">Favoris</span><span class="notif" id="notif-favoris" hidden></span></button>
     <button role="tab" id="tab-guide" aria-controls="panel-guide" data-tab="guide" aria-selected="false" tabindex="-1">📚 <span data-i18n="tab_guide">Guides</span></button>
-    <button role="tab" id="tab-missions" aria-controls="panel-missions" data-tab="missions" aria-selected="false" tabindex="-1">📜 <span data-i18n="tab_missions">Missions</span></button>
+    <button role="tab" id="tab-missions" aria-controls="panel-missions" data-tab="missions" aria-selected="false" tabindex="-1">📖 <span data-i18n="tab_missions">Wiki</span></button>
     <button role="tab" id="tab-galaxies" aria-controls="panel-galaxies" data-tab="galaxies" aria-selected="false" tabindex="-1">🗺️ <span data-i18n="tab_galaxies">Galaxies</span></button>
     <button role="tab" id="tab-marche" aria-controls="panel-marche" data-tab="marche" aria-selected="false" tabindex="-1">💎 <span data-i18n="tab_market">Marché</span></button>
     <button role="tab" id="tab-catalogue" aria-controls="panel-catalogue" data-tab="catalogue" aria-selected="false" tabindex="-1">📖 <span data-i18n="tab_catalogue">Base de données</span></button>
@@ -1562,7 +1581,7 @@ const I18N = {
     search_all_ph: "Rechercher un objet, une recette, une créature, une galaxie…",
     so_hint: "Tape pour chercher dans les objets, recettes, créatures, vaisseaux, galaxies et guides.",
     so_empty: "Aucun résultat.",
-    so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📜 Missions", expeditions: "🗓️ Expéditions" },
+    so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expéditions" },
     so_more: n => `+ ${n} autre(s) — ouvrir l'onglet`,
     tab_community: "Communauté", tab_ach: "Succès", tab_videos: "Vidéos", tab_timeline: "Mises à jour",
     updated: "Données mises à jour :",
@@ -1650,8 +1669,8 @@ const I18N = {
     el_disclaimer: "ℹ️ Noms, valeurs, descriptions et icônes proviennent des données du jeu. Le symbole est le vrai symbole chimique quand la substance est un élément réel (Na, Au, O₂, He, U, Cl…) et sinon une abréviation du nom in-game. Le suffixe ᵃ signifie « activé ».",
     el_loading: "Chargement des éléments…",
     el_flora_note: "Substances non minérales récoltées sur la flore et la faune (agriculture, cuisine).",
-    tab_missions: "Missions",
-    mi_note: "Le wiki des missions de No Man's Sky : grandes quêtes d'histoire, quêtes annexes majeures et missions de l'Anomalie, avec objectifs, étapes, récompenses et <b>détails cachés</b> vérifiés sur le wiki et les forums. En bonus : <b>le secret du 16</b> et une collection d'<b>easter eggs</b>.",
+    tab_missions: "Wiki",
+    mi_note: "Le <b>wiki No Man's Sky</b> : le point d'entrée vers tout le savoir du jeu. Un <b>portail</b> vers chaque section (base de données, éléments, faune, recettes, vaisseaux, galaxies, guides), la <b>trame et les missions</b> détaillées, le <b>secret du 16</b> et une collection d'<b>easter eggs</b>. Sources : wiki officieux + forums.",
     mi_all: "Toutes",
     mi_goal: "Objectif",
     mi_steps: "Étapes",
@@ -1664,6 +1683,9 @@ const I18N = {
     s16_sources: "Sources",
     wiki_toc: "Sommaire",
     wiki_highlights: "À la une",
+    wiki_portal: "Portail du jeu",
+    wiki_lore: "Trame & missions",
+    wiki_open: "Ouvrir",
     ee_refs: "Clins d'œil pop-culture",
     ee_lore: "Secrets de lore",
     fauna_count: (shown, total) => `<b>${shown}</b> archétype(s) sur ${total}`,
@@ -1758,7 +1780,7 @@ const I18N = {
     search_all_ph: "Search an item, a recipe, a creature, a galaxy…",
     so_hint: "Type to search items, recipes, creatures, ships, galaxies and guides.",
     so_empty: "No results.",
-    so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📜 Missions", expeditions: "🗓️ Expeditions" },
+    so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expeditions" },
     so_more: n => `+ ${n} more — open the tab`,
     tab_community: "Community", tab_ach: "Achievements", tab_videos: "Videos", tab_timeline: "Updates",
     updated: "Data updated:",
@@ -1846,8 +1868,8 @@ const I18N = {
     el_disclaimer: "ℹ️ Names, values, descriptions and icons come from the game data. The symbol is the real chemical symbol when the substance is a genuine element (Na, Au, O₂, He, U, Cl…), otherwise a short abbreviation of the in-game name. The ᵃ suffix means \"activated\".",
     el_loading: "Loading elements…",
     el_flora_note: "Non-mineral substances harvested from flora and fauna (agriculture, cooking).",
-    tab_missions: "Missions",
-    mi_note: "No Man's Sky mission wiki: major story quests, big side quests and Anomaly missions, with goals, steps, rewards and <b>hidden details</b> verified against the wiki and forums. Bonus: <b>the secret of 16</b> and a collection of <b>easter eggs</b>.",
+    tab_missions: "Wiki",
+    mi_note: "The <b>No Man's Sky wiki</b>: the gateway to all the game's knowledge. A <b>portal</b> to every section (database, elements, fauna, recipes, ships, galaxies, guides), the detailed <b>story and missions</b>, the <b>secret of 16</b> and a collection of <b>easter eggs</b>. Sources: fan wiki + forums.",
     mi_all: "All",
     mi_goal: "Goal",
     mi_steps: "Steps",
@@ -1860,6 +1882,9 @@ const I18N = {
     s16_sources: "Sources",
     wiki_toc: "Contents",
     wiki_highlights: "Featured",
+    wiki_portal: "Game portal",
+    wiki_lore: "Story & missions",
+    wiki_open: "Open",
     ee_refs: "Pop-culture nods",
     ee_lore: "Lore secrets",
     fauna_count: (shown, total) => `<b>${shown}</b> archetype(s) of ${total}`,
@@ -4862,6 +4887,44 @@ function missionArticleHtml(m, cats) {
     ${m.wiki ? `<a class="mi-wiki" href="${esc(safeUrl(m.wiki))}" target="_blank" rel="noopener">${esc(T().mi_wiki)}</a>` : ""}
   </article>`;
 }
+// Portail : cartes vers chaque section du site, avec compteurs dynamiques.
+function portalItems() {
+  const elCount = (() => { const E = D.elements; if (!E) return null; let c = 0; (E.columns || []).forEach(col => c += (col.cells || []).length); c += (E.flora && E.flora.cells ? E.flora.cells.length : 0); return c; })();
+  const recCount = D.recipes ? ((D.recipes.refiner || []).length + (D.recipes.cooking || []).length) : null;
+  return [
+    { tab: "catalogue", emoji: "📖", title: T().tab_catalogue, count: D.catalogue ? D.catalogue.total : "3 500+",
+      fr: "Tous les objets du jeu : matériaux, technologies, modules, cuisine…", en: "Every game item: materials, tech, modules, cooking…" },
+    { tab: "elements", emoji: "⚛️", title: T().tab_elements, count: elCount,
+      fr: "Le tableau périodique des substances réelles du jeu.", en: "The periodic table of the game's real substances." },
+    { tab: "faune", emoji: "🦋", title: T().tab_fauna, count: D.creatures ? (D.creatures.creatures || []).length : null,
+      fr: "Les archétypes de créatures et leurs récoltes.", en: "Creature archetypes and what they harvest." },
+    { tab: "recettes", emoji: "🧪", title: T().tab_recipes, count: recCount,
+      fr: "Toutes les recettes de raffinage et de cuisine.", en: "All refining and cooking recipes." },
+    { tab: "marche", emoji: "💎", title: T().tab_market, count: D.ships ? (D.ships.items || []).length + " 🚀" : null,
+      fr: "Objets précieux, poissons et vaisseaux (avec images).", en: "Valuable items, fish and ships (with images)." },
+    { tab: "galaxies", emoji: "🗺️", title: T().tab_galaxies, count: D.galaxies ? (D.galaxies.items || []).length : 255,
+      fr: "La carte galactique des 255 galaxies.", en: "The galactic map of all 255 galaxies." },
+    { tab: "guide", emoji: "📚", title: T().tab_guide, count: D.guide ? (D.guide.guides || []).length : null,
+      fr: "Guides pratiques : débuter, Corvettes, combat, agriculture…", en: "How-to guides: getting started, Corvettes, combat, farming…" },
+    { tab: "expeditions", emoji: "🗓️", title: T().tab_expeditions, count: D.expeditions ? (D.expeditions.items || []).length : null,
+      fr: "Le calendrier des expéditions communautaires.", en: "The community expeditions calendar." },
+  ];
+}
+function portalHtml() {
+  return `<section id="wiki-portal">
+    <h2 class="wiki-sec-h"><span aria-hidden="true">🧭</span> ${esc(T().wiki_portal)}</h2>
+    <div class="portal-grid">
+      ${portalItems().map(p => `<button class="portal-card" data-goto-tab="${esc(p.tab)}">
+        <span class="pc-emoji" aria-hidden="true">${esc(p.emoji)}</span>
+        <span class="pc-body">
+          <span class="pc-title">${esc(p.title)}${p.count != null ? ` <span class="pc-count">${esc(String(p.count))}</span>` : ""}</span>
+          <span class="pc-desc">${esc(lang === "en" ? p.en : p.fr)}</span>
+        </span>
+        <span class="pc-go" aria-hidden="true">${esc(T().wiki_open)} →</span>
+      </button>`).join("")}
+    </div>
+  </section>`;
+}
 function renderMissions() {
   const wiki = document.getElementById("mission-wiki");
   if (!wiki) return;
@@ -4871,7 +4934,8 @@ function renderMissions() {
   const missions = M.missions || [];
 
   // Sommaire (table des matières)
-  const nav = [`<div class="wn-group"><div class="wn-gt">${esc(T().wiki_highlights)}</div>
+  const nav = [`<div class="wn-group"><button class="wn-gt wn-gt-link" data-sec="wiki-portal">🧭 ${esc(T().wiki_portal)}</button></div>`,
+    `<div class="wn-group"><div class="wn-gt">${esc(T().wiki_highlights)}</div>
     ${M.secret16 ? `<button class="wn-link wn-star" data-sec="wiki-s16">★ ${esc(lang === "en" ? M.secret16.title_en : M.secret16.title_fr)}</button>` : ""}
     ${M.easter ? `<button class="wn-link" data-sec="wiki-easter">🥚 ${esc(lang === "en" ? M.easter.title_en : M.easter.title_fr)}</button>` : ""}
   </div>`];
@@ -4885,7 +4949,8 @@ function renderMissions() {
   }
 
   // Contenu principal
-  const main = [];
+  const main = [portalHtml()];
+  if (M.secret16 || M.easter) main.push(`<h2 class="wiki-sec-h" id="wiki-lore"><span aria-hidden="true">📖</span> ${esc(T().wiki_lore)}</h2>`);
   if (M.secret16) main.push(s16Html(M.secret16));
   if (M.easter) main.push(easterHtml(M.easter));
   for (const k of Object.keys(cats)) {
@@ -4909,6 +4974,10 @@ function renderMissions() {
     if (!el) return;
     el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
     el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1400);
+  }));
+  // Portail : ouvre la section ciblée du site.
+  wiki.querySelectorAll("[data-goto-tab]").forEach(b => b.addEventListener("click", () => {
+    const t = tabByName(b.dataset.gotoTab); if (t) activateTab(t, false);
   }));
 }
 

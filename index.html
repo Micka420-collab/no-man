@@ -561,6 +561,35 @@
   .guide-card .gd-items li { font-size: 0.88rem; line-height: 1.55; color: var(--ink); }
   .guide-card .gd-items li::marker { color: var(--c3); }
   [data-theme="light"] .guide-card .gd-items li::marker { color: #c99f2e; }
+  /* ------- Expéditions ------- */
+  .exp-next {
+    background: linear-gradient(180deg, rgba(255,200,87,.1), transparent);
+    border: 1px solid rgba(255,200,87,.3); border-radius: 12px;
+    padding: 11px 16px; margin: 14px 0 4px; font-size: 0.9rem;
+  }
+  .exp-next b { font-family: var(--font-head); }
+  .exp-next a { color: var(--c2); }
+  [data-theme="light"] .exp-next a { color: #0a7c63; }
+  .exp-list { display: flex; flex-direction: column; gap: 10px; }
+  .exp-card {
+    display: grid; grid-template-columns: 52px 1fr; gap: 14px; align-items: start;
+    background: var(--card); border: 1px solid var(--stroke); border-radius: 14px; padding: 14px 16px;
+  }
+  .exp-card.live { border-color: rgba(255,92,73,.55); box-shadow: 0 0 0 1px rgba(255,92,73,.25); }
+  .exp-card .exp-num {
+    width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font: 700 1.4rem var(--font-head); color: #fff; background: linear-gradient(135deg, #3a4a8a, #6a3aa0);
+  }
+  .exp-card.live .exp-num { background: linear-gradient(135deg, #c9341f, #cc4d12); }
+  .exp-card.past .exp-num { background: var(--track); color: var(--ink-dim); }
+  .exp-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .exp-head h3 { font: 700 1.1rem var(--font-head); margin: 0; }
+  .exp-badge { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--stroke); color: var(--ink-dim); }
+  .exp-badge.live { background: rgba(255,92,73,.14); color: #ff8a75; border-color: rgba(255,92,73,.4); }
+  .exp-badge.soon { background: rgba(255,200,87,.14); color: var(--c3); border-color: rgba(255,200,87,.4); }
+  [data-theme="light"] .exp-badge.soon { color: #9a6b00; }
+  .exp-dates { font-size: 0.78rem; color: var(--ink-dim); margin: 3px 0 6px; }
+  .exp-theme { font-size: 0.86rem; color: var(--ink); line-height: 1.5; margin: 0; }
   /* ------- Recettes ------- */
   .rec-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
   .rec-row {
@@ -976,6 +1005,7 @@
     <button role="tab" id="tab-succes" aria-controls="panel-succes" data-tab="succes" aria-selected="false" tabindex="-1">🏆 <span data-i18n="tab_ach">Succès</span></button>
     <button role="tab" id="tab-videos" aria-controls="panel-videos" data-tab="videos" aria-selected="false" tabindex="-1">🎬 <span data-i18n="tab_videos">Vidéos</span><span class="notif" id="notif-videos" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-maj" aria-controls="panel-maj" data-tab="maj" aria-selected="false" tabindex="-1">🕰️ <span data-i18n="tab_timeline">Mises à jour</span></button>
+    <button role="tab" id="tab-expeditions" aria-controls="panel-expeditions" data-tab="expeditions" aria-selected="false" tabindex="-1">🗓️ <span data-i18n="tab_expeditions">Expéditions</span></button>
   </nav>
 
   <main id="main">
@@ -1182,6 +1212,16 @@
       <div class="note" data-i18n="tl_note">L'histoire de No Man's Sky en mises à jour majeures — 10 ans d'évolution continue et gratuite.</div>
       <div class="tl" id="timeline"></div>
     </section>
+
+    <!-- Expéditions -->
+    <section class="panel" id="panel-expeditions" role="tabpanel" aria-labelledby="tab-expeditions">
+      <div class="note" data-i18n="exp_note">Le calendrier des expéditions communautaires — des événements à durée limitée avec des récompenses exclusives. Elles reviennent régulièrement (rediffusions) et de nouvelles sont annoncées par Hello Games.</div>
+      <div id="exp-next"></div>
+      <div class="controls" style="justify-content:flex-end">
+        <div class="searchbox" style="margin-left:auto"><input type="search" id="search-expeditions" data-i18n-ph="exp_search_ph" placeholder="Chercher une expédition…" data-i18n-aria="aria_search_exp" aria-label="Chercher une expédition"></div>
+      </div>
+      <div id="exp-list" class="exp-list"></div>
+    </section>
   </main>
 
   <div id="modal-backdrop" hidden>
@@ -1248,7 +1288,7 @@ const I18N = {
     search_all_ph: "Rechercher un objet, une recette, une créature, une galaxie…",
     so_hint: "Tape pour chercher dans les objets, recettes, créatures, vaisseaux, galaxies et guides.",
     so_empty: "Aucun résultat.",
-    so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides" },
+    so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides", expeditions: "🗓️ Expéditions" },
     so_more: n => `+ ${n} autre(s) — ouvrir l'onglet`,
     tab_community: "Communauté", tab_ach: "Succès", tab_videos: "Vidéos", tab_timeline: "Mises à jour",
     updated: "Données mises à jour :",
@@ -1277,6 +1317,16 @@ const I18N = {
     rarity_common: "Commun", rarity_uncommon: "Peu commun", rarity_rare: "Rare", rarity_legendary: "Légendaire",
     all: "Toutes", views: "vues",
     tl_note: "L'histoire de No Man's Sky en mises à jour majeures — 10 ans d'évolution continue et gratuite.",
+    tab_expeditions: "Expéditions",
+    exp_note: "Le calendrier des expéditions communautaires — des événements à durée limitée avec des récompenses exclusives. Elles reviennent régulièrement (rediffusions) et de nouvelles sont annoncées par Hello Games.",
+    exp_search_ph: "Chercher une expédition…", aria_search_exp: "Chercher une expédition",
+    exp_status: { past: "Terminée", live: "🔴 En cours", soon: "À venir" },
+    exp_num: n => `Expédition ${n}`,
+    exp_live_days: d => `Plus que ${d} j`,
+    exp_next_none: "Pas d'expédition annoncée pour l'instant. Surveille les actus officielles !",
+    exp_next_soon: (name, d) => `⏳ Prochaine : <b>${name}</b> — dans ${d} jour(s).`,
+    exp_live_now: name => `🔴 En cours : <b>${name}</b> — fonce !`,
+    exp_official: "Actus officielles ↗",
     footer_credits: 'Fait avec ❤️ pour les Voyageurs · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Code source</a> · données mises à jour automatiquement toutes les 6 h',
     footer_sources: "Sources : Hello Games (nomanssky.com), API Steam, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube",
     rel: { s: "à l'instant", m: n => `il y a ${n} min`, h: n => `il y a ${n} h`, d: n => `il y a ${n} j` },
@@ -1399,7 +1449,7 @@ const I18N = {
     search_all_ph: "Search an item, a recipe, a creature, a galaxy…",
     so_hint: "Type to search items, recipes, creatures, ships, galaxies and guides.",
     so_empty: "No results.",
-    so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides" },
+    so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides", expeditions: "🗓️ Expeditions" },
     so_more: n => `+ ${n} more — open the tab`,
     tab_community: "Community", tab_ach: "Achievements", tab_videos: "Videos", tab_timeline: "Updates",
     updated: "Data updated:",
@@ -1428,6 +1478,16 @@ const I18N = {
     rarity_common: "Common", rarity_uncommon: "Uncommon", rarity_rare: "Rare", rarity_legendary: "Legendary",
     all: "All", views: "views",
     tl_note: "The story of No Man's Sky in major updates — 10 years of continuous free evolution.",
+    tab_expeditions: "Expeditions",
+    exp_note: "The calendar of community Expeditions — limited-time events with exclusive rewards. They return regularly (reruns) and new ones are announced by Hello Games.",
+    exp_search_ph: "Search an expedition…", aria_search_exp: "Search an expedition",
+    exp_status: { past: "Ended", live: "🔴 Live", soon: "Upcoming" },
+    exp_num: n => `Expedition ${n}`,
+    exp_live_days: d => `${d}d left`,
+    exp_next_none: "No expedition announced yet. Watch the official news!",
+    exp_next_soon: (name, d) => `⏳ Next: <b>${name}</b> — in ${d} day(s).`,
+    exp_live_now: name => `🔴 Live now: <b>${name}</b> — jump in!`,
+    exp_official: "Official news ↗",
     footer_credits: 'Made with ❤️ for Travellers · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Source code</a> · data refreshes automatically every 6 hours',
     footer_sources: "Sources: Hello Games (nomanssky.com), Steam API, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube",
     rel: { s: "just now", m: n => `${n} min ago`, h: n => `${n} h ago`, d: n => `${n} d ago` },
@@ -1924,6 +1984,19 @@ function runSearch(raw) {
     }
     if (total) groups.push({ label: G.guides, matches: out, total });
   }
+  // Expéditions
+  if (D.expeditions && Array.isArray(D.expeditions.items)) {
+    const out = []; let total = 0;
+    for (const e of D.expeditions.items) {
+      if (!(has(e.name) || has(e.theme_fr) || has(e.theme_en) || has("expedition " + e.num))) continue;
+      total++;
+      if (out.length < SO_CAP) out.push({ emoji: "🗓️", name: e.name,
+        sub: T().exp_num(e.num) + " · " + e.start,
+        action: () => { closeSearch(); query.expeditions = e.name.toLowerCase();
+          activateTab(tabByName("expeditions"), false); const el = document.getElementById("search-expeditions"); if (el) el.value = e.name; renderExpeditions(); } });
+    }
+    if (total) groups.push({ label: G.expeditions, matches: out, total });
+  }
 
   if (!groups.length) { soResultsEl.innerHTML = `<div class="so-empty">${esc(T().so_empty)}</div>`; return; }
   let html = "", idx = 0;
@@ -1990,6 +2063,10 @@ document.getElementById("search-recettes").addEventListener("input", e => {
   query.recettes = e.target.value.trim().toLowerCase();
   recLimit = 40;
   renderRecipes();
+});
+document.getElementById("search-expeditions").addEventListener("input", e => {
+  query.expeditions = e.target.value.trim().toLowerCase();
+  renderExpeditions();
 });
 document.getElementById("cat-chips").addEventListener("click", e => {
   const b = e.target.closest("button");
@@ -2586,6 +2663,62 @@ function renderTimeline() {
     </div>`;
   });
   el.innerHTML = html;
+}
+
+/* ============================== Expéditions ============================== */
+function expStatus(e, now) {
+  const s = Date.parse(e.start + "T00:00:00Z");
+  const en = e.end ? Date.parse(e.end + "T23:59:59Z") : s;
+  if (now < s) return "soon";
+  if (now <= en) return "live";
+  return "past";
+}
+function renderExpeditions() {
+  const list = document.getElementById("exp-list");
+  const nextBox = document.getElementById("exp-next");
+  if (!list) return;
+  const items = D.expeditions && D.expeditions.items || [];
+  if (!items.length) { list.innerHTML = emptyMsg(false); if (nextBox) nextBox.innerHTML = ""; return; }
+  const now = Date.now();
+  const q = (query.expeditions || "").toLowerCase();
+
+  // Bandeau « en cours / prochaine ».
+  if (nextBox) {
+    const live = items.find(e => expStatus(e, now) === "live");
+    const upcoming = items.filter(e => expStatus(e, now) === "soon").sort((a, b) => a.start.localeCompare(b.start))[0];
+    let msg;
+    if (live) msg = T().exp_live_now(esc(live.name));
+    else if (upcoming) {
+      const days = Math.max(0, Math.ceil((Date.parse(upcoming.start + "T00:00:00Z") - now) / 86400000));
+      msg = T().exp_next_soon(esc(upcoming.name), days);
+    } else msg = `${T().exp_next_none} <a href="https://www.nomanssky.com/news/" target="_blank" rel="noopener">${T().exp_official}</a>`;
+    nextBox.innerHTML = `<div class="exp-next">${msg}</div>`;
+  }
+
+  const shown = q
+    ? items.filter(e => matches(q, e.name, e.theme_fr, e.theme_en, "expedition " + e.num, String(e.num)))
+    : items;
+  const ordered = [...shown].sort((a, b) => b.num - a.num); // plus récentes en premier
+  let html = "", lastYear = null;
+  for (const e of ordered) {
+    const st = expStatus(e, now);
+    const year = e.start.slice(0, 4);
+    if (year !== lastYear) { html += `<div class="tl-year">${esc(year)}</div>`; lastYear = year; }
+    const theme = (lang === "en" ? e.theme_en : e.theme_fr) || "";
+    const dates = fmtDate(e.start) + (e.end ? " → " + fmtDate(e.end) : "");
+    html += `<article class="exp-card ${st}">
+      <div class="exp-num" aria-hidden="true">${e.num}</div>
+      <div class="exp-body">
+        <div class="exp-head">
+          <h3>${esc(e.name)}</h3>
+          <span class="exp-badge ${st}">${T().exp_status[st]}</span>
+        </div>
+        <div class="exp-dates">${T().exp_num(e.num)} · ${esc(dates)}</div>
+        ${theme ? `<p class="exp-theme">${esc(theme)}</p>` : ""}
+      </div>
+    </article>`;
+  }
+  list.innerHTML = html || emptyMsg(!!q);
 }
 
 /* ============================== Carte des galaxies ============================== */
@@ -3791,6 +3924,7 @@ function renderAll() {
   renderAchievements();
   renderVideos();
   renderTimeline();
+  renderExpeditions();
   renderGalaxies();
   renderMarket();
   renderCreatures();
@@ -3804,7 +3938,7 @@ function renderAll() {
   applyTheme(localStorage.getItem(LS_THEME) ||
     (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"), false);
 
-  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide] = await Promise.all([
+  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions] = await Promise.all([
     loadJSON("data/progress.json"),
     loadJSON("data/official.json"),
     loadJSON("data/news.json"),
@@ -3823,8 +3957,9 @@ function renderAll() {
     loadJSON("data/creatures.json"),
     loadJSON("data/recipes.json"),
     loadJSON("data/guide.json"),
+    loadJSON("data/expeditions.json"),
   ]);
-  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide });
+  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions });
 
   computeFresh();
   applyLang(lang);

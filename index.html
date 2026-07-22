@@ -208,6 +208,12 @@
   .event-banner p { font-size: 0.9rem; }
   .event-banner a { color: var(--c3); font-weight: 600; }
   [data-theme="light"] .event-banner a { color: #9a6b00; }
+  .event-banner.exp-rem { position: relative; }
+  .event-banner .er-close {
+    position: absolute; top: 8px; right: 10px; background: none; border: none;
+    color: var(--ink-dim); font-size: 1rem; cursor: pointer; line-height: 1; padding: 4px;
+  }
+  .event-banner .er-close:hover { color: var(--ink); }
 
   .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 14px; }
   .tile {
@@ -724,10 +730,13 @@
   .gal-tools button:hover { border-color: rgba(55, 224, 184, 0.6); transform: scale(1.06); }
   #gal-tip {
     position: absolute; pointer-events: none; z-index: 3; display: none;
-    background: rgba(10, 15, 31, 0.88); border: 1px solid rgba(148, 170, 255, 0.3);
-    border-radius: 8px; padding: 5px 11px; font-size: 0.8rem; color: #e8edfb; white-space: nowrap;
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    background: rgba(10, 15, 31, 0.9); border: 1px solid rgba(148, 170, 255, 0.3);
+    border-radius: 9px; padding: 7px 12px; font-size: 0.8rem; color: #e8edfb; white-space: nowrap;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); line-height: 1.35;
   }
+  #gal-tip b { font: 700 0.92rem var(--font-head); display: block; }
+  #gal-tip .gt-sub { color: #aab6d8; font-size: 0.72rem; }
+  #gal-tip .gt-hub { display: block; color: #ffc857; font-size: 0.72rem; font-weight: 600; margin-top: 2px; }
   .gal-hint { font-size: 0.72rem; color: var(--ink-dim); padding: 8px 14px 0; text-align: center; }
   .gal-detail { position: sticky; top: 84px; }
   .gal-mini-wrap { display: flex; justify-content: center; margin-bottom: 12px; }
@@ -957,7 +966,9 @@
     background: none; border: none; color: var(--ink); cursor: pointer;
     padding: 9px 10px; border-radius: 11px; font: inherit;
   }
-  .so-item:hover, .so-item:focus-visible { background: var(--track); outline: none; }
+  .so-item:hover, .so-item:focus-visible, .so-item.sel { background: var(--track); outline: none; }
+  .so-item.sel { box-shadow: inset 3px 0 0 var(--c1); }
+  [data-theme="light"] .so-item.sel { box-shadow: inset 3px 0 0 #c2372a; }
   .so-item img { width: 34px; height: 34px; border-radius: 8px; object-fit: contain; background: var(--track); flex-shrink: 0; }
   .so-item .so-emoji { width: 34px; text-align: center; font-size: 1.4rem; flex-shrink: 0; }
   .so-item .so-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
@@ -1017,6 +1028,7 @@
     <!-- Vue d'ensemble -->
     <section class="panel active" id="panel-apercu" role="tabpanel" aria-labelledby="tab-apercu">
       <div id="anniv-box"></div>
+      <div id="exp-reminder"></div>
       <div id="live-box"></div>
       <div id="war-box"></div>
       <div id="challenge-box"></div>
@@ -1098,6 +1110,7 @@
             <button id="gz-out" data-i18n-aria="gal_zoom_out" aria-label="Dézoomer">－</button>
             <button id="gz-fit" data-i18n-aria="gal_zoom_reset" aria-label="Vue d'ensemble">⌖</button>
             <button id="gz-me" data-i18n-aria="gal_zoom_me" aria-label="Centrer sur ma galaxie">📍</button>
+            <button id="gz-tour" data-i18n-aria="gal_tour" aria-label="Visite guidée">🎬</button>
           </div>
           <div id="gal-tip" aria-hidden="true"></div>
           <div class="gal-hint" data-i18n="gal_hint">Molette ou pincement pour zoomer · glisser pour naviguer · cliquer pour sélectionner</div>
@@ -1331,6 +1344,8 @@ const I18N = {
     exp_next_none: "Pas d'expédition annoncée pour l'instant. Surveille les actus officielles !",
     exp_next_soon: (name, d) => `⏳ Prochaine : <b>${name}</b> — dans ${d} jour(s).`,
     exp_live_now: name => `🔴 En cours : <b>${name}</b> — fonce !`,
+    exp_reminder: d => d <= 1 ? "Dernier jour pour la terminer avant qu'elle disparaisse !" : `Il te reste ${d} jours pour la terminer avant qu'elle disparaisse.`,
+    exp_reminder_link: "Voir le calendrier",
     exp_official: "Actus officielles ↗",
     footer_credits: 'Fait avec ❤️ pour les Voyageurs · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Code source</a> · données mises à jour automatiquement toutes les 6 h',
     footer_sources: "Sources : Hello Games (nomanssky.com), API Steam, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube",
@@ -1421,7 +1436,7 @@ const I18N = {
     gal_hubs_sub: "Là où se concentrent les joueurs et les grandes civilisations communautaires — clique pour explorer.",
     gal_pop: { 3: "Population énorme", 2: "Grande population", 1: "Population notable" },
     gal_hub_civs: "Civilisations communautaires",
-    gal_zoom_in: "Zoomer", gal_zoom_out: "Dézoomer", gal_zoom_reset: "Vue d'ensemble", gal_zoom_me: "Centrer sur ma galaxie",
+    gal_zoom_in: "Zoomer", gal_zoom_out: "Dézoomer", gal_zoom_reset: "Vue d'ensemble", gal_zoom_me: "Centrer sur ma galaxie", gal_tour: "Visite guidée",
     gal_route: "Ton chemin parcouru",
     gal_hint: "Molette ou pincement pour zoomer · glisser pour naviguer · cliquer pour sélectionner",
     mk_items: "Objets précieux", mk_fish: "Poissons", mk_ships: "Vaisseaux",
@@ -1492,6 +1507,8 @@ const I18N = {
     exp_next_none: "No expedition announced yet. Watch the official news!",
     exp_next_soon: (name, d) => `⏳ Next: <b>${name}</b> — in ${d} day(s).`,
     exp_live_now: name => `🔴 Live now: <b>${name}</b> — jump in!`,
+    exp_reminder: d => d <= 1 ? "Last day to finish it before it's gone!" : `You have ${d} days left to finish it before it's gone.`,
+    exp_reminder_link: "See the calendar",
     exp_official: "Official news ↗",
     footer_credits: 'Made with ❤️ for Travellers · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Source code</a> · data refreshes automatically every 6 hours',
     footer_sources: "Sources: Hello Games (nomanssky.com), Steam API, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube",
@@ -1582,7 +1599,7 @@ const I18N = {
     gal_hubs_sub: "Where players and the major community civilizations gather — click to explore.",
     gal_pop: { 3: "Huge population", 2: "Large population", 1: "Notable population" },
     gal_hub_civs: "Community civilizations",
-    gal_zoom_in: "Zoom in", gal_zoom_out: "Zoom out", gal_zoom_reset: "Overview", gal_zoom_me: "Centre on my galaxy",
+    gal_zoom_in: "Zoom in", gal_zoom_out: "Zoom out", gal_zoom_reset: "Overview", gal_zoom_me: "Centre on my galaxy", gal_tour: "Guided tour",
     gal_route: "Your path so far",
     gal_hint: "Scroll or pinch to zoom · drag to pan · click to select",
     mk_items: "Precious items", mk_fish: "Fish", mk_ships: "Starships",
@@ -1765,7 +1782,10 @@ function activateTab(b, focus) {
     window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
   }
   if (b.dataset.tab === "apercu") drawSparkline();
-  if (b.dataset.tab === "galaxies") { galResize(); galStartLoop(); } else galStopLoop();
+  if (b.dataset.tab === "galaxies") {
+    galResize(); galStartLoop();
+    if (!galIntroDone) { galIntroDone = true; setTimeout(galIntro, 80); } // visite guidée au 1er accès
+  } else galStopLoop();
   if (b.dataset.tab === "catalogue") ensureCatalogue();
   syncBottomNav(b.dataset.tab);
 }
@@ -1867,8 +1887,21 @@ const searchOverlay = document.getElementById("search-overlay");
 const soInput = document.getElementById("global-search");
 const soResultsEl = document.getElementById("so-results");
 let soResults = [];
+let soSel = -1;               // index sélectionné au clavier
 let soLastFocus = null;
 const SO_CAP = 6;
+function soHighlight() {
+  soResultsEl.querySelectorAll(".so-item").forEach(b => {
+    const on = +b.dataset.so === soSel;
+    b.classList.toggle("sel", on);
+    if (on) b.scrollIntoView({ block: "nearest" });
+  });
+}
+function soMove(delta) {
+  if (!soResults.length) return;
+  soSel = (soSel + delta + soResults.length) % soResults.length;
+  soHighlight();
+}
 
 function openSearch() {
   ensureCatalogue(); // charge le catalogue si besoin (rendu maj via ensureCatalogue)
@@ -2011,6 +2044,8 @@ function runSearch(raw) {
     if (grp.total > grp.matches.length) html += `<div class="so-more">${esc(T().so_more(grp.total - grp.matches.length))}</div>`;
   }
   soResultsEl.innerHTML = html;
+  soSel = soResults.length ? 0 : -1;   // présélectionne le 1er résultat
+  soHighlight();
 }
 let soTimer = null;
 if (searchOverlay) {
@@ -2018,7 +2053,14 @@ if (searchOverlay) {
   document.getElementById("so-close").addEventListener("click", closeSearch);
   searchOverlay.addEventListener("click", e => { if (e.target === searchOverlay) closeSearch(); });
   soInput.addEventListener("input", () => { clearTimeout(soTimer); soTimer = setTimeout(() => runSearch(soInput.value), 150); });
+  // Navigation clavier : ↓/↑ pour parcourir, Entrée pour ouvrir le résultat.
+  soInput.addEventListener("keydown", e => {
+    if (e.key === "ArrowDown") { e.preventDefault(); soMove(1); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); soMove(-1); }
+    else if (e.key === "Enter") { if (soSel >= 0 && soResults[soSel]) { e.preventDefault(); soResults[soSel].action(); } }
+  });
   soResultsEl.addEventListener("click", e => { const b = e.target.closest("[data-so]"); if (b && soResults[+b.dataset.so]) soResults[+b.dataset.so].action(); });
+  soResultsEl.addEventListener("pointermove", e => { const b = e.target.closest("[data-so]"); if (b && +b.dataset.so !== soSel) { soSel = +b.dataset.so; soHighlight(); } });
   document.addEventListener("keydown", e => {
     if (e.key === "Escape" && !searchOverlay.hidden) { closeSearch(); return; }
     if (e.key === "/" && searchOverlay.hidden && !/^(input|textarea|select)$/i.test(document.activeElement.tagName)) {
@@ -2726,6 +2768,32 @@ function renderExpeditions() {
   list.innerHTML = html || emptyMsg(!!q);
 }
 
+// Rappel dans la Vue d'ensemble quand une expédition en cours se termine bientôt.
+function renderExpReminder() {
+  const box = document.getElementById("exp-reminder");
+  if (!box) return;
+  box.innerHTML = "";
+  const items = D.expeditions && D.expeditions.items || [];
+  if (!items.length) return;
+  const now = Date.now();
+  const live = items.find(e => expStatus(e, now) === "live");
+  if (!live || !live.end) return;
+  const days = Math.max(0, Math.ceil((Date.parse(live.end + "T23:59:59Z") - now) / 86400000));
+  if (days > 10) return;                                   // rappel à l'approche de la fin
+  if (localStorage.getItem("nms-exp-dismiss") === live.name) return;
+  box.innerHTML = `<div class="event-banner exp-rem">
+    <button class="er-close" aria-label="${T().more_close}">✕</button>
+    <h3>⏳ ${esc(live.name)} — ${T().exp_status.live}</h3>
+    <p>${T().exp_reminder(days)} <a data-go-exp href="#">${T().exp_reminder_link}</a></p>
+  </div>`;
+  box.querySelector(".er-close").addEventListener("click", () => {
+    localStorage.setItem("nms-exp-dismiss", live.name); box.innerHTML = "";
+  });
+  box.querySelector("[data-go-exp]").addEventListener("click", e => {
+    e.preventDefault(); activateTab(tabByName("expeditions"), false);
+  });
+}
+
 /* ============================== Carte des galaxies ============================== */
 const LS_GALAXY = "nms-galaxy";
 const GAL_COLORS = { norm: "var(--gal-norm)", lush: "var(--gal-lush)", harsh: "var(--gal-harsh)", empty: "var(--gal-empty)" };
@@ -3159,6 +3227,19 @@ function galFit() {
   if (reduceMotion) { GAL.view = { cx: 0, cy: 0, z: 1 }; GAL.target = null; }
   galDraw();
 }
+// Visite guidée : départ large puis vol cinématique vers ta galaxie (ou Euclid).
+let galIntroDone = false;
+function galIntro() {
+  if (!GAL.inited || !D.galaxies) return;
+  const current = parseInt(localStorage.getItem(LS_GALAXY), 10);
+  const target = (Number.isInteger(current) && current >= 1 && current <= D.galaxies.items.length) ? current : 1;
+  galSelected = target;
+  if (reduceMotion) { galFocus(target, 2.4); renderGalaxies(); return; }
+  GAL.view = { cx: 0, cy: 0, z: 0.6 };   // vue d'ensemble
+  galStartLoop();
+  galFocus(target, 2.6);                  // vol vers la galaxie
+  renderGalaxies();
+}
 
 function galInit() {
   if (GAL.inited) return;
@@ -3211,14 +3292,18 @@ function galInit() {
       c.style.cursor = hit ? "pointer" : "grab";
       if (hit && D.galaxies) {
         const g = D.galaxies.items[hit - 1];
-        tip.textContent = `${g.n}. ${g.name}`;
+        const hub = D.galaxyHubs && D.galaxyHubs.hubs && D.galaxyHubs.hubs[String(g.n)];
+        tip.innerHTML = `<b>${esc(g.name)}</b>`
+          + `<span class="gt-sub">${T().gal_galaxy} ${g.n}/255 · ${T().gal_type_of[g.type] || g.type}</span>`
+          + (hub ? `<span class="gt-hub">🌟 ${esc(lang === "en" ? hub.tag_en : hub.tag_fr)}</span>` : "");
         tip.style.display = "block";
       } else tip.style.display = "none";
       if (reduceMotion) galDraw();
     }
     if (GAL.hover) {
-      tip.style.left = Math.min(e.offsetX + 14, GAL.size - 130) + "px";
-      tip.style.top = (e.offsetY - 34) + "px";
+      const th = tip.offsetHeight || 46;
+      tip.style.left = Math.min(e.offsetX + 14, GAL.size - 160) + "px";
+      tip.style.top = Math.max(4, Math.min(e.offsetY + 16, GAL.size - th - 4)) + "px";
     }
   });
   const endPointer = e => {
@@ -3257,6 +3342,7 @@ function galInit() {
       galSelected = cur; renderGalaxies(); galFocus(cur, 2.6);
     }
   });
+  document.getElementById("gz-tour").addEventListener("click", galIntro);
   galStartLoop();
 }
 
@@ -4053,6 +4139,7 @@ function renderAll() {
   renderVideos();
   renderTimeline();
   renderExpeditions();
+  renderExpReminder();
   renderGalaxies();
   renderMarket();
   renderCreatures();

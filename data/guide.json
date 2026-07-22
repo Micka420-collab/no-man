@@ -458,6 +458,45 @@
           ]
         }
       ]
+    },
+    {
+      "id": "photo",
+      "icon": "📸",
+      "name_fr": "Mode photo",
+      "name_en": "Photo mode",
+      "intro_fr": "No Man's Sky est une machine à captures d'écran. Le mode photo intégré permet de composer de vraies images à partager avec la communauté. Voici comment en tirer le meilleur.",
+      "intro_en": "No Man's Sky is a screenshot machine. The built-in photo mode lets you compose real images to share with the community. Here's how to get the most out of it.",
+      "sections": [
+        {
+          "icon": "🎛️",
+          "title_fr": "Ouvrir et cadrer",
+          "title_en": "Opening and framing",
+          "items": [
+            { "fr": "Ouvre le mode photo depuis le menu rapide : le temps se fige et tu peux déplacer librement la caméra autour de la scène.", "en": "Open photo mode from the quick menu: time freezes and you can move the camera freely around the scene." },
+            { "fr": "Joue sur la distance focale et la profondeur de champ pour flouter l'arrière-plan et détacher ton sujet.", "en": "Play with focal length and depth of field to blur the background and make your subject pop." },
+            { "fr": "Cache l'interface et le vaisseau/personnage si besoin pour un cliché épuré, ou garde-les pour l'échelle.", "en": "Hide the UI and your ship/character if needed for a clean shot, or keep them for scale." }
+          ]
+        },
+        {
+          "icon": "🎨",
+          "title_fr": "Ambiance & filtres",
+          "title_en": "Mood & filters",
+          "items": [
+            { "fr": "Choisis un filtre (couleurs, contraste, vignette) pour donner une identité à ta photo ; certains rendent des ambiances cinéma superbes.", "en": "Pick a filter (colours, contrast, vignette) to give your photo an identity; some produce gorgeous cinematic looks." },
+            { "fr": "Attends la bonne lumière : lever/coucher de soleil, tempêtes, aurores et biomes exotiques offrent les meilleurs ciels.", "en": "Wait for the right light: sunrise/sunset, storms, auroras and exotic biomes give the best skies." },
+            { "fr": "Ajuste l'exposition et la balance pour ne pas cramer les hautes lumières (cœurs de galaxie, soleils).", "en": "Adjust exposure and balance so you don't blow out highlights (galaxy cores, suns)." }
+          ]
+        },
+        {
+          "icon": "🤝",
+          "title_fr": "Partager tes clichés",
+          "title_en": "Sharing your shots",
+          "items": [
+            { "fr": "Partage sur r/NoMansSkyTheGame et r/NoMansSkyFrance (onglet Communauté) — c'est l'un des contenus les plus appréciés.", "en": "Share on r/NoMansSkyTheGame and r/NoMansSkyFrance (Community tab) — it's some of the most-loved content." },
+            { "fr": "Note les coordonnées (glyphes, voir le guide Portails & glyphes) pour que d'autres puissent visiter ton spot.", "en": "Note the coordinates (glyphs, see the Portals & glyphs guide) so others can visit your spot." }
+          ]
+        }
+      ]
     }
   ]
 }

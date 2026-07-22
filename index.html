@@ -2775,8 +2775,16 @@ function galStarColor(t, rnd) {
   return rnd() < 0.28 ? [220, 120, 200] : [190 + k * 65, 175 - k * 20, 235 - k * 110]; // bleu → or, touches magenta
 }
 
+// Spirale logarithmique : angle d'un point de bras à la distance normalisée t.
+const GAL_ARMS = 2;                 // 2 bras dominants (comme la Voie lactée)
+const GAL_SWIRL = 2.75;             // enroulement des bras
+const GAL_CORE_R = 20;              // rayon du bulbe
+function galArmAngle(arm, r) {
+  return arm * (2 * Math.PI / GAL_ARMS) + GAL_SWIRL * Math.log(r / GAL_CORE_R);
+}
+
 function galBuildDust() {
-  const N = 1700;
+  const N = 1800;
   const off = document.createElement("canvas");
   off.width = off.height = N;
   const c = off.getContext("2d");
@@ -2793,45 +2801,70 @@ function galBuildDust() {
   c.save();
   c.scale(1, T);
   const body = c.createRadialGradient(0, 0, 12, 0, 0, WORLD_R);
-  body.addColorStop(0, "rgba(255,230,180,0.22)");
-  body.addColorStop(0.18, "rgba(90,220,210,0.16)");
-  body.addColorStop(0.5, "rgba(70,140,230,0.12)");
-  body.addColorStop(0.8, "rgba(150,110,210,0.06)");
+  body.addColorStop(0, "rgba(255,232,184,0.26)");
+  body.addColorStop(0.18, "rgba(90,222,214,0.18)");
+  body.addColorStop(0.5, "rgba(70,140,232,0.13)");
+  body.addColorStop(0.8, "rgba(158,112,214,0.07)");
   body.addColorStop(1, "rgba(120,90,180,0)");
   c.fillStyle = body;
   c.beginPath(); c.arc(0, 0, WORLD_R, 0, Math.PI * 2); c.fill();
   c.restore();
 
-  // nébuleuses colorées le long des 4 bras
-  for (let i = 0; i < 120; i++) {
-    const arm = i % 4;
+  // nébuleuses colorées le long des bras (spirale logarithmique)
+  const NARMS = 4; // 2 dominants + 2 mineurs pour la richesse
+  for (let i = 0; i < 150; i++) {
+    const arm = i % NARMS;
     const t = Math.pow(rnd(), 0.7);
-    const r = 26 + t * (WORLD_R - 26);
-    const th = arm * Math.PI / 2 + t * 4.3 + (rnd() - 0.5) * 0.5;
+    const r = GAL_CORE_R + 6 + t * (WORLD_R - GAL_CORE_R - 6);
+    const th = galArmAngle(arm % GAL_ARMS, r) + (arm >= GAL_ARMS ? 0.6 : 0) + (rnd() - 0.5) * 0.55;
     const x = r * Math.cos(th), y = r * Math.sin(th) * T;
-    const rad = 18 + rnd() * 52;
+    const rad = 20 + rnd() * 60;
     const col = galStarColor(t, rnd);
     const g = c.createRadialGradient(x, y, 0, x, y, rad);
-    g.addColorStop(0, `rgba(${col[0]|0},${col[1]|0},${col[2]|0},${(0.05 + rnd() * 0.06).toFixed(3)})`);
+    g.addColorStop(0, `rgba(${col[0]|0},${col[1]|0},${col[2]|0},${(0.05 + rnd() * 0.07).toFixed(3)})`);
     g.addColorStop(1, `rgba(${col[0]|0},${col[1]|0},${col[2]|0},0)`);
     c.fillStyle = g;
     c.fillRect(x - rad, y - rad, rad * 2, rad * 2);
   }
 
-  // étoiles denses le long des 4 bras spiraux
-  for (let i = 0; i < 16000; i++) {
-    const arm = i & 3;
+  // voies de poussière sombres, sur le bord intérieur de chaque bras
+  for (let i = 0; i < 2600; i++) {
+    const arm = i & 1;
+    const t = Math.pow(rnd(), 0.62);
+    const r = GAL_CORE_R + 14 + t * (WORLD_R - GAL_CORE_R - 14);
+    const th = galArmAngle(arm, r) - 0.28 + (rnd() - 0.5) * 0.3;
+    const x = r * Math.cos(th), y = r * Math.sin(th) * T;
+    const rad = 2 + rnd() * 7;
+    c.fillStyle = `rgba(6,8,18,${(0.05 + rnd() * 0.10).toFixed(3)})`;
+    c.beginPath(); c.arc(x, y, rad, 0, Math.PI * 2); c.fill();
+  }
+
+  // étoiles denses le long des bras spiraux
+  for (let i = 0; i < 22000; i++) {
+    const arm = i % NARMS;
+    const dominant = arm < GAL_ARMS;
     const t = Math.pow(rnd(), 0.72);
-    const r0 = 24 + t * (WORLD_R - 24);
-    const angScatter = (rnd() - 0.5) * (0.62 - t * 0.34);
-    const th = arm * Math.PI / 2 + t * 4.3 + angScatter;
+    const r0 = GAL_CORE_R + 4 + t * (WORLD_R - GAL_CORE_R - 4);
+    const angScatter = (rnd() - 0.5) * (0.55 - t * 0.28);
+    const th = galArmAngle(arm % GAL_ARMS, r0) + (arm >= GAL_ARMS ? 0.6 : 0) + angScatter;
     const rr = r0 + (rnd() + rnd() - 1) * (4 + t * 10);
     const x = rr * Math.cos(th), y = rr * Math.sin(th) * T;
     const col = galStarColor(t, rnd);
-    const a = (0.10 + rnd() * 0.55) * (1 - t * 0.35);
+    const a = (0.10 + rnd() * 0.55) * (1 - t * 0.32) * (dominant ? 1 : 0.7);
     c.fillStyle = `rgba(${col[0]|0},${col[1]|0},${col[2]|0},${a.toFixed(2)})`;
-    const sz = rnd() < 0.92 ? 0.35 + rnd() * 0.75 : 1.1 + rnd() * 1.0;
+    const sz = rnd() < 0.9 ? 0.35 + rnd() * 0.8 : 1.2 + rnd() * 1.1;
     c.beginPath(); c.arc(x, y, sz, 0, Math.PI * 2); c.fill();
+  }
+
+  // halo diffus d'étoiles hors des bras (remplit le disque)
+  for (let i = 0; i < 4200; i++) {
+    const t = Math.pow(rnd(), 0.5);
+    const r = GAL_CORE_R + t * (WORLD_R - GAL_CORE_R);
+    const th = rnd() * Math.PI * 2;
+    const x = r * Math.cos(th), y = r * Math.sin(th) * T;
+    const col = galStarColor(t, rnd);
+    c.fillStyle = `rgba(${col[0]|0},${col[1]|0},${col[2]|0},${(0.05 + rnd() * 0.14).toFixed(2)})`;
+    c.beginPath(); c.arc(x, y, 0.3 + rnd() * 0.55, 0, Math.PI * 2); c.fill();
   }
 
   // étoiles de fond éparses
@@ -2842,28 +2875,44 @@ function galBuildDust() {
   }
 
   // renflement central lumineux (bulbe chaud)
-  const bulge = c.createRadialGradient(0, 0, 0, 0, 0, 78);
-  bulge.addColorStop(0, "rgba(255,250,232,0.95)");
-  bulge.addColorStop(0.16, "rgba(255,226,168,0.7)");
-  bulge.addColorStop(0.42, "rgba(255,180,120,0.24)");
-  bulge.addColorStop(0.72, "rgba(150,130,220,0.10)");
+  const bulge = c.createRadialGradient(0, 0, 0, 0, 0, 86);
+  bulge.addColorStop(0, "rgba(255,250,232,0.96)");
+  bulge.addColorStop(0.16, "rgba(255,226,168,0.72)");
+  bulge.addColorStop(0.42, "rgba(255,180,120,0.26)");
+  bulge.addColorStop(0.72, "rgba(150,130,220,0.11)");
   bulge.addColorStop(1, "rgba(120,110,200,0)");
   c.save(); c.scale(1, T * 1.25); c.fillStyle = bulge;
-  c.beginPath(); c.arc(0, 0, 78, 0, Math.PI * 2); c.fill(); c.restore();
+  c.beginPath(); c.arc(0, 0, 86, 0, Math.PI * 2); c.fill(); c.restore();
 
   // cœur brillant + halo horizontal (lens flare caractéristique)
-  const core = c.createRadialGradient(0, 0, 0, 0, 0, 26);
+  const core = c.createRadialGradient(0, 0, 0, 0, 0, 30);
   core.addColorStop(0, "rgba(255,255,250,1)");
-  core.addColorStop(0.4, "rgba(255,240,205,0.85)");
+  core.addColorStop(0.4, "rgba(255,240,205,0.88)");
   core.addColorStop(1, "rgba(255,220,160,0)");
   c.fillStyle = core;
-  c.beginPath(); c.arc(0, 0, 26, 0, Math.PI * 2); c.fill();
-  const flare = c.createLinearGradient(-WORLD_R * 0.85, 0, WORLD_R * 0.85, 0);
+  c.beginPath(); c.arc(0, 0, 30, 0, Math.PI * 2); c.fill();
+  const flare = c.createLinearGradient(-WORLD_R * 0.9, 0, WORLD_R * 0.9, 0);
   flare.addColorStop(0, "rgba(255,240,210,0)");
-  flare.addColorStop(0.5, "rgba(255,246,225,0.55)");
+  flare.addColorStop(0.5, "rgba(255,246,225,0.6)");
   flare.addColorStop(1, "rgba(255,240,210,0)");
   c.fillStyle = flare;
-  c.fillRect(-WORLD_R * 0.85, -2.2, WORLD_R * 1.7, 4.4);
+  c.fillRect(-WORLD_R * 0.9, -2.4, WORLD_R * 1.8, 4.8);
+
+  // passe de bloom (lueur) : on rebake une copie floutée en mode additif pour
+  // le rendu lumineux caractéristique du Galactic Atlas.
+  try {
+    const tmp = document.createElement("canvas");
+    tmp.width = tmp.height = N;
+    const tc = tmp.getContext("2d");
+    tc.filter = "blur(7px)";
+    tc.drawImage(off, 0, 0);
+    c.setTransform(1, 0, 0, 1, 0, 0);
+    c.globalCompositeOperation = "lighter";
+    c.globalAlpha = 0.5;
+    c.drawImage(tmp, 0, 0);
+    c.globalAlpha = 1;
+    c.globalCompositeOperation = "source-over";
+  } catch (e) { /* filtre non supporté : rendu de base conservé */ }
 
   GAL.dust = off;
 }

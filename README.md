@@ -6,8 +6,9 @@ Un système complet pour suivre **tout ce qui se passe autour de No Man's Sky** 
 **➡️ Site en ligne : https://micka420-collab.github.io/no-man/**
 
 ✨ Interface **bilingue français/anglais**, thèmes **sombre/clair**, champ d'étoiles animé,
-recherche et filtres dans chaque onglet, suivi personnel des succès comparé à la communauté
-mondiale, installable comme application (PWA), accessible (clavier, lecteurs d'écran,
+recherche et filtres dans chaque onglet, **fiches détaillées au clic** sur les objets/vaisseaux,
+**compte à rebours des 10 ans du jeu**, **mode hors-ligne (PWA installable)**, suivi personnel
+des succès comparé à la communauté mondiale, accessible (clavier, lecteurs d'écran,
 `prefers-reduced-motion`).
 
 ## Ce que ça fait

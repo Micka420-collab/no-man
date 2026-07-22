@@ -17,7 +17,7 @@ feuille « Plus » pour toutes les sections, et **balayage gauche/droite** pour 
 | Volet | Contenu | Source |
 |---|---|---|
 | 🏠 **Vue d'ensemble** | Bloc **EN DIRECT** : joueurs en jeu en temps réel (compteur animé), pic 24 h, record absolu, et **flux d'activité de la communauté** (posts FR + EN, vidéos, actus) avec pseudos et horodatages qui défilent | APIs Steam + SteamCharts + Reddit + YouTube |
-| 🚀 **Débuter** | Guide de démarrage bilingue en 6 étapes (premières minutes, ressources de base, premier saut, gagner des unités, base & raffineur, progression) pour les nouveaux Voyageurs | Guide rédigé |
+| 📚 **Guides** | 4 guides pratiques bilingues avec sélecteur : **Débuter** (6 étapes), **Frégates & flotte** (recruter, missions rentables, réparations), **Portails & glyphes** (16 glyphes, adresses de 12 glyphes, voyage par coordonnées), **Agriculture rentable** (ferme, raffinage en chaîne, objets à millions d'unités) | Guides rédigés |
 | 📖 **Base de données** | **plus de 3 500 objets** du jeu (matériaux, technologies, modules, améliorations, constructions, marchandises, curiosités, produits procéduraux, cuisine, divers…) cherchables, avec valeur, groupe, description et icône — bilingue | Données du jeu via Assistant NMS |
 | 🦋 **Faune** | Les **57 archétypes de créatures** du jeu : ce que chacun permet de récolter (lait, œufs, miel, nectar, graisse…), la méthode, l'objet obtenu avec icône, et un **exemple d'espèce réelle** vers le wiki | Données du jeu via Assistant NMS + wiki NMS |
 | 🧪 **Recettes** | **Toutes les recettes de raffinage (357) et de cuisine (1 300+)** : ingrédients, quantités, résultat et opération, cherchables par ingrédient ou par résultat, bilingue | Données du jeu via Assistant NMS |

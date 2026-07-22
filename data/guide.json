@@ -1,71 +1,223 @@
 {
-  "note": "Guide de démarrage pour bien débuter dans No Man's Sky, des premières minutes aux premiers grands objectifs.",
-  "sections": [
+  "note": "Guides pratiques pour No Man's Sky : bien débuter, gérer sa flotte de frégates, voyager par portails et glyphes, et se lancer dans l'agriculture rentable.",
+  "guides": [
     {
+      "id": "debuter",
       "icon": "🚀",
-      "title_fr": "Tes toutes premières minutes",
-      "title_en": "Your very first minutes",
-      "items": [
-        { "fr": "Tu te réveilles près de ton vaisseau écrasé. Suis les instructions : répare d'abord ton multi-outil, puis les systèmes du vaisseau (propulseur d'impulsion et lanceur).", "en": "You wake up next to your crashed ship. Follow the prompts: repair your multi-tool first, then the ship's systems (pulse engine and launch thruster)." },
-        { "fr": "Récolte les ressources demandées avec le laser d'extraction : ferrite (des rochers), carbone (de la végétation) et sodium (des plantes jaunes).", "en": "Gather the required resources with your mining beam: ferrite (rocks), carbon (plants) and sodium (yellow plants)." },
-        { "fr": "Surveille ta combinaison : la jauge de survie (froid, chaud, radiation, toxicité) se recharge avec du sodium ou en t'abritant.", "en": "Watch your suit: the hazard gauge (cold, heat, radiation, toxicity) recharges with sodium or by taking shelter." },
-        { "fr": "Le lanceur de vaisseau consomme du di-hydrogène en jetpack — garde toujours un peu de carburant pour redécoller.", "en": "The launch thruster runs on launch fuel — always keep some so you can take off again." }
+      "name_fr": "Débuter",
+      "name_en": "Get started",
+      "intro_fr": "Nouveau dans No Man's Sky ? Ce guide te fait passer des premières minutes à tes premiers grands objectifs, étape par étape.",
+      "intro_en": "New to No Man's Sky? This guide takes you from your first minutes to your first big goals, step by step.",
+      "sections": [
+        {
+          "icon": "🚀",
+          "title_fr": "Tes toutes premières minutes",
+          "title_en": "Your very first minutes",
+          "items": [
+            { "fr": "Tu te réveilles près de ton vaisseau écrasé. Suis les instructions : répare d'abord ton multi-outil, puis les systèmes du vaisseau (propulseur d'impulsion et lanceur).", "en": "You wake up next to your crashed ship. Follow the prompts: repair your multi-tool first, then the ship's systems (pulse engine and launch thruster)." },
+            { "fr": "Récolte les ressources demandées avec le laser d'extraction : ferrite (des rochers), carbone (de la végétation) et sodium (des plantes jaunes).", "en": "Gather the required resources with your mining beam: ferrite (rocks), carbon (plants) and sodium (yellow plants)." },
+            { "fr": "Surveille ta combinaison : la jauge de survie (froid, chaud, radiation, toxicité) se recharge avec du sodium ou en t'abritant.", "en": "Watch your suit: the hazard gauge (cold, heat, radiation, toxicity) recharges with sodium or by taking shelter." },
+            { "fr": "Le lanceur de vaisseau consomme du di-hydrogène en jetpack — garde toujours un peu de carburant pour redécoller.", "en": "The launch thruster runs on launch fuel — always keep some so you can take off again." }
+          ]
+        },
+        {
+          "icon": "⛏️",
+          "title_fr": "Les ressources de base à connaître",
+          "title_en": "The core resources to know",
+          "items": [
+            { "fr": "Ferrite (métal) : partout, dans les rochers. Sert à fabriquer presque tout, dont le métal chromatique via raffinage.", "en": "Ferrite (metal): everywhere, in rocks. Used to craft almost everything, including chromatic metal via refining." },
+            { "fr": "Carbone : plantes et arbres. Combustible de base et ingrédient de fabrication.", "en": "Carbon: plants and trees. Basic fuel and crafting ingredient." },
+            { "fr": "Di-hydrogène (cristaux bleus) : carburant du lanceur et des cellules de distorsion.", "en": "Di-hydrogen (blue crystals): fuel for your launch thruster and warp cells." },
+            { "fr": "Sodium (fleurs jaunes) : recharge les boucliers de combinaison. Le nitrate de sodium (raffiné) est plus puissant.", "en": "Sodium (yellow flowers): recharges your suit shields. Sodium nitrate (refined) is stronger." },
+            { "fr": "Oxygène (plantes rouges) : indispensable pour cuisiner, raffiner et recharger l'aérateur sous l'eau ou en environnement hostile.", "en": "Oxygen (red plants): essential to cook, refine, and recharge your hazard protection underwater or in extreme places." }
+          ]
+        },
+        {
+          "icon": "🛰️",
+          "title_fr": "Ton premier saut hyperspatial",
+          "title_en": "Your first hyperspace jump",
+          "items": [
+            { "fr": "Fabrique un hyperpropulseur (débloqué tôt dans l'histoire) puis des cellules de distorsion (di-hydrogène + condensat de tritium).", "en": "Build a Hyperdrive (unlocked early in the story) then Warp Cells (di-hydrogen + tritium condensate)." },
+            { "fr": "Ouvre la carte galactique depuis le cockpit et saute vers une nouvelle étoile : chaque système a ses planètes, sa faune et son économie.", "en": "Open the galaxy map from the cockpit and warp to a new star: each system has its own planets, fauna and economy." },
+            { "fr": "Pour atteindre les étoiles jaunes/vertes/rouges plus tard, il te faudra des améliorations d'hyperpropulseur (Cassiopée, Emeril, Indium).", "en": "To reach yellow/green/red stars later, you'll need hyperdrive upgrades (Cadmium, Emeril, Indium drives)." },
+            { "fr": "Astuce : visite l'Anomalie (appelable dans l'espace) pour débloquer des technologies gratuites et rencontrer d'autres joueurs.", "en": "Tip: visit the Anomaly (summonable in space) to unlock free tech and meet other players." }
+          ]
+        },
+        {
+          "icon": "💰",
+          "title_fr": "Gagner tes premières unités",
+          "title_en": "Earning your first units",
+          "items": [
+            { "fr": "Scanne la faune et la flore (les 100 % de découverte d'une planète rapportent gros au début).", "en": "Scan fauna and flora (fully discovering a planet pays well early on)." },
+            { "fr": "Récolte et vends les objets de curiosité (perles vivantes, sacs de graisse, larmes de gravité…) au terminal de la station.", "en": "Harvest and sell curiosity items (living pearls, fat sacs, gravitino balls…) at a station terminal." },
+            { "fr": "Cherche des dépôts enfouis avec l'analyseur de signal + terminal cartographique (ruines, coffres, épaves).", "en": "Hunt buried deposits with the Signal Booster + navigation data (ruins, cargo drops, crashed ships)." },
+            { "fr": "Plus tard : l'agriculture, le raffinage en chaîne et le commerce entre systèmes sont les vraies mines d'or (voir le guide Agriculture).", "en": "Later: farming, chained refining and trading between systems are the real money-makers (see the Farming guide)." }
+          ]
+        },
+        {
+          "icon": "🏗️",
+          "title_fr": "Base, raffineur et technologie",
+          "title_en": "Base, refiner and technology",
+          "items": [
+            { "fr": "Construis une base (ordinateur de base) : elle débloque des missions, des spécialistes recrutables et le stockage.", "en": "Build a base (Base Computer): it unlocks missions, recruitable specialists and storage." },
+            { "fr": "Le raffineur portable transforme tes ressources (ex. ferrite → métal chromatique). Consulte l'onglet Recettes du site !", "en": "The portable refiner transforms your resources (e.g. ferrite → chromatic metal). Check the site's Recipes tab!" },
+            { "fr": "Range tes modules de technologie dans les emplacements survolimentés et regroupe-les (voir le guide vaisseaux du Marché).", "en": "Put your tech modules in supercharged slots and group them (see the ship guide in Market)." },
+            { "fr": "Récupère des plans en visitant les stations, l'Anomalie et en accomplissant des missions à la guilde.", "en": "Collect blueprints by visiting stations, the Anomaly and completing guild missions." }
+          ]
+        },
+        {
+          "icon": "🌌",
+          "title_fr": "Progresser et t'amuser",
+          "title_en": "Progressing and having fun",
+          "items": [
+            { "fr": "Suis la quête principale « Réveils » puis « Artémis » : elle t'apprend les mécaniques et raconte une vraie histoire.", "en": "Follow the main quest 'Awakenings' then 'Artemis': it teaches the mechanics and tells a real story." },
+            { "fr": "Récupère ton premier cargo capital gratuitement lors d'un événement de sauvetage (après quelques sauts).", "en": "Get your first capital freighter for free during a rescue event (after a few warps)." },
+            { "fr": "Participe aux Expéditions (modes à durée limitée) pour des récompenses exclusives.", "en": "Join Expeditions (limited-time modes) for exclusive rewards." },
+            { "fr": "N'oublie pas : il n'y a pas de mauvaise façon de jouer. Explore, construis, combats ou commerce — à ton rythme.", "en": "Remember: there's no wrong way to play. Explore, build, fight or trade — at your own pace." }
+          ]
+        }
       ]
     },
     {
-      "icon": "⛏️",
-      "title_fr": "Les ressources de base à connaître",
-      "title_en": "The core resources to know",
-      "items": [
-        { "fr": "Ferrite (métal) : partout, dans les rochers. Sert à fabriquer presque tout, dont le métal chromatique via raffinage.", "en": "Ferrite (metal): everywhere, in rocks. Used to craft almost everything, including chromatic metal via refining." },
-        { "fr": "Carbone : plantes et arbres. Combustible de base et ingrédient de fabrication.", "en": "Carbon: plants and trees. Basic fuel and crafting ingredient." },
-        { "fr": "Di-hydrogène (cristaux bleus) : carburant du lanceur et des cellules de distorsion.", "en": "Di-hydrogen (blue crystals): fuel for your launch thruster and warp cells." },
-        { "fr": "Sodium (fleurs jaunes) : recharge les boucliers de combinaison. Le nitrate de sodium (raffiné) est plus puissant.", "en": "Sodium (yellow flowers): recharges your suit shields. Sodium nitrate (refined) is stronger." },
-        { "fr": "Oxygène (plantes rouges) : indispensable pour cuisiner, raffiner et recharger l'aérateur sous l'eau ou en environnement hostile.", "en": "Oxygen (red plants): essential to cook, refine, and recharge your hazard protection underwater or in extreme places." }
-      ]
-    },
-    {
+      "id": "fregates",
       "icon": "🛰️",
-      "title_fr": "Ton premier saut hyperspatial",
-      "title_en": "Your first hyperspace jump",
-      "items": [
-        { "fr": "Fabrique un hyperpropulseur (débloqué tôt dans l'histoire) puis des cellules de distorsion (di-hydrogène + condensat de tritium).", "en": "Build a Hyperdrive (unlocked early in the story) then Warp Cells (di-hydrogen + tritium condensate)." },
-        { "fr": "Ouvre la carte galactique depuis le cockpit et saute vers une nouvelle étoile : chaque système a ses planètes, sa faune et son économie.", "en": "Open the galaxy map from the cockpit and warp to a new star: each system has its own planets, fauna and economy." },
-        { "fr": "Pour atteindre les étoiles jaunes/vertes/rouges plus tard, il te faudra des améliorations d'hyperpropulseur (Cassiopée, Emeril, Indium).", "en": "To reach yellow/green/red stars later, you'll need hyperdrive upgrades (Cadmium, Emeril, Indium drives)." },
-        { "fr": "Astuce : visite l'Anomalie (appelable dans l'espace) pour débloquer des technologies gratuites et rencontrer d'autres joueurs.", "en": "Tip: visit the Anomaly (summonable in space) to unlock free tech and meet other players." }
+      "name_fr": "Frégates & flotte",
+      "name_en": "Frigates & fleet",
+      "intro_fr": "Ton cargo capital peut commander une flotte de frégates qui partent en mission automatiquement et rapportent unités, nanites et objets pendant que tu joues. Voici comment la bâtir et la rentabiliser.",
+      "intro_en": "Your capital freighter can command a fleet of frigates that run missions automatically and bring back units, nanites and items while you play. Here's how to build and profit from it.",
+      "sections": [
+        {
+          "icon": "🚢",
+          "title_fr": "Obtenir ton cargo capital gratuit",
+          "title_en": "Getting your free capital freighter",
+          "items": [
+            { "fr": "Après quelques sauts hyperspatiaux, un événement de sauvetage se déclenche : sors de l'entrepôt en te faisant attaquer, défends le cargo et son capitaine te l'offre gratuitement.", "en": "After a few warps, a rescue event triggers: drop out of warp into an attack, defend the freighter and its captain gives it to you for free." },
+            { "fr": "Tu peux refuser puis en chercher un meilleur : la classe (C→S) et le nombre d'emplacements dépendent du système (les systèmes riches donnent de meilleurs cargos).", "en": "You can decline and hunt a better one: class (C→S) and slot count depend on the system (wealthy systems yield better freighters)." },
+            { "fr": "Les cargos S de type Sentinelle ou Résurgent (dessin en flèche) sont les plus recherchés — inspecte-les avant d'accepter.", "en": "S-class Sentinel or Resurgent freighters (arrow-shaped) are the most coveted — inspect before accepting." }
+          ]
+        },
+        {
+          "icon": "🛰️",
+          "title_fr": "Recruter des frégates",
+          "title_en": "Recruiting frigates",
+          "items": [
+            { "fr": "Dans l'espace, tu croises des frégates isolées : approche-les et communique pour les recruter (elles rejoignent ta flotte, plafond 30 frégates).", "en": "In space you'll meet lone frigates: approach and hail them to recruit (they join your fleet, cap of 30 frigates)." },
+            { "fr": "5 types : Combat ⚔️, Exploration 🔭, Commerce 💰, Industriel ⛏️ et Soutien 🛠️ (le soutien améliore les résultats des autres).", "en": "5 types: Combat ⚔️, Exploration 🔭, Trade 💰, Industrial ⛏️ and Support 🛠️ (support boosts the others' results)." },
+            { "fr": "Chaque frégate a une classe (C→S) et des traits (bonus/malus). Vise des traits positifs et fais monter leur niveau au fil des missions.", "en": "Each frigate has a class (C→S) and traits (bonus/penalty). Aim for positive traits and level them up over missions." },
+            { "fr": "Une frégate S bien montée fait toute la différence sur les missions longues — n'hésite pas à en libérer les mauvaises.", "en": "A well-levelled S-class frigate makes a big difference on long missions — don't hesitate to dismiss the bad ones." }
+          ]
+        },
+        {
+          "icon": "📡",
+          "title_fr": "Envoyer des missions rentables",
+          "title_en": "Running profitable missions",
+          "items": [
+            { "fr": "Depuis le pont de commandement du cargo, lance des expéditions de flotte : associe le type de frégate au type de mission pour maximiser la réussite.", "en": "From the freighter's bridge, launch fleet expeditions: match the frigate type to the mission type to maximise success." },
+            { "fr": "Envoie assez de frégates pour dépasser la « force requise » et ajoute une frégate de soutien pour de meilleures récompenses.", "en": "Send enough frigates to exceed the 'required strength' and add a support frigate for better rewards." },
+            { "fr": "Les missions durent en temps réel (quelques heures à un jour) : lance-les avant de te déconnecter, récolte au retour.", "en": "Missions run in real time (a few hours to a day): launch them before logging off, collect on return." },
+            { "fr": "Récompenses : unités, nanites, modules de mise à niveau et objets rares — un revenu passif très solide une fois la flotte étoffée.", "en": "Rewards: units, nanites, upgrade modules and rare items — very solid passive income once your fleet grows." }
+          ]
+        },
+        {
+          "icon": "🛠️",
+          "title_fr": "Carburant et réparations",
+          "title_en": "Fuel and repairs",
+          "items": [
+            { "fr": "Chaque mission consomme du carburant de frégate (fabriqué à partir de métaux et gaz) — garde un stock pour ne pas interrompre les envois.", "en": "Each mission uses frigate fuel (crafted from metals and gases) — keep a stock so you never pause your sends." },
+            { "fr": "Une frégate peut revenir endommagée : répare-la avec les matériaux demandés (métal, condensats) avant de la renvoyer.", "en": "A frigate can return damaged: repair it with the requested materials (metal, condensates) before sending it again." },
+            { "fr": "Améliore ton cargo (module de rappel de frégate, entrepôts) auprès du marchand du pont pour augmenter capacité et rendement.", "en": "Upgrade your freighter (frigate recall module, storage rooms) from the bridge merchant to boost capacity and yield." }
+          ]
+        }
       ]
     },
     {
-      "icon": "💰",
-      "title_fr": "Gagner tes premières unités",
-      "title_en": "Earning your first units",
-      "items": [
-        { "fr": "Scanne la faune et la flore (les 100 % de découverte d'une planète rapportent gros au début).", "en": "Scan fauna and flora (fully discovering a planet pays well early on)." },
-        { "fr": "Récolte et vends les objets de curiosité (perles vivantes, sacs de graisse, larmes de gravité…) au terminal de la station.", "en": "Harvest and sell curiosity items (living pearls, fat sacs, gravitino balls…) at a station terminal." },
-        { "fr": "Cherche des dépôts enfouis avec l'analyseur de signal + terminal cartographique (ruines, coffres, épaves).", "en": "Hunt buried deposits with the Signal Booster + navigation data (ruins, cargo drops, crashed ships)." },
-        { "fr": "Plus tard : l'agriculture, le raffinage en chaîne et le commerce entre systèmes sont les vraies mines d'or.", "en": "Later: farming, chained refining and trading between systems are the real money-makers." }
+      "id": "portails",
+      "icon": "🌀",
+      "name_fr": "Portails & glyphes",
+      "name_en": "Portals & glyphs",
+      "intro_fr": "Les portails permettent de voyager instantanément vers n'importe quel lieu de la galaxie à partir d'une adresse de 12 glyphes — la base du partage de coordonnées dans la communauté.",
+      "intro_en": "Portals let you teleport to any place in the galaxy from a 12-glyph address — the foundation of coordinate sharing in the community.",
+      "sections": [
+        {
+          "icon": "🔣",
+          "title_fr": "Débloquer les 16 glyphes",
+          "title_en": "Unlocking the 16 glyphs",
+          "items": [
+            { "fr": "Il existe 16 glyphes. On les débloque un par un en parlant aux Voyageurs (PNJ à capuche) dans les stations spatiales — chacun t'en offre un.", "en": "There are 16 glyphs. You unlock them one by one by talking to Travellers (hooded NPCs) in space stations — each gives you one." },
+            { "fr": "Astuce rapide : la quête « Un mystère à percer » et les récompenses de certaines missions accélèrent la collecte.", "en": "Quick tip: the 'A Trace of Metal'-era traveller missions and certain mission rewards speed up the collection." },
+            { "fr": "Une fois débloqués, les glyphes apparaissent en bas de ton exocombinaison : ton adresse actuelle est toujours affichée et partageable.", "en": "Once unlocked, glyphs appear at the bottom of your Exosuit: your current address is always shown and shareable." }
+          ]
+        },
+        {
+          "icon": "🌀",
+          "title_fr": "Trouver et activer un portail",
+          "title_en": "Finding and activating a portal",
+          "items": [
+            { "fr": "Les portails sont des arches de pierre trouvées via un monolithe, une ruine, ou en cherchant « portail » depuis une balise de station.", "en": "Portals are stone arches found via a monolith, a ruin, or by searching 'portal' from a station's teleporter." },
+            { "fr": "Active l'arche puis saisis les 12 glyphes de l'adresse de destination : le portail s'ouvre vers ce lieu précis.", "en": "Activate the arch then enter the 12 glyphs of the destination address: the portal opens to that exact spot." },
+            { "fr": "Tu arrives à côté du portail de destination. Pour rentrer, réutilise ce portail (ton point de départ est mémorisé).", "en": "You arrive next to the destination portal. To return, reuse that portal (your origin is remembered)." }
+          ]
+        },
+        {
+          "icon": "🧭",
+          "title_fr": "Lire une adresse de glyphes",
+          "title_en": "Reading a glyph address",
+          "items": [
+            { "fr": "Une adresse = 12 glyphes. Le 1er indique l'indice de la planète dans le système ; les 3 suivants la hauteur (axe Y) ; puis le système et la région.", "en": "An address = 12 glyphs. The 1st is the planet index in the system; the next 3 are the height (Y axis); then the system and region." },
+            { "fr": "C'est le format universel de partage : la communauté échange des adresses de glyphes pour se retrouver (voir l'onglet Communauté, r/NMSCoordinateExchange).", "en": "It's the universal sharing format: the community swaps glyph addresses to meet up (see the Community tab, r/NMSCoordinateExchange)." },
+            { "fr": "Attention : les glyphes ne fonctionnent que dans la même galaxie. Pour changer de galaxie, il faut atteindre le centre ou une brèche.", "en": "Note: glyphs only work within the same galaxy. To change galaxy you must reach the core or a breach." }
+          ]
+        }
       ]
     },
     {
-      "icon": "🏗️",
-      "title_fr": "Base, raffineur et technologie",
-      "title_en": "Base, refiner and technology",
-      "items": [
-        { "fr": "Construis une base (ordinateur de base) : elle débloque des missions, des spécialistes recrutables et le stockage.", "en": "Build a base (Base Computer): it unlocks missions, recruitable specialists and storage." },
-        { "fr": "Le raffineur portable transforme tes ressources (ex. ferrite → métal chromatique). Consulte l'onglet Recettes du site !", "en": "The portable refiner transforms your resources (e.g. ferrite → chromatic metal). Check the site's Recipes tab!" },
-        { "fr": "Range tes modules de technologie dans les emplacements survolimentés et regroupe-les (voir le guide vaisseaux du Marché).", "en": "Put your tech modules in supercharged slots and group them (see the ship guide in Market)." },
-        { "fr": "Récupère des plans en visitant les stations, l'Anomalie et en accomplissant des missions à la guilde.", "en": "Collect blueprints by visiting stations, the Anomaly and completing guild missions." }
-      ]
-    },
-    {
-      "icon": "🌌",
-      "title_fr": "Progresser et t'amuser",
-      "title_en": "Progressing and having fun",
-      "items": [
-        { "fr": "Suis la quête principale « Réveils » puis « Artémis » : elle t'apprend les mécaniques et raconte une vraie histoire.", "en": "Follow the main quest 'Awakenings' then 'Artemis': it teaches the mechanics and tells a real story." },
-        { "fr": "Récupère ton premier cargo capital gratuitement lors d'un événement de sauvetage (après quelques sauts).", "en": "Get your first capital freighter for free during a rescue event (after a few warps)." },
-        { "fr": "Participe aux Expéditions (modes à durée limitée) pour des récompenses exclusives.", "en": "Join Expeditions (limited-time modes) for exclusive rewards." },
-        { "fr": "N'oublie pas : il n'y a pas de mauvaise façon de jouer. Explore, construis, combats ou commerce — à ton rythme.", "en": "Remember: there's no wrong way to play. Explore, build, fight or trade — at your own pace." }
+      "id": "agriculture",
+      "icon": "🌾",
+      "name_fr": "Agriculture rentable",
+      "name_en": "Profitable farming",
+      "intro_fr": "L'agriculture est l'un des moyens les plus fiables de devenir riche : tu cultives des plantes, tu les raffines en produits intermédiaires, puis tu fabriques des objets valant des millions d'unités.",
+      "intro_en": "Farming is one of the most reliable ways to get rich: you grow plants, refine them into intermediate products, then craft items worth millions of units.",
+      "sections": [
+        {
+          "icon": "🌱",
+          "title_fr": "Mettre en place ta ferme",
+          "title_en": "Setting up your farm",
+          "items": [
+            { "fr": "Construis une base avec des bacs hydroponiques (intérieur) ou des planteurs (extérieur) et cultive les plantes déblocables via l'agronome recruté à la base.", "en": "Build a base with hydroponic trays (indoor) or planters (outdoor) and grow the plants unlocked via the Agricultural specialist recruited to your base." },
+            { "fr": "Chaque plante pousse sur un biome/condition : Cristal de givre (froid), Vigne solaire (radiation), Racine gamma (toxique), Chair de cactus (aride)…", "en": "Each plant grows on a biome/condition: Frost Crystal (cold), Solar Vine (radiation), Gamma Root (toxic), Cactus Flesh (arid)…" },
+            { "fr": "Regroupe tout dans une seule base bien pensée : plus c'est compact, plus la récolte est rapide.", "en": "Group everything in one well-planned base: the more compact, the faster the harvest." }
+          ]
+        },
+        {
+          "icon": "⚗️",
+          "title_fr": "Raffiner en produits intermédiaires",
+          "title_en": "Refining into intermediate products",
+          "items": [
+            { "fr": "Tes récoltes se raffinent en composants clés : Verre (à partir de silicate de givre), Explosif liquide, Circuit imprimé…", "en": "Your harvests refine into key components: Glass (from frost silicate), Liquid Explosive, Circuit Board…" },
+            { "fr": "Utilise l'onglet Recettes du site pour voir exactement quelles entrées donnent quelles sorties, avec quantités et durées.", "en": "Use the site's Recipes tab to see exactly which inputs produce which outputs, with quantities and times." },
+            { "fr": "Automatise avec plusieurs raffineurs moyens/grands qui tournent pendant que tu explores.", "en": "Automate with several medium/large refiners running while you explore." }
+          ]
+        },
+        {
+          "icon": "💎",
+          "title_fr": "Fabriquer les objets à millions",
+          "title_en": "Crafting the million-unit items",
+          "items": [
+            { "fr": "Les deux stars : le Dispositif de stase et l'Allumeur à fusion, qui valent chacun environ 15,6 millions d'unités pièce.", "en": "The two stars: the Stasis Device and the Fusion Ignitor, each worth about 15.6 million units apiece." },
+            { "fr": "Ils se fabriquent au bout d'une chaîne de composants (verre, explosif liquide, circuit imprimé, cœurs…) issus de ton agriculture.", "en": "They're crafted at the end of a chain of components (glass, liquid explosive, circuit board, cores…) grown from your farm." },
+            { "fr": "Consulte l'onglet Recettes puis la Base de données pour connaître la valeur exacte de chaque composant et objet final.", "en": "Check the Recipes tab then the Database for the exact value of each component and final item." },
+            { "fr": "Vends par lots au terminal de la galaxie ou à un cargo marchand : quelques dispositifs suffisent à financer un vaisseau S.", "en": "Sell in batches at a galactic trade terminal or a trade freighter: a few devices are enough to fund an S-class ship." }
+          ]
+        },
+        {
+          "icon": "🍳",
+          "title_fr": "Bonus : la cuisine",
+          "title_en": "Bonus: cooking",
+          "items": [
+            { "fr": "Le processeur de nutriments transforme récoltes et produits animaux en plats qui se revendent très bien (et donnent des nanites via Cronus).", "en": "The Nutrient Processor turns harvests and animal products into dishes that sell very well (and give nanites via Cronus)." },
+            { "fr": "Plus de 1 300 recettes de cuisine existent — explore-les dans l'onglet Recettes pour trouver les plats les plus rentables.", "en": "Over 1,300 cooking recipes exist — explore them in the Recipes tab to find the most profitable dishes." }
+          ]
+        }
       ]
     }
   ]

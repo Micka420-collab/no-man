@@ -20,7 +20,7 @@ feuille « Plus » pour toutes les sections, et **balayage gauche/droite** pour 
 | 📚 **Guides** | 8 guides pratiques bilingues avec sélecteur : **Débuter**, **Frégates & flotte**, **Portails & glyphes**, **Agriculture rentable**, **Combat spatial & vaisseaux S**, **Exocraft & véhicules**, **Construction de base**, **Multijoueur & coopération** | Guides rédigés |
 | 🔍 **Recherche globale** | Un champ unique (bouton 🔍 ou touche `/`) qui cherche **dans tout le site d'un coup** : objets, recettes, créatures, vaisseaux, poissons, galaxies et guides — résultats groupés, clic direct vers la fiche ou l'onglet | Toutes les données du site |
 | 📖 **Base de données** | **plus de 3 500 objets** du jeu (matériaux, technologies, modules, améliorations, constructions, marchandises, curiosités, produits procéduraux, cuisine, divers…) cherchables, avec valeur, groupe, description et icône — bilingue | Données du jeu via Assistant NMS |
-| 🦋 **Faune** | Les **57 archétypes de créatures** du jeu : ce que chacun permet de récolter (lait, œufs, miel, nectar, graisse…), la méthode, l'objet obtenu avec icône, et un **exemple d'espèce réelle** vers le wiki | Données du jeu via Assistant NMS + wiki NMS |
+| 🦋 **Faune** | Les **57 archétypes de créatures** du jeu avec **image d'exemple d'espèce en jeu** : ce que chacun permet de récolter (lait, œufs, miel, nectar, graisse…), la méthode, l'objet obtenu avec icône, et un lien vers le wiki | Données du jeu via Assistant NMS + images du wiki NMS |
 | 🧪 **Recettes** | **Toutes les recettes de raffinage (357) et de cuisine (1 300+)** : ingrédients, quantités, résultat et opération, cherchables par ingrédient ou par résultat, bilingue | Données du jeu via Assistant NMS |
 | ⚔️ **Bulletin de guerre** | Classement en direct des 3 escouades de l'événement communautaire, compte à rebours, choix de ton camp | API officielle de l'Atlas Galactique |
 | 🎯 **Défi du jour** | Un défi mondial par jour (48 défis bilingues), série de jours et record | Généré localement |
@@ -41,6 +41,7 @@ Les données sont **mises à jour automatiquement toutes les 3 heures** par GitH
 
 - **Icônes et données d'objets** : [Assistant for No Man's Sky](https://nmsassistant.com/) (données extraites du jeu, CDN `cdn.nmsassistant.com`).
 - **Images des types de vaisseaux** (`assets/ships/`) : captures et rendus issus du [wiki No Man's Sky](https://nomanssky.fandom.com/) (Fandom, CC-BY-SA), redimensionnées et hébergées localement.
+- **Images des créatures** (`assets/creatures/`) : miniatures d'exemples d'espèces issues du [wiki No Man's Sky](https://nomanssky.fandom.com/) (Fandom, CC-BY-SA), récupérées via l'API du wiki et hébergées localement.
 - No Man's Sky est une marque de **Hello Games**. Ce projet est un outil communautaire non officiel, sans but lucratif.
 
 ## Voir le tableau de bord

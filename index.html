@@ -528,6 +528,9 @@
     padding: 14px 16px; transition: border-color .15s, transform .15s; display: flex; flex-direction: column;
   }
   .fauna-card:hover { border-color: var(--stroke-hi); transform: translateY(-2px); }
+  .fauna-card .fc-photo { position: relative; margin: -14px -16px 12px; overflow: hidden; border-radius: var(--radius) var(--radius) 0 0; background: #04060d; }
+  .fauna-card .fc-photo img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+  .fauna-card .fc-photo-emoji { position: absolute; left: 10px; bottom: 8px; font-size: 1.6rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,.7)); }
   .fauna-card .fc-head { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
   .fauna-card .fc-emoji { font-size: 1.9rem; line-height: 1; flex-shrink: 0; }
   .fauna-card .fc-head h3 { font: 700 1.05rem var(--font-head); margin: 0; }
@@ -1842,7 +1845,7 @@ function runSearch(raw) {
       const hay = [c.name_fr, c.name_en, c.example].concat((c.harvests || []).flatMap(h => [h.item_fr, h.item_en])).join(" ");
       if (!has(hay)) continue;
       total++;
-      if (out.length < SO_CAP) out.push({ emoji: c.emoji || "🐾", name: lang === "en" ? c.name_en : c.name_fr,
+      if (out.length < SO_CAP) out.push({ icon: c.image || "", emoji: c.emoji || "🐾", name: lang === "en" ? c.name_en : c.name_fr,
         sub: c.example ? (T().fauna_example + " : " + c.example) : "",
         action: () => { closeSearch(); activateTab(tabByName("faune"), false); showItemModal(creatureToModal(c)); } });
     }
@@ -3595,7 +3598,8 @@ function creatureToModal(c) {
     v: (lang === "en" ? h.item_en : h.item_fr) || "—",
   }));
   return {
-    icon: (c.harvests || []).map(h => h.icon).find(Boolean) || "",
+    image: c.image || "",
+    icon: c.image ? "" : ((c.harvests || []).map(h => h.icon).find(Boolean) || ""),
     title: (c.emoji || "🐾") + " " + (lang === "en" ? c.name_en : c.name_fr),
     group: c.example ? T().fauna_example + " : " + c.example : "",
     desc: "",
@@ -3615,8 +3619,9 @@ function renderCreatures() {
   countEl.innerHTML = T().fauna_count(items.length, data.length);
   list.innerHTML = items.length ? items.map((c, i) => `
     <article class="fauna-card clickable" role="button" tabindex="0" data-crea-idx="${i}" aria-label="${esc(lang === "en" ? c.name_en : c.name_fr)}">
+      ${c.image ? `<div class="fc-photo"><img src="${esc(safeUrl(c.image))}" alt="${esc(c.example || (lang === "en" ? c.name_en : c.name_fr))}" loading="lazy" onerror="this.parentElement.style.display='none'"><span class="fc-photo-emoji" aria-hidden="true">${esc(c.emoji || "🐾")}</span></div>` : ""}
       <div class="fc-head">
-        <span class="fc-emoji" aria-hidden="true">${esc(c.emoji || "🐾")}</span>
+        ${c.image ? "" : `<span class="fc-emoji" aria-hidden="true">${esc(c.emoji || "🐾")}</span>`}
         <div>
           <h3>${esc(lang === "en" ? c.name_en : c.name_fr)}</h3>
           ${c.example ? `<div class="fc-ex">${T().fauna_example} : <b>${esc(c.example)}</b></div>` : ""}

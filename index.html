@@ -1165,6 +1165,7 @@
       <div class="controls">
         <div class="searchbox" style="margin-left:auto"><input type="search" id="search-faune" data-i18n-ph="fauna_search_ph" placeholder="Chercher une créature ou une récolte…" data-i18n-aria="aria_search_fauna" aria-label="Chercher une créature"></div>
       </div>
+      <div id="fauna-filters" class="cat-filters"></div>
       <div id="fauna-count" class="cat-count"></div>
       <div id="fauna-list" class="fauna-grid"></div>
     </section>
@@ -1179,6 +1180,7 @@
         </div>
         <div class="searchbox" style="margin-left:auto"><input type="search" id="search-recettes" data-i18n-ph="rec_search_ph" placeholder="Chercher un ingrédient ou un résultat…" data-i18n-aria="aria_search_rec" aria-label="Chercher une recette"></div>
       </div>
+      <div id="rec-filters" class="cat-filters"></div>
       <div id="rec-count" class="cat-count"></div>
       <div id="rec-list"></div>
       <div id="rec-more" style="text-align:center;margin-top:14px"></div>
@@ -1406,12 +1408,14 @@ const I18N = {
     fauna_count: (shown, total) => `<b>${shown}</b> archétype(s) sur ${total}`,
     fauna_harvest: "Récolte", fauna_example: "Exemple d'espèce", fauna_wiki: "Voir sur le wiki ↗",
     fauna_search_ph: "Chercher une créature ou une récolte…", aria_search_fauna: "Chercher une créature",
+    fauna_f_yield: "Récolte", fy_milk: "Lait", fy_eggs: "Œufs", fy_honey: "Miel", fy_nectar: "Nectar", fy_grease: "Graisse",
     tab_recipes: "Recettes",
     rec_note: "Toutes les recettes de raffinage et de cuisine du jeu. Cherche par ingrédient ou par résultat — par exemple « or », « nanite » ou « pain ».",
     rec_refiner: "Raffinage", rec_cooking: "Cuisine",
     rec_count: (shown, total) => `<b>${shown}</b> recette(s) sur ${total}`,
     rec_search_ph: "Chercher un ingrédient ou un résultat…", aria_search_rec: "Chercher une recette",
     rec_more: "Afficher plus", rec_time: "Durée", rec_loading: "Chargement des recettes…",
+    rec_f_ing: "Ingrédients", rec_sort_def: "Par défaut", rec_sort_ta: "Durée ↑", rec_sort_td: "Durée ↓",
     live_title: "En direct",
     live_now: "Voyageurs en jeu", live_24h: "Pic sur 24 h", live_all: "Record absolu",
     live_of_peak: p => `${p}% du pic des dernières 24 h`,
@@ -1572,12 +1576,14 @@ const I18N = {
     fauna_count: (shown, total) => `<b>${shown}</b> archetype(s) of ${total}`,
     fauna_harvest: "Harvest", fauna_example: "Example species", fauna_wiki: "View on the wiki ↗",
     fauna_search_ph: "Search a creature or a harvest…", aria_search_fauna: "Search a creature",
+    fauna_f_yield: "Harvest", fy_milk: "Milk", fy_eggs: "Eggs", fy_honey: "Honey", fy_nectar: "Nectar", fy_grease: "Grease",
     tab_recipes: "Recipes",
     rec_note: "Every refiner and cooking recipe in the game. Search by ingredient or by result — e.g. “gold”, “nanite” or “bread”.",
     rec_refiner: "Refining", rec_cooking: "Cooking",
     rec_count: (shown, total) => `<b>${shown}</b> recipe(s) of ${total}`,
     rec_search_ph: "Search an ingredient or a result…", aria_search_rec: "Search a recipe",
     rec_more: "Show more", rec_time: "Time", rec_loading: "Loading recipes…",
+    rec_f_ing: "Ingredients", rec_sort_def: "Default", rec_sort_ta: "Time ↑", rec_sort_td: "Time ↓",
     live_title: "Live",
     live_now: "Travellers in game", live_24h: "24 h peak", live_all: "All-time peak",
     live_of_peak: p => `${p}% of the last 24 h peak`,
@@ -1650,7 +1656,7 @@ const LS_TEAM = "nms-team";
 const LS_CHALLENGE = "nms-challenge-v1";
 const LS_LAST_VISIT = "nms-last-visit";
 const D = {};
-const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc" };
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", faunayield: "all", faunasort: "az" };
 const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "", catalogue: "" };
 let lang = localStorage.getItem(LS_LANG);
 if (lang !== "fr" && lang !== "en") {
@@ -4039,15 +4045,58 @@ function creatureToModal(c) {
     rows,
   };
 }
+// Construit une barre de filtres (selects + reset) dans `boxId`.
+// specs: [{key, label, options:[[value,label]], def}] ; onChange rerend.
+function buildFilterBar(boxId, specs, rerender) {
+  const box = document.getElementById(boxId);
+  if (!box) return;
+  const active = specs.some(s => (sub[s.key] || s.def) !== s.def);
+  keepFocus(box, () => {
+    box.innerHTML = specs.map(s => {
+      const val = sub[s.key] || s.def;
+      const opts = s.options.map(([v, l]) => `<option value="${v}"${v === val ? " selected" : ""}>${esc(l)}</option>`).join("");
+      return `<label class="cf">${esc(s.label)}<select data-fk="${s.key}">${opts}</select></label>`;
+    }).join("") + (active ? `<button class="cf-reset" data-freset>✕ ${T().cat_f_reset}</button>` : "");
+  });
+  box.querySelectorAll("select[data-fk]").forEach(sel => sel.addEventListener("change", () => {
+    sub[sel.dataset.fk] = sel.value; rerender();
+  }));
+  const rst = box.querySelector("[data-freset]");
+  if (rst) rst.addEventListener("click", () => { specs.forEach(s => sub[s.key] = s.def); rerender(); });
+}
+
+const FAUNA_YIELD = {
+  lait: ["lait", "milk"], oeufs: ["œuf", "oeuf", "egg"], miel: ["miel", "honey"],
+  nectar: ["nectar"], graisse: ["graisse", "grease", "fat"],
+};
 function renderCreatures() {
   const list = document.getElementById("fauna-list");
   const countEl = document.getElementById("fauna-count");
   const data = D.creatures && D.creatures.creatures || [];
   if (!data.length) { list.innerHTML = emptyMsg(false); countEl.innerHTML = ""; return; }
+  buildFilterBar("fauna-filters", [
+    { key: "faunayield", def: "all", label: T().fauna_f_yield, options: [
+      ["all", T().cat_cur_all], ["lait", "🥛 " + T().fy_milk], ["oeufs", "🥚 " + T().fy_eggs],
+      ["miel", "🍯 " + T().fy_honey], ["nectar", "🌸 " + T().fy_nectar], ["graisse", "🧈 " + T().fy_grease]] },
+    { key: "faunasort", def: "az", label: T().cat_f_sort, options: [["az", "A→Z"], ["za", "Z→A"]] },
+  ], renderCreatures);
   const q = (query.faune || "").toLowerCase();
   let items = data;
   if (q) items = data.filter(c => matches(q, c.name_fr, c.name_en, c.example,
     ...(c.harvests || []).flatMap(h => [h.item_fr, h.item_en, h.method_fr, h.method_en])));
+  const yld = sub.faunayield || "all";
+  if (yld !== "all") {
+    const kw = FAUNA_YIELD[yld] || [];
+    items = items.filter(c => (c.harvests || []).some(h => {
+      const t = ((h.method_fr || "") + " " + (h.method_en || "") + " " + (h.item_fr || "") + " " + (h.item_en || "")).toLowerCase();
+      return kw.some(k => t.includes(k));
+    }));
+  }
+  const fsort = sub.faunasort || "az";
+  items = [...items].sort((a, b) => {
+    const cmp = (lang === "en" ? a.name_en : a.name_fr).localeCompare(lang === "en" ? b.name_en : b.name_fr);
+    return fsort === "za" ? -cmp : cmp;
+  });
   creaturesShown = items;
   countEl.innerHTML = T().fauna_count(items.length, data.length);
   list.innerHTML = items.length ? items.map((c, i) => `
@@ -4111,6 +4160,12 @@ function renderRecipes() {
     countEl.innerHTML = ""; moreEl.innerHTML = "";
     return;
   }
+  buildFilterBar("rec-filters", [
+    { key: "recing", def: "all", label: T().rec_f_ing, options: [
+      ["all", T().cat_cur_all], ["1", "1"], ["2", "2"], ["3", "3+"]] },
+    { key: "recsort", def: "def", label: T().cat_f_sort, options: [
+      ["def", T().rec_sort_def], ["time_asc", T().rec_sort_ta], ["time_desc", T().rec_sort_td]] },
+  ], renderRecipes);
   const which = sub.recettes || "refiner";
   const items = R.items || {};
   const opfr = R.op_fr || {};
@@ -4120,6 +4175,11 @@ function renderRecipes() {
   if (q) recs = recs.filter(r =>
     r.i.some(i => nameOf(i[0]).includes(q)) || nameOf(r.o[0]).includes(q) ||
     (r.op + " " + (opfr[r.op] || "")).toLowerCase().includes(q));
+  const ing = sub.recing || "all";
+  if (ing !== "all") recs = recs.filter(r => ing === "3" ? r.i.length >= 3 : r.i.length === +ing);
+  const rsort = sub.recsort || "def";
+  if (rsort === "time_asc") recs = [...recs].sort((a, b) => (+a.t || 0) - (+b.t || 0));
+  else if (rsort === "time_desc") recs = [...recs].sort((a, b) => (+b.t || 0) - (+a.t || 0));
   const total = recs.length;
   const shown = recs.slice(0, recLimit);
   countEl.innerHTML = T().rec_count(shown.length, total);

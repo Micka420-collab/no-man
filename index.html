@@ -542,6 +542,22 @@
   .fauna-card .fc-wiki { margin-top: 10px; font-size: 0.76rem; color: var(--c2); text-decoration: none; align-self: flex-start; }
   .fauna-card .fc-wiki:hover { text-decoration: underline; }
   [data-theme="light"] .fauna-card .fc-wiki { color: #0a7c63; }
+  /* ------- Guide de démarrage ------- */
+  .guide-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+  .guide-card { background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius); padding: 18px 20px; }
+  .guide-card .gd-head { display: flex; align-items: center; gap: 11px; margin-bottom: 12px; }
+  .guide-card .gd-num {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font: 700 0.95rem var(--font-head); color: #fff;
+    background: linear-gradient(92deg, #c9341f, #cc4d12);
+  }
+  .guide-card .gd-emoji { font-size: 1.3rem; }
+  .guide-card .gd-head h3 { font: 700 1.1rem var(--font-head); margin: 0; }
+  .guide-card .gd-items { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 9px; }
+  .guide-card .gd-items li { font-size: 0.88rem; line-height: 1.55; color: var(--ink); }
+  .guide-card .gd-items li::marker { color: var(--c3); }
+  [data-theme="light"] .guide-card .gd-items li::marker { color: #c99f2e; }
   /* ------- Recettes ------- */
   .rec-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
   .rec-row {
@@ -827,6 +843,56 @@
     /* Empêche le zoom automatique d'iOS au focus (police < 16px). */
     .searchbox input, input[type="search"], input[type="text"], input[type="number"] { font-size: 16px; }
   }
+  /* ------- Barre de navigation basse (mobile) ------- */
+  .bottomnav { display: none; }
+  @media (max-width: 760px) {
+    /* La barre du haut laisse place à la barre basse type application. */
+    nav.tabs { display: none; }
+    .wrap { padding-bottom: 78px; }
+    .bottomnav {
+      display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+      justify-content: space-around; align-items: stretch; gap: 2px;
+      padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px));
+      background: var(--chip); border-top: 1px solid var(--stroke);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 -6px 24px rgba(0,0,0,0.16);
+    }
+    .bottomnav button {
+      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+      background: none; border: none; color: var(--ink-dim); cursor: pointer;
+      padding: 5px 2px; border-radius: 12px; min-height: 46px;
+    }
+    .bottomnav button .bn-i { font-size: 1.25rem; line-height: 1; }
+    .bottomnav button .bn-l {
+      font-size: 0.62rem; font-weight: 600; max-width: 68px; overflow: hidden;
+      text-overflow: ellipsis; white-space: nowrap; letter-spacing: .01em;
+    }
+    .bottomnav button.active { color: var(--c1); }
+    .bottomnav button.active .bn-i { transform: translateY(-1px); }
+    [data-theme="light"] .bottomnav button.active { color: #c2372a; }
+  }
+  /* Feuille « Plus » (liste complète des sections) */
+  .more-sheet { position: fixed; inset: 0; z-index: 70; display: flex; align-items: flex-end; }
+  .more-sheet[hidden] { display: none; }
+  .more-sheet::before { content: ""; position: absolute; inset: 0; background: rgba(5,8,16,0.55); backdrop-filter: blur(2px); }
+  .more-panel {
+    position: relative; width: 100%; max-height: 78vh; overflow-y: auto;
+    background: var(--bg2, var(--card)); border-top-left-radius: 22px; border-top-right-radius: 22px;
+    border: 1px solid var(--stroke); border-bottom: none; padding: 14px 16px calc(20px + env(safe-area-inset-bottom, 0px));
+    animation: sheetUp .22s ease;
+  }
+  @keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  .more-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .more-header h2 { font: 700 1.1rem var(--font-head); margin: 0; }
+  .more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .more-grid button {
+    display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
+    background: var(--card); border: 1px solid var(--stroke); border-radius: 14px;
+    padding: 14px 6px; color: var(--ink); cursor: pointer; font: 500 0.72rem var(--font-body); min-height: 74px;
+  }
+  .more-grid button .mg-i { font-size: 1.5rem; line-height: 1; }
+  .more-grid button.active { border-color: var(--c1); color: var(--c1); }
+  [data-theme="light"] .more-grid button.active { color: #c2372a; border-color: #c2372a; }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.001s !important; transition-duration: 0.001s !important; }
     html { scroll-behavior: auto; }
@@ -856,6 +922,7 @@
   <nav class="tabs" role="tablist" data-i18n-aria="aria_sections" aria-label="Sections">
     <button role="tab" id="tab-apercu" aria-controls="panel-apercu" data-tab="apercu" class="active" aria-selected="true">🏠 <span data-i18n="tab_overview">Vue d'ensemble</span></button>
     <button role="tab" id="tab-progression" aria-controls="panel-progression" data-tab="progression" aria-selected="false" tabindex="-1">🧭 <span data-i18n="tab_progress">Ma progression</span></button>
+    <button role="tab" id="tab-guide" aria-controls="panel-guide" data-tab="guide" aria-selected="false" tabindex="-1">🚀 <span data-i18n="tab_guide">Débuter</span></button>
     <button role="tab" id="tab-galaxies" aria-controls="panel-galaxies" data-tab="galaxies" aria-selected="false" tabindex="-1">🗺️ <span data-i18n="tab_galaxies">Galaxies</span></button>
     <button role="tab" id="tab-marche" aria-controls="panel-marche" data-tab="marche" aria-selected="false" tabindex="-1">💎 <span data-i18n="tab_market">Marché</span></button>
     <button role="tab" id="tab-catalogue" aria-controls="panel-catalogue" data-tab="catalogue" aria-selected="false" tabindex="-1">📖 <span data-i18n="tab_catalogue">Base de données</span></button>
@@ -927,6 +994,12 @@
         <button id="btn-reset">♻️ <span data-i18n="reset">Réinitialiser</span></button>
         <input type="file" id="file-import" accept=".json" style="display:none" aria-hidden="true">
       </div>
+    </section>
+
+    <!-- Débuter -->
+    <section class="panel" id="panel-guide" role="tabpanel" aria-labelledby="tab-guide">
+      <div class="note" data-i18n="guide_note">Nouveau dans No Man's Sky ? Ce guide te fait passer des premières minutes à tes premiers grands objectifs, étape par étape.</div>
+      <div id="guide-list" class="guide-list"></div>
     </section>
 
     <!-- Galaxies -->
@@ -1070,6 +1143,26 @@
   </footer>
 </div>
 
+<!-- Barre de navigation basse (mobile) -->
+<nav class="bottomnav" aria-label="Navigation principale">
+  <button data-goto="apercu" aria-label="Vue d'ensemble"><span class="bn-i" aria-hidden="true">🏠</span><span class="bn-l" data-i18n="tab_overview">Vue d'ensemble</span></button>
+  <button data-goto="guide" aria-label="Débuter"><span class="bn-i" aria-hidden="true">🚀</span><span class="bn-l" data-i18n="tab_guide">Débuter</span></button>
+  <button data-goto="catalogue" aria-label="Base de données"><span class="bn-i" aria-hidden="true">📖</span><span class="bn-l" data-i18n="tab_catalogue">Base de données</span></button>
+  <button data-goto="recettes" aria-label="Recettes"><span class="bn-i" aria-hidden="true">🧪</span><span class="bn-l" data-i18n="tab_recipes">Recettes</span></button>
+  <button id="bn-more" aria-haspopup="dialog" aria-expanded="false"><span class="bn-i" aria-hidden="true">☰</span><span class="bn-l" data-i18n="more_plus">Plus</span></button>
+</nav>
+
+<!-- Feuille « Plus » : liste complète des sections (mobile) -->
+<div id="more-sheet" class="more-sheet" hidden>
+  <div class="more-panel" role="dialog" aria-modal="true" aria-labelledby="more-title">
+    <div class="more-header">
+      <h2 id="more-title" data-i18n="more_title">Toutes les sections</h2>
+      <button id="more-close" class="modal-close" data-i18n-aria="more_close" aria-label="Fermer">✕</button>
+    </div>
+    <div id="more-grid" class="more-grid"></div>
+  </div>
+</div>
+
 <script>
 "use strict";
 
@@ -1080,6 +1173,10 @@ const I18N = {
     overline: "Centre de suivi communautaire",
     tagline: "Tout l'univers du jeu en un coup d'œil : actus officielles, stats en direct, communauté, vidéos — et ta propre progression de Voyageur.",
     tab_overview: "Vue d'ensemble", tab_progress: "Ma progression", tab_news: "Actualités",
+    tab_guide: "Débuter",
+    guide_note: "Nouveau dans No Man's Sky ? Ce guide te fait passer des premières minutes à tes premiers grands objectifs, étape par étape.",
+    guide_step: "Étape",
+    more_title: "Toutes les sections", more_close: "Fermer", more_plus: "Plus",
     tab_community: "Communauté", tab_ach: "Succès", tab_videos: "Vidéos", tab_timeline: "Mises à jour",
     updated: "Données mises à jour :",
     chip_online: "en ligne", chip_reviews: "d'avis positifs", chip_discount: "de promo",
@@ -1217,6 +1314,10 @@ const I18N = {
     overline: "Community tracking hub",
     tagline: "The whole universe of the game at a glance: official news, live stats, community, videos — and your own Traveller's journey.",
     tab_overview: "Overview", tab_progress: "My journey", tab_news: "News",
+    tab_guide: "Get started",
+    guide_note: "New to No Man's Sky? This guide takes you from your first minutes to your first big goals, step by step.",
+    guide_step: "Step",
+    more_title: "All sections", more_close: "Close", more_plus: "More",
     tab_community: "Community", tab_ach: "Achievements", tab_videos: "Videos", tab_timeline: "Updates",
     updated: "Data updated:",
     chip_online: "online", chip_reviews: "positive reviews", chip_discount: "off",
@@ -1443,6 +1544,7 @@ function applyLang(next) {
   document.querySelectorAll("[data-i18n-aria]").forEach(el => { const t = T()[el.dataset.i18nAria]; if (typeof t === "string") el.setAttribute("aria-label", t); });
   document.title = T().title;
   renderAll();
+  if (typeof syncBottomNav === "function") syncBottomNav(document.body.dataset.tab || "apercu");
 }
 document.getElementById("lang-btn").addEventListener("click", () => applyLang(lang === "fr" ? "en" : "fr"));
 
@@ -1513,9 +1615,95 @@ function activateTab(b, focus) {
   if (b.dataset.tab === "apercu") drawSparkline();
   if (b.dataset.tab === "galaxies") { galResize(); galStartLoop(); } else galStopLoop();
   if (b.dataset.tab === "catalogue") ensureCatalogue();
+  syncBottomNav(b.dataset.tab);
 }
+const tabByName = name => tabButtons.find(x => x.dataset.tab === name);
 document.body.dataset.tab = "apercu";
 tabButtons.forEach(b => b.addEventListener("click", () => activateTab(b, false)));
+
+/* ---------- Navigation basse (mobile) + feuille « Plus » + balayage ---------- */
+const bottomnav = document.querySelector(".bottomnav");
+const moreSheet = document.getElementById("more-sheet");
+const moreBtn = document.getElementById("bn-more");
+const bnShortcuts = ["apercu", "guide", "catalogue", "recettes"]; // les 4 raccourcis directs
+
+function syncBottomNav(tab) {
+  if (!bottomnav) return;
+  bottomnav.querySelectorAll("button[data-goto]").forEach(b =>
+    b.classList.toggle("active", b.dataset.goto === tab));
+  // « Plus » est actif quand l'onglet courant n'est pas un raccourci direct.
+  if (moreBtn) moreBtn.classList.toggle("active", !bnShortcuts.includes(tab));
+  const grid = document.getElementById("more-grid");
+  if (grid) grid.querySelectorAll("button").forEach(b =>
+    b.classList.toggle("active", b.dataset.goto === tab));
+}
+
+// Construit la grille « Plus » à partir de tous les onglets (icône + libellé).
+function buildMoreGrid() {
+  const grid = document.getElementById("more-grid");
+  if (!grid) return;
+  grid.innerHTML = tabButtons.map(b => {
+    const emoji = (b.textContent.trim().match(/^\S+/) || [""])[0];
+    const label = (b.querySelector("span[data-i18n]") || {}).textContent || b.textContent.trim();
+    return `<button data-goto="${b.dataset.tab}"><span class="mg-i" aria-hidden="true">${emoji}</span><span>${esc(label)}</span></button>`;
+  }).join("");
+  grid.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+    closeMore();
+    activateTab(tabByName(b.dataset.goto), false);
+  }));
+}
+let moreLastFocus = null;
+function openMore() {
+  buildMoreGrid();
+  syncBottomNav(document.body.dataset.tab);
+  moreLastFocus = document.activeElement;
+  moreSheet.hidden = false;
+  if (moreBtn) moreBtn.setAttribute("aria-expanded", "true");
+  document.getElementById("more-close").focus();
+}
+function closeMore() {
+  if (moreSheet.hidden) return;
+  moreSheet.hidden = true;
+  if (moreBtn) moreBtn.setAttribute("aria-expanded", "false");
+  if (moreLastFocus && moreLastFocus.focus) moreLastFocus.focus();
+}
+if (bottomnav) {
+  bottomnav.querySelectorAll("button[data-goto]").forEach(b =>
+    b.addEventListener("click", () => activateTab(tabByName(b.dataset.goto), false)));
+  moreBtn.addEventListener("click", () => moreSheet.hidden ? openMore() : closeMore());
+  document.getElementById("more-close").addEventListener("click", closeMore);
+  moreSheet.addEventListener("click", e => { if (e.target === moreSheet) closeMore(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeMore(); });
+}
+
+// Balayage horizontal pour changer d'onglet (mobile).
+(function enableSwipe() {
+  const main = document.getElementById("main");
+  if (!main) return;
+  let x0 = null, y0 = null, t0 = 0, active = false;
+  main.addEventListener("touchstart", e => {
+    if (e.touches.length !== 1) { active = false; return; }
+    // On ignore les zones interactives horizontales (carte galactique, sous-onglets, listes défilantes).
+    if (e.target.closest("canvas, .subtabs, input, .gal-map-card, .more-sheet")) { active = false; return; }
+    const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; t0 = Date.now(); active = true;
+  }, { passive: true });
+  main.addEventListener("touchend", e => {
+    if (!active || x0 === null) return;
+    active = false;
+    if (!moreSheet.hidden || !document.getElementById("modal-backdrop").hidden) return;
+    if (!window.matchMedia("(max-width: 760px)").matches) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - x0, dy = t.clientY - y0, dt = Date.now() - t0;
+    x0 = y0 = null;
+    // Balayage franc, majoritairement horizontal, assez rapide.
+    if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.8 || dt > 600) return;
+    const cur = tabButtons.findIndex(b => b.dataset.tab === document.body.dataset.tab);
+    if (cur < 0) return;
+    const nextIdx = dx < 0 ? cur + 1 : cur - 1;
+    if (nextIdx < 0 || nextIdx >= tabButtons.length) return;
+    activateTab(tabButtons[nextIdx], false);
+  }, { passive: true });
+})();
 document.querySelector("nav.tabs").addEventListener("keydown", e => {
   const idx = tabButtons.indexOf(document.activeElement);
   if (idx < 0) return;
@@ -3296,6 +3484,25 @@ function renderRecipes() {
   });
 }
 
+/* ============================== Guide de démarrage ============================== */
+function renderGuide() {
+  const box = document.getElementById("guide-list");
+  if (!box) return;
+  const secs = D.guide && D.guide.sections || [];
+  if (!secs.length) { box.innerHTML = emptyMsg(false); return; }
+  box.innerHTML = secs.map((s, i) => `
+    <section class="guide-card">
+      <div class="gd-head">
+        <span class="gd-num" aria-hidden="true">${i + 1}</span>
+        <span class="gd-emoji" aria-hidden="true">${esc(s.icon || "•")}</span>
+        <h3>${esc(lang === "en" ? s.title_en : s.title_fr)}</h3>
+      </div>
+      <ul class="gd-items">
+        ${(s.items || []).map(it => `<li>${esc(lang === "en" ? it.en : it.fr)}</li>`).join("")}
+      </ul>
+    </section>`).join("");
+}
+
 function renderAll() {
   renderUpdated();
   renderChips();
@@ -3315,6 +3522,7 @@ function renderAll() {
   renderMarket();
   renderCreatures();
   renderRecipes();
+  renderGuide();
   if (D.catalogue) renderCatalogue();
 }
 
@@ -3323,7 +3531,7 @@ function renderAll() {
   applyTheme(localStorage.getItem(LS_THEME) ||
     (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"), false);
 
-  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes] = await Promise.all([
+  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide] = await Promise.all([
     loadJSON("data/progress.json"),
     loadJSON("data/official.json"),
     loadJSON("data/news.json"),
@@ -3341,8 +3549,9 @@ function renderAll() {
     loadJSON("data/galaxy_hubs.json"),
     loadJSON("data/creatures.json"),
     loadJSON("data/recipes.json"),
+    loadJSON("data/guide.json"),
   ]);
-  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes });
+  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide });
 
   computeFresh();
   applyLang(lang);

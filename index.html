@@ -807,6 +807,26 @@
     .searchbox input, .searchbox input:focus { width: 100%; }
     .prog-hero { gap: 18px; }
   }
+  /* ------- Mobile : en-tête compact hors « Vue d'ensemble » ------- */
+  @media (max-width: 760px) {
+    .hero { padding: 18px 0 6px; }
+    nav.tabs { margin: 14px auto 20px; scroll-snap-type: x proximity; }
+    nav.tabs button { scroll-snap-align: center; }
+    /* Sur les onglets internes, l'en-tête « vitrine » (accroche, chips,
+       nouveautés, horodatage) est masqué : le contenu commence tout en haut. */
+    body:not([data-tab="apercu"]) .hero .overline,
+    body:not([data-tab="apercu"]) .hero .tagline,
+    body:not([data-tab="apercu"]) .hero .live-chips,
+    body:not([data-tab="apercu"]) .hero #fresh-strip-box,
+    body:not([data-tab="apercu"]) .hero .updated { display: none; }
+    body:not([data-tab="apercu"]) .hero { padding: 10px 0 2px; }
+    body:not([data-tab="apercu"]) .hero h1 { font-size: 1.7rem; margin: 0; }
+    /* La barre d'onglets colle en haut et reste atteignable en permanence. */
+    body:not([data-tab="apercu"]) nav.tabs { margin-top: 8px; }
+    .panel > .note { font-size: 0.85rem; }
+    /* Empêche le zoom automatique d'iOS au focus (police < 16px). */
+    .searchbox input, input[type="search"], input[type="text"], input[type="number"] { font-size: 16px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.001s !important; transition-duration: 0.001s !important; }
     html { scroll-behavior: auto; }
@@ -1482,12 +1502,19 @@ function activateTab(b, focus) {
   });
   document.querySelectorAll("section.panel").forEach(x => x.classList.remove("active"));
   document.getElementById("panel-" + b.dataset.tab).classList.add("active");
+  // Sur mobile, on compacte l'en-tête hors « Vue d'ensemble » (voir CSS).
+  document.body.dataset.tab = b.dataset.tab;
   if (focus) b.focus();
   b.scrollIntoView({ inline: "nearest", block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
+  // Repli mobile : quand on quitte l'aperçu, on ramène la vue en haut du contenu.
+  if (b.dataset.tab !== "apercu" && window.matchMedia("(max-width: 760px)").matches) {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  }
   if (b.dataset.tab === "apercu") drawSparkline();
   if (b.dataset.tab === "galaxies") { galResize(); galStartLoop(); } else galStopLoop();
   if (b.dataset.tab === "catalogue") ensureCatalogue();
 }
+document.body.dataset.tab = "apercu";
 tabButtons.forEach(b => b.addEventListener("click", () => activateTab(b, false)));
 document.querySelector("nav.tabs").addEventListener("keydown", e => {
   const idx = tabButtons.indexOf(document.activeElement);

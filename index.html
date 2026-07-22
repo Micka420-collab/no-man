@@ -505,6 +505,19 @@
 
   /* ------- Base de données / catalogue ------- */
   .cat-count { font-size: 0.82rem; color: var(--ink-dim); margin-bottom: 12px; }
+  .cat-filters { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 4px 0 12px; }
+  .cat-filters .cf { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--ink-dim); }
+  .cat-filters select {
+    background: var(--card); border: 1px solid var(--stroke); color: var(--ink);
+    border-radius: 9px; padding: 6px 10px; font: 500 0.82rem var(--font-body); cursor: pointer;
+  }
+  .cat-filters select:hover { border-color: var(--stroke-hi); }
+  .cat-filters .cf-reset {
+    background: transparent; border: 1px solid var(--stroke); color: var(--ink-dim);
+    border-radius: 999px; padding: 6px 13px; cursor: pointer; font: 500 0.78rem var(--font-body);
+  }
+  .cat-filters .cf-reset:hover { color: var(--ink); border-color: var(--stroke-hi); }
+  @media (max-width: 760px) { .cat-filters { gap: 8px; } .cat-filters select { font-size: 16px; } }
   .cat-count b { color: var(--c2); font-family: var(--font-head); }
   [data-theme="light"] .cat-count b { color: #0a7c63; }
   .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; list-style: none; margin: 0; padding: 0; }
@@ -1140,6 +1153,7 @@
         <div class="subtabs" id="cat-chips"></div>
         <div class="searchbox" style="margin-left:auto"><input type="search" id="search-catalogue" data-i18n-ph="cat_search_ph" placeholder="Chercher un objet…" data-i18n-aria="aria_search_cat" aria-label="Chercher un objet dans la base de données"></div>
       </div>
+      <div id="cat-filters" class="cat-filters"></div>
       <div id="cat-count" class="cat-count"></div>
       <div id="cat-list"></div>
       <div id="cat-more" style="text-align:center;margin-top:14px"></div>
@@ -1419,6 +1433,9 @@ const I18N = {
     cat_cats: { raw: "Matériaux", products: "Produits", tech: "Technologies", modules: "Modules", upgrades: "Améliorations", built: "Tech. construites", buildings: "Constructions", trade: "Marchandises", curiosities: "Curiosités", procprod: "Produits procéduraux", cooking: "Cuisine", others: "Divers" },
     cat_count: (shown, total) => `<b>${shown}</b> objet(s) affiché(s) sur ${total}`,
     cat_more: "Afficher plus",
+    cat_f_currency: "Devise", cat_f_value: "Valeur min", cat_f_sort: "Trier", cat_f_reset: "Réinitialiser",
+    cat_cur_all: "Toutes", cat_cur_none: "Sans devise",
+    cat_sort_vd: "Valeur ↓", cat_sort_va: "Valeur ↑", cat_sort_nm: "Nom A→Z",
     aria_search_cat: "Chercher un objet dans la base de données",
     sub_french: "Communauté FR",
     gal_note: "Les 255 galaxies de l'univers, dans l'ordre du voyage vers le centre. Clique sur une galaxie pour la découvrir, et marque ta position !",
@@ -1582,6 +1599,9 @@ const I18N = {
     cat_cats: { raw: "Materials", products: "Products", tech: "Technologies", modules: "Modules", upgrades: "Upgrades", built: "Built tech", buildings: "Buildings", trade: "Trade goods", curiosities: "Curiosities", procprod: "Procedural products", cooking: "Cooking", others: "Others" },
     cat_count: (shown, total) => `<b>${shown}</b> item(s) shown of ${total}`,
     cat_more: "Show more",
+    cat_f_currency: "Currency", cat_f_value: "Min value", cat_f_sort: "Sort", cat_f_reset: "Reset",
+    cat_cur_all: "All", cat_cur_none: "No currency",
+    cat_sort_vd: "Value ↓", cat_sort_va: "Value ↑", cat_sort_nm: "Name A→Z",
     aria_search_cat: "Search an item in the database",
     sub_french: "FR community",
     gal_note: "The 255 galaxies of the universe, in centre-warp order. Click a galaxy to explore it, and mark your position!",
@@ -1630,7 +1650,7 @@ const LS_TEAM = "nms-team";
 const LS_CHALLENGE = "nms-challenge-v1";
 const LS_LAST_VISIT = "nms-last-visit";
 const D = {};
-const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all", recettes: "refiner", guide: "debuter" };
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc" };
 const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "", catalogue: "" };
 let lang = localStorage.getItem(LS_LANG);
 if (lang !== "fr" && lang !== "en") {
@@ -3919,6 +3939,31 @@ function renderCatChips() {
       .join("");
   });
 }
+const CAT_MIN_TIERS = [
+  ["0", "0"], ["100000", "100 k"], ["1000000", "1 M"], ["10000000", "10 M"], ["100000000", "100 M"],
+];
+function renderCatFilters() {
+  const box = document.getElementById("cat-filters");
+  if (!box || !D.catalogue) return;
+  const cur = sub.catcur || "all", minv = sub.catmin || "0", srt = sub.catsort || "val_desc";
+  const opt = (v, label, sel) => `<option value="${v}"${sel === v ? " selected" : ""}>${esc(label)}</option>`;
+  const mc = T().mk_currency;
+  const active = cur !== "all" || minv !== "0" || srt !== "val_desc";
+  keepFocus(box, () => {
+    box.innerHTML =
+      `<label class="cf">${T().cat_f_currency}
+        <select id="f-cur">${opt("all", T().cat_cur_all, cur)}${opt("Credits", "🪙 " + mc.Credits, cur)}${opt("Nanites", "⬡ " + mc.Nanites, cur)}${opt("Quicksilver", "✦ " + mc.Quicksilver, cur)}${opt("none", T().cat_cur_none, cur)}</select></label>` +
+      `<label class="cf">${T().cat_f_value}
+        <select id="f-min">${CAT_MIN_TIERS.map(([v, l]) => opt(v, v === "0" ? T().cat_cur_all : "≥ " + l, minv)).join("")}</select></label>` +
+      `<label class="cf">${T().cat_f_sort}
+        <select id="f-sort">${opt("val_desc", T().cat_sort_vd, srt)}${opt("val_asc", T().cat_sort_va, srt)}${opt("name", T().cat_sort_nm, srt)}</select></label>` +
+      (active ? `<button id="f-reset" class="cf-reset">✕ ${T().cat_f_reset}</button>` : "");
+  });
+  const on = (id, key) => { const el = document.getElementById(id); if (el) el.addEventListener("change", () => { sub[key] = el.value; catLimit = 60; renderCatalogue(); }); };
+  on("f-cur", "catcur"); on("f-min", "catmin"); on("f-sort", "catsort");
+  const rst = document.getElementById("f-reset");
+  if (rst) rst.addEventListener("click", () => { sub.catcur = "all"; sub.catmin = "0"; sub.catsort = "val_desc"; catLimit = 60; renderCatalogue(); });
+}
 function renderCatalogue() {
   const list = document.getElementById("cat-list");
   const countEl = document.getElementById("cat-count");
@@ -3930,6 +3975,7 @@ function renderCatalogue() {
     return;
   }
   renderCatChips();
+  renderCatFilters();
   const catcat = sub.catcat || "all";
   const q = (query.catalogue || "").toLowerCase();
   let items = [];
@@ -3937,6 +3983,16 @@ function renderCatalogue() {
   const keys = catcat === "all" ? Object.keys(cats) : [catcat];
   for (const k of keys) if (cats[k]) for (const it of cats[k].items) items.push({ ...it, _cat: k });
   if (q) items = items.filter(it => matches(q, it.name_fr, it.name_en, it.group_fr, it.group_en, it.desc_fr, it.desc_en));
+  // filtres avancés : devise et valeur minimale
+  const curf = sub.catcur || "all";
+  if (curf !== "all") items = items.filter(it => (curf === "none" ? !it.currency : it.currency === curf));
+  const minv = +(sub.catmin || 0);
+  if (minv) items = items.filter(it => num(it.value) >= minv);
+  // tri
+  const srt = sub.catsort || "val_desc";
+  if (srt === "val_asc") items.sort((a, b) => num(a.value) - num(b.value));
+  else if (srt === "name") items.sort((a, b) =>
+    (lang === "en" ? a.name_en : a.name_fr).localeCompare(lang === "en" ? b.name_en : b.name_fr));
   else items.sort((a, b) => num(b.value) - num(a.value));
 
   const total = items.length;

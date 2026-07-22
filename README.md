@@ -9,13 +9,15 @@ Un système complet pour suivre **tout ce qui se passe autour de No Man's Sky** 
 recherche et filtres dans chaque onglet, **fiches détaillées au clic** sur les objets/vaisseaux,
 **compte à rebours des 10 ans du jeu**, **mode hors-ligne (PWA installable)**, suivi personnel
 des succès comparé à la communauté mondiale, accessible (clavier, lecteurs d'écran,
-`prefers-reduced-motion`).
+`prefers-reduced-motion`). **Optimisée mobile** : barre de navigation basse type application,
+feuille « Plus » pour toutes les sections, et **balayage gauche/droite** pour changer d'onglet.
 
 ## Ce que ça fait
 
 | Volet | Contenu | Source |
 |---|---|---|
 | 🏠 **Vue d'ensemble** | Bloc **EN DIRECT** : joueurs en jeu en temps réel (compteur animé), pic 24 h, record absolu, et **flux d'activité de la communauté** (posts FR + EN, vidéos, actus) avec pseudos et horodatages qui défilent | APIs Steam + SteamCharts + Reddit + YouTube |
+| 🚀 **Débuter** | Guide de démarrage bilingue en 6 étapes (premières minutes, ressources de base, premier saut, gagner des unités, base & raffineur, progression) pour les nouveaux Voyageurs | Guide rédigé |
 | 📖 **Base de données** | **plus de 3 500 objets** du jeu (matériaux, technologies, modules, améliorations, constructions, marchandises, curiosités, produits procéduraux, cuisine, divers…) cherchables, avec valeur, groupe, description et icône — bilingue | Données du jeu via Assistant NMS |
 | 🦋 **Faune** | Les **57 archétypes de créatures** du jeu : ce que chacun permet de récolter (lait, œufs, miel, nectar, graisse…), la méthode, l'objet obtenu avec icône, et un **exemple d'espèce réelle** vers le wiki | Données du jeu via Assistant NMS + wiki NMS |
 | 🧪 **Recettes** | **Toutes les recettes de raffinage (357) et de cuisine (1 300+)** : ingrédients, quantités, résultat et opération, cherchables par ingrédient ou par résultat, bilingue | Données du jeu via Assistant NMS |

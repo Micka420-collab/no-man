@@ -579,37 +579,58 @@
   .cat-more-btn:hover { color: var(--ink); border-color: var(--stroke-hi); }
   /* ------- Éléments (tableau périodique) ------- */
   .el-disclaimer { font-size: 0.78rem; }
-  .el-table { display: flex; gap: 8px; align-items: flex-start; overflow-x: auto; padding: 4px 2px 14px; scrollbar-width: thin; }
-  .el-col { display: flex; flex-direction: column; gap: 6px; flex: 0 0 auto; }
+  .el-table {
+    display: flex; gap: 9px; align-items: flex-start; overflow-x: auto;
+    padding: 12px 8px 18px; scrollbar-width: thin; border-radius: 16px;
+    background:
+      radial-gradient(130% 90% at 50% -10%, color-mix(in srgb, var(--c1) 7%, transparent), transparent 65%),
+      color-mix(in srgb, var(--ink) 3%, transparent);
+    border: 1px solid var(--stroke);
+  }
+  .el-col { display: flex; flex-direction: column; gap: 7px; flex: 0 0 auto; }
   .el-col-head {
-    font: 600 0.66rem var(--font-head); text-transform: uppercase; letter-spacing: .04em;
-    color: var(--ink-dim); text-align: center; padding: 2px 0 1px; min-height: 1.6em;
+    font: 700 0.6rem var(--font-head); text-transform: uppercase; letter-spacing: .05em;
+    color: var(--ink); text-align: center; padding: 4px 9px; white-space: nowrap;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--el-c, var(--stroke)) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--el-c, var(--stroke)) 40%, transparent);
   }
   .el-cell {
-    position: relative; width: 66px; height: 66px; padding: 5px 4px; cursor: pointer;
-    border: 1px solid var(--el-c, var(--stroke)); border-radius: 11px; text-align: left;
-    background: color-mix(in srgb, var(--el-c, var(--stroke)) 12%, var(--card));
-    display: flex; flex-direction: column; justify-content: space-between;
-    transition: transform .12s, box-shadow .12s, border-color .12s; overflow: hidden;
+    position: relative; width: 72px; height: 74px; padding: 6px 6px 5px; cursor: pointer;
+    border: 1px solid color-mix(in srgb, var(--el-c, var(--stroke)) 55%, transparent);
+    border-radius: 13px; text-align: left; overflow: hidden;
+    background: linear-gradient(158deg,
+      color-mix(in srgb, var(--el-c, var(--stroke)) 28%, var(--card)) 0%,
+      color-mix(in srgb, var(--el-c, var(--stroke)) 8%, var(--card)) 62%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
   }
+  .el-cell::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--el-c, var(--stroke)); opacity: .9; }
   .el-cell:hover, .el-cell:focus-visible {
-    transform: translateY(-2px); outline: none;
-    border-color: var(--el-c, var(--stroke-hi)); box-shadow: 0 4px 16px -6px var(--el-c, transparent);
+    transform: translateY(-3px) scale(1.03); outline: none; z-index: 2;
+    border-color: var(--el-c, var(--stroke-hi));
+    box-shadow: 0 9px 24px -8px var(--el-c, transparent), 0 0 0 1px color-mix(in srgb, var(--el-c) 50%, transparent);
   }
-  .el-cell .el-val { font: 500 0.56rem var(--font-body); color: var(--ink-dim); text-align: right; line-height: 1; }
-  .el-cell .el-sym { font: 700 1.18rem var(--font-head); color: var(--ink); line-height: 1; letter-spacing: .01em; }
+  .el-cell .el-val { position: absolute; top: 5px; right: 7px; font: 600 0.52rem var(--font-body); color: color-mix(in srgb, var(--el-c) 55%, var(--ink)); line-height: 1; opacity: .9; }
+  .el-cell .el-sym { font: 800 1.32rem var(--font-head); color: var(--ink); line-height: 1; letter-spacing: .01em; text-shadow: 0 1px 7px color-mix(in srgb, var(--el-c) 45%, transparent); }
   .el-cell .el-nm {
-    font-size: 0.52rem; color: var(--ink-dim); line-height: 1.05;
+    font-size: 0.5rem; color: var(--ink-dim); line-height: 1.05; margin-top: 3px;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   }
-  .el-cell img { position: absolute; right: 4px; bottom: 3px; width: 15px; height: 15px; object-fit: contain; opacity: .5; }
-  .el-flora { margin-top: 6px; }
-  .el-flora-head { font: 600 0.92rem var(--font-head); margin: 6px 0 3px; }
-  .el-flora-grid { display: flex; flex-wrap: wrap; gap: 6px; }
-  .el-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 12px; }
-  .el-legend span { display: inline-flex; align-items: center; gap: 6px; font-size: 0.76rem; color: var(--ink-dim); }
-  .el-legend i { width: 12px; height: 12px; border-radius: 4px; background: var(--el-c); display: inline-block; }
-  @media (max-width: 560px) { .el-cell { width: 58px; height: 60px; } .el-cell .el-sym { font-size: 1.02rem; } }
+  .el-cell img { position: absolute; right: 5px; bottom: 4px; width: 16px; height: 16px; object-fit: contain; opacity: .42; }
+  .el-flora { margin-top: 12px; }
+  .el-flora-head { font: 700 1rem var(--font-head); margin: 6px 0 3px; }
+  .el-flora-grid { display: flex; flex-wrap: wrap; gap: 7px; }
+  .el-legend { display: flex; flex-wrap: wrap; gap: 7px 9px; margin-top: 14px; }
+  .el-legend span {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 0.73rem; color: var(--ink-dim);
+    padding: 3px 11px 3px 8px; border-radius: 999px;
+    background: color-mix(in srgb, var(--el-c) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--el-c) 32%, transparent);
+  }
+  .el-legend i { width: 11px; height: 11px; border-radius: 4px; background: var(--el-c); display: inline-block; }
+  @media (max-width: 560px) { .el-cell { width: 62px; height: 66px; } .el-cell .el-sym { font-size: 1.14rem; } }
   /* ------- Galerie ------- */
   .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
   .gal-tile {
@@ -664,6 +685,53 @@
   .guide-card .gd-items li { font-size: 0.88rem; line-height: 1.55; color: var(--ink); }
   .guide-card .gd-items li::marker { color: var(--c3); }
   [data-theme="light"] .guide-card .gd-items li::marker { color: #c99f2e; }
+  /* ------- Missions & Lore ------- */
+  .mission-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+  .mission-card { background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius); padding: 18px 20px; transition: border-color .15s, transform .15s; }
+  .mission-card:hover { border-color: var(--stroke-hi); }
+  .mission-card.flash { animation: expFlash 1.6s ease; }
+  .mission-card .mi-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+  .mission-card .mi-emoji { font-size: 1.7rem; line-height: 1; flex-shrink: 0; }
+  .mission-card .mi-title h3 { margin: 0 0 5px; font: 700 1.08rem var(--font-head); }
+  .mi-badge { font-size: 0.68rem; color: var(--ink-dim); border: 1px solid var(--stroke); border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+  .mi-goal { font-size: 0.86rem; color: var(--ink); margin: 0 0 12px; line-height: 1.5; }
+  .mi-sec { margin: 10px 0; }
+  .mi-sec-t { font: 700 0.7rem var(--font-head); text-transform: uppercase; letter-spacing: .05em; color: var(--ink-dim); margin-bottom: 5px; }
+  .mi-steps { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+  .mi-steps li { font-size: 0.84rem; line-height: 1.5; }
+  .mi-steps li::marker { color: var(--c3); }
+  .mi-rewards { font-size: 0.84rem; margin: 0; color: var(--ink); line-height: 1.5; }
+  .mi-hidden { margin: 12px 0 4px; padding: 11px 14px; border-radius: 12px;
+    background: color-mix(in srgb, var(--c1) 8%, transparent); border: 1px solid color-mix(in srgb, var(--c1) 26%, transparent); }
+  .mi-hidden ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+  .mi-hidden li { font-size: 0.82rem; line-height: 1.5; }
+  .mi-wiki { display: inline-block; margin-top: 10px; font-size: 0.8rem; color: var(--c2); text-decoration: none; }
+  .mi-wiki:hover { text-decoration: underline; }
+  [data-theme="light"] .mi-wiki { color: #0a7c63; }
+  /* Secret du 16 : carte héro */
+  .s16 { position: relative; display: flex; gap: 20px; align-items: flex-start; margin-bottom: 18px; padding: 22px 24px;
+    border-radius: 18px; overflow: hidden;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--c1) 15%, var(--card)), color-mix(in srgb, var(--c3) 9%, var(--card)));
+    border: 1px solid color-mix(in srgb, var(--c1) 32%, transparent); }
+  .s16-num { font: 800 clamp(3.2rem, 11vw, 6rem) var(--font-head); line-height: .78; flex: 0 0 auto;
+    color: transparent; background: linear-gradient(160deg, var(--c1), var(--c3)); -webkit-background-clip: text; background-clip: text;
+    text-shadow: 0 8px 34px color-mix(in srgb, var(--c1) 38%, transparent); }
+  .s16-body { flex: 1; min-width: 0; }
+  .s16-tag { font: 700 0.72rem var(--font-head); text-transform: uppercase; letter-spacing: .08em; color: var(--c1); margin-bottom: 5px; }
+  [data-theme="light"] .s16-tag { color: #c2372a; }
+  .s16-lead { margin: 0 0 12px; font-size: 0.92rem; line-height: 1.55; }
+  .s16-quote { margin: 0; padding: 9px 15px; border-left: 3px solid var(--c1); font-style: italic; color: var(--ink);
+    background: color-mix(in srgb, var(--c1) 7%, transparent); border-radius: 0 10px 10px 0; }
+  .s16-quote cite { display: block; margin-top: 5px; font-size: 0.72rem; font-style: normal; color: var(--ink-dim); }
+  .s16-sub { font: 700 0.72rem var(--font-head); text-transform: uppercase; letter-spacing: .05em; color: var(--ink-dim); margin: 14px 0 5px; }
+  .s16-facts { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 5px; }
+  .s16-facts li { font-size: 0.85rem; line-height: 1.5; }
+  .s16-facts li::marker { color: var(--c1); }
+  .s16-npc { margin: 0; font-size: 0.86rem; line-height: 1.55; }
+  .s16-sources { margin-top: 13px; font-size: 0.76rem; color: var(--ink-dim); }
+  .s16-sources a { color: var(--c2); }
+  .s16-sources span { font-weight: 600; color: var(--ink); }
+  @media (max-width: 560px) { .s16 { flex-direction: column; gap: 4px; padding: 16px; } .mission-list { grid-template-columns: 1fr; } }
   /* ------- Expéditions ------- */
   .exp-next {
     background: linear-gradient(180deg, rgba(255,200,87,.1), transparent);
@@ -1108,6 +1176,7 @@
     <button role="tab" id="tab-progression" aria-controls="panel-progression" data-tab="progression" aria-selected="false" tabindex="-1">🧭 <span data-i18n="tab_progress">Ma progression</span></button>
     <button role="tab" id="tab-favoris" aria-controls="panel-favoris" data-tab="favoris" aria-selected="false" tabindex="-1">⭐ <span data-i18n="tab_favs">Favoris</span><span class="notif" id="notif-favoris" hidden></span></button>
     <button role="tab" id="tab-guide" aria-controls="panel-guide" data-tab="guide" aria-selected="false" tabindex="-1">📚 <span data-i18n="tab_guide">Guides</span></button>
+    <button role="tab" id="tab-missions" aria-controls="panel-missions" data-tab="missions" aria-selected="false" tabindex="-1">📜 <span data-i18n="tab_missions">Missions</span></button>
     <button role="tab" id="tab-galaxies" aria-controls="panel-galaxies" data-tab="galaxies" aria-selected="false" tabindex="-1">🗺️ <span data-i18n="tab_galaxies">Galaxies</span></button>
     <button role="tab" id="tab-marche" aria-controls="panel-marche" data-tab="marche" aria-selected="false" tabindex="-1">💎 <span data-i18n="tab_market">Marché</span></button>
     <button role="tab" id="tab-catalogue" aria-controls="panel-catalogue" data-tab="catalogue" aria-selected="false" tabindex="-1">📖 <span data-i18n="tab_catalogue">Base de données</span></button>
@@ -1197,6 +1266,14 @@
       <div class="controls"><div class="subtabs" id="guide-chips"></div></div>
       <div class="note" id="guide-intro"></div>
       <div id="guide-list" class="guide-list"></div>
+    </section>
+
+    <!-- Missions & Lore -->
+    <section class="panel" id="panel-missions" role="tabpanel" aria-labelledby="tab-missions">
+      <div class="note" data-i18n="mi_note">Le wiki des missions de No Man's Sky : grandes quêtes d'histoire, quêtes annexes majeures et missions de l'Anomalie, avec objectifs, étapes, récompenses et <b>détails cachés</b> vérifiés sur le wiki et les forums. Aucune mission « Icarus » n'existe dans le jeu — le vrai fil rouge caché des missions est le nombre 16.</div>
+      <div id="secret16"></div>
+      <div class="controls"><div class="subtabs" id="mission-chips"></div></div>
+      <div id="mission-list" class="mission-list"></div>
     </section>
 
     <!-- Galaxies -->
@@ -1441,7 +1518,7 @@ const I18N = {
     search_all_ph: "Rechercher un objet, une recette, une créature, une galaxie…",
     so_hint: "Tape pour chercher dans les objets, recettes, créatures, vaisseaux, galaxies et guides.",
     so_empty: "Aucun résultat.",
-    so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides", expeditions: "🗓️ Expéditions" },
+    so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📜 Missions", expeditions: "🗓️ Expéditions" },
     so_more: n => `+ ${n} autre(s) — ouvrir l'onglet`,
     tab_community: "Communauté", tab_ach: "Succès", tab_videos: "Vidéos", tab_timeline: "Mises à jour",
     updated: "Données mises à jour :",
@@ -1529,6 +1606,18 @@ const I18N = {
     el_disclaimer: "ℹ️ Noms, valeurs, descriptions et icônes proviennent des données du jeu. Le symbole est le vrai symbole chimique quand la substance est un élément réel (Na, Au, O₂, He, U, Cl…) et sinon une abréviation du nom in-game. Le suffixe ᵃ signifie « activé ».",
     el_loading: "Chargement des éléments…",
     el_flora_note: "Substances non minérales récoltées sur la flore et la faune (agriculture, cuisine).",
+    tab_missions: "Missions",
+    mi_note: "Le wiki des missions de No Man's Sky : grandes quêtes d'histoire, quêtes annexes majeures et missions de l'Anomalie, avec objectifs, étapes, récompenses et <b>détails cachés</b> vérifiés sur le wiki et les forums. Aucune mission « Icarus » n'existe dans le jeu — le vrai fil rouge caché des missions est le nombre 16.",
+    mi_all: "Toutes",
+    mi_goal: "Objectif",
+    mi_steps: "Étapes",
+    mi_rewards: "Récompenses",
+    mi_hidden: "Détails cachés",
+    mi_wiki: "Fiche wiki ↗",
+    mi_loading: "Chargement des missions…",
+    s16_facts: "Où se cache le 16",
+    s16_npc: "Et les PNJ ?",
+    s16_sources: "Sources",
     fauna_count: (shown, total) => `<b>${shown}</b> archétype(s) sur ${total}`,
     fauna_harvest: "Récolte", fauna_example: "Exemple d'espèce", fauna_wiki: "Voir sur le wiki ↗",
     fauna_search_ph: "Chercher une créature ou une récolte…", aria_search_fauna: "Chercher une créature",
@@ -1621,7 +1710,7 @@ const I18N = {
     search_all_ph: "Search an item, a recipe, a creature, a galaxy…",
     so_hint: "Type to search items, recipes, creatures, ships, galaxies and guides.",
     so_empty: "No results.",
-    so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides", expeditions: "🗓️ Expeditions" },
+    so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📜 Missions", expeditions: "🗓️ Expeditions" },
     so_more: n => `+ ${n} more — open the tab`,
     tab_community: "Community", tab_ach: "Achievements", tab_videos: "Videos", tab_timeline: "Updates",
     updated: "Data updated:",
@@ -1709,6 +1798,18 @@ const I18N = {
     el_disclaimer: "ℹ️ Names, values, descriptions and icons come from the game data. The symbol is the real chemical symbol when the substance is a genuine element (Na, Au, O₂, He, U, Cl…), otherwise a short abbreviation of the in-game name. The ᵃ suffix means \"activated\".",
     el_loading: "Loading elements…",
     el_flora_note: "Non-mineral substances harvested from flora and fauna (agriculture, cooking).",
+    tab_missions: "Missions",
+    mi_note: "No Man's Sky mission wiki: major story quests, big side quests and Anomaly missions, with goals, steps, rewards and <b>hidden details</b> verified against the wiki and forums. There is no \"Icarus\" mission in the game — the real hidden thread through the missions is the number 16.",
+    mi_all: "All",
+    mi_goal: "Goal",
+    mi_steps: "Steps",
+    mi_rewards: "Rewards",
+    mi_hidden: "Hidden details",
+    mi_wiki: "Wiki page ↗",
+    mi_loading: "Loading missions…",
+    s16_facts: "Where 16 hides",
+    s16_npc: "What about the NPCs?",
+    s16_sources: "Sources",
     fauna_count: (shown, total) => `<b>${shown}</b> archetype(s) of ${total}`,
     fauna_harvest: "Harvest", fauna_example: "Example species", fauna_wiki: "View on the wiki ↗",
     fauna_search_ph: "Search a creature or a harvest…", aria_search_fauna: "Search a creature",
@@ -1794,7 +1895,7 @@ const LS_TEAM = "nms-team";
 const LS_CHALLENGE = "nms-challenge-v1";
 const LS_LAST_VISIT = "nms-last-visit";
 const D = {};
-const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", faunayield: "all", faunasort: "az", galerie: "ships" };
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", faunayield: "all", faunasort: "az", galerie: "ships", missions: "all" };
 const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "", catalogue: "" };
 let lang = localStorage.getItem(LS_LANG);
 if (lang !== "fr" && lang !== "en") {
@@ -2245,6 +2346,31 @@ function runSearch(raw) {
         action: () => { closeSearch(); sub.guide = gd.id; activateTab(tabByName("guide"), false); renderGuide(); } });
     }
     if (total) groups.push({ label: G.guides, matches: out, total });
+  }
+  // Missions & lore
+  if (D.missions && Array.isArray(D.missions.missions)) {
+    const out = []; let total = 0;
+    const s16 = D.missions.secret16;
+    // Le « secret du 16 » est cherchable via des mots-clés dédiés.
+    if (s16 && (has("16") || has("seize") || has("sixteen") || has("telamon") || has("secret") || has("lore"))) {
+      total++;
+      out.push({ emoji: "⭐", name: lang === "en" ? s16.title_en : s16.title_fr,
+        sub: lang === "en" ? s16.lead_en : s16.lead_fr,
+        action: () => { closeSearch(); sub.missions = "all"; activateTab(tabByName("missions"), false); renderMissions();
+          const b = document.getElementById("secret16"); if (b) b.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); } });
+    }
+    for (const m of D.missions.missions) {
+      const hay = [m.name_fr, m.name_en, m.goal_fr, m.goal_en]
+        .concat((m.hidden || []).flatMap(h => [h.fr, h.en])).join(" ");
+      if (!has(hay)) continue;
+      total++;
+      if (out.length < SO_CAP) out.push({ emoji: m.icon || "📜", name: lang === "en" ? m.name_en : m.name_fr,
+        sub: lang === "en" ? m.goal_en : m.goal_fr,
+        action: () => { closeSearch(); sub.missions = "all"; activateTab(tabByName("missions"), false); renderMissions();
+          const card = document.querySelector(`.mission-card[data-mid="${CSS.escape(m.id)}"]`);
+          if (card) { card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }); card.classList.add("flash"); setTimeout(() => card.classList.remove("flash"), 1600); } } });
+    }
+    if (total) groups.push({ label: G.missions, matches: out, total });
   }
   // Expéditions
   if (D.expeditions && Array.isArray(D.expeditions.items)) {
@@ -4227,7 +4353,7 @@ function renderElements() {
     const color = (fams[col.fam] && fams[col.fam].color) || "var(--stroke)";
     const head = lang === "en" ? col.head_en : col.head_fr;
     const cells = (col.cells || []).map(c => elCellHtml(c, color)).join("");
-    return `<div class="el-col"><div class="el-col-head">${esc(head)}</div>${cells}</div>`;
+    return `<div class="el-col" style="--el-c:${esc(color)}"><div class="el-col-head">${esc(head)}</div>${cells}</div>`;
   }).join("");
   if (flora) {
     if (E.flora) {
@@ -4620,6 +4746,73 @@ function renderGuide() {
     </section>`).join("");
 }
 
+/* ============================== Missions & Lore ============================== */
+function renderSecret16() {
+  const box = document.getElementById("secret16");
+  if (!box) return;
+  const s = D.missions && D.missions.secret16;
+  if (!s) { box.innerHTML = ""; return; }
+  const facts = (s.facts || []).map(f => `<li>${esc(lang === "en" ? f.en : f.fr)}</li>`).join("");
+  const src = (s.sources || []).map(x => `<a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener">${esc(x.label)}</a>`).join(" · ");
+  box.innerHTML = `<section class="s16">
+    <div class="s16-num" aria-hidden="true">16</div>
+    <div class="s16-body">
+      <div class="s16-tag">★ ${esc(lang === "en" ? s.title_en : s.title_fr)}</div>
+      <p class="s16-lead">${esc(lang === "en" ? s.lead_en : s.lead_fr)}</p>
+      <blockquote class="s16-quote">${esc(lang === "en" ? s.quote_en : s.quote_fr)}<cite>— ${esc(s.quote_src)}</cite></blockquote>
+      <div class="s16-sub">${esc(T().s16_facts)}</div>
+      <ul class="s16-facts">${facts}</ul>
+      <div class="s16-sub">${esc(T().s16_npc)}</div>
+      <p class="s16-npc">${esc(lang === "en" ? s.npc_en : s.npc_fr)}</p>
+      <div class="s16-sources"><span>${esc(T().s16_sources)} :</span> ${src}</div>
+    </div>
+  </section>`;
+}
+function renderMissions() {
+  renderSecret16();
+  const box = document.getElementById("mission-list");
+  const chips = document.getElementById("mission-chips");
+  if (!box) return;
+  const M = D.missions;
+  if (!M) { box.innerHTML = `<div class="empty">${T().mi_loading}</div>`; if (chips) chips.innerHTML = ""; return; }
+  const cats = M.categories || {};
+  const cur = sub.missions || "all";
+  if (chips) {
+    keepFocus(chips, () => {
+      chips.innerHTML = [`<button data-sub="all" aria-pressed="${cur === "all"}" class="${cur === "all" ? "active" : ""}">${esc(T().mi_all)}</button>`]
+        .concat(Object.keys(cats).map(k =>
+          `<button data-sub="${k}" aria-pressed="${cur === k}" class="${cur === k ? "active" : ""}">${esc(cats[k].icon || "")} ${esc(lang === "en" ? cats[k].en : cats[k].fr)}</button>`))
+        .join("");
+    });
+    chips.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+      sub.missions = b.dataset.sub; renderMissions();
+      box.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+    }));
+  }
+  let list = M.missions || [];
+  if (cur !== "all") list = list.filter(m => m.cat === cur);
+  box.innerHTML = list.map(m => {
+    const cat = cats[m.cat] || {};
+    const steps = (m.steps || []).map(s => `<li>${esc(lang === "en" ? s.en : s.fr)}</li>`).join("");
+    const hidden = (m.hidden || []).map(h => `<li>${esc(lang === "en" ? h.en : h.fr)}</li>`).join("");
+    const rewards = lang === "en" ? m.rewards_en : m.rewards_fr;
+    return `<section class="mission-card" data-mid="${esc(m.id)}">
+      <div class="mi-head">
+        <span class="mi-emoji" aria-hidden="true">${esc(m.icon || "📜")}</span>
+        <div class="mi-title">
+          <h3>${esc(lang === "en" ? m.name_en : m.name_fr)}</h3>
+          <span class="mi-badge">${esc(cat.icon || "")} ${esc(lang === "en" ? cat.en : cat.fr)}</span>
+        </div>
+      </div>
+      <p class="mi-goal"><b>${esc(T().mi_goal)} :</b> ${esc(lang === "en" ? m.goal_en : m.goal_fr)}</p>
+      ${steps ? `<div class="mi-sec"><div class="mi-sec-t">🧭 ${esc(T().mi_steps)}</div><ol class="mi-steps">${steps}</ol></div>` : ""}
+      ${rewards ? `<div class="mi-sec"><div class="mi-sec-t">🎁 ${esc(T().mi_rewards)}</div><p class="mi-rewards">${esc(rewards)}</p></div>` : ""}
+      ${hidden ? `<div class="mi-hidden"><div class="mi-sec-t">🔍 ${esc(T().mi_hidden)}</div><ul>${hidden}</ul></div>` : ""}
+      ${m.wiki ? `<a class="mi-wiki" href="${esc(safeUrl(m.wiki))}" target="_blank" rel="noopener">${esc(T().mi_wiki)}</a>` : ""}
+    </section>`;
+  }).join("") || emptyMsg(false);
+}
+
 /* ============================== Galerie ============================== */
 function renderGallery() {
   const grid = document.getElementById("gallery-grid");
@@ -4679,6 +4872,7 @@ function renderAll() {
   renderGallery();
   renderElements();
   renderGuide();
+  renderMissions();
   renderFavorites();
   renderFavCount();
   if (D.catalogue) renderCatalogue();
@@ -4689,7 +4883,7 @@ function renderAll() {
   applyTheme(localStorage.getItem(LS_THEME) ||
     (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"), false);
 
-  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements] = await Promise.all([
+  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements, missions] = await Promise.all([
     loadJSON("data/progress.json"),
     loadJSON("data/official.json"),
     loadJSON("data/news.json"),
@@ -4710,8 +4904,9 @@ function renderAll() {
     loadJSON("data/guide.json"),
     loadJSON("data/expeditions.json"),
     loadJSON("data/elements.json"),
+    loadJSON("data/missions.json"),
   ]);
-  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements });
+  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements, missions });
 
   computeFresh();
   applyLang(lang);

@@ -577,6 +577,39 @@
     padding: 9px 22px; border-radius: 999px; cursor: pointer; font: 500 0.85rem var(--font-body);
   }
   .cat-more-btn:hover { color: var(--ink); border-color: var(--stroke-hi); }
+  /* ------- Éléments (tableau périodique) ------- */
+  .el-disclaimer { font-size: 0.78rem; }
+  .el-table { display: flex; gap: 8px; align-items: flex-start; overflow-x: auto; padding: 4px 2px 14px; scrollbar-width: thin; }
+  .el-col { display: flex; flex-direction: column; gap: 6px; flex: 0 0 auto; }
+  .el-col-head {
+    font: 600 0.66rem var(--font-head); text-transform: uppercase; letter-spacing: .04em;
+    color: var(--ink-dim); text-align: center; padding: 2px 0 1px; min-height: 1.6em;
+  }
+  .el-cell {
+    position: relative; width: 66px; height: 66px; padding: 5px 4px; cursor: pointer;
+    border: 1px solid var(--el-c, var(--stroke)); border-radius: 11px; text-align: left;
+    background: color-mix(in srgb, var(--el-c, var(--stroke)) 12%, var(--card));
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform .12s, box-shadow .12s, border-color .12s; overflow: hidden;
+  }
+  .el-cell:hover, .el-cell:focus-visible {
+    transform: translateY(-2px); outline: none;
+    border-color: var(--el-c, var(--stroke-hi)); box-shadow: 0 4px 16px -6px var(--el-c, transparent);
+  }
+  .el-cell .el-val { font: 500 0.56rem var(--font-body); color: var(--ink-dim); text-align: right; line-height: 1; }
+  .el-cell .el-sym { font: 700 1.18rem var(--font-head); color: var(--ink); line-height: 1; letter-spacing: .01em; }
+  .el-cell .el-nm {
+    font-size: 0.52rem; color: var(--ink-dim); line-height: 1.05;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .el-cell img { position: absolute; right: 4px; bottom: 3px; width: 15px; height: 15px; object-fit: contain; opacity: .5; }
+  .el-flora { margin-top: 6px; }
+  .el-flora-head { font: 600 0.92rem var(--font-head); margin: 6px 0 3px; }
+  .el-flora-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .el-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 12px; }
+  .el-legend span { display: inline-flex; align-items: center; gap: 6px; font-size: 0.76rem; color: var(--ink-dim); }
+  .el-legend i { width: 12px; height: 12px; border-radius: 4px; background: var(--el-c); display: inline-block; }
+  @media (max-width: 560px) { .el-cell { width: 58px; height: 60px; } .el-cell .el-sym { font-size: 1.02rem; } }
   /* ------- Galerie ------- */
   .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
   .gal-tile {
@@ -1078,6 +1111,7 @@
     <button role="tab" id="tab-galaxies" aria-controls="panel-galaxies" data-tab="galaxies" aria-selected="false" tabindex="-1">🗺️ <span data-i18n="tab_galaxies">Galaxies</span></button>
     <button role="tab" id="tab-marche" aria-controls="panel-marche" data-tab="marche" aria-selected="false" tabindex="-1">💎 <span data-i18n="tab_market">Marché</span></button>
     <button role="tab" id="tab-catalogue" aria-controls="panel-catalogue" data-tab="catalogue" aria-selected="false" tabindex="-1">📖 <span data-i18n="tab_catalogue">Base de données</span></button>
+    <button role="tab" id="tab-elements" aria-controls="panel-elements" data-tab="elements" aria-selected="false" tabindex="-1">⚛️ <span data-i18n="tab_elements">Éléments</span></button>
     <button role="tab" id="tab-faune" aria-controls="panel-faune" data-tab="faune" aria-selected="false" tabindex="-1">🦋 <span data-i18n="tab_fauna">Faune</span></button>
     <button role="tab" id="tab-recettes" aria-controls="panel-recettes" data-tab="recettes" aria-selected="false" tabindex="-1">🧪 <span data-i18n="tab_recipes">Recettes</span></button>
     <button role="tab" id="tab-galerie" aria-controls="panel-galerie" data-tab="galerie" aria-selected="false" tabindex="-1">🖼️ <span data-i18n="tab_gallery">Galerie</span></button>
@@ -1216,6 +1250,15 @@
       <div id="cat-count" class="cat-count"></div>
       <div id="cat-list"></div>
       <div id="cat-more" style="text-align:center;margin-top:14px"></div>
+    </section>
+
+    <!-- Éléments (tableau périodique) -->
+    <section class="panel" id="panel-elements" role="tabpanel" aria-labelledby="tab-elements">
+      <div class="note" data-i18n="el_note">Le tableau des éléments (substances) de No Man's Sky, présenté à la manière d'un tableau périodique et regroupé par famille du jeu. Clique sur un élément pour voir sa valeur, sa description et son icône, l'ajouter à tes favoris ⭐ ou le partager 🔗.</div>
+      <div class="note el-disclaimer" data-i18n="el_disclaimer">ℹ️ Noms, valeurs, descriptions et icônes proviennent des données du jeu. Le symbole est le vrai symbole chimique quand la substance est un élément réel (Na, Au, O₂, He, U, Cl…) et sinon une abréviation du nom in-game. Le suffixe ᵃ signifie « activé ».</div>
+      <div id="el-table" class="el-table"></div>
+      <div id="el-flora" class="el-flora"></div>
+      <div id="el-legend" class="el-legend"></div>
     </section>
 
     <!-- Faune -->
@@ -1480,7 +1523,12 @@ const I18N = {
     aria_search_gal: "Rechercher une galaxie", aria_gal_map: "Carte en spirale des 255 galaxies",
     spark_aria: (min, max, last) => `Historique des joueurs en ligne : minimum ${min}, maximum ${max}, dernier relevé ${last}`,
     tab_galaxies: "Galaxies", tab_market: "Marché", tab_catalogue: "Base de données",
+    tab_elements: "Éléments",
     tab_fauna: "Faune",
+    el_note: "Le tableau des éléments (substances) de No Man's Sky, présenté à la manière d'un tableau périodique et regroupé par famille du jeu. Clique sur un élément pour voir sa valeur, sa description et son icône, l'ajouter à tes favoris ⭐ ou le partager 🔗.",
+    el_disclaimer: "ℹ️ Noms, valeurs, descriptions et icônes proviennent des données du jeu. Le symbole est le vrai symbole chimique quand la substance est un élément réel (Na, Au, O₂, He, U, Cl…) et sinon une abréviation du nom in-game. Le suffixe ᵃ signifie « activé ».",
+    el_loading: "Chargement des éléments…",
+    el_flora_note: "Substances non minérales récoltées sur la flore et la faune (agriculture, cuisine).",
     fauna_count: (shown, total) => `<b>${shown}</b> archétype(s) sur ${total}`,
     fauna_harvest: "Récolte", fauna_example: "Exemple d'espèce", fauna_wiki: "Voir sur le wiki ↗",
     fauna_search_ph: "Chercher une créature ou une récolte…", aria_search_fauna: "Chercher une créature",
@@ -1655,7 +1703,12 @@ const I18N = {
     aria_search_gal: "Search galaxies", aria_gal_map: "Spiral map of the 255 galaxies",
     spark_aria: (min, max, last) => `Players online history: minimum ${min}, maximum ${max}, latest reading ${last}`,
     tab_galaxies: "Galaxies", tab_market: "Market", tab_catalogue: "Database",
+    tab_elements: "Elements",
     tab_fauna: "Fauna",
+    el_note: "No Man's Sky's elements (substances), laid out like a periodic table and grouped by the game's own families. Click an element to see its value, description and icon, add it to your favorites ⭐ or share it 🔗.",
+    el_disclaimer: "ℹ️ Names, values, descriptions and icons come from the game data. The symbol is the real chemical symbol when the substance is a genuine element (Na, Au, O₂, He, U, Cl…), otherwise a short abbreviation of the in-game name. The ᵃ suffix means \"activated\".",
+    el_loading: "Loading elements…",
+    el_flora_note: "Non-mineral substances harvested from flora and fauna (agriculture, cooking).",
     fauna_count: (shown, total) => `<b>${shown}</b> archetype(s) of ${total}`,
     fauna_harvest: "Harvest", fauna_example: "Example species", fauna_wiki: "View on the wiki ↗",
     fauna_search_ph: "Search a creature or a harvest…", aria_search_fauna: "Search a creature",
@@ -1898,6 +1951,7 @@ function activateTab(b, focus) {
     if (!galIntroDone) { galIntroDone = true; setTimeout(galIntro, 80); } // visite guidée au 1er accès
   } else galStopLoop();
   if (b.dataset.tab === "catalogue") ensureCatalogue();
+  if (b.dataset.tab === "elements") ensureCatalogue();  // les éléments s'appuient sur le catalogue
   syncBottomNav(b.dataset.tab);
 }
 const tabByName = name => tabButtons.find(x => x.dataset.tab === name);
@@ -4077,6 +4131,65 @@ setInterval(() => {
   });
 }, 30000);
 
+/* ============================== Éléments (tableau périodique) ============================== */
+// Retrouve la substance dans le catalogue (catégorie « raw ») par identifiant.
+function elItemById(id) {
+  const cats = D.catalogue && D.catalogue.categories;
+  if (!cats || !cats.raw) return null;
+  return cats.raw.items.find(x => x.id === id) || null;
+}
+function elCellHtml(cell, color) {
+  const it = elItemById(cell.raw);
+  if (!it) return "";                     // id introuvable : on ignore la cellule
+  const name = lang === "en" ? it.name_en : it.name_fr;
+  const val = num(it.value);
+  return `<button class="el-cell" style="--el-c:${esc(color)}" data-el-raw="${esc(cell.raw)}" aria-label="${esc(name)}" title="${esc(name)}">
+    <span class="el-val">${val ? fmtNum(val) : ""}</span>
+    <span class="el-sym">${esc(cell.sym)}</span>
+    <span class="el-nm">${esc(name)}</span>
+    ${it.icon ? `<img src="${esc(safeUrl(it.icon))}" alt="" loading="lazy" onerror="this.remove()">` : ""}
+  </button>`;
+}
+function renderElements() {
+  const table = document.getElementById("el-table");
+  const flora = document.getElementById("el-flora");
+  const legend = document.getElementById("el-legend");
+  if (!table) return;
+  const E = D.elements;
+  if (!E) { table.innerHTML = `<div class="empty">${T().empty_data}</div>`; if (flora) flora.innerHTML = ""; if (legend) legend.innerHTML = ""; return; }
+  if (!D.catalogue) {
+    // On attend le chargement du catalogue (déclenché à l'ouverture de l'onglet).
+    table.innerHTML = `<div class="empty">${D._catFailed ? T().empty_data : T().el_loading}</div>`;
+    if (flora) flora.innerHTML = ""; if (legend) legend.innerHTML = "";
+    return;
+  }
+  const fams = E.families || {};
+  table.innerHTML = (E.columns || []).map(col => {
+    const color = (fams[col.fam] && fams[col.fam].color) || "var(--stroke)";
+    const head = lang === "en" ? col.head_en : col.head_fr;
+    const cells = (col.cells || []).map(c => elCellHtml(c, color)).join("");
+    return `<div class="el-col"><div class="el-col-head">${esc(head)}</div>${cells}</div>`;
+  }).join("");
+  if (flora) {
+    if (E.flora) {
+      const fc = E.flora.color || "var(--stroke)";
+      const cells = (E.flora.cells || []).map(c => elCellHtml(c, fc)).join("");
+      flora.innerHTML = `<div class="el-flora-head">${esc(lang === "en" ? E.flora.en : E.flora.fr)}</div>
+        <div class="note" style="margin:0 0 8px">${T().el_flora_note}</div>
+        <div class="el-flora-grid">${cells}</div>`;
+    } else flora.innerHTML = "";
+  }
+  if (legend) legend.innerHTML = Object.keys(fams).map(k =>
+    `<span style="--el-c:${esc(fams[k].color)}"><i></i>${esc(lang === "en" ? fams[k].en : fams[k].fr)}</span>`).join("");
+}
+// Clic sur une cellule : ouvre la fiche détaillée (partage + favori réutilisés).
+document.getElementById("panel-elements")?.addEventListener("click", e => {
+  const b = e.target.closest("[data-el-raw]");
+  if (!b) return;
+  const it = elItemById(b.dataset.elRaw);
+  if (it) showItemModal(catToModal({ ...it, _cat: "raw" }));
+});
+
 /* ============================== Base de données / catalogue ============================== */
 let catLimit = 60;
 let catShown = [];
@@ -4112,6 +4225,8 @@ async function ensureCatalogue() {
   D._catLoading = false;
   if (loaded) { D.catalogue = loaded; } else { D._catFailed = true; }
   renderCatalogue();
+  renderElements();   // le tableau des éléments dépend du catalogue
+  renderFavorites();  // résout les noms des objets/éléments favoris une fois chargés
   // Si la recherche globale est ouverte, on rafraîchit avec les objets chargés.
   const so = document.getElementById("search-overlay");
   if (so && !so.hidden && typeof runSearch === "function") runSearch(soInput.value);
@@ -4503,6 +4618,7 @@ function renderAll() {
   renderCreatures();
   renderRecipes();
   renderGallery();
+  renderElements();
   renderGuide();
   renderFavorites();
   renderFavCount();
@@ -4514,7 +4630,7 @@ function renderAll() {
   applyTheme(localStorage.getItem(LS_THEME) ||
     (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"), false);
 
-  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions] = await Promise.all([
+  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements] = await Promise.all([
     loadJSON("data/progress.json"),
     loadJSON("data/official.json"),
     loadJSON("data/news.json"),
@@ -4534,8 +4650,9 @@ function renderAll() {
     loadJSON("data/recipes.json"),
     loadJSON("data/guide.json"),
     loadJSON("data/expeditions.json"),
+    loadJSON("data/elements.json"),
   ]);
-  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions });
+  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements });
 
   computeFresh();
   applyLang(lang);

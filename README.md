@@ -10,7 +10,7 @@ recherche et filtres dans chaque onglet, **fiches détaillées au clic** sur les
 **compte à rebours des 10 ans du jeu**, **mode hors-ligne (PWA installable)**, suivi personnel
 des succès comparé à la communauté mondiale, accessible (clavier, lecteurs d'écran,
 `prefers-reduced-motion`). **Optimisée mobile** : barre de navigation basse type application,
-feuille « Plus » pour toutes les sections, et **balayage gauche/droite** pour changer d'onglet. **Liens directs partageables** vers un objet, un vaisseau, une créature ou une galaxie précise.
+feuille « Plus » pour toutes les sections, et **balayage gauche/droite** pour changer d'onglet. **Favoris** (⭐) et **liens directs partageables** vers un objet, vaisseau, créature, recette, expédition ou galaxie précise.
 
 ## Ce que ça fait
 
@@ -24,6 +24,7 @@ feuille « Plus » pour toutes les sections, et **balayage gauche/droite** pour 
 | 🦋 **Faune** | Les **57 archétypes de créatures** du jeu avec **image d'exemple d'espèce en jeu** : ce que chacun permet de récolter (lait, œufs, miel, nectar, graisse…), la méthode, l'objet obtenu avec icône, un lien vers le wiki, et des **filtres** (par récolte, tri A→Z/Z→A) | Données du jeu via Assistant NMS + images du wiki NMS |
 | 🧪 **Recettes** | **Toutes les recettes de raffinage (357) et de cuisine (1 300+)** : ingrédients, quantités, résultat et opération, cherchables par ingrédient ou par résultat, avec **filtres** (nombre d'ingrédients, tri par durée), bilingue | Données du jeu via Assistant NMS |
 | 🖼️ **Galerie** | Les vaisseaux et créatures **en grand** (images en jeu), en deux sous-onglets ; clic pour ouvrir la fiche et la partager | Images vaisseaux (wiki) + créatures (wiki) |
+| ⭐ **Favoris** | Marque objets, vaisseaux, créatures, recettes et galaxies avec l'étoile ☆ et retrouve-les en un clic — enregistré dans ton navigateur | Toi ! |
 | ⚔️ **Bulletin de guerre** | **Onglet dédié** : classement en direct des 3 escouades de l'événement communautaire, compte à rebours, objectifs, choix de ton camp, et lien vers le guide de l'événement (aussi résumé dans la Vue d'ensemble) | API officielle de l'Atlas Galactique |
 | 🎯 **Défi du jour** | Un défi mondial par jour (48 défis bilingues), série de jours et record | Généré localement |
 | 🗺️ **Galaxies** | Carte galactique immersive **façon Galactic Atlas** : galaxie spirale lumineuse (cœur brillant, bras spiraux logarithmiques, voies de poussière, halo/bloom) **qui tourne lentement dans son plan**, zoom, navigation, chemin parcouru, marqueur « je suis ici », **visite guidée** (zoom cinématique vers ta galaxie), **infos au survol** (nom, type, hub), **mini-aperçu unique par galaxie** dans la fiche, avec les **galaxies les plus vivantes** mises en avant (Euclid, Eissentam…) | Rendu maison + hubs communautaires |

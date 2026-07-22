@@ -110,6 +110,7 @@ def main() -> int:
             used_ids.add(outp.get("Id", ""))
             op_name, _pf_fr, _pf_en = split_op(r.get("Operation", ""))
             out.append({
+                "id": r.get("Id", ""),               # identifiant stable (ref##, nut##)
                 "i": inputs,
                 "o": [outp.get("Id", ""), outp.get("Quantity", 1)],
                 "op": op_name,

@@ -26,16 +26,20 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 USER_AGENT = "nms-tracker/1.0 (catalogue No Man's Sky)"
 
 # clé d'affichage -> (icône, fichier .lang, cap d'objets pour rester léger)
+# Caps retirés : on référence désormais TOUT le contenu du jeu.
 CATEGORIES = [
     ("raw", "🪨", "RawMaterials.lang", None),
     ("products", "⚗️", "Products.lang", None),
     ("tech", "🔧", "Technology.lang", None),
     ("modules", "🧩", "TechnologyModule.lang", None),
+    ("upgrades", "⚡", "UpgradeModules.lang", None),
     ("built", "🏗️", "ConstructedTechnology.lang", None),
+    ("buildings", "🏛️", "Buildings.lang", None),
     ("trade", "📦", "TradeItems.lang", None),
     ("curiosities", "💎", "Curiosity.lang", None),
-    ("cooking", "🍳", "Cooking.lang", 400),
-    ("others", "🧿", "Others.lang", 400),
+    ("procprod", "🌀", "ProceduralProducts.lang", None),
+    ("cooking", "🍳", "Cooking.lang", None),
+    ("others", "🧿", "Others.lang", None),
 ]
 
 

@@ -182,6 +182,112 @@
       "wiki": "https://nomanssky.fandom.com/wiki/Base_Computer_Archive"
     },
     {
+      "id": "settlers",
+      "cat": "side",
+      "icon": "🏘️",
+      "name_fr": "Les Colons (colonie planétaire)",
+      "name_en": "The Settlers (planetary settlement)",
+      "goal_fr": "Deviens le superviseur d'une colonie : prends des décisions, résous les conflits, fais grandir la population et le bonheur, et défends-la contre les Sentinelles.",
+      "goal_en": "Become the overseer of a settlement: make decisions, settle disputes, grow population and happiness, and defend it against the Sentinels.",
+      "steps": [
+        {"fr": "Trouve une colonie via une Charte de colonie (auprès d'un cartographe de station) ou un signal au sol, puis accepte d'en devenir le superviseur.", "en": "Find a settlement via a Settlement Charter (from a station cartographer) or a ground signal, then agree to become its overseer."},
+        {"fr": "Traite les décisions et conflits qui apparaissent régulièrement : chaque choix influe sur population, bonheur, productivité, défense et fortune.", "en": "Handle the decisions and disputes that appear regularly: each choice affects population, happiness, productivity, defence and wealth."},
+        {"fr": "Collecte la production de la colonie et repousse les raids de Sentinelles.", "en": "Collect the settlement's production and repel Sentinel raids."}
+      ],
+      "rewards_fr": "Un revenu passif (unités, ressources), des plans, et l'accès à la quête des Sentinelles « Une trace de métal ».",
+      "rewards_en": "Passive income (units, resources), blueprints, and access to the Sentinel quest \"A Trace of Metal\".",
+      "hidden": [
+        {"fr": "Les décisions arrivent à intervalles (temps réel) : reviens régulièrement. Certaines ont des conséquences surprenantes des heures plus tard.", "en": "Decisions arrive at (real-time) intervals: check back often. Some have surprising consequences hours later."},
+        {"fr": "Une colonie prospère et « libre d'explorer » est le prérequis pour lancer la quête des Sentinelles.", "en": "A thriving settlement marked 'free to explore' is the prerequisite to start the Sentinel quest."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/Settlement"
+    },
+    {
+      "id": "sentinel",
+      "cat": "side",
+      "icon": "🛡️",
+      "name_fr": "Une trace de métal (A Trace of Metal)",
+      "name_en": "A Trace of Metal",
+      "goal_fr": "Reconstruis un drone Sentinelle abandonné pour en faire ton compagnon — et gagne des pièces de Sentinelle pour ton exomech Minotaure.",
+      "goal_en": "Rebuild an abandoned Sentinel drone into your companion — and earn Sentinel parts for your Minotaur exomech.",
+      "steps": [
+        {"fr": "Prérequis : posséder une colonie « libre d'explorer », sans mission en cours, et ne pas être dans son système. Un message signale alors un raid de Sentinelles sur ta colonie.", "en": "Prerequisite: own a settlement 'free to explore', with no pending mission, and not be in its system. A message then reports a Sentinel raid on your settlement."},
+        {"fr": "Repousse les Sentinelles, puis fouille la tombe de Voyageur voisine pour récupérer une Coque de drone intacte.", "en": "Repel the Sentinels, then search the nearby Traveller grave for an Undamaged Drone Shell."},
+        {"fr": "À l'Anomalie, parle à Tethys et à trois Itérations : tu réunis Phylactère de portail, Filament de nanites et Perles de verre. Tethys reconstruit le drone et te donne une Fusée Sentinelle.", "en": "At the Anomaly, talk to Tethys and three Iterations: you gather a Portal Phylactery, Nanite Filament and Beads of Glass. Tethys rebuilds the drone and gives you a Sentinel Flare."},
+        {"fr": "Attaque deux Piliers Sentinelles (détruis les nodes de contrôle, bats les gardes) pour effacer ton drone Laylaps des registres et terminer la quête.", "en": "Assault two Sentinel Pillars (destroy the control nodes, beat the guards) to erase your Laylaps drone from the records and finish the quest."}
+      ],
+      "rewards_fr": "Le drone compagnon Laylaps, des pièces de Sentinelle pour le Minotaure, et le titre « Ami des drones ».",
+      "rewards_en": "The Laylaps drone companion, Sentinel parts for the Minotaur, and the \"Drone-Friend\" title.",
+      "hidden": [
+        {"fr": "Laylaps te suit ensuite au combat et peut être personnalisé : c'est l'un des rares compagnons robotiques du jeu.", "en": "Laylaps then follows you into battle and can be customized: it is one of the game's rare robotic companions."},
+        {"fr": "La quête approfondit le mystère des Sentinelles — d'anciens gardiens de l'Atlas devenus hostiles.", "en": "The quest deepens the Sentinel mystery — former guardians of the Atlas turned hostile."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/A_Trace_of_Metal"
+    },
+    {
+      "id": "derelict",
+      "cat": "anomaly",
+      "icon": "☠️",
+      "name_fr": "Épaves de porte-vaisseaux (Derelict Freighters)",
+      "name_en": "Derelict Freighters",
+      "goal_fr": "Explore des porte-vaisseaux abandonnés à la dérive : du butin, des nanites en masse, et l'un des rares moments d'horreur du jeu.",
+      "goal_en": "Explore drifting abandoned freighters: loot, huge nanite hauls, and one of the game's rare horror moments.",
+      "steps": [
+        {"fr": "Achète des coordonnées à un Ferrailleur (Scrap Dealer) en station : il te remet un Récepteur de diffusion d'urgence à usage unique. Prix : 5 M d'unités (puis 10, 20, plafonné à 30 M — remis à zéro chaque jour).", "en": "Buy coordinates from a Scrap Dealer at a station: it hands you a single-use Emergency Broadcast Receiver. Price: 5M units (then 10, 20, capped at 30M — resets daily)."},
+        {"fr": "Dans ton vaisseau, sélectionne le récepteur, « Régler le signal », puis enclenche le propulseur à impulsion : il te mène à l'épave.", "en": "In your ship, select the receiver, \"Tune Signal\", then engage the pulse drive: it leads you to the derelict."},
+        {"fr": "Parcours le porte-vaisseaux couloir par couloir, lis les logs, évite ou affronte les dangers, jusqu'au terminal final.", "en": "Work through the freighter corridor by corridor, read the logs, avoid or face the dangers, up to the final terminal."}
+      ],
+      "rewards_fr": "Beaucoup de nanites et de butin ; au terminal final, choisis entre modules d'amélioration de porte-vaisseaux, cloison de soute (emplacement) ou nanites.",
+      "rewards_en": "Lots of nanites and salvage; at the final terminal, choose between freighter upgrade modules, a cargo bulkhead (slot) or nanites.",
+      "hidden": [
+        {"fr": "Les logs racontent une histoire d'horreur (les créatures « Grah-Grah ») : c'est le ton le plus sombre de tout le jeu, à faire de préférence de nuit. 👀", "en": "The logs tell a horror story (the \"Grah-Grah\" creatures): the darkest tone in the whole game, best played at night. 👀"},
+        {"fr": "L'Anomalie propose une épave gratuite une fois par semaine, sans payer le Ferrailleur.", "en": "The Anomaly offers one free derelict per week, without paying the Scrap Dealer."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/Derelict_Freighter"
+    },
+    {
+      "id": "dreams_deep",
+      "cat": "side",
+      "icon": "🌊",
+      "name_fr": "Rêves des profondeurs (Dreams of the Deep)",
+      "name_en": "Dreams of the Deep",
+      "goal_fr": "Une quête sous-marine : suis un signal étrange jusqu'à une structure engloutie et débloque la construction de base aquatique.",
+      "goal_en": "An underwater quest: follow a strange signal to a sunken structure and unlock aquatic base building.",
+      "steps": [
+        {"fr": "Après « Le Premier Voyageur », plonge avec le Nautilon : il capte un signal répétitif sous les vagues.", "en": "After \"The First Traveller\", dive with the Nautilon: it picks up a repeater signal beneath the waves."},
+        {"fr": "Suis le signal jusqu'à une Structure engloutie et extrais les plans du Sonar haute puissance et du Miroir solaire — méfie-toi des Horreurs abyssales à l'extérieur et de la Plante-tentacule à l'intérieur.", "en": "Follow the signal to a Sunken Structure and extract the High-Power Sonar and Solar Mirror blueprints — beware the Abyssal Horrors outside and the Tentacle Plant inside."},
+        {"fr": "Installe le Sonar, scanne un porte-vaisseaux écrasé sous l'eau, et récupère les plans de construction de base aquatique.", "en": "Install the Sonar, scan for a crashed freighter underwater, and collect the aquatic base-building blueprints."}
+      ],
+      "rewards_fr": "Sonar haute puissance, Miroir solaire, et tous les modules de base sous-marine.",
+      "rewards_en": "High-Power Sonar, Solar Mirror, and all the underwater base modules.",
+      "hidden": [
+        {"fr": "C'est la seconde quête d'horreur du jeu : les fonds marins cachent des créatures géantes et une ambiance oppressante.", "en": "It is the game's second horror quest: the seabed hides giant creatures and an oppressive mood."},
+        {"fr": "Le Sonar haute puissance sert ensuite à trouver facilement vaisseaux écrasés, ruines et bâtiments engloutis.", "en": "The High-Power Sonar is then great for easily finding crashed ships, ruins and sunken buildings."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/Dreams_of_the_Deep"
+    },
+    {
+      "id": "freighter",
+      "cat": "side",
+      "icon": "🚢",
+      "name_fr": "Obtenir un porte-vaisseaux (gratuit)",
+      "name_en": "Get a freighter (for free)",
+      "goal_fr": "Ton premier porte-vaisseaux — ta base mobile dans l'espace — s'obtient gratuitement en sauvant un convoi attaqué.",
+      "goal_en": "Your first freighter — your mobile base in space — is obtained for free by rescuing a convoy under attack.",
+      "steps": [
+        {"fr": "Enchaîne les sauts d'hyperpropulsion : après environ 5 sauts, tu peux sortir de warp au milieu d'un « sauvetage spatial » (convoi civil attaqué par des pirates).", "en": "Chain warp jumps: after about 5 jumps you can drop out of warp into a \"space rescue\" (a civilian convoy attacked by pirates)."},
+        {"fr": "Détruis tous les pirates : le capitaine du porte-vaisseaux t'invite alors à bord.", "en": "Destroy all the pirates: the freighter captain then invites you aboard."},
+        {"fr": "Va sur la passerelle, inspecte le porte-vaisseaux et récupère-le : le premier est gratuit.", "en": "Go to the bridge, inspect the freighter and claim it: the first one is free."}
+      ],
+      "rewards_fr": "Un porte-vaisseaux gratuit : base mobile, hangar, téléporteur, agriculture et gestion de frégates.",
+      "rewards_en": "A free freighter: mobile base, hangar, teleporter, farming and frigate management.",
+      "hidden": [
+        {"fr": "Astuce : sur ce premier sauvetage, choisis « Demander un paiement » plutôt que de le prendre — le prochain porte-vaisseaux sauvé restera gratuit tant que tu n'en possèdes pas, et sera peut-être meilleur.", "en": "Tip: on this first rescue, pick \"Request payment instead\" rather than claiming it — the next rescued freighter stays free as long as you own none, and may be better."},
+        {"fr": "Les deux premiers sont des porte-vaisseaux normaux (≤ 19 emplacements) ; à partir du 3e, ce sont toujours des Capital-vaisseaux, plus grands. Le sauvetage réapparaît ~toutes les 3 h (temps réel).", "en": "The first two are regular freighters (≤ 19 slots); from the 3rd on, they are always larger Capital freighters. The rescue reappears roughly every 3 real-time hours."}
+      ],
+      "wiki": "https://nomanssky.fandom.com/wiki/Freighter"
+    },
+    {
       "id": "nexus",
       "cat": "anomaly",
       "icon": "🛸",

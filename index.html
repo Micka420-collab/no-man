@@ -542,6 +542,26 @@
   .fauna-card .fc-wiki { margin-top: 10px; font-size: 0.76rem; color: var(--c2); text-decoration: none; align-self: flex-start; }
   .fauna-card .fc-wiki:hover { text-decoration: underline; }
   [data-theme="light"] .fauna-card .fc-wiki { color: #0a7c63; }
+  /* ------- Recettes ------- */
+  .rec-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .rec-row {
+    display: grid; grid-template-columns: 1fr auto auto; gap: 10px 12px; align-items: center;
+    background: var(--card); border: 1px solid var(--stroke); border-radius: 12px; padding: 11px 14px;
+  }
+  .rec-row .rec-inputs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .rec-row .rec-plus { color: var(--ink-dim); font-weight: 700; margin: 0 2px; }
+  .rec-row .rec-arrow { color: var(--c3); font-weight: 700; font-size: 1.1rem; }
+  [data-theme="light"] .rec-row .rec-arrow { color: #9a6b00; }
+  .rec-ing { display: inline-flex; align-items: center; gap: 5px; background: var(--track); border-radius: 8px; padding: 3px 8px 3px 3px; }
+  .rec-ing img { width: 26px; height: 26px; border-radius: 6px; object-fit: contain; flex-shrink: 0; }
+  .rec-ing .rin-name { font-size: 0.84rem; font-weight: 500; }
+  .rec-ing .rin-qty { font-size: 0.76rem; color: var(--ink-dim); font-family: var(--font-head); }
+  .rec-row .rec-output .rec-ing { border: 1px solid rgba(255,200,87,.35); }
+  .rec-row .rec-op { grid-column: 1 / -1; font-size: 0.74rem; color: var(--ink-dim); border-top: 1px solid var(--stroke); padding-top: 7px; }
+  @media (max-width: 560px) {
+    .rec-row { grid-template-columns: 1fr; }
+    .rec-row .rec-arrow { transform: rotate(90deg); justify-self: start; }
+  }
 
   /* ------- Bulletin de guerre ------- */
   .war-box {
@@ -820,6 +840,7 @@
     <button role="tab" id="tab-marche" aria-controls="panel-marche" data-tab="marche" aria-selected="false" tabindex="-1">💎 <span data-i18n="tab_market">Marché</span></button>
     <button role="tab" id="tab-catalogue" aria-controls="panel-catalogue" data-tab="catalogue" aria-selected="false" tabindex="-1">📖 <span data-i18n="tab_catalogue">Base de données</span></button>
     <button role="tab" id="tab-faune" aria-controls="panel-faune" data-tab="faune" aria-selected="false" tabindex="-1">🦋 <span data-i18n="tab_fauna">Faune</span></button>
+    <button role="tab" id="tab-recettes" aria-controls="panel-recettes" data-tab="recettes" aria-selected="false" tabindex="-1">🧪 <span data-i18n="tab_recipes">Recettes</span></button>
     <button role="tab" id="tab-actus" aria-controls="panel-actus" data-tab="actus" aria-selected="false" tabindex="-1">📰 <span data-i18n="tab_news">Actualités</span><span class="notif" id="notif-actus" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-communaute" aria-controls="panel-communaute" data-tab="communaute" aria-selected="false" tabindex="-1">👥 <span data-i18n="tab_community">Communauté</span><span class="notif" id="notif-communaute" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-succes" aria-controls="panel-succes" data-tab="succes" aria-selected="false" tabindex="-1">🏆 <span data-i18n="tab_ach">Succès</span></button>
@@ -947,6 +968,21 @@
       </div>
       <div id="fauna-count" class="cat-count"></div>
       <div id="fauna-list" class="fauna-grid"></div>
+    </section>
+
+    <!-- Recettes -->
+    <section class="panel" id="panel-recettes" role="tabpanel" aria-labelledby="tab-recettes">
+      <div class="note" data-i18n="rec_note">Toutes les recettes de raffinage et de cuisine du jeu. Cherche par ingrédient ou par résultat — par exemple « or », « nanite » ou « pain ».</div>
+      <div class="controls">
+        <div class="subtabs" data-group="recettes">
+          <button data-sub="refiner" class="active">⚗️ <span data-i18n="rec_refiner">Raffinage</span></button>
+          <button data-sub="cooking">🍳 <span data-i18n="rec_cooking">Cuisine</span></button>
+        </div>
+        <div class="searchbox" style="margin-left:auto"><input type="search" id="search-recettes" data-i18n-ph="rec_search_ph" placeholder="Chercher un ingrédient ou un résultat…" data-i18n-aria="aria_search_rec" aria-label="Chercher une recette"></div>
+      </div>
+      <div id="rec-count" class="cat-count"></div>
+      <div id="rec-list"></div>
+      <div id="rec-more" style="text-align:center;margin-top:14px"></div>
     </section>
 
     <!-- Actualités -->
@@ -1092,6 +1128,12 @@ const I18N = {
     fauna_count: (shown, total) => `<b>${shown}</b> archétype(s) sur ${total}`,
     fauna_harvest: "Récolte", fauna_example: "Exemple d'espèce", fauna_wiki: "Voir sur le wiki ↗",
     fauna_search_ph: "Chercher une créature ou une récolte…", aria_search_fauna: "Chercher une créature",
+    tab_recipes: "Recettes",
+    rec_note: "Toutes les recettes de raffinage et de cuisine du jeu. Cherche par ingrédient ou par résultat — par exemple « or », « nanite » ou « pain ».",
+    rec_refiner: "Raffinage", rec_cooking: "Cuisine",
+    rec_count: (shown, total) => `<b>${shown}</b> recette(s) sur ${total}`,
+    rec_search_ph: "Chercher un ingrédient ou un résultat…", aria_search_rec: "Chercher une recette",
+    rec_more: "Afficher plus", rec_time: "Durée", rec_loading: "Chargement des recettes…",
     live_title: "En direct",
     live_now: "Voyageurs en jeu", live_24h: "Pic sur 24 h", live_all: "Record absolu",
     live_of_peak: p => `${p}% du pic des dernières 24 h`,
@@ -1223,6 +1265,12 @@ const I18N = {
     fauna_count: (shown, total) => `<b>${shown}</b> archetype(s) of ${total}`,
     fauna_harvest: "Harvest", fauna_example: "Example species", fauna_wiki: "View on the wiki ↗",
     fauna_search_ph: "Search a creature or a harvest…", aria_search_fauna: "Search a creature",
+    tab_recipes: "Recipes",
+    rec_note: "Every refiner and cooking recipe in the game. Search by ingredient or by result — e.g. “gold”, “nanite” or “bread”.",
+    rec_refiner: "Refining", rec_cooking: "Cooking",
+    rec_count: (shown, total) => `<b>${shown}</b> recipe(s) of ${total}`,
+    rec_search_ph: "Search an ingredient or a result…", aria_search_rec: "Search a recipe",
+    rec_more: "Show more", rec_time: "Time", rec_loading: "Loading recipes…",
     live_title: "Live",
     live_now: "Travellers in game", live_24h: "24 h peak", live_all: "All-time peak",
     live_of_peak: p => `${p}% of the last 24 h peak`,
@@ -1292,7 +1340,7 @@ const LS_TEAM = "nms-team";
 const LS_CHALLENGE = "nms-challenge-v1";
 const LS_LAST_VISIT = "nms-last-visit";
 const D = {};
-const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all" };
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all", recettes: "refiner" };
 const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "", catalogue: "" };
 let lang = localStorage.getItem(LS_LANG);
 if (lang !== "fr" && lang !== "en") {
@@ -1464,6 +1512,7 @@ document.querySelectorAll(".subtabs[data-group]").forEach(group => {
     b.classList.add("active");
     syncSubtabPressed(group);
     sub[group.dataset.group] = b.dataset.sub;
+    if (group.dataset.group === "recettes") recLimit = 40;
     renderAll();
   });
 });
@@ -1477,6 +1526,11 @@ document.getElementById("search-catalogue").addEventListener("input", e => {
   query.catalogue = e.target.value.trim().toLowerCase();
   catLimit = 60;
   renderCatalogue();
+});
+document.getElementById("search-recettes").addEventListener("input", e => {
+  query.recettes = e.target.value.trim().toLowerCase();
+  recLimit = 40;
+  renderRecipes();
 });
 document.getElementById("cat-chips").addEventListener("click", e => {
   const b = e.target.closest("button");
@@ -3161,6 +3215,60 @@ document.getElementById("search-faune").addEventListener("input", e => {
   renderCreatures();
 });
 
+/* ============================== Recettes ============================== */
+let recLimit = 40;
+function recItem(items, id) {
+  return items[id] || { fr: id, en: id, icon: "" };
+}
+function recIngredient(items, id, qty) {
+  const it = recItem(items, id);
+  const name = lang === "en" ? it.en : it.fr;
+  return `<span class="rec-ing">
+    ${it.icon ? `<img src="${esc(safeUrl(it.icon))}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : ""}
+    <span class="rin-name">${esc(name)}</span>${qty > 1 ? `<span class="rin-qty">×${qty}</span>` : ""}
+  </span>`;
+}
+function renderRecipes() {
+  const list = document.getElementById("rec-list");
+  const countEl = document.getElementById("rec-count");
+  const moreEl = document.getElementById("rec-more");
+  const R = D.recipes;
+  if (!R) {
+    list.innerHTML = `<div class="empty">${T().rec_loading}</div>`;
+    countEl.innerHTML = ""; moreEl.innerHTML = "";
+    return;
+  }
+  const which = sub.recettes || "refiner";
+  const items = R.items || {};
+  const opfr = R.op_fr || {};
+  const q = (query.recettes || "").toLowerCase();
+  const nameOf = id => { const it = recItem(items, id); return (it.fr + " " + it.en).toLowerCase(); };
+  let recs = R[which] || [];
+  if (q) recs = recs.filter(r =>
+    r.i.some(i => nameOf(i[0]).includes(q)) || nameOf(r.o[0]).includes(q) ||
+    (r.op + " " + (opfr[r.op] || "")).toLowerCase().includes(q));
+  const total = recs.length;
+  const shown = recs.slice(0, recLimit);
+  countEl.innerHTML = T().rec_count(shown.length, total);
+  list.innerHTML = shown.length ? `<ul class="rec-list">` + shown.map(r => {
+    const op = (lang === "en" ? r.op : (opfr[r.op] || r.op));
+    return `<li class="rec-row">
+      <div class="rec-inputs">${r.i.map(i => recIngredient(items, i[0], i[1])).join('<span class="rec-plus">+</span>')}</div>
+      <div class="rec-arrow" aria-hidden="true">→</div>
+      <div class="rec-output">${recIngredient(items, r.o[0], r.o[1])}</div>
+      <div class="rec-op">${esc(op)}${r.t ? ` · ${esc(r.t)}s` : ""}</div>
+    </li>`;
+  }).join("") + `</ul>` : emptyMsg(!!q);
+  moreEl.innerHTML = total > shown.length
+    ? `<button class="cat-more-btn" id="rec-more-btn">${T().rec_more} (${total - shown.length})</button>` : "";
+  const mb = document.getElementById("rec-more-btn");
+  if (mb) mb.addEventListener("click", () => {
+    recLimit += 60;
+    renderRecipes();
+    (document.getElementById("rec-more-btn") || document.querySelector("#rec-list .rec-row:last-child"))?.focus?.();
+  });
+}
+
 function renderAll() {
   renderUpdated();
   renderChips();
@@ -3179,6 +3287,7 @@ function renderAll() {
   renderGalaxies();
   renderMarket();
   renderCreatures();
+  renderRecipes();
   if (D.catalogue) renderCatalogue();
 }
 
@@ -3187,7 +3296,7 @@ function renderAll() {
   applyTheme(localStorage.getItem(LS_THEME) ||
     (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"), false);
 
-  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures] = await Promise.all([
+  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes] = await Promise.all([
     loadJSON("data/progress.json"),
     loadJSON("data/official.json"),
     loadJSON("data/news.json"),
@@ -3204,8 +3313,9 @@ function renderAll() {
     loadJSON("data/ships.json"),
     loadJSON("data/galaxy_hubs.json"),
     loadJSON("data/creatures.json"),
+    loadJSON("data/recipes.json"),
   ]);
-  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures });
+  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes });
 
   computeFresh();
   applyLang(lang);

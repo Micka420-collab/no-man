@@ -408,6 +408,56 @@
           ]
         }
       ]
+    },
+    {
+      "id": "exploration",
+      "icon": "🧭",
+      "name_fr": "Exploration & récompenses",
+      "name_en": "Exploration & rewards",
+      "intro_fr": "L'univers regorge de lieux à fouiller qui cachent du loot rare : épaves de vaisseaux, systèmes abandonnés, trésors enfouis et ruines anciennes. Voici où chercher et comment.",
+      "intro_en": "The universe is full of places to explore that hide rare loot: crashed ships, abandoned systems, buried treasure and ancient ruins. Here's where to look and how.",
+      "sections": [
+        {
+          "icon": "🛠️",
+          "title_fr": "Épaves de vaisseaux",
+          "title_en": "Crashed ships",
+          "items": [
+            { "fr": "Construis une balise de transmission (émetteur) et interagis avec elle : l'option « site de transmission » révèle une tour à visiter.", "en": "Build a Signal Booster and interact with it: the 'transmission tower' option reveals a tower to visit." },
+            { "fr": "À la tour, résous le puzzle (données du journal) pour obtenir la position d'un signal de détresse : un vaisseau échoué à réparer et récupérer gratuitement.", "en": "At the tower, solve the log puzzle to get a distress signal location: a crashed ship you can repair and claim for free." },
+            { "fr": "Astuce d'emplacements : les vaisseaux échoués sont un excellent moyen d'agrandir gratuitement l'inventaire en récupérant des vaisseaux au fil des systèmes.", "en": "Slot tip: crashed ships are a great way to grow inventory for free by claiming ships across systems." }
+          ]
+        },
+        {
+          "icon": "👻",
+          "title_fr": "Systèmes abandonnés & cargos dérelicts",
+          "title_en": "Abandoned systems & derelict freighters",
+          "items": [
+            { "fr": "Les systèmes abandonnés (marqués en gris/rouge sur la carte) abritent une ambiance d'horreur, des œufs de créatures et de bons butins — attention aux nuées.", "en": "Abandoned systems (greyed/red on the map) hold a horror vibe, creature eggs and good loot — beware the swarms." },
+            { "fr": "Les cargos dérelicts (épaves de cargos) se trouvent via une carte d'épave achetée à l'agent des Sentinelles sur une station : explore-les pour des plans rares et beaucoup d'unités/nanites.", "en": "Derelict Freighters are found via a salvage chart bought from the Scrap Dealer on a station: explore them for rare blueprints and lots of units/nanites." },
+            { "fr": "Une nouvelle épave dérelict gratuite apparaît chaque semaine — profites-en pour farmer les modules de mise à niveau.", "en": "A free derelict freighter rotates each week — use it to farm upgrade modules." }
+          ]
+        },
+        {
+          "icon": "💰",
+          "title_fr": "Trésors enfouis & dépôts",
+          "title_en": "Buried treasure & deposits",
+          "items": [
+            { "fr": "Achète des données cartographiques (cartes au trésor) au marchand cartographe de la station contre des artefacts/gravballs, puis suis-les pour trouver ruines, coffres et modules enfouis.", "en": "Buy navigation data (treasure maps) from the station cartographer with artifacts/gravballs, then follow them to ruins, chests and buried modules." },
+            { "fr": "L'analyseur de terrain permet de déterrer des dépôts de stockage et des capsules de largage (améliorations d'exocombinaison).", "en": "The Terrain Manipulator lets you dig up storage deposits and drop pods (Exosuit upgrades)." },
+            { "fr": "Les capsules de largage augmentent tes emplacements d'exocombinaison : traque-les avec des cartes pour agrandir ton inventaire à moindre coût.", "en": "Drop pods increase your Exosuit slots: hunt them with charts to grow your inventory cheaply." }
+          ]
+        },
+        {
+          "icon": "🏛️",
+          "title_fr": "Ruines, monolithes & savoir",
+          "title_en": "Ruins, monoliths & lore",
+          "items": [
+            { "fr": "Ruines et monolithes racontent l'histoire des trois races (Gek, Korvax, Vy'keen) et apprennent des mots de langue — utile pour mieux négocier et comprendre les PNJ.", "en": "Ruins and monoliths tell the story of the three races (Gek, Korvax, Vy'keen) and teach language words — useful to trade better and understand NPCs." },
+            { "fr": "Les sites archéologiques (ossements) et les artefacts se revendent bien et servent à acheter des cartes au trésor.", "en": "Archaeological sites (bones) and artifacts sell well and are used to buy treasure charts." },
+            { "fr": "Garde un œil sur les portails et voyage par glyphes (voir le guide Portails & glyphes) pour rejoindre les lieux partagés par la communauté.", "en": "Keep an eye on portals and glyph travel (see the Portals & glyphs guide) to reach spots shared by the community." }
+          ]
+        }
+      ]
     }
   ]
 }

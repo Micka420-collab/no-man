@@ -19,11 +19,7 @@ mondiale, installable comme application (PWA), accessible (clavier, lecteurs d'�
 | ⚔️ **Bulletin de guerre** | Classement en direct des 3 escouades de l'événement communautaire, compte à rebours, choix de ton camp | API officielle de l'Atlas Galactique |
 | 🎯 **Défi du jour** | Un défi mondial par jour (48 défis bilingues), série de jours et record | Généré localement |
 | 🗺️ **Galaxies** | Carte galactique immersive interactive des 255 galaxies (zoom, navigation, nébuleuses, chemin parcouru, marqueur « je suis ici ») | Wiki communautaire (généré une fois) |
-| 💎 **Marché** | Classements des objets les plus précieux, guide de pêche complet (qualité/biome/conditions), guide des vaisseaux | Données du jeu via Assistant NMS |
-| ⚔️ **Bulletin de guerre** | Classement en direct des 3 escouades de l'événement communautaire, compte à rebours, choix de ton camp | API officielle de l'Atlas Galactique |
-| 🎯 **Défi du jour** | Un défi mondial par jour (48 défis bilingues), série de jours et record | Généré localement |
-| 🗺️ **Galaxies** | Carte interactive en spirale des 255 galaxies avec types, recherche et marqueur « je suis ici » | Wiki communautaire (généré une fois) |
-| 💎 **Marché** | Classements des objets les plus précieux, guide de pêche complet (qualité/biome/conditions), guide des vaisseaux | Données du jeu via Assistant NMS |
+| 💎 **Marché** | Classements des objets les plus précieux, guide de pêche complet (qualité/biome/conditions), guide des vaisseaux avec **vraies images en jeu** | Données Assistant NMS + images du wiki NMS |
 | 🛸 **Actus officielles** | Patch notes et annonces Hello Games | [nomanssky.com/news](https://www.nomanssky.com/news/) |
 | 📰 **Presse & Steam** | Annonces Steam + couverture presse (PC Gamer, RPS…) | API Steam News |
 | 👥 **Communauté** | Top de la semaine, tendances, coordonnées partagées + **communauté française** | r/NoMansSkyTheGame, r/NMSCoordinateExchange, r/NoMansSkyFrance (RSS) |
@@ -32,8 +28,14 @@ mondiale, installable comme application (PWA), accessible (clavier, lecteurs d'�
 | 🕰️ **Mises à jour** | Frise chronologique des mises à jour majeures, de la sortie (2016) à The Swarm (2026) | `data/timeline.json` |
 | 🧭 **Ma progression** | Checklist interactive de ~35 objectifs du jeu (histoire, quêtes, équipement, bases, exploration, multijoueur) avec pourcentage global | Toi ! |
 
-Les données sont **mises à jour automatiquement toutes les 6 heures** par GitHub Actions
+Les données sont **mises à jour automatiquement toutes les 3 heures** par GitHub Actions
 (workflow `update-news.yml`), qui committe les fichiers JSON dans `data/`.
+
+### Crédits des images et données
+
+- **Icônes et données d'objets** : [Assistant for No Man's Sky](https://nmsassistant.com/) (données extraites du jeu, CDN `cdn.nmsassistant.com`).
+- **Images des types de vaisseaux** (`assets/ships/`) : captures et rendus issus du [wiki No Man's Sky](https://nomanssky.fandom.com/) (Fandom, CC-BY-SA), redimensionnées et hébergées localement.
+- No Man's Sky est une marque de **Hello Games**. Ce projet est un outil communautaire non officiel, sans but lucratif.
 
 ## Voir le tableau de bord
 

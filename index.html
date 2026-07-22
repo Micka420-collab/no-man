@@ -620,7 +620,12 @@
   .mk-bar > div { height: 100%; background: linear-gradient(90deg, var(--c2), var(--c3)); border-radius: 999px; }
   .fish-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 3px; }
   .ship-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
-  .ship { padding: 18px 20px; }
+  .ship { padding: 0; overflow: hidden; }
+  .ship .sh-photo { margin: 0; }
+  .ship .sh-photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; background: #04060d; }
+  .ship .sh-head, .ship .sh-line, .ship .sh-price { padding-left: 18px; padding-right: 18px; }
+  .ship .sh-head { padding-top: 14px; }
+  .ship .sh-price { padding-bottom: 16px; }
   .ship .sh-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
   .ship .sh-icon { font-size: 1.9rem; }
   .ship h3 { font: 700 1.05rem var(--font-head); }
@@ -2323,6 +2328,7 @@ function renderMarket() {
     const ships = D.ships && D.ships.items || [];
     list.innerHTML = ships.length ? `<div class="ship-grid">` + ships.map(sh => `
       <article class="card ship">
+        ${sh.image ? `<div class="sh-photo"><img src="${esc(sh.image)}" alt="${esc(lang === "en" ? sh.name_en : sh.name_fr)}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ""}
         <div class="sh-head"><span class="sh-icon" aria-hidden="true">${esc(sh.icon)}</span>
           <h3>${esc(lang === "en" ? sh.name_en : sh.name_fr)}</h3>
           <span class="stars" title="${T().ship_rarity(num(sh.rarity))}" aria-label="${T().ship_rarity(num(sh.rarity))}"><span aria-hidden="true">${"★".repeat(num(sh.rarity))}${"☆".repeat(5 - num(sh.rarity))}</span></span></div>

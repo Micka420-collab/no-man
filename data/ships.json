@@ -12,7 +12,8 @@
       "price_en": "≈ 200k – 60M units",
       "find_fr": "Fréquents dans les systèmes Vy'keen ; les modèles S apparaissent surtout dans les économies riches",
       "find_en": "Common in Vy'keen systems; S-class models mostly appear in wealthy economies",
-      "rarity": 2
+      "rarity": 2,
+      "image": "assets/ships/fighter.webp"
     },
     {
       "id": "hauler",
@@ -25,7 +26,8 @@
       "price_en": "≈ 1M – 126M units",
       "find_fr": "Fréquents dans les systèmes Gek ; un S 48 emplacements est le graal des marchands",
       "find_en": "Common in Gek systems; a 48-slot S-class is the traders' holy grail",
-      "rarity": 3
+      "rarity": 3,
+      "image": "assets/ships/hauler.webp"
     },
     {
       "id": "explorer",
@@ -38,7 +40,8 @@
       "price_en": "≈ 300k – 40M units",
       "find_fr": "Fréquents dans les systèmes Korvax",
       "find_en": "Common in Korvax systems",
-      "rarity": 2
+      "rarity": 2,
+      "image": "assets/ships/explorer.webp"
     },
     {
       "id": "shuttle",
@@ -51,7 +54,8 @@
       "price_en": "≈ 100k – 15M units",
       "find_fr": "Partout — classe S possible mais rare, comme pour tout vaisseau (≈2 % en économie riche)",
       "find_en": "Everywhere — S-class possible but rare, as for any ship (≈2% in wealthy economies)",
-      "rarity": 1
+      "rarity": 1,
+      "image": "assets/ships/shuttle.webp"
     },
     {
       "id": "exotic",
@@ -64,7 +68,8 @@
       "price_en": "≈ 10M – 15M units",
       "find_fr": "Un seul modèle par système (royal, calmar…) ; ~1 % d'apparition quelle que soit l'économie",
       "find_en": "One model per system (royal, squid…); ~1% spawn chance regardless of economy",
-      "rarity": 5
+      "rarity": 5,
+      "image": "assets/ships/exotic.webp"
     },
     {
       "id": "solar",
@@ -77,7 +82,8 @@
       "price_en": "≈ 700k – 30M units",
       "find_fr": "Introduits par Outlaws — fréquents dans les systèmes hors-la-loi",
       "find_en": "Introduced in Outlaws — common in outlaw systems",
-      "rarity": 3
+      "rarity": 3,
+      "image": "assets/ships/solar.webp"
     },
     {
       "id": "interceptor",
@@ -90,7 +96,8 @@
       "price_en": "Free — repair after capture",
       "find_fr": "Épaves sur les mondes corrompus (mise à jour Interceptor) ; chaque système a son modèle",
       "find_en": "Crash sites on corrupted worlds (Interceptor update); each system has its own model",
-      "rarity": 4
+      "rarity": 4,
+      "image": "assets/ships/interceptor.webp"
     },
     {
       "id": "living",
@@ -103,7 +110,8 @@
       "price_en": "Free via the Starbirth quest (Void Egg, 3,200 quicksilver)",
       "find_fr": "Quête Naissance Stellaire, puis éclosions supplémentaires possibles",
       "find_en": "Starbirth quest, then additional hatchings possible",
-      "rarity": 5
+      "rarity": 5,
+      "image": "assets/ships/living.webp"
     },
     {
       "id": "corvette",
@@ -116,7 +124,8 @@
       "price_en": "Costs resources and salvaged modules",
       "find_fr": "Système de construction introduit par Voyagers (6.0)",
       "find_en": "Construction system introduced in Voyagers (6.0)",
-      "rarity": 4
+      "rarity": 4,
+      "image": "assets/ships/corvette.webp"
     },
     {
       "id": "freighter",
@@ -129,7 +138,8 @@
       "price_en": "First one free (rescue event); S-class ≈ up to ~180M units",
       "find_fr": "Événement de sauvetage après quelques sauts ; les Sentinelles/Résurgents S sont les plus convoités",
       "find_en": "Rescue event after a few warps; S-class Sentinel/Resurgent models are the most coveted",
-      "rarity": 4
+      "rarity": 4,
+      "image": "assets/ships/freighter.webp"
     }
   ]
 }

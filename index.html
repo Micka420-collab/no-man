@@ -730,6 +730,11 @@
   }
   .gal-hint { font-size: 0.72rem; color: var(--ink-dim); padding: 8px 14px 0; text-align: center; }
   .gal-detail { position: sticky; top: 84px; }
+  .gal-mini-wrap { display: flex; justify-content: center; margin-bottom: 12px; }
+  .gal-mini {
+    width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, #060912, #03050c);
+    border: 1px solid var(--stroke); box-shadow: 0 6px 24px rgba(0,0,0,.35), inset 0 0 30px rgba(0,0,0,.5);
+  }
   .gal-detail .gnum { font: 700 0.8rem var(--font-head); color: var(--ink-dim); letter-spacing: 0.2em; }
   .gal-detail h3 { font: 700 1.5rem var(--font-head); margin: 2px 0 6px; }
   .gal-detail .gtype { margin-bottom: 12px; }
@@ -2790,11 +2795,14 @@ function galBuildDust() {
   const c = off.getContext("2d");
   const S = N / (WORLD_R * 2);
   c.setTransform(S, 0, 0, S, N / 2, N / 2);
-  const T = GAL_TILT;
+  // Galaxie dessinée DE FACE (disque circulaire) : l'inclinaison (GAL_TILT) et
+  // la rotation lente sont appliquées au moment du rendu, pour que le disque
+  // tourne réellement dans son plan.
+  const T = 1;
 
-  // fond spatial profond
-  c.fillStyle = "#03050c";
-  c.fillRect(-WORLD_R * 1.5, -WORLD_R * 1.5, WORLD_R * 3, WORLD_R * 3);
+  // Fond transparent : le disque tourne au rendu, donc aucun rectangle sombre
+  // ne doit apparaître dans les coins. L'espace profond est peint par le canvas
+  // principal sous la poussière.
   const rnd = galRng(42);
 
   // corps diffus du disque (halo elliptique incliné, dégradé chaud/froid)
@@ -2881,22 +2889,17 @@ function galBuildDust() {
   bulge.addColorStop(0.42, "rgba(255,180,120,0.26)");
   bulge.addColorStop(0.72, "rgba(150,130,220,0.11)");
   bulge.addColorStop(1, "rgba(120,110,200,0)");
-  c.save(); c.scale(1, T * 1.25); c.fillStyle = bulge;
-  c.beginPath(); c.arc(0, 0, 86, 0, Math.PI * 2); c.fill(); c.restore();
+  c.fillStyle = bulge;
+  c.beginPath(); c.arc(0, 0, 90, 0, Math.PI * 2); c.fill();
 
-  // cœur brillant + halo horizontal (lens flare caractéristique)
+  // cœur brillant (le halo horizontal / lens flare est dessiné au rendu,
+  // fixe à l'écran, pour ne pas tourner avec le disque).
   const core = c.createRadialGradient(0, 0, 0, 0, 0, 30);
   core.addColorStop(0, "rgba(255,255,250,1)");
   core.addColorStop(0.4, "rgba(255,240,205,0.88)");
   core.addColorStop(1, "rgba(255,220,160,0)");
   c.fillStyle = core;
   c.beginPath(); c.arc(0, 0, 30, 0, Math.PI * 2); c.fill();
-  const flare = c.createLinearGradient(-WORLD_R * 0.9, 0, WORLD_R * 0.9, 0);
-  flare.addColorStop(0, "rgba(255,240,210,0)");
-  flare.addColorStop(0.5, "rgba(255,246,225,0.6)");
-  flare.addColorStop(1, "rgba(255,240,210,0)");
-  c.fillStyle = flare;
-  c.fillRect(-WORLD_R * 0.9, -2.4, WORLD_R * 1.8, 4.8);
 
   // passe de bloom (lueur) : on rebake une copie floutée en mode additif pour
   // le rendu lumineux caractéristique du Galactic Atlas.
@@ -2913,6 +2916,17 @@ function galBuildDust() {
     c.globalAlpha = 1;
     c.globalCompositeOperation = "source-over";
   } catch (e) { /* filtre non supporté : rendu de base conservé */ }
+
+  // masque circulaire doux : le contenu s'estompe avant le bord carré de
+  // l'image, pour qu'aucun coin ne trahisse un rectangle pendant la rotation.
+  c.setTransform(S, 0, 0, S, N / 2, N / 2);
+  c.globalCompositeOperation = "destination-in";
+  const mask = c.createRadialGradient(0, 0, WORLD_R * 0.62, 0, 0, WORLD_R * 0.995);
+  mask.addColorStop(0, "rgba(0,0,0,1)");
+  mask.addColorStop(1, "rgba(0,0,0,0)");
+  c.fillStyle = mask;
+  c.fillRect(-WORLD_R, -WORLD_R, WORLD_R * 2, WORLD_R * 2);
+  c.globalCompositeOperation = "source-over";
 
   GAL.dust = off;
 }
@@ -2931,6 +2945,54 @@ function galBuildSprites() {
     c.fillRect(0, 0, 48, 48);
     GAL.sprites[type] = sp;
   }
+}
+
+// Mini-aperçu unique par galaxie : petite spirale colorée selon le type, avec
+// une orientation propre à chaque galaxie (graine = numéro). Mis en cache.
+const galMiniCache = new Map();
+function galHexRgb(hex) {
+  const h = hex.replace("#", "");
+  return `${parseInt(h.slice(0, 2), 16)},${parseInt(h.slice(2, 4), 16)},${parseInt(h.slice(4, 6), 16)}`;
+}
+function miniGalaxyURL(n, type) {
+  const key = n + ":" + type;
+  if (galMiniCache.has(key)) return galMiniCache.get(key);
+  const D2 = 220, R = D2 * 0.45, coreR = R * 0.09;
+  const cv = document.createElement("canvas");
+  cv.width = cv.height = D2;
+  const c = cv.getContext("2d");
+  c.translate(D2 / 2, D2 / 2);
+  const rgb = galHexRgb(GAL_MAP_COLORS[type] || "#7aa2ff");
+  const rnd = galRng((n * 2654435761) >>> 0 || 1);
+  const rot0 = rnd() * Math.PI * 2;      // orientation unique
+  const tilt = 0.66 + rnd() * 0.26;      // inclinaison variable
+  c.scale(1, tilt);
+  // corps diffus
+  const body = c.createRadialGradient(0, 0, 3, 0, 0, R);
+  body.addColorStop(0, "rgba(255,240,212,0.5)");
+  body.addColorStop(0.42, `rgba(${rgb},0.2)`);
+  body.addColorStop(1, `rgba(${rgb},0)`);
+  c.fillStyle = body; c.beginPath(); c.arc(0, 0, R, 0, Math.PI * 2); c.fill();
+  // 2 bras en spirale logarithmique
+  for (let i = 0; i < 1500; i++) {
+    const arm = i & 1;
+    const t = Math.pow(rnd(), 0.7);
+    const r = coreR + t * (R - coreR);
+    const th = rot0 + arm * Math.PI + 2.6 * Math.log(r / coreR) + (rnd() - 0.5) * (0.5 - t * 0.25);
+    const x = r * Math.cos(th), y = r * Math.sin(th);
+    const a = (0.14 + rnd() * 0.6) * (1 - t * 0.3);
+    c.fillStyle = t < 0.24 ? `rgba(255,248,230,${a.toFixed(2)})` : `rgba(${rgb},${a.toFixed(2)})`;
+    c.beginPath(); c.arc(x, y, rnd() < 0.9 ? 0.6 : 1.35, 0, Math.PI * 2); c.fill();
+  }
+  // cœur lumineux
+  const core = c.createRadialGradient(0, 0, 0, 0, 0, R * 0.17);
+  core.addColorStop(0, "rgba(255,255,250,1)");
+  core.addColorStop(0.5, "rgba(255,238,200,0.7)");
+  core.addColorStop(1, "rgba(255,220,160,0)");
+  c.fillStyle = core; c.beginPath(); c.arc(0, 0, R * 0.17, 0, Math.PI * 2); c.fill();
+  const url = cv.toDataURL();
+  galMiniCache.set(key, url);
+  return url;
 }
 
 const galW2S = (wx, wy) => [
@@ -2992,11 +3054,27 @@ function galDraw(t) {
   ctx.fillStyle = "#04060d";
   ctx.fillRect(0, 0, GAL.size, GAL.size);
 
-  // poussière galactique
-  const s = GAL.base * GAL.view.z * (WORLD_R * 2 / 1400);
-  const [ox, oy] = galW2S(-WORLD_R, -WORLD_R);
+  // poussière galactique : disque incliné (GAL_TILT) qui tourne lentement
+  // dans son plan (rotation appliquée avant la déformation d'inclinaison).
+  const [scx, scy] = galW2S(0, 0);
+  const rSize = GAL.base * GAL.view.z * WORLD_R;
+  const rot = reduceMotion ? 0 : now * 0.02;
   ctx.imageSmoothingEnabled = true;
-  ctx.drawImage(GAL.dust, ox, oy, 1400 * s, 1400 * s);
+  ctx.save();
+  ctx.translate(scx, scy);
+  ctx.scale(1, GAL_TILT);
+  ctx.rotate(rot);
+  ctx.drawImage(GAL.dust, -rSize, -rSize, rSize * 2, rSize * 2);
+  ctx.restore();
+  // halo horizontal (lens flare) fixe à l'écran, au niveau du cœur
+  const flareW = rSize * 1.7;
+  const flareH = Math.max(2, rSize * 0.02);
+  const grd = ctx.createLinearGradient(scx - flareW, scy, scx + flareW, scy);
+  grd.addColorStop(0, "rgba(255,240,210,0)");
+  grd.addColorStop(0.5, "rgba(255,246,225,0.5)");
+  grd.addColorStop(1, "rgba(255,240,210,0)");
+  ctx.fillStyle = grd;
+  ctx.fillRect(scx - flareW, scy - flareH / 2, flareW * 2, flareH);
 
   // chemin parcouru : d'Euclid jusqu'à ta galaxie
   if (cur && cur > 1) {
@@ -3264,6 +3342,7 @@ function renderGalaxies() {
     pos = `<div class="gal-pos">${T().gal_pos(esc(items[current - 1].name), current)}<br>${T().gal_pos_pct(pct)}</div>`;
   }
   document.getElementById("gal-detail").innerHTML = `
+    <div class="gal-mini-wrap"><img class="gal-mini" src="${miniGalaxyURL(g.n, g.type)}" alt="" width="220" height="220"></div>
     <div class="gnum">${T().gal_galaxy} ${g.n}/255</div>
     <h3>${esc(g.name)}</h3>
     <div class="gtype"><span class="badge" style="border-color:${GAL_COLORS[g.type]};color:${GAL_COLORS[g.type]};background:transparent">${T().gal_type_of[g.type]}</span></div>

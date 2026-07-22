@@ -26,6 +26,7 @@
     --radius-sm: 10px;
   }
   [data-theme="dark"] {
+    --gal-norm: #7aa2ff; --gal-lush: #37e0b8; --gal-harsh: #ff5c49; --gal-empty: #8b93ad;
     --bg0: #05070f;
     --bg1: #0a0f1f;
     --ink: #e8edfb;
@@ -39,6 +40,7 @@
     --chip: rgba(10, 15, 31, 0.72);
   }
   [data-theme="light"] {
+    --gal-norm: #3d5bb8; --gal-lush: #0a7c63; --gal-harsh: #c2372a; --gal-empty: #56618a;
     --bg0: #eef1fb;
     --bg1: #e2e8fa;
     --ink: #17203c;
@@ -78,6 +80,10 @@
     background: var(--c2); color: #04251d; padding: 8px 16px; border-radius: 8px; font-weight: 600;
   }
   .skip-link:focus { left: 8px; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
 
   /* ------- Barre haute ------- */
   .topbar { display: flex; justify-content: flex-end; gap: 10px; }
@@ -129,6 +135,9 @@
     overflow-x: auto; scrollbar-width: none; max-width: max-content;
   }
   nav.tabs::-webkit-scrollbar { display: none; }
+  @media (min-width: 880px) {
+    nav.tabs { flex-wrap: wrap; justify-content: center; border-radius: 26px; overflow-x: visible; }
+  }
   nav.tabs button {
     flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px;
     background: transparent; color: var(--ink-dim); border: none; border-radius: 999px;
@@ -180,7 +189,7 @@
   .badge.official { background: rgba(255, 92, 73, 0.12); color: #ff8a75; border-color: rgba(255, 92, 73, 0.35); }
   [data-theme="light"] .badge.official { color: #c2372a; }
   .badge.gold { background: rgba(255, 200, 87, 0.12); color: var(--c3); border-color: rgba(255, 200, 87, 0.35); }
-  [data-theme="light"] .badge.gold { color: #9a6b00; }
+  [data-theme="light"] .badge.gold { color: #7a5500; }
 
   /* ------- Vue d'ensemble ------- */
   .event-banner {
@@ -292,7 +301,7 @@
   }
   .subtabs button:hover { color: var(--ink); }
   .subtabs button.active { color: var(--c3); border-color: var(--c3); background: rgba(255, 200, 87, 0.08); }
-  [data-theme="light"] .subtabs button.active { color: #9a6b00; border-color: #c99f2e; }
+  [data-theme="light"] .subtabs button.active { color: #7a5500; border-color: #c99f2e; }
   .searchbox { margin-left: auto; position: relative; }
   .searchbox input {
     background: var(--card); border: 1px solid var(--stroke); color: var(--ink);
@@ -423,7 +432,10 @@
   @media (max-width: 560px) {
     .war-team { grid-template-columns: 26px 1fr auto; }
     .war-team .tbar { display: none; }
+    .war-team .tname { font-size: 0.8rem; }
     .war-obj { grid-column: 2 / -1; }
+    .war-core { flex-wrap: wrap; }
+    .war-core .bar { flex: 1 1 100%; order: 3; }
   }
 
   /* ------- Défi du jour ------- */
@@ -454,6 +466,7 @@
   }
   .challenge .ch-share:hover { color: var(--ink); border-color: var(--stroke-hi); }
   .challenge .streak { font: 600 0.9rem var(--font-head); color: var(--c1); white-space: nowrap; }
+  [data-theme="light"] .challenge .streak { color: #c2372a; }
   .challenge .streak small { color: var(--ink-dim); font-weight: 400; }
 
   /* ------- Nouveautés ------- */
@@ -473,7 +486,7 @@
   @media (max-width: 820px) { .gal-layout { grid-template-columns: 1fr; } }
   .gal-map-card { padding: 10px; }
   #gal-map { width: 100%; height: auto; display: block; }
-  #gal-map circle.g { cursor: pointer; transition: opacity 0.2s; }
+  #gal-map circle.g { cursor: pointer; transition: opacity 0.2s; stroke: transparent; stroke-width: 12px; }
   #gal-map circle.g.dim { opacity: 0.12; }
   #gal-map circle.sel-ring { fill: none; stroke: #fff; stroke-width: 2; pointer-events: none; }
   [data-theme="light"] #gal-map circle.sel-ring { stroke: #17203c; }
@@ -518,7 +531,9 @@
   .mk-row .rank.top { color: var(--c3); }
   [data-theme="light"] .mk-row .rank.top { color: #9a6b00; }
   .mk-row img { width: 44px; height: 44px; border-radius: 9px; background: var(--track); object-fit: contain; }
-  .mk-row .mname { font: 600 0.95rem var(--font-head); }
+  .mk-row > div { min-width: 0; }
+  .mk-row .mname { font: 600 0.95rem var(--font-head); overflow-wrap: anywhere; }
+  .mk-list { list-style: none; padding: 0; margin: 0; }
   .mk-row .mgroup { font-size: 0.76rem; color: var(--ink-dim); }
   .mk-row .mval { font: 700 0.95rem var(--font-head); color: var(--c2); white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; }
   [data-theme="light"] .mk-row .mval { color: #0a7c63; }
@@ -593,10 +608,10 @@
     <button role="tab" id="tab-progression" aria-controls="panel-progression" data-tab="progression" aria-selected="false" tabindex="-1">🧭 <span data-i18n="tab_progress">Ma progression</span></button>
     <button role="tab" id="tab-galaxies" aria-controls="panel-galaxies" data-tab="galaxies" aria-selected="false" tabindex="-1">🗺️ <span data-i18n="tab_galaxies">Galaxies</span></button>
     <button role="tab" id="tab-marche" aria-controls="panel-marche" data-tab="marche" aria-selected="false" tabindex="-1">💎 <span data-i18n="tab_market">Marché</span></button>
-    <button role="tab" id="tab-actus" aria-controls="panel-actus" data-tab="actus" aria-selected="false" tabindex="-1">📰 <span data-i18n="tab_news">Actualités</span><span class="notif" id="notif-actus" hidden></span></button>
-    <button role="tab" id="tab-communaute" aria-controls="panel-communaute" data-tab="communaute" aria-selected="false" tabindex="-1">👥 <span data-i18n="tab_community">Communauté</span><span class="notif" id="notif-communaute" hidden></span></button>
+    <button role="tab" id="tab-actus" aria-controls="panel-actus" data-tab="actus" aria-selected="false" tabindex="-1">📰 <span data-i18n="tab_news">Actualités</span><span class="notif" id="notif-actus" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
+    <button role="tab" id="tab-communaute" aria-controls="panel-communaute" data-tab="communaute" aria-selected="false" tabindex="-1">👥 <span data-i18n="tab_community">Communauté</span><span class="notif" id="notif-communaute" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-succes" aria-controls="panel-succes" data-tab="succes" aria-selected="false" tabindex="-1">🏆 <span data-i18n="tab_ach">Succès</span></button>
-    <button role="tab" id="tab-videos" aria-controls="panel-videos" data-tab="videos" aria-selected="false" tabindex="-1">🎬 <span data-i18n="tab_videos">Vidéos</span><span class="notif" id="notif-videos" hidden></span></button>
+    <button role="tab" id="tab-videos" aria-controls="panel-videos" data-tab="videos" aria-selected="false" tabindex="-1">🎬 <span data-i18n="tab_videos">Vidéos</span><span class="notif" id="notif-videos" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-maj" aria-controls="panel-maj" data-tab="maj" aria-selected="false" tabindex="-1">🕰️ <span data-i18n="tab_timeline">Mises à jour</span></button>
   </nav>
 
@@ -666,7 +681,7 @@
         <div class="subtabs" id="gal-type-chips"></div>
         <div class="searchbox" style="margin-left:auto"><input type="search" id="search-galaxies" data-i18n-ph="search" placeholder="Rechercher…" data-i18n-aria="aria_search_gal" aria-label="Rechercher une galaxie"></div>
       </div>
-      <div id="gal-results" class="gal-results"></div>
+      <div id="gal-results" class="gal-results" aria-live="polite"></div>
       <div class="gal-layout" style="margin-top:14px">
         <div class="card gal-map-card">
           <svg id="gal-map" viewBox="-310 -310 620 620" role="img" data-i18n-aria="aria_gal_map" aria-label="Carte en spirale des 255 galaxies"></svg>
@@ -798,8 +813,9 @@ const I18N = {
     war_rank: (r, d) => `Ton escouade est ${r}e, à ${d} contributions du leader. Tout se joue maintenant !`,
     war_obj: { combat: "⚔️ Purge", clean: "🧹 Restauration", intel: "🕵️ Sabotage" },
     war_stars: "étoiles",
+    notif_sr: "— nouveautés",
     war_updated: "Données de guerre :",
-    chip_war_lead: t => `${t} en tête`,
+    chip_war_lead: "en tête",
     ch_title: "Défi du jour",
     ch_of: "Défi mondial du",
     ch_diff: "Difficulté",
@@ -836,10 +852,12 @@ const I18N = {
     mk_note_ships: "Guide de référence des types de vaisseaux : bonus, prix indicatifs et où les dénicher.",
     mk_cat: { raw: "Matériaux bruts", products: "Produits fabriqués", trade: "Marchandises", curiosities: "Curiosités", cooking: "Cuisine" },
     mk_currency: { Credits: "unités", Nanites: "nanites", Quicksilver: "vif-argent" },
-    fish_q: { Legendary: "Légendaire", Epic: "Épique", Desirable: "Convoité", Common: "Commun", Junk: "Camelote" },
+    fish_q: { Legendary: "Légendaire", Epic: "Rare", Desirable: "Peu commun", Common: "Commun", Junk: "Camelote" },
     fish_time: { day: "☀️ Jour", night: "🌙 Nuit", both: "🌗 Jour et nuit" },
-    fish_storm: "⛈️ Pendant une tempête", fish_mission: "🎯 Mission requise", fish_size: { small: "Petit", medium: "Moyen", large: "Grand", "extra-large": "Très grand" },
-    ship_price: "Prix", ship_find: "Où le trouver",
+    fish_storm: "⛈️ Pendant une tempête", fish_mission: "🎯 Mission requise",
+    fish_size: { small: "Petit", "medium-sized": "Moyen", large: "Grand", colossal: "Colossal" },
+    fish_biome: { All: "Tous biomes", Barren: "Aride", Exotic: "Exotique", Frozen: "Gelé", Lava: "Volcanique", Lush: "Luxuriant", Radioactive: "Radioactif", Scorched: "Brûlant", Swamp: "Marécageux", Toxic: "Toxique" },
+    ship_price: "Prix", ship_find: "Où le trouver", ship_rarity: n => `Rareté : ${n}/5`,
   },
   en: {
     skip: "Skip to content",
@@ -888,8 +906,9 @@ const I18N = {
     war_rank: (r, d) => `Your squad is #${r}, ${d} contributions behind the leader. It's all to play for!`,
     war_obj: { combat: "⚔️ Purge", clean: "🧹 Restore", intel: "🕵️ Sabotage" },
     war_stars: "stars",
+    notif_sr: "— new items",
     war_updated: "War data:",
-    chip_war_lead: t => `${t} leading`,
+    chip_war_lead: "leading",
     ch_title: "Daily challenge",
     ch_of: "Worldwide challenge for",
     ch_diff: "Difficulty",
@@ -926,10 +945,12 @@ const I18N = {
     mk_note_ships: "Starship reference guide: bonuses, indicative prices and where to find them.",
     mk_cat: { raw: "Raw materials", products: "Crafted products", trade: "Trade goods", curiosities: "Curiosities", cooking: "Cooking" },
     mk_currency: { Credits: "units", Nanites: "nanites", Quicksilver: "quicksilver" },
-    fish_q: { Legendary: "Legendary", Epic: "Epic", Desirable: "Desirable", Common: "Common", Junk: "Junk" },
+    fish_q: { Legendary: "Legendary", Epic: "Rare", Desirable: "Uncommon", Common: "Common", Junk: "Junk" },
     fish_time: { day: "☀️ Day", night: "🌙 Night", both: "🌗 Day & night" },
-    fish_storm: "⛈️ During a storm", fish_mission: "🎯 Mission required", fish_size: { small: "Small", medium: "Medium", large: "Large", "extra-large": "Extra large" },
-    ship_price: "Price", ship_find: "Where to find it",
+    fish_storm: "⛈️ During a storm", fish_mission: "🎯 Mission required",
+    fish_size: { small: "Small", "medium-sized": "Medium", large: "Large", colossal: "Colossal" },
+    fish_biome: { All: "All biomes", Barren: "Barren", Exotic: "Exotic", Frozen: "Frozen", Lava: "Volcanic", Lush: "Lush", Radioactive: "Radioactive", Scorched: "Scorched", Swamp: "Swamp", Toxic: "Toxic" },
+    ship_price: "Price", ship_find: "Where to find it", ship_rarity: n => `Rarity: ${n}/5`,
   },
 };
 
@@ -1003,6 +1024,9 @@ document.getElementById("theme-btn").addEventListener("click", () =>
 window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", e => {
   if (!localStorage.getItem(LS_THEME)) applyTheme(e.matches ? "light" : "dark", false);
 });
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && D.challenges) { renderChallenge(); renderWar(); }
+});
 
 function applyLang(next) {
   lang = next;
@@ -1075,6 +1099,7 @@ function activateTab(b, focus) {
   document.querySelectorAll("section.panel").forEach(x => x.classList.remove("active"));
   document.getElementById("panel-" + b.dataset.tab).classList.add("active");
   if (focus) b.focus();
+  b.scrollIntoView({ inline: "nearest", block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
   if (b.dataset.tab === "apercu") drawSparkline();
 }
 tabButtons.forEach(b => b.addEventListener("click", () => activateTab(b, false)));
@@ -1124,7 +1149,7 @@ const setState = (key, s) => localStorage.setItem(key, JSON.stringify(s));
 function keepFocus(container, render) {
   const active = document.activeElement;
   const attr = active && container.contains(active) &&
-    ["data-id", "data-name", "data-sub", "data-team", "data-n"].find(a => active.hasAttribute(a));
+    ["data-id", "data-name", "data-sub", "data-team", "data-n", "data-goto"].find(a => active.hasAttribute(a));
   const val = attr ? active.getAttribute(attr) : null;
   render();
   if (attr && val !== null) {
@@ -1264,7 +1289,7 @@ function renderChips() {
   }
   if (D.war && D.war.event && D.war.progress && Array.isArray(D.war.progress.teamTotals) && D.war.progress.teamTotals.length) {
     const leader = [...D.war.progress.teamTotals].sort((a, b) => (b.total || 0) - (a.total || 0))[0];
-    chips.push(`<span class="chip">⚔️ <b>${TEAM_EMOJI[leader.team] || ""} ${esc(T().war_team[leader.team] || leader.team)}</b> ${T().chip_war_lead("")}</span>`);
+    chips.push(`<span class="chip">⚔️ <b>${TEAM_EMOJI[leader.team] || ""} ${esc(T().war_team[leader.team] || leader.team)}</b> ${T().chip_war_lead}</span>`);
   }
   document.getElementById("live-chips").innerHTML = chips.join("");
 }
@@ -1323,7 +1348,13 @@ function renderOverview() {
 
 function drawSparkline() {
   const c = document.getElementById("sparkline");
-  if (!D.history || !D.history.points || D.history.points.length < 2 || !c.clientWidth) return;
+  if (!D.history || !D.history.points || D.history.points.length < 2) return;
+  const pts = D.history.points;
+  c.setAttribute("aria-label", T().spark_aria(
+    fmtNum(Math.min(...pts.map(p => p.players))),
+    fmtNum(Math.max(...pts.map(p => p.players))),
+    fmtNum(pts[pts.length - 1].players)));
+  if (!c.clientWidth) return;
   const points = D.history.points;
   const darkTheme = document.documentElement.dataset.theme === "dark";
   const dpr = window.devicePixelRatio || 1;
@@ -1446,14 +1477,14 @@ function renderWar() {
     keepFocus(box, renderWar); renderChips();
   }));
 
-  if (running && !reduceMotion) {
+  if (running) {
     warTimer = setInterval(() => {
       const el = document.getElementById("war-countdown");
       if (!el) { clearInterval(warTimer); warTimer = null; return; }
       const txt = warCountdownText(ev.end_time);
       el.textContent = txt ? T().war_ends + " " + txt : T().war_ended;
       if (!txt) { clearInterval(warTimer); warTimer = null; }
-    }, 1000);
+    }, reduceMotion ? 60000 : 1000);
   }
 }
 
@@ -1466,6 +1497,7 @@ function challengeOfDay() {
   return items[(dayNum * 2654435761 % 4294967296) % items.length];
 }
 function challengeStreak(doneMap) {
+  if (!isObj(doneMap)) return 0;
   let streak = 0;
   const today = new Date(dayKeyUTC() + "T00:00:00Z");
   let cursor = doneMap[dayKeyUTC()] ? today : new Date(today.getTime() - 86400000);
@@ -1479,16 +1511,17 @@ function renderChallenge() {
   const box = document.getElementById("challenge-box");
   const ch = challengeOfDay();
   if (!ch) { box.innerHTML = ""; return; }
+  const renderedDay = dayKeyUTC();
   const state = getState(LS_CHALLENGE);
-  const doneMap = state.days || {};
-  const doneToday = !!doneMap[dayKeyUTC()];
+  const doneMap = isObj(state.days) ? state.days : {};
+  const doneToday = !!doneMap[renderedDay];
   const streak = challengeStreak(doneMap);
   const best = Math.max(state.best || 0, streak);
   const text = lang === "en" ? ch.en : ch.fr;
   const dateTxt = new Date().toLocaleDateString(lang === "fr" ? "fr-FR" : "en-GB", { weekday: "long", day: "numeric", month: "long" });
 
   box.innerHTML = `<div class="challenge">
-    <div class="ch-icon" aria-hidden="true">${ch.icon}</div>
+    <div class="ch-icon" aria-hidden="true">${esc(ch.icon)}</div>
     <div class="ch-main">
       <div class="ch-title">🎯 ${T().ch_title} — ${esc(dateTxt)}</div>
       <div class="ch-text">${esc(text)}</div>
@@ -1502,16 +1535,20 @@ function renderChallenge() {
   </div>`;
 
   document.getElementById("ch-btn").addEventListener("click", () => {
+    // Si minuit UTC est passé depuis le rendu, on rafraîchit sans rien écrire
+    if (dayKeyUTC() !== renderedDay) { renderChallenge(); return; }
     const s = getState(LS_CHALLENGE);
-    s.days = s.days || {};
-    if (s.days[dayKeyUTC()]) delete s.days[dayKeyUTC()];
-    else s.days[dayKeyUTC()] = true;
-    s.best = Math.max(s.best || 0, challengeStreak(s.days));
+    s.days = isObj(s.days) ? s.days : {};
+    if (s.days[renderedDay]) delete s.days[renderedDay];
+    else s.days[renderedDay] = true;
+    s.best = Math.max(Number(s.best) || 0, challengeStreak(s.days));
     setState(LS_CHALLENGE, s);
     renderChallenge();
+    const btn = document.getElementById("ch-btn");
+    if (btn) btn.focus();
   });
   document.getElementById("ch-share").addEventListener("click", async e => {
-    const shareText = T().ch_share_text(text, challengeStreak(getState(LS_CHALLENGE).days || {}));
+    const shareText = T().ch_share_text(text, challengeStreak(getState(LS_CHALLENGE).days));
     const url = location.href.split("#")[0];
     try {
       if (navigator.share) await navigator.share({ text: shareText, url });
@@ -1535,8 +1572,10 @@ function computeFresh() {
     return !isNaN(t) && t > last;
   }).length;
   freshCounts = {
-    actus: newer(D.news && D.news.items),
-    communaute: newer(D.community && D.community.top_week),
+    actus: newer(D.news && D.news.items) + newer(D.official && D.official.items),
+    communaute: newer(D.community && D.community.top_week)
+      + newer(D.community && D.community.hot)
+      + newer(D.community && D.community.coordinates),
     videos: newer(D.videos && D.videos.items),
   };
 }
@@ -1674,7 +1713,7 @@ function renderTimeline() {
 
 /* ============================== Carte des galaxies ============================== */
 const LS_GALAXY = "nms-galaxy";
-const GAL_COLORS = { norm: "#7aa2ff", lush: "#37e0b8", harsh: "#ff5c49", empty: "#8b93ad" };
+const GAL_COLORS = { norm: "var(--gal-norm)", lush: "var(--gal-lush)", harsh: "var(--gal-harsh)", empty: "var(--gal-empty)" };
 let galSelected = null;
 let galPositions = null;
 
@@ -1696,8 +1735,11 @@ function renderGalaxies() {
     return;
   }
   const items = D.galaxies.items;
-  const current = parseInt(localStorage.getItem(LS_GALAXY), 10) || null;
-  if (galSelected === null) galSelected = current || 1;
+  let current = parseInt(localStorage.getItem(LS_GALAXY), 10);
+  if (!Number.isInteger(current) || current < 1 || current > items.length) current = null;
+  if (!Number.isInteger(galSelected) || galSelected < 1 || galSelected > items.length) {
+    galSelected = current || 1;
+  }
   const typeFilter = sub.galaxies || "all";
 
   // Puces de filtre par type
@@ -1705,7 +1747,7 @@ function renderGalaxies() {
   keepFocus(chips, () => {
     chips.innerHTML = ["all", "norm", "lush", "harsh", "empty"].map(t =>
       `<button data-sub="${t}" aria-pressed="${typeFilter === t}" class="${typeFilter === t ? "active" : ""}">
-        ${t === "all" ? "" : `<span class="sw" style="background:${GAL_COLORS[t]};width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px"></span>`}${T().gal_types[t]}
+        ${t === "all" ? "" : `<span class="sw" style="background:${GAL_COLORS[t]};width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px" aria-hidden="true"></span>`}${T().gal_types[t]}
       </button>`).join("");
   });
 
@@ -1715,7 +1757,7 @@ function renderGalaxies() {
     const [x, y] = galPos(g.n - 1);
     const dim = typeFilter !== "all" && g.type !== typeFilter;
     return `<circle class="g ${dim ? "dim" : ""}" data-n="${g.n}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}"
-      r="${g.n === galSelected ? 7 : 4.6}" fill="${GAL_COLORS[g.type]}"><title>${g.n}. ${esc(g.name)}</title></circle>`;
+      r="${g.n === galSelected ? 7 : 4.6}" style="fill:${GAL_COLORS[g.type]}"><title>${g.n}. ${esc(g.name)}</title></circle>`;
   }).join("");
   let rings = "";
   if (galSelected) {
@@ -1726,11 +1768,11 @@ function renderGalaxies() {
     const [x, y] = galPos(current - 1);
     rings += `<circle class="cur-ring" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="15"/>`;
   }
-  svg.innerHTML = `<circle cx="0" cy="0" r="7" fill="#fff" opacity="0.9"/>` + dots + rings;
+  svg.innerHTML = `<circle cx="0" cy="0" r="7" style="fill:var(--ink)" opacity="0.9"/>` + dots + rings;
 
   document.getElementById("gal-legend").innerHTML =
     ["norm", "lush", "harsh", "empty"].map(t =>
-      `<span><span class="sw" style="background:${GAL_COLORS[t]}"></span>${T().gal_types[t]}</span>`).join("");
+      `<span><span class="sw" style="background:${GAL_COLORS[t]}" aria-hidden="true"></span>${T().gal_types[t]}</span>`).join("");
 
   // Panneau de détail
   const g = items[galSelected - 1];
@@ -1763,10 +1805,14 @@ function renderGalaxies() {
   // Résultats de recherche
   const q = (query.galaxies || "").toLowerCase();
   const results = q
-    ? items.filter(x => x.name.toLowerCase().includes(q) || String(x.n) === q).slice(0, 10)
+    ? items.filter(x => (typeFilter === "all" || x.type === typeFilter) &&
+        (x.name.toLowerCase().includes(q) || String(x.n) === q)).slice(0, 10)
     : [];
-  document.getElementById("gal-results").innerHTML = results.map(x =>
-    `<button data-goto="${x.n}">${x.n}. ${esc(x.name)}</button>`).join("");
+  const resBox = document.getElementById("gal-results");
+  keepFocus(resBox, () => {
+    resBox.innerHTML = results.map(x =>
+      `<button data-goto="${x.n}">${x.n}. ${esc(x.name)}</button>`).join("");
+  });
   document.querySelectorAll("#gal-results button").forEach(b => b.addEventListener("click", () => {
     galSelected = parseInt(b.dataset.goto, 10);
     renderGalaxies();
@@ -1782,8 +1828,8 @@ document.getElementById("gal-type-chips").addEventListener("click", e => {
 document.getElementById("gal-map").addEventListener("click", e => {
   const c = e.target.closest("circle.g");
   if (!c) return;
-  galSelected = parseInt(c.dataset.n, 10);
-  renderGalaxies();
+  const picked = parseInt(c.dataset.n, 10);
+  if (Number.isInteger(picked)) { galSelected = picked; renderGalaxies(); }
 });
 document.getElementById("search-galaxies").addEventListener("input", e => {
   query.galaxies = e.target.value.trim();
@@ -1805,7 +1851,7 @@ function renderMarket() {
       <article class="card ship">
         <div class="sh-head"><span class="sh-icon" aria-hidden="true">${esc(sh.icon)}</span>
           <h3>${esc(lang === "en" ? sh.name_en : sh.name_fr)}</h3>
-          <span class="stars" title="${T().ch_diff}">${"★".repeat(num(sh.rarity))}${"☆".repeat(5 - num(sh.rarity))}</span></div>
+          <span class="stars" title="${T().ship_rarity(num(sh.rarity))}" aria-label="${T().ship_rarity(num(sh.rarity))}"><span aria-hidden="true">${"★".repeat(num(sh.rarity))}${"☆".repeat(5 - num(sh.rarity))}</span></span></div>
         <div class="sh-line">${esc(lang === "en" ? sh.bonus_en : sh.bonus_fr)}</div>
         <div class="sh-line"><span class="k">🔎</span> ${esc(lang === "en" ? sh.find_en : sh.find_fr)}</div>
         <div class="sh-price">💰 ${esc(lang === "en" ? sh.price_en : sh.price_fr)}</div>
@@ -1829,13 +1875,13 @@ function renderMarket() {
     }));
     const fish = fishAll.filter(f => f.quality === fq);
     const maxV = Math.max(...fish.map(f => num(f.value)), 1);
-    list.innerHTML = fish.map((f, i) => `
-      <div class="mk-row">
-        <div class="rank ${i < 3 ? "top" : ""}">${i + 1}</div>
+    list.innerHTML = fish.length ? `<ol class="mk-list">` + fish.map((f, i) => `
+      <li class="mk-row">
+        <div class="rank ${i < 3 ? "top" : ""}" aria-hidden="true">${i + 1}</div>
         ${f.icon ? `<img src="${esc(safeUrl(f.icon))}" alt="" loading="lazy">` : "<span></span>"}
         <div>
           <div class="mname">${esc(lang === "en" ? f.name_en : f.name_fr)}</div>
-          <div class="mgroup">${(f.biomes || []).slice(0, 4).map(esc).join(", ")}</div>
+          <div class="mgroup">${(f.biomes || []).slice(0, 4).map(b => esc(T().fish_biome[b] || b)).join(", ")}</div>
           <div class="fish-badges">
             <span class="badge">${T().fish_time[f.time] || esc(f.time)}</span>
             ${f.size ? `<span class="badge gold">${T().fish_size[f.size] || esc(f.size)}</span>` : ""}
@@ -1843,9 +1889,9 @@ function renderMarket() {
             ${f.mission ? `<span class="badge official">${T().fish_mission}</span>` : ""}
           </div>
         </div>
-        <div class="mval">${fmtNum(f.value)}<small>${T().mk_currency.Credits}</small></div>
-        <div class="mk-bar"><div style="width:${Math.round(num(f.value) / maxV * 100)}%"></div></div>
-      </div>`).join("") || emptyMsg(false);
+        <div class="mval">${fmtNum(f.value)} <small>${T().mk_currency.Credits}</small></div>
+        <div class="mk-bar" aria-hidden="true"><div style="width:${Math.round(num(f.value) / maxV * 100)}%"></div></div>
+      </li>`).join("") + `</ol>` : emptyMsg(false);
     return;
   }
 
@@ -1865,17 +1911,17 @@ function renderMarket() {
   }));
   const rows = cats[ck] || [];
   const maxV = Math.max(...rows.map(r => num(r.value)), 1);
-  list.innerHTML = rows.map((r, i) => `
-    <div class="mk-row">
-      <div class="rank ${i < 3 ? "top" : ""}">${i + 1}</div>
+  list.innerHTML = rows.length ? `<ol class="mk-list">` + rows.map((r, i) => `
+    <li class="mk-row">
+      <div class="rank ${i < 3 ? "top" : ""}" aria-hidden="true">${i + 1}</div>
       ${r.icon ? `<img src="${esc(safeUrl(r.icon))}" alt="" loading="lazy">` : "<span></span>"}
       <div>
         <div class="mname">${esc(lang === "en" ? r.name_en : r.name_fr)}</div>
         <div class="mgroup">${esc(lang === "en" ? r.group_en : r.group_fr)}</div>
       </div>
-      <div class="mval">${CUR_ICONS[r.currency] || ""} ${fmtNum(r.value)}<small>${T().mk_currency[r.currency] || esc(r.currency)}</small></div>
-      <div class="mk-bar"><div style="width:${Math.round(num(r.value) / maxV * 100)}%"></div></div>
-    </div>`).join("") || emptyMsg(false);
+      <div class="mval">${CUR_ICONS[r.currency] || ""} ${fmtNum(r.value)} <small>${T().mk_currency[r.currency] || esc(r.currency)}</small></div>
+      <div class="mk-bar" aria-hidden="true"><div style="width:${Math.round(num(r.value) / maxV * 100)}%"></div></div>
+    </li>`).join("") + `</ol>` : emptyMsg(false);
 }
 
 /* ============================== Rendu global ============================== */

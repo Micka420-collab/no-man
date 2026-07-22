@@ -1,5 +1,55 @@
 {
   "note": "Guide de référence des types de vaisseaux : bonus, obtention et ordres de grandeur de prix (fourchettes indicatives, les prix exacts dépendent de la classe et des emplacements).",
+  "upgrade_guide": {
+    "title_fr": "Comment améliorer un vaisseau au maximum",
+    "title_en": "How to max out a ship",
+    "intro_fr": "Un vaisseau maxé, c'est trois choses réunies : la bonne classe (S), le maximum d'emplacements, et surtout des modules bien placés. Voici tout ce qui compte réellement.",
+    "intro_en": "A maxed ship is three things at once: the right class (S), the most slots, and above all well-placed modules. Here is everything that actually matters.",
+    "steps": [
+      {
+        "icon": "⚡",
+        "title_fr": "Les emplacements survolimentés (supercharged)",
+        "title_en": "Supercharged slots",
+        "body_fr": "Ce sont les cases dorées de l'inventaire technologie : elles donnent un énorme bonus (+ ~30 à 40 %) à la techno posée dessus. Leur nombre dépend de la classe : C = 1, B = 2, A = 3, S = 4. C'est LE facteur numéro un — un S bien exploité surclasse tout le reste.",
+        "body_en": "These are the golden cells of the tech inventory: they give a huge bonus (~+30–40%) to whatever tech sits on them. Their count depends on class: C = 1, B = 2, A = 3, S = 4. This is the number-one factor — a well-used S-class outclasses everything else."
+      },
+      {
+        "icon": "🎯",
+        "title_fr": "Quoi mettre dessus",
+        "title_en": "What to place on them",
+        "body_fr": "Sur les cases dorées, mets la statistique clé du vaisseau ET son meilleur module d'amélioration côte à côte. Chasseur → arme (Canon à photons/Fulgur) + son module. Explorateur → Hyperpropulseur + son module. Transporteur → Boucliers/Deflector. Les cases dorées sont souvent groupées : profites-en pour poser une techno principale et son upgrade dans le même bloc doré.",
+        "body_en": "On the golden cells, place the ship's key stat AND its best upgrade module side by side. Fighter → weapon (Photon Cannon/Positron) + its module. Explorer → Hyperdrive + its module. Hauler → Shields/Deflector. Golden cells are often clustered: use that to put a core tech and its upgrade in the same golden block."
+      },
+      {
+        "icon": "🔗",
+        "title_fr": "Bonus d'adjacence",
+        "title_en": "Adjacency bonus",
+        "body_fr": "Les technologies d'une même famille (arme, hyperpropulseur, propulseur…) se boostent mutuellement quand elles se touchent. Range toujours la techno principale AVEC ses 3 modules d'amélioration en un carré compact — jamais éparpillés. Le gain est gratuit et énorme.",
+        "body_en": "Technologies of the same family (weapon, hyperdrive, thruster…) boost each other when they touch. Always keep a core tech WITH its 3 upgrade modules in one compact square — never scattered. The gain is free and huge."
+      },
+      {
+        "icon": "💠",
+        "title_fr": "Classe des modules : S et X",
+        "title_en": "Module class: S and X",
+        "body_fr": "Chaque module a une classe (C→B→A→S) et une fourchette de stats. Vise le S. Les modules X (violets) ont des valeurs aléatoires qui peuvent dépasser un S — les meilleurs se rachètent en boucle. On ne pose que 3 modules maximum par techno.",
+        "body_en": "Each module has a class (C→B→A→S) and a stat range. Aim for S. X-class (purple) modules roll random values that can beat an S — the best ones are worth re-buying repeatedly. You can only fit 3 modules max per tech."
+      },
+      {
+        "icon": "🛒",
+        "title_fr": "Où trouver les modules",
+        "title_en": "Where to find modules",
+        "body_fr": "Marchand de technologie de chaque station spatiale (stock qui change), Nexus de l'Anomalie contre du vif-argent, cargo capital, et récompenses d'expéditions. Les modules X tombent des Sentinelles et de certaines épaves. Achète, garde le meilleur roll, revends le reste.",
+        "body_en": "Tech merchant on every space station (rotating stock), the Anomaly's Nexus for quicksilver, capital freighter, and expedition rewards. X-class modules drop from Sentinels and certain wrecks. Buy, keep the best roll, sell the rest."
+      },
+      {
+        "icon": "➕",
+        "title_fr": "Maximiser les emplacements",
+        "title_en": "Maximising slots",
+        "body_fr": "Ajoute des emplacements au technicien de vaisseau de la station, ou récupère-les gratuitement sur les vaisseaux échoués (balises de transmission → signal de détresse). Un S 38+ emplacements bien rempli est l'objectif final.",
+        "body_en": "Add slots at the station's ship technician, or grab them for free from crashed ships (transmission towers → distress signal). A well-filled 38+ slot S-class is the end goal."
+      }
+    ]
+  },
   "items": [
     {
       "id": "fighter",
@@ -12,6 +62,8 @@
       "price_en": "≈ 200k – 60M units",
       "find_fr": "Fréquents dans les systèmes Vy'keen ; les modèles S apparaissent surtout dans les économies riches",
       "find_en": "Common in Vy'keen systems; S-class models mostly appear in wealthy economies",
+      "build_fr": "Cases dorées : Canon à photons ou Fulgur + leurs 3 modules S/X en carré compact. Ajoute un module de dégâts d'infra-couteau pour le combat rapproché.",
+      "build_en": "Golden slots: Photon Cannon or Positron Ejector + their 3 S/X modules in a compact square. Add an Infra-Knife damage module for close combat.",
       "rarity": 2,
       "image": "assets/ships/fighter.webp"
     },
@@ -26,6 +78,8 @@
       "price_en": "≈ 1M – 126M units",
       "find_fr": "Fréquents dans les systèmes Gek ; un S 48 emplacements est le graal des marchands",
       "find_en": "Common in Gek systems; a 48-slot S-class is the traders' holy grail",
+      "build_fr": "Cases dorées : Boucliers (Déflecteur) + ses modules pour survivre, et Hyperpropulseur pour la portée. La soute est déjà énorme — priorise défense et saut.",
+      "build_en": "Golden slots: Shields (Deflector) + its modules to survive, and Hyperdrive for range. The hold is already huge — prioritise defence and warp.",
       "rarity": 3,
       "image": "assets/ships/hauler.webp"
     },
@@ -40,6 +94,8 @@
       "price_en": "≈ 300k – 40M units",
       "find_fr": "Fréquents dans les systèmes Korvax",
       "find_en": "Common in Korvax systems",
+      "build_fr": "Cases dorées : Hyperpropulseur + ses 3 modules (portée de saut record) et le Propulseur d'impulsion. Ajoute Cassiopée/Emeril/Indium pour franchir toutes les couleurs d'étoiles.",
+      "build_en": "Golden slots: Hyperdrive + its 3 modules (record warp range) and the Pulse Engine. Add Cadmium/Emeril/Indium drives to reach every star colour.",
       "rarity": 2,
       "image": "assets/ships/explorer.webp"
     },
@@ -54,6 +110,8 @@
       "price_en": "≈ 100k – 15M units",
       "find_fr": "Partout — classe S possible mais rare, comme pour tout vaisseau (≈2 % en économie riche)",
       "find_en": "Everywhere — S-class possible but rare, as for any ship (≈2% in wealthy economies)",
+      "build_fr": "Bonne à tout faire sans spécialité : répartis Propulseur d'impulsion, Boucliers et Hyperpropulseur. Idéale pour apprendre à placer ses modules avant d'investir dans un S.",
+      "build_en": "A jack-of-all-trades with no specialty: spread Pulse Engine, Shields and Hyperdrive. Ideal for learning module placement before investing in an S-class.",
       "rarity": 1,
       "image": "assets/ships/shuttle.webp"
     },
@@ -68,6 +126,8 @@
       "price_en": "≈ 10M – 15M units",
       "find_fr": "Un seul modèle par système (royal, calmar…) ; ~1 % d'apparition quelle que soit l'économie",
       "find_en": "One model per system (royal, squid…); ~1% spawn chance regardless of economy",
+      "build_fr": "Toujours S avec 4 cases dorées : le meilleur support pour un build polyvalent. Combat + saut + manœuvre — pose arme, hyperpropulseur et propulseur, chacun avec ses modules groupés.",
+      "build_en": "Always S-class with 4 golden slots: the best base for an all-round build. Combat + warp + manoeuvre — place weapon, hyperdrive and thruster, each with its modules grouped.",
       "rarity": 5,
       "image": "assets/ships/exotic.webp"
     },
@@ -82,6 +142,8 @@
       "price_en": "≈ 700k – 30M units",
       "find_fr": "Introduits par Outlaws — fréquents dans les systèmes hors-la-loi",
       "find_en": "Introduced in Outlaws — common in outlaw systems",
+      "build_fr": "Cases dorées : Propulseur d'impulsion (les voiles solaires le rendent imbattable en accélération) + Boucliers. Excellent compromis vitesse/défense.",
+      "build_en": "Golden slots: Pulse Engine (solar sails make its acceleration unbeatable) + Shields. An excellent speed/defence compromise.",
       "rarity": 3,
       "image": "assets/ships/solar.webp"
     },
@@ -96,6 +158,8 @@
       "price_en": "Free — repair after capture",
       "find_fr": "Épaves sur les mondes corrompus (mise à jour Interceptor) ; chaque système a son modèle",
       "find_en": "Crash sites on corrupted worlds (Interceptor update); each system has its own model",
+      "build_fr": "Cases dorées : ses armes uniques (Rayon cyclotron, Canon sentinelle) + modules. Toujours classe S en général — c'est un pur vaisseau de combat, priorise armes et boucliers.",
+      "build_en": "Golden slots: its unique weapons (Cyclotron Ballista, Sentinel Cannon) + modules. Usually always S-class — a pure combat ship, so prioritise weapons and shields.",
       "rarity": 4,
       "image": "assets/ships/interceptor.webp"
     },
@@ -110,6 +174,8 @@
       "price_en": "Free via the Starbirth quest (Void Egg, 3,200 quicksilver)",
       "find_fr": "Quête Naissance Stellaire, puis éclosions supplémentaires possibles",
       "find_en": "Starbirth quest, then additional hatchings possible",
+      "build_fr": "Technologies vivantes exclusives qui grandissent avec des Nœuds nerveux : Cœur pulsant (arme), Neurones singuliers (saut), Chambre nodale. Elles ne se remplacent pas par des modules classiques — fais-les toutes évoluer au max.",
+      "build_en": "Exclusive living tech that grows with Neural Nodes: Pulsing Heart (weapon), Singularity Cortex (warp), Neural Assembly. They don't take standard modules — level every organ to the max instead.",
       "rarity": 5,
       "image": "assets/ships/living.webp"
     },
@@ -124,6 +190,8 @@
       "price_en": "Costs resources and salvaged modules",
       "find_fr": "Système de construction introduit par Voyagers (6.0)",
       "find_en": "Construction system introduced in Voyagers (6.0)",
+      "build_fr": "Tu choisis toi-même le placement des technos pièce par pièce : conçois d'emblée tes blocs de technos + modules autour des cases dorées. Le vaisseau le plus personnalisable — planifie l'adjacence dès la construction.",
+      "build_en": "You choose tech placement yourself, part by part: design your tech + module blocks around the golden slots from the start. The most customisable ship — plan adjacency right from the build stage.",
       "rarity": 4,
       "image": "assets/ships/corvette.webp"
     },
@@ -138,6 +206,8 @@
       "price_en": "First one free (rescue event); S-class ≈ up to ~180M units",
       "find_fr": "Événement de sauvetage après quelques sauts ; les Sentinelles/Résurgents S sont les plus convoités",
       "find_en": "Rescue event after a few warps; S-class Sentinel/Resurgent models are the most coveted",
+      "build_fr": "Priorise l'Hyperpropulseur du cargo (portée et sauts d'économie/couleur) et les modules de gestion de flotte de frégates. Astuce : attends un cargo S gratuit lors d'un événement de sauvetage plutôt que d'acheter.",
+      "build_en": "Prioritise the freighter's Hyperdrive (range plus economy/colour jumps) and frigate-fleet management modules. Tip: wait for a free S-class from a rescue event rather than buying one.",
       "rarity": 4,
       "image": "assets/ships/freighter.webp"
     }

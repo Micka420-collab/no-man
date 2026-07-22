@@ -1,0 +1,37 @@
+{
+  "note": "Galaxies les plus vivantes de No Man's Sky : là où se concentrent les joueurs et les civilisations communautaires. pop = niveau de population (3 = énorme, 2 = grande, 1 = notable).",
+  "hubs": {
+    "1": {
+      "pop": 3,
+      "tag_fr": "La plus peuplée", "tag_en": "Most populated",
+      "civ_fr": "Cœur de la communauté", "civ_en": "Heart of the community",
+      "desc_fr": "La galaxie de départ de tous les Voyageurs — de loin la plus active. Le Nexus y est le plus fréquenté et toutes les grandes civilisations communautaires y sont nées. Si tu veux du multijoueur, c'est ici.",
+      "desc_en": "Every Traveller's starting galaxy — by far the busiest. Its Nexus is the most active and every major community civilization was born here. If you want multiplayer, this is where it lives.",
+      "civs": ["Galactic Hub Project", "Eyfert Khannate", "Federation of Travellers", "Amino Hub"]
+    },
+    "10": {
+      "pop": 2,
+      "tag_fr": "Le paradis des joueurs", "tag_en": "The players' paradise",
+      "civ_fr": "Galactic Hub Eissentam (EisHub)", "civ_en": "Galactic Hub Eissentam (EisHub)",
+      "desc_fr": "Galaxie luxuriante réputée pour sa densité de planètes paradis. Elle abrite la deuxième plus grande communauté du jeu, extension du Galactic Hub, aux mêmes coordonnées qu'à Euclid.",
+      "desc_en": "A lush galaxy famed for its density of paradise planets. Home to the game's second-largest community, an expansion of the Galactic Hub at the same coordinates as in Euclid.",
+      "civs": ["Galactic Hub Eissentam"]
+    },
+    "7": {
+      "pop": 1,
+      "tag_fr": "Hub établi", "tag_en": "Established hub",
+      "civ_fr": "Galactic Hub Budullangr", "civ_en": "Galactic Hub Budullangr",
+      "desc_fr": "Galaxie vide historique qui accueille une antenne du Galactic Hub — une communauté modeste mais active de bâtisseurs et d'explorateurs.",
+      "desc_en": "A historic empty galaxy hosting a Galactic Hub outpost — a modest but active community of builders and explorers.",
+      "civs": ["Galactic Hub Budullangr"]
+    },
+    "3": {
+      "pop": 1,
+      "tag_fr": "Communauté notable", "tag_en": "Notable community",
+      "civ_fr": "Civilisations pionnières", "civ_en": "Pioneer civilizations",
+      "desc_fr": "Galaxie hostile explorée de longue date, avec plusieurs civilisations de joueurs installées au fil des années.",
+      "desc_en": "A long-explored harsh galaxy, home to several player civilizations settled over the years.",
+      "civs": []
+    }
+  }
+}

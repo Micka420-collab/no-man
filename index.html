@@ -419,6 +419,14 @@
   .m-row .m-v { text-align: right; font-weight: 500; }
   .m-row .m-v.big { font-family: var(--font-head); color: var(--c3); }
   [data-theme="light"] .m-row .m-v.big { color: #9a6b00; }
+  .m-build {
+    margin-top: 14px; padding: 12px 14px; border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255,200,87,.1), transparent);
+    border: 1px solid rgba(255,200,87,.3);
+  }
+  .m-build .m-build-k { font: 700 0.78rem var(--font-head); letter-spacing: .04em; color: #ffc857; }
+  [data-theme="light"] .m-build .m-build-k { color: #b07d00; }
+  .m-build p { font-size: 0.87rem; color: var(--ink); line-height: 1.55; margin: 6px 0 0; }
   .clickable { cursor: pointer; }
 
   /* ------- Compte à rebours 10 ans ------- */
@@ -655,6 +663,29 @@
   .gal-results button:hover { border-color: var(--stroke-hi); }
   .gal-legend { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; font-size: 0.78rem; color: var(--ink-dim); padding: 6px 12px 12px; }
   .gal-legend .sw { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; vertical-align: -1px; }
+  /* Galaxies les plus vivantes */
+  .gal-hubs { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 14px 0 4px; }
+  .gal-hubs .hub {
+    text-align: left; background: var(--card); border: 1px solid var(--stroke); border-radius: 14px;
+    padding: 12px 14px; cursor: pointer; color: var(--ink); transition: border-color .15s, transform .15s;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .gal-hubs .hub:hover { border-color: #ffc857; transform: translateY(-2px); }
+  .gal-hubs .hub .htag { font: 700 0.66rem var(--font-head); letter-spacing: .1em; text-transform: uppercase; color: #ffc857; }
+  [data-theme="light"] .gal-hubs .hub .htag { color: #b07d00; }
+  .gal-hubs .hub .hname { font: 700 1.1rem var(--font-head); }
+  .gal-hubs .hub .hpop { display: inline-flex; gap: 2px; font-size: 0.72rem; }
+  .gal-hubs .hub .hciv { font-size: 0.8rem; color: var(--ink-dim); }
+  .gal-hub-detail {
+    margin-top: 14px; padding: 12px 14px; border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255,200,87,.09), transparent);
+    border: 1px solid rgba(255,200,87,.28);
+  }
+  .gal-hub-detail .hd-tag { font: 700 0.7rem var(--font-head); letter-spacing: .1em; text-transform: uppercase; color: #ffc857; }
+  [data-theme="light"] .gal-hub-detail .hd-tag { color: #b07d00; }
+  .gal-hub-detail p { font-size: 0.85rem; color: var(--ink-dim); margin: 6px 0 0; line-height: 1.5; }
+  .gal-hub-detail .hd-civs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+  .gal-hub-detail .hd-civs span { font-size: 0.72rem; border: 1px solid var(--stroke); border-radius: 999px; padding: 3px 9px; color: var(--ink); }
 
   /* ------- Marché ------- */
   .mk-row {
@@ -694,6 +725,18 @@
   .ship .sh-line .k { flex-shrink: 0; }
   .ship .sh-price { font: 600 0.92rem var(--font-head); color: var(--c2); margin-top: 10px; }
   [data-theme="light"] .ship .sh-price { color: #0a7c63; }
+  .ship .sh-line.build { color: var(--ink); }
+  .ship .sh-line.build .k { color: #ffc857; }
+  [data-theme="light"] .ship .sh-line.build .k { color: #b07d00; }
+  /* Guide d'amélioration des vaisseaux */
+  .ship-guide { margin-top: 22px; padding: 20px 22px; border-radius: var(--radius); border: 1px solid var(--stroke); background: var(--card); }
+  .ship-guide h3 { font: 700 1.25rem var(--font-head); margin: 0 0 4px; }
+  .ship-guide .sg-intro { font-size: 0.9rem; color: var(--ink-dim); line-height: 1.55; margin: 0 0 16px; max-width: 70ch; }
+  .ship-guide .sg-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+  .ship-guide .sg-step { display: flex; gap: 12px; padding: 14px; border-radius: 12px; background: var(--track); border: 1px solid var(--stroke); }
+  .ship-guide .sg-ico { font-size: 1.5rem; line-height: 1; flex-shrink: 0; }
+  .ship-guide .sg-step h4 { font: 700 0.98rem var(--font-head); margin: 0 0 5px; }
+  .ship-guide .sg-step p { font-size: 0.85rem; color: var(--ink-dim); line-height: 1.55; margin: 0; }
 
   /* ------- Squelettes de chargement ------- */
   .skel { border-radius: var(--radius); background: var(--track); position: relative; overflow: hidden; min-height: 90px; }
@@ -822,6 +865,7 @@
     <!-- Galaxies -->
     <section class="panel" id="panel-galaxies" role="tabpanel" aria-labelledby="tab-galaxies">
       <div class="note" data-i18n="gal_note">Les 255 galaxies de l'univers, dans l'ordre du voyage vers le centre. Clique sur une galaxie pour la découvrir, et marque ta position !</div>
+      <div id="gal-hubs" class="gal-hubs"></div>
       <div class="controls">
         <div class="subtabs" id="gal-type-chips"></div>
         <div class="searchbox" style="margin-left:auto"><input type="search" id="search-galaxies" data-i18n-ph="search" placeholder="Rechercher…" data-i18n-aria="aria_search_gal" aria-label="Rechercher une galaxie"></div>
@@ -1041,6 +1085,10 @@ const I18N = {
     gal_famous_10: "La destination de rêve : galaxie luxuriante, paradis des constructeurs de bases.",
     gal_famous_1: "Le point de départ de tous les Voyageurs.",
     gal_famous_255: "La dernière galaxie, au plus près du cœur — au-delà, le voyage recommence à Euclid.",
+    gal_hubs_title: "🌟 Les galaxies les plus vivantes",
+    gal_hubs_sub: "Là où se concentrent les joueurs et les grandes civilisations communautaires — clique pour explorer.",
+    gal_pop: { 3: "Population énorme", 2: "Grande population", 1: "Population notable" },
+    gal_hub_civs: "Civilisations communautaires",
     gal_zoom_in: "Zoomer", gal_zoom_out: "Dézoomer", gal_zoom_reset: "Vue d'ensemble", gal_zoom_me: "Centrer sur ma galaxie",
     gal_route: "Ton chemin parcouru",
     gal_hint: "Molette ou pincement pour zoomer · glisser pour naviguer · cliquer pour sélectionner",
@@ -1056,6 +1104,8 @@ const I18N = {
     fish_size: { small: "Petit", "medium-sized": "Moyen", large: "Grand", colossal: "Colossal" },
     fish_biome: { All: "Tous biomes", Barren: "Aride", Exotic: "Exotique", Frozen: "Gelé", Lava: "Volcanique", Lush: "Luxuriant", Radioactive: "Radioactif", Scorched: "Brûlant", Swamp: "Marécageux", Toxic: "Toxique" },
     ship_price: "Prix", ship_find: "Où le trouver", ship_rarity: n => `Rareté : ${n}/5`,
+    ship_build: "⚡ Build conseillé (emplacements survolimentés)",
+    ship_guide_more: "Guide complet pour améliorer un vaisseau ↓",
     m_value: "💰 Valeur", m_bonus: "Bonus", m_find: "🔎 Où le trouver", m_rarity: "Rareté",
     m_quality: "Qualité", m_biomes: "Biomes", m_when: "Moment", m_conditions: "Conditions",
   },
@@ -1161,6 +1211,10 @@ const I18N = {
     gal_famous_10: "The dream destination: a lush galaxy, paradise for base builders.",
     gal_famous_1: "Where every Traveller's journey begins.",
     gal_famous_255: "The last galaxy, closest to the core — beyond it, the journey loops back to Euclid.",
+    gal_hubs_title: "🌟 The liveliest galaxies",
+    gal_hubs_sub: "Where players and the major community civilizations gather — click to explore.",
+    gal_pop: { 3: "Huge population", 2: "Large population", 1: "Notable population" },
+    gal_hub_civs: "Community civilizations",
     gal_zoom_in: "Zoom in", gal_zoom_out: "Zoom out", gal_zoom_reset: "Overview", gal_zoom_me: "Centre on my galaxy",
     gal_route: "Your path so far",
     gal_hint: "Scroll or pinch to zoom · drag to pan · click to select",
@@ -1176,6 +1230,8 @@ const I18N = {
     fish_size: { small: "Small", "medium-sized": "Medium", large: "Large", colossal: "Colossal" },
     fish_biome: { All: "All biomes", Barren: "Barren", Exotic: "Exotic", Frozen: "Frozen", Lava: "Volcanic", Lush: "Lush", Radioactive: "Radioactive", Scorched: "Scorched", Swamp: "Swamp", Toxic: "Toxic" },
     ship_price: "Price", ship_find: "Where to find it", ship_rarity: n => `Rarity: ${n}/5`,
+    ship_build: "⚡ Recommended build (supercharged slots)",
+    ship_guide_more: "Full guide to upgrading a ship ↓",
     m_value: "💰 Value", m_bonus: "Bonus", m_find: "🔎 Where to find it", m_rarity: "Rarity",
     m_quality: "Quality", m_biomes: "Biomes", m_when: "Time", m_conditions: "Conditions",
   },
@@ -2201,6 +2257,7 @@ function galDraw(t) {
   }
 
   // galaxies
+  const hubs = D.galaxyHubs && D.galaxyHubs.hubs || null;
   const zpx = GAL.base * GAL.view.z;
   for (let i = 0; i < items.length; i++) {
     const g = items[i];
@@ -2209,6 +2266,15 @@ function galDraw(t) {
     const dim = typeFilter !== "all" && g.type !== typeFilter;
     const tw = reduceMotion ? 1 : 0.78 + 0.22 * Math.sin(now * 1.7 + i * 2.1);
     const r = Math.max(2.6, 3.4 * zpx * 0.55) * (g.n === galSelected ? 1.6 : 1) * (g.n === GAL.hover ? 1.35 : 1);
+    // Anneau doré pulsé sur les galaxies les plus vivantes (hubs communautaires)
+    if (hubs && hubs[String(g.n)] && !dim) {
+      const pulse = reduceMotion ? 1 : 0.6 + 0.4 * (0.5 + 0.5 * Math.sin(now * 2.2 + i));
+      const rr = Math.max(7, r * 2.1);
+      ctx.globalAlpha = 0.85 * pulse;
+      ctx.strokeStyle = "#ffc857";
+      ctx.lineWidth = Math.max(1.1, 0.9 * GAL.view.z);
+      ctx.beginPath(); ctx.arc(sx, sy, rr, 0, Math.PI * 2); ctx.stroke();
+    }
     ctx.globalAlpha = dim ? 0.10 : tw;
     ctx.drawImage(GAL.sprites[g.type], sx - r * 2.4, sy - r * 2.4, r * 4.8, r * 4.8);
     ctx.globalAlpha = dim ? 0.14 : 1;
@@ -2384,6 +2450,38 @@ function renderGalaxies() {
       </button>`).join("");
   });
 
+  // Galaxies les plus vivantes (barre de raccourcis)
+  const hubsBox = document.getElementById("gal-hubs");
+  const hubs = D.galaxyHubs && D.galaxyHubs.hubs || null;
+  if (hubs) {
+    const entries = Object.entries(hubs).sort((a, b) => (b[1].pop || 0) - (a[1].pop || 0));
+    keepFocus(hubsBox, () => {
+      hubsBox.innerHTML =
+        `<div class="section-head" style="grid-column:1/-1;margin:0 0 2px">
+           <b style="font:700 1rem var(--font-head)">${T().gal_hubs_title}</b>
+           <div class="note" style="margin:2px 0 0">${T().gal_hubs_sub}</div>
+         </div>` +
+        entries.map(([n, h]) => {
+          const gi = items[+n - 1];
+          const name = gi ? gi.name : "#" + n;
+          return `<button class="hub" data-hub="${n}" aria-label="${esc(name)} — ${esc(lang === "en" ? h.tag_en : h.tag_fr)}">
+            <span class="htag">${esc(lang === "en" ? h.tag_en : h.tag_fr)}</span>
+            <span class="hname">${esc(name)}</span>
+            <span class="hpop" title="${T().gal_pop[h.pop] || ""}" aria-label="${T().gal_pop[h.pop] || ""}">${"★".repeat(h.pop)}${"☆".repeat(3 - h.pop)}</span>
+            <span class="hciv">${esc(lang === "en" ? h.civ_en : h.civ_fr)}</span>
+          </button>`;
+        }).join("");
+    });
+    hubsBox.querySelectorAll("[data-hub]").forEach(b => b.addEventListener("click", () => {
+      galSelected = parseInt(b.dataset.hub, 10);
+      renderGalaxies();
+      galFocus(galSelected, 2.6);
+      document.getElementById("gal-detail").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+    }));
+  } else {
+    hubsBox.innerHTML = "";
+  }
+
   // Carte galactique immersive
   galInit();
   galDraw();
@@ -2391,12 +2489,20 @@ function renderGalaxies() {
   document.getElementById("gal-legend").innerHTML =
     ["norm", "lush", "harsh", "empty"].map(t =>
       `<span><span class="sw" style="background:${GAL_MAP_COLORS[t]}" aria-hidden="true"></span>${T().gal_types[t]}</span>`).join("") +
+    (hubs ? `<span><span class="sw" style="background:transparent;border:1.5px solid #ffc857" aria-hidden="true"></span>${T().gal_hubs_title.replace(/^🌟\s*/, "")}</span>` : "") +
     (current ? `<span><span class="sw" style="background:#ffc857;border-radius:2px;height:3px;margin-bottom:3px" aria-hidden="true"></span>${T().gal_route}</span>` : "");
 
   // Panneau de détail
   const g = items[galSelected - 1];
   const isCurrent = current === g.n;
   const famous = g.n === 1 ? T().gal_famous_1 : g.n === 10 ? T().gal_famous_10 : g.n === 255 ? T().gal_famous_255 : "";
+  const hub = hubs && hubs[String(g.n)];
+  const hubBlock = hub ? `
+    <div class="gal-hub-detail">
+      <div class="hd-tag">🌟 ${esc(lang === "en" ? hub.tag_en : hub.tag_fr)} · ${T().gal_pop[hub.pop] || ""}</div>
+      <p>${esc(lang === "en" ? hub.desc_en : hub.desc_fr)}</p>
+      ${(hub.civs && hub.civs.length) ? `<div class="hd-civs">${hub.civs.map(c => `<span>${esc(c)}</span>`).join("")}</div>` : ""}
+    </div>` : "";
   const wikiUrl = "https://nomanssky.fandom.com/wiki/" + encodeURIComponent(g.name.replace(/ /g, "_"));
   let pos = `<div class="gal-pos">${T().gal_pos_none}</div>`;
   if (current && items[current - 1]) {
@@ -2408,6 +2514,7 @@ function renderGalaxies() {
     <h3>${esc(g.name)}</h3>
     <div class="gtype"><span class="badge" style="border-color:${GAL_COLORS[g.type]};color:${GAL_COLORS[g.type]};background:transparent">${T().gal_type_of[g.type]}</span></div>
     ${famous ? `<p style="font-size:0.88rem;color:var(--ink-dim)">${famous}</p>` : ""}
+    ${hubBlock}
     <div class="gactions">
       <button id="gal-here" class="${isCurrent ? "here" : ""}" aria-pressed="${isCurrent}">${isCurrent ? T().gal_here_done : T().gal_here}</button>
       <a href="${wikiUrl}" target="_blank" rel="noopener">${T().gal_wiki}</a>
@@ -2454,7 +2561,28 @@ document.getElementById("search-galaxies").addEventListener("input", e => {
 const CUR_ICONS = { Credits: "🪙", Nanites: "⬡", Quicksilver: "✦" };
 let mkFishShown = [], mkItemsShown = [];
 
+function shipGuideHTML() {
+  const gd = D.ships && D.ships.upgrade_guide;
+  if (!gd) return "";
+  const title = lang === "en" ? gd.title_en : gd.title_fr;
+  const intro = lang === "en" ? gd.intro_en : gd.intro_fr;
+  const steps = (gd.steps || []).map(s => `
+    <div class="sg-step">
+      <div class="sg-ico" aria-hidden="true">${esc(s.icon || "•")}</div>
+      <div>
+        <h4>${esc(lang === "en" ? s.title_en : s.title_fr)}</h4>
+        <p>${esc(lang === "en" ? s.body_en : s.body_fr)}</p>
+      </div>
+    </div>`).join("");
+  return `<section class="ship-guide">
+    <h3>${esc(title)}</h3>
+    <p class="sg-intro">${esc(intro)}</p>
+    <div class="sg-steps">${steps}</div>
+  </section>`;
+}
+
 function shipToModal(sh) {
+  const build = lang === "en" ? sh.build_en : sh.build_fr;
   return {
     image: sh.image,
     title: lang === "en" ? sh.name_en : sh.name_fr,
@@ -2464,6 +2592,7 @@ function shipToModal(sh) {
       { k: T().m_find, v: lang === "en" ? sh.find_en : sh.find_fr },
       { k: T().ship_price, v: lang === "en" ? sh.price_en : sh.price_fr, big: true },
     ],
+    build: build ? { k: T().ship_build, v: build } : null,
   };
 }
 function fishToModal(f) {
@@ -2512,7 +2641,7 @@ function renderMarket() {
   if (view === "ships") {
     controls.innerHTML = `<div class="note" style="margin:0">${T().mk_note_ships}</div>`;
     const ships = D.ships && D.ships.items || [];
-    list.innerHTML = ships.length ? `<div class="ship-grid">` + ships.map(sh => `
+    const grid = ships.length ? `<div class="ship-grid">` + ships.map(sh => `
       <article class="card ship clickable" role="button" tabindex="0" data-ship-idx="${ships.indexOf(sh)}" aria-label="${esc(lang === "en" ? sh.name_en : sh.name_fr)}">
         ${sh.image ? `<div class="sh-photo"><img src="${esc(sh.image)}" alt="${esc(lang === "en" ? sh.name_en : sh.name_fr)}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ""}
         <div class="sh-head"><span class="sh-icon" aria-hidden="true">${esc(sh.icon)}</span>
@@ -2520,8 +2649,10 @@ function renderMarket() {
           <span class="stars" title="${T().ship_rarity(num(sh.rarity))}" aria-label="${T().ship_rarity(num(sh.rarity))}"><span aria-hidden="true">${"★".repeat(num(sh.rarity))}${"☆".repeat(5 - num(sh.rarity))}</span></span></div>
         <div class="sh-line">${esc(lang === "en" ? sh.bonus_en : sh.bonus_fr)}</div>
         <div class="sh-line"><span class="k">🔎</span> ${esc(lang === "en" ? sh.find_en : sh.find_fr)}</div>
+        ${(lang === "en" ? sh.build_en : sh.build_fr) ? `<div class="sh-line build"><span class="k">⚡</span> ${esc(lang === "en" ? sh.build_en : sh.build_fr)}</div>` : ""}
         <div class="sh-price">💰 ${esc(lang === "en" ? sh.price_en : sh.price_fr)}</div>
       </article>`).join("") + `</div>` : emptyMsg(false);
+    list.innerHTML = grid + shipGuideHTML();
     return;
   }
 
@@ -2652,6 +2783,7 @@ function showItemModal(o) {
     ${badges ? `<div class="m-badges">${badges}</div>` : ""}
     ${o.desc ? `<p class="m-desc">${esc(o.desc)}</p>` : ""}
     ${rows ? `<div class="m-rows">${rows}</div>` : ""}
+    ${o.build ? `<div class="m-build"><span class="m-build-k">${esc(o.build.k)}</span><p>${esc(o.build.v)}</p></div>` : ""}
   </div>`);
 }
 
@@ -2938,7 +3070,7 @@ function renderAll() {
   applyTheme(localStorage.getItem(LS_THEME) ||
     (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"), false);
 
-  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships] = await Promise.all([
+  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs] = await Promise.all([
     loadJSON("data/progress.json"),
     loadJSON("data/official.json"),
     loadJSON("data/news.json"),
@@ -2953,8 +3085,9 @@ function renderAll() {
     loadJSON("data/galaxies.json"),
     loadJSON("data/market.json"),
     loadJSON("data/ships.json"),
+    loadJSON("data/galaxy_hubs.json"),
   ]);
-  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships });
+  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs });
 
   computeFresh();
   applyLang(lang);

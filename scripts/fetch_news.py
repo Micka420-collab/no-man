@@ -54,6 +54,8 @@ REDDIT_HOT_RSS = "https://www.reddit.com/r/NoMansSkyTheGame/hot.rss?limit=25"
 REDDIT_COORDS_RSS = (
     "https://www.reddit.com/r/NMSCoordinateExchange/top.rss?t=week&limit=20"
 )
+REDDIT_FR_RSS = "https://www.reddit.com/r/NoMansSkyFrance/hot.rss?limit=25"
+STEAMCHARTS_URL = f"https://steamcharts.com/app/{APPID_NMS}"
 
 ATLAS_POI_URL = "https://galacticatlas.nomanssky.com/assets/json/poi.json"
 ATLAS_API_URL = "https://galacticatlas-api.nomanssky.com/api"
@@ -202,12 +204,17 @@ def parse_reddit_rss(raw: bytes) -> list[dict]:
 
 
 def fetch_community() -> dict:
-    community = {"top_week": [], "hot": [], "coordinates": []}
+    community = {"top_week": [], "hot": [], "coordinates": [], "french": []}
     community["top_week"] = parse_reddit_rss(fetch(REDDIT_TOP_RSS))
     time.sleep(3)
     community["hot"] = parse_reddit_rss(fetch(REDDIT_HOT_RSS))
     time.sleep(3)
     community["coordinates"] = parse_reddit_rss(fetch(REDDIT_COORDS_RSS))
+    time.sleep(3)
+    try:
+        community["french"] = parse_reddit_rss(fetch(REDDIT_FR_RSS))
+    except Exception as exc:  # noqa: BLE001
+        print(f"AVERTISSEMENT communauté FR : {exc}", file=sys.stderr)
     return community
 
 
@@ -241,6 +248,22 @@ def fetch_stats() -> dict:
             "initial": overview.get("initial_formatted", ""),
             "discount_percent": overview.get("discount_percent", 0),
         }
+
+    # Pics de fréquentation (SteamCharts) : pointe sur 24 h et record absolu.
+    try:
+        html = fetch(STEAMCHARTS_URL).decode("utf-8", errors="replace")
+        nums = re.findall(
+            r'<span class="num">([\d,]+)</span>\s*<br>\s*([^<]+)', html
+        )
+        for value, label in nums:
+            val = int(value.replace(",", ""))
+            key = label.strip().lower()
+            if "24-hour peak" in key:
+                stats["peak_24h"] = val
+            elif "all-time peak" in key:
+                stats["peak_all"] = val
+    except Exception as exc:  # noqa: BLE001
+        print(f"AVERTISSEMENT SteamCharts : {exc}", file=sys.stderr)
     return stats
 
 

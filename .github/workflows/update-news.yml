@@ -21,6 +21,9 @@ jobs:
       - name: Récupérer les classements du marché
         run: python3 scripts/fetch_market.py
 
+      - name: Mettre à jour la base de données d'objets
+        run: python3 scripts/fetch_catalogue.py
+
       - name: Commit des données si changement
         run: |
           git config user.name "github-actions[bot]"

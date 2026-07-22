@@ -56,7 +56,12 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    background: var(--bg0);
+    background:
+      radial-gradient(1100px 620px at 12% -8%, color-mix(in srgb, var(--c4) 14%, transparent), transparent 58%),
+      radial-gradient(1000px 640px at 112% 4%, color-mix(in srgb, var(--c2) 12%, transparent), transparent 55%),
+      radial-gradient(1200px 900px at 50% 120%, color-mix(in srgb, var(--c1) 9%, transparent), transparent 60%),
+      linear-gradient(180deg, var(--bg1), var(--bg0) 62%);
+    background-attachment: fixed;
     color: var(--ink);
     font-family: var(--font-body);
     line-height: 1.6;
@@ -67,12 +72,17 @@
   #stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
   .aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
   .aurora::before, .aurora::after {
-    content: ""; position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%;
-    filter: blur(90px); opacity: 0.16;
+    content: ""; position: absolute; width: 62vmax; height: 62vmax; border-radius: 50%;
+    filter: blur(95px); opacity: 0.2; will-change: transform;
+    animation: auroraDrift 26s ease-in-out infinite alternate;
   }
-  .aurora::before { background: radial-gradient(circle, #6b3fd4, transparent 60%); top: -25vmax; left: -15vmax; }
-  .aurora::after { background: radial-gradient(circle, #0f6f8f, transparent 60%); bottom: -25vmax; right: -15vmax; }
-  [data-theme="light"] .aurora::before, [data-theme="light"] .aurora::after { opacity: 0.22; }
+  .aurora::before { background: radial-gradient(circle, #7b4ff0, transparent 62%); top: -26vmax; left: -16vmax; }
+  .aurora::after { background: radial-gradient(circle, #13a6c9, transparent 62%); bottom: -26vmax; right: -16vmax; animation-delay: -13s; }
+  [data-theme="light"] .aurora::before, [data-theme="light"] .aurora::after { opacity: 0.26; }
+  @keyframes auroraDrift {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(6vmax, 4vmax, 0) scale(1.12); }
+  }
 
   .wrap { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 18px 18px 90px; }
   .skip-link {
@@ -108,9 +118,11 @@
     letter-spacing: 0.04em; line-height: 1.1; margin: 10px 0 8px; text-transform: uppercase;
   }
   .hero h1 .grad {
-    background: linear-gradient(92deg, var(--c1) 10%, var(--c3) 90%);
+    background: linear-gradient(92deg, var(--c1) 6%, #ff8a3d 48%, var(--c3) 92%);
     -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 4px 26px color-mix(in srgb, var(--c1) 45%, transparent));
   }
+  [data-theme="dark"] .hero h1 { text-shadow: 0 2px 40px rgba(122, 162, 255, 0.18); }
   .hero .tagline { color: var(--ink-dim); max-width: 640px; margin: 0 auto; font-size: 1.02rem; }
   .live-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 22px 0 6px; }
   .chip {
@@ -130,8 +142,8 @@
     position: sticky; top: 10px; z-index: 20;
     display: flex; gap: 6px; margin: 22px auto 30px; padding: 7px;
     background: var(--chip); border: 1px solid var(--stroke); border-radius: 999px;
-    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     overflow-x: auto; scrollbar-width: none; max-width: max-content;
   }
   nav.tabs::-webkit-scrollbar { display: none; }
@@ -145,11 +157,11 @@
     transition: color 0.2s, background 0.2s;
     white-space: nowrap;
   }
-  nav.tabs button:hover { color: var(--ink); }
-  nav.tabs button.active {
-    background: linear-gradient(92deg, #c9341f, #cc4d12);
+  nav.tabs button:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 7%, transparent); }
+  nav.tabs button.active, nav.tabs button.active:hover {
+    background: linear-gradient(100deg, var(--c1), #ff8a3d);
     color: #fff; font-weight: 600;
-    box-shadow: 0 4px 18px rgba(255, 92, 73, 0.35);
+    box-shadow: 0 6px 22px rgba(255, 92, 73, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   }
   nav.tabs button:focus-visible, .icon-btn:focus-visible, .subtabs button:focus-visible,
   .toolbar button:focus-visible, .searchbox input:focus-visible {
@@ -170,12 +182,15 @@
   /* ------- Cartes ------- */
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
   .card {
-    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius);
+    background: linear-gradient(158deg, var(--card-strong), var(--card));
+    border: 1px solid var(--stroke); border-radius: var(--radius);
     padding: 18px 20px;
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
-  .card:hover { border-color: var(--stroke-hi); transform: translateY(-3px); box-shadow: var(--shadow); }
+  .card:hover { border-color: var(--stroke-hi); transform: translateY(-3px);
+    box-shadow: var(--shadow), 0 0 0 1px var(--stroke-hi), inset 0 1px 0 rgba(255, 255, 255, 0.06); }
   .card h3 { font: 600 1rem var(--font-head); margin-bottom: 7px; line-height: 1.4; }
   .card h3 a { color: var(--ink); text-decoration: none; }
   .card h3 a:hover { color: var(--c2); }
@@ -707,7 +722,65 @@
   .wiki-sec-h { font: 800 1.4rem var(--font-head); margin: 30px 0 14px; padding-bottom: 8px; display: flex; align-items: center; gap: 10px;
     border-bottom: 2px solid color-mix(in srgb, var(--c1) 35%, var(--stroke)); scroll-margin-top: 12px; }
   .wiki-sec-n { font: 700 0.78rem var(--font-head); color: var(--ink-dim); background: var(--track); border-radius: 999px; padding: 2px 10px; }
-  .s16, .easter, .mission-card { scroll-margin-top: 12px; }
+  /* Portail du jeu */
+  #wiki-portal { scroll-margin-top: 12px; }
+  .portal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+  .portal-card { display: flex; align-items: center; gap: 13px; text-align: left; cursor: pointer;
+    background: var(--card); border: 1px solid var(--stroke); border-radius: 14px; padding: 14px 15px;
+    transition: transform .14s, border-color .14s, box-shadow .14s; }
+  .portal-card:hover, .portal-card:focus-visible { transform: translateY(-3px); outline: none;
+    border-color: var(--c1); box-shadow: 0 8px 22px -10px color-mix(in srgb, var(--c1) 60%, transparent); }
+  .portal-card .pc-emoji { font-size: 1.9rem; line-height: 1; flex-shrink: 0; }
+  .portal-card .pc-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+  .portal-card .pc-title { font: 700 0.98rem var(--font-head); display: flex; align-items: center; gap: 7px; }
+  .portal-card .pc-count { font: 700 0.68rem var(--font-head); color: var(--c2); background: color-mix(in srgb, var(--c2) 14%, transparent); border-radius: 999px; padding: 1px 8px; }
+  [data-theme="light"] .portal-card .pc-count { color: #0a7c63; }
+  .portal-card .pc-desc { font-size: 0.76rem; color: var(--ink-dim); line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .portal-card .pc-go { font: 600 0.72rem var(--font-body); color: var(--c1); flex-shrink: 0; opacity: 0; transition: opacity .14s; }
+  [data-theme="light"] .portal-card .pc-go { color: #c2372a; }
+  .portal-card:hover .pc-go, .portal-card:focus-visible .pc-go { opacity: 1; }
+  @media (max-width: 560px) { .portal-card .pc-go { display: none; } }
+  /* Masthead du wiki */
+  .wiki-masthead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+    padding: 20px 24px; margin-bottom: 16px; border-radius: 18px;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--c1) 15%, var(--card)), color-mix(in srgb, var(--c2) 10%, var(--card)));
+    border: 1px solid color-mix(in srgb, var(--c1) 28%, transparent); }
+  .wm-brand { display: flex; align-items: center; gap: 14px; }
+  .wm-logo { font-size: 2.4rem; line-height: 1; }
+  .wm-title { font: 800 1.5rem var(--font-head); letter-spacing: .01em; }
+  .wm-sub { font-size: 0.8rem; color: var(--ink-dim); max-width: 52ch; margin-top: 2px; }
+  .wm-search { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--stroke);
+    border-radius: 999px; padding: 8px 14px; min-width: 240px; flex: 1 1 240px; max-width: 360px; }
+  .wm-search:focus-within { border-color: var(--c1); }
+  .wm-search input { flex: 1; background: none; border: none; outline: none; color: var(--ink); font: 500 0.9rem var(--font-body); }
+  .wm-count { font-size: 0.72rem; color: var(--ink-dim); white-space: nowrap; }
+  /* Sommaire numéroté */
+  .wn-n { display: inline-block; min-width: 1.6em; color: var(--ink-dim); font-variant-numeric: tabular-nums; font-weight: 600; opacity: .8; }
+  .wn-gt-link .wn-n { color: var(--c1); }
+  [data-theme="light"] .wn-gt-link .wn-n { color: #c2372a; }
+  /* Articles style wiki (pleine largeur, infobox flottante) */
+  .wiki-articles { display: block; }
+  .wiki-article { display: block; margin-bottom: 16px; }
+  .wa-title { font: 800 1.32rem var(--font-head); margin: 0 0 4px; padding-bottom: 6px;
+    border-bottom: 1px solid color-mix(in srgb, var(--c1) 22%, var(--stroke)); scroll-margin-top: 12px; }
+  .wa-lead { font-size: 0.92rem; line-height: 1.6; margin: 12px 0; color: var(--ink); }
+  .wa-h { font: 700 0.82rem var(--font-head); text-transform: uppercase; letter-spacing: .05em; color: var(--ink-dim); margin: 14px 0 6px; }
+  .wa-clear { clear: both; }
+  /* Infobox (fiche à droite, façon Wikipédia) */
+  .wiki-ib { float: right; width: 250px; margin: 0 0 14px 20px; background: color-mix(in srgb, var(--ink) 4%, var(--card));
+    border: 1px solid var(--stroke); border-radius: 12px; overflow: hidden; }
+  .wiki-ib .ib-head { font: 700 0.9rem var(--font-head); padding: 10px 13px; text-align: center;
+    background: color-mix(in srgb, var(--c1) 14%, transparent); border-bottom: 1px solid var(--stroke); }
+  .ib-rows { margin: 0; padding: 6px 13px 10px; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; }
+  .ib-rows dt { font: 700 0.68rem var(--font-head); text-transform: uppercase; letter-spacing: .03em; color: var(--ink-dim); align-self: start; padding-top: 3px; }
+  .ib-rows dd { margin: 0; font-size: 0.8rem; line-height: 1.4; }
+  .ib-wiki { display: block; text-align: center; padding: 9px; font: 600 0.78rem var(--font-body); color: var(--c2);
+    text-decoration: none; border-top: 1px solid var(--stroke); }
+  .ib-wiki:hover { text-decoration: underline; background: color-mix(in srgb, var(--c2) 8%, transparent); }
+  [data-theme="light"] .ib-wiki { color: #0a7c63; }
+  @media (max-width: 620px) { .wiki-ib { float: none; width: auto; margin: 0 0 14px; } }
+  .s16, .easter, .mission-card, .wiki-article { scroll-margin-top: 12px; }
   /* Easter eggs */
   .easter { background: linear-gradient(135deg, color-mix(in srgb, var(--c2) 12%, var(--card)), color-mix(in srgb, var(--c3) 8%, var(--card)));
     border: 1px solid color-mix(in srgb, var(--c2) 30%, transparent); border-radius: 18px; padding: 20px 22px; margin-bottom: 18px; }
@@ -1222,7 +1295,7 @@
     <button role="tab" id="tab-progression" aria-controls="panel-progression" data-tab="progression" aria-selected="false" tabindex="-1">🧭 <span data-i18n="tab_progress">Ma progression</span></button>
     <button role="tab" id="tab-favoris" aria-controls="panel-favoris" data-tab="favoris" aria-selected="false" tabindex="-1">⭐ <span data-i18n="tab_favs">Favoris</span><span class="notif" id="notif-favoris" hidden></span></button>
     <button role="tab" id="tab-guide" aria-controls="panel-guide" data-tab="guide" aria-selected="false" tabindex="-1">📚 <span data-i18n="tab_guide">Guides</span></button>
-    <button role="tab" id="tab-missions" aria-controls="panel-missions" data-tab="missions" aria-selected="false" tabindex="-1">📜 <span data-i18n="tab_missions">Missions</span></button>
+    <button role="tab" id="tab-missions" aria-controls="panel-missions" data-tab="missions" aria-selected="false" tabindex="-1">📖 <span data-i18n="tab_missions">Wiki</span></button>
     <button role="tab" id="tab-galaxies" aria-controls="panel-galaxies" data-tab="galaxies" aria-selected="false" tabindex="-1">🗺️ <span data-i18n="tab_galaxies">Galaxies</span></button>
     <button role="tab" id="tab-marche" aria-controls="panel-marche" data-tab="marche" aria-selected="false" tabindex="-1">💎 <span data-i18n="tab_market">Marché</span></button>
     <button role="tab" id="tab-catalogue" aria-controls="panel-catalogue" data-tab="catalogue" aria-selected="false" tabindex="-1">📖 <span data-i18n="tab_catalogue">Base de données</span></button>
@@ -1316,7 +1389,6 @@
 
     <!-- Missions & Lore (wiki) -->
     <section class="panel" id="panel-missions" role="tabpanel" aria-labelledby="tab-missions">
-      <div class="note" data-i18n-html="mi_note">Le wiki des missions de No Man's Sky : grandes quêtes d'histoire, quêtes annexes majeures et missions de l'Anomalie, avec objectifs, étapes, récompenses et <b>détails cachés</b> vérifiés sur le wiki et les forums. En bonus : <b>le secret du 16</b> et une collection d'<b>easter eggs</b>.</div>
       <div id="mission-wiki" class="wiki"></div>
     </section>
 
@@ -1562,7 +1634,7 @@ const I18N = {
     search_all_ph: "Rechercher un objet, une recette, une créature, une galaxie…",
     so_hint: "Tape pour chercher dans les objets, recettes, créatures, vaisseaux, galaxies et guides.",
     so_empty: "Aucun résultat.",
-    so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📜 Missions", expeditions: "🗓️ Expéditions" },
+    so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expéditions" },
     so_more: n => `+ ${n} autre(s) — ouvrir l'onglet`,
     tab_community: "Communauté", tab_ach: "Succès", tab_videos: "Vidéos", tab_timeline: "Mises à jour",
     updated: "Données mises à jour :",
@@ -1650,8 +1722,8 @@ const I18N = {
     el_disclaimer: "ℹ️ Noms, valeurs, descriptions et icônes proviennent des données du jeu. Le symbole est le vrai symbole chimique quand la substance est un élément réel (Na, Au, O₂, He, U, Cl…) et sinon une abréviation du nom in-game. Le suffixe ᵃ signifie « activé ».",
     el_loading: "Chargement des éléments…",
     el_flora_note: "Substances non minérales récoltées sur la flore et la faune (agriculture, cuisine).",
-    tab_missions: "Missions",
-    mi_note: "Le wiki des missions de No Man's Sky : grandes quêtes d'histoire, quêtes annexes majeures et missions de l'Anomalie, avec objectifs, étapes, récompenses et <b>détails cachés</b> vérifiés sur le wiki et les forums. En bonus : <b>le secret du 16</b> et une collection d'<b>easter eggs</b>.",
+    tab_missions: "Wiki",
+    mi_note: "Le <b>wiki No Man's Sky</b> : le point d'entrée vers tout le savoir du jeu. Un <b>portail</b> vers chaque section (base de données, éléments, faune, recettes, vaisseaux, galaxies, guides), la <b>trame et les missions</b> détaillées, le <b>secret du 16</b> et une collection d'<b>easter eggs</b>. Sources : wiki officieux + forums.",
     mi_all: "Toutes",
     mi_goal: "Objectif",
     mi_steps: "Étapes",
@@ -1664,6 +1736,14 @@ const I18N = {
     s16_sources: "Sources",
     wiki_toc: "Sommaire",
     wiki_highlights: "À la une",
+    wiki_portal: "Portail du jeu",
+    wiki_lore: "Trame & missions",
+    wiki_open: "Ouvrir",
+    wiki_title: "Wiki No Man's Sky",
+    wiki_sub: "L'encyclopédie communautaire : portail vers tout le jeu, trame & missions, secret du 16 et easter eggs.",
+    wiki_search_ph: "Rechercher dans le wiki…",
+    wiki_results: n => n + " résultat" + (n > 1 ? "s" : ""),
+    mi_cat: "Catégorie",
     ee_refs: "Clins d'œil pop-culture",
     ee_lore: "Secrets de lore",
     fauna_count: (shown, total) => `<b>${shown}</b> archétype(s) sur ${total}`,
@@ -1758,7 +1838,7 @@ const I18N = {
     search_all_ph: "Search an item, a recipe, a creature, a galaxy…",
     so_hint: "Type to search items, recipes, creatures, ships, galaxies and guides.",
     so_empty: "No results.",
-    so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📜 Missions", expeditions: "🗓️ Expeditions" },
+    so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expeditions" },
     so_more: n => `+ ${n} more — open the tab`,
     tab_community: "Community", tab_ach: "Achievements", tab_videos: "Videos", tab_timeline: "Updates",
     updated: "Data updated:",
@@ -1846,8 +1926,8 @@ const I18N = {
     el_disclaimer: "ℹ️ Names, values, descriptions and icons come from the game data. The symbol is the real chemical symbol when the substance is a genuine element (Na, Au, O₂, He, U, Cl…), otherwise a short abbreviation of the in-game name. The ᵃ suffix means \"activated\".",
     el_loading: "Loading elements…",
     el_flora_note: "Non-mineral substances harvested from flora and fauna (agriculture, cooking).",
-    tab_missions: "Missions",
-    mi_note: "No Man's Sky mission wiki: major story quests, big side quests and Anomaly missions, with goals, steps, rewards and <b>hidden details</b> verified against the wiki and forums. Bonus: <b>the secret of 16</b> and a collection of <b>easter eggs</b>.",
+    tab_missions: "Wiki",
+    mi_note: "The <b>No Man's Sky wiki</b>: the gateway to all the game's knowledge. A <b>portal</b> to every section (database, elements, fauna, recipes, ships, galaxies, guides), the detailed <b>story and missions</b>, the <b>secret of 16</b> and a collection of <b>easter eggs</b>. Sources: fan wiki + forums.",
     mi_all: "All",
     mi_goal: "Goal",
     mi_steps: "Steps",
@@ -1860,6 +1940,14 @@ const I18N = {
     s16_sources: "Sources",
     wiki_toc: "Contents",
     wiki_highlights: "Featured",
+    wiki_portal: "Game portal",
+    wiki_lore: "Story & missions",
+    wiki_open: "Open",
+    wiki_title: "No Man's Sky Wiki",
+    wiki_sub: "The community encyclopedia: a portal to the whole game, story & missions, the secret of 16 and easter eggs.",
+    wiki_search_ph: "Search the wiki…",
+    wiki_results: n => n + " result" + (n === 1 ? "" : "s"),
+    mi_cat: "Category",
     ee_refs: "Pop-culture nods",
     ee_lore: "Lore secrets",
     fauna_count: (shown, total) => `<b>${shown}</b> archetype(s) of ${total}`,
@@ -4811,10 +4899,14 @@ function renderGuide() {
 }
 
 /* ============================== Missions & Lore (wiki) ============================== */
+// Texte de recherche minuscule pour le filtre interne du wiki.
+function wsAttr(str) { return ` data-wiki-search="${esc((str || "").toLowerCase())}"`; }
 function s16Html(s) {
   const facts = (s.facts || []).map(f => `<li>${esc(lang === "en" ? f.en : f.fr)}</li>`).join("");
   const src = (s.sources || []).map(x => `<a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener">${esc(x.label)}</a>`).join(" · ");
-  return `<section class="s16" id="wiki-s16">
+  const hay = [s.title_fr, s.title_en, s.lead_fr, s.lead_en, s.npc_fr, s.npc_en, "16 seize sixteen secret telamon lore atlas"]
+    .concat((s.facts || []).flatMap(f => [f.fr, f.en])).join(" ");
+  return `<section class="s16 wiki-block" id="wiki-s16"${wsAttr(hay)}>
     <div class="s16-num" aria-hidden="true">16</div>
     <div class="s16-body">
       <div class="s16-tag">★ ${esc(lang === "en" ? s.title_en : s.title_fr)}</div>
@@ -4831,7 +4923,9 @@ function s16Html(s) {
 function easterHtml(e) {
   const li = arr => (arr || []).map(x => `<li>${esc(lang === "en" ? x.en : x.fr)}</li>`).join("");
   const src = (e.sources || []).map(x => `<a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener">${esc(x.label)}</a>`).join(" · ");
-  return `<section class="easter" id="wiki-easter">
+  const hay = [e.title_fr, e.title_en, e.lead_fr, e.lead_en, "easter egg secret reference clin"]
+    .concat((e.refs || []).concat(e.lore || []).flatMap(x => [x.fr, x.en])).join(" ");
+  return `<section class="easter wiki-block" id="wiki-easter"${wsAttr(hay)}>
     <div class="ee-head"><span class="ee-emoji" aria-hidden="true">${esc(e.icon || "🥚")}</span>
       <h3>${esc(lang === "en" ? e.title_en : e.title_fr)}</h3></div>
     <p class="ee-lead">${esc(lang === "en" ? e.lead_en : e.lead_fr)}</p>
@@ -4844,23 +4938,69 @@ function easterHtml(e) {
 }
 function missionArticleHtml(m, cats) {
   const cat = cats[m.cat] || {};
+  const name = lang === "en" ? m.name_en : m.name_fr;
+  const goal = lang === "en" ? m.goal_en : m.goal_fr;
   const steps = (m.steps || []).map(s => `<li>${esc(lang === "en" ? s.en : s.fr)}</li>`).join("");
   const hidden = (m.hidden || []).map(h => `<li>${esc(lang === "en" ? h.en : h.fr)}</li>`).join("");
   const rewards = lang === "en" ? m.rewards_en : m.rewards_fr;
-  return `<article class="mission-card" id="wiki-m-${esc(m.id)}" data-mid="${esc(m.id)}">
-    <div class="mi-head">
-      <span class="mi-emoji" aria-hidden="true">${esc(m.icon || "📜")}</span>
-      <div class="mi-title">
-        <h3>${esc(lang === "en" ? m.name_en : m.name_fr)}</h3>
-        <span class="mi-badge">${esc(cat.icon || "")} ${esc(lang === "en" ? cat.en : cat.fr)}</span>
-      </div>
-    </div>
-    <p class="mi-goal"><b>${esc(T().mi_goal)} :</b> ${esc(lang === "en" ? m.goal_en : m.goal_fr)}</p>
-    ${steps ? `<div class="mi-sec"><div class="mi-sec-t">🧭 ${esc(T().mi_steps)}</div><ol class="mi-steps">${steps}</ol></div>` : ""}
-    ${rewards ? `<div class="mi-sec"><div class="mi-sec-t">🎁 ${esc(T().mi_rewards)}</div><p class="mi-rewards">${esc(rewards)}</p></div>` : ""}
+  const hay = [name, goal, rewards].concat((m.steps || []).flatMap(s => [s.fr, s.en]))
+    .concat((m.hidden || []).flatMap(h => [h.fr, h.en])).join(" ");
+  const infobox = `<aside class="wiki-ib">
+    <div class="ib-head"><span aria-hidden="true">${esc(m.icon || "📜")}</span> ${esc(name)}</div>
+    <dl class="ib-rows">
+      <dt>${esc(T().mi_cat)}</dt><dd>${esc(cat.icon || "")} ${esc(lang === "en" ? cat.en : cat.fr)}</dd>
+      <dt>${esc(T().mi_steps)}</dt><dd>${(m.steps || []).length}</dd>
+      ${rewards ? `<dt>${esc(T().mi_rewards)}</dt><dd>${esc(rewards)}</dd>` : ""}
+    </dl>
+    ${m.wiki ? `<a class="ib-wiki" href="${esc(safeUrl(m.wiki))}" target="_blank" rel="noopener">${esc(T().mi_wiki)}</a>` : ""}
+  </aside>`;
+  return `<article class="wiki-article mission-card" id="wiki-m-${esc(m.id)}" data-mid="${esc(m.id)}"${wsAttr(hay)}>
+    <h3 class="wa-title">${esc(name)}</h3>
+    ${infobox}
+    <p class="wa-lead">${esc(goal)}</p>
+    ${steps ? `<h4 class="wa-h">🧭 ${esc(T().mi_steps)}</h4><ol class="mi-steps">${steps}</ol>` : ""}
+    ${rewards ? `<h4 class="wa-h">🎁 ${esc(T().mi_rewards)}</h4><p class="mi-rewards">${esc(rewards)}</p>` : ""}
     ${hidden ? `<div class="mi-hidden"><div class="mi-sec-t">🔍 ${esc(T().mi_hidden)}</div><ul>${hidden}</ul></div>` : ""}
-    ${m.wiki ? `<a class="mi-wiki" href="${esc(safeUrl(m.wiki))}" target="_blank" rel="noopener">${esc(T().mi_wiki)}</a>` : ""}
+    <div class="wa-clear"></div>
   </article>`;
+}
+// Portail : cartes vers chaque section du site, avec compteurs dynamiques.
+function portalItems() {
+  const elCount = (() => { const E = D.elements; if (!E) return null; let c = 0; (E.columns || []).forEach(col => c += (col.cells || []).length); c += (E.flora && E.flora.cells ? E.flora.cells.length : 0); return c; })();
+  const recCount = D.recipes ? ((D.recipes.refiner || []).length + (D.recipes.cooking || []).length) : null;
+  return [
+    { tab: "catalogue", emoji: "📖", title: T().tab_catalogue, count: D.catalogue ? D.catalogue.total : "3 500+",
+      fr: "Tous les objets du jeu : matériaux, technologies, modules, cuisine…", en: "Every game item: materials, tech, modules, cooking…" },
+    { tab: "elements", emoji: "⚛️", title: T().tab_elements, count: elCount,
+      fr: "Le tableau périodique des substances réelles du jeu.", en: "The periodic table of the game's real substances." },
+    { tab: "faune", emoji: "🦋", title: T().tab_fauna, count: D.creatures ? (D.creatures.creatures || []).length : null,
+      fr: "Les archétypes de créatures et leurs récoltes.", en: "Creature archetypes and what they harvest." },
+    { tab: "recettes", emoji: "🧪", title: T().tab_recipes, count: recCount,
+      fr: "Toutes les recettes de raffinage et de cuisine.", en: "All refining and cooking recipes." },
+    { tab: "marche", emoji: "💎", title: T().tab_market, count: D.ships ? (D.ships.items || []).length + " 🚀" : null,
+      fr: "Objets précieux, poissons et vaisseaux (avec images).", en: "Valuable items, fish and ships (with images)." },
+    { tab: "galaxies", emoji: "🗺️", title: T().tab_galaxies, count: D.galaxies ? (D.galaxies.items || []).length : 255,
+      fr: "La carte galactique des 255 galaxies.", en: "The galactic map of all 255 galaxies." },
+    { tab: "guide", emoji: "📚", title: T().tab_guide, count: D.guide ? (D.guide.guides || []).length : null,
+      fr: "Guides pratiques : débuter, Corvettes, combat, agriculture…", en: "How-to guides: getting started, Corvettes, combat, farming…" },
+    { tab: "expeditions", emoji: "🗓️", title: T().tab_expeditions, count: D.expeditions ? (D.expeditions.items || []).length : null,
+      fr: "Le calendrier des expéditions communautaires.", en: "The community expeditions calendar." },
+  ];
+}
+function portalHtml() {
+  return `<section id="wiki-portal">
+    <h2 class="wiki-sec-h"><span aria-hidden="true">🧭</span> ${esc(T().wiki_portal)}</h2>
+    <div class="portal-grid">
+      ${portalItems().map(p => `<button class="portal-card" data-goto-tab="${esc(p.tab)}">
+        <span class="pc-emoji" aria-hidden="true">${esc(p.emoji)}</span>
+        <span class="pc-body">
+          <span class="pc-title">${esc(p.title)}${p.count != null ? ` <span class="pc-count">${esc(String(p.count))}</span>` : ""}</span>
+          <span class="pc-desc">${esc(lang === "en" ? p.en : p.fr)}</span>
+        </span>
+        <span class="pc-go" aria-hidden="true">${esc(T().wiki_open)} →</span>
+      </button>`).join("")}
+    </div>
+  </section>`;
 }
 function renderMissions() {
   const wiki = document.getElementById("mission-wiki");
@@ -4870,46 +5010,100 @@ function renderMissions() {
   const cats = M.categories || {};
   const missions = M.missions || [];
 
-  // Sommaire (table des matières)
-  const nav = [`<div class="wn-group"><div class="wn-gt">${esc(T().wiki_highlights)}</div>
-    ${M.secret16 ? `<button class="wn-link wn-star" data-sec="wiki-s16">★ ${esc(lang === "en" ? M.secret16.title_en : M.secret16.title_fr)}</button>` : ""}
-    ${M.easter ? `<button class="wn-link" data-sec="wiki-easter">🥚 ${esc(lang === "en" ? M.easter.title_en : M.easter.title_fr)}</button>` : ""}
-  </div>`];
+  // --- Sommaire numéroté (façon Wikipédia) ---
+  let gi = 0;
+  const navGroup = (sec, label, links) => {
+    gi++;
+    const head = `<button class="wn-gt wn-gt-link" data-sec="${sec}"><span class="wn-n">${gi}</span>${label}</button>`;
+    const subs = (links || []).map((l, j) =>
+      `<button class="wn-link wn-sub ${l.cls || ""}" data-sec="${l.sec}"><span class="wn-n">${gi}.${j + 1}</span>${l.label}</button>`).join("");
+    return `<div class="wn-group">${head}${subs}</div>`;
+  };
+  const nav = [navGroup("wiki-portal", `🧭 ${esc(T().wiki_portal)}`, [])];
+  const hl = [];
+  if (M.secret16) hl.push({ sec: "wiki-s16", cls: "wn-star", label: `★ ${esc(lang === "en" ? M.secret16.title_en : M.secret16.title_fr)}` });
+  if (M.easter) hl.push({ sec: "wiki-easter", label: `🥚 ${esc(lang === "en" ? M.easter.title_en : M.easter.title_fr)}` });
+  if (hl.length) nav.push(navGroup("wiki-lore", esc(T().wiki_lore), hl));
   for (const k of Object.keys(cats)) {
     const inCat = missions.filter(m => m.cat === k);
     if (!inCat.length) continue;
-    nav.push(`<div class="wn-group">
-      <button class="wn-gt wn-gt-link" data-sec="wiki-cat-${k}">${esc(cats[k].icon || "")} ${esc(lang === "en" ? cats[k].en : cats[k].fr)}</button>
-      ${inCat.map(m => `<button class="wn-link wn-sub" data-sec="wiki-m-${esc(m.id)}">${esc(m.icon || "")} ${esc(lang === "en" ? m.name_en : m.name_fr)}</button>`).join("")}
-    </div>`);
+    nav.push(navGroup("wiki-cat-" + k, `${esc(cats[k].icon || "")} ${esc(lang === "en" ? cats[k].en : cats[k].fr)}`,
+      inCat.map(m => ({ sec: "wiki-m-" + m.id, label: `${esc(m.icon || "")} ${esc(lang === "en" ? m.name_en : m.name_fr)}` }))));
   }
 
-  // Contenu principal
-  const main = [];
-  if (M.secret16) main.push(s16Html(M.secret16));
-  if (M.easter) main.push(easterHtml(M.easter));
+  // --- Contenu principal ---
+  const main = [portalHtml()];
+  if (M.secret16 || M.easter) {
+    main.push(`<h2 class="wiki-sec-h" id="wiki-lore"><span aria-hidden="true">📖</span> ${esc(T().wiki_lore)}</h2>`);
+    if (M.secret16) main.push(s16Html(M.secret16));
+    if (M.easter) main.push(easterHtml(M.easter));
+  }
   for (const k of Object.keys(cats)) {
     const inCat = missions.filter(m => m.cat === k);
     if (!inCat.length) continue;
-    main.push(`<h2 class="wiki-sec-h" id="wiki-cat-${k}"><span aria-hidden="true">${esc(cats[k].icon || "")}</span> ${esc(lang === "en" ? cats[k].en : cats[k].fr)} <span class="wiki-sec-n">${inCat.length}</span></h2>`);
-    main.push(`<div class="mission-list">${inCat.map(m => missionArticleHtml(m, cats)).join("")}</div>`);
+    main.push(`<section class="wiki-catsec" data-cat="${k}">
+      <h2 class="wiki-sec-h" id="wiki-cat-${k}"><span aria-hidden="true">${esc(cats[k].icon || "")}</span> ${esc(lang === "en" ? cats[k].en : cats[k].fr)} <span class="wiki-sec-n">${inCat.length}</span></h2>
+      <div class="wiki-articles">${inCat.map(m => missionArticleHtml(m, cats)).join("")}</div>
+    </section>`);
   }
 
-  wiki.innerHTML = `<div class="wiki-layout">
-    <nav class="wiki-nav" aria-label="${esc(T().wiki_toc)}">
-      <div class="wn-title">${esc(T().wiki_toc)}</div>
-      ${nav.join("")}
-    </nav>
-    <div class="wiki-main">${main.join("")}</div>
-  </div>`;
+  wiki.innerHTML = `<header class="wiki-masthead">
+      <div class="wm-brand"><span class="wm-logo" aria-hidden="true">📖</span>
+        <div><div class="wm-title">${esc(T().wiki_title)}</div><div class="wm-sub">${esc(T().wiki_sub)}</div></div></div>
+      <div class="wm-search"><span aria-hidden="true">🔍</span>
+        <input id="wiki-search" type="search" placeholder="${esc(T().wiki_search_ph)}" aria-label="${esc(T().wiki_search_ph)}" autocomplete="off">
+        <span id="wiki-search-count" class="wm-count"></span></div>
+    </header>
+    <div class="wiki-layout">
+      <nav class="wiki-nav" aria-label="${esc(T().wiki_toc)}">
+        <div class="wn-title">${esc(T().wiki_toc)}</div>
+        ${nav.join("")}
+      </nav>
+      <div class="wiki-main" id="wiki-main">${main.join("")}</div>
+    </div>`;
 
   // Défilement vers la section au clic dans le sommaire.
-  wiki.querySelectorAll("[data-sec]").forEach(b => b.addEventListener("click", () => {
+  wiki.querySelectorAll(".wiki-nav [data-sec]").forEach(b => b.addEventListener("click", () => {
     const el = document.getElementById(b.dataset.sec);
     if (!el) return;
     el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
     el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1400);
   }));
+  // Portail : ouvre la section ciblée du site.
+  wiki.querySelectorAll("[data-goto-tab]").forEach(b => b.addEventListener("click", () => {
+    const t = tabByName(b.dataset.gotoTab); if (t) activateTab(t, false);
+  }));
+  // Recherche interne au wiki.
+  const ws = document.getElementById("wiki-search");
+  if (ws) ws.addEventListener("input", () => filterWiki(ws.value));
+}
+// Filtre en direct le contenu du wiki (articles, secret, easter eggs).
+function filterWiki(q) {
+  const wiki = document.getElementById("mission-wiki");
+  if (!wiki) return;
+  const searching = normSearch(q).length >= 1;
+  const portal = document.getElementById("wiki-portal");
+  if (portal) portal.style.display = searching ? "none" : "";
+  let shown = 0;
+  wiki.querySelectorAll("[data-wiki-search]").forEach(el => {
+    const match = !searching || fuzzyMatch(q, el.dataset.wikiSearch);
+    el.style.display = match ? "" : "none";
+    if (match) shown++;
+  });
+  // Masque les sections de catégorie sans article visible.
+  wiki.querySelectorAll(".wiki-catsec").forEach(sec => {
+    const any = [...sec.querySelectorAll("[data-wiki-search]")].some(a => a.style.display !== "none");
+    sec.style.display = (!searching || any) ? "" : "none";
+  });
+  // Masque l'en-tête « Trame & missions » si secret16 & easter sont cachés.
+  const loreH = document.getElementById("wiki-lore");
+  if (loreH) {
+    const s16 = document.getElementById("wiki-s16"), ee = document.getElementById("wiki-easter");
+    const anyLore = (s16 && s16.style.display !== "none") || (ee && ee.style.display !== "none");
+    loreH.style.display = (!searching || anyLore) ? "" : "none";
+  }
+  const cnt = document.getElementById("wiki-search-count");
+  if (cnt) cnt.textContent = searching ? T().wiki_results(shown) : "";
 }
 
 /* ============================== Galerie ============================== */

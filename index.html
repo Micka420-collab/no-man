@@ -437,6 +437,19 @@
   .m-build .m-build-k { font: 700 0.78rem var(--font-head); letter-spacing: .04em; color: #ffc857; }
   [data-theme="light"] .m-build .m-build-k { color: #b07d00; }
   .m-build p { font-size: 0.87rem; color: var(--ink); line-height: 1.55; margin: 6px 0 0; }
+  .m-actions { margin-top: 16px; }
+  .m-share {
+    background: var(--chip); border: 1px solid var(--stroke); color: var(--ink);
+    border-radius: 999px; padding: 9px 18px; cursor: pointer; font: 600 0.85rem var(--font-body);
+  }
+  .m-share:hover { border-color: var(--stroke-hi); }
+  .toast {
+    position: fixed; left: 50%; bottom: 84px; transform: translateX(-50%) translateY(12px);
+    background: #10182b; color: #eef2ff; border: 1px solid var(--stroke); border-radius: 999px;
+    padding: 10px 20px; font-size: 0.86rem; font-weight: 500; z-index: 200; box-shadow: var(--shadow);
+    opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   .clickable { cursor: pointer; }
 
   /* ------- Compte à rebours 10 ans ------- */
@@ -540,6 +553,20 @@
     padding: 9px 22px; border-radius: 999px; cursor: pointer; font: 500 0.85rem var(--font-body);
   }
   .cat-more-btn:hover { color: var(--ink); border-color: var(--stroke-hi); }
+  /* ------- Galerie ------- */
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+  .gal-tile {
+    position: relative; padding: 0; border: 1px solid var(--stroke); border-radius: 16px; overflow: hidden;
+    background: #04060d; cursor: pointer; display: block; text-align: left; transition: border-color .15s, transform .15s;
+  }
+  .gal-tile:hover, .gal-tile:focus-visible { border-color: var(--stroke-hi); transform: translateY(-3px); outline: none; }
+  .gal-tile img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+  .gal-tile .gt-cap {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 14px 10px;
+    font: 600 0.92rem var(--font-head); color: #fff;
+    background: linear-gradient(0deg, rgba(2,4,10,.9), rgba(2,4,10,.55) 55%, transparent);
+  }
+  @media (max-width: 560px) { .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; } }
   /* ------- Faune ------- */
   .fauna-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
   .fauna-card {
@@ -1028,6 +1055,7 @@
     <button role="tab" id="tab-catalogue" aria-controls="panel-catalogue" data-tab="catalogue" aria-selected="false" tabindex="-1">📖 <span data-i18n="tab_catalogue">Base de données</span></button>
     <button role="tab" id="tab-faune" aria-controls="panel-faune" data-tab="faune" aria-selected="false" tabindex="-1">🦋 <span data-i18n="tab_fauna">Faune</span></button>
     <button role="tab" id="tab-recettes" aria-controls="panel-recettes" data-tab="recettes" aria-selected="false" tabindex="-1">🧪 <span data-i18n="tab_recipes">Recettes</span></button>
+    <button role="tab" id="tab-galerie" aria-controls="panel-galerie" data-tab="galerie" aria-selected="false" tabindex="-1">🖼️ <span data-i18n="tab_gallery">Galerie</span></button>
     <button role="tab" id="tab-actus" aria-controls="panel-actus" data-tab="actus" aria-selected="false" tabindex="-1">📰 <span data-i18n="tab_news">Actualités</span><span class="notif" id="notif-actus" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-communaute" aria-controls="panel-communaute" data-tab="communaute" aria-selected="false" tabindex="-1">👥 <span data-i18n="tab_community">Communauté</span><span class="notif" id="notif-communaute" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-guerre" aria-controls="panel-guerre" data-tab="guerre" aria-selected="false" tabindex="-1">⚔️ <span data-i18n="tab_war">Bulletin de guerre</span></button>
@@ -1186,6 +1214,18 @@
       <div id="rec-more" style="text-align:center;margin-top:14px"></div>
     </section>
 
+    <!-- Galerie -->
+    <section class="panel" id="panel-galerie" role="tabpanel" aria-labelledby="tab-galerie">
+      <div class="note" data-i18n="gallery_note">La galerie en grand des vaisseaux et des créatures du jeu. Clique sur une image pour ouvrir sa fiche et la partager.</div>
+      <div class="controls">
+        <div class="subtabs" data-group="galerie">
+          <button data-sub="ships" class="active">🛸 <span data-i18n="mk_ships">Vaisseaux</span></button>
+          <button data-sub="creatures">🦋 <span data-i18n="tab_fauna">Faune</span></button>
+        </div>
+      </div>
+      <div id="gallery-grid" class="gallery-grid"></div>
+    </section>
+
     <!-- Actualités -->
     <section class="panel" id="panel-actus" role="tabpanel" aria-labelledby="tab-actus">
       <div class="controls">
@@ -1318,6 +1358,7 @@ const I18N = {
     guide_note: "Nouveau dans No Man's Sky ? Ce guide te fait passer des premières minutes à tes premiers grands objectifs, étape par étape.",
     guide_step: "Étape",
     more_title: "Toutes les sections", more_close: "Fermer", more_plus: "Plus",
+    share: "Partager", share_copied: "Lien copié !", share_copy_manual: "Copie ce lien :",
     search_all: "Rechercher", aria_search_global: "Recherche globale dans tout le site",
     search_all_ph: "Rechercher un objet, une recette, une créature, une galaxie…",
     so_hint: "Tape pour chercher dans les objets, recettes, créatures, vaisseaux, galaxies et guides.",
@@ -1410,6 +1451,8 @@ const I18N = {
     fauna_search_ph: "Chercher une créature ou une récolte…", aria_search_fauna: "Chercher une créature",
     fauna_f_yield: "Récolte", fy_milk: "Lait", fy_eggs: "Œufs", fy_honey: "Miel", fy_nectar: "Nectar", fy_grease: "Graisse",
     tab_recipes: "Recettes",
+    tab_gallery: "Galerie",
+    gallery_note: "La galerie en grand des vaisseaux et des créatures du jeu. Clique sur une image pour ouvrir sa fiche et la partager.",
     rec_note: "Toutes les recettes de raffinage et de cuisine du jeu. Cherche par ingrédient ou par résultat — par exemple « or », « nanite » ou « pain ».",
     rec_refiner: "Raffinage", rec_cooking: "Cuisine",
     rec_count: (shown, total) => `<b>${shown}</b> recette(s) sur ${total}`,
@@ -1486,6 +1529,7 @@ const I18N = {
     guide_note: "New to No Man's Sky? This guide takes you from your first minutes to your first big goals, step by step.",
     guide_step: "Step",
     more_title: "All sections", more_close: "Close", more_plus: "More",
+    share: "Share", share_copied: "Link copied!", share_copy_manual: "Copy this link:",
     search_all: "Search", aria_search_global: "Global search across the whole site",
     search_all_ph: "Search an item, a recipe, a creature, a galaxy…",
     so_hint: "Type to search items, recipes, creatures, ships, galaxies and guides.",
@@ -1578,6 +1622,8 @@ const I18N = {
     fauna_search_ph: "Search a creature or a harvest…", aria_search_fauna: "Search a creature",
     fauna_f_yield: "Harvest", fy_milk: "Milk", fy_eggs: "Eggs", fy_honey: "Honey", fy_nectar: "Nectar", fy_grease: "Grease",
     tab_recipes: "Recipes",
+    tab_gallery: "Gallery",
+    gallery_note: "The large gallery of the game's ships and creatures. Click an image to open its card and share it.",
     rec_note: "Every refiner and cooking recipe in the game. Search by ingredient or by result — e.g. “gold”, “nanite” or “bread”.",
     rec_refiner: "Refining", rec_cooking: "Cooking",
     rec_count: (shown, total) => `<b>${shown}</b> recipe(s) of ${total}`,
@@ -1656,7 +1702,7 @@ const LS_TEAM = "nms-team";
 const LS_CHALLENGE = "nms-challenge-v1";
 const LS_LAST_VISIT = "nms-last-visit";
 const D = {};
-const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", faunayield: "all", faunasort: "az" };
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", faunayield: "all", faunasort: "az", galerie: "ships" };
 const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "", catalogue: "" };
 let lang = localStorage.getItem(LS_LANG);
 if (lang !== "fr" && lang !== "en") {
@@ -3463,6 +3509,7 @@ function renderGalaxies() {
     <div class="gactions">
       <button id="gal-here" class="${isCurrent ? "here" : ""}" aria-pressed="${isCurrent}">${isCurrent ? T().gal_here_done : T().gal_here}</button>
       <a href="${wikiUrl}" target="_blank" rel="noopener">${T().gal_wiki}</a>
+      <button data-share="galaxy=${g.n}" data-share-label="${esc(g.name)}">🔗 ${T().share}</button>
     </div>
     ${pos}`;
 
@@ -3538,6 +3585,7 @@ function shipToModal(sh) {
       { k: T().ship_price, v: lang === "en" ? sh.price_en : sh.price_fr, big: true },
     ],
     build: build ? { k: T().ship_build, v: build } : null,
+    share: sh.id ? "ship=" + sh.id : null,
   };
 }
 function fishToModal(f) {
@@ -3712,6 +3760,30 @@ document.addEventListener("keydown", e => {
   }
 });
 
+/* ---------- Partage (liens directs) ---------- */
+let toastTimer = null;
+function toast(msg) {
+  let el = document.getElementById("toast");
+  if (!el) { el = document.createElement("div"); el.id = "toast"; el.className = "toast"; document.body.appendChild(el); }
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove("show"), 2200);
+}
+function shareLink(hash, label) {
+  const url = location.origin + location.pathname + "#" + hash;
+  const title = "No Man's Sky — " + (label || "");
+  if (navigator.share) { navigator.share({ title, url }).catch(() => {}); return; }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => toast(T().share_copied)).catch(() => window.prompt(T().share_copy_manual, url));
+  } else window.prompt(T().share_copy_manual, url);
+}
+// Délégation : n'importe quel bouton [data-share] copie/partage son lien.
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-share]");
+  if (b) { e.preventDefault(); shareLink(b.dataset.share, b.dataset.shareLabel); }
+});
+
 // Construit la modale à partir d'un objet normalisé.
 function showItemModal(o) {
   const hero = o.image
@@ -3729,6 +3801,7 @@ function showItemModal(o) {
     ${o.desc ? `<p class="m-desc">${esc(o.desc)}</p>` : ""}
     ${rows ? `<div class="m-rows">${rows}</div>` : ""}
     ${o.build ? `<div class="m-build"><span class="m-build-k">${esc(o.build.k)}</span><p>${esc(o.build.v)}</p></div>` : ""}
+    ${o.share ? `<div class="m-actions"><button class="m-share" data-share="${esc(o.share)}" data-share-label="${esc(o.title)}">🔗 ${T().share}</button></div>` : ""}
   </div>`);
 }
 
@@ -3911,6 +3984,7 @@ function catToModal(it) {
     badges: [{ txt: (D.catalogue.categories[it._cat].icon) + " " + (T().cat_cats[it._cat] || it._cat) }],
     desc: lang === "en" ? it.desc_en : it.desc_fr,
     rows: [val ? { k: "💰 " + (lang === "en" ? "Value" : "Valeur"), v: fmtNum(val) + (cur ? " " + cur : ""), big: true } : null],
+    share: it.id ? "item=" + it.id : null,
   };
 }
 document.getElementById("cat-list").addEventListener("click", e => {
@@ -4043,6 +4117,7 @@ function creatureToModal(c) {
     group: c.example ? T().fauna_example + " : " + c.example : "",
     desc: "",
     rows,
+    share: c.type ? "creature=" + c.type : null,
   };
 }
 // Construit une barre de filtres (selects + reset) dans `boxId`.
@@ -4239,6 +4314,41 @@ function renderGuide() {
     </section>`).join("");
 }
 
+/* ============================== Galerie ============================== */
+function renderGallery() {
+  const grid = document.getElementById("gallery-grid");
+  if (!grid) return;
+  const which = sub.galerie || "ships";
+  if (which === "ships") {
+    const ships = D.ships && D.ships.items || [];
+    grid.innerHTML = ships.filter(s => s.image).map(s => {
+      const name = lang === "en" ? s.name_en : s.name_fr;
+      return `<button class="gal-tile" data-gtype="ship" data-gid="${ships.indexOf(s)}" aria-label="${esc(name)}">
+        <img src="${esc(safeUrl(s.image))}" alt="${esc(name)}" loading="lazy" onerror="this.closest('.gal-tile').style.display='none'">
+        <span class="gt-cap"><span aria-hidden="true">${esc(s.icon)}</span> ${esc(name)}</span></button>`;
+    }).join("") || emptyMsg(false);
+  } else {
+    const cr = (D.creatures && D.creatures.creatures || []).filter(c => c.image);
+    grid.innerHTML = cr.map(c => {
+      const name = lang === "en" ? c.name_en : c.name_fr;
+      return `<button class="gal-tile" data-gtype="creature" data-gid="${esc(c.type)}" aria-label="${esc(name)}">
+        <img src="${esc(safeUrl(c.image))}" alt="${esc(c.example || name)}" loading="lazy" onerror="this.closest('.gal-tile').style.display='none'">
+        <span class="gt-cap"><span aria-hidden="true">${esc(c.emoji)}</span> ${esc(name)}</span></button>`;
+    }).join("") || emptyMsg(false);
+  }
+}
+document.getElementById("gallery-grid").addEventListener("click", e => {
+  const t = e.target.closest(".gal-tile");
+  if (!t) return;
+  if (t.dataset.gtype === "ship") {
+    const sh = (D.ships && D.ships.items || [])[+t.dataset.gid];
+    if (sh) showItemModal(shipToModal(sh));
+  } else {
+    const c = (D.creatures && D.creatures.creatures || []).find(x => x.type === t.dataset.gid);
+    if (c) showItemModal(creatureToModal(c));
+  }
+});
+
 function renderAll() {
   renderUpdated();
   renderChips();
@@ -4260,6 +4370,7 @@ function renderAll() {
   renderMarket();
   renderCreatures();
   renderRecipes();
+  renderGallery();
   renderGuide();
   if (D.catalogue) renderCatalogue();
 }
@@ -4294,7 +4405,45 @@ function renderAll() {
 
   computeFresh();
   applyLang(lang);
+  applyDeepLink();
 })();
+
+// Ouvre le contenu ciblé par un lien direct (#galaxy=…, #ship=…, #creature=…, #item=…, #tab=…).
+function applyDeepLink() {
+  const h = (location.hash || "").replace(/^#/, "");
+  if (!h) return;
+  const eq = h.indexOf("=");
+  const key = eq < 0 ? h : h.slice(0, eq);
+  const val = eq < 0 ? "" : decodeURIComponent(h.slice(eq + 1));
+  if (key === "galaxy") {
+    const n = +val;
+    if (D.galaxies && n >= 1 && n <= D.galaxies.items.length) {
+      galIntroDone = true;            // pas de visite guidée quand on arrive par lien direct
+      activateTab(tabByName("galaxies"), false);
+      galSelected = n; renderGalaxies();
+      setTimeout(() => galFocus(n, 2.6), 150);
+    }
+  } else if (key === "ship") {
+    const sh = (D.ships && D.ships.items || []).find(s => s.id === val);
+    if (sh) { sub.marche = "ships"; activateTab(tabByName("marche"), false); renderMarket(); showItemModal(shipToModal(sh)); }
+  } else if (key === "creature") {
+    const c = (D.creatures && D.creatures.creatures || []).find(x => x.type === val);
+    if (c) { activateTab(tabByName("faune"), false); renderCreatures(); showItemModal(creatureToModal(c)); }
+  } else if (key === "item") {
+    activateTab(tabByName("catalogue"), false);           // déclenche le chargement du catalogue
+    const tryItem = () => {
+      const cats = D.catalogue && D.catalogue.categories;
+      if (!cats) { if (!D._catFailed) setTimeout(tryItem, 200); return; }
+      for (const k of Object.keys(cats)) {
+        const it = cats[k].items.find(x => x.id === val);
+        if (it) { showItemModal(catToModal({ ...it, _cat: k })); break; }
+      }
+    };
+    tryItem();
+  } else if (key === "tab") {
+    const b = tabByName(val); if (b) activateTab(b, false);
+  }
+}
 
 // Mode hors-ligne / installation (PWA) : enregistrement discret du service worker.
 if ("serviceWorker" in navigator) {

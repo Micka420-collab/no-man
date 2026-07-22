@@ -55,19 +55,35 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  ::selection { background: color-mix(in srgb, var(--c1) 38%, transparent); color: var(--ink); }
+  /* Barre de défilement thématisée (fine et discrète) */
+  * { scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--ink) 24%, transparent) transparent; }
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--ink) 22%, transparent);
+    border-radius: 999px; border: 3px solid transparent; background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--c2) 60%, transparent); background-clip: content-box; }
   body {
-    background:
-      radial-gradient(1100px 620px at 12% -8%, color-mix(in srgb, var(--c4) 14%, transparent), transparent 58%),
-      radial-gradient(1000px 640px at 112% 4%, color-mix(in srgb, var(--c2) 12%, transparent), transparent 55%),
-      radial-gradient(1200px 900px at 50% 120%, color-mix(in srgb, var(--c1) 9%, transparent), transparent 60%),
-      linear-gradient(180deg, var(--bg1), var(--bg0) 62%);
-    background-attachment: fixed;
+    background: var(--bg0);
     color: var(--ink);
     font-family: var(--font-body);
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
     transition: background 0.35s, color 0.35s;
+  }
+  /* Fond cosmique sur une couche fixe (fiable sur mobile, contrairement à
+     background-attachment: fixed qui laisse des zones blanches au défilement). */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(1100px 620px at 12% -8%, color-mix(in srgb, var(--c4) 14%, transparent), transparent 58%),
+      radial-gradient(1000px 640px at 112% 4%, color-mix(in srgb, var(--c2) 12%, transparent), transparent 55%),
+      radial-gradient(1200px 900px at 50% 120%, color-mix(in srgb, var(--c1) 9%, transparent), transparent 60%),
+      linear-gradient(180deg, var(--bg1), var(--bg0) 62%);
+    transition: background 0.35s;
   }
   #stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
   .aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
@@ -232,9 +248,11 @@
 
   .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 14px; }
   .tile {
-    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius);
+    background: linear-gradient(158deg, var(--card-strong), var(--card));
+    border: 1px solid var(--stroke); border-radius: var(--radius);
     padding: 22px 18px; text-align: center; position: relative; overflow: hidden;
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
   .tile::before {
     content: ""; position: absolute; inset: 0 0 auto; height: 3px;
@@ -325,8 +343,12 @@
     transition: all 0.2s;
   }
   .subtabs button:hover { color: var(--ink); }
-  .subtabs button.active { color: var(--c3); border-color: var(--c3); background: rgba(255, 200, 87, 0.08); }
-  [data-theme="light"] .subtabs button.active { color: #7a5500; border-color: #c99f2e; }
+  .subtabs button.active {
+    color: #05070f; border-color: transparent; font-weight: 600;
+    background: linear-gradient(100deg, var(--c3), #ffb347);
+    box-shadow: 0 3px 14px rgba(255, 200, 87, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  [data-theme="light"] .subtabs button.active { color: #3d2a00; }
   .searchbox { margin-left: auto; position: relative; }
   .searchbox input {
     background: var(--card); border: 1px solid var(--stroke); color: var(--ink);
@@ -421,8 +443,9 @@
   #modal-backdrop[hidden] { display: none; }
   #item-modal {
     position: relative; max-width: 560px; width: 100%; max-height: 88vh; overflow-y: auto;
-    background: var(--bg1); border: 1px solid var(--stroke-hi); border-radius: var(--radius);
-    box-shadow: 0 24px 70px rgba(0,0,0,0.6); padding: 0;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--c4) 7%, var(--bg1)), var(--bg1) 45%);
+    border: 1px solid var(--stroke-hi); border-radius: var(--radius);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06); padding: 0;
   }
   .modal-close {
     position: absolute; top: 12px; right: 12px; z-index: 2; width: 34px; height: 34px; border-radius: 50%;
@@ -431,8 +454,10 @@
   .modal-close:hover { border-color: var(--stroke-hi); }
   .m-hero { position: relative; }
   .m-hero img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: #04060d; border-radius: var(--radius) var(--radius) 0 0; }
-  .m-hero.icon { display: flex; align-items: center; justify-content: center; padding: 26px 0 8px; }
-  .m-hero.icon img { width: 108px; height: 108px; aspect-ratio: 1; object-fit: contain; background: transparent; }
+  .m-hero.icon { display: flex; align-items: center; justify-content: center; padding: 30px 0 10px;
+    background: radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--c2) 14%, transparent), transparent 62%); }
+  .m-hero.icon img { width: 112px; height: 112px; aspect-ratio: 1; object-fit: contain; background: transparent;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4)); }
   .m-body { padding: 18px 22px 24px; }
   .m-body h3 { font: 700 1.3rem var(--font-head); }
   .m-group { font-size: 0.85rem; color: var(--ink-dim); margin: 2px 0 12px; }
@@ -779,7 +804,13 @@
     text-decoration: none; border-top: 1px solid var(--stroke); }
   .ib-wiki:hover { text-decoration: underline; background: color-mix(in srgb, var(--c2) 8%, transparent); }
   [data-theme="light"] .ib-wiki { color: #0a7c63; }
-  @media (max-width: 620px) { .wiki-ib { float: none; width: auto; margin: 0 0 14px; } }
+  .wa-wiki-m { display: none; }
+  @media (max-width: 620px) {
+    /* Sur mobile, l'infobox répète le titre/les infos déjà dans l'article :
+       on la masque et on affiche un lien wiki compact à la place. */
+    .wiki-ib { display: none; }
+    .wa-wiki-m { display: inline-block; margin-top: 6px; }
+  }
   .s16, .easter, .mission-card, .wiki-article { scroll-margin-top: 12px; }
   /* Easter eggs */
   .easter { background: linear-gradient(135deg, color-mix(in srgb, var(--c2) 12%, var(--card)), color-mix(in srgb, var(--c3) 8%, var(--card)));
@@ -4961,6 +4992,7 @@ function missionArticleHtml(m, cats) {
     ${steps ? `<h4 class="wa-h">🧭 ${esc(T().mi_steps)}</h4><ol class="mi-steps">${steps}</ol>` : ""}
     ${rewards ? `<h4 class="wa-h">🎁 ${esc(T().mi_rewards)}</h4><p class="mi-rewards">${esc(rewards)}</p>` : ""}
     ${hidden ? `<div class="mi-hidden"><div class="mi-sec-t">🔍 ${esc(T().mi_hidden)}</div><ul>${hidden}</ul></div>` : ""}
+    ${m.wiki ? `<a class="mi-wiki wa-wiki-m" href="${esc(safeUrl(m.wiki))}" target="_blank" rel="noopener">${esc(T().mi_wiki)}</a>` : ""}
     <div class="wa-clear"></div>
   </article>`;
 }

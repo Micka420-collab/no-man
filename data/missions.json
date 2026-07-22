@@ -1,5 +1,5 @@
 {
-  "note": "Wiki des missions et de la trame de No Man's Sky : grandes quêtes d'histoire, quêtes annexes majeures et missions de l'Anomalie. Détails vérifiés sur le wiki No Man's Sky (Fandom/Miraheze) et les forums communautaires (Steam, Reddit). Aucune mission « Icarus » n'existe dans le jeu — le véritable fil rouge caché des missions est le nombre 16 (voir « Le secret du 16 »). Le contenu procédural (systèmes, PNJ, objets aléatoires) varie d'une partie à l'autre : les étapes ci-dessous décrivent le déroulé, pas un lieu précis.",
+  "note": "Wiki des missions et de la trame de No Man's Sky : grandes quêtes d'histoire, quêtes annexes majeures et missions de l'Anomalie. Détails vérifiés sur le wiki No Man's Sky (Fandom/Miraheze) et les forums communautaires (Steam, Reddit). Le fil rouge caché du jeu est le nombre 16 (voir « Le secret du 16 »), et l'univers regorge de secrets et de clins d'œil pop-culture (voir « Easter eggs & secrets »). Le contenu procédural (systèmes, PNJ, objets aléatoires) varie d'une partie à l'autre : les étapes décrivent le déroulé, pas un lieu précis.",
   "secret16": {
     "icon": "16",
     "title_fr": "Le secret du 16",
@@ -25,6 +25,31 @@
       {"label": "Wiki NMS — Telamon", "url": "https://nomanssky.fandom.com/wiki/Telamon"},
       {"label": "Wiki NMS — The Atlas", "url": "https://nomanssky.fandom.com/wiki/The_Atlas"},
       {"label": "Waking Titan (Game Detectives)", "url": "https://wiki.gamedetectives.net/index.php?title=Waking_Titan"}
+    ]
+  },
+  "easter": {
+    "icon": "🥚",
+    "title_fr": "Easter eggs & secrets",
+    "title_en": "Easter eggs & secrets",
+    "lead_fr": "Au-delà du 16, l'univers de No Man's Sky est truffé de clins d'œil à la pop-culture et de secrets de lore glissés dans les dialogues, les monolithes et les tombes. Voici les plus célèbres, vérifiés par la communauté.",
+    "lead_en": "Beyond 16, the No Man's Sky universe is packed with pop-culture nods and lore secrets tucked into dialogue, monoliths and graves. Here are the most famous, community-verified ones.",
+    "refs": [
+      {"fr": "Un monolithe Korvax cumule quatre références en un seul texte : lu à l'endroit, il évoque Star Wars (« Il y a bien longtemps, dans une galaxie lointaine, très lointaine »), Star Trek (« aller audacieusement là où personne n'est allé »), Le Guide du voyageur galactique (« nous avons pris nos serviettes, levé le pouce et fait du stop ») et 2001 : l'Odyssée de l'espace (le monolithe lui-même).", "en": "One Korvax monolith stacks four references in a single text: it evokes Star Wars (\"A long time ago, in a galaxy far, far away\"), Star Trek (\"to boldly go where no one has gone\"), The Hitchhiker's Guide to the Galaxy (\"we took up our towels, held our thumbs aloft and hitchhiked\") and 2001: A Space Odyssey (the monolith itself)."},
+      {"fr": "Le niveau de prime/menace le plus bas s'appelle « Presque inoffensif » (Mostly Harmless) — c'est la fiche de la Terre dans Le Guide du voyageur galactique.", "en": "The lowest bounty/threat level is called \"Mostly Harmless\" — Earth's entry in The Hitchhiker's Guide to the Galaxy."},
+      {"fr": "Les portails que l'on active avec des glyphes sont un clin d'œil aux Portes des étoiles de Stargate.", "en": "The glyph-dialled portals are a nod to the Stargates from the Stargate franchise."},
+      {"fr": "Une réplique d'un Voyageur reprend « Khajiit a de la marchandise, si tu as de quoi payer » — la fameuse phrase des Khajiit dans The Elder Scrolls V: Skyrim.", "en": "A Traveller line reuses \"Khajiit has wares, if you have coin\" — the famous Khajiit line from The Elder Scrolls V: Skyrim."},
+      {"fr": "Un objet cylindrique orné de trois cercles verts évoque fortement R2-D2 de Star Wars.", "en": "A cylindrical object with three green circles strongly evokes R2-D2 from Star Wars."}
+    ],
+    "lore": [
+      {"fr": "Nada et Polo, les deux PNJ de l'Anomalie, se souviennent de « la simulation » et du multivers. Nada a fui un univers où les Sentinelles avaient exterminé toute vie ; son Polo y est mort en promettant de le retrouver dans un autre univers — ce qui explique leurs retrouvailles à l'Anomalie.", "en": "Nada and Polo, the two Anomaly NPCs, remember 'the simulation' and the multiverse. Nada fled a universe where the Sentinels wiped out all life; that universe's Polo died promising to meet again in another one — which is why they are reunited at the Anomaly."},
+      {"fr": "Les Voyageurs qui te guident vers une tombe sont déjà morts : tu déterres leur propre sépulture. Les PNJ Voyageurs sont des hologrammes, pas des corps.", "en": "The Travellers who guide you to a grave are already dead: you dig up their own resting place. Traveller NPCs are holograms, not bodies."},
+      {"fr": "Quand l'Atlas se meurt, les frontières entre réalités s'effondrent : c'est pour ça que les Voyageurs peuvent se voir d'un passé, d'un futur ou d'un univers parallèle, sous forme d'hologrammes ou de glitchs (les « Défaillances de la frontière »).", "en": "As the Atlas dies, the boundaries between realities collapse: that is why Travellers can see one another from the past, future or an alternate universe, as holograms or glitches (the 'Boundary Failures')."},
+      {"fr": "Le nombre de planètes annoncé, 18 446 744 073 709 551 616, est exactement 16^16 (soit 2^64, la limite d'un entier 64 bits) — encore le 16.", "en": "The advertised planet count, 18,446,744,073,709,551,616, is exactly 16^16 (i.e. 2^64, the 64-bit integer limit) — 16 again."}
+    ],
+    "sources": [
+      {"label": "Wiki NMS — Easter Eggs", "url": "https://nomanssky.fandom.com/wiki/Easter_Eggs"},
+      {"label": "Wiki NMS — Traveller", "url": "https://nomanssky.fandom.com/wiki/Traveller"},
+      {"label": "TheGamer — Nada, Polo & the Anomaly", "url": "https://www.thegamer.com/no-mans-sky-nada-polo-anomaly-explained/"}
     ]
   },
   "categories": {

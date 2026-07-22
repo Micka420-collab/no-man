@@ -387,6 +387,70 @@
   .tl-item .d { font-size: 0.78rem; color: var(--ink-dim); margin-left: 8px; }
   .tl-item p { font-size: 0.87rem; color: var(--ink-dim); margin-top: 4px; max-width: 740px; }
 
+  /* ------- Présence en direct ------- */
+  .live-box {
+    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius);
+    padding: 18px 20px; margin-bottom: 18px;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  }
+  .live-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+  .live-dot { width: 9px; height: 9px; border-radius: 50%; background: #ff4d4d; box-shadow: 0 0 8px #ff4d4d; animation: pulse 1.6s infinite; }
+  .live-head h2 { font: 700 0.82rem var(--font-head); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+  .live-head .live-when { margin-left: auto; font-size: 0.76rem; color: var(--ink-dim); }
+  .live-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .live-stat { text-align: center; padding: 12px 8px; border-radius: var(--radius-sm); background: var(--card-strong); border: 1px solid var(--stroke); }
+  .live-stat .lv { font: 700 1.7rem var(--font-head); color: var(--c2); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  [data-theme="light"] .live-stat .lv { color: #0a7c63; }
+  .live-stat .lv.now { color: #ff6b5c; }
+  [data-theme="light"] .live-stat .lv.now { color: #c2372a; }
+  .live-stat .ll { font-size: 0.74rem; color: var(--ink-dim); margin-top: 3px; }
+  .live-gauge { height: 7px; background: var(--track); border-radius: 999px; overflow: hidden; margin: 2px 4px 14px; }
+  .live-gauge > div { height: 100%; background: linear-gradient(90deg, #ff6b5c, var(--c3), var(--c2)); border-radius: 999px; transition: width 0.8s; }
+  .live-feed-title { font: 600 0.78rem var(--font-head); letter-spacing: 0.12em; text-transform: uppercase; color: var(--c3); margin-bottom: 10px; }
+  [data-theme="light"] .live-feed-title { color: #9a6b00; }
+  .live-feed { display: flex; flex-direction: column; gap: 2px; max-height: 340px; overflow-y: auto; scrollbar-width: thin; }
+  .live-item {
+    display: flex; align-items: flex-start; gap: 11px; padding: 9px 8px; border-radius: 9px;
+    transition: background 0.15s; border-bottom: 1px solid var(--stroke);
+  }
+  .live-item:last-child { border-bottom: none; }
+  .live-item:hover { background: var(--card-strong); }
+  .live-item .flag { font-size: 1.05rem; flex-shrink: 0; margin-top: 1px; }
+  .live-item .li-body { flex: 1; min-width: 0; }
+  .live-item .li-body a { color: var(--ink); text-decoration: none; font-size: 0.88rem; font-weight: 500; display: block; overflow: hidden; text-overflow: ellipsis; }
+  .live-item .li-body a:hover { color: var(--c2); }
+  .live-item .li-meta { font-size: 0.74rem; color: var(--ink-dim); margin-top: 2px; }
+  .live-item .li-meta b { color: var(--ink); font-weight: 600; }
+  .live-item .li-when { font-size: 0.72rem; color: var(--ink-dim); white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+  .live-communities { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--stroke); font-size: 0.8rem; color: var(--ink-dim); }
+  .live-communities a { color: var(--ink); text-decoration: none; padding: 5px 12px; border: 1px solid var(--stroke); border-radius: 999px; transition: border-color 0.2s; }
+  .live-communities a:hover { border-color: var(--stroke-hi); color: var(--c2); }
+
+  /* ------- Base de données / catalogue ------- */
+  .cat-count { font-size: 0.82rem; color: var(--ink-dim); margin-bottom: 12px; }
+  .cat-count b { color: var(--c2); font-family: var(--font-head); }
+  [data-theme="light"] .cat-count b { color: #0a7c63; }
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .cat-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius-sm);
+    padding: 12px 14px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .cat-item:hover { border-color: var(--stroke-hi); transform: translateY(-2px); }
+  .cat-item img { width: 46px; height: 46px; border-radius: 9px; background: var(--track); object-fit: contain; flex-shrink: 0; }
+  .cat-item .ci-body { flex: 1; min-width: 0; }
+  .cat-item .ci-name { font: 600 0.92rem var(--font-head); }
+  .cat-item .ci-group { font-size: 0.74rem; color: var(--ink-dim); margin: 1px 0 4px; }
+  .cat-item .ci-desc { font-size: 0.78rem; color: var(--ink-dim); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .cat-item .ci-val { font: 600 0.82rem var(--font-head); color: var(--c3); margin-top: 5px; white-space: nowrap; }
+  [data-theme="light"] .cat-item .ci-val { color: #9a6b00; }
+  .cat-more-btn {
+    background: transparent; border: 1px solid var(--stroke); color: var(--ink-dim);
+    padding: 9px 22px; border-radius: 999px; cursor: pointer; font: 500 0.85rem var(--font-body);
+  }
+  .cat-more-btn:hover { color: var(--ink); border-color: var(--stroke-hi); }
+
   /* ------- Bulletin de guerre ------- */
   .war-box {
     position: relative; overflow: hidden;
@@ -622,6 +686,7 @@
     <button role="tab" id="tab-progression" aria-controls="panel-progression" data-tab="progression" aria-selected="false" tabindex="-1">🧭 <span data-i18n="tab_progress">Ma progression</span></button>
     <button role="tab" id="tab-galaxies" aria-controls="panel-galaxies" data-tab="galaxies" aria-selected="false" tabindex="-1">🗺️ <span data-i18n="tab_galaxies">Galaxies</span></button>
     <button role="tab" id="tab-marche" aria-controls="panel-marche" data-tab="marche" aria-selected="false" tabindex="-1">💎 <span data-i18n="tab_market">Marché</span></button>
+    <button role="tab" id="tab-catalogue" aria-controls="panel-catalogue" data-tab="catalogue" aria-selected="false" tabindex="-1">📖 <span data-i18n="tab_catalogue">Base de données</span></button>
     <button role="tab" id="tab-actus" aria-controls="panel-actus" data-tab="actus" aria-selected="false" tabindex="-1">📰 <span data-i18n="tab_news">Actualités</span><span class="notif" id="notif-actus" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-communaute" aria-controls="panel-communaute" data-tab="communaute" aria-selected="false" tabindex="-1">👥 <span data-i18n="tab_community">Communauté</span><span class="notif" id="notif-communaute" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-succes" aria-controls="panel-succes" data-tab="succes" aria-selected="false" tabindex="-1">🏆 <span data-i18n="tab_ach">Succès</span></button>
@@ -632,6 +697,7 @@
   <main id="main">
     <!-- Vue d'ensemble -->
     <section class="panel active" id="panel-apercu" role="tabpanel" aria-labelledby="tab-apercu">
+      <div id="live-box"></div>
       <div id="war-box"></div>
       <div id="challenge-box"></div>
       <div id="event-banner"></div>
@@ -726,6 +792,18 @@
       <div id="mk-list"></div>
     </section>
 
+    <!-- Base de données -->
+    <section class="panel" id="panel-catalogue" role="tabpanel" aria-labelledby="tab-catalogue">
+      <div class="note" data-i18n="cat_note">La base de données du jeu : près de 2 000 objets — matériaux, technologies, modules, curiosités, cuisine… Cherche n'importe quoi et découvre sa valeur, son groupe et sa description.</div>
+      <div class="controls">
+        <div class="subtabs" id="cat-chips"></div>
+        <div class="searchbox" style="margin-left:auto"><input type="search" id="search-catalogue" data-i18n-ph="cat_search_ph" placeholder="Chercher un objet…" data-i18n-aria="aria_search_cat" aria-label="Chercher un objet dans la base de données"></div>
+      </div>
+      <div id="cat-count" class="cat-count"></div>
+      <div id="cat-list"></div>
+      <div id="cat-more" style="text-align:center;margin-top:14px"></div>
+    </section>
+
     <!-- Actualités -->
     <section class="panel" id="panel-actus" role="tabpanel" aria-labelledby="tab-actus">
       <div class="controls">
@@ -745,6 +823,7 @@
           <button data-sub="top_week" class="active">🏆 <span data-i18n="sub_top">Top de la semaine</span></button>
           <button data-sub="hot">🔥 <span data-i18n="sub_hot">Tendances</span></button>
           <button data-sub="coordinates">📍 <span data-i18n="sub_coords">Coordonnées partagées</span></button>
+          <button data-sub="french">🇫🇷 <span data-i18n="sub_french">Communauté FR</span></button>
         </div>
         <div class="searchbox"><input type="search" id="search-communaute" data-i18n-ph="search" placeholder="Rechercher…" data-i18n-aria="aria_search_comm" aria-label="Rechercher dans la communauté"></div>
       </div>
@@ -856,7 +935,22 @@ const I18N = {
     aria_search_ach: "Rechercher un succès", aria_search_videos: "Rechercher une vidéo",
     aria_search_gal: "Rechercher une galaxie", aria_gal_map: "Carte en spirale des 255 galaxies",
     spark_aria: (min, max, last) => `Historique des joueurs en ligne : minimum ${min}, maximum ${max}, dernier relevé ${last}`,
-    tab_galaxies: "Galaxies", tab_market: "Marché",
+    tab_galaxies: "Galaxies", tab_market: "Marché", tab_catalogue: "Base de données",
+    live_title: "En direct",
+    live_now: "Voyageurs en jeu", live_24h: "Pic sur 24 h", live_all: "Record absolu",
+    live_of_peak: p => `${p}% du pic des dernières 24 h`,
+    live_feed_title: "Activité de la communauté en direct",
+    live_communities: "Communautés :",
+    live_posted: "a publié", live_video: "a mis en ligne", live_news: "a annoncé",
+    live_src: { fr: "r/NoMansSkyFrance", en: "r/NoMansSkyTheGame", coords: "r/NMSCoordinateExchange", yt: "YouTube", off: "Hello Games" },
+    cat_note: "La base de données du jeu : près de 2 000 objets — matériaux, technologies, modules, curiosités, cuisine… Cherche n'importe quoi et découvre sa valeur, son groupe et sa description.",
+    cat_search_ph: "Chercher un objet…",
+    cat_all: "Tout", cat_loading: "Chargement de la base de données…",
+    cat_cats: { raw: "Matériaux", products: "Produits", tech: "Technologies", modules: "Modules", built: "Tech. construites", trade: "Marchandises", curiosities: "Curiosités", cooking: "Cuisine", others: "Divers" },
+    cat_count: (shown, total) => `<b>${shown}</b> objet(s) affiché(s) sur ${total}`,
+    cat_more: "Afficher plus",
+    aria_search_cat: "Chercher un objet dans la base de données",
+    sub_french: "Communauté FR",
     gal_note: "Les 255 galaxies de l'univers, dans l'ordre du voyage vers le centre. Clique sur une galaxie pour la découvrir, et marque ta position !",
     gal_types: { all: "Toutes", norm: "Normale", lush: "Luxuriante", harsh: "Hostile", empty: "Vide" },
     gal_type_of: { norm: "🌀 Galaxie normale", lush: "🌿 Galaxie luxuriante", harsh: "🔥 Galaxie hostile", empty: "🌑 Galaxie vide" },
@@ -952,7 +1046,22 @@ const I18N = {
     aria_search_ach: "Search achievements", aria_search_videos: "Search videos",
     aria_search_gal: "Search galaxies", aria_gal_map: "Spiral map of the 255 galaxies",
     spark_aria: (min, max, last) => `Players online history: minimum ${min}, maximum ${max}, latest reading ${last}`,
-    tab_galaxies: "Galaxies", tab_market: "Market",
+    tab_galaxies: "Galaxies", tab_market: "Market", tab_catalogue: "Database",
+    live_title: "Live",
+    live_now: "Travellers in game", live_24h: "24 h peak", live_all: "All-time peak",
+    live_of_peak: p => `${p}% of the last 24 h peak`,
+    live_feed_title: "Live community activity",
+    live_communities: "Communities:",
+    live_posted: "posted", live_video: "uploaded", live_news: "announced",
+    live_src: { fr: "r/NoMansSkyFrance", en: "r/NoMansSkyTheGame", coords: "r/NMSCoordinateExchange", yt: "YouTube", off: "Hello Games" },
+    cat_note: "The game database: nearly 2,000 items — materials, technologies, modules, curiosities, cooking… Search anything and find its value, group and description.",
+    cat_search_ph: "Search an item…",
+    cat_all: "All", cat_loading: "Loading the database…",
+    cat_cats: { raw: "Materials", products: "Products", tech: "Technologies", modules: "Modules", built: "Built tech", trade: "Trade goods", curiosities: "Curiosities", cooking: "Cooking", others: "Others" },
+    cat_count: (shown, total) => `<b>${shown}</b> item(s) shown of ${total}`,
+    cat_more: "Show more",
+    aria_search_cat: "Search an item in the database",
+    sub_french: "FR community",
     gal_note: "The 255 galaxies of the universe, in centre-warp order. Click a galaxy to explore it, and mark your position!",
     gal_types: { all: "All", norm: "Norm", lush: "Lush", harsh: "Harsh", empty: "Empty" },
     gal_type_of: { norm: "🌀 Norm galaxy", lush: "🌿 Lush galaxy", harsh: "🔥 Harsh galaxy", empty: "🌑 Empty galaxy" },
@@ -991,8 +1100,8 @@ const LS_TEAM = "nms-team";
 const LS_CHALLENGE = "nms-challenge-v1";
 const LS_LAST_VISIT = "nms-last-visit";
 const D = {};
-const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary" };
-const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "" };
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all" };
+const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "", catalogue: "" };
 let lang = localStorage.getItem(LS_LANG);
 if (lang !== "fr" && lang !== "en") {
   lang = (navigator.language || "fr").toLowerCase().startsWith("fr") ? "fr" : "en";
@@ -1130,6 +1239,7 @@ function activateTab(b, focus) {
   b.scrollIntoView({ inline: "nearest", block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
   if (b.dataset.tab === "apercu") drawSparkline();
   if (b.dataset.tab === "galaxies") { galResize(); galStartLoop(); } else galStopLoop();
+  if (b.dataset.tab === "catalogue") ensureCatalogue();
 }
 tabButtons.forEach(b => b.addEventListener("click", () => activateTab(b, false)));
 document.querySelector("nav.tabs").addEventListener("keydown", e => {
@@ -1163,6 +1273,18 @@ document.querySelectorAll(".subtabs[data-group]").forEach(group => {
     query[k] = e.target.value.trim().toLowerCase();
     renderAll();
   });
+});
+document.getElementById("search-catalogue").addEventListener("input", e => {
+  query.catalogue = e.target.value.trim().toLowerCase();
+  catLimit = 60;
+  renderCatalogue();
+});
+document.getElementById("cat-chips").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b || !b.dataset.sub) return;
+  sub.catcat = b.dataset.sub;
+  catLimit = 60;
+  renderCatalogue();
 });
 
 /* ============================== Progression ============================== */
@@ -1639,7 +1761,8 @@ function renderCommunity() {
   const list = document.getElementById("community-list");
   const q = query.communaute;
   const key = sub.communaute;
-  const badge = key === "coordinates" ? "r/NMSCoordinateExchange" : "r/NoMansSkyTheGame";
+  const badge = key === "coordinates" ? "r/NMSCoordinateExchange"
+    : key === "french" ? "r/NoMansSkyFrance" : "r/NoMansSkyTheGame";
   const items = (D.community && D.community[key] || []).filter(p => matches(q, p.title, p.author));
   list.innerHTML = items.length ? items.map(p => newsCard(p, { txt: badge })).join("") : emptyMsg(!!q);
 }
@@ -2285,9 +2408,169 @@ function renderUpdated() {
     : "";
 }
 
+/* ============================== Présence en direct ============================== */
+// Anime un nombre de sa valeur actuelle vers sa cible (effet compteur).
+function animateCount(el, to) {
+  if (reduceMotion) { el.textContent = fmtNum(to); return; }
+  const from = parseInt((el.dataset.v || "0"), 10) || 0;
+  if (from === to) { el.textContent = fmtNum(to); return; }
+  el.dataset.v = String(to);
+  const t0 = performance.now();
+  const step = t => {
+    const k = Math.min(1, (t - t0) / 700);
+    const e = 1 - Math.pow(1 - k, 3);
+    el.textContent = fmtNum(Math.round(from + (to - from) * e));
+    if (k < 1 && el.dataset.v === String(to)) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// Construit le flux d'activité en fusionnant toutes les sources réelles.
+function buildLiveFeed() {
+  const feed = [];
+  const push = (arr, lang, kind, author) => (arr || []).forEach(x => {
+    const t = new Date(x.date).getTime();
+    if (!isNaN(t)) feed.push({ ...x, _t: t, _lang: lang, _kind: kind, _author: author ? x.author : x.channel || x.author });
+  });
+  push(D.community && D.community.hot, "en", "post", true);
+  push(D.community && D.community.top_week, "en", "post", true);
+  push(D.community && D.community.french, "fr", "post", true);
+  push(D.community && D.community.coordinates, "coords", "post", true);
+  push(D.videos && D.videos.items, "yt", "video", false);
+  push(D.official && D.official.items, "off", "news", false);
+  // on ne garde que l'activité réellement récente (45 derniers jours) pour
+  // que le flux reste « en direct », puis dédoublonnage et tri décroissant.
+  const cutoff = Date.now() - 45 * 86400000;
+  const seen = new Set();
+  return feed.filter(x => x._t >= cutoff && x.url && !seen.has(x.url) && seen.add(x.url))
+    .sort((a, b) => b._t - a._t).slice(0, 14);
+}
+
+const LIVE_FLAG = { en: "🇬🇧", fr: "🇫🇷", coords: "🧭", yt: "🎬", off: "🛸" };
+function renderLive() {
+  const box = document.getElementById("live-box");
+  const st = D.stats;
+  if (!st || !st.player_count) { box.innerHTML = ""; return; }
+  const now = num(st.player_count);
+  const p24 = num(st.peak_24h) || now;
+  const pall = num(st.peak_all);
+  const pct = p24 ? Math.min(100, Math.round(now / p24 * 100)) : 0;
+  const feed = buildLiveFeed();
+
+  const feedHtml = feed.map(it => {
+    const flag = LIVE_FLAG[it._lang] || "🌐";
+    const verb = it._kind === "video" ? T().live_video : it._kind === "news" ? T().live_news : T().live_posted;
+    const src = T().live_src[it._lang] || "";
+    const who = it._author || (it._kind === "news" ? "Hello Games" : "");
+    return `<div class="live-item">
+      <span class="flag" aria-hidden="true">${flag}</span>
+      <div class="li-body">
+        <a href="${esc(safeUrl(it.url))}" target="_blank" rel="noopener">${esc(it.title)}</a>
+        <div class="li-meta">${who ? `<b>${esc(who)}</b> ` : ""}${verb} · ${esc(src)}</div>
+      </div>
+      <span class="li-when" data-live-t="${it._t}">${esc(relTime(it.date))}</span>
+    </div>`;
+  }).join("");
+
+  box.innerHTML = `<div class="live-box">
+    <div class="live-head">
+      <span class="live-dot" aria-hidden="true"></span>
+      <h2>${T().live_title}</h2>
+      <span class="live-when">${T().updated} ${esc(relTime(st.updated_at))}</span>
+    </div>
+    <div class="live-stats">
+      <div class="live-stat"><div class="lv now" id="live-now">${fmtNum(now)}</div><div class="ll">${T().live_now}</div></div>
+      <div class="live-stat"><div class="lv">${fmtNum(p24)}</div><div class="ll">${T().live_24h}</div></div>
+      ${pall ? `<div class="live-stat"><div class="lv">${fmtNum(pall)}</div><div class="ll">${T().live_all}</div></div>` : ""}
+    </div>
+    <div class="live-gauge" title="${T().live_of_peak(pct)}"><div style="width:${pct}%"></div></div>
+    <div class="live-feed-title">${T().live_feed_title}</div>
+    <div class="live-feed">${feedHtml || `<div class="empty">${T().empty_data}</div>`}</div>
+    <div class="live-communities">
+      <span>${T().live_communities}</span>
+      <a href="https://www.reddit.com/r/NoMansSkyTheGame/" target="_blank" rel="noopener">🇬🇧 r/NoMansSkyTheGame</a>
+      <a href="https://www.reddit.com/r/NoMansSkyFrance/" target="_blank" rel="noopener">🇫🇷 r/NoMansSkyFrance</a>
+    </div>
+  </div>`;
+
+  const nowEl = document.getElementById("live-now");
+  if (nowEl) { const prev = nowEl.dataset.v; nowEl.dataset.v = prev || "0"; animateCount(nowEl, now); }
+}
+
+// Rafraîchit les horodatages relatifs du flux toutes les 30 s.
+setInterval(() => {
+  document.querySelectorAll("[data-live-t]").forEach(el => {
+    const t = +el.dataset.liveT;
+    if (t) el.textContent = relTime(new Date(t).toISOString());
+  });
+}, 30000);
+
+/* ============================== Base de données / catalogue ============================== */
+let catLimit = 60;
+async function ensureCatalogue() {
+  if (D.catalogue || D._catLoading) return;
+  D._catLoading = true;
+  D.catalogue = await loadJSON("data/catalogue.json");
+  D._catLoading = false;
+  renderCatalogue();
+}
+function renderCatChips() {
+  const box = document.getElementById("cat-chips");
+  if (!D.catalogue) return;
+  const cats = Object.keys(D.catalogue.categories);
+  keepFocus(box, () => {
+    box.innerHTML = [`<button data-sub="all" aria-pressed="${sub.catcat === "all"}" class="${sub.catcat === "all" ? "active" : ""}">${T().cat_all}</button>`]
+      .concat(cats.map(k =>
+        `<button data-sub="${k}" aria-pressed="${sub.catcat === k}" class="${sub.catcat === k ? "active" : ""}">${D.catalogue.categories[k].icon} ${T().cat_cats[k] || k}</button>`))
+      .join("");
+  });
+}
+function renderCatalogue() {
+  const list = document.getElementById("cat-list");
+  const countEl = document.getElementById("cat-count");
+  const moreEl = document.getElementById("cat-more");
+  if (!D.catalogue) {
+    list.innerHTML = `<div class="empty">${T().cat_loading}</div>`;
+    countEl.innerHTML = ""; moreEl.innerHTML = "";
+    ensureCatalogue();
+    return;
+  }
+  renderCatChips();
+  const catcat = sub.catcat || "all";
+  const q = (query.catalogue || "").toLowerCase();
+  let items = [];
+  const cats = D.catalogue.categories;
+  const keys = catcat === "all" ? Object.keys(cats) : [catcat];
+  for (const k of keys) if (cats[k]) for (const it of cats[k].items) items.push({ ...it, _cat: k });
+  if (q) items = items.filter(it => matches(q, it.name_fr, it.name_en, it.group_fr, it.group_en, it.desc_fr, it.desc_en));
+  else items.sort((a, b) => num(b.value) - num(a.value));
+
+  const total = items.length;
+  const shown = items.slice(0, catLimit);
+  countEl.innerHTML = T().cat_count(shown.length, total);
+  list.innerHTML = shown.length ? `<div class="cat-grid">` + shown.map(it => {
+    const val = num(it.value);
+    const cur = T().mk_currency[it.currency] || it.currency;
+    return `<div class="cat-item">
+      ${it.icon ? `<img src="${esc(safeUrl(it.icon))}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : "<span></span>"}
+      <div class="ci-body">
+        <div class="ci-name">${esc(lang === "en" ? it.name_en : it.name_fr)}</div>
+        <div class="ci-group">${esc(lang === "en" ? it.group_en : it.group_fr)}</div>
+        <div class="ci-desc">${esc(lang === "en" ? it.desc_en : it.desc_fr)}</div>
+        ${val ? `<div class="ci-val">💰 ${fmtNum(val)} ${esc(cur)}</div>` : ""}
+      </div>
+    </div>`;
+  }).join("") + `</div>` : emptyMsg(!!q);
+  moreEl.innerHTML = total > shown.length
+    ? `<button class="cat-more-btn" id="cat-more-btn">${T().cat_more} (${total - shown.length})</button>` : "";
+  const mb = document.getElementById("cat-more-btn");
+  if (mb) mb.addEventListener("click", () => { catLimit += 60; renderCatalogue(); });
+}
+
 function renderAll() {
   renderUpdated();
   renderChips();
+  renderLive();
   renderWar();
   renderChallenge();
   renderFresh();
@@ -2300,6 +2583,7 @@ function renderAll() {
   renderTimeline();
   renderGalaxies();
   renderMarket();
+  if (D.catalogue) renderCatalogue();
 }
 
 /* ============================== Init ============================== */

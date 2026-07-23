@@ -106,6 +106,27 @@
     background: var(--c2); color: #04251d; padding: 8px 16px; border-radius: 8px; font-weight: 600;
   }
   .skip-link:focus { left: 8px; }
+  /* Barre de progression de défilement (haut de page) */
+  #scroll-prog {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 60; pointer-events: none;
+    background: linear-gradient(90deg, var(--c1), var(--c3) 55%, var(--c2));
+    box-shadow: 0 0 10px color-mix(in srgb, var(--c1) 55%, transparent);
+    transition: width 0.1s linear;
+  }
+  /* Bouton « retour en haut » */
+  #to-top {
+    position: fixed; right: 18px; bottom: 22px; z-index: 55;
+    width: 46px; height: 46px; border-radius: 50%; cursor: pointer; border: none;
+    background: linear-gradient(145deg, var(--c1), #ff8a3d); color: #fff; font-size: 1.35rem; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(255, 92, 73, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    opacity: 0; transform: translateY(12px) scale(0.9); pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  #to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+  #to-top:hover.show { transform: translateY(-2px); }
+  #to-top:focus-visible { outline: 2px solid var(--c2); outline-offset: 3px; }
+  @media (max-width: 760px) { #to-top { right: 14px; bottom: 78px; width: 42px; height: 42px; } }
   .sr-only {
     position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
     overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
@@ -742,6 +763,11 @@
   .wn-sub { padding-left: 14px; font-size: 0.8rem; }
   .wn-star { color: var(--c1); font-weight: 600; }
   [data-theme="light"] .wn-star { color: #c2372a; }
+  /* Scrollspy : la section en cours de lecture est surlignée dans le sommaire */
+  .wn-link.wn-active, .wn-gt-link.wn-active {
+    color: var(--ink); background: color-mix(in srgb, var(--c1) 15%, transparent);
+    border-left: 2px solid var(--c1);
+  }
   .wiki-main { min-width: 0; }
   .wiki-main > .flash, .mission-card.flash, .s16.flash, .easter.flash { animation: expFlash 1.4s ease; }
   .wiki-sec-h { font: 800 1.4rem var(--font-head); margin: 30px 0 14px; padding-bottom: 8px; display: flex; align-items: center; gap: 10px;
@@ -1618,6 +1644,10 @@
   <button id="bn-more" aria-haspopup="dialog" aria-expanded="false"><span class="bn-i" aria-hidden="true">☰</span><span class="bn-l" data-i18n="more_plus">Plus</span></button>
 </nav>
 
+<!-- Confort de lecture : progression de défilement + retour en haut -->
+<div id="scroll-prog" aria-hidden="true"></div>
+<button id="to-top" type="button" data-i18n-aria="to_top" aria-label="Retour en haut">↑</button>
+
 <!-- Feuille « Plus » : liste complète des sections (mobile) -->
 <div id="more-sheet" class="more-sheet" hidden>
   <div class="more-panel" role="dialog" aria-modal="true" aria-labelledby="more-title">
@@ -1656,6 +1686,7 @@ const I18N = {
     guide_note: "Nouveau dans No Man's Sky ? Ce guide te fait passer des premières minutes à tes premiers grands objectifs, étape par étape.",
     guide_step: "Étape",
     more_title: "Toutes les sections", more_close: "Fermer", more_plus: "Plus",
+    to_top: "Retour en haut",
     share: "Partager", share_copied: "Lien copié !", share_copy_manual: "Copie ce lien :",
     tab_favs: "Favoris", fav: "Favori", fav_added: "★ Ajouté aux favoris", fav_removed: "Retiré des favoris",
     fav_remove: "Retirer", fav_empty: "Aucun favori pour l'instant. Ouvre une fiche et clique sur l'étoile ☆ pour l'ajouter ici.",
@@ -1860,6 +1891,7 @@ const I18N = {
     guide_note: "New to No Man's Sky? This guide takes you from your first minutes to your first big goals, step by step.",
     guide_step: "Step",
     more_title: "All sections", more_close: "Close", more_plus: "More",
+    to_top: "Back to top",
     share: "Share", share_copied: "Link copied!", share_copy_manual: "Copy this link:",
     tab_favs: "Favorites", fav: "Favorite", fav_added: "★ Added to favorites", fav_removed: "Removed from favorites",
     fav_remove: "Remove", fav_empty: "No favorites yet. Open a card and click the ☆ star to add it here.",
@@ -2225,6 +2257,7 @@ function activateTab(b, focus) {
   if (b.dataset.tab === "catalogue") ensureCatalogue();
   if (b.dataset.tab === "elements") ensureCatalogue();  // les éléments s'appuient sur le catalogue
   syncBottomNav(b.dataset.tab);
+  try { localStorage.setItem("nms-tab", b.dataset.tab); } catch { /* stockage indisponible */ }
 }
 const tabByName = name => tabButtons.find(x => x.dataset.tab === name);
 document.body.dataset.tab = "apercu";
@@ -5108,6 +5141,37 @@ function renderMissions() {
   // Recherche interne au wiki.
   const ws = document.getElementById("wiki-search");
   if (ws) ws.addEventListener("input", () => filterWiki(ws.value));
+  setupWikiSpy(wiki);
+}
+// Scrollspy : surligne dans le sommaire la section en cours de lecture.
+let wikiSpyObs = null;
+function setupWikiSpy(wiki) {
+  if (wikiSpyObs) { wikiSpyObs.disconnect(); wikiSpyObs = null; }
+  const nav = wiki.querySelector(".wiki-nav");
+  if (!nav || !("IntersectionObserver" in window)) return;
+  const links = [...nav.querySelectorAll("[data-sec]")];
+  const ids = links.map(l => l.dataset.sec).filter(id => document.getElementById(id));
+  if (!ids.length) return;
+  const seen = new Set();
+  let current = null;
+  const apply = () => {
+    const first = ids.find(id => seen.has(id));
+    if (!first || first === current) return;
+    current = first;
+    links.forEach(l => l.classList.toggle("wn-active", l.dataset.sec === first));
+    const active = links.find(l => l.dataset.sec === first);
+    // Garde le lien actif visible DANS le sommaire, sans jamais bouger la page.
+    if (active && nav.scrollHeight > nav.clientHeight) {
+      const nr = nav.getBoundingClientRect(), ar = active.getBoundingClientRect();
+      if (ar.top < nr.top + 8) nav.scrollTop -= (nr.top + 8 - ar.top);
+      else if (ar.bottom > nr.bottom - 8) nav.scrollTop += (ar.bottom - (nr.bottom - 8));
+    }
+  };
+  wikiSpyObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) seen.add(e.target.id); else seen.delete(e.target.id); });
+    apply();
+  }, { rootMargin: "-14% 0px -76% 0px", threshold: 0 });
+  ids.forEach(id => wikiSpyObs.observe(document.getElementById(id)));
 }
 // Filtre en direct le contenu du wiki (articles, secret, easter eggs).
 function filterWiki(q) {
@@ -5235,7 +5299,35 @@ function renderAll() {
 
   computeFresh();
   applyLang(lang);
+  // Restaure le dernier onglet visité (sauf si un lien direct est fourni).
+  if (!location.hash) {
+    try {
+      const last = localStorage.getItem("nms-tab");
+      const bt = last && last !== "apercu" ? tabByName(last) : null;
+      if (bt) { galIntroDone = true; activateTab(bt, false); }
+    } catch { /* ignore */ }
+  }
   applyDeepLink();
+})();
+
+/* ---------- Confort de lecture : progression + retour en haut ---------- */
+(function () {
+  const prog = document.getElementById("scroll-prog");
+  const toTop = document.getElementById("to-top");
+  let ticking = false;
+  function onScroll() {
+    const sc = window.scrollY || document.documentElement.scrollTop || 0;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (prog) prog.style.width = (max > 0 ? (sc / max) * 100 : 0) + "%";
+    if (toTop) toTop.classList.toggle("show", sc > 600);
+    ticking = false;
+  }
+  window.addEventListener("scroll", () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  if (toTop) toTop.addEventListener("click", () =>
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
+  onScroll();
 })();
 
 // Ouvre le contenu ciblé (lien direct ou favori) : type=id.

@@ -13,15 +13,20 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --font-head: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
     --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
-    --c1: #ff5c49;
-    --c2: #37e0b8;
-    --c3: #ffc857;
-    --c4: #7aa2ff;
+    --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    /* Palette « Atlas Terminal » : orange ambré + cyan, sur base spatiale. */
+    --c1: #ff7a1a;      /* accent principal (orange Atlas) */
+    --c1h: #ffb347;     /* reflet ambré */
+    --c2: #5fd0e0;      /* accent secondaire (cyan terminal) */
+    --c3: #ffc857;      /* or */
+    --c4: #7aa2ff;      /* bleu */
+    --cyan: #5fd0e0;
+    --side-w: 256px;    /* largeur de la barre latérale Atlas */
     --radius: 16px;
     --radius-sm: 10px;
   }
@@ -147,9 +152,10 @@
   /* ------- Héros ------- */
   .hero { text-align: center; padding: 34px 0 12px; }
   .hero .overline {
-    font: 600 0.78rem var(--font-head); letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--c2);
+    font: 700 0.72rem var(--font-mono); letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--c1); display: inline-flex; align-items: center; gap: 10px;
   }
+  .hero .overline::before { content: ""; width: 26px; height: 2px; background: linear-gradient(90deg, transparent, var(--c1)); display: inline-block; }
   .hero h1 {
     font: 700 clamp(2.3rem, 6vw, 4rem) var(--font-head);
     letter-spacing: 0.04em; line-height: 1.1; margin: 10px 0 8px; text-transform: uppercase;
@@ -205,15 +211,52 @@
     outline: 2px solid var(--c2); outline-offset: 2px;
   }
 
+  /* ------- Barre latérale « Atlas Terminal » ------- */
+  .atlas-side { display: none; }
+  @media (min-width: 980px) {
+    .atlas-side {
+      display: flex; flex-direction: column; position: fixed; left: 0; top: 0; z-index: 40;
+      width: var(--side-w); height: 100vh; overflow-y: auto; padding: 18px 14px 14px;
+      background: linear-gradient(180deg, rgba(8, 11, 22, 0.92), rgba(6, 8, 17, 0.82));
+      border-right: 1px solid var(--stroke); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    }
+    [data-theme="light"] .atlas-side { background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(240,243,252,0.82)); }
+    .wrap { padding-left: calc(var(--side-w) + 20px); max-width: 1560px; }
+    nav.tabs { display: none; }   /* la barre latérale remplace les onglets du haut */
+  }
+  .as-brand { display: flex; align-items: center; gap: 11px; padding: 4px 6px 16px; }
+  .as-logo { flex-shrink: 0; width: 38px; height: 38px; border-radius: 11px; transform: rotate(45deg);
+    background: linear-gradient(145deg, var(--c1), var(--c1h)); box-shadow: 0 0 18px rgba(255, 122, 26, 0.5);
+    display: flex; align-items: center; justify-content: center; }
+  .as-logo span { transform: rotate(-45deg); color: #1a0d02; font-size: 1.05rem; }
+  .as-name { font: 700 0.96rem var(--font-head); letter-spacing: 0.06em; }
+  .as-sub { font: 400 0.6rem var(--font-mono); color: var(--ink-dim); letter-spacing: 0.04em; text-transform: uppercase; margin-top: 2px; }
+  .as-group { margin: 4px 0; }
+  .as-gt { font: 700 0.6rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.16em; color: var(--ink-dim); padding: 9px 12px 5px; }
+  .as-item { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; cursor: pointer;
+    background: none; border: none; color: var(--ink-dim); font: 500 0.9rem var(--font-body);
+    padding: 9px 12px; border-radius: 10px; transition: color 0.15s, background 0.15s; }
+  .as-item .as-i { width: 1.25em; text-align: center; flex-shrink: 0; }
+  .as-item .as-t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .as-item:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 7%, transparent); }
+  .as-item.active { color: #1a0d02; font-weight: 600;
+    background: linear-gradient(100deg, var(--c1), var(--c1h));
+    box-shadow: 0 6px 20px rgba(255, 122, 26, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+  .as-item .notif { width: 7px; height: 7px; margin-left: auto; }
+  .as-foot { margin-top: auto; padding: 14px 12px 2px; border-top: 1px solid var(--stroke); }
+  .as-foot .af1 { font: 400 0.66rem var(--font-body); color: var(--ink-dim); line-height: 1.4; }
+  .as-foot .af2 { font: 700 0.56rem var(--font-mono); color: var(--ink-dim); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 4px; opacity: 0.7; }
+
   section.panel { display: none; animation: fadeUp 0.35s ease; }
   section.panel.active { display: block; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } }
 
   h2.sec {
-    font: 600 1.05rem var(--font-head); letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--c3); margin: 30px 0 14px; display: flex; align-items: center; gap: 10px;
+    font: 700 0.9rem var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--c1); margin: 30px 0 14px; display: flex; align-items: center; gap: 10px;
   }
-  h2.sec::after { content: ""; flex: 1; height: 1px; background: var(--stroke); }
+  h2.sec::before { content: "//"; color: var(--c1); opacity: 0.7; font-family: var(--font-mono); }
+  h2.sec::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, color-mix(in srgb, var(--c1) 30%, transparent), transparent); }
   h2.sec:first-child { margin-top: 0; }
 
   /* ------- Cartes ------- */
@@ -280,6 +323,14 @@
     background: linear-gradient(90deg, var(--c1), var(--c3), var(--c2));
     opacity: 0.7;
   }
+  /* Coin HUD « terminal » Atlas (bas-droite) */
+  .tile::after {
+    content: ""; position: absolute; right: 9px; bottom: 9px; width: 13px; height: 13px; pointer-events: none;
+    border-right: 2px solid color-mix(in srgb, var(--c1) 50%, transparent);
+    border-bottom: 2px solid color-mix(in srgb, var(--c1) 50%, transparent);
+    border-bottom-right-radius: 3px;
+  }
+  .tile .label { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.68rem; }
   .tile .big { font: 700 2rem var(--font-head); color: var(--c2); line-height: 1.15; }
   .tile .big.gold { color: var(--c3); }
   [data-theme="light"] .tile .big { color: #0a7c63; }
@@ -1331,6 +1382,7 @@
 <div class="aurora" aria-hidden="true"></div>
 <a class="skip-link" href="#main" data-i18n="skip">Aller au contenu</a>
 
+<aside class="atlas-side" id="atlas-side"></aside>
 <div class="wrap">
   <div class="topbar">
     <button class="icon-btn search-open" id="search-btn" data-i18n-aria="aria_search_global" aria-label="Recherche globale">🔍 <span data-i18n="search_all">Rechercher</span></button>
@@ -1679,7 +1731,7 @@
 const I18N = {
   fr: {
     skip: "Aller au contenu",
-    overline: "Centre de suivi communautaire",
+    overline: "Centre de commandement Atlas",
     tagline: "Tout l'univers du jeu en un coup d'œil : actus officielles, stats en direct, communauté, vidéos — et ta propre progression de Voyageur.",
     tab_overview: "Vue d'ensemble", tab_progress: "Ma progression", tab_news: "Actualités",
     tab_guide: "Guides",
@@ -1884,7 +1936,7 @@ const I18N = {
   },
   en: {
     skip: "Skip to content",
-    overline: "Community tracking hub",
+    overline: "Atlas command center",
     tagline: "The whole universe of the game at a glance: official news, live stats, community, videos — and your own Traveller's journey.",
     tab_overview: "Overview", tab_progress: "My journey", tab_news: "News",
     tab_guide: "Guides",
@@ -2182,6 +2234,7 @@ function applyLang(next) {
   document.title = T().title;
   renderAll();
   if (typeof syncBottomNav === "function") syncBottomNav(document.body.dataset.tab || "apercu");
+  if (typeof buildSidebar === "function") buildSidebar();
 }
 document.getElementById("lang-btn").addEventListener("click", () => applyLang(lang === "fr" ? "en" : "fr"));
 
@@ -2257,11 +2310,44 @@ function activateTab(b, focus) {
   if (b.dataset.tab === "catalogue") ensureCatalogue();
   if (b.dataset.tab === "elements") ensureCatalogue();  // les éléments s'appuient sur le catalogue
   syncBottomNav(b.dataset.tab);
+  syncSide(b.dataset.tab);
   try { localStorage.setItem("nms-tab", b.dataset.tab); } catch { /* stockage indisponible */ }
 }
 const tabByName = name => tabButtons.find(x => x.dataset.tab === name);
 document.body.dataset.tab = "apercu";
 tabButtons.forEach(b => b.addEventListener("click", () => activateTab(b, false)));
+
+/* ---------- Barre latérale « Atlas Terminal » (bureau) ---------- */
+const SIDE_GROUPS = [
+  { fr: "Explorer", en: "Explore", tabs: ["apercu", "progression", "favoris"] },
+  { fr: "Univers", en: "Universe", tabs: ["marche", "faune", "galaxies", "elements"] },
+  { fr: "Communauté", en: "Community", tabs: ["communaute", "expeditions", "guerre", "actus", "succes", "videos", "maj"] },
+  { fr: "Codex", en: "Codex", tabs: ["missions", "guide", "catalogue", "recettes", "galerie"] },
+];
+function buildSidebar() {
+  const side = document.getElementById("atlas-side");
+  if (!side) return;
+  const item = tab => {
+    const b = tabByName(tab); if (!b) return "";
+    const emoji = (b.textContent.trim().match(/^\S+/) || [""])[0];
+    const label = (b.querySelector("span[data-i18n]") || {}).textContent || b.textContent.trim();
+    const hasNotif = b.querySelector(".notif:not([hidden])");
+    return `<button class="as-item" data-goto="${tab}"><span class="as-i" aria-hidden="true">${emoji}</span><span class="as-t">${esc(label)}</span>${hasNotif ? `<span class="notif"></span>` : ""}</button>`;
+  };
+  side.innerHTML = `<div class="as-brand">
+      <span class="as-logo" aria-hidden="true"><span>◆</span></span>
+      <div><div class="as-name">ATLAS·TERMINAL</div><div class="as-sub">${lang === "en" ? "Universe tracker" : "Centre de suivi de l'univers"}</div></div>
+    </div>` +
+    SIDE_GROUPS.map(g => `<div class="as-group"><div class="as-gt">${esc(lang === "en" ? g.en : g.fr)}</div>${g.tabs.map(item).join("")}</div>`).join("") +
+    `<div class="as-foot"><div class="af1">${lang === "en" ? "Unofficial community tool" : "Outil communautaire non officiel"}</div><div class="af2">DATA · ASSISTANT NMS · WIKI</div></div>`;
+  side.querySelectorAll(".as-item").forEach(b => b.addEventListener("click", () => {
+    const t = tabByName(b.dataset.goto); if (t) activateTab(t, false);
+  }));
+  syncSide(document.body.dataset.tab);
+}
+function syncSide(tab) {
+  document.querySelectorAll("#atlas-side .as-item").forEach(b => b.classList.toggle("active", b.dataset.goto === tab));
+}
 // Lien « Lire le guide de l'événement » depuis le bulletin de guerre.
 const warGuideLink = document.getElementById("war-guide-link");
 if (warGuideLink) warGuideLink.addEventListener("click", () => {

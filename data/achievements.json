@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-23T08:46:52.025146+00:00",
+  "updated_at": "2026-07-23T11:21:39.697932+00:00",
   "items": [
     {
       "percent": 73.1,
@@ -23,7 +23,7 @@
       "desc_en": "Attain ‘Confused’ status in Words Collected"
     },
     {
-      "percent": 53.7,
+      "percent": 53.6,
       "name": "Contact",
       "desc": "Obtenir le statut « Connu » dans Aliens colons rencontrés",
       "name_en": "Contact",
@@ -79,7 +79,7 @@
       "desc_en": "Attain ‘Adventurer’ status in On-foot Exploration"
     },
     {
-      "percent": 31.0,
+      "percent": 30.9,
       "name": "Navigateurs",
       "desc": "Construire un exonef",
       "name_en": "Navigators",

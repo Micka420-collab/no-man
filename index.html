@@ -150,7 +150,7 @@
   .icon-btn:hover { border-color: var(--stroke-hi); transform: translateY(-1px); }
 
   /* ------- Héros ------- */
-  .hero { text-align: center; padding: 34px 0 12px; }
+  .hero { text-align: center; padding: 30px 0 14px; }
   .hero .overline {
     font: 700 0.72rem var(--font-mono); letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--c1); display: inline-flex; align-items: center; gap: 10px;
@@ -167,6 +167,55 @@
   }
   [data-theme="dark"] .hero h1 { text-shadow: 0 2px 40px rgba(122, 162, 255, 0.18); }
   .hero .tagline { color: var(--ink-dim); max-width: 640px; margin: 0 auto; font-size: 1.02rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 22px 0 6px; }
+  .hero-btn {
+    font: 600 0.92rem var(--font-body); padding: 12px 22px; border-radius: 12px; cursor: pointer;
+    border: 1px solid var(--stroke); background: var(--card); color: var(--ink);
+    transition: transform .15s, border-color .15s, box-shadow .15s;
+  }
+  .hero-btn:hover { transform: translateY(-2px); border-color: var(--stroke-hi); }
+  .hero-btn.primary {
+    border: none; color: #1a0d02; background: linear-gradient(100deg, var(--c1), var(--c1h));
+    box-shadow: 0 8px 24px rgba(255, 122, 26, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  .hero-btn.primary:hover { box-shadow: 0 11px 30px rgba(255, 122, 26, 0.52), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+  /* Carte HUD « joueurs en jeu » (cadre à coins terminal) */
+  .hero-hud {
+    position: relative; text-align: left; margin: 18px auto 0; max-width: 420px; width: 100%;
+    background: linear-gradient(160deg, rgba(20, 26, 44, 0.55), rgba(10, 14, 26, 0.45));
+    border: 1px solid var(--stroke); border-radius: 16px; padding: 22px 22px 20px;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  [data-theme="light"] .hero-hud { background: linear-gradient(160deg, rgba(255,255,255,0.72), rgba(240,243,252,0.6)); }
+  .hero-hud::before, .hero-hud::after { content: ""; position: absolute; width: 16px; height: 16px; pointer-events: none; }
+  .hero-hud::before { top: 10px; left: 10px; border-top: 2px solid var(--c1); border-left: 2px solid var(--c1); border-top-left-radius: 4px; }
+  .hero-hud::after { bottom: 10px; right: 10px; border-bottom: 2px solid var(--c2); border-right: 2px solid var(--c2); border-bottom-right-radius: 4px; }
+  .hero-hud .hh-label { font: 700 0.6rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-dim); display: flex; align-items: center; gap: 8px; }
+  .hero-hud .hh-label .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; }
+  .hero-hud .hh-big { font: 700 2.7rem var(--font-head); line-height: 1.02; margin: 8px 0 2px; }
+  .hero-hud .hh-maj { font: 400 0.58rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-dim); }
+  .hero-hud .hh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 16px; }
+  .hero-hud .hh-cell { border: 1px solid var(--stroke); border-radius: 10px; padding: 10px 12px; }
+  .hero-hud .hh-cell .k { font: 700 0.55rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-dim); }
+  .hero-hud .hh-cell .v { font: 700 1.02rem var(--font-head); margin-top: 4px; color: var(--c2); }
+  .hero-hud .hh-cell .v.orange { color: var(--c1); }
+  @media (min-width: 980px) {
+    .hero { display: grid; grid-template-columns: 1fr minmax(300px, 400px); gap: 36px; align-items: center; text-align: left; padding: 40px 0 20px; }
+    .hero .overline, .hero-actions, .live-chips { justify-content: flex-start; }
+    .hero .tagline { margin: 0; }
+    .hero-hud { margin: 0; }
+    .hero .updated { text-align: left; }
+  }
+  /* Le héros « vitrine » (HUD, boutons, accroche) n'apparaît qu'en Accueil. */
+  body:not([data-tab="apercu"]) .hero-hud,
+  body:not([data-tab="apercu"]) .hero-actions,
+  body:not([data-tab="apercu"]) .hero .tagline,
+  body:not([data-tab="apercu"]) .hero .overline,
+  body:not([data-tab="apercu"]) .hero .live-chips,
+  body:not([data-tab="apercu"]) .hero #fresh-strip-box,
+  body:not([data-tab="apercu"]) .hero .updated { display: none; }
+  body:not([data-tab="apercu"]) .hero { display: block; grid-template-columns: none; text-align: left; padding: 18px 0 4px; }
+  body:not([data-tab="apercu"]) .hero h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0; }
   .live-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 22px 0 6px; }
   .chip {
     display: inline-flex; align-items: center; gap: 8px;
@@ -1391,12 +1440,19 @@
   </div>
 
   <header class="hero">
-    <div class="overline" data-i18n="overline">Centre de suivi communautaire</div>
-    <h1>No Man's <span class="grad">Sky</span></h1>
-    <p class="tagline" data-i18n="tagline">Tout l'univers du jeu en un coup d'œil : actus officielles, stats en direct, communauté, vidéos — et ta propre progression de Voyageur.</p>
-    <div class="live-chips" id="live-chips"></div>
-    <div id="fresh-strip-box"></div>
-    <div class="updated" id="updated"></div>
+    <div class="hero-main">
+      <div class="overline" data-i18n="overline">Centre de commandement Atlas</div>
+      <h1>No Man's <span class="grad">Sky</span></h1>
+      <p class="tagline" data-i18n="tagline">Tout l'univers du jeu en un coup d'œil : actus officielles, stats en direct, communauté, vidéos — et ta propre progression de Voyageur.</p>
+      <div class="hero-actions">
+        <button class="hero-btn primary" id="hero-explore"><span data-i18n="hero_explore">Explorer l'univers</span> ↗</button>
+        <button class="hero-btn" id="hero-live" data-i18n="hero_live">Flux en direct</button>
+      </div>
+      <div class="live-chips" id="live-chips"></div>
+      <div id="fresh-strip-box"></div>
+      <div class="updated" id="updated"></div>
+    </div>
+    <aside class="hero-hud" id="hero-hud" aria-hidden="true"></aside>
   </header>
 
   <nav class="tabs" role="tablist" data-i18n-aria="aria_sections" aria-label="Sections">
@@ -1753,6 +1809,8 @@ const I18N = {
     tab_community: "Communauté", tab_ach: "Succès", tab_videos: "Vidéos", tab_timeline: "Mises à jour",
     updated: "Données mises à jour :",
     chip_online: "en ligne", chip_reviews: "d'avis positifs", chip_discount: "de promo",
+    hero_explore: "Explorer l'univers", hero_live: "Flux en direct",
+    hud_players: "Joueurs en jeu", hud_peak: "Pic 24 h", hud_record: "Record absolu", hud_reviews: "Avis positifs", hud_price: "Promo",
     spark_label: "Joueurs en ligne sur Steam (historique des relevés)",
     now: "En ce moment",
     latest_official: "Dernières actus officielles", community_buzz: "Ça buzze dans la communauté", latest_videos: "Dernières vidéos",
@@ -1958,6 +2016,8 @@ const I18N = {
     tab_community: "Community", tab_ach: "Achievements", tab_videos: "Videos", tab_timeline: "Updates",
     updated: "Data updated:",
     chip_online: "online", chip_reviews: "positive reviews", chip_discount: "off",
+    hero_explore: "Explore the universe", hero_live: "Live feed",
+    hud_players: "Players in game", hud_peak: "24 h peak", hud_record: "All-time record", hud_reviews: "Positive reviews", hud_price: "Sale",
     spark_label: "Players online on Steam (recorded history)",
     now: "Right now",
     latest_official: "Latest official news", community_buzz: "Community buzz", latest_videos: "Latest videos",
@@ -2316,6 +2376,12 @@ function activateTab(b, focus) {
 const tabByName = name => tabButtons.find(x => x.dataset.tab === name);
 document.body.dataset.tab = "apercu";
 tabButtons.forEach(b => b.addEventListener("click", () => activateTab(b, false)));
+// Boutons du héros Atlas : « Explorer l'univers » et « Flux en direct ».
+document.getElementById("hero-explore")?.addEventListener("click", () => { const t = tabByName("galaxies"); if (t) activateTab(t, false); });
+document.getElementById("hero-live")?.addEventListener("click", () => {
+  const t = tabByName("apercu"); if (t) activateTab(t, false);
+  setTimeout(() => { const el = document.getElementById("live-box"); if (el) el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); }, 60);
+});
 
 /* ---------- Barre latérale « Atlas Terminal » (bureau) ---------- */
 const SIDE_GROUPS = [
@@ -2938,6 +3004,28 @@ function renderChips() {
     chips.push(`<span class="chip">⚔️ <b>${TEAM_EMOJI[leader.team] || ""} ${esc(T().war_team[leader.team] || leader.team)}</b> ${T().chip_war_lead}</span>`);
   }
   document.getElementById("live-chips").innerHTML = chips.join("");
+  renderHeroHud();
+}
+
+// Carte HUD « joueurs en jeu » du héros (façon Atlas Terminal).
+function renderHeroHud() {
+  const box = document.getElementById("hero-hud");
+  if (!box) return;
+  const s = D.stats;
+  if (!s || !s.player_count) { box.innerHTML = ""; box.style.display = "none"; return; }
+  box.style.display = "";
+  const rev = s.reviews && s.reviews.percent_positive != null ? num(s.reviews.percent_positive) + "%" : "—";
+  const promo = s.price && s.price.discount_percent ? "−" + num(s.price.discount_percent) + "%" : "—";
+  box.innerHTML = `
+    <div class="hh-label"><span class="dot"></span>${esc(T().hud_players)}</div>
+    <div class="hh-big" id="hero-hud-count">${fmtNum(num(s.player_count))}</div>
+    <div class="hh-maj">${esc(T().updated)} ${esc(relTime(s.updated_at))}</div>
+    <div class="hh-grid">
+      <div class="hh-cell"><div class="k">${esc(T().hud_peak)}</div><div class="v">${s.peak_24h ? fmtNum(num(s.peak_24h)) : "—"}</div></div>
+      <div class="hh-cell"><div class="k">${esc(T().hud_record)}</div><div class="v">${s.peak_all ? fmtNum(num(s.peak_all)) : "—"}</div></div>
+      <div class="hh-cell"><div class="k">${esc(T().hud_reviews)}</div><div class="v">${esc(rev)}</div></div>
+      <div class="hh-cell"><div class="k">${esc(T().hud_price)}</div><div class="v orange">${esc(promo)}</div></div>
+    </div>`;
 }
 
 function renderOverview() {

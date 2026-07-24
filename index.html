@@ -272,7 +272,33 @@
     [data-theme="light"] .atlas-side { background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(240,243,252,0.82)); }
     .wrap { padding-left: calc(var(--side-w) + 20px); max-width: 1560px; }
     nav.tabs { display: none; }   /* la barre latérale remplace les onglets du haut */
+    .side-toggle, .as-close { display: none !important; }   /* pas de tiroir sur bureau */
   }
+  /* Barre latérale rétractable (mobile) : tiroir coulissant avec la même nav groupée. */
+  @media (max-width: 979px) {
+    .atlas-side {
+      display: flex; flex-direction: column; position: fixed; left: 0; top: 0; z-index: 60;
+      width: 300px; max-width: 86vw; height: 100dvh; overflow-y: auto; padding: 16px 12px 14px;
+      background: linear-gradient(180deg, rgba(8, 11, 22, 0.97), rgba(6, 8, 17, 0.94));
+      border-right: 1px solid var(--stroke); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      transform: translateX(-102%); transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    [data-theme="light"] .atlas-side { background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(240,243,252,0.95)); }
+    body.side-open .atlas-side { transform: none; box-shadow: 20px 0 60px rgba(0, 0, 0, 0.45); }
+    .side-scrim { position: fixed; inset: 0; z-index: 55; background: rgba(2, 4, 10, 0.55);
+      opacity: 0; visibility: hidden; transition: opacity 0.28s; backdrop-filter: blur(2px); }
+    body.side-open .side-scrim { opacity: 1; visibility: visible; }
+    .side-toggle { display: inline-flex; }
+    .as-close { position: absolute; top: 14px; right: 12px; width: 32px; height: 32px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--ink) 8%, transparent);
+      border: 1px solid var(--stroke); color: var(--ink-dim); font-size: 1.1rem; cursor: pointer; }
+    .as-close:hover { color: var(--ink); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .atlas-side, .side-scrim { transition: none; }
+  }
+  .side-scrim { display: none; }
+  @media (max-width: 979px) { .side-scrim { display: block; } }
   .as-brand { display: flex; align-items: center; gap: 11px; padding: 4px 6px 16px; }
   .as-logo { flex-shrink: 0; width: 38px; height: 38px; border-radius: 11px; transform: rotate(45deg);
     background: linear-gradient(145deg, var(--c1), var(--c1h)); box-shadow: 0 0 18px rgba(255, 122, 26, 0.5);
@@ -320,6 +346,15 @@
   }
   .card:hover { border-color: var(--stroke-hi); transform: translateY(-3px);
     box-shadow: var(--shadow), 0 0 0 1px var(--stroke-hi), inset 0 1px 0 rgba(255, 255, 255, 0.06); }
+  /* Coins HUD « Atlas » sur les cartes : accents angulaires révélés au survol. */
+  .card { position: relative; }
+  .card::before, .card::after {
+    content: ""; position: absolute; width: 12px; height: 12px; pointer-events: none;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .card::before { top: 8px; left: 8px; border-top: 2px solid var(--c1); border-left: 2px solid var(--c1); border-top-left-radius: 3px; }
+  .card::after { bottom: 8px; right: 8px; border-bottom: 2px solid var(--c2); border-right: 2px solid var(--c2); border-bottom-right-radius: 3px; }
+  .card:hover::before, .card:hover::after, .card:focus-within::before, .card:focus-within::after { opacity: 0.85; }
   .card h3 { font: 600 1rem var(--font-head); margin-bottom: 7px; line-height: 1.4; }
   .card h3 a { color: var(--ink); text-decoration: none; }
   .card h3 a:hover { color: var(--c2); }
@@ -1431,9 +1466,11 @@
 <div class="aurora" aria-hidden="true"></div>
 <a class="skip-link" href="#main" data-i18n="skip">Aller au contenu</a>
 
+<div class="side-scrim" id="side-scrim"></div>
 <aside class="atlas-side" id="atlas-side"></aside>
 <div class="wrap">
   <div class="topbar">
+    <button class="icon-btn side-toggle" id="side-toggle" data-i18n-aria="aria_menu" aria-label="Menu" aria-expanded="false" aria-controls="atlas-side">☰</button>
     <button class="icon-btn search-open" id="search-btn" data-i18n-aria="aria_search_global" aria-label="Recherche globale">🔍 <span data-i18n="search_all">Rechercher</span></button>
     <button class="icon-btn" id="lang-btn" data-i18n-aria="aria_lang" aria-label="Changer de langue">🌐 <span id="lang-label">EN</span></button>
     <button class="icon-btn" id="theme-btn" data-i18n-aria="aria_theme" aria-label="Changer de thème"><span id="theme-icon">☀️</span></button>
@@ -1800,7 +1837,7 @@ const I18N = {
     fav_remove: "Retirer", fav_empty: "Aucun favori pour l'instant. Ouvre une fiche et clique sur l'étoile ☆ pour l'ajouter ici.",
     fav_note: "Tes favoris : marque des objets, vaisseaux, créatures, recettes ou galaxies avec l'étoile ☆ pour les retrouver ici en un clic. Enregistré dans ton navigateur.",
     rec_op: "Opération",
-    search_all: "Rechercher", aria_search_global: "Recherche globale dans tout le site",
+    search_all: "Rechercher", aria_search_global: "Recherche globale dans tout le site", aria_menu: "Ouvrir le menu de navigation",
     search_all_ph: "Rechercher un objet, une recette, une créature, une galaxie…",
     so_hint: "Tape pour chercher dans les objets, recettes, créatures, vaisseaux, galaxies et guides.",
     so_empty: "Aucun résultat.",
@@ -2007,7 +2044,7 @@ const I18N = {
     fav_remove: "Remove", fav_empty: "No favorites yet. Open a card and click the ☆ star to add it here.",
     fav_note: "Your favorites: star items, ships, creatures, recipes or galaxies with ☆ to find them here in one click. Saved in your browser.",
     rec_op: "Operation",
-    search_all: "Search", aria_search_global: "Global search across the whole site",
+    search_all: "Search", aria_search_global: "Global search across the whole site", aria_menu: "Open navigation menu",
     search_all_ph: "Search an item, a recipe, a creature, a galaxy…",
     so_hint: "Type to search items, recipes, creatures, ships, galaxies and guides.",
     so_empty: "No results.",
@@ -2403,14 +2440,40 @@ function buildSidebar() {
   side.innerHTML = `<div class="as-brand">
       <span class="as-logo" aria-hidden="true"><span>◆</span></span>
       <div><div class="as-name">ATLAS·TERMINAL</div><div class="as-sub">${lang === "en" ? "Universe tracker" : "Centre de suivi de l'univers"}</div></div>
+      <button class="as-close" id="as-close" aria-label="${lang === "en" ? "Close menu" : "Fermer le menu"}">✕</button>
     </div>` +
     SIDE_GROUPS.map(g => `<div class="as-group"><div class="as-gt">${esc(lang === "en" ? g.en : g.fr)}</div>${g.tabs.map(item).join("")}</div>`).join("") +
     `<div class="as-foot"><div class="af1">${lang === "en" ? "Unofficial community tool" : "Outil communautaire non officiel"}</div><div class="af2">DATA · ASSISTANT NMS · WIKI</div></div>`;
   side.querySelectorAll(".as-item").forEach(b => b.addEventListener("click", () => {
     const t = tabByName(b.dataset.goto); if (t) activateTab(t, false);
+    closeSideDrawer();
   }));
+  const closeBtn = document.getElementById("as-close");
+  if (closeBtn) closeBtn.addEventListener("click", closeSideDrawer);
   syncSide(document.body.dataset.tab);
 }
+/* Tiroir latéral (mobile) : ouverture/fermeture. */
+function openSideDrawer() {
+  document.body.classList.add("side-open");
+  const t = document.getElementById("side-toggle");
+  if (t) t.setAttribute("aria-expanded", "true");
+}
+function closeSideDrawer() {
+  document.body.classList.remove("side-open");
+  const t = document.getElementById("side-toggle");
+  if (t) t.setAttribute("aria-expanded", "false");
+}
+(function setupSideDrawer() {
+  const toggle = document.getElementById("side-toggle");
+  const scrim = document.getElementById("side-scrim");
+  if (toggle) toggle.addEventListener("click", () => {
+    document.body.classList.contains("side-open") ? closeSideDrawer() : openSideDrawer();
+  });
+  if (scrim) scrim.addEventListener("click", closeSideDrawer);
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && document.body.classList.contains("side-open")) closeSideDrawer();
+  });
+})();
 function syncSide(tab) {
   document.querySelectorAll("#atlas-side .as-item").forEach(b => b.classList.toggle("active", b.dataset.goto === tab));
 }

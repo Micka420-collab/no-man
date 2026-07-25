@@ -886,14 +886,30 @@
   .el-flora { margin-top: 12px; }
   .el-flora-head { font: 700 1rem var(--font-head); margin: 6px 0 3px; }
   .el-flora-grid { display: flex; flex-wrap: wrap; gap: 7px; }
-  .el-legend { display: flex; flex-wrap: wrap; gap: 7px 9px; margin-top: 14px; }
-  .el-legend span {
+  .el-legend { display: flex; flex-wrap: wrap; gap: 7px 9px; margin-top: 14px; align-items: center; }
+  .el-legend button {
     display: inline-flex; align-items: center; gap: 6px; font-size: 0.73rem; color: var(--ink-dim);
-    padding: 3px 11px 3px 8px; border-radius: 999px;
+    padding: 3px 11px 3px 8px; border-radius: 999px; cursor: pointer; font-family: inherit;
     background: color-mix(in srgb, var(--el-c) 12%, transparent);
     border: 1px solid color-mix(in srgb, var(--el-c) 32%, transparent);
+    transition: border-color 0.15s, color 0.15s;
   }
+  .el-legend button:hover { color: var(--ink); border-color: var(--el-c); }
+  .el-legend button.active { color: var(--ink); border-color: var(--el-c);
+    box-shadow: 0 0 0 1px var(--el-c), 0 4px 14px -6px var(--el-c); }
   .el-legend i { width: 11px; height: 11px; border-radius: 4px; background: var(--el-c); display: inline-block; }
+  .el-legend-hint { font-size: 0.68rem; color: var(--ink-dim); opacity: 0.8; }
+  /* Surbrillance de famille : les autres cellules s'estompent. */
+  #panel-elements.fam-filtered .el-cell:not(.fam-on) { opacity: 0.16; filter: grayscale(0.65); }
+  #panel-elements .el-cell { transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease, opacity 0.25s, filter 0.25s; }
+  /* Chips de recettes dans les fiches */
+  .m-links { margin-top: 14px; }
+  .m-lk { font: 700 0.62rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-dim); margin-bottom: 7px; }
+  .m-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .m-chip { border: 1px solid var(--stroke); background: var(--track); color: var(--ink); font-size: 0.74rem;
+    padding: 5px 11px; border-radius: 999px; cursor: pointer; text-align: left; font-family: inherit; }
+  .m-chip:hover { border-color: var(--c1); color: var(--c1h); }
+  .m-chip-more { color: var(--c2); }
   @media (max-width: 560px) { .el-cell { width: 62px; height: 66px; } .el-cell .el-sym { font-size: 1.14rem; } }
   /* ------- Galerie ------- */
   .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
@@ -2060,6 +2076,9 @@ const I18N = {
     dp_label: "Journée type — moyenne des relevés par tranche de 3 h (ton heure locale)",
     dp_note: (n, d) => `Moyennes calculées sur ${n} relevés réels collectés depuis le ${d} — le profil s'affine automatiquement avec le temps.`,
     dp_none: "Pas encore de relevé dans cette tranche",
+    el_legend_hint: "← clique une famille pour la mettre en évidence",
+    m_madefrom: n => `⚗️ Se raffine / se prépare depuis (${n})`,
+    m_usedin: n => `→ Sert d'ingrédient (${n})`,
     mk_worth: "Ma cargaison",
     wo_note: "Liste ce que tu transportes avec les quantités : l'estimateur calcule la valeur totale aux prix moyens galactiques (≈ — les prix varient d'un système à l'autre). Les objets payés en nanites ou en mercure sont totalisés à part, par honnêteté. Ta cargaison est enregistrée dans ton navigateur.",
     wo_add_ph: "Ajouter un objet (ex. or, chlore, données récupérées…)",
@@ -2352,6 +2371,9 @@ const I18N = {
     dp_label: "Typical day — average of readings per 3-hour slot (your local time)",
     dp_note: (n, d) => `Averages computed over ${n} real readings collected since ${d} — the profile refines automatically over time.`,
     dp_none: "No reading in this slot yet",
+    el_legend_hint: "← click a family to highlight it",
+    m_madefrom: n => `⚗️ Refined / prepared from (${n})`,
+    m_usedin: n => `→ Used as an ingredient (${n})`,
     mk_worth: "My cargo",
     wo_note: "List what you're carrying with quantities: the estimator computes the total value at galactic average prices (≈ — prices vary between systems). Items priced in nanites or quicksilver are totalled separately, for honesty. Your cargo is saved in your browser.",
     wo_add_ph: "Add an item (e.g. gold, chlorine, salvaged data…)",
@@ -5341,6 +5363,21 @@ document.getElementById("modal-close").addEventListener("click", closeModal);
 document.getElementById("modal-backdrop").addEventListener("click", e => {
   if (e.target.id === "modal-backdrop") closeModal();
 });
+// Chips de recettes dans les fiches : navigation vers la recette ou la liste filtrée.
+document.getElementById("modal-content").addEventListener("click", e => {
+  const r = e.target.closest("[data-open-recipe]");
+  if (r) { closeModal(); openTarget("recipe", r.dataset.openRecipe); return; }
+  const s = e.target.closest("[data-rec-search]");
+  if (s) {
+    closeModal();
+    query.recettes = s.dataset.recSearch || "";
+    const inp = document.getElementById("search-recettes");
+    if (inp) inp.value = query.recettes;
+    sub.recettes = "refiner"; recLimit = 40;
+    activateTab(tabByName("recettes"), false);
+    renderRecipes();
+  }
+});
 document.addEventListener("keydown", e => {
   const bd = document.getElementById("modal-backdrop");
   if (bd.hidden) return;
@@ -5467,6 +5504,13 @@ function showItemModal(o) {
     ${o.desc ? `<p class="m-desc">${esc(o.desc)}</p>` : ""}
     ${rows ? `<div class="m-rows">${rows}</div>` : ""}
     ${o.build ? `<div class="m-build"><span class="m-build-k">${esc(o.build.k)}</span><p>${esc(o.build.v)}</p></div>` : ""}
+    ${(o.linkGroups || []).map(g => `<div class="m-links">
+      <div class="m-lk">${esc(g.title)}</div>
+      <div class="m-chips">
+        ${g.chips.map(c => `<button class="m-chip" data-open-recipe="${esc(c.recid)}">${esc(c.txt)}</button>`).join("")}
+        ${g.moreN ? `<button class="m-chip m-chip-more" data-rec-search="${esc(g.search)}">+${g.moreN}…</button>` : ""}
+      </div>
+    </div>`).join("")}
     ${o.share ? `<div class="m-actions">
       <button class="m-fav${isFav(o.share) ? " on" : ""}" data-fav="${esc(o.share)}">${isFav(o.share) ? "★ " : "☆ "}${T().fav}</button>
       <button class="m-share" data-share="${esc(o.share)}" data-share-label="${esc(o.title)}">🔗 ${T().share}</button>
@@ -6049,12 +6093,12 @@ function elItemById(id) {
   if (!cats || !cats.raw) return null;
   return cats.raw.items.find(x => x.id === id) || null;
 }
-function elCellHtml(cell, color) {
+function elCellHtml(cell, color, fam) {
   const it = elItemById(cell.raw);
   if (!it) return "";                     // id introuvable : on ignore la cellule
   const name = lang === "en" ? it.name_en : it.name_fr;
   const val = num(it.value);
-  return `<button class="el-cell" style="--el-c:${esc(color)}" data-el-raw="${esc(cell.raw)}" aria-label="${esc(name)}" title="${esc(name)}">
+  return `<button class="el-cell" style="--el-c:${esc(color)}" data-el-raw="${esc(cell.raw)}" data-fam="${esc(fam || "")}" aria-label="${esc(name)}" title="${esc(name)}">
     <span class="el-val">${val ? fmtNum(val) : ""}</span>
     <span class="el-sym">${esc(cell.sym)}</span>
     <span class="el-nm">${esc(name)}</span>
@@ -6078,23 +6122,51 @@ function renderElements() {
   table.innerHTML = (E.columns || []).map(col => {
     const color = (fams[col.fam] && fams[col.fam].color) || "var(--stroke)";
     const head = lang === "en" ? col.head_en : col.head_fr;
-    const cells = (col.cells || []).map(c => elCellHtml(c, color)).join("");
+    const cells = (col.cells || []).map(c => elCellHtml(c, color, col.fam)).join("");
     return `<div class="el-col" style="--el-c:${esc(color)}"><div class="el-col-head">${esc(head)}</div>${cells}</div>`;
   }).join("");
   if (flora) {
+    let html = "";
     if (E.flora) {
       const fc = E.flora.color || "var(--stroke)";
-      const cells = (E.flora.cells || []).map(c => elCellHtml(c, fc)).join("");
-      flora.innerHTML = `<div class="el-flora-head">${esc(lang === "en" ? E.flora.en : E.flora.fr)}</div>
+      const cells = (E.flora.cells || []).map(c => elCellHtml(c, fc, "flora")).join("");
+      html += `<div class="el-flora-head">${esc(lang === "en" ? E.flora.en : E.flora.fr)}</div>
         <div class="note" style="margin:0 0 8px">${T().el_flora_note}</div>
         <div class="el-flora-grid">${cells}</div>`;
-    } else flora.innerHTML = "";
+    }
+    // Sections complémentaires (déchets à recycler, substances spéciales & lore).
+    for (const row of E.extra_rows || []) {
+      const rc = (fams[row.key] && fams[row.key].color) || "var(--stroke)";
+      const cells = (row.cells || []).map(c => elCellHtml(c, rc, row.key)).join("");
+      html += `<div class="el-flora-head" style="margin-top:16px">${esc(lang === "en" ? row.en : row.fr)}</div>
+        <div class="el-flora-grid">${cells}</div>`;
+    }
+    flora.innerHTML = html;
   }
-  if (legend) legend.innerHTML = Object.keys(fams).map(k =>
-    `<span style="--el-c:${esc(fams[k].color)}"><i></i>${esc(lang === "en" ? fams[k].en : fams[k].fr)}</span>`).join("");
+  if (legend) {
+    legend.innerHTML = Object.keys(fams).map(k =>
+      `<button data-el-fam="${esc(k)}" class="${elFamFilter === k ? "active" : ""}" style="--el-c:${esc(fams[k].color)}" aria-pressed="${elFamFilter === k}"><i></i>${esc(lang === "en" ? fams[k].en : fams[k].fr)}</button>`).join("") +
+      `<span class="el-legend-hint">${esc(T().el_legend_hint)}</span>`;
+    elApplyFamFilter();
+  }
+}
+// Légende interactive : clique une famille pour la mettre en évidence.
+var elFamFilter = "";
+function elApplyFamFilter() {
+  const panel = document.getElementById("panel-elements");
+  if (!panel) return;
+  panel.classList.toggle("fam-filtered", !!elFamFilter);
+  panel.querySelectorAll(".el-cell").forEach(c => c.classList.toggle("fam-on", !elFamFilter || c.dataset.fam === elFamFilter));
+  panel.querySelectorAll("[data-el-fam]").forEach(b => {
+    const on = b.dataset.elFam === elFamFilter;
+    b.classList.toggle("active", on);
+    b.setAttribute("aria-pressed", String(on));
+  });
 }
 // Clic sur une cellule : ouvre la fiche détaillée (partage + favori réutilisés).
 document.getElementById("panel-elements")?.addEventListener("click", e => {
+  const f = e.target.closest("[data-el-fam]");
+  if (f) { elFamFilter = elFamFilter === f.dataset.elFam ? "" : f.dataset.elFam; elApplyFamFilter(); return; }
   const b = e.target.closest("[data-el-raw]");
   if (!b) return;
   const it = elItemById(b.dataset.elRaw);
@@ -6105,6 +6177,28 @@ document.getElementById("panel-elements")?.addEventListener("click", e => {
 let catLimit = 60;
 let catShown = [];
 
+// Relie un objet du catalogue aux recettes réelles qui le produisent ou le
+// consomment (raffinage + cuisine) — chips cliquables vers la fiche recette.
+function recipeLinksFor(id, itemName) {
+  const R = D.recipes;
+  if (!R || !id) return [];
+  const prod = [], cons = [];
+  for (const which of ["refiner", "cooking"]) for (const r of R[which] || []) {
+    if (!r.id) continue;
+    if (r.o[0] === id) prod.push(r);
+    else if (r.i.some(i => i[0] === id)) cons.push(r);
+  }
+  const items = R.items || {};
+  const nm = rid => { const x = items[rid]; return x ? (lang === "en" ? x.en : x.fr) : rid; };
+  const chip = r => ({ txt: r.i.map(i => nm(i[0])).join(" + ") + " → " + nm(r.o[0]), recid: r.id });
+  const CAP = 5;
+  const groups = [];
+  if (prod.length) groups.push({ title: T().m_madefrom(prod.length), chips: prod.slice(0, CAP).map(chip),
+    moreN: prod.length > CAP ? prod.length - CAP : 0, search: itemName });
+  if (cons.length) groups.push({ title: T().m_usedin(cons.length), chips: cons.slice(0, CAP).map(chip),
+    moreN: cons.length > CAP ? cons.length - CAP : 0, search: itemName });
+  return groups;
+}
 // Normalise un objet du catalogue pour la modale détaillée.
 function catToModal(it) {
   const val = num(it.value);
@@ -6116,6 +6210,7 @@ function catToModal(it) {
     badges: [{ txt: (D.catalogue.categories[it._cat].icon) + " " + (T().cat_cats[it._cat] || it._cat) }],
     desc: lang === "en" ? it.desc_en : it.desc_fr,
     rows: [val ? { k: "💰 " + (lang === "en" ? "Value" : "Valeur"), v: fmtNum(val) + (cur ? " " + cur : ""), big: true } : null],
+    linkGroups: recipeLinksFor(it.id, lang === "en" ? it.name_en : it.name_fr),
     share: it.id ? "item=" + it.id : null,
   };
 }

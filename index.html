@@ -1177,6 +1177,19 @@
     .lab-row { grid-template-columns: 1fr; }
     .lab-cell { text-align: left; justify-self: start; min-width: 0; width: 100%; }
   }
+  /* ------- Journée type (profil d'affluence par tranche de 3 h) ------- */
+  .day-profile-row { display: flex; gap: 6px; align-items: flex-end; margin-top: 10px; }
+  .dp-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; justify-content: flex-end; }
+  .dp-bar { width: 100%; max-width: 36px; border-radius: 5px 5px 2px 2px;
+    background: linear-gradient(180deg, var(--c2), color-mix(in srgb, var(--c2) 35%, transparent)); }
+  .dp-col.peak .dp-bar { background: linear-gradient(180deg, var(--c1h), var(--c1)); }
+  .dp-col.empty .dp-bar { background: color-mix(in srgb, var(--ink) 8%, transparent); border: 1px dashed var(--stroke); }
+  .dp-l, .dp-v { font: 600 0.55rem var(--font-mono); color: var(--ink-dim); }
+  .dp-v { font-weight: 700; }
+  .dp-note { margin-top: 8px; font-size: 0.68rem; color: var(--ink-dim); }
+  .ach-extra { font-size: 0.82rem; color: var(--ink-dim); margin-top: 6px; }
+  .ach-extra b { color: var(--ink); }
+
   /* ------- Ligne de statut terminal (PWA) ------- */
   .term-status { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; justify-content: center;
     margin: 26px 0 -8px; font: 600 0.58rem var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase;
@@ -1656,6 +1669,7 @@
       <div class="card" id="spark-card">
         <div class="label" data-i18n="spark_label">Joueurs en ligne sur Steam (historique des relevés)</div>
         <canvas id="sparkline" role="img" aria-label="Historique du nombre de joueurs"></canvas>
+        <div id="day-profile"></div>
       </div>
       <h2 class="sec" data-i18n="now">En ce moment</h2>
       <div class="cols">
@@ -1868,7 +1882,12 @@
       <div class="note" data-i18n="ach_note">Pourcentage des joueurs Steam ayant débloqué chaque succès. Coche ceux que tu possèdes pour te situer par rapport à la communauté mondiale !</div>
       <div class="ach-summary" id="ach-summary"></div>
       <div class="controls">
-        <div class="searchbox" style="margin-left:0"><input type="search" id="search-succes" data-i18n-ph="search" placeholder="Rechercher…" data-i18n-aria="aria_search_ach" aria-label="Rechercher un succès"></div>
+        <div class="subtabs" data-group="achfilter">
+          <button data-sub="all" class="active" data-i18n="ach_f_all">Tous</button>
+          <button data-sub="mine">✅ <span data-i18n="ach_f_mine">Débloqués</span></button>
+          <button data-sub="left">⬜ <span data-i18n="ach_f_left">Restants</span></button>
+        </div>
+        <div class="searchbox"><input type="search" id="search-succes" data-i18n-ph="search" placeholder="Rechercher…" data-i18n-aria="aria_search_ach" aria-label="Rechercher un succès"></div>
       </div>
       <div id="ach-list"></div>
     </section>
@@ -2011,6 +2030,12 @@ const I18N = {
     hud_delta_down: p => `▼ −${p} % vs hier à cette heure`,
     hud_delta_flat: "≈ comme hier à cette heure",
     cmd_random: "🎲 Découverte aléatoire", so_random: "Surprends-moi — une fiche au hasard",
+    ach_f_all: "Tous", ach_f_mine: "Débloqués", ach_f_left: "Restants",
+    ach_rarest: (n, p) => `💎 Ton plus rare : <b>${n}</b> — seuls ${p} % des joueurs Steam l'ont`,
+    ach_next: (n, p) => `🎯 Prochain objectif conseillé : <b>${n}</b> — le plus courant qu'il te reste (${p} % l'ont)`,
+    dp_label: "Journée type — moyenne des relevés par tranche de 3 h (ton heure locale)",
+    dp_note: (n, d) => `Moyennes calculées sur ${n} relevés réels collectés depuis le ${d} — le profil s'affine automatiquement avec le temps.`,
+    dp_none: "Pas encore de relevé dans cette tranche",
     so_empty: "Aucun résultat.",
     so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expéditions" },
     so_more: n => `+ ${n} autre(s) — ouvrir l'onglet`,
@@ -2279,6 +2304,12 @@ const I18N = {
     hud_delta_down: p => `▼ −${p}% vs yesterday at this hour`,
     hud_delta_flat: "≈ same as yesterday at this hour",
     cmd_random: "🎲 Random discovery", so_random: "Surprise me — a random card",
+    ach_f_all: "All", ach_f_mine: "Unlocked", ach_f_left: "Remaining",
+    ach_rarest: (n, p) => `💎 Your rarest: <b>${n}</b> — only ${p}% of Steam players have it`,
+    ach_next: (n, p) => `🎯 Suggested next goal: <b>${n}</b> — the most common one you're missing (${p}% have it)`,
+    dp_label: "Typical day — average of readings per 3-hour slot (your local time)",
+    dp_note: (n, d) => `Averages computed over ${n} real readings collected since ${d} — the profile refines automatically over time.`,
+    dp_none: "No reading in this slot yet",
     so_empty: "No results.",
     so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expeditions" },
     so_more: n => `+ ${n} more — open the tab`,
@@ -2527,7 +2558,7 @@ const LS_TEAM = "nms-team";
 const LS_CHALLENGE = "nms-challenge-v1";
 const LS_LAST_VISIT = "nms-last-visit";
 const D = {};
-const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "all", fishbiome: "all", fishtime: "all", fishstorm: "all", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", labmode: "all", labsort: "profit", chlen: "all", chsort: "roi", patype: "all", faunayield: "all", faunasort: "az", galerie: "ships", missions: "all" };
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "all", fishbiome: "all", fishtime: "all", fishstorm: "all", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", labmode: "all", labsort: "profit", chlen: "all", chsort: "roi", patype: "all", achfilter: "all", faunayield: "all", faunasort: "az", galerie: "ships", missions: "all" };
 const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "", catalogue: "" };
 let lang = localStorage.getItem(LS_LANG);
 if (lang !== "fr" && lang !== "en") {
@@ -3620,6 +3651,7 @@ function renderOverview() {
   if (D.history && D.history.points && D.history.points.length >= 2) {
     document.getElementById("spark-card").style.display = "block";
     drawSparkline();
+    renderDayProfile();
   }
 
   const ov = (elId, items, fmt) => {
@@ -3630,6 +3662,41 @@ function renderOverview() {
   ov("ov-official", D.official && D.official.items, i => miniCard(i));
   ov("ov-community", D.community && D.community.top_week, i => miniCard(i, i.author));
   ov("ov-videos", D.videos && D.videos.items, i => miniCard(i, i.channel));
+}
+
+// Journée type : moyenne des relevés de joueurs par tranche de 3 h, convertie
+// dans le fuseau horaire du visiteur. Honnêteté : effectifs (n) affichés au
+// survol, tranches sans relevé marquées, note avec la période de collecte.
+function renderDayProfile() {
+  const box = document.getElementById("day-profile");
+  if (!box) return;
+  const H = D.history && D.history.points || [];
+  if (H.length < 8) { box.innerHTML = ""; return; }
+  const sums = Array(8).fill(0), ns = Array(8).fill(0);
+  let firstT = null;
+  for (const p of H) {
+    const t = new Date(p.t);
+    if (isNaN(t) || !num(p.players)) continue;
+    if (!firstT || t < firstT) firstT = t;
+    const b = Math.floor(t.getHours() / 3);   // heure locale du visiteur
+    sums[b] += num(p.players); ns[b]++;
+  }
+  const avgs = sums.map((s, i) => ns[i] ? s / ns[i] : 0);
+  const max = Math.max(...avgs, 1);
+  const peak = avgs.indexOf(Math.max(...avgs));
+  const kfmt = a => {
+    const v = a >= 9950 ? String(Math.round(a / 1000)) : String(Math.round(a / 100) / 10);
+    return (lang === "fr" ? v.replace(".", ",") : v) + "k";
+  };
+  box.innerHTML = `<div class="label" style="margin-top:16px">${esc(T().dp_label)}</div>
+    <div class="day-profile-row">` + avgs.map((a, i) => `
+      <div class="dp-col${i === peak && ns[i] ? " peak" : ""}${ns[i] ? "" : " empty"}"
+        title="${ns[i] ? `${fmtNum(Math.round(a))} · n=${ns[i]}` : esc(T().dp_none)}">
+        <div class="dp-v">${ns[i] ? kfmt(a) : "—"}</div>
+        <div class="dp-bar" style="height:${ns[i] ? Math.max(6, Math.round(a / max * 52)) : 6}px"></div>
+        <div class="dp-l">${i * 3}h</div>
+      </div>`).join("") + `</div>
+    <div class="dp-note">${esc(T().dp_note(H.length, firstT ? fmtDate(firstT.toISOString()) : "—"))}</div>`;
 }
 
 function drawSparkline() {
@@ -3925,7 +3992,10 @@ function renderAchievements() {
   }
   const owned = getState(LS_ACH);
   const q = query.succes;
-  const shown = items.filter(a => matches(q, a.name, a.desc, a.name_en, a.desc_en));
+  let shown = items.filter(a => matches(q, a.name, a.desc, a.name_en, a.desc_en));
+  const filt = sub.achfilter || "all";
+  if (filt === "mine") shown = shown.filter(a => owned[a.name]);
+  else if (filt === "left") shown = shown.filter(a => !owned[a.name]);
   keepFocus(el, () => {
     el.innerHTML = shown.length ? shown.map(a => {
       const r = rarity(num(a.percent));
@@ -3952,8 +4022,15 @@ function renderAchievements() {
 
   const mineCount = items.filter(a => owned[a.name]).length;
   const rareCount = items.filter(a => owned[a.name] && a.percent < 20).length;
-  document.getElementById("ach-summary").innerHTML = mineCount
-    ? T().ach_summary(mineCount, items.length, rareCount) : "";
+  // Résumé enrichi : ton succès le plus rare (plus petit % global) et le
+  // prochain objectif le plus accessible (plus grand % parmi les restants).
+  const mine = items.filter(a => owned[a.name]);
+  const rarest = mine.length ? mine.reduce((m, a) => num(a.percent) < num(m.percent) ? a : m) : null;
+  const next = items.filter(a => !owned[a.name]).reduce((m, a) => !m || num(a.percent) > num(m.percent) ? a : m, null);
+  let sum = mineCount ? T().ach_summary(mineCount, items.length, rareCount) : "";
+  if (rarest) sum += `<div class="ach-extra">${T().ach_rarest(esc(tr(rarest, "name")), num(rarest.percent))}</div>`;
+  if (next) sum += `<div class="ach-extra">${T().ach_next(esc(tr(next, "name")), num(next.percent))}</div>`;
+  document.getElementById("ach-summary").innerHTML = sum;
 }
 
 /* ============================== Vidéos ============================== */

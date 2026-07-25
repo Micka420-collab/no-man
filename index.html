@@ -1177,6 +1177,27 @@
     .lab-row { grid-template-columns: 1fr; }
     .lab-cell { text-align: left; justify-self: start; min-width: 0; width: 100%; }
   }
+  /* ------- Estimateur de cargaison (Ma cargaison) ------- */
+  .wo-list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .wo-row { display: flex; align-items: center; gap: 10px; background: var(--card);
+    border: 1px solid var(--stroke); border-radius: 12px; padding: 9px 12px; }
+  .wo-row img { width: 30px; height: 30px; border-radius: 7px; object-fit: contain; flex-shrink: 0; }
+  .wo-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.9rem; }
+  .wo-qty { width: 88px; background: color-mix(in srgb, var(--ink) 4%, transparent); border: 1px solid var(--stroke);
+    border-radius: 8px; color: var(--ink); padding: 7px 8px; font-size: 16px; text-align: right; }
+  .wo-val { font: 700 0.85rem var(--font-mono); color: var(--c2); min-width: 118px; text-align: right; }
+  .wo-del { border: none; background: none; color: var(--ink-dim); cursor: pointer; font-size: 0.85rem; padding: 4px; }
+  .wo-del:hover { color: var(--ink); }
+  .wo-total { margin-top: 14px; border: 1px solid var(--stroke); border-radius: var(--radius); padding: 15px 19px;
+    background: linear-gradient(158deg, var(--card-strong), var(--card)); position: relative; }
+  .wo-total::before { content: ""; position: absolute; top: 8px; left: 8px; width: 12px; height: 12px; pointer-events: none;
+    border-top: 2px solid var(--c1); border-left: 2px solid var(--c1); border-top-left-radius: 3px; }
+  .wo-total .t { font: 700 0.62rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-dim); }
+  .wo-total .v { font: 700 1.65rem var(--font-head); color: var(--c1h); margin-top: 4px; }
+  .wo-total .n { font: 600 0.8rem var(--font-mono); color: var(--c2); margin-top: 3px; }
+  .wo-top { margin-top: 9px; font-size: 0.8rem; color: var(--ink-dim); }
+  @media (max-width: 560px) { .wo-val { min-width: 90px; } .wo-qty { width: 72px; } }
+
   /* ------- Journée type (profil d'affluence par tranche de 3 h) ------- */
   .day-profile-row { display: flex; gap: 6px; align-items: flex-end; margin-top: 10px; }
   .dp-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; justify-content: flex-end; }
@@ -1771,6 +1792,7 @@
           <button data-sub="items" class="active">💎 <span data-i18n="mk_items">Objets précieux</span></button>
           <button data-sub="fish">🎣 <span data-i18n="mk_fish">Poissons</span></button>
           <button data-sub="ships">🚀 <span data-i18n="mk_ships">Vaisseaux</span></button>
+          <button data-sub="worth">💼 <span data-i18n="mk_worth">Ma cargaison</span></button>
         </div>
       </div>
       <div class="controls" id="mk-subcontrols"></div>
@@ -2036,6 +2058,16 @@ const I18N = {
     dp_label: "Journée type — moyenne des relevés par tranche de 3 h (ton heure locale)",
     dp_note: (n, d) => `Moyennes calculées sur ${n} relevés réels collectés depuis le ${d} — le profil s'affine automatiquement avec le temps.`,
     dp_none: "Pas encore de relevé dans cette tranche",
+    mk_worth: "Ma cargaison",
+    wo_note: "Liste ce que tu transportes avec les quantités : l'estimateur calcule la valeur totale aux prix moyens galactiques (≈ — les prix varient d'un système à l'autre). Les objets payés en nanites ou en mercure sont totalisés à part, par honnêteté. Ta cargaison est enregistrée dans ton navigateur.",
+    wo_add_ph: "Ajouter un objet (ex. or, chlore, données récupérées…)",
+    wo_add_aria: "Ajouter un objet à la cargaison",
+    wo_empty: "Ta cargaison est vide — ajoute des objets ci-dessus pour estimer leur valeur totale.",
+    wo_total: "Valeur totale estimée",
+    wo_top: (p, n) => `💡 ${p} % de la valeur vient de : ${n}`,
+    wo_qty_aria: "Quantité",
+    wo_clear: "✕ Tout vider",
+    wo_units: "unités", wo_nanites: "nanites", wo_qs: "mercure",
     vis_label: "vues · page GitHub du projet (7 j)",
     vis_sub: u => `${u} visiteurs uniques sur 14 j — API de trafic GitHub (le site web lui-même n'est pas compté)`,
     goat_label: "visiteurs du site (7 j)",
@@ -2314,6 +2346,16 @@ const I18N = {
     dp_label: "Typical day — average of readings per 3-hour slot (your local time)",
     dp_note: (n, d) => `Averages computed over ${n} real readings collected since ${d} — the profile refines automatically over time.`,
     dp_none: "No reading in this slot yet",
+    mk_worth: "My cargo",
+    wo_note: "List what you're carrying with quantities: the estimator computes the total value at galactic average prices (≈ — prices vary between systems). Items priced in nanites or quicksilver are totalled separately, for honesty. Your cargo is saved in your browser.",
+    wo_add_ph: "Add an item (e.g. gold, chlorine, salvaged data…)",
+    wo_add_aria: "Add an item to the cargo",
+    wo_empty: "Your cargo is empty — add items above to estimate their total value.",
+    wo_total: "Estimated total value",
+    wo_top: (p, n) => `💡 ${p}% of the value comes from: ${n}`,
+    wo_qty_aria: "Quantity",
+    wo_clear: "✕ Clear all",
+    wo_units: "units", wo_nanites: "nanites", wo_qs: "quicksilver",
     vis_label: "views · project's GitHub page (7 d)",
     vis_sub: u => `${u} unique visitors over 14 d — GitHub traffic API (the website itself is not counted)`,
     goat_label: "site visitors (7 d)",
@@ -4978,6 +5020,121 @@ document.getElementById("mk-list").addEventListener("keydown", e => {
   if (el) { e.preventDefault(); mkActivate(el); }
 });
 
+/* ---------- Estimateur de cargaison : « combien vaut mon inventaire ? » ---------- */
+// Liste d'objets + quantités, valorisée aux prix moyens galactiques du catalogue
+// (≈). Totaux séparés par devise (unités / nanites / mercure) — les additionner
+// serait mensonger. Persistance locale (nms-cargo).
+function woCargo() { try { return JSON.parse(localStorage.getItem("nms-cargo") || "{}"); } catch { return {}; } }
+function woSave(c) { try { localStorage.setItem("nms-cargo", JSON.stringify(c)); } catch { /* stockage indisponible */ } }
+function woIndex() {
+  if (!D.catalogue) return null;
+  if (D._catIdx) return D._catIdx;
+  const m = {};
+  for (const k of Object.keys(D.catalogue.categories))
+    for (const it of D.catalogue.categories[k].items) m[it.id] = it;
+  return (D._catIdx = m);
+}
+let woSugSel = -1;
+function renderWorth(controls, list) {
+  ensureCatalogue();
+  controls.innerHTML = `<div class="note" style="margin:0">${esc(T().wo_note)}</div>`;
+  const idx = woIndex();
+  if (!idx) { list.innerHTML = `<div class="empty">${T().cat_loading || T().rec_loading}</div>`; return; }
+  const cargo = woCargo();
+  const nameOf = it => (lang === "en" ? it.name_en : it.name_fr) || it.id;
+  const curLabel = { Credits: T().wo_units, Nanites: T().wo_nanites, Quicksilver: T().wo_qs };
+  // Lignes + totaux par devise
+  const totals = { Credits: 0, Nanites: 0, Quicksilver: 0 };
+  let top = null;
+  const rows = Object.keys(cargo).map(id => {
+    const it = idx[id];
+    if (!it || !num(it.value)) return "";
+    const q = Math.max(1, num(cargo[id]));
+    const cur = it.currency || "Credits";
+    const val = num(it.value) * q;
+    if (totals[cur] != null) totals[cur] += val;
+    if (cur === "Credits" && (!top || val > top.val)) top = { val, name: nameOf(it) };
+    return `<li class="wo-row">
+      ${it.icon ? `<img src="${esc(safeUrl(it.icon))}" alt="" loading="lazy">` : "<span></span>"}
+      <span class="wo-name">${esc(nameOf(it))} <small style="color:var(--ink-dim)">· ${fmtNum(num(it.value))} ${esc(curLabel[cur] || cur)}</small></span>
+      <input class="wo-qty" type="number" min="1" step="1" value="${q}" data-wo-qty="${esc(id)}" aria-label="${esc(T().wo_qty_aria)}">
+      <span class="wo-val">≈ ${fmtNum(val)} ${esc(curLabel[cur] || cur)}</span>
+      <button class="wo-del" data-wo-del="${esc(id)}" aria-label="✕">✕</button>
+    </li>`;
+  }).join("");
+  const totLines = ["Credits", "Nanites", "Quicksilver"].filter(c => totals[c] > 0);
+  const pct = top && totals.Credits > 0 ? Math.round(top.val / totals.Credits * 100) : 0;
+  list.innerHTML = `
+    <div class="pa-box">
+      <div class="pa-addwrap">
+        <input id="wo-input" type="text" autocomplete="off" spellcheck="false" placeholder="${esc(T().wo_add_ph)}" aria-label="${esc(T().wo_add_aria)}">
+        <div class="pa-sug" id="wo-sug" hidden></div>
+      </div>
+      ${Object.keys(cargo).length ? `<div class="pa-chips" style="margin-top:8px"><button class="pa-clear" id="wo-clear">${esc(T().wo_clear)}</button></div>` : ""}
+    </div>
+    ${rows ? `<ul class="wo-list">${rows}</ul>` : `<div class="empty">${esc(T().wo_empty)}</div>`}
+    ${totLines.length ? `<div class="wo-total">
+      <div class="t">${esc(T().wo_total)} ≈</div>
+      ${totals.Credits > 0 ? `<div class="v">${fmtNum(Math.round(totals.Credits))} ${esc(T().wo_units)}</div>` : ""}
+      ${totals.Nanites > 0 ? `<div class="n">+ ${fmtNum(Math.round(totals.Nanites))} ${esc(T().wo_nanites)}</div>` : ""}
+      ${totals.Quicksilver > 0 ? `<div class="n">+ ${fmtNum(Math.round(totals.Quicksilver))} ${esc(T().wo_qs)}</div>` : ""}
+      ${top && pct >= 25 ? `<div class="wo-top">${esc(T().wo_top(pct, top.name))}</div>` : ""}
+    </div>` : ""}`;
+  // Autocomplétion (même classement que le garde-manger : exact > commence-par > flou)
+  const inp = document.getElementById("wo-input");
+  const sug = document.getElementById("wo-sug");
+  const showSug = () => {
+    const q = inp.value.trim();
+    woSugSel = -1;
+    if (q.length < 2) { sug.hidden = true; sug.innerHTML = ""; return; }
+    const nq = normSearch(q);
+    const scored = [];
+    for (const id of Object.keys(idx)) {
+      if (cargo[id]) continue;
+      const it = idx[id];
+      if (!num(it.value)) continue;   // sans valeur marchande : inutile ici
+      const nf = normSearch(it.name_fr || ""), ne = normSearch(it.name_en || "");
+      let rank = -1;
+      if (nf === nq || ne === nq) rank = 0;
+      else if (nf.startsWith(nq) || ne.startsWith(nq)) rank = 1;
+      else if (fuzzyMatch(q, (it.name_fr || "") + " " + (it.name_en || ""))) rank = 2;
+      if (rank >= 0) scored.push({ id, it, rank, len: Math.min(nf.length || 99, ne.length || 99) });
+    }
+    scored.sort((a, b) => a.rank - b.rank || a.len - b.len);
+    const out = scored.slice(0, 8);
+    if (!out.length) { sug.hidden = true; sug.innerHTML = ""; return; }
+    sug.innerHTML = out.map(o => `<button data-wo-add="${esc(o.id)}">${o.it.icon ? `<img src="${esc(safeUrl(o.it.icon))}" alt="" loading="lazy">` : ""}${esc(nameOf(o.it))} <small style="color:var(--ink-dim);margin-left:auto">${fmtNum(num(o.it.value))} ${esc(curLabel[o.it.currency] || o.it.currency || "")}</small></button>`).join("");
+    sug.hidden = false;
+  };
+  inp.addEventListener("input", showSug);
+  inp.addEventListener("keydown", e => {
+    const btns = [...sug.querySelectorAll("button")];
+    if (e.key === "ArrowDown" && btns.length) { e.preventDefault(); woSugSel = (woSugSel + 1) % btns.length; btns.forEach((b, i) => b.classList.toggle("sel", i === woSugSel)); }
+    else if (e.key === "ArrowUp" && btns.length) { e.preventDefault(); woSugSel = (woSugSel - 1 + btns.length) % btns.length; btns.forEach((b, i) => b.classList.toggle("sel", i === woSugSel)); }
+    else if (e.key === "Enter" && btns.length) { e.preventDefault(); (btns[woSugSel] || btns[0]).click(); }
+    else if (e.key === "Escape") { sug.hidden = true; }
+  });
+  sug.addEventListener("click", e => {
+    const b = e.target.closest("[data-wo-add]");
+    if (!b) return;
+    const c = woCargo(); c[b.dataset.woAdd] = 1; woSave(c);
+    renderMarket();
+    const ni = document.getElementById("wo-input"); if (ni) ni.focus();
+  });
+  list.addEventListener("change", e => {
+    const q = e.target.closest("[data-wo-qty]");
+    if (!q) return;
+    const c = woCargo();
+    c[q.dataset.woQty] = Math.max(1, Math.floor(num(q.value)) || 1);
+    woSave(c); renderMarket();
+  }, { once: true });
+  list.addEventListener("click", e => {
+    const del = e.target.closest("[data-wo-del]");
+    if (del) { const c = woCargo(); delete c[del.dataset.woDel]; woSave(c); renderMarket(); return; }
+    if (e.target.closest("#wo-clear")) { woSave({}); renderMarket(); }
+  }, { once: true });
+}
+
 function renderMarket() {
   const list = document.getElementById("mk-list");
   const controls = document.getElementById("mk-subcontrols");
@@ -5000,6 +5157,8 @@ function renderMarket() {
     list.innerHTML = grid + shipGuideHTML();
     return;
   }
+
+  if (view === "worth") { renderWorth(controls, list); return; }
 
   if (view === "fish") {
     const fishAll = D.market && D.market.fish || [];
@@ -5939,6 +6098,7 @@ async function ensureCatalogue() {
   renderElements();   // le tableau des éléments dépend du catalogue
   renderFavorites();  // résout les noms des objets/éléments favoris une fois chargés
   if (["profit", "chains"].includes(sub.recettes || "")) renderRecipes();  // labo & chaînes dépendent des valeurs
+  if ((sub.marche || "") === "worth" && document.body.dataset.tab === "marche") renderMarket();  // estimateur de cargaison aussi
   // Si la recherche globale est ouverte, on rafraîchit avec les objets chargés.
   const so = document.getElementById("search-overlay");
   if (so && !so.hidden && typeof runSearch === "function") runSearch(soInput.value);

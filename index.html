@@ -1146,6 +1146,23 @@
     .rec-row { grid-template-columns: 1fr; }
     .rec-row .rec-arrow { transform: rotate(90deg); justify-self: start; }
   }
+  /* ------- Labo de rentabilité (raffineur) ------- */
+  .lab-row { grid-template-columns: 1fr auto auto auto; }
+  .lab-cell { min-width: 172px; text-align: right; justify-self: end; }
+  .lab-net { font: 700 0.95rem var(--font-mono); }
+  .lab-net.gain { color: #4ade80; }
+  .lab-net.loss { color: #f87171; }
+  [data-theme="light"] .lab-net.gain { color: #15803d; }
+  [data-theme="light"] .lab-net.loss { color: #b91c1c; }
+  .lab-sub { font-size: 0.7rem; color: var(--ink-dim); margin-top: 2px; font-family: var(--font-mono); }
+  .lab-bar { height: 4px; border-radius: 3px; background: color-mix(in srgb, var(--ink) 8%, transparent); margin-top: 6px; overflow: hidden; }
+  .lab-bar div { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #4ade80, #86efac); }
+  .lab-bar.loss div { background: linear-gradient(90deg, #f87171, #fca5a5); }
+  .lab-loop-badge { margin-left: 6px; vertical-align: middle; }
+  @media (max-width: 560px) {
+    .lab-row { grid-template-columns: 1fr; }
+    .lab-cell { text-align: left; justify-self: start; min-width: 0; width: 100%; }
+  }
 
   /* ------- Bulletin de guerre ------- */
   .war-box {
@@ -1729,6 +1746,7 @@
         <div class="subtabs" data-group="recettes">
           <button data-sub="refiner" class="active">⚗️ <span data-i18n="rec_refiner">Raffinage</span></button>
           <button data-sub="cooking">🍳 <span data-i18n="rec_cooking">Cuisine</span></button>
+          <button data-sub="profit">💰 <span data-i18n="rec_profit">Labo de rentabilité</span></button>
         </div>
         <div class="searchbox" style="margin-left:auto"><input type="search" id="search-recettes" data-i18n-ph="rec_search_ph" placeholder="Chercher un ingrédient ou un résultat…" data-i18n-aria="aria_search_rec" aria-label="Chercher une recette"></div>
       </div>
@@ -2114,6 +2132,15 @@ const I18N = {
     po_copy: "Copier", po_name_ph: "Nommer cette adresse (« ma base », « planète paradis »…)",
     po_name_saved: "Nom enregistré", po_lore: "✦ Pourquoi 16 glyphes ? Découvre « Le secret du 16 »",
     so_pinned: "📌 Épinglés", so_recent: "🕐 Consultés récemment", so_pin: "Épingler", so_unpin: "Désépingler",
+    rec_profit: "Labo de rentabilité",
+    lab_note: "Chaque recette de raffinage est évaluée avec les valeurs réelles du catalogue du jeu (prix moyen galactique) : coût des entrées contre valeur de la sortie. ≈ indicatif — les prix varient d'un système à l'autre. Les recettes dont un ingrédient se paie en nanites ou n'a pas de valeur marchande sont écartées du classement, par honnêteté.",
+    lab_f_mode: "Afficher", lab_all: "Toutes", lab_gain: "✅ Rentables", lab_loss: "🔻 À perte", lab_loops: "♻️ Boucles d'expansion",
+    lab_sort_profit: "Gain net", lab_sort_roi: "Rendement (%)", lab_sort_ps: "Gain par seconde",
+    lab_loop_badge: "♻️ Boucle",
+    lab_loop_hint: "Boucle d'expansion : la recette produit plus de l'ingrédient qu'elle n'en consomme.",
+    lab_count: (n, x) => `${n} recette${n > 1 ? "s" : ""} comparée${n > 1 ? "s" : ""} en unités · ${x} écartée${x > 1 ? "s" : ""} (nanites ou valeur inconnue)`,
+    lab_cost_out: (c, o) => `${c} → ${o} u`,
+    lab_net_k: "Gain net", lab_cost_k: "Coût des entrées", lab_out_k: "Valeur de sortie",
     ship_price: "Prix", ship_find: "Où le trouver", ship_rarity: n => `Rareté : ${n}/5`,
     ship_build: "⚡ Build conseillé (emplacements survolimentés)",
     ship_guide_more: "Guide complet pour améliorer un vaisseau ↓",
@@ -2338,6 +2365,15 @@ const I18N = {
     po_copy: "Copy", po_name_ph: "Name this address (“my base”, “paradise planet”…)",
     po_name_saved: "Name saved", po_lore: "✦ Why 16 glyphs? Discover “The secret of 16”",
     so_pinned: "📌 Pinned", so_recent: "🕐 Recently viewed", so_pin: "Pin", so_unpin: "Unpin",
+    rec_profit: "Profit lab",
+    lab_note: "Every refiner recipe is priced with the game's real catalogue values (galactic average price): input cost vs output value. ≈ indicative — prices vary between systems. Recipes with an ingredient priced in nanites or with no market value are excluded from the ranking, for honesty.",
+    lab_f_mode: "Show", lab_all: "All", lab_gain: "✅ Profitable", lab_loss: "🔻 Loss-making", lab_loops: "♻️ Expansion loops",
+    lab_sort_profit: "Net gain", lab_sort_roi: "Return (%)", lab_sort_ps: "Gain per second",
+    lab_loop_badge: "♻️ Loop",
+    lab_loop_hint: "Expansion loop: the recipe outputs more of the ingredient than it consumes.",
+    lab_count: (n, x) => `${n} recipe${n > 1 ? "s" : ""} compared in units · ${x} excluded (nanites or unknown value)`,
+    lab_cost_out: (c, o) => `${c} → ${o} u`,
+    lab_net_k: "Net gain", lab_cost_k: "Input cost", lab_out_k: "Output value",
     ship_price: "Price", ship_find: "Where to find it", ship_rarity: n => `Rarity: ${n}/5`,
     ship_build: "⚡ Recommended build (supercharged slots)",
     ship_guide_more: "Full guide to upgrading a ship ↓",
@@ -2355,7 +2391,7 @@ const LS_TEAM = "nms-team";
 const LS_CHALLENGE = "nms-challenge-v1";
 const LS_LAST_VISIT = "nms-last-visit";
 const D = {};
-const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "all", fishbiome: "all", fishtime: "all", fishstorm: "all", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", faunayield: "all", faunasort: "az", galerie: "ships", missions: "all" };
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "all", fishbiome: "all", fishtime: "all", fishstorm: "all", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", labmode: "all", labsort: "profit", faunayield: "all", faunasort: "az", galerie: "ships", missions: "all" };
 const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "", catalogue: "" };
 let lang = localStorage.getItem(LS_LANG);
 if (lang !== "fr" && lang !== "en") {
@@ -3040,7 +3076,7 @@ document.querySelectorAll(".subtabs[data-group]").forEach(group => {
     b.classList.add("active");
     syncSubtabPressed(group);
     sub[group.dataset.group] = b.dataset.sub;
-    if (group.dataset.group === "recettes") recLimit = 40;
+    if (group.dataset.group === "recettes") { recLimit = 40; labLimit = 50; }
     renderAll();
   });
 });
@@ -5191,6 +5227,7 @@ async function ensureCatalogue() {
   renderCatalogue();
   renderElements();   // le tableau des éléments dépend du catalogue
   renderFavorites();  // résout les noms des objets/éléments favoris une fois chargés
+  if ((sub.recettes || "") === "profit") renderRecipes();  // le labo de rentabilité dépend des valeurs
   // Si la recherche globale est ouverte, on rafraîchit avec les objets chargés.
   const so = document.getElementById("search-overlay");
   if (so && !so.hidden && typeof runSearch === "function") runSearch(soInput.value);
@@ -5407,6 +5444,21 @@ function recItem(items, id) {
 function recipeToModal(r) {
   const items = D.recipes.items || {}, opfr = D.recipes.op_fr || {};
   const nm = id => { const x = items[id]; return x ? (lang === "en" ? x.en : x.fr) : id; };
+  // Bilan économique (raffinage) quand les valeurs du catalogue sont chargées
+  // et que tout se paie en unités — mêmes règles d'honnêteté que le labo.
+  const ecoRows = [];
+  const vals = r._which === "refiner" && typeof labValueMap === "function" ? labValueMap() : null;
+  if (vals) {
+    const ids = [...r.i.map(i => i[0]), r.o[0]];
+    if (ids.every(id => vals[id] && vals[id].cur === "Credits")) {
+      const cost = r.i.reduce((s, i) => s + vals[i[0]].v * i[1], 0);
+      const out = vals[r.o[0]].v * r.o[1];
+      ecoRows.push(
+        { k: T().lab_cost_k, v: "≈ " + fmtNum(Math.round(cost)) + " u" },
+        { k: T().lab_out_k, v: "≈ " + fmtNum(Math.round(out)) + " u" },
+        { k: T().lab_net_k, v: "≈ " + (out - cost > 0 ? "+" : "") + fmtNum(Math.round(out - cost)) + " u", big: true });
+    }
+  }
   return {
     icon: (items[r.o[0]] || {}).icon || "",
     title: nm(r.o[0]) + (r.o[1] > 1 ? ` ×${r.o[1]}` : ""),
@@ -5415,6 +5467,7 @@ function recipeToModal(r) {
       ...r.i.map(i => ({ k: "↳ " + nm(i[0]), v: "×" + i[1] })),
       { k: T().rec_op, v: lang === "en" ? r.op : (opfr[r.op] || r.op) },
       r.t ? { k: T().rec_time, v: r.t + " s" } : null,
+      ...ecoRows,
     ],
     share: r.id ? "recipe=" + r.id : null,
   };
@@ -5446,6 +5499,7 @@ function renderRecipes() {
     countEl.innerHTML = ""; moreEl.innerHTML = "";
     return;
   }
+  if ((sub.recettes || "refiner") === "profit") { renderProfitLab(list, countEl, moreEl); return; }
   buildFilterBar("rec-filters", [
     { key: "recing", def: "all", label: T().rec_f_ing, options: [
       ["all", T().cat_cur_all], ["1", "1"], ["2", "2"], ["3", "3+"]] },
@@ -5486,6 +5540,81 @@ function renderRecipes() {
     renderRecipes();
     (document.getElementById("rec-more-btn") || document.querySelector("#rec-list .rec-row:last-child"))?.focus?.();
   });
+}
+
+/* ---------- Labo de rentabilité du raffineur ---------- */
+// Chaque recette de raffinage est évaluée avec les valeurs réelles du catalogue
+// (prix moyen galactique des données du jeu). Par honnêteté, les recettes dont un
+// ingrédient se paie en nanites ou n'a pas de valeur marchande sont écartées, et
+// tout est étiqueté « ≈ » (les prix de vente varient d'un système à l'autre).
+let labLimit = 50;
+function labValueMap() {
+  if (!D.catalogue) return null;
+  if (D._labVals) return D._labVals;
+  const m = {};
+  for (const k of Object.keys(D.catalogue.categories))
+    for (const it of D.catalogue.categories[k].items) m[it.id] = { v: num(it.value), cur: it.currency };
+  return (D._labVals = m);
+}
+function renderProfitLab(list, countEl, moreEl) {
+  buildFilterBar("rec-filters", [
+    { key: "labmode", def: "all", label: T().lab_f_mode, options: [
+      ["all", T().lab_all], ["gain", T().lab_gain], ["loss", T().lab_loss], ["loops", T().lab_loops]] },
+    { key: "labsort", def: "profit", label: T().cat_f_sort, options: [
+      ["profit", T().lab_sort_profit], ["roi", T().lab_sort_roi], ["ps", T().lab_sort_ps]] },
+  ], renderRecipes);
+  ensureCatalogue();   // les valeurs viennent du catalogue (chargé à la demande)
+  const vals = labValueMap();
+  if (!vals) {
+    countEl.innerHTML = `<div class="note" style="margin:0 0 10px">${esc(T().lab_note)}</div>`;
+    moreEl.innerHTML = "";
+    list.innerHTML = `<div class="empty">${T().rec_loading}</div>`;
+    return;
+  }
+  const R = D.recipes, items = R.items || {};
+  const q = (query.recettes || "").toLowerCase();
+  const nameOf = id => { const it = recItem(items, id); return (it.fr + " " + it.en).toLowerCase(); };
+  let rows = [], excluded = 0;
+  for (const r of R.refiner || []) {
+    const ids = [...r.i.map(i => i[0]), r.o[0]];
+    if (ids.some(id => !vals[id] || vals[id].cur !== "Credits")) { excluded++; continue; }
+    const cost = r.i.reduce((s, i) => s + vals[i[0]].v * i[1], 0);
+    const out = vals[r.o[0]].v * r.o[1];
+    const profit = out - cost;
+    const sameIn = r.i.filter(i => i[0] === r.o[0]).reduce((s, i) => s + i[1], 0);
+    rows.push({ r, cost, out, profit,
+      roi: cost > 0 ? profit / cost * 100 : 0,
+      ps: +r.t > 0 ? profit / +r.t : 0,
+      loop: sameIn > 0 && r.o[1] > sameIn });
+  }
+  if (q) rows = rows.filter(x => x.r.i.some(i => fuzzyMatch(q, nameOf(i[0]))) || fuzzyMatch(q, nameOf(x.r.o[0])));
+  const mode = sub.labmode || "all";
+  if (mode === "gain") rows = rows.filter(x => x.profit > 0);
+  else if (mode === "loss") rows = rows.filter(x => x.profit < 0);
+  else if (mode === "loops") rows = rows.filter(x => x.loop);
+  const srt = sub.labsort || "profit";
+  rows.sort((a, b) => srt === "roi" ? b.roi - a.roi : srt === "ps" ? b.ps - a.ps : b.profit - a.profit);
+  countEl.innerHTML = `<div class="note" style="margin:0 0 10px">${esc(T().lab_note)}</div>` + esc(T().lab_count(rows.length, excluded));
+  const maxAbs = Math.max(...rows.map(x => Math.abs(x.profit)), 1);
+  const shown = rows.slice(0, labLimit);
+  list.innerHTML = shown.length ? `<ul class="rec-list">` + shown.map(x => {
+    const r = x.r;
+    const cls = x.profit > 0 ? "gain" : x.profit < 0 ? "loss" : "";
+    return `<li class="rec-row lab-row clickable" ${r.id ? `data-recid="${esc(r.id)}" role="button" tabindex="0"` : ""}>
+      <div class="rec-inputs">${r.i.map(i => recIngredient(items, i[0], i[1])).join('<span class="rec-plus">+</span>')}</div>
+      <div class="rec-arrow" aria-hidden="true">→</div>
+      <div class="rec-output">${recIngredient(items, r.o[0], r.o[1])}${x.loop ? `<span class="badge official lab-loop-badge" title="${esc(T().lab_loop_hint)}">${esc(T().lab_loop_badge)}</span>` : ""}</div>
+      <div class="lab-cell">
+        <div class="lab-net ${cls}">≈ ${x.profit > 0 ? "+" : ""}${fmtNum(Math.round(x.profit))} u</div>
+        <div class="lab-sub">${esc(T().lab_cost_out(fmtNum(Math.round(x.cost)), fmtNum(Math.round(x.out))))} · ${Math.round(x.roi)} %${+r.t > 0 ? ` · ${fmtNum(Math.round(x.ps))} u/s` : ""}</div>
+        <div class="lab-bar ${cls}" aria-hidden="true"><div style="width:${Math.max(2, Math.round(Math.abs(x.profit) / maxAbs * 100))}%"></div></div>
+      </div>
+    </li>`;
+  }).join("") + `</ul>` : emptyMsg(!!q);
+  moreEl.innerHTML = rows.length > shown.length
+    ? `<button class="cat-more-btn" id="lab-more-btn">${T().rec_more} (${rows.length - shown.length})</button>` : "";
+  const mb = document.getElementById("lab-more-btn");
+  if (mb) mb.addEventListener("click", () => { labLimit += 80; renderRecipes(); });
 }
 
 /* ============================== Guide de démarrage ============================== */

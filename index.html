@@ -1733,11 +1733,12 @@
       </div>
       <div id="categories"></div>
       <div class="toolbar">
-        <button id="btn-export">💾 <span data-i18n="export">Exporter</span></button>
-        <button id="btn-import">📂 <span data-i18n="import">Importer</span></button>
+        <button id="btn-export">💾 <span data-i18n="export">Tout sauvegarder</span></button>
+        <button id="btn-import">📂 <span data-i18n="import">Restaurer</span></button>
         <button id="btn-reset">♻️ <span data-i18n="reset">Réinitialiser</span></button>
         <input type="file" id="file-import" accept=".json" style="display:none" aria-hidden="true">
       </div>
+      <p class="note" style="margin-top:12px" data-i18n="prog_backup_note">💾 « Tout sauvegarder » exporte TOUTES tes données du site (favoris, épingles, garde-manger, cargaison, succès cochés, adresses de portail nommées, progression, préférences) dans un fichier — pour les restaurer ici ou sur un autre appareil.</p>
     </section>
 
     <!-- Favoris -->
@@ -2052,6 +2053,7 @@ const I18N = {
     hud_delta_down: p => `▼ −${p} % vs hier à cette heure`,
     hud_delta_flat: "≈ comme hier à cette heure",
     cmd_random: "🎲 Découverte aléatoire", so_random: "Surprends-moi — une fiche au hasard",
+    cmd_backup: "💾 Sauvegarder toutes mes données",
     ach_f_all: "Tous", ach_f_mine: "Débloqués", ach_f_left: "Restants",
     ach_rarest: (n, p) => `💎 Ton plus rare : <b>${n}</b> — seuls ${p} % des joueurs Steam l'ont`,
     ach_next: (n, p) => `🎯 Prochain objectif conseillé : <b>${n}</b> — le plus courant qu'il te reste (${p} % l'ont)`,
@@ -2090,7 +2092,10 @@ const I18N = {
     event_link: "Voir l'annonce officielle →",
     prog_headline: "Ton voyage", prog_count: (d, t) => `${d} objectifs accomplis sur ${t}`,
     rank0: "🌱 Nouveau Voyageur", rank1: "🧭 Explorateur", rank2: "⭐ Vétéran de l'Atlas", rank3: "🌌 Légende de la galaxie",
-    export: "Exporter", import: "Importer", reset: "Réinitialiser",
+    export: "Tout sauvegarder", import: "Restaurer", reset: "Réinitialiser",
+    backup_done: "Sauvegarde téléchargée — favoris, progression, cargaison… tout y est !",
+    backup_confirm: "Restaurer cette sauvegarde ? Elle remplacera tes données actuelles (favoris, progression, garde-manger, cargaison, succès cochés…). La page sera rechargée.",
+    prog_backup_note: "💾 « Tout sauvegarder » exporte TOUTES tes données du site (favoris, épingles, garde-manger, cargaison, succès cochés, adresses de portail nommées, progression, préférences) dans un fichier — pour les restaurer ici ou sur un autre appareil.",
     reset_confirm: "Effacer toute ta progression ?", invalid_file: "Fichier invalide",
     sub_official: "Officiel (Hello Games)", sub_steam: "Steam & presse",
     sub_top: "Top de la semaine", sub_hot: "Tendances", sub_coords: "Coordonnées partagées",
@@ -2340,6 +2345,7 @@ const I18N = {
     hud_delta_down: p => `▼ −${p}% vs yesterday at this hour`,
     hud_delta_flat: "≈ same as yesterday at this hour",
     cmd_random: "🎲 Random discovery", so_random: "Surprise me — a random card",
+    cmd_backup: "💾 Back up all my data",
     ach_f_all: "All", ach_f_mine: "Unlocked", ach_f_left: "Remaining",
     ach_rarest: (n, p) => `💎 Your rarest: <b>${n}</b> — only ${p}% of Steam players have it`,
     ach_next: (n, p) => `🎯 Suggested next goal: <b>${n}</b> — the most common one you're missing (${p}% have it)`,
@@ -2378,7 +2384,10 @@ const I18N = {
     event_link: "Read the official announcement →",
     prog_headline: "Your journey", prog_count: (d, t) => `${d} of ${t} milestones completed`,
     rank0: "🌱 New Traveller", rank1: "🧭 Explorer", rank2: "⭐ Atlas Veteran", rank3: "🌌 Galactic Legend",
-    export: "Export", import: "Import", reset: "Reset",
+    export: "Back up everything", import: "Restore", reset: "Reset",
+    backup_done: "Backup downloaded — favourites, journey, cargo… everything is in it!",
+    backup_confirm: "Restore this backup? It will replace your current data (favourites, journey, pantry, cargo, checked achievements…). The page will reload.",
+    prog_backup_note: "💾 “Back up everything” exports ALL your site data (favourites, pins, pantry, cargo, checked achievements, named portal addresses, journey, preferences) into one file — restore it here or on another device.",
     reset_confirm: "Erase all your progress?", invalid_file: "Invalid file",
     sub_official: "Official (Hello Games)", sub_steam: "Steam & press",
     sub_top: "Top of the week", sub_hot: "Trending", sub_coords: "Shared coordinates",
@@ -3137,6 +3146,8 @@ function buildCommands() {
     action: () => { closeSearch(); shareLink("tab=" + (document.body.dataset.tab || "apercu"), document.title); } });
   cmds.push({ emoji: "🎲", name: T().cmd_random, key: "aleatoire random hasard surprise decouverte discovery",
     action: () => { closeSearch(); randomDiscovery(); } });
+  cmds.push({ emoji: "💾", name: T().cmd_backup, key: "sauvegarde backup export donnees data",
+    action: () => { closeSearch(); document.getElementById("btn-export").click(); } });
   return cmds;
 }
 function renderCommands(filter) {
@@ -3488,14 +3499,38 @@ function renderProgressInner(wrap, state, openState) {
   document.getElementById("rank-badge").textContent = T()[rank];
 }
 
+/* ---------- Sauvegarde universelle ---------- */
+// Exporte TOUTES les données personnelles du site (favoris, épingles, récents,
+// garde-manger, cargaison, succès cochés, noms d'adresses de portail,
+// progression, préférences…) : toutes les clés localStorage « nms- », valeurs
+// brutes, sans perte. L'import reste compatible avec l'ancien format
+// (progression seule / progression + succès).
+function buildFullBackup() {
+  const data = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith("nms-")) data[k] = localStorage.getItem(k);
+  }
+  return { format: "nms-backup", version: 2, exported_at: new Date().toISOString(), data };
+}
+function applyFullBackup(payload) {
+  if (!isObj(payload) || payload.format !== "nms-backup" || !isObj(payload.data)) return false;
+  const entries = Object.entries(payload.data)
+    .filter(([k, v]) => /^nms-[a-z0-9_-]+$/i.test(k) && typeof v === "string" && v.length < 500000);
+  if (!entries.length) return false;
+  for (const [k, v] of entries) {
+    try { localStorage.setItem(k, v); } catch { /* stockage plein */ }
+  }
+  return true;
+}
 document.getElementById("btn-export").addEventListener("click", () => {
-  const payload = { progress: getState(LS_PROGRESS), achievements: getState(LS_ACH) };
-  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const blob = new Blob([JSON.stringify(buildFullBackup(), null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = "nms-data.json";
+  a.download = "nms-sauvegarde.json";
   a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  toast(T().backup_done);
 });
 document.getElementById("btn-import").addEventListener("click", () => document.getElementById("file-import").click());
 document.getElementById("file-import").addEventListener("change", async e => {
@@ -3503,8 +3538,14 @@ document.getElementById("file-import").addEventListener("change", async e => {
   if (!f) return;
   try {
     const data = JSON.parse(await f.text());
-    // Compatible avec l'ancien format (progression seule) et le nouveau ;
-    // seuls des objets simples sont acceptés, sinon fichier rejeté.
+    if (isObj(data) && data.format === "nms-backup") {
+      // Sauvegarde complète : confirmation puis rechargement (tout l'état repart propre).
+      if (!confirm(T().backup_confirm)) { e.target.value = ""; return; }
+      if (!applyFullBackup(data)) throw new Error("forme invalide");
+      location.reload();
+      return;
+    }
+    // Anciens formats : progression seule, ou progression + succès.
     if (isObj(data) && (isObj(data.progress) || isObj(data.achievements))) {
       if (isObj(data.progress)) setState(LS_PROGRESS, data.progress);
       if (isObj(data.achievements)) setState(LS_ACH, data.achievements);

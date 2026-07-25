@@ -82,8 +82,11 @@ déclencher le workflow depuis l'onglet **Actions** → « Mise à jour des actu
 
 - Coche les objectifs accomplis dans l'onglet **Ma progression** — c'est sauvegardé
   automatiquement dans ton navigateur (localStorage).
-- **Exporter / Importer** : boutons en bas de l'onglet pour sauvegarder ta progression
-  dans un fichier `nms-progression.json` et la restaurer sur un autre appareil.
+- **💾 Tout sauvegarder / Restaurer** : boutons en bas de l'onglet — exporte **toutes**
+  tes données du site (favoris, épingles, garde-manger, cargaison, succès cochés,
+  adresses de portail nommées, progression, préférences) dans un fichier
+  `nms-sauvegarde.json`, à restaurer ici ou sur un autre appareil. Les anciens
+  fichiers d'export (progression seule) restent acceptés.
 - Pour personnaliser la liste des objectifs, édite `data/progress.json`
   (les cases cochées sont conservées tant que les `id` ne changent pas).
 

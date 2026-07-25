@@ -2799,29 +2799,54 @@ if (bottomnav) {
 (function enableSwipe() {
   const main = document.getElementById("main");
   if (!main) return;
-  let x0 = null, y0 = null, t0 = 0, active = false;
+  let x0 = null, y0 = null, t0 = 0, active = false, locked = false;
+  // Zones où un glissement horizontal a déjà un sens : on n'y change JAMAIS d'onglet.
+  const EXCLUDE = "canvas, input, select, textarea, .subtabs, .gal-map-card, .more-sheet, " +
+    ".po-pad, .po-addr, .po-map-box, .pa-chips, .pa-sug, .pa-addwrap, .tl, .rec-inputs, .cat-filters";
+  // Un ancêtre défile horizontalement ? Alors le doigt lui appartient.
+  const scrollsX = el => {
+    for (let n = el; n && n !== main && n.nodeType === 1; n = n.parentElement) {
+      if (n.scrollWidth > n.clientWidth + 4 && /(auto|scroll)/.test(getComputedStyle(n).overflowX)) return true;
+    }
+    return false;
+  };
   main.addEventListener("touchstart", e => {
-    if (e.touches.length !== 1) { active = false; return; }
-    // On ignore les zones interactives horizontales (carte galactique, sous-onglets, listes défilantes).
-    if (e.target.closest("canvas, .subtabs, input, .gal-map-card, .more-sheet")) { active = false; return; }
+    active = false; locked = false;
+    if (e.touches.length !== 1) return;
+    if (!window.matchMedia("(max-width: 760px)").matches) return;
+    // Rien ne doit être ouvert par-dessus le contenu.
+    if (!moreSheet.hidden || !document.getElementById("modal-backdrop").hidden) return;
+    if (document.body.classList.contains("side-open")) return;
+    const so = document.getElementById("search-overlay");
+    if (so && !so.hidden) return;
+    if (e.target.closest(EXCLUDE) || scrollsX(e.target)) return;
     const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; t0 = Date.now(); active = true;
   }, { passive: true });
+  // Verrou directionnel : dès que le geste part verticalement, on abandonne
+  // définitivement — un scroll qui dérive un peu en X ne change plus d'onglet.
+  main.addEventListener("touchmove", e => {
+    if (!active || locked || x0 === null) return;
+    const t = e.touches[0];
+    const dx = Math.abs(t.clientX - x0), dy = Math.abs(t.clientY - y0);
+    if (dx < 10 && dy < 10) return;          // pas encore décidé
+    locked = true;
+    if (dy > dx * 0.8) active = false;       // geste vertical : c'est un scroll
+  }, { passive: true });
   main.addEventListener("touchend", e => {
-    if (!active || x0 === null) return;
+    if (!active || x0 === null) { x0 = y0 = null; return; }
     active = false;
-    if (!moreSheet.hidden || !document.getElementById("modal-backdrop").hidden) return;
-    if (!window.matchMedia("(max-width: 760px)").matches) return;
     const t = e.changedTouches[0];
     const dx = t.clientX - x0, dy = t.clientY - y0, dt = Date.now() - t0;
     x0 = y0 = null;
-    // Balayage franc, majoritairement horizontal, assez rapide.
-    if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.8 || dt > 600) return;
+    // Balayage franc, nettement horizontal et rapide.
+    if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 2.2 || dt > 500) return;
     const cur = tabButtons.findIndex(b => b.dataset.tab === document.body.dataset.tab);
     if (cur < 0) return;
     const nextIdx = dx < 0 ? cur + 1 : cur - 1;
     if (nextIdx < 0 || nextIdx >= tabButtons.length) return;
     activateTab(tabButtons[nextIdx], false);
   }, { passive: true });
+  main.addEventListener("touchcancel", () => { active = false; x0 = y0 = null; }, { passive: true });
 })();
 
 /* ---------- Recherche globale (tous les onglets) ---------- */

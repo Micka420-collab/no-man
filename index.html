@@ -1953,8 +1953,15 @@ const I18N = {
     fav_note: "Tes favoris : marque des objets, vaisseaux, créatures, recettes ou galaxies avec l'étoile ☆ pour les retrouver ici en un clic. Enregistré dans ton navigateur.",
     rec_op: "Opération",
     search_all: "Rechercher", aria_search_global: "Recherche globale dans tout le site", aria_menu: "Ouvrir le menu de navigation",
-    search_all_ph: "Rechercher un objet, une recette, une créature, une galaxie…",
-    so_hint: "Tape pour chercher dans les objets, recettes, créatures, vaisseaux, galaxies et guides.",
+    search_all_ph: "Rechercher… ou tape > pour les commandes",
+    so_hint: "Tape pour chercher dans les objets, recettes, créatures, vaisseaux, galaxies et guides — ou tape > pour les commandes (aller à une section, thème, langue…). Raccourcis : / recherche, Ctrl+K commandes.",
+    cmd_group: "⌘ COMMANDES — ATLAS://",
+    cmd_goto: s => `Aller à : ${s}`,
+    cmd_theme: "Basculer le thème sombre / clair",
+    cmd_lang: "Switch to English",
+    cmd_copy: "Copier le lien de la vue actuelle",
+    cmd_none: "Aucune commande ne correspond.",
+    copy_discord: "Copier la fiche formatée pour Discord",
     so_empty: "Aucun résultat.",
     so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expéditions" },
     so_more: n => `+ ${n} autre(s) — ouvrir l'onglet`,
@@ -2197,8 +2204,15 @@ const I18N = {
     fav_note: "Your favorites: star items, ships, creatures, recipes or galaxies with ☆ to find them here in one click. Saved in your browser.",
     rec_op: "Operation",
     search_all: "Search", aria_search_global: "Global search across the whole site", aria_menu: "Open navigation menu",
-    search_all_ph: "Search an item, a recipe, a creature, a galaxy…",
-    so_hint: "Type to search items, recipes, creatures, ships, galaxies and guides.",
+    search_all_ph: "Search… or type > for commands",
+    so_hint: "Type to search items, recipes, creatures, ships, galaxies and guides — or type > for commands (go to a section, theme, language…). Shortcuts: / search, Ctrl+K commands.",
+    cmd_group: "⌘ COMMANDS — ATLAS://",
+    cmd_goto: s => `Go to: ${s}`,
+    cmd_theme: "Toggle dark / light theme",
+    cmd_lang: "Passer en français",
+    cmd_copy: "Copy link to current view",
+    cmd_none: "No command matches.",
+    copy_discord: "Copy card formatted for Discord",
     so_empty: "No results.",
     so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expeditions" },
     so_more: n => `+ ${n} more — open the tab`,
@@ -2913,7 +2927,41 @@ function renderSoHome() {
     setTimeout(() => { if (!searchOverlay.hidden && !soInput.value.trim()) renderSoHome(); }, 400);
 }
 
+/* ---------- Palette de commandes « ATLAS:// » (préfixe > ou Ctrl+K) ---------- */
+function buildCommands() {
+  const cmds = [];
+  for (const b of tabButtons) {
+    const emoji = (b.textContent.trim().match(/^\S+/) || [""])[0];
+    const label = ((b.querySelector("span[data-i18n]") || {}).textContent || b.textContent).trim();
+    cmds.push({ emoji, name: T().cmd_goto(label), key: label,
+      action: () => { closeSearch(); activateTab(b, false); } });
+  }
+  cmds.push({ emoji: "🎨", name: T().cmd_theme, key: "theme thème sombre clair dark light",
+    action: () => { closeSearch(); applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark", true); } });
+  cmds.push({ emoji: "🌐", name: T().cmd_lang, key: "langue language english francais français fr en",
+    action: () => { closeSearch(); applyLang(lang === "fr" ? "en" : "fr"); } });
+  cmds.push({ emoji: "🔗", name: T().cmd_copy, key: "copier lien copy link partager share url",
+    action: () => { closeSearch(); shareLink("tab=" + (document.body.dataset.tab || "apercu"), document.title); } });
+  return cmds;
+}
+function renderCommands(filter) {
+  soResults = []; soSel = -1;
+  let list = buildCommands();
+  if (filter) list = list.filter(c => fuzzyMatch(filter, c.name + " " + c.key));
+  let html = `<div class="so-group-title">${esc(T().cmd_group)}</div>`;
+  if (!list.length) { soResultsEl.innerHTML = html + `<div class="so-hint">${esc(T().cmd_none)}</div>`; return; }
+  for (const c of list) {
+    const idx = soResults.length;
+    soResults.push({ action: c.action });
+    html += soItemHTML(idx, { emoji: c.emoji, name: c.name });
+  }
+  soResultsEl.innerHTML = html;
+  soSel = 0; soHighlight();   // Entrée exécute directement la première commande
+}
+
 function runSearch(raw) {
+  const rawT = (raw || "").trimStart();
+  if (rawT.startsWith(">")) { renderCommands(rawT.slice(1).trim()); return; }
   const q = (raw || "").toLowerCase().trim();
   soResults = [];
   if (q.length < 2) { renderSoHome(); return; }
@@ -3094,6 +3142,15 @@ if (searchOverlay) {
   soResultsEl.addEventListener("pointermove", e => { const b = e.target.closest("[data-so]"); if (b && +b.dataset.so !== soSel) { soSel = +b.dataset.so; soHighlight(); } });
   document.addEventListener("keydown", e => {
     if (e.key === "Escape" && !searchOverlay.hidden) { closeSearch(); return; }
+    // Ctrl/Cmd+K : ouvre directement la palette de commandes « ATLAS:// ».
+    if ((e.ctrlKey || e.metaKey) && !e.altKey && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      if (searchOverlay.hidden) openSearch();
+      soInput.value = ">";
+      soInput.setSelectionRange(1, 1);
+      runSearch(">");
+      return;
+    }
     if (e.key === "/" && searchOverlay.hidden && !/^(input|textarea|select)$/i.test(document.activeElement.tagName)) {
       e.preventDefault(); openSearch();
     }
@@ -4754,6 +4811,20 @@ function closeModal() {
   document.body.style.overflow = "";
   if (modalLastFocus && modalLastFocus.focus) modalLastFocus.focus();
 }
+// « Copier pour Discord » : fiche formatée en Markdown, prête à coller.
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-discord]");
+  if (!b || !modalCurrentObj) return;
+  const o = modalCurrentObj;
+  const lines = ["**" + o.title + "**" + (o.group ? " — " + o.group : "")];
+  const badges = (o.badges || []).map(x => x.txt).join(" · ");
+  if (badges) lines.push("_" + badges + "_");
+  if (o.desc) lines.push(o.desc);
+  for (const r of (o.rows || []).filter(r => r && r.v)) lines.push("• " + r.k + " : " + r.v);
+  if (o.build) lines.push("• " + o.build.k + " : " + o.build.v);
+  if (o.share) lines.push(location.origin + location.pathname + "#" + o.share);
+  poCopy(lines.join("\n"));
+});
 document.getElementById("modal-close").addEventListener("click", closeModal);
 document.getElementById("modal-backdrop").addEventListener("click", e => {
   if (e.target.id === "modal-backdrop") closeModal();
@@ -4865,7 +4936,9 @@ document.getElementById("fav-list")?.addEventListener("click", e => {
 });
 
 // Construit la modale à partir d'un objet normalisé.
+var modalCurrentObj = null;   // fiche affichée (pour « Copier pour Discord »)
 function showItemModal(o) {
+  modalCurrentObj = o;
   if (o.share) recordRecent(o.share);   // alimente « Consultés récemment » (recherche)
   const hero = o.image
     ? `<div class="m-hero"><img src="${esc(safeUrl(o.image))}" alt="${esc(o.title)}" onerror="this.closest('.m-hero').style.display='none'"></div>`
@@ -4885,6 +4958,7 @@ function showItemModal(o) {
     ${o.share ? `<div class="m-actions">
       <button class="m-fav${isFav(o.share) ? " on" : ""}" data-fav="${esc(o.share)}">${isFav(o.share) ? "★ " : "☆ "}${T().fav}</button>
       <button class="m-share" data-share="${esc(o.share)}" data-share-label="${esc(o.title)}">🔗 ${T().share}</button>
+      <button class="m-share" data-discord title="${esc(T().copy_discord)}" aria-label="${esc(T().copy_discord)}">💬 Discord</button>
     </div>` : ""}
   </div>`);
 }

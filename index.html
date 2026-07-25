@@ -368,6 +368,15 @@
   .po-paste input { width: 100%; background: color-mix(in srgb, var(--ink) 4%, transparent);
     border: 1px solid var(--stroke); border-radius: 9px; color: var(--ink); padding: 9px 11px; font: 500 0.9rem var(--font-mono); }
 
+  /* ------- Carte stellaire 3D (portail) ------- */
+  .po-map-box { position: relative; margin-top: 14px; border: 1px solid var(--stroke); border-radius: var(--radius);
+    overflow: hidden; background: radial-gradient(ellipse at center, #0a0e1f 0%, #05070f 78%); }
+  #po-map { display: block; width: 100%; height: 460px; cursor: grab; touch-action: none; }
+  #po-map.dragging { cursor: grabbing; }
+  @media (max-width: 760px) { #po-map { height: 330px; } }
+  .po-map-hint { position: absolute; left: 12px; bottom: 9px; font: 600 0.6rem var(--font-mono); letter-spacing: 0.06em;
+    color: rgba(232, 237, 251, 0.55); text-transform: uppercase; pointer-events: none; }
+
   /* ------- Rangées récents / épingles (recherche globale) ------- */
   .so-row { display: flex; align-items: stretch; gap: 6px; }
   .so-row .so-item { flex: 1; min-width: 0; }
@@ -1864,6 +1873,12 @@
         </div>
         <div class="po-out" id="po-out" aria-live="polite"></div>
       </div>
+      <h2 class="sec" data-i18n="po_map_title">Carte stellaire 3D</h2>
+      <div class="note" data-i18n="po_map_note">Ton carnet d'adresses, en 3D dans une galaxie aux proportions réelles du jeu : la grille adressable fait 4096 × 4096 × 256 voxels (1 voxel ≈ 400 al), soit un disque d'≈ 1,64 million d'années-lumière de large et ≈ 102 000 al d'épaisseur — l'épaisseur affichée est à l'échelle exacte, et du bord au centre il y a ≈ 819 000 al. Chaque marqueur 🔶 est placé à la position mathématique exacte de son adresse ; l'adresse en cours apparaît en cyan, bouge en direct pendant que tu composes, et une ligne indique la distance réelle vers ton favori le plus proche. Barre d'échelle en bas à droite. Le fond étoilé (bras spiraux, bulbe, nébuleuses) est décoratif — purement illustratif. Mets des adresses en favori ⭐ pour les épingler ici.</div>
+      <div class="po-map-box">
+        <canvas id="po-map" role="img" data-i18n-aria="po_map_aria" aria-label="Carte stellaire 3D des adresses de portail"></canvas>
+        <div class="po-map-hint" data-i18n="po_map_hint">Glisse pour orbiter · molette / pincement pour zoomer · clique un marqueur</div>
+      </div>
     </section>
   </main>
 
@@ -2139,6 +2154,12 @@ const I18N = {
     po_warn_planet: "⚠️ Indice de planète inhabituel — en jeu, le premier glyphe va de 1 à 6.",
     po_copy: "Copier", po_name_ph: "Nommer cette adresse (« ma base », « planète paradis »…)",
     po_name_saved: "Nom enregistré", po_lore: "✦ Pourquoi 16 glyphes ? Découvre « Le secret du 16 »",
+    po_map_title: "Carte stellaire 3D",
+    po_map_note: "Ton carnet d'adresses, en 3D dans une galaxie aux proportions réelles du jeu : la grille adressable fait 4096 × 4096 × 256 voxels (1 voxel ≈ 400 al), soit un disque d'≈ 1,64 million d'années-lumière de large et ≈ 102 000 al d'épaisseur — l'épaisseur affichée est à l'échelle exacte, et du bord au centre il y a ≈ 819 000 al. Chaque marqueur 🔶 est placé à la position mathématique exacte de son adresse ; l'adresse en cours apparaît en cyan, bouge en direct pendant que tu composes, et une ligne indique la distance réelle vers ton favori le plus proche. Barre d'échelle en bas à droite. Le fond étoilé (bras spiraux, bulbe, nébuleuses) est décoratif — purement illustratif. Mets des adresses en favori ⭐ pour les épingler ici.",
+    po_map_hint: "Glisse pour orbiter · molette / pincement pour zoomer · clique un marqueur",
+    po_map_aria: "Carte stellaire 3D des adresses de portail",
+    po_map_current: "Adresse en cours", po_nearest: "Favori le plus proche",
+    po_map_empty: "Compose une adresse ou ajoute des favoris 🌀 pour les voir apparaître ici",
     so_pinned: "📌 Épinglés", so_recent: "🕐 Consultés récemment", so_pin: "Épingler", so_unpin: "Désépingler",
     rec_profit: "Labo de rentabilité",
     lab_note: "Chaque recette de raffinage est évaluée avec les valeurs réelles du catalogue du jeu (prix moyen galactique) : coût des entrées contre valeur de la sortie. ≈ indicatif — les prix varient d'un système à l'autre. Les recettes dont un ingrédient se paie en nanites ou n'a pas de valeur marchande sont écartées du classement, par honnêteté.",
@@ -2377,6 +2398,12 @@ const I18N = {
     po_warn_planet: "⚠️ Unusual planet index — in game the first glyph runs from 1 to 6.",
     po_copy: "Copy", po_name_ph: "Name this address (“my base”, “paradise planet”…)",
     po_name_saved: "Name saved", po_lore: "✦ Why 16 glyphs? Discover “The secret of 16”",
+    po_map_title: "3D star map",
+    po_map_note: "Your address book, in 3D inside a galaxy with the game's real proportions: the addressable grid is 4096 × 4096 × 256 voxels (1 voxel ≈ 400 ly) — a disc ≈ 1.64 million light-years across and ≈ 102,000 ly thick (the displayed thickness is exactly to scale), with ≈ 819,000 ly from rim to centre. Every 🔶 marker sits at the mathematically exact position of its address; the address you are composing appears in cyan, moves live as you type, and a line shows the real distance to your nearest favourite. Scale bar bottom-right. The starry background (spiral arms, bulge, nebulae) is decorative — purely illustrative. Star ⭐ addresses to pin them here.",
+    po_map_hint: "Drag to orbit · wheel / pinch to zoom · click a marker",
+    po_map_aria: "3D star map of portal addresses",
+    po_map_current: "Current address", po_nearest: "Nearest favourite",
+    po_map_empty: "Compose an address or add 🌀 favourites to see them appear here",
     so_pinned: "📌 Pinned", so_recent: "🕐 Recently viewed", so_pin: "Pin", so_unpin: "Unpin",
     rec_profit: "Profit lab",
     lab_note: "Every refiner recipe is priced with the game's real catalogue values (galactic average price): input cost vs output value. ≈ indicative — prices vary between systems. Recipes with an ingredient priced in nanites or with no market value are excluded from the ranking, for honesty.",
@@ -2569,6 +2596,7 @@ function activateTab(b, focus) {
   } else galStopLoop();
   if (b.dataset.tab === "catalogue") ensureCatalogue();
   if (b.dataset.tab === "elements") ensureCatalogue();  // les éléments s'appuient sur le catalogue
+  if (b.dataset.tab === "portail") poMapStart(); else poMapStop();  // carte stellaire 3D
   syncBottomNav(b.dataset.tab);
   syncSide(b.dataset.tab);
   try { localStorage.setItem("nms-tab", b.dataset.tab); } catch { /* stockage indisponible */ }
@@ -4898,6 +4926,7 @@ function poDel() { poAddr = (poAddr || "").slice(0, -1); renderPortal(); }
 function renderPortal() {
   const out = document.getElementById("po-out"), addrBox = document.getElementById("po-addr"), pad = document.getElementById("po-pad");
   if (!out || !pad) return;
+  poMapDirty = true;   // la carte stellaire 3D suit l'adresse en cours
   const a = poAddr || "";
   if (!pad.childElementCount)
     pad.innerHTML = "0123456789ABCDEF".split("").map(c => `<button class="po-key" data-po-key="${c}" aria-label="${c}">${c}</button>`).join("");
@@ -4912,6 +4941,21 @@ function renderPortal() {
   const grouped = a.replace(/(.{4})/g, "$1 ").trim();
   const favKey = "portal=" + a;
   const name = poNames()[a] || "";
+  // Favori le plus proche de cette adresse (distance réelle, 1 voxel ≈ 400 al).
+  let nearRow = "";
+  {
+    let bestName = null, bd = Infinity;
+    const nms = poNames();
+    for (const full of favs) {
+      if (!full.startsWith("portal=")) continue;
+      const hx = full.slice(7).toUpperCase();
+      if (hx === a || !/^[0-9A-F]{12}$/.test(hx)) continue;
+      const d2 = poDecode(hx);
+      const dist = Math.hypot(d2.sx - d.sx, d2.sy - d.sy, d2.sz - d.sz) * 400;
+      if (dist < bd) { bd = dist; bestName = nms[hx] || hx.replace(/(.{4})/g, "$1 ").trim(); }
+    }
+    if (bestName) nearRow = `<div class="po-row"><span class="k">${esc(T().po_nearest)}</span><span class="v">${esc(bestName)} · ≈ ${fmtNum(Math.round(bd))} ${esc(T().po_ly)}</span></div>`;
+  }
   out.innerHTML = `
     <div class="po-row"><span class="k">${esc(T().po_addr)}</span><span class="v orange">${grouped}<button class="po-copy" data-po-copy="${a}" title="${esc(T().po_copy)}" aria-label="${esc(T().po_copy)}">⧉</button></span></div>
     <div class="po-row"><span class="k">${esc(T().po_planet)}</span><span class="v">${d.p}</span></div>
@@ -4919,6 +4963,7 @@ function renderPortal() {
     <div class="po-row"><span class="k">${esc(T().po_coords)}</span><span class="v">X ${d.sx} · Y ${d.sy} · Z ${d.sz}</span></div>
     <div class="po-row"><span class="k">${esc(T().po_booster)}</span><span class="v">${d.booster}<button class="po-copy" data-po-copy="${d.booster}" title="${esc(T().po_copy)}" aria-label="${esc(T().po_copy)}">⧉</button></span></div>
     <div class="po-row"><span class="k">${esc(T().po_dist)}</span><span class="v">≈ ${fmtNum(Math.round(d.dist))} ${esc(T().po_ly)}</span></div>
+    ${nearRow}
     ${d.p < 1 || d.p > 6 ? `<div class="po-warn">${esc(T().po_warn_planet)}</div>` : ""}
     <div class="po-name">
       <input type="text" id="po-name" maxlength="40" value="${esc(name)}" placeholder="${esc(T().po_name_ph)}" aria-label="${esc(T().po_name_ph)}">
@@ -4932,6 +4977,7 @@ function renderPortal() {
   const nameInput = document.getElementById("po-name");
   if (nameInput) nameInput.addEventListener("change", () => {
     poSetName(a, nameInput.value.trim()); toast(T().po_name_saved); renderFavorites();
+    poMapDirty = true;   // la carte 3D affiche les noms
   });
 }
 (function setupPortal() {
@@ -4983,6 +5029,267 @@ function renderPortal() {
       }, 150);
     }
   });
+})();
+
+/* ============================== Carte stellaire 3D (portail) ============================== */
+// Visualise le carnet d'adresses de portail dans le disque galactique, en 3D
+// (projection perspective maison sur canvas 2D, aucune dépendance).
+// HONNÊTETÉ : les MARQUEURS sont aux positions mathématiques exactes des adresses
+// dans la grille de voxels du jeu (X/Z ±2047, Y ±127 ; anneaux réels, 1 voxel ≈ 400 al).
+// Le fond étoilé est décoratif — procédural, déterministe, purement illustratif.
+// État en `var` (pas de TDZ : renderPortal/activateTab peuvent tourner avant ce bloc).
+var poMapRaf = null, poMapYaw = 0.7, poMapPitch = 0.42, poMapDist = 2.5;
+var poMapStars = null, poMapHits = [], poMapDragging = false, poMapDirty = true;
+
+function poMapBuildStars() {
+  // Galaxie fidèle aux proportions réelles du jeu : le disque décoratif est
+  // borné au rayon adressable (2047 voxels = rayon 1 de la scène) et son
+  // ÉPAISSEUR est à l'échelle exacte (±127 voxels → ±127/2047 ≈ ±0,062).
+  // mulberry32 déterministe (graine 256 = 16×16, forcément) : même ciel à chaque visite.
+  let s = 256;
+  const rnd = () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  const st = [], neb = [];
+  const spiral = r => Math.log(r * 8 + 1) * 1.9;         // bras en spirale logarithmique
+  // Bulbe central : sphéroïde dense et doré.
+  for (let i = 0; i < 450; i++) {
+    const r = Math.pow(rnd(), 2) * 0.16;
+    const th = rnd() * Math.PI * 2, ph = Math.acos(2 * rnd() - 1);
+    st.push({ x: Math.sin(ph) * Math.cos(th) * r, y: Math.cos(ph) * r * 0.55, z: Math.sin(ph) * Math.sin(th) * r,
+      m: 0.5 + rnd() * 1.1, c: rnd() < 0.6 ? "255,224,170" : "255,255,255" });
+  }
+  // Disque à 4 bras spiraux ; épaisseur réelle, amincie vers le bord.
+  for (let i = 0; i < 2600; i++) {
+    const arm = (i % 4) * (Math.PI / 2);
+    const r = 0.14 + Math.pow(rnd(), 0.6) * 0.86;
+    const th = arm + spiral(r) + (rnd() - 0.5) * (0.5 + 0.4 * r);
+    const y = (rnd() + rnd() + rnd() - 1.5) / 1.5 * 0.062 * (1.15 - r * 0.75);
+    const c = rnd();
+    st.push({ x: Math.cos(th) * r, y, z: Math.sin(th) * r, m: 0.35 + rnd() * 0.85,
+      c: c < 0.55 ? "215,230,255" : c < 0.75 ? "255,255,255" : c < 0.9 ? "95,208,224" : "255,179,71" });
+  }
+  // Nébuleuses douces le long des bras (décoratif).
+  for (let i = 0; i < 26; i++) {
+    const arm = (i % 4) * (Math.PI / 2);
+    const r = 0.2 + rnd() * 0.72;
+    const th = arm + spiral(r) + (rnd() - 0.5) * 0.35;
+    neb.push({ x: Math.cos(th) * r, y: 0, z: Math.sin(th) * r, s: 0.05 + rnd() * 0.1,
+      c: ["120,80,220", "95,208,224", "255,122,26"][i % 3], a: 0.05 + rnd() * 0.07 });
+  }
+  return { st, neb };
+}
+function poMapProject(x, y, z, W, H) {
+  const cy = Math.cos(poMapYaw), sy = Math.sin(poMapYaw);
+  const X = x * cy - z * sy; let Z = x * sy + z * cy;
+  const cp = Math.cos(poMapPitch), sp = Math.sin(poMapPitch);
+  const Y = y * cp - Z * sp; Z = y * sp + Z * cp;
+  const f = 1.55 / (poMapDist + Z);
+  const S = Math.min(W, H);
+  return { x: W / 2 + X * f * S, y: H / 2 + Y * f * S, f, z: Z };
+}
+// Marqueurs : favoris « portal= » + adresse en cours (exactement positionnés).
+function poMapMarkers() {
+  const out = [], names = poNames(), seen = new Set();
+  for (const full of favs) {
+    if (!full.startsWith("portal=")) continue;
+    const hex = full.slice(7).toUpperCase();
+    if (!/^[0-9A-F]{12}$/.test(hex) || seen.has(hex)) continue;
+    seen.add(hex);
+    out.push({ hex, d: poDecode(hex), name: names[hex] || hex.replace(/(.{4})/g, "$1 ").trim(), cur: false });
+  }
+  const a = typeof poAddr === "string" ? poAddr.toUpperCase() : "";
+  if (a.length === 12) {
+    const already = out.find(x => x.hex === a);
+    if (already) already.cur = true;
+    else out.push({ hex: a, d: poDecode(a), name: names[a] || T().po_map_current, cur: true });
+  }
+  return out;
+}
+function poMapDraw() {
+  const cv = document.getElementById("po-map");
+  if (!cv) return;
+  const dpr = window.devicePixelRatio || 1;
+  const W = cv.clientWidth, H = cv.clientHeight;
+  if (!W || !H) return;
+  if (cv.width !== Math.round(W * dpr) || cv.height !== Math.round(H * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
+  const g = cv.getContext("2d");
+  g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  g.clearRect(0, 0, W, H);
+  if (!poMapStars) poMapStars = poMapBuildStars();
+  // Nébuleuses douces (décoratif)
+  for (const nb of poMapStars.neb) {
+    const p = poMapProject(nb.x, nb.y, nb.z, W, H);
+    if (p.z < -poMapDist + 0.2) continue;
+    const rr = Math.max(6, nb.s * p.f * Math.min(W, H) * 1.6);
+    const ng = g.createRadialGradient(p.x, p.y, 0, p.x, p.y, rr);
+    ng.addColorStop(0, `rgba(${nb.c},${nb.a})`); ng.addColorStop(1, `rgba(${nb.c},0)`);
+    g.fillStyle = ng; g.beginPath(); g.arc(p.x, p.y, rr, 0, 7); g.fill();
+  }
+  // Cœur galactique
+  const c0 = poMapProject(0, 0, 0, W, H);
+  const gr = g.createRadialGradient(c0.x, c0.y, 0, c0.x, c0.y, Math.max(8, 90 * c0.f));
+  gr.addColorStop(0, "rgba(255,214,140,0.85)"); gr.addColorStop(0.35, "rgba(255,150,60,0.25)"); gr.addColorStop(1, "rgba(255,150,60,0)");
+  g.fillStyle = gr; g.beginPath(); g.arc(c0.x, c0.y, Math.max(8, 90 * c0.f), 0, 7); g.fill();
+  // Étoiles décoratives
+  for (const st of poMapStars.st) {
+    const p = poMapProject(st.x, st.y, st.z, W, H);
+    if (p.z < -poMapDist + 0.2) continue;
+    g.fillStyle = `rgba(${st.c},${Math.min(0.85, 0.2 + p.f * 0.45)})`;
+    g.beginPath(); g.arc(p.x, p.y, Math.max(0.4, st.m * p.f * 1.5), 0, 7); g.fill();
+  }
+  // Anneaux de distance réels (512 / 1024 / 2047 voxels → années-lumière)
+  g.font = '600 10px "Space Mono", monospace';
+  for (const rv of [512, 1024, 2047]) {
+    const rr = rv / 2047;
+    g.strokeStyle = "rgba(95,208,224,0.2)"; g.lineWidth = 1; g.beginPath();
+    for (let i = 0; i <= 90; i++) {
+      const th = i / 90 * Math.PI * 2;
+      const p = poMapProject(Math.cos(th) * rr, 0, Math.sin(th) * rr, W, H);
+      if (i) g.lineTo(p.x, p.y); else g.moveTo(p.x, p.y);
+    }
+    g.stroke();
+    const lp = poMapProject(rr, 0, 0, W, H);
+    g.fillStyle = "rgba(95,208,224,0.5)";
+    g.fillText("≈ " + fmtNum(rv * 400) + " al", lp.x + 4, lp.y - 4);
+  }
+  // Marqueurs — positions exactes, triés par profondeur (les proches par-dessus)
+  poMapHits = [];
+  const now = performance.now();
+  const ms = poMapMarkers()
+    .map(m => ({ ...m, px: m.d.sx / 2047, py: -m.d.sy / 2047, pz: m.d.sz / 2047 }))
+    .map(m => ({ ...m, p: poMapProject(m.px, m.py, m.pz, W, H), base: poMapProject(m.px, 0, m.pz, W, H) }))
+    .sort((a, b) => b.p.z - a.p.z);
+  for (const m of ms) {
+    g.strokeStyle = m.cur ? "rgba(95,208,224,0.5)" : "rgba(255,122,26,0.45)";
+    g.lineWidth = 1;
+    g.beginPath(); g.moveTo(m.base.x, m.base.y); g.lineTo(m.p.x, m.p.y); g.stroke();
+    const s = Math.max(4.5, 7 * m.p.f);
+    if (m.cur) {   // halo pulsant sur l'adresse en cours (fixe si mouvement réduit)
+      const pulse = reduceMotion ? 0.5 : (Math.sin(now / 420) + 1) / 2;
+      g.fillStyle = `rgba(95,208,224,${0.12 + pulse * 0.15})`;
+      g.beginPath(); g.arc(m.p.x, m.p.y, s * (2 + pulse), 0, 7); g.fill();
+    }
+    g.fillStyle = m.cur ? "#5fd0e0" : "#ff7a1a";
+    g.beginPath(); g.moveTo(m.p.x, m.p.y - s); g.lineTo(m.p.x + s, m.p.y); g.lineTo(m.p.x, m.p.y + s); g.lineTo(m.p.x - s, m.p.y); g.closePath(); g.fill();
+    g.fillStyle = "rgba(232,237,251,0.92)";
+    g.font = '700 11px "Space Mono", monospace';
+    g.fillText(m.name.slice(0, 22), m.p.x + s + 4, m.p.y + 4);
+    poMapHits.push({ x: m.p.x, y: m.p.y, hex: m.hex });
+  }
+  // Ligne vers le favori le plus proche de l'adresse en cours (distance réelle).
+  const cur = ms.find(m => m.cur);
+  if (cur) {
+    let near = null, nd = Infinity;
+    for (const m of ms) {
+      if (m === cur) continue;
+      const d = Math.hypot(m.d.sx - cur.d.sx, m.d.sy - cur.d.sy, m.d.sz - cur.d.sz) * 400;
+      if (d < nd) { nd = d; near = m; }
+    }
+    if (near) {
+      g.strokeStyle = "rgba(95,208,224,0.55)"; g.setLineDash([5, 5]); g.lineWidth = 1;
+      g.beginPath(); g.moveTo(cur.p.x, cur.p.y); g.lineTo(near.p.x, near.p.y); g.stroke();
+      g.setLineDash([]);
+      g.fillStyle = "rgba(95,208,224,0.85)";
+      g.font = '700 10px "Space Mono", monospace';
+      g.fillText("≈ " + fmtNum(Math.round(nd)) + " al", (cur.p.x + near.p.x) / 2 + 6, (cur.p.y + near.p.y) / 2 - 4);
+    }
+  }
+  // Barre d'échelle dynamique : distances réelles (1 voxel ≈ 400 al).
+  const pxPerUnit = c0.f * Math.min(W, H);     // pixels par unité de scène au centre
+  let scaleAl = 0, scalePx = 0;
+  for (const cand of [25000, 50000, 100000, 200000, 400000, 800000]) {
+    const px = cand / 400 / 2047 * pxPerUnit;
+    if (px >= 55 && px <= 190) { scaleAl = cand; scalePx = px; break; }
+    if (!scaleAl && px > 190) { scaleAl = cand; scalePx = px; }
+  }
+  if (scaleAl && scalePx <= 240) {
+    const bx = W - scalePx - 16, by = H - 18;
+    g.strokeStyle = "rgba(232,237,251,0.6)"; g.lineWidth = 1;
+    g.beginPath(); g.moveTo(bx, by); g.lineTo(bx + scalePx, by);
+    g.moveTo(bx, by - 4); g.lineTo(bx, by + 4);
+    g.moveTo(bx + scalePx, by - 4); g.lineTo(bx + scalePx, by + 4); g.stroke();
+    g.fillStyle = "rgba(232,237,251,0.7)";
+    g.font = '600 10px "Space Mono", monospace';
+    g.textAlign = "center";
+    g.fillText(fmtNum(scaleAl) + " al", bx + scalePx / 2, by - 7);
+    g.textAlign = "left";
+  }
+  // Aide si le carnet est vide
+  if (!ms.length) {
+    g.fillStyle = "rgba(232,237,251,0.6)";
+    g.font = '600 12px "Space Mono", monospace';
+    g.textAlign = "center";
+    g.fillText(T().po_map_empty, W / 2, H - 22);
+    g.textAlign = "left";
+  }
+}
+function poMapStart() {
+  if (poMapRaf) return;
+  poMapDirty = true;
+  const step = () => {
+    if (document.body.dataset.tab !== "portail") { poMapStop(); return; }
+    const auto = !reduceMotion && !poMapDragging;
+    if (auto) poMapYaw += 0.0016;
+    // halo pulsant : on redessine aussi tant qu'une adresse est en cours (sauf mouvement réduit)
+    const pulse = !reduceMotion && typeof poAddr === "string" && poAddr.length === 12;
+    if (auto || pulse || poMapDirty) { poMapDirty = false; poMapDraw(); }
+    poMapRaf = requestAnimationFrame(step);
+  };
+  poMapRaf = requestAnimationFrame(step);
+}
+function poMapStop() {
+  if (poMapRaf) { cancelAnimationFrame(poMapRaf); poMapRaf = null; }
+}
+(function poMapSetup() {
+  const cv = document.getElementById("po-map");
+  if (!cv) return;
+  const pointers = new Map();
+  let pinchD = 0, moved = false;
+  cv.addEventListener("pointerdown", e => {
+    cv.setPointerCapture(e.pointerId);
+    pointers.set(e.pointerId, [e.clientX, e.clientY]);
+    poMapDragging = true; moved = false;
+    cv.classList.add("dragging");
+  });
+  cv.addEventListener("pointermove", e => {
+    if (!pointers.has(e.pointerId)) return;
+    const [px, py] = pointers.get(e.pointerId);
+    pointers.set(e.pointerId, [e.clientX, e.clientY]);
+    if (pointers.size === 1) {
+      const dx = e.clientX - px, dy = e.clientY - py;
+      if (Math.abs(dx) + Math.abs(dy) > 2) moved = true;
+      poMapYaw += dx * 0.005;
+      poMapPitch = Math.min(1.35, Math.max(0.06, poMapPitch + dy * 0.004));
+      poMapDirty = true;
+    } else if (pointers.size === 2) {   // pincement = zoom
+      const pts = [...pointers.values()];
+      const d = Math.hypot(pts[0][0] - pts[1][0], pts[0][1] - pts[1][1]);
+      if (pinchD) { poMapDist = Math.min(6, Math.max(1.15, poMapDist * pinchD / d)); poMapDirty = true; }
+      pinchD = d; moved = true;
+    }
+  });
+  const up = e => {
+    const had = pointers.delete(e.pointerId);
+    if (!pointers.size) { poMapDragging = false; pinchD = 0; cv.classList.remove("dragging"); }
+    if (had && !moved && e.type === "pointerup") {
+      // Clic : charge le marqueur le plus proche dans le Cadran.
+      const r = cv.getBoundingClientRect();
+      const mx = e.clientX - r.left, my = e.clientY - r.top;
+      let best = null, bd = 18;
+      for (const h of poMapHits) { const d = Math.hypot(h.x - mx, h.y - my); if (d < bd) { bd = d; best = h; } }
+      if (best && typeof renderPortal === "function") {
+        poAddr = best.hex; renderPortal(); poMapDirty = true;
+        toast(poNames()[best.hex] || best.hex.replace(/(.{4})/g, "$1 ").trim());
+      }
+    }
+  };
+  cv.addEventListener("pointerup", up);
+  cv.addEventListener("pointercancel", up);
+  cv.addEventListener("wheel", e => {
+    e.preventDefault();
+    poMapDist = Math.min(6, Math.max(1.15, poMapDist * (e.deltaY > 0 ? 1.08 : 0.925)));
+    poMapDirty = true;
+  }, { passive: false });
+  window.addEventListener("resize", () => { poMapDirty = true; });
 })();
 
 /* ============================== Compte à rebours 10 ans ============================== */

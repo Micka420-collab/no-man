@@ -322,6 +322,60 @@
   .as-foot .af1 { font: 400 0.66rem var(--font-body); color: var(--ink-dim); line-height: 1.4; }
   .as-foot .af2 { font: 700 0.56rem var(--font-mono); color: var(--ink-dim); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 4px; opacity: 0.7; }
 
+  /* ------- Décodeur de portail « Le Cadran des 16 » ------- */
+  .po-wrap { display: grid; grid-template-columns: minmax(280px, 430px) 1fr; gap: 22px; align-items: start; }
+  @media (max-width: 860px) { .po-wrap { grid-template-columns: 1fr; } }
+  .po-addr { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+  .po-cell { width: 30px; height: 38px; display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--stroke); border-radius: 8px; font: 700 1.05rem var(--font-mono);
+    color: var(--c2); background: color-mix(in srgb, var(--ink) 4%, transparent); }
+  .po-cell.filled { border-color: color-mix(in srgb, var(--c1) 55%, transparent); color: var(--c1h);
+    box-shadow: 0 0 10px rgba(255, 122, 26, 0.12); }
+  .po-cell.cursor { border-color: var(--c2); animation: poBlink 1.1s step-end infinite; }
+  @keyframes poBlink { 50% { border-color: transparent; } }
+  @media (prefers-reduced-motion: reduce) { .po-cell.cursor { animation: none; } }
+  .po-pad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 430px; }
+  .po-key { min-height: 48px; border: 1px solid var(--stroke); border-radius: 10px; cursor: pointer;
+    background: linear-gradient(158deg, var(--card-strong), var(--card));
+    color: var(--ink); font: 700 1.15rem var(--font-mono); transition: border-color 0.15s, color 0.15s, transform 0.1s; }
+  .po-key:hover { border-color: var(--c1); color: var(--c1h); }
+  .po-key:active { transform: scale(0.96); }
+  .po-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .po-btn { border: 1px solid var(--stroke); background: none; color: var(--ink-dim); font: 600 0.8rem var(--font-mono);
+    padding: 8px 14px; border-radius: 9px; cursor: pointer; }
+  .po-btn:hover { color: var(--ink); border-color: var(--stroke-hi); }
+  .po-btn.on { color: var(--c1h); border-color: color-mix(in srgb, var(--c1) 55%, transparent); }
+  .po-out { border: 1px solid var(--stroke); border-radius: var(--radius); padding: 18px 20px; position: relative;
+    background: linear-gradient(158deg, var(--card-strong), var(--card)); }
+  .po-out::before { content: ""; position: absolute; top: 8px; left: 8px; width: 12px; height: 12px; pointer-events: none;
+    border-top: 2px solid var(--c1); border-left: 2px solid var(--c1); border-top-left-radius: 3px; }
+  .po-out::after { content: ""; position: absolute; bottom: 8px; right: 8px; width: 12px; height: 12px; pointer-events: none;
+    border-bottom: 2px solid var(--c2); border-right: 2px solid var(--c2); border-bottom-right-radius: 3px; }
+  .po-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0;
+    border-bottom: 1px dashed color-mix(in srgb, var(--stroke) 60%, transparent); }
+  .po-row:last-of-type { border-bottom: none; }
+  .po-row .k { font: 700 0.62rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-dim); }
+  .po-row .v { font: 700 0.95rem var(--font-mono); color: var(--c2); text-align: right; word-break: break-all; }
+  .po-row .v.orange { color: var(--c1h); }
+  .po-warn { margin-top: 10px; font-size: 0.8rem; color: var(--c1h); }
+  .po-hint { color: var(--ink-dim); font-size: 0.85rem; }
+  .po-copy { margin-left: 6px; cursor: pointer; border: none; background: none; color: var(--ink-dim); font-size: 0.85rem; }
+  .po-copy:hover { color: var(--ink); }
+  .po-name { display: flex; gap: 8px; margin-top: 14px; }
+  .po-name input { flex: 1; min-width: 0; background: color-mix(in srgb, var(--ink) 4%, transparent);
+    border: 1px solid var(--stroke); border-radius: 9px; color: var(--ink); padding: 8px 10px; font-size: 16px; }
+  .po-paste { margin-top: 12px; }
+  .po-paste input { width: 100%; background: color-mix(in srgb, var(--ink) 4%, transparent);
+    border: 1px solid var(--stroke); border-radius: 9px; color: var(--ink); padding: 9px 11px; font: 500 0.9rem var(--font-mono); }
+
+  /* ------- Rangées récents / épingles (recherche globale) ------- */
+  .so-row { display: flex; align-items: stretch; gap: 6px; }
+  .so-row .so-item { flex: 1; min-width: 0; }
+  .so-pin { flex-shrink: 0; width: 42px; border: none; background: none; cursor: pointer;
+    color: var(--ink-dim); font-size: 1rem; opacity: 0.5; border-radius: 10px; }
+  .so-pin:hover { opacity: 1; background: color-mix(in srgb, var(--ink) 7%, transparent); }
+  .so-pin.on { opacity: 1; color: var(--c1h); }
+
   section.panel { display: none; animation: fadeUp 0.35s ease; }
   section.panel.active { display: block; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } }
@@ -1512,6 +1566,7 @@
     <button role="tab" id="tab-videos" aria-controls="panel-videos" data-tab="videos" aria-selected="false" tabindex="-1">🎬 <span data-i18n="tab_videos">Vidéos</span><span class="notif" id="notif-videos" hidden><span class="sr-only" data-i18n="notif_sr">— nouveautés</span></span></button>
     <button role="tab" id="tab-maj" aria-controls="panel-maj" data-tab="maj" aria-selected="false" tabindex="-1">🕰️ <span data-i18n="tab_timeline">Mises à jour</span></button>
     <button role="tab" id="tab-expeditions" aria-controls="panel-expeditions" data-tab="expeditions" aria-selected="false" tabindex="-1">🗓️ <span data-i18n="tab_expeditions">Expéditions</span></button>
+    <button role="tab" id="tab-portail" aria-controls="panel-portail" data-tab="portail" aria-selected="false" tabindex="-1">🌀 <span data-i18n="tab_portal">Portail</span></button>
   </nav>
 
   <main id="main">
@@ -1764,6 +1819,25 @@
         <div class="searchbox" style="margin-left:auto"><input type="search" id="search-expeditions" data-i18n-ph="exp_search_ph" placeholder="Chercher une expédition…" data-i18n-aria="aria_search_exp" aria-label="Chercher une expédition"></div>
       </div>
       <div id="exp-list" class="exp-list"></div>
+    </section>
+
+    <!-- Décodeur de portail « Le Cadran des 16 » -->
+    <section class="panel" id="panel-portail" role="tabpanel" aria-labelledby="tab-portail">
+      <div class="note" data-i18n-html="po_note">Compose une <b>adresse de portail</b> de 12 glyphes (l'alphabet du jeu compte 16 glyphes, notés 0–F comme le fait la communauté) : le décodage — indice de planète, indice de système, position galactique et format « balise de signal » — se fait instantanément, hors-ligne. La conversion suit la convention communautaire documentée (1 voxel ≈ 400 années-lumière, valeurs approchées « ≈ »).</div>
+      <div class="po-wrap">
+        <div>
+          <div class="po-addr" id="po-addr" data-i18n-aria="po_addr_aria" aria-label="Adresse de portail (12 glyphes)"></div>
+          <div class="po-pad" id="po-pad" role="group" data-i18n-aria="po_pad_aria" aria-label="Pavé hexadécimal — les 16 glyphes"></div>
+          <div class="po-actions">
+            <button class="po-btn" id="po-del">⌫ <span data-i18n="po_del">Effacer</span></button>
+            <button class="po-btn" id="po-clear" data-i18n="po_clear">Tout effacer</button>
+            <button class="po-btn" id="po-example" data-i18n="po_example">◆ Centre de la galaxie</button>
+          </div>
+          <div class="po-paste"><input type="text" id="po-paste" autocomplete="off" spellcheck="false" data-i18n-ph="po_paste_ph" placeholder="Coller : 12 glyphes hex ou XXXX:YYYY:ZZZZ:SSSS" data-i18n-aria="po_paste_aria" aria-label="Coller une adresse"></div>
+          <p class="note po-hint" style="margin-top:12px" data-i18n="po_paste_hint">Colle une adresse de 12 glyphes ou des coordonnées de balise de signal (format XXXX:YYYY:ZZZZ:SSSS, celui de r/NMSCoordinateExchange) : le pavé se remplit tout seul.</p>
+        </div>
+        <div class="po-out" id="po-out" aria-live="polite"></div>
+      </div>
     </section>
   </main>
 
@@ -2023,6 +2097,23 @@ const I18N = {
     fish_storm: "⛈️ Pendant une tempête", fish_mission: "🎯 Mission requise",
     fish_size: { small: "Petit", "medium-sized": "Moyen", large: "Grand", colossal: "Colossal" },
     fish_biome: { All: "Tous biomes", Barren: "Aride", Exotic: "Exotique", Frozen: "Gelé", Lava: "Volcanique", Lush: "Luxuriant", Radioactive: "Radioactif", Scorched: "Brûlant", Swamp: "Marécageux", Toxic: "Toxique" },
+    fish_all: "Toutes", fish_f_biome: "🌍 Biome de ta planète", fish_f_time: "🕐 Moment", fish_f_storm: "⛈️ Tempête",
+    fish_any: "Peu importe", fish_storm_no: "Sans tempête", fish_storm_yes: "Tempête en cours (remontés en tête)",
+    fish_count: (n, t) => `${n} poisson${n > 1 ? "s" : ""} sur ${t} dans ces conditions`,
+    tab_portal: "Portail",
+    po_note: "Compose une <b>adresse de portail</b> de 12 glyphes (l'alphabet du jeu compte 16 glyphes, notés 0–F comme le fait la communauté) : le décodage — indice de planète, indice de système, position galactique et format « balise de signal » — se fait instantanément, hors-ligne. La conversion suit la convention communautaire documentée (1 voxel ≈ 400 années-lumière, valeurs approchées « ≈ »).",
+    po_addr_aria: "Adresse de portail (12 glyphes)", po_pad_aria: "Pavé hexadécimal — les 16 glyphes",
+    po_del: "Effacer", po_clear: "Tout effacer", po_example: "◆ Centre de la galaxie",
+    po_paste_ph: "Coller : 12 glyphes hex ou XXXX:YYYY:ZZZZ:SSSS", po_paste_aria: "Coller une adresse",
+    po_paste_hint: "Colle une adresse de 12 glyphes ou des coordonnées de balise de signal (format XXXX:YYYY:ZZZZ:SSSS, celui de r/NMSCoordinateExchange) : le pavé se remplit tout seul.",
+    po_incomplete: n => `Saisis encore ${12 - n} glyphe${12 - n > 1 ? "s" : ""} — le décodage est instantané.`,
+    po_addr: "Adresse", po_planet: "Planète (indice)", po_system: "Système (indice)",
+    po_coords: "Position (voxels depuis le centre)", po_booster: "Balise de signal", po_dist: "Distance du centre",
+    po_ly: "années-lumière", po_approx_note: "≈ selon la convention communautaire : 1 voxel ≈ 400 années-lumière.",
+    po_warn_planet: "⚠️ Indice de planète inhabituel — en jeu, le premier glyphe va de 1 à 6.",
+    po_copy: "Copier", po_name_ph: "Nommer cette adresse (« ma base », « planète paradis »…)",
+    po_name_saved: "Nom enregistré", po_lore: "✦ Pourquoi 16 glyphes ? Découvre « Le secret du 16 »",
+    so_pinned: "📌 Épinglés", so_recent: "🕐 Consultés récemment", so_pin: "Épingler", so_unpin: "Désépingler",
     ship_price: "Prix", ship_find: "Où le trouver", ship_rarity: n => `Rareté : ${n}/5`,
     ship_build: "⚡ Build conseillé (emplacements survolimentés)",
     ship_guide_more: "Guide complet pour améliorer un vaisseau ↓",
@@ -2230,6 +2321,23 @@ const I18N = {
     fish_storm: "⛈️ During a storm", fish_mission: "🎯 Mission required",
     fish_size: { small: "Small", "medium-sized": "Medium", large: "Large", colossal: "Colossal" },
     fish_biome: { All: "All biomes", Barren: "Barren", Exotic: "Exotic", Frozen: "Frozen", Lava: "Volcanic", Lush: "Lush", Radioactive: "Radioactive", Scorched: "Scorched", Swamp: "Swamp", Toxic: "Toxic" },
+    fish_all: "All", fish_f_biome: "🌍 Your planet's biome", fish_f_time: "🕐 Time", fish_f_storm: "⛈️ Storm",
+    fish_any: "Any", fish_storm_no: "No storm", fish_storm_yes: "Storm raging (shown first)",
+    fish_count: (n, t) => `${n} of ${t} fish match these conditions`,
+    tab_portal: "Portal",
+    po_note: "Compose a 12-glyph <b>portal address</b> (the game's alphabet has 16 glyphs, written 0–F as the community does): decoding — planet index, system index, galactic position and “signal booster” format — happens instantly, offline. Conversion follows the documented community convention (1 voxel ≈ 400 light-years, “≈” approximate values).",
+    po_addr_aria: "Portal address (12 glyphs)", po_pad_aria: "Hex pad — the 16 glyphs",
+    po_del: "Delete", po_clear: "Clear all", po_example: "◆ Galactic centre",
+    po_paste_ph: "Paste: 12 hex glyphs or XXXX:YYYY:ZZZZ:SSSS", po_paste_aria: "Paste an address",
+    po_paste_hint: "Paste a 12-glyph address or signal-booster coordinates (XXXX:YYYY:ZZZZ:SSSS, the r/NMSCoordinateExchange format): the pad fills itself in.",
+    po_incomplete: n => `Enter ${12 - n} more glyph${12 - n > 1 ? "s" : ""} — decoding is instant.`,
+    po_addr: "Address", po_planet: "Planet (index)", po_system: "System (index)",
+    po_coords: "Position (voxels from centre)", po_booster: "Signal booster", po_dist: "Distance from centre",
+    po_ly: "light-years", po_approx_note: "≈ per the community convention: 1 voxel ≈ 400 light-years.",
+    po_warn_planet: "⚠️ Unusual planet index — in game the first glyph runs from 1 to 6.",
+    po_copy: "Copy", po_name_ph: "Name this address (“my base”, “paradise planet”…)",
+    po_name_saved: "Name saved", po_lore: "✦ Why 16 glyphs? Discover “The secret of 16”",
+    so_pinned: "📌 Pinned", so_recent: "🕐 Recently viewed", so_pin: "Pin", so_unpin: "Unpin",
     ship_price: "Price", ship_find: "Where to find it", ship_rarity: n => `Rarity: ${n}/5`,
     ship_build: "⚡ Recommended build (supercharged slots)",
     ship_guide_more: "Full guide to upgrading a ship ↓",
@@ -2247,7 +2355,7 @@ const LS_TEAM = "nms-team";
 const LS_CHALLENGE = "nms-challenge-v1";
 const LS_LAST_VISIT = "nms-last-visit";
 const D = {};
-const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "Legendary", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", faunayield: "all", faunasort: "az", galerie: "ships", missions: "all" };
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "all", fishbiome: "all", fishtime: "all", fishstorm: "all", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", faunayield: "all", faunasort: "az", galerie: "ships", missions: "all" };
 const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "", catalogue: "" };
 let lang = localStorage.getItem(LS_LANG);
 if (lang !== "fr" && lang !== "en") {
@@ -2332,6 +2440,7 @@ function applyLang(next) {
   renderAll();
   if (typeof syncBottomNav === "function") syncBottomNav(document.body.dataset.tab || "apercu");
   if (typeof buildSidebar === "function") buildSidebar();
+  if (typeof renderPortal === "function") renderPortal();
 }
 document.getElementById("lang-btn").addEventListener("click", () => applyLang(lang === "fr" ? "en" : "fr"));
 
@@ -2409,6 +2518,7 @@ function activateTab(b, focus) {
   syncBottomNav(b.dataset.tab);
   syncSide(b.dataset.tab);
   try { localStorage.setItem("nms-tab", b.dataset.tab); } catch { /* stockage indisponible */ }
+  pushNav("tab=" + b.dataset.tab);
 }
 const tabByName = name => tabButtons.find(x => x.dataset.tab === name);
 document.body.dataset.tab = "apercu";
@@ -2423,7 +2533,7 @@ document.getElementById("hero-live")?.addEventListener("click", () => {
 /* ---------- Barre latérale « Atlas Terminal » (bureau) ---------- */
 const SIDE_GROUPS = [
   { fr: "Explorer", en: "Explore", tabs: ["apercu", "progression", "favoris"] },
-  { fr: "Univers", en: "Universe", tabs: ["marche", "faune", "galaxies", "elements"] },
+  { fr: "Univers", en: "Universe", tabs: ["marche", "faune", "galaxies", "portail", "elements"] },
   { fr: "Communauté", en: "Community", tabs: ["communaute", "expeditions", "guerre", "actus", "succes", "videos", "maj"] },
   { fr: "Codex", en: "Codex", tabs: ["missions", "guide", "catalogue", "recettes", "galerie"] },
 ];
@@ -2457,6 +2567,7 @@ function openSideDrawer() {
   document.body.classList.add("side-open");
   const t = document.getElementById("side-toggle");
   if (t) t.setAttribute("aria-expanded", "true");
+  pushOverlay("side");   // le geste Retour ferme le tiroir
 }
 function closeSideDrawer() {
   document.body.classList.remove("side-open");
@@ -2522,6 +2633,7 @@ function openMore() {
   moreSheet.hidden = false;
   if (moreBtn) moreBtn.setAttribute("aria-expanded", "true");
   document.getElementById("more-close").focus();
+  pushOverlay("more");   // le geste Retour ferme la feuille « Plus »
 }
 function closeMore() {
   if (moreSheet.hidden) return;
@@ -2595,6 +2707,7 @@ function openSearch() {
   soInput.focus();
   soInput.select();
   runSearch(soInput.value);
+  pushOverlay("search");   // le geste Retour ferme la recherche
 }
 function closeSearch() {
   if (searchOverlay.hidden) return;
@@ -2668,10 +2781,60 @@ function fuzzyMatch(query, ...fields) {
   return q.split(" ").every(w => fuzzyWord(w, hayWords, hay));
 }
 
+/* ---------- Écran d'accueil de la recherche : épingles + consultés récemment ---------- */
+function soRecents() { try { return JSON.parse(localStorage.getItem("nms-recents") || "[]"); } catch { return []; } }
+function recordRecent(hash) {
+  try {
+    const r = soRecents().filter(x => x && x.h !== hash);
+    r.unshift({ h: hash, t: Date.now() });
+    localStorage.setItem("nms-recents", JSON.stringify(r.slice(0, 10)));
+  } catch { /* stockage indisponible */ }
+}
+function soPins() { try { return JSON.parse(localStorage.getItem("nms-pins") || "[]"); } catch { return []; } }
+function togglePin(hash) {
+  try {
+    let p = soPins();
+    p = p.includes(hash) ? p.filter(x => x !== hash) : [...p, hash].slice(-8);
+    localStorage.setItem("nms-pins", JSON.stringify(p));
+  } catch { /* stockage indisponible */ }
+}
+function soHomeRow(idx, hash, pinned) {
+  const eq = hash.indexOf("=");
+  const r = favResolve(eq < 0 ? hash : hash.slice(0, eq), eq < 0 ? "" : hash.slice(eq + 1));
+  const tip = pinned ? T().so_unpin : T().so_pin;
+  return `<div class="so-row">${soItemHTML(idx, r)}<button class="so-pin${pinned ? " on" : ""}" data-pin="${esc(hash)}" title="${esc(tip)}" aria-label="${esc(tip)}" aria-pressed="${pinned}">📌</button></div>`;
+}
+function renderSoHome() {
+  soResults = []; soSel = -1;
+  const pins = soPins();
+  const recents = soRecents().map(x => x.h).filter(h => !pins.includes(h));
+  if (!pins.length && !recents.length) { soResultsEl.innerHTML = `<div class="so-hint">${esc(T().so_hint)}</div>`; return; }
+  let html = "";
+  const push = hash => {
+    const idx = soResults.length, eq = hash.indexOf("=");
+    soResults.push({ action: () => { closeSearch(); openTarget(eq < 0 ? hash : hash.slice(0, eq), eq < 0 ? "" : hash.slice(eq + 1)); } });
+    return idx;
+  };
+  if (pins.length) {
+    html += `<div class="so-group-title">${esc(T().so_pinned)}</div>`;
+    for (const h of pins) html += soHomeRow(push(h), h, true);
+  }
+  if (recents.length) {
+    html += `<div class="so-group-title">${esc(T().so_recent)}</div>`;
+    for (const h of recents) html += soHomeRow(push(h), h, false);
+  }
+  soResultsEl.innerHTML = html;
+  // Les fiches « item=/recipe= » se résolvent mieux une fois le catalogue chargé
+  // (lancé par openSearch) : on re-rend alors une fois, si l'écran est toujours vide.
+  const all = [...pins, ...recents];
+  if (all.some(h => h.startsWith("item=")) && !D.catalogue && !D._catFailed)
+    setTimeout(() => { if (!searchOverlay.hidden && !soInput.value.trim()) renderSoHome(); }, 400);
+}
+
 function runSearch(raw) {
   const q = (raw || "").toLowerCase().trim();
   soResults = [];
-  if (q.length < 2) { soResultsEl.innerHTML = `<div class="so-hint">${esc(T().so_hint)}</div>`; return; }
+  if (q.length < 2) { renderSoHome(); return; }
   const has = s => fuzzyMatch(q, s);
   const G = T().so_groups;
   const groups = [];
@@ -2841,6 +3004,11 @@ if (searchOverlay) {
     else if (e.key === "Enter") { if (soSel >= 0 && soResults[soSel]) { e.preventDefault(); soResults[soSel].action(); } }
   });
   soResultsEl.addEventListener("click", e => { const b = e.target.closest("[data-so]"); if (b && soResults[+b.dataset.so]) soResults[+b.dataset.so].action(); });
+  // Épingler / désépingler depuis l'écran d'accueil de la recherche.
+  soResultsEl.addEventListener("click", e => {
+    const p = e.target.closest("[data-pin]");
+    if (p) { togglePin(p.dataset.pin); renderSoHome(); soInput.focus(); }
+  });
   soResultsEl.addEventListener("pointermove", e => { const b = e.target.closest("[data-so]"); if (b && +b.dataset.so !== soSel) { soSel = +b.dataset.so; soHighlight(); } });
   document.addEventListener("keydown", e => {
     if (e.key === "Escape" && !searchOverlay.hidden) { closeSearch(); return; }
@@ -4283,7 +4451,7 @@ document.getElementById("search-galaxies").addEventListener("input", e => {
 
 /* ============================== Marché ============================== */
 const CUR_ICONS = { Credits: "🪙", Nanites: "⬡", Quicksilver: "✦" };
-let mkFishShown = [], mkItemsShown = [];
+let mkFishShown = [], mkItemsShown = [], mkFishAll = false;
 
 function shipGuideHTML() {
   const gd = D.ships && D.ships.upgrade_guide;
@@ -4326,7 +4494,7 @@ function fishToModal(f) {
     title: lang === "en" ? f.name_en : f.name_fr,
     badges: [{ txt: T().fish_q[f.quality] || f.quality, cls: "gold" }],
     rows: [
-      { k: T().m_biomes, v: (f.biomes || []).map(b => T().fish_biome[b] || b).join(", ") },
+      { k: T().m_biomes, v: ((f.biomes || []).some(b => b && b !== "All") ? f.biomes : ["All"]).map(b => T().fish_biome[b === "" ? "All" : b] || b).join(", ") },
       { k: T().m_when, v: T().fish_time[f.time] || f.time },
       f.size ? { k: T().fish_size ? "📏" : "", v: T().fish_size[f.size] || f.size } : null,
       { k: T().m_conditions, v: [f.storm ? T().fish_storm : "", f.mission ? T().fish_mission : ""].filter(Boolean).join(" · ") || "—" },
@@ -4385,27 +4553,51 @@ function renderMarket() {
   if (view === "fish") {
     const fishAll = D.market && D.market.fish || [];
     if (!fishAll.length) { controls.innerHTML = ""; list.innerHTML = emptyMsg(false); return; }
-    const fq = sub.fishq || "Legendary";
+    const fq = sub.fishq || "all";
     keepFocus(controls, () => {
       controls.innerHTML = `<div class="subtabs" data-fishq>` +
-        ["Legendary", "Epic", "Desirable", "Common", "Junk"].map(qk =>
-          `<button data-sub="${qk}" aria-pressed="${fq === qk}" class="${fq === qk ? "active" : ""}">${T().fish_q[qk]}</button>`).join("") +
-        `</div>`;
+        ["all", "Legendary", "Epic", "Desirable", "Common", "Junk"].map(qk =>
+          `<button data-sub="${qk}" aria-pressed="${fq === qk}" class="${fq === qk ? "active" : ""}">${qk === "all" ? T().fish_all : T().fish_q[qk]}</button>`).join("") +
+        `</div><div id="mk-fish-filters" class="cat-filters"></div><div class="note" id="mk-fish-count" style="margin:0 0 10px"></div>`;
     });
     controls.querySelectorAll("[data-fishq] button").forEach(b => b.addEventListener("click", () => {
       sub.fishq = b.dataset.sub;
+      mkFishAll = false;
       keepFocus(controls, renderMarket);
     }));
-    const fish = fishAll.filter(f => f.quality === fq);
-    mkFishShown = fish;
+    // Assistant de pêche : « quoi pêcher ici, maintenant ? » — filtres selon les
+    // conditions réelles d'apparition (biome, moment de la journée, tempête).
+    buildFilterBar("mk-fish-filters", [
+      { key: "fishbiome", def: "all", label: T().fish_f_biome, options: [["all", T().fish_any],
+        ...["Barren", "Exotic", "Frozen", "Lava", "Lush", "Radioactive", "Scorched", "Swamp", "Toxic"].map(b => [b, T().fish_biome[b]])] },
+      { key: "fishtime", def: "all", label: T().fish_f_time, options: [["all", T().fish_any],
+        ["day", T().fish_time.day], ["night", T().fish_time.night]] },
+      { key: "fishstorm", def: "all", label: T().fish_f_storm, options: [["all", T().fish_any],
+        ["no", T().fish_storm_no], ["yes", T().fish_storm_yes]] },
+    ], () => { mkFishAll = false; renderMarket(); });
+    let fish = fq === "all" ? fishAll.slice() : fishAll.filter(f => f.quality === fq);
+    const fb = sub.fishbiome || "all", ft = sub.fishtime || "all", fs = sub.fishstorm || "all";
+    // biomes:[""] (données du jeu) = aucune restriction de biome, comme "All".
+    const anyBiome = f => !(f.biomes || []).length || (f.biomes || []).some(b => b === "All" || b === "");
+    if (fb !== "all") fish = fish.filter(f => anyBiome(f) || (f.biomes || []).includes(fb));
+    if (ft === "day") fish = fish.filter(f => f.time === "day" || f.time === "both");
+    else if (ft === "night") fish = fish.filter(f => f.time === "night" || f.time === "both");
+    if (fs === "no") fish = fish.filter(f => !f.storm);
+    fish.sort((a, b2) => num(b2.value) - num(a.value));
+    if (fs === "yes") fish.sort((a, b2) => (b2.storm ? 1 : 0) - (a.storm ? 1 : 0));  // tri stable : tempête d'abord
+    const countEl = document.getElementById("mk-fish-count");
+    if (countEl) countEl.textContent = T().fish_count(fish.length, fishAll.length);
+    const FISH_CAP = 80;
+    const capped = !mkFishAll && fish.length > FISH_CAP;
+    mkFishShown = capped ? fish.slice(0, FISH_CAP) : fish;
     const maxV = Math.max(...fish.map(f => num(f.value)), 1);
-    list.innerHTML = fish.length ? `<ol class="mk-list">` + fish.map((f, i) => `
+    list.innerHTML = (mkFishShown.length ? `<ol class="mk-list">` + mkFishShown.map((f, i) => `
       <li class="mk-row clickable" role="button" tabindex="0" data-fish-idx="${i}" aria-label="${esc(lang === "en" ? f.name_en : f.name_fr)}">
         <div class="rank ${i < 3 ? "top" : ""}" aria-hidden="true">${i + 1}</div>
         ${f.icon ? `<img src="${esc(safeUrl(f.icon))}" alt="" loading="lazy">` : "<span></span>"}
         <div>
           <div class="mname">${esc(lang === "en" ? f.name_en : f.name_fr)}</div>
-          <div class="mgroup">${(f.biomes || []).slice(0, 4).map(b => esc(T().fish_biome[b] || b)).join(", ")}</div>
+          <div class="mgroup">${((f.biomes || []).some(b => b && b !== "All") ? f.biomes.slice(0, 4) : ["All"]).map(b => esc(T().fish_biome[b === "" ? "All" : b] || b)).join(", ")}</div>
           <div class="fish-badges">
             <span class="badge">${T().fish_time[f.time] || esc(f.time)}</span>
             ${f.size ? `<span class="badge gold">${T().fish_size[f.size] || esc(f.size)}</span>` : ""}
@@ -4415,7 +4607,10 @@ function renderMarket() {
         </div>
         <div class="mval">${fmtNum(f.value)} <small>${T().mk_currency.Credits}</small></div>
         <div class="mk-bar" aria-hidden="true"><div style="width:${Math.round(num(f.value) / maxV * 100)}%"></div></div>
-      </li>`).join("") + `</ol>` : emptyMsg(false);
+      </li>`).join("") + `</ol>` : emptyMsg(false)) +
+      (capped ? `<button class="cat-more-btn" id="mk-fish-more">${T().rec_more} (${fish.length - FISH_CAP})</button>` : "");
+    const moreBtnF = document.getElementById("mk-fish-more");
+    if (moreBtnF) moreBtnF.addEventListener("click", () => { mkFishAll = true; renderMarket(); });
     return;
   }
 
@@ -4468,6 +4663,7 @@ function openModal(html) {
   bd.hidden = false;
   document.body.style.overflow = "hidden";
   document.getElementById("modal-close").focus();
+  pushOverlay("modal");   // le geste Retour ferme la modale
 }
 function closeModal() {
   const bd = document.getElementById("modal-backdrop");
@@ -4545,6 +4741,11 @@ function favResolve(key, val) {
   if (key === "creature") { const c = (D.creatures && D.creatures.creatures || []).find(x => x.type === val); return { emoji: c ? c.emoji : "🐾", icon: c ? c.image : "", name: c ? (lang === "en" ? c.name_en : c.name_fr) : val, sub: T().tab_fauna }; }
   if (key === "recipe") { const r = recipeById(val); const items = (D.recipes && D.recipes.items) || {}; const o = r ? (items[r.o[0]] || {}) : {}; return { emoji: "🧪", icon: o.icon || "", name: r ? (lang === "en" ? o.en : o.fr) : val, sub: T().tab_recipes }; }
   if (key === "expedition") { const e2 = (D.expeditions && D.expeditions.items || []).find(x => String(x.num) === val); return { emoji: "🗓️", name: e2 ? e2.name : "#" + val, sub: T().tab_expeditions }; }
+  if (key === "portal") {
+    const grouped = val.replace(/(.{4})/g, "$1 ").trim();
+    const nm = poNames()[val];
+    return { emoji: "🌀", name: nm || grouped, sub: T().tab_portal + (nm ? " · " + grouped : "") };
+  }
   if (key === "item") {
     const cats = D.catalogue && D.catalogue.categories; let it = null;
     if (cats) for (const k of Object.keys(cats)) { const f = cats[k].items.find(x => x.id === val); if (f) { it = f; break; } }
@@ -4583,6 +4784,7 @@ document.getElementById("fav-list")?.addEventListener("click", e => {
 
 // Construit la modale à partir d'un objet normalisé.
 function showItemModal(o) {
+  if (o.share) recordRecent(o.share);   // alimente « Consultés récemment » (recherche)
   const hero = o.image
     ? `<div class="m-hero"><img src="${esc(safeUrl(o.image))}" alt="${esc(o.title)}" onerror="this.closest('.m-hero').style.display='none'"></div>`
     : o.icon
@@ -4604,6 +4806,130 @@ function showItemModal(o) {
     </div>` : ""}
   </div>`);
 }
+
+/* ============================== Décodeur de portail « Le Cadran des 16 » ============================== */
+// Mécanique réelle du jeu : une adresse de portail = 12 glyphes hexadécimaux
+// [P][SSS][YY][ZZZ][XXX] (planète, système, position Y/Z/X, valeurs signées).
+// La conversion vers le format « balise de signal » (XXXX:YYYY:ZZZZ:SSSS) et la
+// distance (1 voxel ≈ 400 al) suivent la convention communautaire documentée
+// (wiki NMS, r/NMSCoordinateExchange) — tout est calculé côté client, hors-ligne.
+var poAddr = "";
+function poNames() { try { return JSON.parse(localStorage.getItem("nms-portal-names") || "{}"); } catch { return {}; } }
+function poSetName(hex, name) {
+  const n = poNames();
+  if (name) n[hex] = name; else delete n[hex];
+  try { localStorage.setItem("nms-portal-names", JSON.stringify(n)); } catch { /* stockage indisponible */ }
+}
+function poDecode(a) {
+  const p = parseInt(a[0], 16), s = parseInt(a.slice(1, 4), 16);
+  const yP = parseInt(a.slice(4, 6), 16), zP = parseInt(a.slice(6, 9), 16), xP = parseInt(a.slice(9, 12), 16);
+  const galX = (xP + 0x7FF) & 0xFFF, galY = (yP + 0x7F) & 0xFF, galZ = (zP + 0x7FF) & 0xFFF;
+  const sx = galX - 0x7FF, sy = galY - 0x7F, sz = galZ - 0x7FF;
+  const h4 = n => n.toString(16).toUpperCase().padStart(4, "0");
+  return { p, s, sx, sy, sz, booster: h4(galX) + ":" + h4(galY) + ":" + h4(galZ) + ":" + h4(s),
+    dist: Math.sqrt(sx * sx + sy * sy + sz * sz) * 400 };
+}
+function poFromBooster(gx, gy, gz, s, planet) {
+  const xP = (gx + 0x801) & 0xFFF, yP = (gy + 0x81) & 0xFF, zP = (gz + 0x801) & 0xFFF;
+  const h = (n, w) => n.toString(16).toUpperCase().padStart(w, "0");
+  return h(planet & 0xF, 1) + h(s & 0xFFF, 3) + h(yP, 2) + h(zP, 3) + h(xP, 3);
+}
+function poCopy(txt) {
+  if (navigator.clipboard && navigator.clipboard.writeText)
+    navigator.clipboard.writeText(txt).then(() => toast(T().share_copied)).catch(() => window.prompt(T().share_copy_manual, txt));
+  else window.prompt(T().share_copy_manual, txt);
+}
+function poInput(ch) { if ((poAddr || "").length < 12) { poAddr = (poAddr || "") + ch.toUpperCase(); renderPortal(); } }
+function poDel() { poAddr = (poAddr || "").slice(0, -1); renderPortal(); }
+function renderPortal() {
+  const out = document.getElementById("po-out"), addrBox = document.getElementById("po-addr"), pad = document.getElementById("po-pad");
+  if (!out || !pad) return;
+  const a = poAddr || "";
+  if (!pad.childElementCount)
+    pad.innerHTML = "0123456789ABCDEF".split("").map(c => `<button class="po-key" data-po-key="${c}" aria-label="${c}">${c}</button>`).join("");
+  addrBox.innerHTML = Array.from({ length: 12 }, (_, i) =>
+    `<span class="po-cell${i < a.length ? " filled" : ""}${i === a.length ? " cursor" : ""}">${a[i] || ""}</span>`).join("");
+  if (a.length < 12) {
+    out.innerHTML = `<p class="po-hint">${esc(T().po_incomplete(a.length))}</p>
+      <p class="po-hint" style="margin-top:8px">${esc(T().po_approx_note)}</p>`;
+    return;
+  }
+  const d = poDecode(a);
+  const grouped = a.replace(/(.{4})/g, "$1 ").trim();
+  const favKey = "portal=" + a;
+  const name = poNames()[a] || "";
+  out.innerHTML = `
+    <div class="po-row"><span class="k">${esc(T().po_addr)}</span><span class="v orange">${grouped}<button class="po-copy" data-po-copy="${a}" title="${esc(T().po_copy)}" aria-label="${esc(T().po_copy)}">⧉</button></span></div>
+    <div class="po-row"><span class="k">${esc(T().po_planet)}</span><span class="v">${d.p}</span></div>
+    <div class="po-row"><span class="k">${esc(T().po_system)}</span><span class="v">${d.s}</span></div>
+    <div class="po-row"><span class="k">${esc(T().po_coords)}</span><span class="v">X ${d.sx} · Y ${d.sy} · Z ${d.sz}</span></div>
+    <div class="po-row"><span class="k">${esc(T().po_booster)}</span><span class="v">${d.booster}<button class="po-copy" data-po-copy="${d.booster}" title="${esc(T().po_copy)}" aria-label="${esc(T().po_copy)}">⧉</button></span></div>
+    <div class="po-row"><span class="k">${esc(T().po_dist)}</span><span class="v">≈ ${fmtNum(Math.round(d.dist))} ${esc(T().po_ly)}</span></div>
+    ${d.p < 1 || d.p > 6 ? `<div class="po-warn">${esc(T().po_warn_planet)}</div>` : ""}
+    <div class="po-name">
+      <input type="text" id="po-name" maxlength="40" value="${esc(name)}" placeholder="${esc(T().po_name_ph)}" aria-label="${esc(T().po_name_ph)}">
+    </div>
+    <div class="po-actions">
+      <button class="po-btn${isFav(favKey) ? " on" : ""}" data-po-fav="${a}">${isFav(favKey) ? "★" : "☆"} ${esc(T().fav)}</button>
+      <button class="po-btn" data-share="${esc(favKey)}" data-share-label="${esc(T().tab_portal)} ${grouped}">🔗 ${esc(T().share)}</button>
+    </div>
+    <div style="margin-top:12px"><button class="po-btn" id="po-lore">${esc(T().po_lore)}</button></div>
+    <p class="po-hint" style="margin-top:10px">${esc(T().po_approx_note)}</p>`;
+  const nameInput = document.getElementById("po-name");
+  if (nameInput) nameInput.addEventListener("change", () => {
+    poSetName(a, nameInput.value.trim()); toast(T().po_name_saved); renderFavorites();
+  });
+}
+(function setupPortal() {
+  const pad = document.getElementById("po-pad");
+  if (!pad) return;
+  renderPortal();
+  pad.addEventListener("click", e => { const k = e.target.closest("[data-po-key]"); if (k) poInput(k.dataset.poKey); });
+  document.getElementById("po-del").addEventListener("click", poDel);
+  document.getElementById("po-clear").addEventListener("click", () => { poAddr = ""; renderPortal(); });
+  document.getElementById("po-example").addEventListener("click", () => { poAddr = "100100000000"; renderPortal(); });
+  const paste = document.getElementById("po-paste");
+  const tryPaste = () => {
+    const t = paste.value.trim(); if (!t) return;
+    const m = t.match(/([0-9A-F]{4})\s*:\s*([0-9A-F]{4})\s*:\s*([0-9A-F]{4})\s*:\s*([0-9A-F]{4})/i);
+    if (m) { poAddr = poFromBooster(parseInt(m[1], 16) & 0xFFF, parseInt(m[2], 16) & 0xFF, parseInt(m[3], 16) & 0xFFF, parseInt(m[4], 16), 1); paste.value = ""; renderPortal(); return; }
+    const hex = t.replace(/[^0-9A-F]/gi, "");
+    if (hex.length >= 12) { poAddr = hex.slice(0, 12).toUpperCase(); paste.value = ""; renderPortal(); }
+  };
+  paste.addEventListener("input", tryPaste);
+  paste.addEventListener("change", tryPaste);
+  // Saisie au clavier physique quand l'onglet Portail est actif.
+  document.addEventListener("keydown", e => {
+    if (document.body.dataset.tab !== "portail") return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (/^(input|textarea|select)$/i.test((document.activeElement || {}).tagName || "")) return;
+    if (!document.getElementById("modal-backdrop").hidden) return;
+    if (/^[0-9a-f]$/i.test(e.key)) { e.preventDefault(); poInput(e.key); }
+    else if (e.key === "Backspace") { e.preventDefault(); poDel(); }
+  });
+  // Carnet d'adresses (favoris), copie et lien lore — délégation sur le panneau résultats.
+  document.getElementById("po-out").addEventListener("click", e => {
+    const c = e.target.closest("[data-po-copy]");
+    if (c) { poCopy(c.dataset.poCopy); return; }
+    const f = e.target.closest("[data-po-fav]");
+    if (f) {
+      const k = "portal=" + f.dataset.poFav;
+      toggleFav(k); toast(isFav(k) ? T().fav_added : T().fav_removed);
+      renderFavorites(); renderFavCount(); renderPortal(); return;
+    }
+    if (e.target.closest("#po-lore")) {
+      activateTab(tabByName("missions"), false);
+      if (typeof renderMissions === "function") renderMissions();
+      setTimeout(() => {
+        const el = document.getElementById("wiki-s16");
+        if (el) {
+          el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+          el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1600);
+        }
+      }, 150);
+    }
+  });
+})();
 
 /* ============================== Compte à rebours 10 ans ============================== */
 // 10e anniversaire de No Man's Sky : 9 août 2026, 18 h UTC (événement communautaire).
@@ -5603,6 +5929,10 @@ function openTarget(key, val) {
       }
     };
     tryItem();
+  } else if (key === "portal") {
+    const hex = String(val || "").replace(/[^0-9A-F]/gi, "").slice(0, 12).toUpperCase();
+    const b = tabByName("portail");
+    if (b) { activateTab(b, false); if (hex) { poAddr = hex; renderPortal(); } }
   } else if (key === "tab") {
     const b = tabByName(val); if (b) activateTab(b, false);
   }
@@ -5622,6 +5952,51 @@ function applyDeepLink() {
   if (eq < 0) { openTarget(h, ""); return; }
   openTarget(h.slice(0, eq), decodeURIComponent(h.slice(eq + 1)));
 }
+
+/* ---------- Vrai bouton Retour : intégration History API ---------- */
+// Le geste retour (Android/iOS/navigateur) ferme d'abord ce qui est ouvert
+// (modale, recherche, tiroir latéral, feuille « Plus ») puis revient à l'onglet
+// précédent, au lieu d'éjecter du site. Les hashs identiques sont dédoublonnés
+// et les entrées « éphémères » (surfaces) sont recyclées pour ne pas empiler.
+var navFromHistory = false;
+function pushNav(hash) {
+  if (navFromHistory) return;
+  try {
+    const st = history.state;
+    if (!st) { history.replaceState({ nms: hash }, "", location.href); return; }   // premier état : tague sans toucher l'URL
+    if (st.nmsOverlay) { history.replaceState({ nms: hash }, "", "#" + hash); return; } // recycle l'entrée éphémère
+    if (st.nms === hash) return;
+    history.pushState({ nms: hash }, "", "#" + hash);
+  } catch { /* history indisponible */ }
+}
+function pushOverlay(type) {
+  try {
+    const st = history.state;
+    if (st && st.nmsOverlay) { history.replaceState({ nmsOverlay: type }, "", location.href); return; }
+    history.pushState({ nmsOverlay: type }, "", location.href);
+  } catch { /* ignore */ }
+}
+try { history.scrollRestoration = "manual"; } catch { /* ignore */ }
+window.addEventListener("popstate", () => {
+  if (navFromHistory) { navFromHistory = false; return; }
+  // Retour = fermer d'abord la surface éphémère ouverte, sans re-router.
+  const bd = document.getElementById("modal-backdrop");
+  if (bd && !bd.hidden) { closeModal(); return; }
+  if (searchOverlay && !searchOverlay.hidden) { closeSearch(); return; }
+  if (document.body.classList.contains("side-open")) { closeSideDrawer(); return; }
+  if (moreSheet && !moreSheet.hidden) { closeMore(); return; }
+  // Sinon : rejouer la destination (état tagué ou hash) sans repousser d'entrée.
+  navFromHistory = true;
+  try {
+    const st = history.state;
+    const h = st && st.nms ? st.nms : (location.hash || "").replace(/^#/, "");
+    if (h) {
+      const eq = h.indexOf("=");
+      if (eq < 0) openTarget(h, "");
+      else openTarget(h.slice(0, eq), decodeURIComponent(h.slice(eq + 1)));
+    }
+  } finally { navFromHistory = false; }
+});
 
 // Mode hors-ligne / installation (PWA) : enregistrement discret du service worker.
 if ("serviceWorker" in navigator) {

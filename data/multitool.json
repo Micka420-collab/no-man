@@ -1,0 +1,275 @@
+{
+  "note": "Atelier multi-outil : les technologies et modules proviennent des données réelles du jeu (Assistant NMS) via data/catalogue.json (identifiants tech##/upgrade##/prod##). Règles documentées (wiki No Man's Sky, discussions Steam) : emplacements maximum par classe C=30, B=40, A=50, S=60 ; emplacements survoltés par classe C=1, B=2, A=3, S=4 ; au maximum 3 modules d'amélioration du même type par inventaire, sinon la technologie entre en SURCHARGE et se désactive ; les technologies d'une même famille placées côte à côte gagnent un bonus d'adjacence (les pourcentages exacts ne sont pas publiés par Hello Games — le bonus est indiqué qualitativement). Les tendances de bonus par type de multi-outil sont celles documentées par la communauté ; les valeurs précises varient d'un exemplaire à l'autre.",
+  "rules": {
+    "slots_by_class": {
+      "C": 30,
+      "B": 40,
+      "A": 50,
+      "S": 60
+    },
+    "sc_by_class": {
+      "C": 1,
+      "B": 2,
+      "A": 3,
+      "S": 4
+    },
+    "module_limit": 3,
+    "cols": 10
+  },
+  "types": [
+    {
+      "key": "pistol",
+      "emoji": "🔧",
+      "fr": "Pistolet",
+      "en": "Pistol",
+      "desc_fr": "Compact. Très bon bonus de minage, aucun bonus de dégâts — l'outil du prospecteur.",
+      "desc_en": "Compact. Strong mining bonus, no damage bonus — the prospector's tool."
+    },
+    {
+      "key": "rifle",
+      "emoji": "🔩",
+      "fr": "Fusil",
+      "en": "Rifle",
+      "desc_fr": "Grands inventaires ; bonus dégâts et scanner modestes et équilibrés.",
+      "desc_en": "Large inventories; modest, balanced damage and scanner bonuses."
+    },
+    {
+      "key": "experimental",
+      "emoji": "🧪",
+      "fr": "Expérimental",
+      "en": "Experimental",
+      "desc_fr": "Bonus scanner élevé — idéal pour rentabiliser les analyses de faune et de flore.",
+      "desc_en": "High scanner bonus — ideal for profitable fauna/flora scanning."
+    },
+    {
+      "key": "alien",
+      "emoji": "👾",
+      "fr": "Alien",
+      "en": "Alien",
+      "desc_fr": "Bonus élevés partout, avec une préférence pour les dégâts. Organique et rare.",
+      "desc_en": "High bonuses across the board, favouring damage. Organic and rare."
+    },
+    {
+      "key": "royal",
+      "emoji": "👑",
+      "fr": "Royal",
+      "en": "Royal",
+      "desc_fr": "Ajouté par SentinelUp : bons dégâts/minage et bonus de scanner colossal.",
+      "desc_en": "Added in Sentinel update: good damage/mining and a colossal scanner bonus."
+    },
+    {
+      "key": "sentinel",
+      "emoji": "🤖",
+      "fr": "Sentinelle",
+      "en": "Sentinel",
+      "desc_fr": "Dégâts élevés (meilleure efficacité des munitions), minage et scanner moyens. Se répare depuis un camp de Sentinelles.",
+      "desc_en": "High damage (best bullet effectiveness), medium mining and scanner. Repaired from Sentinel sites."
+    },
+    {
+      "key": "atlantid",
+      "emoji": "🔮",
+      "fr": "Atlantide",
+      "en": "Atlantid",
+      "desc_fr": "Ajouté par Echoes : la meilleure vitesse de minage du jeu, avec de bons dégâts.",
+      "desc_en": "Added in Echoes: the best mining speed in the game, with decent damage."
+    },
+    {
+      "key": "staff",
+      "emoji": "🪄",
+      "fr": "Bâton voltaïque",
+      "en": "Voltaic Staff",
+      "desc_fr": "Bâton autophage assemblé pièce par pièce (Noyau, Colonne et Focus runiques) — orienté dégâts.",
+      "desc_en": "Autophage staff assembled part by part (Runic Core, Beam and Focus) — damage-oriented."
+    }
+  ],
+  "families": [
+    {
+      "key": "mining",
+      "emoji": "⛏️",
+      "fr": "Rayon d'extraction",
+      "en": "Mining Beam",
+      "color": "#e0a13a",
+      "core": [
+        "tech69",
+        "tech70",
+        "tech75",
+        "tech241"
+      ],
+      "mods": [
+        "upgrade1",
+        "upgrade2",
+        "upgrade3",
+        "upgrade4",
+        "upgrade148"
+      ]
+    },
+    {
+      "key": "scanner",
+      "emoji": "📡",
+      "fr": "Scanner & Visière",
+      "en": "Scanner & Visor",
+      "color": "#5fd0e0",
+      "core": [
+        "tech63",
+        "tech62",
+        "tech65",
+        "tech64",
+        "tech247"
+      ],
+      "mods": [
+        "upgrade5",
+        "upgrade6",
+        "upgrade7",
+        "upgrade8",
+        "upgrade149"
+      ]
+    },
+    {
+      "key": "boltcaster",
+      "emoji": "🔫",
+      "fr": "Fulgurateur",
+      "en": "Boltcaster",
+      "color": "#ff7a1a",
+      "core": [
+        "tech72",
+        "tech74",
+        "tech73",
+        "tech184"
+      ],
+      "mods": [
+        "upgrade9",
+        "upgrade10",
+        "upgrade11",
+        "upgrade12",
+        "upgrade150"
+      ]
+    },
+    {
+      "key": "scatter",
+      "emoji": "💥",
+      "fr": "Fusil à dispersion",
+      "en": "Scatter Blaster",
+      "color": "#f05a5a",
+      "core": [
+        "tech80",
+        "tech81"
+      ],
+      "mods": [
+        "upgrade25",
+        "upgrade26",
+        "upgrade27",
+        "upgrade28",
+        "upgrade154"
+      ]
+    },
+    {
+      "key": "spitter",
+      "emoji": "🌀",
+      "fr": "Cracheur à impulsions",
+      "en": "Pulse Spitter",
+      "color": "#c98af0",
+      "core": [
+        "tech82",
+        "tech83",
+        "tech185",
+        "tech207"
+      ],
+      "mods": [
+        "upgrade29",
+        "upgrade30",
+        "upgrade31",
+        "upgrade32",
+        "upgrade155"
+      ]
+    },
+    {
+      "key": "javelin",
+      "emoji": "⚡",
+      "fr": "Javelot incandescent",
+      "en": "Blaze Javelin",
+      "color": "#ffd166",
+      "core": [
+        "tech78",
+        "tech79",
+        "tech206"
+      ],
+      "mods": [
+        "upgrade21",
+        "upgrade22",
+        "upgrade23",
+        "upgrade24",
+        "upgrade153"
+      ]
+    },
+    {
+      "key": "neutron",
+      "emoji": "☢️",
+      "fr": "Canon à neutrons",
+      "en": "Neutron Cannon",
+      "color": "#7fe08a",
+      "core": [
+        "tech208",
+        "tech209"
+      ],
+      "mods": [
+        "prod161",
+        "prod162",
+        "prod163",
+        "prod164",
+        "prod165"
+      ]
+    },
+    {
+      "key": "plasma",
+      "emoji": "🧨",
+      "fr": "Lance-plasma",
+      "en": "Plasma Launcher",
+      "color": "#f08a3a",
+      "core": [
+        "tech76"
+      ],
+      "mods": [
+        "upgrade13",
+        "upgrade14",
+        "upgrade15",
+        "upgrade16",
+        "upgrade151"
+      ]
+    },
+    {
+      "key": "geology",
+      "emoji": "🌋",
+      "fr": "Canon géologique",
+      "en": "Geology Cannon",
+      "color": "#b0805a",
+      "core": [
+        "tech77"
+      ],
+      "mods": [
+        "upgrade17",
+        "upgrade18",
+        "upgrade19",
+        "upgrade20",
+        "upgrade152"
+      ]
+    },
+    {
+      "key": "utility",
+      "emoji": "🛡️",
+      "fr": "Utilitaires & spéciaux",
+      "en": "Utilities & specials",
+      "color": "#8a96a8",
+      "core": [
+        "tech66",
+        "tech67",
+        "tech204",
+        "tech205",
+        "tech210",
+        "tech168",
+        "tech249",
+        "prod166"
+      ],
+      "mods": []
+    }
+  ]
+}

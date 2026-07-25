@@ -16,6 +16,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Récupérer les actualités
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # pour l'API de trafic (visitors.json)
         run: python3 scripts/fetch_news.py
 
       - name: Récupérer les classements du marché

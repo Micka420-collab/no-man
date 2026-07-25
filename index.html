@@ -2036,6 +2036,10 @@ const I18N = {
     dp_label: "Journée type — moyenne des relevés par tranche de 3 h (ton heure locale)",
     dp_note: (n, d) => `Moyennes calculées sur ${n} relevés réels collectés depuis le ${d} — le profil s'affine automatiquement avec le temps.`,
     dp_none: "Pas encore de relevé dans cette tranche",
+    vis_label: "vues · page GitHub du projet (7 j)",
+    vis_sub: u => `${u} visiteurs uniques sur 14 j — API de trafic GitHub (le site web lui-même n'est pas compté)`,
+    goat_label: "visiteurs du site (7 j)",
+    goat_sub: "mesure GoatCounter, sans cookies",
     so_empty: "Aucun résultat.",
     so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expéditions" },
     so_more: n => `+ ${n} autre(s) — ouvrir l'onglet`,
@@ -2310,6 +2314,10 @@ const I18N = {
     dp_label: "Typical day — average of readings per 3-hour slot (your local time)",
     dp_note: (n, d) => `Averages computed over ${n} real readings collected since ${d} — the profile refines automatically over time.`,
     dp_none: "No reading in this slot yet",
+    vis_label: "views · project's GitHub page (7 d)",
+    vis_sub: u => `${u} unique visitors over 14 d — GitHub traffic API (the website itself is not counted)`,
+    goat_label: "site visitors (7 d)",
+    goat_sub: "GoatCounter measurement, cookie-free",
     so_empty: "No results.",
     so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expeditions" },
     so_more: n => `+ ${n} more — open the tab`,
@@ -3590,6 +3598,32 @@ function renderTermStatus() {
   renderTermStatus();
 })();
 
+/* ---------- Visiteurs du site (GoatCounter, optionnel) ---------- */
+// GitHub Pages ne fournit pas de statistiques de visite. Pour compter les VRAIS
+// visiteurs du site web : crée un compte gratuit sur goatcounter.com (mesure
+// sans cookies, conforme RGPD) puis renseigne ton code ci-dessous — le script
+// de comptage et la tuile « Visiteurs du site » s'activeront automatiquement.
+const GOAT_CODE = "";   // ex. "nomansky" pour https://nomansky.goatcounter.com
+(function setupGoat() {
+  if (!GOAT_CODE) return;
+  const s = document.createElement("script");
+  s.async = true;
+  s.dataset.goatcounter = `https://${GOAT_CODE}.goatcounter.com/count`;
+  s.src = "https://gc.zgo.at/count.js";
+  document.head.appendChild(s);
+})();
+async function goatWeek() {
+  if (!GOAT_CODE) return null;
+  try {
+    const start = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+    const r = await fetch(`https://${GOAT_CODE}.goatcounter.com/counter/TOTAL.json?start=${start}`);
+    if (!r.ok) return null;
+    const j = await r.json();
+    const n = parseInt(String(j && j.count || "").replace(/[^\d]/g, ""), 10);
+    return isNaN(n) ? null : n;
+  } catch { return null; }
+}
+
 /* ---------- Découverte aléatoire : une fiche au hasard, données réelles ---------- */
 function randomDiscovery() {
   const pools = [];
@@ -3634,7 +3668,26 @@ function renderOverview() {
       <div class="label">${T().tile_update} (v${esc(last.version)})</div>
       <div class="sub">${esc(fmtDate(last.date))}</div></div>`);
   }
+  // Fréquentation : vues de la page GitHub du projet (API officielle de trafic,
+  // 14 jours glissants) — étiquetée honnêtement : GitHub Pages ne fournit pas
+  // les visites du site lui-même. Les vues quotidiennes s'additionnent (7 j) ;
+  // les visiteurs uniques ne s'additionnent pas, on montre le chiffre 14 j exact.
+  if (D.visitors && Array.isArray(D.visitors.days) && D.visitors.days.length) {
+    const v7 = D.visitors.days.slice(-7).reduce((s, d2) => s + num(d2.count), 0);
+    tiles.push(`<div class="tile"><div class="big">${fmtNum(v7)}</div>
+      <div class="label">👁️ ${T().vis_label}</div>
+      <div class="sub">${T().vis_sub(fmtNum(num(D.visitors.uniques)))}</div></div>`);
+  }
   document.getElementById("tiles").innerHTML = tiles.length ? tiles.join("") : `<div class="empty">${T().empty_data}</div>`;
+  // Vrais visiteurs du site (GoatCounter) — uniquement si le code est renseigné.
+  if (GOAT_CODE) goatWeek().then(c => {
+    if (c == null) return;
+    const box = document.getElementById("tiles");
+    if (box && !document.getElementById("goat-tile")) box.insertAdjacentHTML("beforeend",
+      `<div class="tile" id="goat-tile"><div class="big">${fmtNum(c)}</div>
+        <div class="label">👥 ${T().goat_label}</div>
+        <div class="sub">${T().goat_sub}</div></div>`);
+  });
 
   const banner = document.getElementById("event-banner");
   banner.innerHTML = "";
@@ -6855,7 +6908,7 @@ function renderAll() {
   applyTheme(localStorage.getItem(LS_THEME) ||
     (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"), false);
 
-  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements, missions] = await Promise.all([
+  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements, missions, visitors] = await Promise.all([
     loadJSON("data/progress.json"),
     loadJSON("data/official.json"),
     loadJSON("data/news.json"),
@@ -6877,8 +6930,9 @@ function renderAll() {
     loadJSON("data/expeditions.json"),
     loadJSON("data/elements.json"),
     loadJSON("data/missions.json"),
+    loadJSON("data/visitors.json"),
   ]);
-  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements, missions });
+  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements, missions, visitors });
 
   computeFresh();
   applyLang(lang);

@@ -1193,6 +1193,59 @@
     .lab-row { grid-template-columns: 1fr; }
     .lab-cell { text-align: left; justify-self: start; min-width: 0; width: 100%; }
   }
+  /* ------- Atelier multi-outil ------- */
+  .mt-types { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; margin-bottom: 14px; }
+  .mt-type { text-align: left; cursor: pointer; border: 1px solid var(--stroke); border-radius: 12px; padding: 10px 12px;
+    background: linear-gradient(158deg, var(--card-strong), var(--card)); color: var(--ink); font-family: inherit;
+    transition: border-color 0.15s, transform 0.15s; }
+  .mt-type:hover { border-color: var(--stroke-hi); transform: translateY(-2px); }
+  .mt-type.active { border-color: var(--c1); box-shadow: 0 0 0 1px var(--c1), 0 8px 22px -10px var(--c1); }
+  .mt-type .h { display: flex; align-items: center; gap: 8px; font: 700 0.9rem var(--font-head); }
+  .mt-type .d { font-size: 0.72rem; color: var(--ink-dim); margin-top: 4px; line-height: 1.35; }
+  #mt-controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin: 12px 0; }
+  .mt-ctl-label { font: 700 0.62rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-dim); }
+  .mt-slots-out { font: 700 0.8rem var(--font-mono); color: var(--c2); min-width: 60px; }
+  #mt-controls input[type="range"] { width: 150px; accent-color: var(--c1); }
+  .mt-grid { display: grid; grid-template-columns: repeat(10, minmax(0, 52px)); gap: 5px; margin: 10px 0 12px; }
+  .mt-cell { position: relative; aspect-ratio: 1; border: 1px solid var(--stroke); border-radius: 9px; cursor: pointer;
+    background: color-mix(in srgb, var(--ink) 4%, transparent); padding: 0; overflow: hidden;
+    transition: border-color 0.12s, box-shadow 0.12s; }
+  .mt-cell:hover { border-color: var(--stroke-hi); }
+  .mt-cell.filled { border-color: color-mix(in srgb, var(--mt-c, var(--stroke)) 65%, transparent);
+    background: linear-gradient(158deg, color-mix(in srgb, var(--mt-c, var(--stroke)) 26%, var(--card)), var(--card)); }
+  .mt-cell img { width: 78%; height: 78%; object-fit: contain; position: absolute; inset: 0; margin: auto; }
+  .mt-cell.adj { box-shadow: 0 0 0 1px var(--mt-c), 0 0 10px -2px var(--mt-c); }
+  .mt-cell.sc::before { content: "⚡"; position: absolute; top: 1px; right: 3px; font-size: 0.62rem; z-index: 2;
+    filter: drop-shadow(0 0 3px #ffd166); }
+  .mt-cell.sc { border-color: #ffd166; background-image: linear-gradient(158deg, rgba(255, 209, 102, 0.18), transparent); }
+  .mt-cell .mt-x { position: absolute; bottom: 0; right: 2px; font: 800 0.58rem var(--font-mono); color: var(--ink-dim); }
+  .mt-analysis { display: flex; flex-wrap: wrap; gap: 7px; margin: 4px 0 10px; }
+  .mt-an { display: inline-flex; align-items: center; gap: 6px; font-size: 0.73rem; color: var(--ink-dim);
+    border: 1px solid color-mix(in srgb, var(--mt-c, var(--stroke)) 40%, transparent); border-radius: 999px; padding: 3px 11px;
+    background: color-mix(in srgb, var(--mt-c, var(--stroke)) 10%, transparent); }
+  .mt-an.warn { color: #fff; background: #b91c1c; border-color: #f87171; font-weight: 700; }
+  .mt-an.info { border-color: var(--stroke); }
+  .mt-fam { margin-bottom: 14px; }
+  .mt-fam-h { display: flex; align-items: center; gap: 8px; font: 700 0.78rem var(--font-mono); text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--mt-c, var(--ink)); margin-bottom: 7px; }
+  .mt-fam-h::after { content: ""; flex: 1; height: 1px; background: color-mix(in srgb, var(--mt-c, var(--stroke)) 30%, transparent); }
+  .mt-items { display: flex; flex-wrap: wrap; gap: 6px; }
+  .mt-item { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.78rem; color: var(--ink);
+    border: 1px solid var(--stroke); border-radius: 999px; padding: 4px 10px 4px 5px; background: var(--track); font-family: inherit; }
+  .mt-item img { width: 22px; height: 22px; border-radius: 5px; object-fit: contain; }
+  .mt-item:hover { border-color: var(--mt-c, var(--stroke-hi)); }
+  .mt-item.sel { border-color: var(--c1); box-shadow: 0 0 0 1px var(--c1); background: color-mix(in srgb, var(--c1) 14%, var(--track)); }
+  .mt-item .cls { font: 800 0.6rem var(--font-mono); padding: 1px 5px; border-radius: 5px; background: var(--card-strong); }
+  .mt-item .cls.S { color: #ffd166; } .mt-item .cls.A { color: #c98af0; } .mt-item .cls.B { color: #5fd0e0; }
+  .mt-item .cls.C { color: var(--ink-dim); } .mt-item .cls.X { color: #f87171; }
+  .mt-hint { font-size: 0.78rem; color: var(--ink-dim); margin: 6px 0 10px; }
+  @media (max-width: 620px) {
+    /* On garde 10 colonnes : l'adjacence affichée doit rester exacte. */
+    .mt-grid { grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 3px; }
+    .mt-cell { border-radius: 6px; }
+    .mt-types { grid-template-columns: 1fr 1fr; }
+  }
+
   /* ------- Estimateur de cargaison (Ma cargaison) ------- */
   .wo-list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
   .wo-row { display: flex; align-items: center; gap: 10px; background: var(--card);
@@ -1691,6 +1744,7 @@
     <button role="tab" id="tab-maj" aria-controls="panel-maj" data-tab="maj" aria-selected="false" tabindex="-1">🕰️ <span data-i18n="tab_timeline">Mises à jour</span></button>
     <button role="tab" id="tab-expeditions" aria-controls="panel-expeditions" data-tab="expeditions" aria-selected="false" tabindex="-1">🗓️ <span data-i18n="tab_expeditions">Expéditions</span></button>
     <button role="tab" id="tab-portail" aria-controls="panel-portail" data-tab="portail" aria-selected="false" tabindex="-1">🌀 <span data-i18n="tab_portal">Portail</span></button>
+    <button role="tab" id="tab-outil" aria-controls="panel-outil" data-tab="outil" aria-selected="false" tabindex="-1">🛠️ <span data-i18n="tab_mtool">Multi-outil</span></button>
   </nav>
 
   <main id="main">
@@ -1980,6 +2034,19 @@
         <div class="po-map-hint" data-i18n="po_map_hint">Glisse pour orbiter · molette / pincement pour zoomer · clique un marqueur</div>
       </div>
     </section>
+
+    <!-- Atelier multi-outil -->
+    <section class="panel" id="panel-outil" role="tabpanel" aria-labelledby="tab-outil">
+      <div class="note" data-i18n="mt_note">L'atelier multi-outil : choisis un type et une classe, place les vraies technologies et les vrais modules du jeu sur la grille, marque tes emplacements survoltés — l'atelier visualise les bonus d'adjacence et t'avertit des surcharges. Règles documentées : emplacements max par classe C 30 · B 40 · A 50 · S 60 ; survoltés C 1 · B 2 · A 3 · S 4 ; au plus 3 modules du même type par inventaire, sinon SURCHARGE. Les pourcentages exacts d'adjacence ne sont pas publiés par Hello Games : le bonus est montré qualitativement (technologies d'une même famille côte à côte = renforcées). Ton montage est enregistré dans ton navigateur.</div>
+      <div id="mt-types" class="mt-types"></div>
+      <div id="mt-controls"></div>
+      <div id="mt-grid-box">
+        <div id="mt-grid" class="mt-grid"></div>
+        <div id="mt-analysis" class="mt-analysis"></div>
+      </div>
+      <h2 class="sec" data-i18n="mt_palette_h">Technologies & modules (données du jeu)</h2>
+      <div id="mt-palette"></div>
+    </section>
   </main>
 
   <div id="modal-backdrop" hidden>
@@ -2093,6 +2160,26 @@ const I18N = {
     vis_sub: u => `${u} visiteurs uniques sur 14 j — API de trafic GitHub (le site web lui-même n'est pas compté)`,
     goat_label: "visiteurs du site (7 j)",
     goat_sub: "mesure GoatCounter, sans cookies",
+    tab_mtool: "Multi-outil",
+    mt_note: "Atelier multi-outil : 8 types réels du jeu, technologies et modules d'amélioration issus de la base de données du site (Assistant NMS). Règles documentées : capacité max par classe C 30 / B 40 / A 50 / S 60 emplacements, cases survoltées 1/2/3/4 selon la classe, et au-delà de 3 modules d'amélioration d'une même famille la technologie entre en surcharge et se désactive. Les cases adjacentes de la même famille se renforcent (bonus d'adjacence) — Hello Games ne publie pas les pourcentages exacts, l'atelier les montre donc qualitativement (liens), sans inventer de chiffres.",
+    mt_class: "Classe",
+    mt_slots: "Emplacements",
+    mt_mode_place: "Placer",
+    mt_mode_sc: "Survolter",
+    mt_mode_erase: "Effacer",
+    mt_clear: "✕ Tout vider",
+    mt_clear_confirm: "Vider entièrement la grille ?",
+    mt_preset_miner: "Preset Mineur",
+    mt_preset_combat: "Preset Combat",
+    mt_preset_explorer: "Preset Explorateur",
+    mt_preset_toast: "Disposition d'exemple appliquée — replace les cases survoltées selon ton multi-outil réel (elles sont aléatoires en jeu).",
+    mt_palette_h: "Technologies & modules (données du jeu)",
+    mt_hint: "Choisis une technologie ou un module dans la palette, puis clique les cases de la grille pour le placer. Mode ⚡ pour marquer tes cases survoltées, mode Effacer pour retirer.",
+    mt_adj: n => `${n} lien(s) d'adjacence — chaque lien entre cases d'une même famille renforce le bonus`,
+    mt_sc_used: (n, max) => `Survoltées : ${n}/${max}`,
+    mt_sc_full: max => `Maximum ${max} case(s) survoltée(s) pour cette classe.`,
+    mt_overload: "⚠ SURCHARGE — max 3 modules par famille, la technologie se désactive",
+    mt_cell_empty: "Case vide",
     so_empty: "Aucun résultat.",
     so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expéditions" },
     so_more: n => `+ ${n} autre(s) — ouvrir l'onglet`,
@@ -2388,6 +2475,26 @@ const I18N = {
     vis_sub: u => `${u} unique visitors over 14 d — GitHub traffic API (the website itself is not counted)`,
     goat_label: "site visitors (7 d)",
     goat_sub: "GoatCounter measurement, cookie-free",
+    tab_mtool: "Multi-tool",
+    mt_note: "Multi-tool workshop: the game's 8 real types, technologies and upgrade modules from the site's database (Assistant NMS). Documented rules: max capacity per class C 30 / B 40 / A 50 / S 60 slots, supercharged slots 1/2/3/4 by class, and beyond 3 upgrade modules of the same family the technology overloads and shuts down. Adjacent same-family slots reinforce each other (adjacency bonus) — Hello Games doesn't publish the exact percentages, so the workshop shows them qualitatively (links), without inventing numbers.",
+    mt_class: "Class",
+    mt_slots: "Slots",
+    mt_mode_place: "Place",
+    mt_mode_sc: "Supercharge",
+    mt_mode_erase: "Erase",
+    mt_clear: "✕ Clear all",
+    mt_clear_confirm: "Clear the whole grid?",
+    mt_preset_miner: "Miner preset",
+    mt_preset_combat: "Combat preset",
+    mt_preset_explorer: "Explorer preset",
+    mt_preset_toast: "Example layout applied — move the supercharged slots to match your real multi-tool (they're random in-game).",
+    mt_palette_h: "Technologies & modules (game data)",
+    mt_hint: "Pick a technology or module from the palette, then click grid cells to place it. ⚡ mode marks your supercharged slots, Erase mode removes.",
+    mt_adj: n => `${n} adjacency link(s) — each link between same-family cells strengthens the bonus`,
+    mt_sc_used: (n, max) => `Supercharged: ${n}/${max}`,
+    mt_sc_full: max => `Maximum ${max} supercharged slot(s) for this class.`,
+    mt_overload: "⚠ OVERLOAD — max 3 modules per family, the technology shuts down",
+    mt_cell_empty: "Empty slot",
     so_empty: "No results.",
     so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expeditions" },
     so_more: n => `+ ${n} more — open the tab`,
@@ -2799,6 +2906,7 @@ function activateTab(b, focus) {
   } else galStopLoop();
   if (b.dataset.tab === "catalogue") ensureCatalogue();
   if (b.dataset.tab === "elements") ensureCatalogue();  // les éléments s'appuient sur le catalogue
+  if (b.dataset.tab === "outil") { ensureCatalogue(); renderMTool(); }  // la palette de l'atelier lit noms/icônes du catalogue
   if (b.dataset.tab === "portail") poMapStart(); else poMapStop();  // carte stellaire 3D
   syncBottomNav(b.dataset.tab);
   syncSide(b.dataset.tab);
@@ -2820,7 +2928,7 @@ const SIDE_GROUPS = [
   { fr: "Explorer", en: "Explore", tabs: ["apercu", "progression", "favoris"] },
   { fr: "Univers", en: "Universe", tabs: ["marche", "faune", "galaxies", "portail", "elements"] },
   { fr: "Communauté", en: "Community", tabs: ["communaute", "expeditions", "guerre", "actus", "succes", "videos", "maj"] },
-  { fr: "Codex", en: "Codex", tabs: ["missions", "guide", "catalogue", "recettes", "galerie"] },
+  { fr: "Codex", en: "Codex", tabs: ["missions", "guide", "outil", "catalogue", "recettes", "galerie"] },
 ];
 function buildSidebar() {
   const side = document.getElementById("atlas-side");
@@ -5922,6 +6030,212 @@ function poMapStop() {
   window.addEventListener("resize", () => { poMapDirty = true; });
 })();
 
+/* ============================== Atelier multi-outil ============================== */
+// Planificateur d'inventaire multi-outil : technologies et modules réels du
+// catalogue, règles documentées (slots/survoltés par classe, 3 modules max par
+// type). L'adjacence est visualisée qualitativement : Hello Games ne publie pas
+// les pourcentages exacts, on ne les invente pas.
+var mtState = null;
+function mtLoad() {
+  if (mtState) return mtState;
+  try { mtState = JSON.parse(localStorage.getItem("nms-mtool") || "null"); } catch { mtState = null; }
+  if (!mtState || typeof mtState !== "object" || !mtState.cells) {
+    mtState = { type: "experimental", cls: "S", slots: 30, sc: [], cells: {} };
+  }
+  mtState.mode = mtState.mode || "place";
+  mtState.sel = mtState.sel || null;
+  return mtState;
+}
+function mtSave() {
+  try {
+    const { type, cls, slots, sc, cells } = mtState;
+    localStorage.setItem("nms-mtool", JSON.stringify({ type, cls, slots, sc, cells }));
+  } catch { /* stockage indisponible */ }
+}
+function mtFamOf(id) {
+  for (const f of (D.mtool && D.mtool.families) || []) {
+    if (f.core.includes(id) || f.mods.includes(id)) return f;
+  }
+  return null;
+}
+// Classe d'un module d'après son groupe réel au catalogue.
+function mtModClass(it) {
+  const g = (it && it.group_en) || "";
+  if (/banned|forbidden/i.test(g)) return "X";
+  if (/supreme/i.test(g)) return "S";
+  if (/powerful/i.test(g)) return "A";
+  if (/significant/i.test(g)) return "B";
+  return "C";
+}
+const MT_PRESETS = {
+  miner: ["tech69", "tech70", "tech75", "upgrade4", "upgrade4", "upgrade148", "tech66",
+    "tech63", "tech62", "tech65", "upgrade8", "upgrade8", "upgrade149",
+    "tech77", "upgrade20", "upgrade20", "upgrade152"],
+  combat: ["tech80", "tech81", "upgrade28", "upgrade28", "upgrade154",
+    "tech72", "tech74", "tech73", "tech184", "upgrade12", "upgrade12", "upgrade150",
+    "tech67", "tech204", "tech205", "tech210",
+    "tech208", "tech209", "prod164", "prod164", "prod165"],
+  explorer: ["tech63", "tech62", "tech65", "tech64", "tech247", "upgrade8", "upgrade8", "upgrade149",
+    "tech69", "tech70", "upgrade4", "upgrade4", "upgrade148", "tech66", "tech67"],
+};
+function renderMTool() {
+  const typesBox = document.getElementById("mt-types");
+  if (!typesBox || !D.mtool) return;
+  ensureCatalogue();
+  const idx = typeof woIndex === "function" ? woIndex() : null;
+  const st = mtLoad();
+  const R = D.mtool.rules;
+  const cap = R.slots_by_class[st.cls] || 60;
+  const scCap = R.sc_by_class[st.cls] || 0;
+  const cols = R.cols || 10;
+  // --- Types
+  typesBox.innerHTML = D.mtool.types.map(t => `
+    <button class="mt-type${st.type === t.key ? " active" : ""}" data-mt-type="${t.key}" aria-pressed="${st.type === t.key}">
+      <span class="h">${t.emoji} ${esc(lang === "en" ? t.en : t.fr)}</span>
+      <span class="d">${esc(lang === "en" ? t.desc_en : t.desc_fr)}</span>
+    </button>`).join("");
+  // --- Contrôles
+  document.getElementById("mt-controls").innerHTML = `
+    <span class="mt-ctl-label">${esc(T().mt_class)}</span>
+    <div class="subtabs">${["C", "B", "A", "S"].map(c =>
+      `<button data-mt-cls="${c}" aria-pressed="${st.cls === c}" class="${st.cls === c ? "active" : ""}">${c} · ${R.slots_by_class[c]}</button>`).join("")}</div>
+    <span class="mt-ctl-label">${esc(T().mt_slots)}</span>
+    <input type="range" id="mt-slots" min="5" max="${cap}" step="1" value="${Math.min(st.slots, cap)}" aria-label="${esc(T().mt_slots)}">
+    <span class="mt-slots-out" id="mt-slots-out">${Math.min(st.slots, cap)} / ${cap}</span>
+    <div class="subtabs">${[["place", T().mt_mode_place], ["sc", "⚡ " + T().mt_mode_sc], ["erase", T().mt_mode_erase]].map(([m, l]) =>
+      `<button data-mt-mode="${m}" aria-pressed="${st.mode === m}" class="${st.mode === m ? "active" : ""}">${esc(l)}</button>`).join("")}</div>
+    <div class="subtabs">${Object.keys(MT_PRESETS).map(p =>
+      `<button data-mt-preset="${p}">${esc(T()["mt_preset_" + p])}</button>`).join("")}
+      <button data-mt-clear>♻️ ${esc(T().mt_clear)}</button></div>`;
+  // --- Grille
+  const famAt = i => { const id = st.cells[i]; return id ? mtFamOf(id) : null; };
+  const grid = document.getElementById("mt-grid");
+  let cellsHtml = "";
+  for (let i = 0; i < Math.min(st.slots, cap); i++) {
+    const id = st.cells[i];
+    const it = id && idx ? idx[id] : null;
+    const fam = id ? mtFamOf(id) : null;
+    // Adjacence orthogonale, sur la MÊME grille que l'affichage (10 colonnes).
+    let adj = false;
+    if (fam) {
+      for (const n of [i - 1, i + 1, i - cols, i + cols]) {
+        if (n < 0 || n >= st.slots) continue;
+        if ((n === i - 1 && i % cols === 0) || (n === i + 1 && n % cols === 0)) continue;
+        const nf = famAt(n);
+        if (nf && nf.key === fam.key) { adj = true; break; }
+      }
+    }
+    const cls = it && fam && fam.mods.includes(id) ? mtModClass(it) : "";
+    cellsHtml += `<button class="mt-cell${id ? " filled" : ""}${adj ? " adj" : ""}${st.sc.includes(i) ? " sc" : ""}"
+      data-mt-cell="${i}" ${fam ? `style="--mt-c:${esc(fam.color)}"` : ""}
+      title="${it ? esc(lang === "en" ? it.name_en : it.name_fr) : ""}" aria-label="${it ? esc(lang === "en" ? it.name_en : it.name_fr) : T().mt_cell_empty + " " + (i + 1)}">
+      ${it && it.icon ? `<img src="${esc(safeUrl(it.icon))}" alt="" loading="lazy">` : ""}
+      ${cls ? `<span class="mt-x">${cls}</span>` : ""}
+    </button>`;
+  }
+  grid.innerHTML = cellsHtml;
+  // --- Analyse : adjacence, survoltés, règle des 3 modules par famille.
+  let links = 0;
+  for (let i = 0; i < st.slots; i++) {
+    const f = famAt(i); if (!f) continue;
+    for (const n of [i + 1, i + cols]) {
+      if (n >= st.slots) continue;
+      if (n === i + 1 && n % cols === 0) continue;
+      const nf = famAt(n);
+      if (nf && nf.key === f.key) links++;
+    }
+  }
+  const perFam = {};
+  for (const i of Object.keys(st.cells)) {
+    if (+i >= st.slots) continue;
+    const id = st.cells[i]; const f = mtFamOf(id);
+    if (!f) continue;
+    perFam[f.key] = perFam[f.key] || { fam: f, core: 0, mods: 0 };
+    if (f.mods.includes(id)) perFam[f.key].mods++; else perFam[f.key].core++;
+  }
+  const scUsed = st.sc.filter(i => i < st.slots).length;
+  document.getElementById("mt-analysis").innerHTML =
+    `<span class="mt-an info">🔗 ${esc(T().mt_adj(links))}</span>
+     <span class="mt-an info">⚡ ${esc(T().mt_sc_used(scUsed, scCap))}</span>` +
+    Object.values(perFam).map(p => {
+      const over = p.mods > R.module_limit;
+      return `<span class="mt-an${over ? " warn" : ""}" style="--mt-c:${esc(p.fam.color)}">${p.fam.emoji} ${esc(lang === "en" ? p.fam.en : p.fam.fr)} · ${p.core}+${p.mods}/${R.module_limit}${over ? " ⚠ " + esc(T().mt_overload) : ""}</span>`;
+    }).join("");
+  // --- Palette
+  const pal = document.getElementById("mt-palette");
+  if (!idx) { pal.innerHTML = `<div class="empty">${T().rec_loading}</div>`; return; }
+  const chip = (id, isMod) => {
+    const it = idx[id]; if (!it) return "";
+    const c = isMod ? mtModClass(it) : "";
+    return `<button class="mt-item${st.sel === id ? " sel" : ""}" data-mt-item="${esc(id)}">
+      ${it.icon ? `<img src="${esc(safeUrl(it.icon))}" alt="" loading="lazy">` : ""}${esc(lang === "en" ? it.name_en : it.name_fr)}${c ? `<span class="cls ${c}">${c}</span>` : ""}</button>`;
+  };
+  pal.innerHTML = `<div class="mt-hint">${esc(T().mt_hint)}</div>` + D.mtool.families.map(f => `
+    <div class="mt-fam" style="--mt-c:${esc(f.color)}">
+      <div class="mt-fam-h">${f.emoji} ${esc(lang === "en" ? f.en : f.fr)}</div>
+      <div class="mt-items">${f.core.map(id => chip(id, false)).join("")}${f.mods.map(id => chip(id, true)).join("")}</div>
+    </div>`).join("");
+}
+(function setupMTool() {
+  const panel = document.getElementById("panel-outil");
+  if (!panel) return;
+  panel.addEventListener("click", e => {
+    const st = mtLoad();
+    const R = D.mtool && D.mtool.rules;
+    const t = e.target.closest("[data-mt-type]");
+    if (t) { st.type = t.dataset.mtType; mtSave(); renderMTool(); return; }
+    const c = e.target.closest("[data-mt-cls]");
+    if (c) {
+      st.cls = c.dataset.mtCls;
+      const cap = R.slots_by_class[st.cls];
+      st.slots = Math.min(st.slots, cap);
+      st.sc = st.sc.filter(i => i < st.slots).slice(0, R.sc_by_class[st.cls]);
+      mtSave(); renderMTool(); return;
+    }
+    const m = e.target.closest("[data-mt-mode]");
+    if (m) { st.mode = m.dataset.mtMode; renderMTool(); return; }
+    const p = e.target.closest("[data-mt-preset]");
+    if (p) {
+      st.cells = {};
+      MT_PRESETS[p.dataset.mtPreset].forEach((id, k) => { if (k < st.slots) st.cells[k] = id; });
+      mtSave(); renderMTool(); toast(T().mt_preset_toast); return;
+    }
+    if (e.target.closest("[data-mt-clear]")) {
+      if (confirm(T().mt_clear_confirm)) { st.cells = {}; st.sc = []; mtSave(); renderMTool(); }
+      return;
+    }
+    const it = e.target.closest("[data-mt-item]");
+    if (it) { st.sel = st.sel === it.dataset.mtItem ? null : it.dataset.mtItem; st.mode = "place"; renderMTool(); return; }
+    const cell = e.target.closest("[data-mt-cell]");
+    if (cell) {
+      const i = +cell.dataset.mtCell;
+      if (st.mode === "sc") {
+        const scCap = R.sc_by_class[st.cls];
+        const at = st.sc.indexOf(i);
+        if (at >= 0) st.sc.splice(at, 1);
+        else if (st.sc.filter(x => x < st.slots).length < scCap) st.sc.push(i);
+        else toast(T().mt_sc_full(scCap));
+      } else if (st.mode === "erase") {
+        delete st.cells[i];
+      } else {
+        if (st.sel) st.cells[i] = st.sel;
+        else if (st.cells[i] !== undefined) delete st.cells[i];
+      }
+      mtSave(); renderMTool();
+    }
+  });
+  panel.addEventListener("input", e => {
+    if (e.target.id !== "mt-slots") return;
+    const st = mtLoad();
+    st.slots = +e.target.value;
+    st.sc = st.sc.filter(i => i < st.slots);
+    for (const k of Object.keys(st.cells)) if (+k >= st.slots) delete st.cells[k];
+    mtSave(); renderMTool();
+    const s2 = document.getElementById("mt-slots");
+    if (s2) s2.focus();
+  });
+})();
+
 /* ============================== Compte à rebours 10 ans ============================== */
 // 10e anniversaire de No Man's Sky : 9 août 2026, 18 h UTC (événement communautaire).
 const ANNIV_TS = Date.UTC(2026, 7, 9, 18, 0, 0);
@@ -6233,6 +6547,7 @@ async function ensureCatalogue() {
   renderCatalogue();
   renderElements();   // le tableau des éléments dépend du catalogue
   renderFavorites();  // résout les noms des objets/éléments favoris une fois chargés
+  if (document.body.dataset.tab === "outil") renderMTool();  // palette de l'atelier multi-outil
   if (["profit", "chains"].includes(sub.recettes || "")) renderRecipes();  // labo & chaînes dépendent des valeurs
   if ((sub.marche || "") === "worth" && document.body.dataset.tab === "marche") renderMarket();  // estimateur de cargaison aussi
   // Si la recherche globale est ouverte, on rafraîchit avec les objets chargés.
@@ -7196,6 +7511,7 @@ function renderAll() {
   renderMissions();
   renderFavorites();
   renderFavCount();
+  renderMTool();
   if (D.catalogue) renderCatalogue();
 }
 
@@ -7204,7 +7520,7 @@ function renderAll() {
   applyTheme(localStorage.getItem(LS_THEME) ||
     (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"), false);
 
-  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements, missions, visitors] = await Promise.all([
+  const [progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements, missions, visitors, mtool] = await Promise.all([
     loadJSON("data/progress.json"),
     loadJSON("data/official.json"),
     loadJSON("data/news.json"),
@@ -7227,8 +7543,9 @@ function renderAll() {
     loadJSON("data/elements.json"),
     loadJSON("data/missions.json"),
     loadJSON("data/visitors.json"),
+    loadJSON("data/multitool.json"),
   ]);
-  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements, missions, visitors });
+  Object.assign(D, { progress, official, news, community, stats, history, achievements, videos, timeline, war, challenges, galaxies, market, ships, galaxyHubs, creatures, recipes, guide, expeditions, elements, missions, visitors, mtool });
 
   computeFresh();
   applyLang(lang);

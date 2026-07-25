@@ -1163,6 +1163,13 @@
     .lab-row { grid-template-columns: 1fr; }
     .lab-cell { text-align: left; justify-self: start; min-width: 0; width: 100%; }
   }
+  /* ------- Chaînes optimales (optimiseur du graphe de raffinage) ------- */
+  .ch-row { grid-template-columns: 1fr auto; }
+  .ch-arrow { margin: 0 2px; white-space: nowrap; font-size: 0.95rem; }
+  .ch-step { display: inline-flex; cursor: pointer; border-radius: 8px; }
+  .ch-step .rec-ing { border: 1px solid rgba(255, 200, 87, 0.35); transition: border-color 0.15s; }
+  .ch-step:hover .rec-ing, .ch-step:focus-visible .rec-ing { border-color: var(--c1); }
+  @media (max-width: 560px) { .ch-row { grid-template-columns: 1fr; } }
 
   /* ------- Bulletin de guerre ------- */
   .war-box {
@@ -1747,6 +1754,7 @@
           <button data-sub="refiner" class="active">⚗️ <span data-i18n="rec_refiner">Raffinage</span></button>
           <button data-sub="cooking">🍳 <span data-i18n="rec_cooking">Cuisine</span></button>
           <button data-sub="profit">💰 <span data-i18n="rec_profit">Labo de rentabilité</span></button>
+          <button data-sub="chains">⛓️ <span data-i18n="rec_chains">Chaînes optimales</span></button>
         </div>
         <div class="searchbox" style="margin-left:auto"><input type="search" id="search-recettes" data-i18n-ph="rec_search_ph" placeholder="Chercher un ingrédient ou un résultat…" data-i18n-aria="aria_search_rec" aria-label="Chercher une recette"></div>
       </div>
@@ -2141,6 +2149,11 @@ const I18N = {
     lab_count: (n, x) => `${n} recette${n > 1 ? "s" : ""} comparée${n > 1 ? "s" : ""} en unités · ${x} écartée${x > 1 ? "s" : ""} (nanites ou valeur inconnue)`,
     lab_cost_out: (c, o) => `${c} → ${o} u`,
     lab_net_k: "Gain net", lab_cost_k: "Coût des entrées", lab_out_k: "Valeur de sortie",
+    rec_chains: "Chaînes optimales",
+    ch_note: "Inédit : le site parcourt automatiquement le graphe complet des recettes de raffinage (jusqu'à 3 étapes, cycles exclus) pour découvrir les enchaînements qui multiplient le mieux la valeur — coût de départ ET ingrédients annexes comptés à chaque étape (opérations moyennes, quantités fractionnaires). Seules les chaînes rentables sont listées ; valeurs ≈ du catalogue (prix moyens galactiques) — vérifie en jeu. Clique une étape pour ouvrir sa recette.",
+    ch_f_len: "Étapes", ch_len_all: "2 et 3",
+    ch_count: n => `${n} chaîne${n > 1 ? "s" : ""} rentable${n > 1 ? "s" : ""} découverte${n > 1 ? "s" : ""} automatiquement`,
+    ch_steps: "étapes",
     ship_price: "Prix", ship_find: "Où le trouver", ship_rarity: n => `Rareté : ${n}/5`,
     ship_build: "⚡ Build conseillé (emplacements survolimentés)",
     ship_guide_more: "Guide complet pour améliorer un vaisseau ↓",
@@ -2374,6 +2387,11 @@ const I18N = {
     lab_count: (n, x) => `${n} recipe${n > 1 ? "s" : ""} compared in units · ${x} excluded (nanites or unknown value)`,
     lab_cost_out: (c, o) => `${c} → ${o} u`,
     lab_net_k: "Net gain", lab_cost_k: "Input cost", lab_out_k: "Output value",
+    rec_chains: "Optimal chains",
+    ch_note: "A first: the site automatically walks the full refining recipe graph (up to 3 steps, cycles excluded) to discover the chains that multiply value best — starting cost AND side ingredients counted at every step (average operations, fractional quantities). Only profitable chains are listed; ≈ catalogue values (galactic average prices) — verify in game. Click a step to open its recipe.",
+    ch_f_len: "Steps", ch_len_all: "2 and 3",
+    ch_count: n => `${n} profitable chain${n > 1 ? "s" : ""} discovered automatically`,
+    ch_steps: "steps",
     ship_price: "Price", ship_find: "Where to find it", ship_rarity: n => `Rarity: ${n}/5`,
     ship_build: "⚡ Recommended build (supercharged slots)",
     ship_guide_more: "Full guide to upgrading a ship ↓",
@@ -2391,7 +2409,7 @@ const LS_TEAM = "nms-team";
 const LS_CHALLENGE = "nms-challenge-v1";
 const LS_LAST_VISIT = "nms-last-visit";
 const D = {};
-const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "all", fishbiome: "all", fishtime: "all", fishstorm: "all", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", labmode: "all", labsort: "profit", faunayield: "all", faunasort: "az", galerie: "ships", missions: "all" };
+const sub = { actus: "officiel", communaute: "top_week", videos: "__all__", galaxies: "all", marche: "items", mkcat: "products", fishq: "all", fishbiome: "all", fishtime: "all", fishstorm: "all", catcat: "all", recettes: "refiner", guide: "debuter", catcur: "all", catmin: "0", catsort: "val_desc", recing: "all", recsort: "def", labmode: "all", labsort: "profit", chlen: "all", chsort: "roi", faunayield: "all", faunasort: "az", galerie: "ships", missions: "all" };
 const query = { actus: "", communaute: "", succes: "", videos: "", galaxies: "", catalogue: "" };
 let lang = localStorage.getItem(LS_LANG);
 if (lang !== "fr" && lang !== "en") {
@@ -3076,7 +3094,7 @@ document.querySelectorAll(".subtabs[data-group]").forEach(group => {
     b.classList.add("active");
     syncSubtabPressed(group);
     sub[group.dataset.group] = b.dataset.sub;
-    if (group.dataset.group === "recettes") { recLimit = 40; labLimit = 50; }
+    if (group.dataset.group === "recettes") { recLimit = 40; labLimit = 50; chLimit = 40; }
     renderAll();
   });
 });
@@ -5227,7 +5245,7 @@ async function ensureCatalogue() {
   renderCatalogue();
   renderElements();   // le tableau des éléments dépend du catalogue
   renderFavorites();  // résout les noms des objets/éléments favoris une fois chargés
-  if ((sub.recettes || "") === "profit") renderRecipes();  // le labo de rentabilité dépend des valeurs
+  if (["profit", "chains"].includes(sub.recettes || "")) renderRecipes();  // labo & chaînes dépendent des valeurs
   // Si la recherche globale est ouverte, on rafraîchit avec les objets chargés.
   const so = document.getElementById("search-overlay");
   if (so && !so.hidden && typeof runSearch === "function") runSearch(soInput.value);
@@ -5500,6 +5518,7 @@ function renderRecipes() {
     return;
   }
   if ((sub.recettes || "refiner") === "profit") { renderProfitLab(list, countEl, moreEl); return; }
+  if ((sub.recettes || "refiner") === "chains") { renderChainLab(list, countEl, moreEl); return; }
   buildFilterBar("rec-filters", [
     { key: "recing", def: "all", label: T().rec_f_ing, options: [
       ["all", T().cat_cur_all], ["1", "1"], ["2", "2"], ["3", "3+"]] },
@@ -5615,6 +5634,109 @@ function renderProfitLab(list, countEl, moreEl) {
     ? `<button class="cat-more-btn" id="lab-more-btn">${T().rec_more} (${rows.length - shown.length})</button>` : "";
   const mb = document.getElementById("lab-more-btn");
   if (mb) mb.addEventListener("click", () => { labLimit += 80; renderRecipes(); });
+}
+
+/* ---------- Chaînes optimales : optimiseur du graphe de raffinage ---------- */
+// Parcourt automatiquement le graphe complet des recettes (profondeur ≤ 3,
+// cycles exclus) pour découvrir les chaînes A → B → C qui multiplient le mieux
+// la valeur. Comptabilité honnête : le coût inclut les ingrédients de départ ET
+// les ingrédients annexes de chaque étape, aux valeurs ≈ du catalogue ; les
+// opérations intermédiaires sont des moyennes fractionnaires. Calculé une fois,
+// en local — à notre connaissance, aucun outil communautaire ne fait cette
+// recherche exhaustive.
+let chLimit = 40;
+function buildChains() {
+  if (D._chains) return D._chains;
+  const vals = labValueMap();
+  if (!vals) return null;
+  const R = D.recipes, items = R.items || {};
+  const ok = (R.refiner || []).filter(r => [...r.i.map(i => i[0]), r.o[0]].every(id => vals[id] && vals[id].cur === "Credits"));
+  const byInput = {};
+  for (const r of ok) for (const i of r.i) (byInput[i[0]] = byInput[i[0]] || []).push(r);
+  const nameOf = id => { const it = recItem(items, id); return it.fr + " " + it.en; };
+  const chains = [], seenKey = new Set();
+  const eco = chain => {
+    let cost = chain[0].i.reduce((s, i) => s + vals[i[0]].v * i[1], 0);
+    let carryId = chain[0].o[0], carryQty = chain[0].o[1];
+    for (let k = 1; k < chain.length; k++) {
+      const r = chain[k];
+      const need = r.i.find(i => i[0] === carryId)[1];
+      const ops = carryQty / need;
+      cost += r.i.reduce((s, i) => i[0] === carryId ? s : s + vals[i[0]].v * i[1] * ops, 0);
+      carryId = r.o[0]; carryQty = r.o[1] * ops;
+    }
+    const outVal = vals[carryId].v * carryQty;
+    return { cost, out: outVal, net: outVal - cost };
+  };
+  const push = chain => {
+    const e = eco(chain);
+    if (e.net <= 0 || e.cost <= 0) return;
+    // Dédoublonnage : même chemin d'objets + même bilan = variantes identiques.
+    const key = chain[0].i.map(i => i[0] + ":" + i[1]).sort().join(",") + ">" +
+      chain.map(r => r.o[0]).join(">") + "~" + Math.round(e.net);
+    if (seenKey.has(key)) return;
+    seenKey.add(key);
+    chains.push({ recs: chain.slice(), cost: e.cost, out: e.out, net: e.net, roi: e.net / e.cost * 100,
+      search: normSearch(chain[0].i.map(i => nameOf(i[0])).join(" ") + " " + chain.map(r => nameOf(r.o[0])).join(" ")) });
+  };
+  for (const r1 of ok) {
+    const s1 = new Set(r1.i.map(i => i[0])); s1.add(r1.o[0]);
+    for (const r2 of (byInput[r1.o[0]] || [])) {
+      if (s1.has(r2.o[0])) continue;
+      push([r1, r2]);
+      for (const r3 of (byInput[r2.o[0]] || [])) {
+        if (s1.has(r3.o[0]) || r3.o[0] === r2.o[0]) continue;
+        push([r1, r2, r3]);
+      }
+    }
+  }
+  return (D._chains = chains);
+}
+function renderChainLab(list, countEl, moreEl) {
+  buildFilterBar("rec-filters", [
+    { key: "chlen", def: "all", label: T().ch_f_len, options: [
+      ["all", T().ch_len_all], ["2", "2"], ["3", "3"]] },
+    { key: "chsort", def: "roi", label: T().cat_f_sort, options: [
+      ["roi", T().lab_sort_roi], ["net", T().lab_sort_profit]] },
+  ], renderRecipes);
+  ensureCatalogue();   // les valeurs viennent du catalogue (chargé à la demande)
+  const noteHtml = `<div class="note" style="margin:0 0 10px">${esc(T().ch_note)}</div>`;
+  const chains = buildChains();
+  if (!chains) {
+    countEl.innerHTML = noteHtml; moreEl.innerHTML = "";
+    list.innerHTML = `<div class="empty">${T().rec_loading}</div>`;
+    return;
+  }
+  const items = D.recipes.items || {};
+  const q = (query.recettes || "").trim();
+  let rows = chains;
+  const ln = sub.chlen || "all";
+  if (ln !== "all") rows = rows.filter(c => c.recs.length === +ln);
+  if (q) {
+    const nq = normSearch(q);
+    rows = rows.filter(c => c.search.indexOf(nq) !== -1 || fuzzyMatch(q, c.search));
+  }
+  const srt = sub.chsort || "roi";
+  rows = [...rows].sort((a, b) => srt === "net" ? b.net - a.net : b.roi - a.roi);
+  countEl.innerHTML = noteHtml + esc(T().ch_count(rows.length));
+  const shown = rows.slice(0, chLimit);
+  const maxMetric = Math.max(...shown.map(c => srt === "net" ? c.net : c.roi), 1);
+  list.innerHTML = shown.length ? `<ul class="rec-list">` + shown.map(c => `
+    <li class="rec-row lab-row ch-row">
+      <div class="rec-inputs">
+        ${c.recs[0].i.map(i => recIngredient(items, i[0], i[1])).join('<span class="rec-plus">+</span>')}
+        ${c.recs.map(r => `<span class="rec-arrow ch-arrow" aria-hidden="true">→⚗️</span><span class="ch-step" ${r.id ? `data-recid="${esc(r.id)}" role="button" tabindex="0"` : ""}>${recIngredient(items, r.o[0], 1)}</span>`).join("")}
+      </div>
+      <div class="lab-cell">
+        <div class="lab-net gain">≈ +${fmtNum(Math.round(c.net))} u</div>
+        <div class="lab-sub">${esc(T().lab_cost_out(fmtNum(Math.round(c.cost)), fmtNum(Math.round(c.out))))} · ${fmtNum(Math.round(c.roi))} % · ${c.recs.length} ${esc(T().ch_steps)}</div>
+        <div class="lab-bar" aria-hidden="true"><div style="width:${Math.max(2, Math.round((srt === "net" ? c.net : c.roi) / maxMetric * 100))}%"></div></div>
+      </div>
+    </li>`).join("") + `</ul>` : emptyMsg(!!q);
+  moreEl.innerHTML = rows.length > shown.length
+    ? `<button class="cat-more-btn" id="ch-more-btn">${T().rec_more} (${fmtNum(rows.length - shown.length)})</button>` : "";
+  const mb = document.getElementById("ch-more-btn");
+  if (mb) mb.addEventListener("click", () => { chLimit += 60; renderRecipes(); });
 }
 
 /* ============================== Guide de démarrage ============================== */

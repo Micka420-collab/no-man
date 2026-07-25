@@ -14,6 +14,7 @@ Utilise uniquement la bibliothèque standard Python (aucune dépendance).
 """
 
 import json
+import os
 import re
 import ssl
 import sys
@@ -179,6 +180,48 @@ def _translation_cache() -> dict:
             if p.get("title") and p.get("title_fr"):
                 cache[p["title"]] = p["title_fr"]
     return cache
+
+
+def fetch_visitors() -> dict | None:
+    """Visites de la page GitHub du projet (API officielle de trafic, 14 jours).
+
+    GitHub Pages ne fournit pas de statistiques de visite du site lui-même :
+    ces chiffres mesurent le trafic de la page du dépôt sur github.com — la
+    seule donnée de fréquentation disponible sans service tiers. Le site
+    l'étiquette comme telle, sans prétendre compter les visiteurs du site web.
+    Nécessite le GITHUB_TOKEN du workflow (accès en écriture au dépôt).
+    """
+    token = os.environ.get("GITHUB_TOKEN", "")
+    if not token:
+        print("visitors : GITHUB_TOKEN absent, étape ignorée", file=sys.stderr)
+        return None
+    repo = os.environ.get("GITHUB_REPOSITORY", "micka420-collab/no-man")
+    req = urllib.request.Request(
+        f"https://api.github.com/repos/{repo}/traffic/views?per=day",
+        headers={
+            "User-Agent": USER_AGENT,
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github+json",
+        },
+    )
+    with urllib.request.urlopen(
+        req, timeout=30, context=ssl.create_default_context()
+    ) as resp:
+        data = json.loads(resp.read().decode("utf-8"))
+    days = [
+        {
+            "date": (v.get("timestamp") or "")[:10],
+            "count": v.get("count", 0),
+            "uniques": v.get("uniques", 0),
+        }
+        for v in data.get("views", [])
+    ]
+    return {
+        "source": "github_traffic",
+        "count": data.get("count", 0),
+        "uniques": data.get("uniques", 0),
+        "days": days,
+    }
 
 
 def write_json(name: str, payload) -> None:
@@ -555,6 +598,15 @@ def main() -> int:
             )
         else:
             print("war.json : aucun événement en cours")
+
+    visitors = step("trafic GitHub", fetch_visitors)
+    if visitors:
+        visitors["updated_at"] = now
+        write_json("visitors.json", visitors)
+        print(
+            f"visitors.json : {visitors['count']} vues / "
+            f"{visitors['uniques']} visiteurs uniques (14 j, page GitHub)"
+        )
 
     # Échec global seulement si la majorité des sources sont tombées
     return 1 if len(failures) >= 3 else 0

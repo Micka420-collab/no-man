@@ -38,6 +38,7 @@ feuille « Plus » pour toutes les sections, et **balayage gauche/droite** pour 
 | 🏆 **Succès des joueurs** | % de la communauté Steam ayant débloqué chaque succès — pour te situer par rapport aux autres voyageurs | Page Steam des succès globaux |
 | 🎬 **Vidéos** | Dernières vidéos de Hello Games et des créateurs communautaires (KhrazeGaming, Beeblebum, Xaine's World) | Flux RSS YouTube |
 | 🕰️ **Mises à jour** | Frise chronologique des mises à jour majeures, de la sortie (2016) à The Swarm (2026) | `data/timeline.json` |
+| 👁️ **Fréquentation** | Tuile « vues » dans la Vue d'ensemble : trafic de la **page GitHub du projet** (7 derniers jours + visiteurs uniques 14 j), collecté par le workflow via l'API officielle de trafic GitHub — étiqueté honnêtement : GitHub Pages ne fournit pas les visites du site lui-même. Pour compter les **vrais visiteurs du site web** : crée un compte gratuit sur [GoatCounter](https://www.goatcounter.com) (mesure sans cookies, RGPD) et renseigne ton code dans la constante `GOAT_CODE` d'`index.html` — le comptage et la tuile « visiteurs du site » s'activent tout seuls | API trafic GitHub + GoatCounter (optionnel) |
 | 🧭 **Ma progression** | Checklist interactive de ~35 objectifs du jeu (histoire, quêtes, équipement, bases, exploration, multijoueur) avec pourcentage global | Toi ! |
 
 Les données sont **mises à jour automatiquement toutes les 3 heures** par GitHub Actions

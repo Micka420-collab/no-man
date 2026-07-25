@@ -194,6 +194,11 @@
   .hero-hud .hh-label .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; }
   .hero-hud .hh-big { font: 700 2.7rem var(--font-head); line-height: 1.02; margin: 8px 0 2px; }
   .hero-hud .hh-maj { font: 400 0.58rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-dim); }
+  .hero-hud .hh-delta { margin-top: 4px; font-weight: 700; }
+  .hero-hud .hh-delta.up { color: #4ade80; }
+  .hero-hud .hh-delta.down { color: #f87171; }
+  [data-theme="light"] .hero-hud .hh-delta.up { color: #15803d; }
+  [data-theme="light"] .hero-hud .hh-delta.down { color: #b91c1c; }
   .hero-hud .hh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 16px; }
   .hero-hud .hh-cell { border: 1px solid var(--stroke); border-radius: 10px; padding: 10px 12px; }
   .hero-hud .hh-cell .k { font: 700 0.55rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-dim); }
@@ -1172,6 +1177,16 @@
     .lab-row { grid-template-columns: 1fr; }
     .lab-cell { text-align: left; justify-self: start; min-width: 0; width: 100%; }
   }
+  /* ------- Ligne de statut terminal (PWA) ------- */
+  .term-status { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; justify-content: center;
+    margin: 26px 0 -8px; font: 600 0.58rem var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-dim); opacity: 0.85; }
+  .term-status .ts-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
+    box-shadow: 0 0 7px #4ade80; display: inline-block; margin-right: 6px; vertical-align: 1px; }
+  .term-status.offline .ts-dot { background: var(--c1h); box-shadow: 0 0 7px var(--c1h); }
+  .term-status.offline .ts-link { color: var(--c1h); }
+  .term-status span { white-space: nowrap; }
+
   /* ------- Garde-manger (planificateur par inventaire) ------- */
   .pa-box { margin: 4px 0 14px; }
   .pa-addwrap { position: relative; max-width: 460px; }
@@ -1916,6 +1931,7 @@
     </div>
   </div>
 
+  <div class="term-status" id="term-status" aria-live="polite"></div>
   <footer>
     <div data-i18n-html="footer_credits">Fait avec ❤️ pour les Voyageurs · <a href="https://github.com/Micka420-collab/no-man" rel="noopener">Code source</a> · données mises à jour automatiquement toutes les 6 h</div>
     <div class="srcs" data-i18n="footer_sources">Sources : Hello Games (nomanssky.com), API Steam, r/NoMansSkyTheGame, r/NMSCoordinateExchange, YouTube</div>
@@ -1989,6 +2005,12 @@ const I18N = {
     cmd_copy: "Copier le lien de la vue actuelle",
     cmd_none: "Aucune commande ne correspond.",
     copy_discord: "Copier la fiche formatée pour Discord",
+    ts_online: "En ligne", ts_offline: "Hors-ligne · mode cache",
+    ts_data: s => `Données ${s}`, ts_cache: "Cache", ts_ingame: "en jeu",
+    hud_delta_up: p => `▲ +${p} % vs hier à cette heure`,
+    hud_delta_down: p => `▼ −${p} % vs hier à cette heure`,
+    hud_delta_flat: "≈ comme hier à cette heure",
+    cmd_random: "🎲 Découverte aléatoire", so_random: "Surprends-moi — une fiche au hasard",
     so_empty: "Aucun résultat.",
     so_groups: { objets: "📖 Objets", recettes: "🧪 Recettes", creatures: "🦋 Faune", vaisseaux: "🛸 Vaisseaux", poissons: "🐟 Poissons", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expéditions" },
     so_more: n => `+ ${n} autre(s) — ouvrir l'onglet`,
@@ -2251,6 +2273,12 @@ const I18N = {
     cmd_copy: "Copy link to current view",
     cmd_none: "No command matches.",
     copy_discord: "Copy card formatted for Discord",
+    ts_online: "Online", ts_offline: "Offline · cache mode",
+    ts_data: s => `Data ${s}`, ts_cache: "Cache", ts_ingame: "in game",
+    hud_delta_up: p => `▲ +${p}% vs yesterday at this hour`,
+    hud_delta_down: p => `▼ −${p}% vs yesterday at this hour`,
+    hud_delta_flat: "≈ same as yesterday at this hour",
+    cmd_random: "🎲 Random discovery", so_random: "Surprise me — a random card",
     so_empty: "No results.",
     so_groups: { objets: "📖 Items", recettes: "🧪 Recipes", creatures: "🦋 Fauna", vaisseaux: "🛸 Ships", poissons: "🐟 Fish", galaxies: "🗺️ Galaxies", guides: "📚 Guides", missions: "📖 Wiki", expeditions: "🗓️ Expeditions" },
     so_more: n => `+ ${n} more — open the tab`,
@@ -2978,7 +3006,16 @@ function renderSoHome() {
   soResults = []; soSel = -1;
   const pins = soPins();
   const recents = soRecents().map(x => x.h).filter(h => !pins.includes(h));
-  if (!pins.length && !recents.length) { soResultsEl.innerHTML = `<div class="so-hint">${esc(T().so_hint)}</div>`; return; }
+  // Rangée « Surprends-moi » : une fiche au hasard parmi les vraies données.
+  const randRow = () => {
+    const idx = soResults.length;
+    soResults.push({ action: () => { closeSearch(); randomDiscovery(); } });
+    return soItemHTML(idx, { emoji: "🎲", name: T().so_random });
+  };
+  if (!pins.length && !recents.length) {
+    soResultsEl.innerHTML = `<div class="so-hint">${esc(T().so_hint)}</div>` + randRow();
+    return;
+  }
   let html = "";
   const push = hash => {
     const idx = soResults.length, eq = hash.indexOf("=");
@@ -2993,6 +3030,7 @@ function renderSoHome() {
     html += `<div class="so-group-title">${esc(T().so_recent)}</div>`;
     for (const h of recents) html += soHomeRow(push(h), h, false);
   }
+  html += randRow();
   soResultsEl.innerHTML = html;
   // Les fiches « item=/recipe= » se résolvent mieux une fois le catalogue chargé
   // (lancé par openSearch) : on re-rend alors une fois, si l'écran est toujours vide.
@@ -3016,6 +3054,8 @@ function buildCommands() {
     action: () => { closeSearch(); applyLang(lang === "fr" ? "en" : "fr"); } });
   cmds.push({ emoji: "🔗", name: T().cmd_copy, key: "copier lien copy link partager share url",
     action: () => { closeSearch(); shareLink("tab=" + (document.body.dataset.tab || "apercu"), document.title); } });
+  cmds.push({ emoji: "🎲", name: T().cmd_random, key: "aleatoire random hasard surprise decouverte discovery",
+    action: () => { closeSearch(); randomDiscovery(); } });
   return cmds;
 }
 function renderCommands(filter) {
@@ -3464,12 +3504,80 @@ function renderHeroHud() {
     <div class="hh-label"><span class="dot"></span>${esc(T().hud_players)}</div>
     <div class="hh-big" id="hero-hud-count">${fmtNum(num(s.player_count))}</div>
     <div class="hh-maj">${esc(T().updated)} ${esc(relTime(s.updated_at))}</div>
+    ${hudDelta()}
     <div class="hh-grid">
       <div class="hh-cell"><div class="k">${esc(T().hud_peak)}</div><div class="v">${s.peak_24h ? fmtNum(num(s.peak_24h)) : "—"}</div></div>
       <div class="hh-cell"><div class="k">${esc(T().hud_record)}</div><div class="v">${s.peak_all ? fmtNum(num(s.peak_all)) : "—"}</div></div>
       <div class="hh-cell"><div class="k">${esc(T().hud_reviews)}</div><div class="v">${esc(rev)}</div></div>
       <div class="hh-cell"><div class="k">${esc(T().hud_price)}</div><div class="v orange">${esc(promo)}</div></div>
     </div>`;
+  renderTermStatus();   // la ligne de statut affiche aussi joueurs + âge des données
+}
+
+// Delta d'affluence vs hier à la même heure, depuis l'historique réel des
+// relevés Steam (comparaison honnête : relevé le plus proche de -24 h, ±3 h max).
+function hudDelta() {
+  const H = D.history && D.history.points, s = D.stats;
+  if (!H || H.length < 2 || !s || !s.player_count || !s.updated_at) return "";
+  const target = new Date(s.updated_at).getTime() - 86400000;
+  let best = null, bd = Infinity;
+  for (const p of H) {
+    const d = Math.abs(new Date(p.t).getTime() - target);
+    if (d < bd) { bd = d; best = p; }
+  }
+  if (!best || bd > 3 * 3600000 || !num(best.players)) return "";
+  const pct = Math.round((num(s.player_count) - best.players) / best.players * 100);
+  if (pct > 1) return `<div class="hh-maj hh-delta up">${esc(T().hud_delta_up(pct))}</div>`;
+  if (pct < -1) return `<div class="hh-maj hh-delta down">${esc(T().hud_delta_down(Math.abs(pct)))}</div>`;
+  return `<div class="hh-maj hh-delta">${esc(T().hud_delta_flat)}</div>`;
+}
+
+/* ---------- Ligne de statut terminal (PWA) ---------- */
+// En ligne / hors-ligne (le site marche en mode cache), âge réel des données,
+// version du cache lue depuis le service worker (aucune valeur codée en dur).
+var termCache = "";
+function renderTermStatus() {
+  const el = document.getElementById("term-status");
+  if (!el) return;
+  const off = !navigator.onLine;
+  el.classList.toggle("offline", off);
+  const bits = [`<span class="ts-link"><span class="ts-dot"></span>${esc(off ? T().ts_offline : T().ts_online)}</span>`];
+  if (D.stats && D.stats.updated_at) bits.push(`<span>${esc(T().ts_data(relTime(D.stats.updated_at)))}</span>`);
+  if (termCache) bits.push(`<span>${esc(T().ts_cache)} ${esc(termCache)}</span>`);
+  if (D.stats && num(D.stats.player_count)) bits.push(`<span>${fmtNum(num(D.stats.player_count))} ${esc(T().ts_ingame)}</span>`);
+  el.innerHTML = bits.join("");
+}
+(function setupTermStatus() {
+  if (!document.getElementById("term-status")) return;
+  if ("caches" in window) caches.keys().then(ks => {
+    termCache = ks.find(k => /^nms-v/.test(k)) || "";
+    renderTermStatus();
+  }).catch(() => { /* indisponible */ });
+  window.addEventListener("online", renderTermStatus);
+  window.addEventListener("offline", renderTermStatus);
+  setInterval(renderTermStatus, 60000);   // l'âge des données vieillit à l'écran
+  renderTermStatus();
+})();
+
+/* ---------- Découverte aléatoire : une fiche au hasard, données réelles ---------- */
+function randomDiscovery() {
+  const pools = [];
+  if (D.galaxies && (D.galaxies.items || []).length)
+    pools.push(() => openTarget("galaxy", String(1 + Math.floor(Math.random() * D.galaxies.items.length))));
+  if (D.creatures && (D.creatures.creatures || []).length)
+    pools.push(() => openTarget("creature", D.creatures.creatures[Math.floor(Math.random() * D.creatures.creatures.length)].type));
+  if (D.ships && (D.ships.items || []).length)
+    pools.push(() => openTarget("ship", D.ships.items[Math.floor(Math.random() * D.ships.items.length)].id));
+  if (D.recipes) {
+    const all = [...(D.recipes.refiner || []), ...(D.recipes.cooking || [])].filter(r => r.id);
+    if (all.length) pools.push(() => openTarget("recipe", all[Math.floor(Math.random() * all.length)].id));
+  }
+  if (D.catalogue) {
+    const cats = D.catalogue.categories, ks = Object.keys(cats);
+    const its = cats[ks[Math.floor(Math.random() * ks.length)]].items;
+    if (its.length) pools.push(() => openTarget("item", its[Math.floor(Math.random() * its.length)].id));
+  }
+  if (pools.length) pools[Math.floor(Math.random() * pools.length)]();
 }
 
 function renderOverview() {

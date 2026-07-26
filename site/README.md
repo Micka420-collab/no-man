@@ -43,16 +43,24 @@ Bulletin de guerre · Mises à jour · Guides & Wiki · Base de données · Rece
 
 Both benches share `components/Workshop.tsx` and `components/Viewer3D.tsx`:
 
-- **Real-time 3D** — solid-shaded models with panel lines, three-point lighting, hangar rings,
-  drag-to-orbit, ±/reset buttons and `Ctrl`/`⌘` + wheel zoom. A `SOLIDE / HOLO` switch keeps the
-  prototype's wireframe look available. The part of the model a technology belongs to (engine, wing,
-  barrel, scope, hyperdrive core…) pulses while that family is installed.
+- **Real-time 3D** — PBR models lit by a generated room environment (`PMREMGenerator` +
+  `RoomEnvironment`), ACES tone mapping, soft-shadow contact plane, `UnrealBloomPass` on the emissive
+  parts, and panel-line edges. Drag to orbit, ±/reset buttons, `Ctrl`/`⌘` + wheel to zoom, and a
+  `SOLIDE / HOLO` switch that keeps the prototype's wireframe look. The part of the model a
+  technology belongs to (engine, wing, barrel, scope, hyperdrive core…) pulses while it is installed.
+- **Inventory handling like the game** — click a fitted technology to pick it up, click another cell
+  to place it, and it swaps with whatever is there; `Esc` cancels, `Suppr` removes, and the detail
+  strip carries a Remove button. This is what makes supercharged slots and adjacency clusters
+  something you actually arrange rather than just observe.
+- **Technology glyphs** — each family draws its own inventory icon in the slot grid, the family chips
+  and the catalogue rows.
 - **Catalogue** — the game's real technology names per family with what each one does and how it is
   obtained, plus C/B/A/S/X upgrade-module tiers carrying nanite price ranges and bonus ranges.
 - **In-game rules** — per-class slot counts, a contiguous supercharged cluster (×1.5), orthogonal
   adjacency bonuses (+5% each), and the 3-modules-per-family overload that shuts the family down.
-- **Live estimate** — stat bars show the archetype's base profile plus the computed bonus window
-  from the current build, and the catalogue header totals the nanite cost.
+- **Live estimate + technical sheet** — stat bars show the archetype's base profile plus the computed
+  bonus window, and a sheet gives slots used, supercharged used, adjacency links, total nanite cost
+  and — for starships — the resulting hyperdrive range in light years.
 
 Prices and percentages are community-observed *ranges*, shown as ranges and labelled as estimates:
 in game every module rolls random stats inside its class window, and the exact tables are unpublished.

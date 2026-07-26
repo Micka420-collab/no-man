@@ -1,5 +1,10 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js'
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
+import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js'
 import { buildModel, disposeModel } from '../lib/meshes'
 import type { PartKey } from '../data/catalogue'
 import { prefersReducedMotion } from '../lib/util'
@@ -56,9 +61,13 @@ export default function Viewer3D({ kind, type, accent, activeParts, mode, height
     let W = el.clientWidth || 400
     const H = height
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' })
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' })
     renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1))
     renderer.setSize(W, H, false)
+    renderer.toneMapping = THREE.ACESFilmicToneMapping
+    renderer.toneMappingExposure = 0.92
+    renderer.shadowMap.enabled = true
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
     Object.assign(renderer.domElement.style, {
       width: '100%', height: height + 'px', display: 'block', touchAction: 'pan-y', cursor: 'grab',
     })
@@ -68,14 +77,29 @@ export default function Viewer3D({ kind, type, accent, activeParts, mode, height
     sceneRef.current = scene
     const camera = new THREE.PerspectiveCamera(38, W / H, 0.1, 100)
 
-    scene.add(new THREE.HemisphereLight(0x8ab4ff, 0x0a0f1c, 0.75))
-    const key = new THREE.DirectionalLight(0xffffff, 2.1)
-    key.position.set(4, 5, 4)
+    // A generated room environment gives the metal real reflections — no external HDR needed.
+    const pmrem = new THREE.PMREMGenerator(renderer)
+    const envRT = pmrem.fromScene(new RoomEnvironment(), 0.04)
+    scene.environment = envRT.texture
+    // the generated room is a bright studio — dial it back so it reads as reflection, not floodlight
+    scene.environmentIntensity = 0.3
+
+    scene.add(new THREE.HemisphereLight(0x8ab4ff, 0x0a0f1c, 0.28))
+    const key = new THREE.DirectionalLight(0xffffff, 1.7)
+    key.position.set(4, 6, 4)
+    key.castShadow = true
+    key.shadow.mapSize.set(1024, 1024)
+    key.shadow.camera.near = 1
+    key.shadow.camera.far = 30
+    key.shadow.camera.left = -6; key.shadow.camera.right = 6
+    key.shadow.camera.top = 6; key.shadow.camera.bottom = -6
+    key.shadow.bias = -0.0015
+    key.shadow.radius = 3
     scene.add(key)
-    const rim = new THREE.DirectionalLight(0xff9a4d, 1.5)
+    const rim = new THREE.DirectionalLight(0xff9a4d, 1.1)
     rim.position.set(-5, 1.5, -3)
     scene.add(rim)
-    const fill = new THREE.PointLight(0x5fd0e0, 22, 22)
+    const fill = new THREE.PointLight(0x5fd0e0, 14, 22)
     fill.position.set(-2, -2.5, 3)
     scene.add(fill)
 
@@ -95,9 +119,26 @@ export default function Viewer3D({ kind, type, accent, activeParts, mode, height
       rings.push(m)
     }
 
+    // contact shadow under the model
+    const shadowGeo = new THREE.PlaneGeometry(24, 24)
+    const shadowMat = new THREE.ShadowMaterial({ opacity: 0.38 })
+    const shadowPlane = new THREE.Mesh(shadowGeo, shadowMat)
+    shadowPlane.rotation.x = -Math.PI / 2
+    shadowPlane.receiveShadow = true
+    scene.add(shadowPlane)
+
     const pivot = new THREE.Group()
     scene.add(pivot)
     pivotRef.current = pivot
+
+    // bloom so engine cores and muzzle glow actually read as light
+    const composer = new EffectComposer(renderer)
+    composer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1))
+    composer.setSize(W, H)
+    composer.addPass(new RenderPass(scene, camera))
+    const bloom = new UnrealBloomPass(new THREE.Vector2(W, H), 0.55, 0.6, 0.92)
+    composer.addPass(bloom)
+    composer.addPass(new OutputPass())
 
     const computeDist = () => {
       const halfV = Math.tan((camera.fov * Math.PI) / 360)
@@ -123,18 +164,22 @@ export default function Viewer3D({ kind, type, accent, activeParts, mode, height
       }
       distRef.current = computeDist()
       const ringBase = Math.max(1.4, fitRef.current.w * 0.46)
+      const floor = -size.y / 2 - 0.45
       rings.forEach((ring, i) => {
-        ring.position.y = -size.y / 2 - 0.45
+        ring.position.y = floor
         ring.scale.setScalar((ringBase + i * ringBase * 0.42) / 2.2)
       })
+      shadowPlane.position.y = floor - 0.02
     }
 
     applyModeRef.current = () => {
       const model = modelRef.current
       if (!model) return
       const holo = modeRef.current === 'holo'
+      shadowPlane.visible = !holo
       model.traverse((o) => {
         if (o.userData.edge) { o.visible = !holo; return }
+        if ((o as THREE.Mesh).isMesh) { (o as THREE.Mesh).castShadow = !holo }
         const m = o as THREE.Mesh
         if (!m.isMesh) return
         const mat = m.material as THREE.MeshStandardMaterial
@@ -199,6 +244,8 @@ export default function Viewer3D({ kind, type, accent, activeParts, mode, height
       camera.aspect = W / H
       camera.updateProjectionMatrix()
       renderer.setSize(W, H, false)
+      composer.setSize(W, H)
+      bloom.setSize(W, H)
       distRef.current = computeDist()
       if (reduce) draw()
     }
@@ -245,7 +292,7 @@ export default function Viewer3D({ kind, type, accent, activeParts, mode, height
         ring.rotation.z = reduce ? 0 : t * (0.05 + i * 0.02) * (i % 2 ? -1 : 1)
       })
 
-      renderer.render(scene, camera)
+      composer.render()
       if (!reduce && running) raf = requestAnimationFrame(draw)
     }
     drawRef.current = draw
@@ -271,6 +318,11 @@ export default function Viewer3D({ kind, type, accent, activeParts, mode, height
       if (modelRef.current) { disposeModel(modelRef.current); modelRef.current = null }
       ringGeos.forEach((g) => g.dispose())
       ringMat.dispose()
+      shadowGeo.dispose()
+      shadowMat.dispose()
+      composer.dispose()
+      envRT.texture.dispose()
+      pmrem.dispose()
       renderer.dispose()
       renderer.forceContextLoss()
       if (dom.parentNode === el) el.removeChild(dom)
@@ -290,8 +342,9 @@ export default function Viewer3D({ kind, type, accent, activeParts, mode, height
       disposeModel(modelRef.current)
     }
     const model = buildModel(kind, type, {
-      hull: 0x9fb0cc, accent: new THREE.Color(accent).getHex(), glow: CLASS_GLOW,
+      hull: 0x76839b, accent: new THREE.Color(accent).getHex(), glow: CLASS_GLOW,
     })
+    model.traverse((o) => { if ((o as THREE.Mesh).isMesh && !o.userData.edge) o.castShadow = true })
     modelRef.current = model
     pivot.add(model)
     frameRef.current?.()

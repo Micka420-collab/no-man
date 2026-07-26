@@ -46,6 +46,8 @@ export interface CoreTech {
 export interface Family {
   key: string
   emoji: string
+  /** 24×24 stroke path — the in-inventory technology glyph */
+  glyph: string
   color: string
   fr: string
   en: string
@@ -106,7 +108,8 @@ const UTIL_TIERS: Tier[] = [
 
 export const TOOL_FAMILIES: Family[] = [
   {
-    key: 'mining', emoji: '⛏️', color: '#e0a13a', fr: "Rayon d'extraction", en: 'Mining Beam',
+    key: 'mining', emoji: '⛏️', glyph: 'M4 20 14 10M12 4l8 8M14 4l6 6M4 20l2.5-.5.5-2.5',
+    color: '#e0a13a', fr: "Rayon d'extraction", en: 'Mining Beam',
     part: 'barrel', primary: 'mine', secondary: ['reach'],
     core: [
       { id: 'mining-beam', fr: "Rayon d'extraction", en: 'Mining Beam', part: 'barrel',
@@ -129,7 +132,8 @@ export const TOOL_FAMILIES: Family[] = [
     module: { fr: "Module d'extraction", en: 'Mining Upgrade', tiers: UTIL_TIERS },
   },
   {
-    key: 'scanner', emoji: '📡', color: '#5fd0e0', fr: 'Scanner', en: 'Scanner',
+    key: 'scanner', emoji: '📡', glyph: 'M12 20a8 8 0 0 1 0-16M12 17a5 5 0 0 1 0-10M12 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M16 6l4-2M16 18l4 2',
+    color: '#5fd0e0', fr: 'Scanner', en: 'Scanner',
     part: 'scope', primary: 'scan', secondary: ['reach'],
     core: [
       { id: 'scanner', fr: 'Scanner', en: 'Scanner', part: 'scope',
@@ -156,7 +160,8 @@ export const TOOL_FAMILIES: Family[] = [
     module: { fr: 'Module de scanner', en: 'Scanner Upgrade', tiers: UTIL_TIERS },
   },
   {
-    key: 'boltcaster', emoji: '🔫', color: '#ff7a1a', fr: 'Fulgurateur', en: 'Boltcaster',
+    key: 'boltcaster', emoji: '🔫', glyph: 'M3 12h11M17 9.5l4 2.5-4 2.5zM6 8v8M9.5 9v6',
+    color: '#ff7a1a', fr: 'Fulgurateur', en: 'Boltcaster',
     part: 'barrel', primary: 'dmg', secondary: ['rate'],
     core: [
       { id: 'boltcaster', fr: 'Fulgurateur', en: 'Boltcaster', part: 'barrel',
@@ -175,7 +180,8 @@ export const TOOL_FAMILIES: Family[] = [
     module: { fr: 'Module de fulgurateur', en: 'Boltcaster Upgrade', tiers: WEAPON_TIERS },
   },
   {
-    key: 'scatter', emoji: '💥', color: '#f05a5a', fr: 'Fusil à dispersion', en: 'Scatter Blaster',
+    key: 'scatter', emoji: '💥', glyph: 'M4 12h4M10 8.5l2.5-1M10 15.5l2.5 1M15 6.5l1.5-1M15 17.5l1.5 1M14 12h6M18 9l2 3-2 3',
+    color: '#f05a5a', fr: 'Fusil à dispersion', en: 'Scatter Blaster',
     part: 'barrel', primary: 'dmg', secondary: [],
     core: [
       { id: 'scatter-blaster', fr: 'Fusil à dispersion', en: 'Scatter Blaster', part: 'barrel',
@@ -190,7 +196,8 @@ export const TOOL_FAMILIES: Family[] = [
     module: { fr: 'Module de dispersion', en: 'Scatter Blaster Upgrade', tiers: WEAPON_TIERS },
   },
   {
-    key: 'spitter', emoji: '🔥', color: '#ffb347', fr: 'Cracheur à impulsions', en: 'Pulse Spitter',
+    key: 'spitter', emoji: '🔥', glyph: 'M3 12h5M11 12h2M16 12h2M20.5 12h.5M7 7.5l1.5 1M7 16.5l1.5-1',
+    color: '#ffb347', fr: 'Cracheur à impulsions', en: 'Pulse Spitter',
     part: 'barrel', primary: 'rate', secondary: ['dmg'],
     core: [
       { id: 'pulse-spitter', fr: 'Cracheur à impulsions', en: 'Pulse Spitter', part: 'barrel',
@@ -209,7 +216,8 @@ export const TOOL_FAMILIES: Family[] = [
     module: { fr: 'Module de cracheur', en: 'Pulse Spitter Upgrade', tiers: WEAPON_TIERS },
   },
   {
-    key: 'javelin', emoji: '🎯', color: '#c98af0', fr: 'Javelot incandescent', en: 'Blaze Javelin',
+    key: 'javelin', emoji: '🎯', glyph: 'M3 21 21 3M15 3h6v6M9 12l3 3',
+    color: '#c98af0', fr: 'Javelot incandescent', en: 'Blaze Javelin',
     part: 'barrel', primary: 'dmg', secondary: ['reach'],
     core: [
       { id: 'blaze-javelin', fr: 'Javelot incandescent', en: 'Blaze Javelin', part: 'barrel',
@@ -228,7 +236,8 @@ export const TOOL_FAMILIES: Family[] = [
     module: { fr: 'Module de javelot', en: 'Blaze Javelin Upgrade', tiers: WEAPON_TIERS },
   },
   {
-    key: 'neutron', emoji: '☢️', color: '#8bf0a0', fr: 'Canon à neutrons', en: 'Neutron Cannon',
+    key: 'neutron', emoji: '☢️', glyph: 'M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4M12 3c4.5 4 4.5 14 0 18M12 3c-4.5 4-4.5 14 0 18M3.5 8c5.5-2 11.5-2 17 0M3.5 16c5.5 2 11.5 2 17 0',
+    color: '#8bf0a0', fr: 'Canon à neutrons', en: 'Neutron Cannon',
     part: 'barrel', primary: 'dmg', secondary: ['reach'],
     core: [
       { id: 'neutron-cannon', fr: 'Canon à neutrons', en: 'Neutron Cannon', part: 'barrel',
@@ -243,7 +252,8 @@ export const TOOL_FAMILIES: Family[] = [
     module: { fr: 'Module de neutrons', en: 'Neutron Cannon Upgrade', tiers: WEAPON_TIERS },
   },
   {
-    key: 'plasma', emoji: '🧨', color: '#b0805a', fr: 'Lance-plasma', en: 'Plasma Launcher',
+    key: 'plasma', emoji: '🧨', glyph: 'M12 3c1 3.5 5 4.5 5 9a5 5 0 0 1-10 0c0-4.5 4-5.5 5-9zM12 19a3 3 0 0 0 3-3',
+    color: '#b0805a', fr: 'Lance-plasma', en: 'Plasma Launcher',
     part: 'barrel', primary: 'dmg', secondary: [],
     core: [
       { id: 'plasma-launcher', fr: 'Lance-plasma', en: 'Plasma Launcher', part: 'barrel',
@@ -254,7 +264,8 @@ export const TOOL_FAMILIES: Family[] = [
     module: { fr: 'Module de plasma', en: 'Plasma Launcher Upgrade', tiers: WEAPON_TIERS },
   },
   {
-    key: 'geology', emoji: '🪨', color: '#8a96a8', fr: 'Canon géologique', en: 'Geology Cannon',
+    key: 'geology', emoji: '🪨', glyph: 'M3 19h18L14.5 7 10 14l-2.5-3z',
+    color: '#8a96a8', fr: 'Canon géologique', en: 'Geology Cannon',
     part: 'barrel', primary: 'mine', secondary: ['dmg'],
     core: [
       { id: 'geology-cannon', fr: 'Canon géologique', en: 'Geology Cannon', part: 'barrel',
@@ -265,7 +276,8 @@ export const TOOL_FAMILIES: Family[] = [
     module: { fr: 'Module géologique', en: 'Geology Cannon Upgrade', tiers: WEAPON_TIERS },
   },
   {
-    key: 'utility', emoji: '🛠️', color: '#6aa9ff', fr: 'Utilitaires', en: 'Utilities',
+    key: 'utility', emoji: '🛠️', glyph: 'M14.4 6.1a4.7 4.7 0 0 0-6 6L3 17.6 6.4 21l5.5-5.5a4.7 4.7 0 0 0 6-6l-3.2 3.2-3.5-3.5 3.2-3.1z',
+    color: '#6aa9ff', fr: 'Utilitaires', en: 'Utilities',
     part: 'grip', primary: 'reach', secondary: ['scan'],
     core: [
       { id: 'terrain-manipulator', fr: 'Manipulateur de terrain', en: 'Terrain Manipulator', part: 'barrel',
@@ -301,7 +313,8 @@ export const TOOL_FAMILIES: Family[] = [
 
 export const SHIP_FAMILIES: Family[] = [
   {
-    key: 'pulse', emoji: '🔥', color: '#ffb347', fr: 'Moteur à impulsion', en: 'Pulse Engine',
+    key: 'pulse', emoji: '🔥', glyph: 'M6 5l6 7-6 7M13 5l6 7-6 7',
+    color: '#ffb347', fr: 'Moteur à impulsion', en: 'Pulse Engine',
     part: 'engine', primary: 'pulse', secondary: ['agility'],
     core: [
       { id: 'pulse-engine', fr: 'Moteur à impulsion', en: 'Pulse Engine', part: 'engine',
@@ -320,7 +333,8 @@ export const SHIP_FAMILIES: Family[] = [
     module: { fr: 'Module d’impulsion', en: 'Pulse Engine Upgrade', tiers: UTIL_TIERS },
   },
   {
-    key: 'launch', emoji: '🛫', color: '#e0a13a', fr: 'Système de décollage', en: 'Launch System',
+    key: 'launch', emoji: '🛫', glyph: 'M12 3c2.5 3 3.5 6.5 3.5 10L12 16l-3.5-3c0-3.5 1-7 3.5-10zM8.5 17 6 21l4-1.5M15.5 17 18 21l-4-1.5M12 10.5h.01',
+    color: '#e0a13a', fr: 'Système de décollage', en: 'Launch System',
     part: 'engine', primary: 'agility', secondary: [],
     core: [
       { id: 'launch-thruster', fr: 'Propulseur de décollage', en: 'Launch Thruster', part: 'engine',
@@ -339,7 +353,8 @@ export const SHIP_FAMILIES: Family[] = [
     module: { fr: 'Module de décollage', en: 'Launch Thruster Upgrade', tiers: UTIL_TIERS },
   },
   {
-    key: 'hyper', emoji: '🌌', color: '#c98af0', fr: 'Hyperpropulseur', en: 'Hyperdrive',
+    key: 'hyper', emoji: '🌌', glyph: 'M12 12a5 5 0 1 1-3.5-4.8M12 12c0-5 3.5-9 8-9M3 21c2.5-3.5 5.5-6.5 9-9',
+    color: '#c98af0', fr: 'Hyperpropulseur', en: 'Hyperdrive',
     part: 'core', primary: 'hyper', secondary: [],
     core: [
       { id: 'hyperdrive', fr: 'Hyperpropulseur', en: 'Hyperdrive', part: 'core',
@@ -366,7 +381,8 @@ export const SHIP_FAMILIES: Family[] = [
     module: { fr: 'Module d’hyperpropulseur', en: 'Hyperdrive Upgrade', tiers: UTIL_TIERS },
   },
   {
-    key: 'shield', emoji: '🛡️', color: '#5fd0e0', fr: 'Bouclier déflecteur', en: 'Deflector Shield',
+    key: 'shield', emoji: '🛡️', glyph: 'M12 3l8 3.5v5.5c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6.5L12 3z',
+    color: '#5fd0e0', fr: 'Bouclier déflecteur', en: 'Deflector Shield',
     part: 'hull', primary: 'shield', secondary: [],
     core: [
       { id: 'deflector-shield', fr: 'Bouclier déflecteur', en: 'Deflector Shield', part: 'hull',
@@ -381,7 +397,8 @@ export const SHIP_FAMILIES: Family[] = [
     module: { fr: 'Module de bouclier', en: 'Shield Upgrade', tiers: UTIL_TIERS },
   },
   {
-    key: 'photon', emoji: '💥', color: '#ff7a1a', fr: 'Canon à photons', en: 'Photon Cannon',
+    key: 'photon', emoji: '💥', glyph: 'M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.8 2.8M15.2 15.2 18 18M18 6l-2.8 2.8M8.8 15.2 6 18M12 14.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5',
+    color: '#ff7a1a', fr: 'Canon à photons', en: 'Photon Cannon',
     part: 'weapon', primary: 'dmg', secondary: ['rate'],
     core: [
       { id: 'photon-cannon', fr: 'Canon à photons', en: 'Photon Cannon', part: 'weapon',
@@ -392,7 +409,8 @@ export const SHIP_FAMILIES: Family[] = [
     module: { fr: 'Module de canon à photons', en: 'Photon Cannon Upgrade', tiers: WEAPON_TIERS },
   },
   {
-    key: 'phase', emoji: '🔆', color: '#7fe08a', fr: 'Rayon de phase', en: 'Phase Beam',
+    key: 'phase', emoji: '🔆', glyph: 'M3 12h13M16 8.5 21 12l-5 3.5zM6 8.5v7M10 9.5v5',
+    color: '#7fe08a', fr: 'Rayon de phase', en: 'Phase Beam',
     part: 'weapon', primary: 'dmg', secondary: ['reach'],
     core: [
       { id: 'phase-beam', fr: 'Rayon de phase', en: 'Phase Beam', part: 'weapon',
@@ -407,7 +425,8 @@ export const SHIP_FAMILIES: Family[] = [
     module: { fr: 'Module de rayon de phase', en: 'Phase Beam Upgrade', tiers: WEAPON_TIERS },
   },
   {
-    key: 'positron', emoji: '✴️', color: '#f05a5a', fr: 'Éjecteur de positrons', en: 'Positron Ejector',
+    key: 'positron', emoji: '✴️', glyph: 'M4 12h4M12 12h2M11 7l3-1.5M11 17l3 1.5M17 5l3-1.5M17 19l3 1.5M17 12h4',
+    color: '#f05a5a', fr: 'Éjecteur de positrons', en: 'Positron Ejector',
     part: 'weapon', primary: 'dmg', secondary: [],
     core: [
       { id: 'positron-ejector', fr: 'Éjecteur de positrons', en: 'Positron Ejector', part: 'weapon',
@@ -418,7 +437,8 @@ export const SHIP_FAMILIES: Family[] = [
     module: { fr: 'Module de positrons', en: 'Positron Ejector Upgrade', tiers: WEAPON_TIERS },
   },
   {
-    key: 'infra', emoji: '🗡️', color: '#ffd166', fr: 'Accélérateur infra-lame', en: 'Infra-Knife Accelerator',
+    key: 'infra', emoji: '🗡️', glyph: 'M4 18 14 6l2 2-8 11zM14 6l2-3 3 2-3 3M6 20l3-2',
+    color: '#ffd166', fr: 'Accélérateur infra-lame', en: 'Infra-Knife Accelerator',
     part: 'weapon', primary: 'rate', secondary: ['dmg'],
     core: [
       { id: 'infra-knife', fr: 'Accélérateur infra-lame', en: 'Infra-Knife Accelerator', part: 'weapon',
@@ -429,7 +449,8 @@ export const SHIP_FAMILIES: Family[] = [
     module: { fr: 'Module infra-lame', en: 'Infra-Knife Upgrade', tiers: WEAPON_TIERS },
   },
   {
-    key: 'cyclotron', emoji: '🌀', color: '#6aa9ff', fr: 'Baliste cyclotron', en: 'Cyclotron Ballista',
+    key: 'cyclotron', emoji: '🌀', glyph: 'M12 12a3 3 0 1 1-2.1-2.9M12 12c0-4 2.5-7 6-8M12 12c0 4-2.5 7-6 8M20 4c-1 6-4 10-9 12',
+    color: '#6aa9ff', fr: 'Baliste cyclotron', en: 'Cyclotron Ballista',
     part: 'weapon', primary: 'dmg', secondary: [],
     core: [
       { id: 'cyclotron', fr: 'Baliste cyclotron', en: 'Cyclotron Ballista', part: 'weapon',
@@ -440,7 +461,8 @@ export const SHIP_FAMILIES: Family[] = [
     module: { fr: 'Module de baliste', en: 'Cyclotron Upgrade', tiers: WEAPON_TIERS },
   },
   {
-    key: 'rockets', emoji: '🚀', color: '#b0805a', fr: 'Lance-roquettes', en: 'Rocket Launcher',
+    key: 'rockets', emoji: '🚀', glyph: 'M12 3c2.5 3 3.5 6.5 3.5 10L12 16l-3.5-3c0-3.5 1-7 3.5-10zM12 9.5h.01M9 18l-2 3 3-1M15 18l2 3-3-1',
+    color: '#b0805a', fr: 'Lance-roquettes', en: 'Rocket Launcher',
     part: 'weapon', primary: 'dmg', secondary: [],
     core: [
       { id: 'rocket-launcher', fr: 'Lance-roquettes', en: 'Rocket Launcher', part: 'weapon',
@@ -455,7 +477,8 @@ export const SHIP_FAMILIES: Family[] = [
     module: null,
   },
   {
-    key: 'sutility', emoji: '📡', color: '#8a96a8', fr: 'Utilitaires', en: 'Utilities',
+    key: 'sutility', emoji: '📡', glyph: 'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6M6.5 6.5a8 8 0 0 0 0 11M17.5 6.5a8 8 0 0 1 0 11M4 4a11.5 11.5 0 0 0 0 16M20 4a11.5 11.5 0 0 1 0 16',
+    color: '#8a96a8', fr: 'Utilitaires', en: 'Utilities',
     part: 'hull', primary: 'scan', secondary: [],
     core: [
       { id: 'teleport-receiver', fr: 'Récepteur de téléportation', en: 'Teleport Receiver', part: 'hull',
@@ -520,6 +543,15 @@ export const SUPERCHARGE_MULT = 1.5
 
 /** Each neighbouring tech of the same family adds this much, in %. */
 export const ADJACENCY_BONUS = 5
+
+/**
+ * Base hyperdrive range per starship archetype, in light years — the one ship stat the game
+ * shows as a hard number. Community-observed order of magnitude for a fully-fuelled drive.
+ */
+export const BASE_HYPERDRIVE_LY: Record<string, number> = {
+  fighter: 100, hauler: 150, explorer: 300, shuttle: 150, exotic: 250,
+  solar: 200, interceptor: 100, living: 250, freighter: 200, corvette: 200,
+}
 
 /** Maximum upgrade modules of one family before the whole family shuts down. */
 export const MODULE_LIMIT = 3

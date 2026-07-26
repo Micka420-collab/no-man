@@ -1,9 +1,10 @@
-import { Suspense, lazy, useMemo, useState } from 'react'
+import { Suspense, lazy, useEffect, useMemo, useState } from 'react'
 import { useAtlas } from '../lib/store'
 import { fmt, hexA, readJSON, writeJSON } from '../lib/util'
 import type { BuildSlot } from '../types'
 import {
-  ADJACENCY_BONUS, AVAILABILITY, CLASS_MULT, MODULE_LIMIT, SHIP_PROFILE, STAT_COLOR, STAT_LABEL,
+  ADJACENCY_BONUS, AVAILABILITY, BASE_HYPERDRIVE_LY, CLASS_MULT, MODULE_LIMIT, SHIP_PROFILE,
+  STAT_COLOR, STAT_LABEL,
   SUPERCHARGE_MULT, TOOL_PROFILE, families,
   type ClassKey, type Family, type PartKey, type StatKey,
 } from '../data/catalogue'
@@ -57,6 +58,8 @@ interface Installed extends BuildSlot {
 export default function Workshop(cfg: WorkshopConfig) {
   const { L, lang, bump } = useAtlas()
   const [hover, setHover] = useState<number | null>(null)
+  /** slot index currently picked up — the game's "move technology" mode */
+  const [held, setHeld] = useState<number | null>(null)
 
   const fams = useMemo(() => families(cfg.kind), [cfg.kind])
   const famBy = useMemo(() => {
@@ -157,6 +160,8 @@ export default function Workshop(cfg: WorkshopConfig) {
     }
   })
 
+  const scUsedCount = build.filter((b) => scPos.includes(b.i)).length
+
   const activeParts = useMemo(() => {
     const parts = new Set<PartKey>()
     build.forEach((b) => {
@@ -171,6 +176,39 @@ export default function Workshop(cfg: WorkshopConfig) {
   }, [JSON.stringify(build), famBy])
 
   const [mode, setMode] = useState<'solid' | 'holo'>('solid')
+
+  /** Compact technical sheet: the numbers a player actually compares builds on. */
+  const hyperB = bonus.hyper
+  const baseLy = BASE_HYPERDRIVE_LY[cfg.type] || 0
+  const sheet: { k: string; v: string; color: string }[] = [
+    { k: lang === 'fr' ? 'EMPLACEMENTS' : 'SLOTS', v: build.length + ' / ' + cfg.total, color: '#e8edfb' },
+    { k: lang === 'fr' ? 'SURVOLTÉS' : 'SUPERCHARGED', v: scUsedCount + ' / ' + cfg.scN, color: '#5fd0e0' },
+    { k: lang === 'fr' ? 'ADJACENCE' : 'ADJACENCY', v: String(links), color: '#8bf0a0' },
+    ...(cfg.kind === 'ship' && baseLy
+      ? [{
+        k: 'HYPERDRIVE',
+        v: '≈ ' + fmt(Math.round(baseLy * (1 + (hyperB?.min || 0) / 100))) + '–'
+          + fmt(Math.round(baseLy * (1 + (hyperB?.max || 0) / 100))) + (lang === 'fr' ? ' al' : ' ly'),
+        color: '#c98af0',
+      }]
+      : []),
+    {
+      k: lang === 'fr' ? 'COÛT BUILD' : 'BUILD COST',
+      v: naniteMax > 0 ? '≈ ' + fmt(naniteMin) + '–' + fmt(naniteMax) + ' ⬡' : '—',
+      color: '#ffd98a',
+    },
+  ]
+
+  useEffect(() => {
+    if (held == null) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { e.stopPropagation(); setHeld(null) }
+      if (e.key === 'Delete' || e.key === 'Backspace') removeSlot(held)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [held])
 
   // ── actions ───────────────────────────────────────────────────────────────
   const firstFree = (arr: BuildSlot[]) => {
@@ -203,7 +241,24 @@ export default function Workshop(cfg: WorkshopConfig) {
     save(arr)
   }
 
-  const removeSlot = (i: number) => save(load().filter((b) => b.i !== i))
+  const removeSlot = (i: number) => {
+    save(load().filter((b) => b.i !== i))
+    setHeld((h) => (h === i ? null : h))
+  }
+
+  /** Move the held technology to `to`, swapping with whatever sits there. */
+  const moveTo = (to: number) => {
+    const from = held
+    if (from == null || from === to) { setHeld(null); return }
+    const arr = load()
+    const a = arr.find((b) => b.i === from)
+    if (!a) { setHeld(null); return }
+    const b = arr.find((x) => x.i === to)
+    a.i = to
+    if (b) b.i = from
+    save(arr)
+    setHeld(null)
+  }
 
   /** Click an empty cell: drop the next thing that makes sense for the selected family. */
   const dropInto = (i: number) => {
@@ -228,7 +283,8 @@ export default function Workshop(cfg: WorkshopConfig) {
   const full = build.length >= cfg.total
   const overNames = Object.keys(over).map((k) => famBy[k]?.[lang === 'fr' ? 'fr' : 'en'] || k).join(', ')
   const hovered = hover != null ? slots[hover] : null
-  const scUsed = build.filter((b) => scPos.includes(b.i)).length
+  const detail = held != null ? slots[held] : hovered
+  const scUsed = scUsedCount
 
   return (
     <div className="nms-hl-even" style={{
@@ -317,6 +373,19 @@ export default function Workshop(cfg: WorkshopConfig) {
           ))}
         </div>
 
+        {/* technical sheet */}
+        <div style={{
+          display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(96px,1fr))', gap: 7, marginTop: 13,
+          paddingTop: 12, borderTop: '1px solid rgba(120,150,220,.12)',
+        }}>
+          {sheet.map((row) => (
+            <div key={row.k}>
+              <div style={{ fontFamily: mono, fontSize: 8.5, letterSpacing: '.14em', color: '#6b78a0' }}>{row.k}</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: row.color, marginTop: 3 }}>{row.v}</div>
+            </div>
+          ))}
+        </div>
+
         <div style={{ fontFamily: mono, fontSize: 9, color: '#465073', marginTop: 'auto', paddingTop: 12, lineHeight: 1.6 }}>
           {lang === 'fr'
             ? 'Glisser pour pivoter · molette pour zoomer · modèles stylisés (assets du jeu propriétaires)'
@@ -373,7 +442,7 @@ export default function Workshop(cfg: WorkshopConfig) {
                     className="nms-slot"
                     title={sc ? L.mt_sc_leg : ''}
                     onMouseEnter={() => setHover(null)}
-                    onClick={() => dropInto(i)}
+                    onClick={() => (held != null ? moveTo(i) : dropInto(i))}
                     style={{
                       cursor: 'pointer', aspectRatio: '1', borderRadius: 7,
                       border: sc ? '1px dashed rgba(95,208,224,.55)' : '1px solid rgba(120,150,220,.13)',
@@ -394,11 +463,13 @@ export default function Workshop(cfg: WorkshopConfig) {
                   onMouseEnter={() => setHover(i)}
                   onFocus={() => setHover(i)}
                   onMouseLeave={() => setHover((h) => (h === i ? null : h))}
-                  onClick={() => removeSlot(i)}
+                  onClick={() => (held != null ? moveTo(i) : setHeld(i))}
                   title={b.n + (b.k === 'mod' ? ' · ' + b.c : '') + (b.sc ? ' · ⚡' : '') + (b.over ? ' · ' + L.mt_over : '')}
                   style={{
                     cursor: 'pointer', aspectRatio: '1', borderRadius: 7,
-                    border: '1.5px solid ' + (b.over ? '#f05a5a' : b.sc ? '#5fd0e0' : hexA(color, 0.6)),
+                    border: (held === i ? '1.5px dashed #fff' : '1.5px solid '
+                      + (b.over ? '#f05a5a' : b.sc ? '#5fd0e0' : hexA(color, 0.6))),
+                    opacity: held === i ? 0.55 : 1,
                     background: b.over ? 'rgba(240,90,90,.18)' : hexA(color, b.sc ? 0.3 : 0.16),
                     color: b.k === 'mod' ? '#fff' : '#dbe4ff',
                     fontFamily: "'Chakra Petch',sans-serif", fontWeight: 700,
@@ -409,41 +480,66 @@ export default function Workshop(cfg: WorkshopConfig) {
                     padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1,
                     outlineOffset: 2,
                   }}
-                >{b.k === 'mod' ? b.c : f?.emoji || '▦'}</button>
+                >
+                  {b.k === 'mod' ? b.c : (
+                    <svg width="60%" height="60%" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d={f?.glyph || 'M12 12h.01'} />
+                    </svg>
+                  )}
+                </button>
               )
             })}
           </div>
 
-          {/* hovered slot detail */}
+          {/* held / hovered slot detail */}
           <div style={{
-            marginTop: 10, minHeight: 42, borderRadius: 9, border: '1px solid rgba(120,150,220,.12)',
-            background: 'rgba(10,14,28,.45)', padding: '8px 11px', display: 'flex', alignItems: 'center', gap: 10,
+            marginTop: 10, minHeight: 42, borderRadius: 9,
+            border: '1px solid ' + (held != null ? 'rgba(95,208,224,.4)' : 'rgba(120,150,220,.12)'),
+            background: held != null ? 'rgba(95,208,224,.07)' : 'rgba(10,14,28,.45)',
+            padding: '8px 11px', display: 'flex', alignItems: 'center', gap: 10,
           }}>
-            {hovered ? (
+            {detail ? (
               <>
-                <span style={{ fontSize: 16 }}>{hovered.fam?.emoji}</span>
+                <span style={{ color: detail.fam?.color || '#8a96a8', display: 'flex', flex: '0 0 auto' }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d={detail.fam?.glyph || 'M12 12h.01'} />
+                  </svg>
+                </span>
                 <span style={{ flex: 1, minWidth: 0 }}>
                   <span style={{ display: 'block', color: '#fff', fontSize: 12.5, fontWeight: 600 }}>
-                    {hovered.n}{hovered.k === 'mod' && (
-                      <span style={{ color: CLASS_COLOR[hovered.c], fontFamily: "'Chakra Petch',sans-serif" }}> · {hovered.c}</span>
+                    {detail.n}{detail.k === 'mod' && (
+                      <span style={{ color: CLASS_COLOR[detail.c], fontFamily: "'Chakra Petch',sans-serif" }}> · {detail.c}</span>
                     )}
                   </span>
                   <span style={{ display: 'block', fontFamily: mono, fontSize: 9.5, color: '#8b97ba', marginTop: 2 }}>
-                    {hovered.fam ? (lang === 'fr' ? hovered.fam.fr : hovered.fam.en) : ''}
-                    {hovered.sc && <span style={{ color: '#5fd0e0' }}> · ⚡ {lang === 'fr' ? 'survolté ×1,5' : 'supercharged ×1.5'}</span>}
-                    {hovered.linked && <span style={{ color: '#8bf0a0' }}> · ▣ +{ADJACENCY_BONUS}% {lang === 'fr' ? 'adjacence' : 'adjacency'}</span>}
-                    {hovered.over && <span style={{ color: '#ff8a8a' }}> · ⚠ {L.mt_over}</span>}
+                    {detail.fam ? (lang === 'fr' ? detail.fam.fr : detail.fam.en) : ''}
+                    {detail.sc && <span style={{ color: '#5fd0e0' }}> · ⚡ {lang === 'fr' ? 'survolté ×1,5' : 'supercharged ×1.5'}</span>}
+                    {detail.linked && <span style={{ color: '#8bf0a0' }}> · ▣ +{ADJACENCY_BONUS}% {lang === 'fr' ? 'adjacence' : 'adjacency'}</span>}
+                    {detail.over && <span style={{ color: '#ff8a8a' }}> · ⚠ {L.mt_over}</span>}
                   </span>
                 </span>
-                <span style={{ fontFamily: mono, fontSize: 9, color: '#57628a', whiteSpace: 'nowrap' }}>
-                  {lang === 'fr' ? 'clic = retirer' : 'click to remove'}
-                </span>
+                {held != null && (
+                  <span style={{ fontFamily: mono, fontSize: 9, color: '#5fd0e0', whiteSpace: 'nowrap' }}>
+                    {lang === 'fr' ? 'pose sur une case · Échap' : 'click a cell · Esc'}
+                  </span>
+                )}
+                <button
+                  className="hv-danger"
+                  onClick={() => removeSlot(detail.i)}
+                  style={{
+                    cursor: 'pointer', padding: '5px 9px', borderRadius: 7, flex: '0 0 auto',
+                    border: '1px solid rgba(120,150,220,.25)', background: 'transparent',
+                    color: '#9aa6c8', fontFamily: mono, fontSize: 9,
+                  }}
+                >✕ {lang === 'fr' ? 'Retirer' : 'Remove'}</button>
               </>
             ) : (
               <span style={{ fontFamily: mono, fontSize: 9.5, color: '#57628a', lineHeight: 1.6 }}>
                 {lang === 'fr'
-                  ? 'Survole une case pour la détailler · clique une case vide pour y poser la techno de la famille sélectionnée'
-                  : 'Hover a cell for details · click an empty cell to drop the selected family’s technology there'}
+                  ? 'Clique une techno pour la prendre, puis une case pour la poser (échange si occupée) · case vide = installer la famille sélectionnée'
+                  : 'Click a technology to pick it up, then a cell to place it (swaps if occupied) · empty cell installs the selected family'}
               </span>
             )}
           </div>
@@ -500,7 +596,11 @@ export default function Workshop(cfg: WorkshopConfig) {
                   background: a ? f.color : hexA(f.color, 0.08),
                   color: a ? '#05070f' : f.color, fontSize: 11.5,
                 }}>
-                  {f.emoji} {lang === 'fr' ? f.fr : f.en}
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d={f.glyph} />
+                  </svg>
+                  {lang === 'fr' ? f.fr : f.en}
                   {n > 0 && (
                     <span style={{
                       fontFamily: mono, fontSize: 9, color: a ? '#05070f' : over[f.key] ? '#ff8a8a' : '#8b97ba',
@@ -534,7 +634,14 @@ export default function Workshop(cfg: WorkshopConfig) {
                     opacity: done ? 0.85 : full ? 0.45 : 1, transition: 'transform .15s',
                   }}
                 >
-                  <span style={{ fontSize: 15, flex: '0 0 auto' }}>{done ? '✓' : curF.emoji}</span>
+                  <span style={{ flex: '0 0 auto', color: curF.color, display: 'flex', width: 16 }}>
+                    {done ? <span style={{ fontSize: 14, color: '#8bf0a0' }}>✓</span> : (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d={curF.glyph} />
+                      </svg>
+                    )}
+                  </span>
                   <span style={{ flex: 1, minWidth: 0 }}>
                     <span style={{ display: 'block', color: '#fff', fontSize: 12.5, fontWeight: 600 }}>
                       {lang === 'fr' ? c.fr : c.en}

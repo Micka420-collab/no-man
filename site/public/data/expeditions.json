@@ -1,0 +1,183 @@
+{
+ "updated_at": "2026-07-22T11:33:01.164862+00:00",
+ "count": 22,
+ "note": "Historique des expéditions communautaires de No Man's Sky (événements à durée limitée). Source : wiki No Man's Sky.",
+ "items": [
+  {
+   "num": 1,
+   "name": "The Pioneers",
+   "start": "2021-03-31",
+   "end": "2021-05-16",
+   "theme_en": "Pioneers is focused on challenging players to complete an impressive variety of tasks across the galaxy, ranging from finding ancient artifacts to travelling through black holes, r…",
+   "theme_fr": "Pioneers vise à mettre les joueurs au défi d'accomplir une variété impressionnante de tâches à travers la galaxie, allant de la recherche d'artefacts anciens au voyage à travers des trous noirs, etc."
+  },
+  {
+   "num": 2,
+   "name": "Beachhead",
+   "start": "2021-05-17",
+   "end": "2021-05-31",
+   "theme_en": "Crossover event with Mass Effect, awarding the SSV Normandy SR1",
+   "theme_fr": "Événement crossover avec Mass Effect, attribuant le SSV Normandy SR1"
+  },
+  {
+   "num": 3,
+   "name": "Cartographers",
+   "start": "2021-09-08",
+   "end": "2021-10-17",
+   "theme_en": "Cartographers is focused primarily on deep exploration of a single planet.",
+   "theme_fr": "Cartographes se concentre principalement sur l’exploration approfondie d’une seule planète."
+  },
+  {
+   "num": 4,
+   "name": "Emergence",
+   "start": "2021-10-20",
+   "end": "2021-11-22",
+   "theme_en": "Emergence is focused primarily on deep exploration of a single planet and related sandworms.",
+   "theme_fr": "Emergence se concentre principalement sur l’exploration approfondie d’une seule planète et des vers des sables associés."
+  },
+  {
+   "num": 5,
+   "name": "Exobiology",
+   "start": "2022-02-24",
+   "end": "2022-04-04",
+   "theme_en": "Exobiology is focused primarily on discovering and interacting with the strange and varied alien creatures inhabiting the universe.",
+   "theme_fr": "L'exobiologie se concentre principalement sur la découverte et l'interaction avec les créatures extraterrestres étranges et variées qui habitent l'univers."
+  },
+  {
+   "num": 6,
+   "name": "The Blighted",
+   "start": "2022-04-14",
+   "end": "2022-05-22",
+   "theme_en": "The Blighted aligns with the piratical theme of the Outlaws release.",
+   "theme_fr": "The Blighted s'aligne sur le thème piratique de la version Outlaws."
+  },
+  {
+   "num": 7,
+   "name": "Leviathan",
+   "start": "2022-05-25",
+   "end": "2022-07-05",
+   "theme_en": "Leviathan traps Travellers inside a time loop, and offers a taste of roguelike gameplay.",
+   "theme_fr": "Leviathan piège les voyageurs dans une boucle temporelle et offre un avant-goût du gameplay roguelike."
+  },
+  {
+   "num": 8,
+   "name": "Polestar",
+   "start": "2022-07-27",
+   "end": "2022-09-11",
+   "theme_en": "Polestar offers travellers the chance to embark on an interstellar cruise.",
+   "theme_fr": "Polestar offre aux voyageurs la possibilité d'embarquer pour une croisière interstellaire."
+  },
+  {
+   "num": 9,
+   "name": "Utopia",
+   "start": "2023-02-22",
+   "end": "2023-04-04",
+   "theme_en": "Utopia introduces the Utopia Foundation and challenges players to work together and rebuild a solar system.",
+   "theme_fr": "Utopia présente la Fondation Utopia et met les joueurs au défi de travailler ensemble et de reconstruire un système solaire."
+  },
+  {
+   "num": 10,
+   "name": "Singularity",
+   "start": "2023-06-08",
+   "end": "2023-07-12",
+   "theme_en": "Singularity is focused on the history and origin of the Harmonic Camps in a mystery that touches upon artificial intelligence, the will to exist, and the very nature of what it mea…",
+   "theme_fr": "Singularity se concentre sur l'histoire et l'origine des Camps Harmoniques dans un mystère qui touche à l'intelligence artificielle, à la volonté d'exister et à la nature même de ce qu'elle signifie…"
+  },
+  {
+   "num": 11,
+   "name": "Voyagers",
+   "start": "2023-08-31",
+   "end": "2023-10-16",
+   "theme_en": "Voyagers is a relaxing journey of exploration, encouraging Travellers to seek out remarkable worlds, reach planetary summits and oceanbeds, and catalogue their findings.",
+   "theme_fr": "Voyagers est un voyage d'exploration relaxant, encourageant les voyageurs à rechercher des mondes remarquables, à atteindre les sommets planétaires et les fonds marins et à cataloguer leurs découvertes."
+  },
+  {
+   "num": 12,
+   "name": "Omega",
+   "start": "2024-02-15",
+   "end": "2024-03-18",
+   "theme_en": "All participating Travellers begin a journey together on the beautiful planet Nafut Gamma, and plot a course through the galaxy.",
+   "theme_fr": "Tous les voyageurs participants commencent un voyage ensemble sur la magnifique planète Nafut Gamma et tracent un parcours à travers la galaxie."
+  },
+  {
+   "num": 13,
+   "name": "Adrift",
+   "start": "2024-05-29",
+   "end": "2024-07-15",
+   "theme_en": "Step into an empty universe, where you will find yourself surrounded by other Travellers… yet somehow still alone.",
+   "theme_fr": "Entrez dans un univers vide, où vous vous retrouverez entouré d'autres voyageurs… mais toujours seul."
+  },
+  {
+   "num": 14,
+   "name": "Liquidators",
+   "start": "2024-07-24",
+   "end": "2024-09-02",
+   "theme_en": "Engage in a galactic bug hunt in No Man's Sky's fourteenth community expedition.",
+   "theme_fr": "Participez à une chasse aux insectes galactiques dans la quatorzième expédition communautaire de No Man's Sky."
+  },
+  {
+   "num": 15,
+   "name": "Aquarius",
+   "start": "2024-09-04",
+   "end": "2024-10-21",
+   "theme_en": "Go on a quest across the galaxy to catch fish, gather stories, and think about the one that got away… Players who complete the Aquarius expedition will earn a beautifully detailed…",
+   "theme_fr": "Partez en quête à travers la galaxie pour attraper des poissons, recueillir des histoires et penser à celui qui s'est enfui... Les joueurs qui terminent l'expédition Aquarius gagneront un magnifiquement détaillé..."
+  },
+  {
+   "num": 16,
+   "name": "The Cursed",
+   "start": "2024-10-23",
+   "end": "2024-11-06",
+   "theme_en": "Fight to keep a grip on reality while haunted by visions and voices from another dimension.",
+   "theme_fr": "Combattez pour garder le contrôle de la réalité tout en étant hanté par des visions et des voix d'une autre dimension."
+  },
+  {
+   "num": 17,
+   "name": "Titan",
+   "start": "2025-02-12",
+   "end": "2025-03-26",
+   "theme_en": "Awake with other Travellers upon a mighty gas giant, and embark upon a voyage to chart a dazzling array of new stars and new worlds.",
+   "theme_fr": "Réveillez-vous avec d'autres voyageurs sur une puissante géante gazeuse et embarquez pour un voyage à la découverte d'un éventail éblouissant de nouvelles étoiles et de nouveaux mondes."
+  },
+  {
+   "num": 18,
+   "name": "Relics",
+   "start": "2025-03-27",
+   "end": "2025-05-07",
+   "theme_en": "Sign up with the Galactic Palaeology Society and join the community on a journey to recreate ancient lifeforms and uncover secrets left undisturbed for millennia.",
+   "theme_fr": "Inscrivez-vous à la Société Galactique de Paléologie et rejoignez la communauté dans un voyage visant à recréer d'anciennes formes de vie et à découvrir des secrets restés intacts pendant des millénaires."
+  },
+  {
+   "num": 19,
+   "name": "Corvette",
+   "start": "2025-09-03",
+   "end": "2025-10-15",
+   "theme_en": "Take part in Expedition 19: Corvette to design and assemble a habitable ship, your home among the stars and your refuge from the horde of Sentinels.",
+   "theme_fr": "Participez à l'Expédition 19 : Corvette pour concevoir et assembler un navire habitable, votre maison parmi les étoiles et votre refuge contre la horde de Sentinelles."
+  },
+  {
+   "num": 20,
+   "name": "Breach",
+   "start": "2025-10-22",
+   "end": "2025-11-06",
+   "theme_en": "In Breach, players will traverse a desolate and abandoned universe and on their travels encounter the abandoned remains of ill-fated corvette ships, all ripe for scavenging ship mo…",
+   "theme_fr": "Dans Breach, les joueurs traverseront un univers désolé et abandonné et, au cours de leur voyage, rencontreront les restes abandonnés de navires corvettes malheureux, tous mûrs pour être récupérés par des navires de récupération."
+  },
+  {
+   "num": 21,
+   "name": "Remnant",
+   "start": "2026-02-11",
+   "end": "2026-03-13",
+   "theme_en": "In Remnant, players will drive cross-country and strip the desert of dangerous industrial remnants.",
+   "theme_fr": "Dans Remnant, les joueurs parcourront le pays et dépouilleront le désert de dangereux restes industriels."
+  },
+  {
+   "num": 22,
+   "name": "The Swarm",
+   "start": "2026-05-27",
+   "end": "2026-07-19",
+   "theme_en": "In The Swarm, players are thrown into a galaxy-wide crisis where fragmented Traveller souls and a mysterious force looming in the sky threaten the universe.",
+   "theme_fr": "Dans The Swarm, les joueurs sont plongés dans une crise à l’échelle de la galaxie où les âmes fragmentées des voyageurs et une force mystérieuse qui plane dans le ciel menacent l’univers."
+  }
+ ]
+}

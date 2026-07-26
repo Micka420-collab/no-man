@@ -1,0 +1,54 @@
+# Builds site/ and publishes it to GitHub Pages.
+#
+# ⚠️ MANUAL ONLY, ON PURPOSE. This repo already publishes Pages from the root
+# index.html via deploy-pages.yml, which runs on every push to main. Running this
+# workflow REPLACES what the Pages URL serves with the React app in site/, and the
+# two workflows share the "pages" concurrency group, so whichever finishes last wins.
+#
+# There is no automatic trigger here so that merging this branch changes nothing about
+# the live site. To switch over deliberately:
+#   1. run this workflow by hand (Actions → Deploy site → Run workflow), or
+#   2. add a push trigger here AND remove/disable deploy-pages.yml.
+# The root index.html stays in git either way — this only changes what Pages serves.
+name: Deploy site
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci
+        working-directory: site
+      - run: npm run build
+        working-directory: site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

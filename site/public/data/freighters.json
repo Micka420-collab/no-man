@@ -1,0 +1,115 @@
+{
+  "note": "Comparatif des cargos (vaisseaux-mères) de No Man's Sky. Faits documentés par le wiki communautaire (nomanssky.fandom.com/wiki/Freighter, /wiki/Freighter_Types, /wiki/Pirate_Dreadnought — miroir nomanssky.miraheze.org) et guides communautaires. Hello Games ne publie pas les probabilités de classe : elles sont décrites qualitativement, jamais chiffrées. Les noms de familles/tailles sont la nomenclature communautaire du wiki, pas des noms officiels du jeu.",
+  "updated_at": "2026-07-26",
+  "families": [
+    {
+      "key": "venator",
+      "icon": "🚀",
+      "name_fr": "Famille Venator (amiral)",
+      "name_en": "Venator family (capital)",
+      "look_fr": "Silhouette effilée type « destroyer stellaire », coque en pointe.",
+      "look_en": "Sleek star-destroyer silhouette with a pointed hull.",
+      "sizes_fr": "3 tailles : Venator (2 sections), Imperial (4 sections), Resurgent (6 sections — la plus grande de la famille).",
+      "sizes_en": "3 sizes: Venator (2 sections), Imperial (4 sections), Resurgent (6 sections — the family's largest).",
+      "slots_fr": "24 à 34 emplacements selon la classe (C/B/A/S), retirée à chaque rencontre.",
+      "slots_en": "24 to 34 slots depending on class (C/B/A/S), rerolled on every encounter.",
+      "where_fr": "Bataille de sauvetage d'amiral : chaque système génère TOUJOURS la même silhouette — repère un système dont l'amiral te plaît (idéalement un Resurgent) et reviens-y.",
+      "where_en": "Capital rescue battle: each system ALWAYS spawns the same silhouette — find a system whose capital you like (ideally a Resurgent) and come back to it.",
+      "how_fr": "Aide l'amiral attaqué par les pirates, pose-toi dans son hangar et parle au capitaine sur la passerelle.",
+      "how_en": "Help the capital under pirate attack, land in its hangar and talk to the captain on the bridge."
+    },
+    {
+      "key": "sentinel",
+      "icon": "🛡️",
+      "name_fr": "Famille Sentinelle (amiral)",
+      "name_en": "Sentinel family (capital)",
+      "look_fr": "Silhouette massive et anguleuse, dos plat cuirassé.",
+      "look_en": "Massive angular silhouette with a flat armoured spine.",
+      "sizes_fr": "3 tailles : Sentinel (3 sections), Cuirassé/Battleship (5 sections), Dreadnought (7 sections + 2 à 4 paires de nacelles cargo — le plus grand vaisseau du jeu).",
+      "sizes_en": "3 sizes: Sentinel (3 sections), Battleship (5 sections), Dreadnought (7 sections plus 2 to 4 pairs of cargo pods — the biggest ship in the game).",
+      "slots_fr": "24 à 34 emplacements selon la classe (C/B/A/S), retirée à chaque rencontre.",
+      "slots_en": "24 to 34 slots depending on class (C/B/A/S), rerolled on every encounter.",
+      "where_fr": "Comme les Venator : batailles de sauvetage, silhouette fixe par système — un système « à Dreadnought » en produira toujours un.",
+      "where_en": "Like the Venators: rescue battles, silhouette fixed per system — a “Dreadnought system” always spawns one.",
+      "how_fr": "Même méthode : gagner la bataille, se poser dans le hangar, négocier (ou réclamer) sur la passerelle.",
+      "how_en": "Same route: win the battle, land in the hangar, negotiate (or claim) on the bridge."
+    },
+    {
+      "key": "pirate",
+      "icon": "☠️",
+      "name_fr": "Dreadnought pirate",
+      "name_en": "Pirate Dreadnought",
+      "look_fr": "Le Dreadnought (7 sections) en livrée pirate — la seule silhouette « hors-la-loi » capturable. Possible depuis la mise à jour Omega (4.5).",
+      "look_en": "The 7-section Dreadnought in pirate livery — the only capturable outlaw silhouette. Possible since the Omega update (4.5).",
+      "sizes_fr": "Une seule taille : 7 sections, gabarit maximal.",
+      "sizes_en": "One size: 7 sections, maximum footprint.",
+      "slots_fr": "Comme les amiraux : la classe (C→S) et les emplacements sont retirés à chaque bataille — vérifie à bord avant d'accepter.",
+      "slots_en": "Like other capitals: class (C→S) and slots reroll each battle — check on board before accepting.",
+      "where_fr": "Systèmes contrôlés par les pirates (icône ☠ avec le Scanner économique installé). La bataille de dreadnought se déclenche typiquement après ~3 sauts en systèmes pirates.",
+      "where_en": "Pirate-controlled systems (☠ icon with the Economy Scanner installed). The dreadnought battle typically triggers after ~3 jumps through pirate systems.",
+      "how_fr": "Protège le cargo civil, détruis les canons anti-cargo puis les générateurs de bouclier sur le dos du vaisseau ; à sa reddition, choisis d'EXIGER le vaisseau plutôt que la récompense.",
+      "how_en": "Protect the civilian freighter, destroy the anti-freighter cannons then the shield generators along its spine; when it surrenders, DEMAND the ship instead of the reward."
+    },
+    {
+      "key": "regular",
+      "icon": "📦",
+      "name_fr": "Cargos réguliers",
+      "name_en": "Regular freighters",
+      "look_fr": "Modulaires : 16 types de proue/coque, 3 formes d'ailes, 4 passerelles et 5 accessoires (noms communautaires : Cargo, Cuboïde, Marteau…).",
+      "look_en": "Modular: 16 bow/hull types, 3 wing shapes, 4 bridges and 5 accessories (community names: Cargo, Cuboid, Hammerhead…).",
+      "sizes_fr": "Du petit porteur au long convoi selon les sections de fret attachées.",
+      "sizes_en": "From small haulers to long convoys depending on attached cargo sections.",
+      "slots_fr": "Les 2 premiers cargos sauvés sont toujours des réguliers, à 19 emplacements maximum.",
+      "slots_en": "The first two rescued freighters are always regulars, capped at 19 slots.",
+      "where_fr": "Partout : ils croisent dans presque tous les systèmes et se posent près des stations.",
+      "where_en": "Everywhere: they cruise through most systems near the space station.",
+      "how_fr": "Aborde n'importe lequel en vol, pose-toi dans son hangar et négocie le prix sur la passerelle — utile en début de partie, vite remplacé par un amiral.",
+      "how_en": "Board any of them mid-flight, land in the hangar and negotiate on the bridge — great early, quickly outclassed by a capital."
+    }
+  ],
+  "steps": [
+    {
+      "icon": "⏱️",
+      "title_fr": "Déclencher une bataille d'amiral",
+      "title_en": "Trigger a capital battle",
+      "body_fr": "Il faut environ 3 heures de jeu ET 5 sauts en hyperpropulsion depuis la dernière bataille : à l'arrivée dans un système, la bataille de sauvetage se lance (un amiral attaqué par 5 à 8 pirates)."
+      ,
+      "body_en": "You need roughly 3 hours of play AND 5 hyperdrive jumps since the last battle: on arrival in a system, the rescue battle starts (a capital attacked by 5 to 8 pirates)."
+    },
+    {
+      "icon": "🆓",
+      "title_fr": "Le cargo gratuit — et quand l'utiliser",
+      "title_en": "The free freighter — and when to use it",
+      "body_fr": "Après ta première bataille, le cargo peut être réclamé gratuitement. Attention : d'après le wiki, les 2 premiers cargos proposés sont toujours des réguliers (≤ 19 empl.) ; à partir du 3ᵉ sauvetage, ce sont des amiraux. La stratégie communautaire classique : patienter jusqu'à un amiral avant d'utiliser sa réclamation gratuite.",
+      "body_en": "After your first battle the freighter can be claimed for free. Careful: per the wiki, the first two offered freighters are always regulars (≤ 19 slots); from the 3rd rescue on they are capitals. The classic community strategy: hold your free claim until a capital shows up."
+    },
+    {
+      "icon": "🎲",
+      "title_fr": "Viser la classe S — méthode du rechargement",
+      "title_en": "Hunting S-class — the reload method",
+      "body_fr": "La classe et les emplacements sont retirés à chaque rencontre, mais la silhouette est fixe par système. Sauvegarde AVANT de sauter dans le système visé, vérifie la classe sur la passerelle, recharge et ressaute jusqu'à obtenir la classe voulue. Hello Games ne publie pas les probabilités — la communauté observe simplement que les hautes classes sont rares.",
+      "body_en": "Class and slots reroll each encounter, but the silhouette is fixed per system. Save BEFORE jumping into your target system, check the class on the bridge, reload and re-jump until the class you want shows up. Hello Games doesn't publish the odds — the community simply observes that high classes are rare."
+    },
+    {
+      "icon": "☠️",
+      "title_fr": "Capturer le Dreadnought pirate",
+      "title_en": "Capture the Pirate Dreadnought",
+      "body_fr": "Depuis la mise à jour Omega : installe un Scanner économique, saute vers les systèmes marqués ☠ (contrôlés par les pirates) — la bataille se déclenche typiquement au bout de ~3 sauts. Détruis les canons anti-cargo, puis les générateurs de bouclier alignés sur le dos, sans laisser mourir le cargo allié ; à la reddition, exige le vaisseau.",
+      "body_en": "Since the Omega update: fit an Economy Scanner, jump to ☠-flagged (pirate-controlled) systems — the battle typically triggers after ~3 jumps. Destroy the anti-freighter cannons, then the shield generators lined along its spine, without letting the allied freighter die; on surrender, demand the ship."
+    },
+    {
+      "icon": "💰",
+      "title_fr": "Ou simplement l'acheter",
+      "title_en": "Or simply buy one",
+      "body_fr": "Tout cargo qui croise dans un système peut être abordé et acheté sur sa passerelle — régulier comme amiral. Le prix grimpe avec la taille et la classe (jusqu'à des centaines de millions d'unités pour les plus gros amiraux).",
+      "body_en": "Any freighter cruising a system can be boarded and bought on its bridge — regular or capital. Price climbs with size and class (up to hundreds of millions of units for the biggest capitals)."
+    },
+    {
+      "icon": "🧭",
+      "title_fr": "Avant d'accepter : vérifie tout",
+      "title_en": "Before accepting: check everything",
+      "body_fr": "Sur la passerelle, contrôle la classe, le nombre d'emplacements (24–34 pour un amiral) et la silhouette. L'intérieur (salles, technologie de cargo) se reconstruit librement quel que soit le modèle : le choix de la coque est surtout une affaire d'inventaire… et de style.",
+      "body_en": "On the bridge, check class, slot count (24–34 for a capital) and the silhouette. The interior (rooms, freighter tech) is freely rebuilt whatever the model: hull choice is mostly about inventory… and style."
+    }
+  ]
+}

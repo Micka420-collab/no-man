@@ -37,6 +37,9 @@ export default function Ships() {
   const curT = ships.find((t) => t.id === state.shType) || ships[0] || {}
   const scN = SHIP_SC_BY_CLASS[state.shClass] || 2
 
+  const frFams = data.freighters?.families || []
+  const frSteps = data.freighters?.steps || []
+
   return (
     <section className="nms-pad" style={{
       animation: 'nmsSecIn .5s both', maxWidth: 1200, margin: '0 auto', padding: '46px 42px 96px',
@@ -173,6 +176,76 @@ export default function Ships() {
           ))}
         </div>
       </div>
+
+      {/* FREIGHTER COMPARISON — familles documentées + parcours d'obtention */}
+      {frFams.length > 0 && (
+        <div style={{ marginTop: 40 }}>
+          <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: '.22em', color: '#c9a8ff' }}>// {L.fr_kicker}</div>
+          <h3 style={{ margin: '10px 0 0', fontWeight: 700, fontSize: 24, color: '#fff' }}>{L.fr_title}</h3>
+          <p style={{ margin: '9px 0 0', maxWidth: 760, fontSize: 14, lineHeight: 1.6, color: '#aab6d6' }}>{L.fr_intro}</p>
+
+          <div style={{
+            display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(290px,1fr))', gap: 15, marginTop: 22,
+          }}>
+            {frFams.map((f) => (
+              <div key={String(f.key)} style={{
+                border: '1px solid rgba(168,119,230,.22)', borderRadius: 14, overflow: 'hidden',
+                background: 'linear-gradient(165deg,rgba(60,40,110,.16),rgba(9,12,26,.55) 55%)',
+                display: 'flex', flexDirection: 'column',
+              }}>
+                <div style={{
+                  display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px',
+                  borderBottom: '1px solid rgba(168,119,230,.16)',
+                }}>
+                  <span style={{ fontSize: 22 }}>{f.icon}</span>
+                  <span style={{ fontWeight: 700, fontSize: 15.5, color: '#fff', lineHeight: 1.2 }}>{t2(f, 'name')}</span>
+                </div>
+                <div style={{ padding: '13px 16px 16px', display: 'flex', flexDirection: 'column', gap: 11, flex: 1 }}>
+                  {([['fr_f_look', 'look'], ['fr_f_sizes', 'sizes'], ['fr_f_slots', 'slots'], ['fr_f_where', 'where'], ['fr_f_how', 'how']] as const).map(([lk, fk]) => (
+                    <div key={fk}>
+                      <div style={{
+                        fontFamily: mono, fontSize: 9, letterSpacing: '.16em',
+                        color: fk === 'where' || fk === 'how' ? '#8bf0a0' : '#c9a8ff',
+                      }}>{L[lk]}</div>
+                      <div style={{ marginTop: 3, fontSize: 12.5, lineHeight: 1.55, color: '#c6d1ec' }}>{t2(f, fk)}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {frSteps.length > 0 && (
+            <>
+              <div style={{
+                fontFamily: mono, fontSize: 10, letterSpacing: '.18em', color: '#ffb347', marginTop: 30,
+              }}>// {L.fr_guide}</div>
+              <div style={{
+                display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(300px,1fr))', gap: 15, marginTop: 14,
+              }}>
+                {frSteps.map((st, i) => (
+                  <div key={i} style={{
+                    border: '1px solid rgba(120,150,220,.14)', borderRadius: 12, background: 'rgba(10,14,28,.5)',
+                    padding: '16px 17px',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 11 }}>
+                      <span style={{
+                        fontFamily: mono, fontWeight: 700, fontSize: 12, color: '#c9a8ff',
+                        border: '1px solid rgba(168,119,230,.35)', borderRadius: 7, padding: '4px 8px',
+                      }}>{String(i + 1).padStart(2, '0')}</span>
+                      <span style={{ fontSize: 20 }}>{st.icon}</span>
+                      <span style={{ fontWeight: 600, fontSize: 14.5, color: '#fff', lineHeight: 1.2 }}>{t2(st, 'title')}</span>
+                    </div>
+                    <p style={{ margin: '11px 0 0', fontSize: 13, lineHeight: 1.55, color: '#9aa6c8' }}>{t2(st, 'body')}</p>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          <div style={{ fontFamily: mono, fontSize: 10.5, color: '#57628a', marginTop: 16 }}>{L.fr_src}</div>
+        </div>
+      )}
     </section>
   )
 }

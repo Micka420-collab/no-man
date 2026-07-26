@@ -28,16 +28,24 @@ export default function Elements() {
   const { state, patch, data, L, lang, marketMap, rcIcon, rcName, goRecipesFor } = useAtlas()
 
   const el = useMemo(() => data.elements || {}, [data])
+  /** the game's own substance data — names, groups, values and icons for every tile */
+  const sub = useMemo(() => data.substances?.items || {}, [data])
   const fams = el.families || {}
 
   const cellVM = (c: ElementCell, color: string, famLabel: string) => {
+    const g = sub[c.raw]
     const m = marketMap[c.raw]
     const nm = NM[c.raw]
-    const name = (m ? (lang === 'fr' ? m.name_fr : m.name_en) : (nm ? nm[lang === 'fr' ? 0 : 1] : '')) || ''
-    const icon = m?.icon || rcIcon(c.raw) || rawIconFallback(c.raw, color)
+    const fromRecipes = rcName(c.raw)
+    const name = (g ? (lang === 'fr' ? g.fr : g.en) : '')
+      || (m ? (lang === 'fr' ? m.name_fr : m.name_en) : '')
+      || (nm ? nm[lang === 'fr' ? 0 : 1] : '')
+      || (fromRecipes !== c.raw ? fromRecipes : '')
+    const icon = g?.icon || m?.icon || rcIcon(c.raw) || rawIconFallback(c.raw, color)
+    const value = g?.v != null ? g.v : (m?.value != null ? m.value : null)
     const active = state.elSel === c.raw
     return {
-      sym: c.sym, name, value: m?.value != null ? fmt(m.value) : '', hasVal: m?.value != null, icon,
+      sym: c.sym, name, value: value != null ? fmt(value) : '', hasVal: value != null, icon,
       bg: active ? 'rgba(95,208,224,.18)' : 'rgba(10,14,28,.55)',
       onClick: () => patch({ elSel: active ? null : c.raw, elCtx: { color, famLabel } }),
     }
@@ -75,25 +83,38 @@ export default function Elements() {
   const sel = useMemo(() => {
     const id = state.elSel
     if (!id) return null
+    const g = sub[id]
     const m = marketMap[id]
     const nm = NM[id]
     const ctx = state.elCtx || {}
-    const name = (m ? (lang === 'fr' ? m.name_fr : m.name_en) : (nm ? nm[lang === 'fr' ? 0 : 1] : id)) || id
-    const icon = m?.icon || rcIcon(id) || rawIconFallback(id, ctx.color)
-    const source = (m ? (lang === 'fr' ? m.group_fr : m.group_en) : '') || ctx.famLabel || ''
+    const fromRecipes = rcName(id)
+    const name = (g ? (lang === 'fr' ? g.fr : g.en) : '')
+      || (m ? (lang === 'fr' ? m.name_fr : m.name_en) : '')
+      || (nm ? nm[lang === 'fr' ? 0 : 1] : '')
+      || (fromRecipes !== id ? fromRecipes : '') || id
+    const icon = g?.icon || m?.icon || rcIcon(id) || rawIconFallback(id, ctx.color)
+    const source = (g ? (lang === 'fr' ? g.gFr : g.gEn) : '')
+      || (m ? (lang === 'fr' ? m.group_fr : m.group_en) : '') || ctx.famLabel || ''
     const ref = data.recipes?.refiner || []
     const prod = ref.filter((r) => r.o && r.o[0] === id).slice(0, 4)
       .map((r) => ({ label: (r.i || []).map((x) => rcName(x[0])).join(' + ') }))
     const used = ref.filter((r) => (r.i || []).some((x) => x[0] === id)).slice(0, 4)
       .map((r) => ({ label: rcName((r.o || [])[0]) }))
+    // every place a cell can live: the periodic columns, flora, and the extra full-width rows
     let sym = ''
-    ;(el.columns || []).forEach((col) => (col.cells || []).forEach((c) => { if (c.raw === id) sym = c.sym }))
-    if (el.flora) (el.flora.cells || []).forEach((c) => { if (c.raw === id) sym = sym || c.sym })
+    const scan = (cells: ElementCell[] | undefined) =>
+      (cells || []).forEach((c) => { if (c.raw === id && !sym) sym = c.sym })
+    ;(el.columns || []).forEach((col) => scan(col.cells))
+    scan(el.flora?.cells)
+    ;(el.extra_rows || []).forEach((r) => scan(r.cells))
     return {
-      sym, name, icon, value: m?.value != null ? fmt(m.value) : '—', source,
+      sym, name, icon,
+      value: g?.v != null ? fmt(g.v) : (m?.value != null ? fmt(m.value) : '—'),
+      desc: (g ? (lang === 'fr' ? g.dFr : g.dEn) : '') || '',
+      source,
       famLabel: ctx.famLabel || '', color: ctx.color || '#5fd0e0', prod, used,
     }
-  }, [state.elSel, state.elCtx, marketMap, lang, rcIcon, rcName, data, el])
+  }, [state.elSel, state.elCtx, marketMap, sub, lang, rcIcon, rcName, data, el])
 
   const cellTile = (c: ReturnType<typeof cellVM>, color: string, key: string) => (
     <div
@@ -165,6 +186,12 @@ export default function Elements() {
                 }}>{sel.sym}</span>
                 <span style={{ fontFamily: mono, fontSize: 11, color: '#9aa6c8' }}>{sel.famLabel}</span>
               </div>
+
+              {!!sel.desc && (
+                <p style={{
+                  margin: '11px 0 0', maxWidth: 640, fontSize: 12.5, lineHeight: 1.55, color: '#aab6d6',
+                }}>{sel.desc}</p>
+              )}
 
               <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', marginTop: 13 }}>
                 <div>

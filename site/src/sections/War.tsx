@@ -9,6 +9,9 @@ export default function War() {
   const { data, L, lang, t2, date } = useAtlas()
 
   const war = useMemo(() => {
+    // war.json is the tracker's own feed; it carries an event only while one is running,
+    // so the timeline/expedition derivation below stays the fallback.
+    const liveEvent = data.war?.event || null
     const tl = data.timeline?.items || []
     const sw = tl.find((t) => /swarm/i.test(t.name || '')) || tl[0] || {}
     const exps = data.expeditions?.items || []
@@ -37,9 +40,12 @@ export default function War() {
       .map((n) => ({ title: n.title, source: n.source, date: date(n.date), url: n.url }))
 
     return {
-      name: sw.name || 'The Swarm', version: sw.version || '6.4', desc: t2(sw, 'desc'),
+      name: liveEvent?.name || sw.name || 'The Swarm',
+      version: liveEvent?.version || sw.version || '6.4',
+      desc: (liveEvent ? t2(liveEvent, 'desc') : '') || t2(sw, 'desc'),
       dates: e22 ? date(e22.start) + ' → ' + date(e22.end) : '',
-      status, statusColor, statusBg,
+      status: liveEvent?.status_fr && lang === 'fr' ? liveEvent.status_fr : (liveEvent?.status || status),
+      statusColor, statusBg,
       trailer: trailer
         ? { title: trailer.title, url: trailer.url, thumb: trailer.thumbnail, views: fmtViews(trailer.views) }
         : null,

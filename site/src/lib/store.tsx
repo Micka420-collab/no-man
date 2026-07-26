@@ -12,7 +12,7 @@ import { loadSettings, type Settings } from './settings'
 const DATA_FILES = [
   'stats', 'stats_history', 'timeline', 'expeditions', 'ships', 'creatures', 'galaxies',
   'galaxy_hubs', 'elements', 'market', 'community', 'news', 'official', 'videos',
-  'achievements', 'challenges', 'progress', 'guide', 'missions', 'recipes', 'multitool', 'workshop',
+  'achievements', 'challenges', 'progress', 'guide', 'missions', 'recipes', 'multitool', 'workshop', 'substances', 'war',
 ] as const
 
 export type SortKey = 'name' | 'group' | 'value'

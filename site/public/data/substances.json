@@ -1,0 +1,727 @@
+{
+"note": "Substances du tableau des éléments, extraites de data/catalogue.json du dépôt : noms, groupes, valeurs et icônes du jeu.",
+"source": "https://github.com/Micka420-collab/no-man/blob/main/data/catalogue.json",
+"updated_at": "2026-07-26T03:59:54.851562+00:00",
+"items": {
+"raw1": {
+"fr": "Carbone",
+"en": "Carbon",
+"gFr": "Élément organique non raffiné",
+"gEn": "Unrefined Organic Element",
+"dFr": "Cœur de toute vie organique. Importance capitale pour les voyageurs interstellaires, car le carbone sert à recharger les équipements d'extraction. Le laser d'extraction permet de récolter le carbone…",
+"dEn": "The building block of all organic life. Of critical importance to space travellers, as Carbon is used to recharge mining equipment. The Mining Laser will harvest Carbon from trees, plants, and all…",
+"v": 12.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/1.png"
+},
+"raw10": {
+"fr": "Ferrite magnétisée",
+"en": "Magnetised Ferrite",
+"gFr": "Élément métallique chargé",
+"gEn": "Charged Metallic Element",
+"dFr": "Métal fortement traité nécessitant plusieurs étapes de traitement dans une raffinerie. Utilisé pour la création de structures et technologies avancées. Ne pas ingérer.",
+"dEn": "Highly processed metal, requiring several stages of processing in a Refiner. Used in the creation of advanced structures and technologies. Avoid ingestion.",
+"v": 82.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/10.png"
+},
+"raw11": {
+"fr": "Poudre de silicate",
+"en": "Silicate Powder",
+"gFr": "Minéral abondant",
+"gEn": "Abundant Mineral",
+"dFr": "Élément minéral présent en abondance dans les strates géologiques de tous les mondes rocheux. Peut être extrait facilement à l'aide d'un opérateur de terrain. Créez un tunnel n'importe où pour…",
+"dEn": "An abundant mineral element, found within the geological strata of all rocky worlds. Easily extracted using a Terrain Manipulator. Create a tunnel anywhere to begin extraction. Process in a Refiner…",
+"v": 2.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/11.png"
+},
+"raw12": {
+"fr": "Sodium",
+"en": "Sodium",
+"gFr": "Élément catalytique non raffiné",
+"gEn": "Unrefined Catalytic Element",
+"dFr": "Catalyseur puissant servant à charger les technologies défensives comme les boucliers ou la protection environnementale. La technologie de manipulation des matériaux de l’exocombinaison permet sa…",
+"dEn": "A powerful catalyst, useful for charging defensive technologies such as shields or hazard protection. Exosuit material handling technology allows automatic harvesting from appropriate sodium-rich…",
+"v": 41.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/12.png"
+},
+"raw13": {
+"fr": "Nitrate de sodium",
+"en": "Sodium Nitrate",
+"gFr": "Élément catalytique raffiné",
+"gEn": "Refined Catalytic Element",
+"dFr": "Catalyseur avancé servant à charger les technologies défensives comme les boucliers ou la protection environnementale. Il peut être créé dans une raffinerie ou occasionnellement trouvé sous forme…",
+"dEn": "An advanced catalyst, useful for charging defensive technologies such as shields or hazard protection. Created in a Refiner, or occasionally found in crystalline form on a planet's surface. Offers a…",
+"v": 82.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/13.png"
+},
+"raw14": {
+"fr": "Cobalt",
+"en": "Cobalt",
+"gFr": "Minéral souterrain",
+"gEn": "Subterranean Mineral",
+"dFr": "Extrait des minéraux souterrains, le cobalt se trouve en abondance dans les grottes et cavernes. Utilisé dans la création de batteries à ions. Il est utilisé pour la création de plusieurs…",
+"dEn": "Mined from underground minerals, cobalt is found in plentiful supply in caves and caverns. Useful in the manufacture of Ion Batteries. It is used in the creation of several technologies and…",
+"v": 76.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/14.png"
+},
+"raw15": {
+"fr": "Cobalt ionisé",
+"en": "Ionised Cobalt",
+"gFr": "Minéral souterrain traité",
+"gEn": "Processed Subterranean Mineral",
+"dFr": "Ce métal traité est une forme hautement énergisée de cobalt pouvant être utilisée pour la création de batteries à ions avancées, une source portative d’énergie pour l’exocombinaison. Très largement…",
+"dEn": "A highly energised form of Cobalt, this processed metal can be used to create Advanced Ion Batteries, a conveniently portable source of energy for the Exosuit. In widespread use as a key component in…",
+"v": 162.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/15.png"
+},
+"raw16": {
+"fr": "Sel",
+"en": "Salt",
+"gFr": "Extrait minéral aquatique",
+"gEn": "Aquatic Mineral Extract",
+"dFr": "Sel présent en abondance à l’état naturel dans les minéraux sous-marins. Peut être traité dans une raffinerie afin de créer du chlore. Cette forme raffinée est utilisée dans la fabrication de…",
+"dEn": "A naturally occuring salt, found in abundance in underwater minerals. Can be processed in a Refiner to create Chlorine. This refined form is used in the manufacture of advanced products and…",
+"v": 101.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/16.png"
+},
+"raw17": {
+"fr": "Chlore",
+"en": "Chlorine",
+"gFr": "Minéral aquatique traité",
+"gEn": "Processed Aquatic Mineral",
+"dFr": "Élément réactif pouvant être aisément obtenu en traitant les minéraux riches en sel trouvés dans les océans. Utilisé pour la fabrication de technologies avancées.",
+"dEn": "A reactive element most easily harvested by processing the salt-infused minerals found in oceans. Used in the manufacture of advanced technologies.",
+"v": 205.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/17.png"
+},
+"raw18": {
+"fr": "Cytophosphate",
+"en": "Cyto-Phosphate",
+"gFr": "Composé organique",
+"gEn": "Organic Compound",
+"dFr": "Composé organique bleu-vert, produit par le métabolisme des plantes sous-marines. Riches en énergie soluble, les cytophosphates sont d'une importance capitale dans de nombreuses technologies des…",
+"dEn": "A blue-green organic compound produced during the metabolic cycle of deep-sea plantlife. Rich in soluble energy, cyto-phosphates are crucial in many submarine technologies. The Mining Laser will…",
+"v": 201.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/18.png"
+},
+"raw19": {
+"fr": "Cuivre",
+"en": "Copper",
+"gFr": "Métal stellaire raffiné : jaune",
+"gEn": "Refined Stellar Metal: Yellow",
+"dFr": "Un métal chromatique, issu de la fusion au cœur d'une étoile. Ce matériau stellaire forme des gisements dans la croûte des planètes locales. Le cuivre se trouve sur les planètes en orbite autour…",
+"dEn": "A chromatic metal, generated by fusion in the heart of a star. Such stellar material ends up forming deposits in the crust of local planets. Copper is found on planets orbiting yellow stars, and can…",
+"v": 41.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/19.png"
+},
+"raw2": {
+"fr": "Carbone condensé",
+"en": "Condensed Carbon",
+"gFr": "Élément organique raffiné",
+"gEn": "Refined Organic Element",
+"dFr": "Matériau avancé obtenu à partir de carbone standard traité dans une raffinerie. Sa densité moléculaire accrue offre un ratio d'énergie au gramme largement supérieur. Il se trouve parfois sous forme…",
+"dEn": "Advanced material, processed from regular carbon in a Refiner. The increased molecule density offers a substantially improved energy-per-gram ratio. Occasionally found in crystalline form. Harvesting…",
+"v": 24.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/2.png"
+},
+"raw20": {
+"fr": "Cadmium",
+"en": "Cadmium",
+"gFr": "Métal stellaire raffiné : rouge",
+"gEn": "Refined Stellar Metal: Red",
+"dFr": "Un métal chromatique, issu de la fusion au cœur d'une étoile. Ce matériau stellaire forme des gisements dans la croûte des planètes locales. Le cadmium se trouve sur les planètes en orbite autour…",
+"dEn": "A chromatic metal, generated by fusion in the heart of a star. Such stellar material ends up forming deposits in the crust of local planets. Cadmium is found on planets orbiting red stars, and can be…",
+"v": 83.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/20.png"
+},
+"raw21": {
+"fr": "Émeril",
+"en": "Emeril",
+"gFr": "Métal stellaire raffiné : vert",
+"gEn": "Refined Stellar Metal: Green",
+"dFr": "Un métal chromatique, issu de la fusion au cœur d'une étoile. L'émeril se trouve sur les planètes en orbite autour d’étoiles vertes et peut être placé dans une raffinerie pour créer un métal…",
+"dEn": "A chromatic metal, generated by fusion in the heart of a star. Emeril is found on planets orbiting green stars, and can be placed in a Refiner to create purified Chromatic Metal for use in the…",
+"v": 114.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/21.png"
+},
+"raw22": {
+"fr": "Indium",
+"en": "Indium",
+"gFr": "Métal stellaire raffiné : bleu",
+"gEn": "Refined Stellar Metal: Blue",
+"dFr": "Un métal chromatique, issu de la fusion au cœur d'une étoile. Ce matériau stellaire forme des gisements dans la croûte des planètes locales. L'indium se trouve sur les planètes en orbite autour…",
+"dEn": "A chromatic metal, generated by fusion in the heart of a star. Such stellar material ends up forming deposits in the crust of local planets. Indium is found on planets orbiting blue stars, and can be…",
+"v": 132.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/22.png"
+},
+"raw23": {
+"fr": "Métal chromatique",
+"en": "Chromatic Metal",
+"gFr": "Métal stellaire hautement raffiné",
+"gEn": "Highly Refined Stellar Metal",
+"dFr": "Alliage de métal traité, créé dans une raffinerie grâce aux matériaux stellaires suivants : cuivre, cadmium, émeril et indium. Plus le matériau stellaire est rare, plus il produira de métal…",
+"dEn": "A processed metal alloy, created in a Refiner from the stellar metals: Copper, Cadmium, Emeril and Indium. The rarer the stellar metal, the more Chromatic Metal it will produce. This valuable metal…",
+"v": 88.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/23.png"
+},
+"raw24": {
+"fr": "Paraffinium",
+"en": "Paraffinium",
+"gFr": "Élément terrestre localisé",
+"gEn": "Localised Earth Element",
+"dFr": "Extrait minéral local formant généralement de vastes dépôts, mais pouvant également être extrait de minéraux communs après inspection avec la visière d'analyse. Généralement présent sur les planètes…",
+"dEn": "Local mineral extract, typically found in large deposits or extracted from common minerals after inspection with an Analysis Visor. Typically found on planets with a tropical environment.",
+"v": 62.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/24.png"
+},
+"raw25": {
+"fr": "Pyrite",
+"en": "Pyrite",
+"gFr": "Élément terrestre localisé",
+"gEn": "Localised Earth Element",
+"dFr": "Extrait minéral local formant généralement de vastes dépôts, mais pouvant également être extrait de minéraux communs après inspection avec la visière d'analyse. Généralement présent sur les planètes…",
+"dEn": "Local mineral extract, typically found in large deposits or extracted from common minerals after inspection with an Analysis Visor. Typically found on planets with a desert environment.",
+"v": 62.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/25.png"
+},
+"raw26": {
+"fr": "Ammoniac",
+"en": "Ammonia",
+"gFr": "Élément terrestre localisé",
+"gEn": "Localised Earth Element",
+"dFr": "Extrait minéral local formant généralement de vastes dépôts, mais pouvant également être extrait de minéraux communs après inspection avec la visière d'analyse. Généralement présent sur les planètes…",
+"dEn": "Local mineral extract, typically found in large deposits or extracted from common minerals after inspection with an Analysis Visor. Typically found on planets with a toxic environment.",
+"v": 62.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/26.png"
+},
+"raw27": {
+"fr": "Uranium",
+"en": "Uranium",
+"gFr": "Élément terrestre localisé",
+"gEn": "Localised Earth Element",
+"dFr": "Extrait minéral local formant généralement de vastes dépôts, mais pouvant également être extrait de minéraux communs après inspection avec la visière d'analyse. Généralement présent sur les planètes…",
+"dEn": "Local mineral extract, typically found in large deposits or extracted from common minerals after inspection with an Analysis Visor. Typically found on planets with a radioactive environment.",
+"v": 62.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/27.png"
+},
+"raw28": {
+"fr": "Dioxite",
+"en": "Dioxite",
+"gFr": "Élément terrestre localisé",
+"gEn": "Localised Earth Element",
+"dFr": "Extrait minéral local formant généralement de vastes dépôts, mais pouvant également être extrait de minéraux communs après inspection avec la visière d'analyse. Généralement présent sur les planètes…",
+"dEn": "Local mineral extract, typically found in large deposits or extracted from common minerals after inspection with an Analysis Visor. Typically found on planets with a frozen environment.",
+"v": 62.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/28.png"
+},
+"raw29": {
+"fr": "Phosphore",
+"en": "Phosphorus",
+"gFr": "Élément terrestre localisé",
+"gEn": "Localised Earth Element",
+"dFr": "Extrait minéral local formant généralement de vastes dépôts, mais pouvant également être extrait de minéraux communs après inspection avec la visière d'analyse. Généralement présent sur les planètes…",
+"dEn": "Local mineral extract, typically found in large deposits or extracted from common minerals after inspection with an Analysis Visor. Typically found on planets with a scorched environment.",
+"v": 62.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/29.png"
+},
+"raw3": {
+"fr": "Oxygène",
+"en": "Oxygen",
+"gFr": "Carburant liquide concentré",
+"gEn": "Concentrated Liquid Fuel",
+"dFr": "Essentiel à la technologie de filtration atmosphérique au cœur du système de survie de l’exocombinaison. Le traitement de matériaux par l’exocombinaison permet à l’oxygène d’être récolté directement…",
+"dEn": "Integral to the atmospheric filtering technology at the heart of the exosuit life support system. Exosuit material processing allows oxygen to be harvested directly from appropriate planetary flora.…",
+"v": 34.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/3.png"
+},
+"raw30": {
+"fr": "Mordite",
+"en": "Mordite",
+"gFr": "Substance récoltée",
+"gEn": "Harvested Substance",
+"dFr": "Malgré de nombreuses études, on ne sait pas grand-chose de ce composé cristallin envoûtant. Il est relâché par les cadavres de certaines espèces, ou bien peut être cultivé pour lui-même et récolté…",
+"dEn": "Despite much study, little is known about this haunting, crystalline compound. It is released from the cadavers of dying creatures, but can also be specifically cultivated and harvested from the…",
+"v": 40.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/30.png"
+},
+"raw31": {
+"fr": "Pugnéum",
+"en": "Pugneum",
+"gFr": "Matériau anormal",
+"gEn": "Anomalous Material",
+"dFr": "Ce liquide huileux et déconcertant s'écoule des circuits des Sentinelles. Prisé des Vy'keen, le pugnéum semble partager certaines propriétés essentielles avec les nanites. Il est parcouru d'une…",
+"dEn": "This oily, unsettling liquid leaks from the circuitry of Sentinels. Prized by the Vy'keen, Pugneum is thought to share some essential properties with Nanites. It hums in a sinister fashion upon…",
+"v": 138.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/31.png"
+},
+"raw32": {
+"fr": "Argent",
+"en": "Silver",
+"gFr": "Minéral d’astéroïde précieux",
+"gEn": "Valuable Asteroid Mineral",
+"dFr": "Minéral précieux utilisé pour le commerce interstellaire. Généralement extrait des astéroïdes, il est parfois présent sous forme de dépôts sous la surface des planètes. Recherché par les peuples de…",
+"dEn": "Valuable interstellar trading mineral, typically mined from asteroids. Occasionally found in underground planetary deposits. Prized by people in all systems for its lustre and shine.",
+"v": 186.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/32.png"
+},
+"raw33": {
+"fr": "Or",
+"en": "Gold",
+"gFr": "Minéral d’astéroïde précieux",
+"gEn": "Valuable Asteroid Mineral",
+"dFr": "Minéral très précieux utilisé pour le commerce interstellaire. Généralement extrait des astéroïdes, il est parfois présent sous forme de dépôts sous la surface des planètes. Universellement recherché…",
+"dEn": "Highly valuable interstellar trading mineral, typically mined from asteroids. Occasionally found in underground planetary deposits. Universally prized for its beauty and versatility.",
+"v": 353.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/33.png"
+},
+"raw34": {
+"fr": "Platine",
+"en": "Platinum",
+"gFr": "Minéral d’astéroïde précieux",
+"gEn": "Valuable Asteroid Mineral",
+"dFr": "Minéral extrêmement précieux utilisé pour le commerce interstellaire. Généralement extrait des astéroïdes, il est parfois présent sous forme de dépôts sous la surface des planètes. Universellement…",
+"dEn": "Extremely valuable interstellar trading mineral, typically mined from asteroids. Occasionally found in underground planetary deposits. Universally prized for its hardiness and versatility.",
+"v": 505.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/34.png"
+},
+"raw35": {
+"fr": "Souffrine",
+"en": "Sulphurine",
+"gFr": "Gaz atmosphérique comprimé",
+"gEn": "Compressed Atmospheric Gas",
+"dFr": "Un gaz atmosphérique âcre. Les grandes concentrations sont très dangereuses pour les organismes vivants. Avec l'aide de machines spécialisées, on peut l'extraire de l'atmosphère des planètes…",
+"dEn": "A pungent atmospheric gas. High concentrations are extremely hazardous to organic life. With the aid of specialised machinery, can be extracted from the atmospheres of Scorched and Desert planets.",
+"v": 20.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/35.png"
+},
+"raw36": {
+"fr": "Radon",
+"en": "Radon",
+"gFr": "Gaz atmosphérique comprimé",
+"gEn": "Compressed Atmospheric Gas",
+"dFr": "Un gaz incolore et inodore dont la demi-vie est relativement courte. Se trouvant dans les atmosphères radioactives et congelées, ce gaz est issu de la putréfaction d'autres éléments à haute énergie.",
+"dEn": "A colourless, odourless gas with a relatively short half-life. Found in both Radioactive and Frozen atmospheres, this gas is produced by the decay of other high-energy elements.",
+"v": 20.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/36.png"
+},
+"raw37": {
+"fr": "Azote",
+"en": "Nitrogen",
+"gFr": "Gaz atmosphérique comprimé",
+"gEn": "Compressed Atmospheric Gas",
+"dFr": "Un gaz atmosphérique réactif présent partout où l'on trouve de la vie organique. L'azote peut être directement collecté dans l'atmosphère des planètes luxuriantes et toxiques.",
+"dEn": "A reactive atmospheric gas found wherever there is organic life. Nitrogen is readily harvested from the atmospheres of Lush and Toxic planets.",
+"v": 20.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/37.png"
+},
+"raw38": {
+"fr": "Cuivre activé",
+"en": "Activated Copper",
+"gFr": "Métal stellaire raffiné : jaune",
+"gEn": "Refined Stellar Metal: Yellow",
+"dFr": "Un métal chromatique, issu de la fusion au cœur d'une étoile. Ce cuivre a été activé par les conditions extrêmes dans lesquelles il a été trouvé, et il a beaucoup de valeur. Le cuivre se trouve sur…",
+"dEn": "A chromatic metal, generated by fusion in the heart of a star. This Copper has been activated by the extreme conditions in which it was formed, and is highly valuable. Copper is found on planets…",
+"v": 75.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/38.png"
+},
+"raw39": {
+"fr": "Cadmium activé",
+"en": "Activated Cadmium",
+"gFr": "Métal stellaire raffiné : rouge",
+"gEn": "Refined Stellar Metal: Red",
+"dFr": "Un métal chromatique, issu de la fusion au cœur d'une étoile. Ce cadmium a été activé par les conditions extrêmes dans lesquelles il a été trouvé, et il a beaucoup de valeur. Le cadmium se trouve sur…",
+"dEn": "A chromatic metal, generated by fusion in the heart of a star. This Cadmium has been activated by the extreme conditions in which it was formed, and is highly valuable. Cadmium is found on planets…",
+"v": 111.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/39.png"
+},
+"raw4": {
+"fr": "Hexite",
+"en": "Hexite",
+"gFr": "Élément organique non raffiné",
+"gEn": "Unrefined Organic Element",
+"dFr": "Substance inodore et riche en minéraux possédant une structure cristalline en hexagone. Elle est extraite des matières fécales d'une créature.",
+"dEn": "An odourless, mineral-rich substance with a hexagonal crystalline structure, harvested from the faecal matter of a creature.",
+"v": 654.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/4.png"
+},
+"raw40": {
+"fr": "Émeril activé",
+"en": "Activated Emeril",
+"gFr": "Métal stellaire raffiné : vert",
+"gEn": "Refined Stellar Metal: Green",
+"dFr": "Un métal chromatique, issu de la fusion au cœur d'une étoile. Cet émeril a été activé par les conditions extrêmes dans lesquelles il a été trouvé, et il a beaucoup de valeur. L'émeril se trouve sur…",
+"dEn": "A chromatic metal, generated by fusion in the heart of a star. This Emeril has been activated by the extreme conditions in which it was formed, and is highly valuable. Emeril is found on planets…",
+"v": 134.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/40.png"
+},
+"raw41": {
+"fr": "Indium activé",
+"en": "Activated Indium",
+"gFr": "Métal stellaire raffiné : bleu",
+"gEn": "Refined Stellar Metal: Blue",
+"dFr": "Un métal chromatique, issu de la fusion au cœur d'une étoile. L'indium se trouve sur les planètes en orbite autour d’étoiles bleues et peut être placé dans une raffinerie pour créer un métal…",
+"dEn": "A chromatic metal, generated by fusion in the heart of a star. Indium is found on planets orbiting blue stars, and can be placed in a Refiner to create purified Chromatic Metal. This Indium has been…",
+"v": 165.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/41.png"
+},
+"raw42": {
+"fr": "Moisissure fongique",
+"en": "Fungal Mould",
+"gFr": "Substance agricole récoltée",
+"gEn": "Harvested Agricultural Substance",
+"dFr": "Une substance émettant une lueur étrange, qui peut être récoltée dans les lamelles des amas fongiques. La plante hôte a besoin d'un climat toxique pour s'épanouir dans la nature, mais peut être…",
+"dEn": "An oddly-glowing substance, harvested from the gills of Fungal Clusters. The host plant requires a toxic climate to thrive in the wild, but can be farmed in all environments with the aid of a…",
+"v": 16.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/42.png"
+},
+"raw43": {
+"fr": "Cristal gelé",
+"en": "Frost Crystal",
+"gFr": "Substance agricole récoltée",
+"gEn": "Harvested Agricultural Substance",
+"dFr": "Se présentant sous la forme d'un superbe cristal bleu, ce composé organique translucide et scintillant est en même temps d'une grande dureté. Il est récolté sur les feuilles d'hélianthème.…",
+"dEn": "A beautiful blue crystal, this organic compound possesses both great hardiness and a shimmering translucence. It is harvested from the leaves of Frostwort. Frostwort requires frozen conditions to…",
+"v": 12.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/43.png"
+},
+"raw44": {
+"fr": "Racine gamma",
+"en": "Gamma Root",
+"gFr": "Substance agricole récoltée",
+"gEn": "Harvested Agricultural Substance",
+"dFr": "Une substance étrange qui semble créer de lents courants d'air autour d'elle. Elle peut être trouvée dans les racines de l'herbe gamma. L'herbe gamma a besoin d'un climat hautement radioactif pour…",
+"dEn": "A strange substance that seems to slowly shift the air around it. It is found in the roots of the Gamma Weed plant. Gamma Weed requires high background radiation to thrive in the wild, but can be…",
+"v": 16.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/44.png"
+},
+"raw45": {
+"fr": "Chair de cactus",
+"en": "Cactus Flesh",
+"gFr": "Substance agricole récoltée",
+"gEn": "Harvested Agricultural Substance",
+"dFr": "Chair de cactus comestible et succulente issue de l'echinocactus. En plus de sa qualité juteuse en bouche, la chair a diverses applications industrielles. L'echinocactus ne pousse que sur des…",
+"dEn": "Succulent, edible cactus flesh from the Echinocactus plant. As well as being juicy on the tongue, the flesh has many industrial uses. The Echinocactus thrives only on desert planets, but can be…",
+"v": 28.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/45.png"
+},
+"raw46": {
+"fr": "Solanium",
+"en": "Solanium",
+"gFr": "Substance agricole récoltée",
+"gEn": "Harvested Agricultural Substance",
+"dFr": "Une substance chimique qui a résisté a toutes les tentatives de la synthétiser. Elle peut être récoltée sur l'écorce de la vigne solaire. La vigne solaire a besoin d'un climat chaud pour s'épanouir…",
+"dEn": "A powerful chemical that has resisted attempts at synthesis. It can be harvested from the bark of the Solar Vine. The vine requires a hot climate to thrive in the wild, but can be farmed in all…",
+"v": 70.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/46.png"
+},
+"raw47": {
+"fr": "Bulbe d'étoile",
+"en": "Star Bulb",
+"gFr": "Substance agricole récoltée",
+"gEn": "Harvested Agricultural Substance",
+"dFr": "Cette gemme splendide est un produit convoité. C'est la baie luminescente et charnue de la ronce stellaire. La plante hôte a besoin d'un climat luxuriant pour s'épanouir dans la nature, mais peut…",
+"dEn": "A beautiful gemstone, this prized product is the engorged, luminescent berry of the Star Bramble. The host plant requires lush conditions to thrive in the wild, but can be farmed in all environments…",
+"v": 32.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/47.png"
+},
+"raw48": {
+"fr": "Bulbe de lumiflore cavernicole",
+"en": "Marrow Bulb",
+"gFr": "Substance agricole récoltée",
+"gEn": "Harvested Agricultural Substance",
+"dFr": "Un bulbe organique luisant récolté sur une plante souterraine, la lumiflore cavernicole. Les lumiflores cavernicoles sont difficiles à domestiquer et aucun cultivar exploitable n'est connu. Ainsi,…",
+"dEn": "A glowing organic bulb, harvested from the Cave Marrow plant found growing underground. The Cave Marrow has proved resistant to domestication, and no farmable cultivars are known to exist. As such,…",
+"v": 41.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/48.png"
+},
+"raw49": {
+"fr": "Sac de varech",
+"en": "Kelp Sac",
+"gFr": "Substance agricole récoltée",
+"gEn": "Harvested Agricultural Substance",
+"dFr": "Un sac caoutchouteux et luminescent pouvant être récolté sur une plante sous-marine, la bougie de varech. Les sciences agricoles n'ont pas fini d'étudier la bougie de varech. Ainsi, ces sacs ne…",
+"dEn": "A rubbery, luminescent sac harvested from underwater Candle Kelp plants. Agricultural science has not yet tamed the Candle Kelp. As such, these sacs cannot be farmed.",
+"v": 41.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/49.png"
+},
+"raw5": {
+"fr": "Dihydrogène",
+"en": "Di-hydrogen",
+"gFr": "Substance à haute énergie",
+"gEn": "High Energy Substance",
+"dFr": "Une forme d'hydrogène stable et cristalline, remarquable à la fois pour son extrême densité en énergie et sa stabilité face à la pression atmosphérique. Commun sur toutes les planètes, le dihydrogène…",
+"dEn": "A stable, crystalline form of hydrogen remarkable both for its extreme energy density and its stability at atmospheric pressures. Common to all worlds, Di-hydrogen is found in the form of large blue…",
+"v": 34.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/5.png"
+},
+"raw50": {
+"fr": "Fècium",
+"en": "Faecium",
+"gFr": "Substance agricole récoltée",
+"gEn": "Harvested Agricultural Substance",
+"dFr": "Un composé à l'odeur infâme qui peut être récolté sur les fécaflores ou prélevé dans les matières fécales de certaines espèces. Il est possible de nourrir les créatures de manière à favoriser la…",
+"dEn": "A foul-smelling compound that can be harvested from the Gutrot Flower, or less desirably from the faecal matter of some species. Creatures can be fed to encourage the formation and deposition of…",
+"v": 30.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/50.png"
+},
+"raw51": {
+"fr": "Résidu visqueux",
+"en": "Residual Goop",
+"gFr": "Déchet",
+"gEn": "Junk",
+"dFr": "Une substance visqueuse à l'odeur repoussante qui s'accumule sur les machines mal entretenues. Éviter tout contact cutané.",
+"dEn": "A pulsating, foul smelling goop that builds up in poorly-maintained machinery. Skin contact is not advised.",
+"v": 20.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/51.png"
+},
+"raw52": {
+"fr": "Moisissure fugueuse",
+"en": "Runaway Mould",
+"gFr": "Déchet",
+"gEn": "Junk",
+"dFr": "Une moisissure incontrôlable qui s'accumule sur les machines mal entretenues. Probablement le résultat de différentes espèces de moisissures fusionnées pour former une seule et unique 'super-colonie'.",
+"dEn": "An out of control mould growth that builds up in poorly-maintained machinery. Likely to be several different species of mould, merged together into one super-colony.",
+"v": 20.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/52.png"
+},
+"raw53": {
+"fr": "Métal rouillé",
+"en": "Rusted Metal",
+"gFr": "Déchet",
+"gEn": "Junk",
+"dFr": "Un petit tas de métal attaqué par la corrosion, distordu par des années d'exposition à un environnement hostile. À manipuler avec précaution.",
+"dEn": "Handfuls of corroded metal, distorted by years of exposure to the harsh environment. Handle with care.",
+"v": 20.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/53.png"
+},
+"raw54": {
+"fr": "Bave vivante",
+"en": "Living Slime",
+"gFr": "Déchet",
+"gEn": "Junk",
+"dFr": "Une créature pataude semblant être faite d'une bave visqueuse et suintante. Elle bouge doucement, comme si elle abritait un cœur qui battait. Source d'alimentation : inconnu.",
+"dEn": "A heavy, oozing slime. It is moving gently, as if it has a heartbeat of its own. Nutrient source: unknown.",
+"v": 20.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/54.png"
+},
+"raw55": {
+"fr": "Fluide visqueux",
+"en": "Viscous Fluids",
+"gFr": "Déchet",
+"gEn": "Junk",
+"dFr": "Un liquide anormalement épais, dont la couleur est difficile à discerner. Son origine est impossible à déterminer. Semble posséder de faibles propriétés magnétiques.",
+"dEn": "An unnaturally thick liquid of dubious colour. Its origins are impossible to fathom. Appears to have some mild magnetic properties.",
+"v": 20.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/55.png"
+},
+"raw56": {
+"fr": "Amas de nanites",
+"en": "Nanite Cluster",
+"gFr": "Monnaie technologique",
+"gEn": "Technological Currency",
+"dFr": "Miasme de nanites dense ondoyant de possibilités. Cet amas est stable, mais la mousse de nanite non contrôlée peut produire des réactions indésirables en présence de matière organique. Utilisé pour…",
+"dEn": "A dense miasma of Nanites, undulating in its potentiality. These clusters are stable, but unrestricted nanite foam can produce undesirable runaway reactions in the presence of organic matter. Used in…",
+"v": 28.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/56.png"
+},
+"raw59": {
+"fr": "Soleil liquide",
+"en": "Liquid Sun",
+"gFr": "Métal transmuté",
+"gEn": "Transmuted Metal",
+"dFr": "Métal planétaire conventionnel, surchauffé puis maintenu sous une forme plasmatique stabilisée. Extrait de gisements métalliques à l'aide d'un rayon solaire. Extrêmement énergétique.",
+"dEn": "Conventional planetary metal, superheated and then held in a stabilised plasmatic form. Extracted from metallic terrain deposits using a Solar Ray. Enormously energetic.",
+"v": 16.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/59.png"
+},
+"raw6": {
+"fr": "Deutérium",
+"en": "Deuterium",
+"gFr": "Substance à haute énergie",
+"gEn": "High Energy Substance",
+"dFr": "Un isotope d'hydrogène stable utilisé couramment pour les réacteurs à fusion de petite échelle et les technologies de protection de diffusion des neutrons. Le deutérium n'apparaît naturellement qu'à…",
+"dEn": "A stable hydrogen isotope used heavily in both small-scale fusion reactors and neutron-scattering shield technology. Deuterium very rarely occurs naturally. Most of the galaxy's supply comes from the…",
+"v": 34.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/6.png"
+},
+"raw60": {
+"fr": "Qualia fragmentés",
+"en": "Fragmented Qualia",
+"gFr": "Fragment d'âme",
+"gEn": "Soul Fragment",
+"dFr": "Un motif, rien de plus qu'une simple forme d'onde, gravée sur la surface d'un petit éclat métallique. Ce fragment de données représente un enregistrement des impulsions électriques parcourant un…",
+"dEn": "A pattern, no more than a mere waveform, etched into the surface of a tiny metallic shard. This fragment of data represents a recording of the electrical impulses running across a neural network.…",
+"v": 16.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/60.png"
+},
+"raw61": {
+"fr": "Basalte",
+"en": "Basalt",
+"gFr": "Élément terrestre localisé",
+"gEn": "Localised Earth Element",
+"dFr": "Extrait minéral local formant généralement de vastes dépôts, mais pouvant également être extrait de minéraux communs après inspection avec la visière d'analyse. Généralement présent sur les planètes…",
+"dEn": "Local mineral extract, typically found in large deposits or extracted from common minerals after inspection with an Analysis Visor. Typically found on planets with a volcanic environment.",
+"v": 62.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/61.png"
+},
+"raw62": {
+"fr": "Métal corrompu",
+"en": "Tainted Metal",
+"gFr": "Pièces détachées récupérées",
+"gEn": "Salvaged Scrap",
+"dFr": "Fragments déchiquetés d'un métal doux et gris. Sa surface est poreuse et il suinte très légèrement lorsqu'on le touche. Trouvé dans l'épave grinçante d'un cargo abandonné. Le revendeur de pièces…",
+"dEn": "Shredded fragments of a soft, grey metal. Its surface is porous, and when touched it oozes ever-so-slightly. Found in the creaking wreck of a derelict freighter. The space station Scrap Dealer may…",
+"v": 380.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/62.png"
+},
+"raw69": {
+"fr": "Poussière corrompue",
+"en": "Cursed Dust",
+"gFr": "Les cendres du désespoir",
+"gEn": "Ashes of Despair",
+"dFr": "De la terre désertique poudreuse, visqueuse à cause des sécrétions de l'immense ver des sables. Autrefois, certains considéraient cette poussière comme le divin descendant des vers. Son odeur est…",
+"dEn": "A powdery desert soil, slick with the gland expressions of a colossal sandworm. Historically, some have regarded this dust as the divine parent of such worms. It smells curiously sweet. Cursed Dust…",
+"v": 959.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/69.png"
+},
+"raw7": {
+"fr": "Tritium",
+"en": "Tritium",
+"gFr": "Élément de carburant riche en neutrons",
+"gEn": "Neutron-Rich Fuel Element",
+"dFr": "Isotope radioactif couramment utilisé pour alimenter le réacteur nucléaire des pulsoréacteurs des vaisseaux. Abondant dans les champs d'astéroïdes interstellaires, le tritium peut être extrait sur…",
+"dEn": "Radioactive isotope commonly used to fuel the fusion reactor at the heart of starship Pulse Engines. Abundant in interstellar asteroid fields, Tritium can be mined from asteroids using starship…",
+"v": 6.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/7.png"
+},
+"raw70": {
+"fr": "Poussière somnale",
+"en": "Somnal Dust",
+"gFr": "Reste d'espace-temps décomposé",
+"gEn": "Decayed Spacetime Remnant",
+"dFr": "Grise, morte, pétillante de vie et de couleur, chantante et scintillante. Cette poussière incroyablement fine est l'accumulation de la décomposition du temps et des souvenirs. Collectée sur les fines…",
+"dEn": "Grey, dead, sparkling with life and colour, singing as it shimmers. This impossibly fine dust is the accumulated decay of time and memories. Collected from the fine layers it forms around hotspots in…",
+"v": 1616.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/70.png"
+},
+"raw71": {
+"fr": "Souvenirs ancestraux",
+"en": "Ancestral Memories",
+"gFr": "Gènes récessifs de créature",
+"gEn": "Recessive Creature Genes",
+"dFr": "L'écho d'une possibilité génétique oubliée par l'évolution. Il se contracte avec une énergie sauvage. Extrait sur une créature piégée dans une boucle temporelle infinie. D'une grande valeur pour le…",
+"dEn": "The echo of a genetic possibility, forgotten by evolution. It twitches with a wild energy. Extracted from a creature caught within a repeating circuit of time. Of great value to Specialist Polo as…",
+"v": 1616.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/71.png"
+},
+"raw72": {
+"fr": "Atlantidéum",
+"en": "Atlantideum",
+"gFr": "Métal disharmonique",
+"gEn": "Disharmonic Metal",
+"dFr": "Cette substance éthérée s'écoule des corps des Sentinelles corrompues tombées dans une pluie de grains prismatiques à la recherche d'un nouvel hôte. Elle esquive toute tentative de l'emprisonner,…",
+"dEn": "This ethereal substance spills from the bodies of corrupted Sentinels as they fall, a shower of prismatic grains seeking out their next host. It evades all attempts to contain it, as if it had a will…",
+"v": 138.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/72.png"
+},
+"raw73": {
+"fr": "Particule de néant",
+"en": "Void Mote",
+"gFr": "Essence de l'Atlantide",
+"gEn": "Essence of Atlantid",
+"dFr": "Une goutte purifiée d'atlantidéum, raffiné jusqu'à obtenir son essence même. Ce matériau précieux s'acquiert en gagnant la sympathie des Autophages et en les aidant. Rendez-vous auprès du terminal de…",
+"dEn": "A purified drop of Atlantideum, refined to its very essence. This precious material is acquired by earning favour with and assisting the Autophage. Visit the Autophage Synthesis Terminal found at all…",
+"v": 380.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/73.png"
+},
+"raw74": {
+"fr": "Qualia brisé",
+"en": "Shattered Qualia",
+"gFr": "Fragment d'âme",
+"gEn": "Soul Fragment",
+"dFr": "Un motif, rien de plus qu'une simple forme d'onde, gravé sur un fragment de verre éthéré. Ce fragment de données représente un vestige d'impulsions électriques parcourant un réseau neuronal.…",
+"dEn": "A pattern, no more than a mere waveform, etched into an ethereal shard of glass. This fragment of data represents a trace of the electrical impulses running across a neural network. Many fragments…",
+"v": 16.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/60.png"
+},
+"raw75": {
+"fr": "Quartzite",
+"en": "Quartzite",
+"gFr": "Métal stellaire raffiné : violet",
+"gEn": "Refined Stellar Metal: Purple",
+"dFr": "Un minerai chromatique, issu de la fusion au cœur d'une étoile. Ce matériau stellaire forme des gisements dans la croûte des planètes locales. Le quartzite se trouve sur les planètes en orbite autour…",
+"dEn": "A chromatic mineral, generated by fusion in the heart of a star. Such stellar material ends up forming deposits in the crust of local planets. Quartzite is found on planets orbiting purple stars, and…",
+"v": 132.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/75.png"
+},
+"raw76": {
+"fr": "Pierre polie",
+"en": "Polished Stone",
+"gFr": "Minéraux recyclés",
+"gEn": "Recycled Minerals",
+"dFr": "Les restes poudreux d'une surface minérale hautement polie, qui scintillent lorsqu'ils reflètent la lumière, tels des grains de sable ardents. Acquis en utilisant le laser d'extraction sur des…",
+"dEn": "The powdery remains of a highly polished mineral surface. It glitters as it catches the light, like fiery grains of sand. Acquired by applying the Mining Laser to the structral remnants located on…",
+"v": 82.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/76.png"
+},
+"raw77": {
+"fr": "Lithium",
+"en": "Lithium",
+"gFr": "Élément terrestre localisé",
+"gEn": "Localised Earth Element",
+"dFr": "Extrait métallique local formant généralement de grands gisements, mais pouvant également être extrait de formations minérales communes après inspection avec la visière d'analyse. Généralement…",
+"dEn": "Local metallic extract, typically found in large deposits or harvested from common mineral formations after inspection with an Analysis Visor. Typically found on ocean planets.",
+"v": 72.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/77.png"
+},
+"raw78": {
+"fr": "Hélium cristallisé",
+"en": "Crystallised Helium",
+"gFr": "Élément terrestre localisé",
+"gEn": "Localised Earth Element",
+"dFr": "Un extrait chimique surrefroidi, généralement trouvé dans de grands gisements ou extrait de formations minérales plus petites après inspection avec une visière d'analyse. Extrait de gisements qui se…",
+"dEn": "A supercooled chemical extract, typically found in large deposits or extracted from smaller mineral formations after inspection with an Analysis Visor. Extracted from deposits formed in the hostile…",
+"v": 82.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/78.png"
+},
+"raw79": {
+"fr": "Méthane",
+"en": "Methane",
+"gFr": "Gaz atmosphérique comprimé",
+"gEn": "Compressed Atmospheric Gas",
+"dFr": "Un gaz atmosphérique trouvé sous les conditions hostiles des géantes gazeuses. Le méthane peut être collecté directement à l'aide d'un équipement déployé sur des mondes gazeux.",
+"dEn": "An atmospheric gas found in the hostile conditions of gas giants. Methane is readily harvested from equipment deployed on gas worlds.",
+"v": 35.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/79.png"
+},
+"raw8": {
+"fr": "Poussière de ferrite",
+"en": "Ferrite Dust",
+"gFr": "Extrait minéral métallique",
+"gEn": "Metallic Mineral Extract",
+"dFr": "Élément minéral abondant présent dans les formations rocheuses et d'autres zones présentant un intérêt géologique. Facilement extractible avec un laser d'extraction. Nécessite généralement un…",
+"dEn": "An abundant mineral element, found in rock formations and other areas of geological interest. Easily extracted using a Mining Laser. Typically requires processing in a Refiner before use in…",
+"v": 14.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/8.png"
+},
+"raw80": {
+"fr": "Quartzite activé",
+"en": "Activated Quartzite",
+"gFr": "Métal stellaire raffiné : violet",
+"gEn": "Refined Stellar Metal: Purple",
+"dFr": "Un minerai chromatique issu de la fusion au cœur d'une étoile. Le quartzite se trouve sur les planètes en orbite autour d'étoiles violettes et peut être placé dans un raffineur pour créer un métal…",
+"dEn": "A chromatic mineral, generated by fusion in the heart of a star. Quartzite is found on planets orbiting purple stars, and can be placed in a Refiner to create purified Chromatic Metal. This quartzite…",
+"v": 165.0,
+"icon": "https://app.nmsassistant.com/assets/images/rawMaterials/80.png"
+},
+"raw9": {
+"fr": "Ferrite pure",
+"en": "Pure Ferrite",
+"gFr": "Minéraux métalliques traités",
+"gEn": "Processed Metallic Minerals",
+"dFr": "Métal traité sans poussière ni gravillon. Il est utilisé pour la fabrication de structures et de technologies variées. Généralement purifié à partir de poussière de ferrite grâce à une raffinerie,…",
+"dEn": "Processed metal, free of dust and pebbles. Used to construct a wide variety of structures and technologies. Typically purified from Ferrite dust using a Refiner, but can occasionally be found in…",
+"v": 28.0,
+"icon": "https://cdn.nmsassistant.com/rawMaterials/9.png"
+}
+}
+}

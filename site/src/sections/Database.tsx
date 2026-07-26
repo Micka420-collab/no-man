@@ -13,6 +13,7 @@ const CAT_LABELS: Record<string, [string, string]> = {
   trade: ['Marchandises', 'Trade goods'],
   curiosities: ['Curiosités', 'Curiosities'],
   cooking: ['Cuisine', 'Cooking'],
+  fish: ['Poissons', 'Fish'],
 }
 
 function dbClass(id: string): string {
@@ -26,7 +27,7 @@ function dbClass(id: string): string {
 /** Every tradeable item with its real icon and value — filter, sort, search, pin favourites. */
 export default function Database() {
   const store = useAtlas()
-  const { state, patch, L, lang, marketMap, itemsMap, favs, toggleFav, goRecipesFor, revision } = store
+  const { state, patch, L, lang, data, marketMap, itemsMap, favs, toggleFav, goRecipesFor, revision } = store
 
   const catLabel = (k: string) => (CAT_LABELS[k] || CAT_LABELS.all)[lang === 'fr' ? 0 : 1]
 
@@ -60,10 +61,28 @@ export default function Database() {
         key: '',
       })
     })
+    // market.json also carries the 225 catchable fish, which live nowhere else in the UI
+    const qualityFr: Record<string, string> = {
+      Legendary: 'Légendaire', Epic: 'Épique', Rare: 'Rare', Uncommon: 'Peu commun', Common: 'Commun',
+    }
+    ;(data.market?.fish || []).forEach((f, i) => {
+      const id = 'fish' + i
+      if (seen[id]) return
+      const quality = f.quality || ''
+      rows.push({
+        id, cls: 'fish',
+        name: (lang === 'fr' ? f.name_fr : f.name_en) || f.name_en,
+        icon: f.icon || '',
+        value: f.value != null ? f.value : null,
+        group: [lang === 'fr' ? (qualityFr[quality] || quality) : quality, f.size].filter(Boolean).join(' · ')
+          || catLabel('fish'),
+        key: '',
+      })
+    })
     rows.forEach((r) => { r.key = norm(r.name) })
     return rows
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemsMap, marketMap, lang])
+  }, [itemsMap, marketMap, data, lang])
 
   const counts: Record<string, number> = { all: all.length }
   all.forEach((r) => { counts[r.cls] = (counts[r.cls] || 0) + 1 })
@@ -112,7 +131,7 @@ export default function Database() {
       <SectionHeader kicker={L.db_kicker} title={L.db_title} intro={L.db_intro} />
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 24 }}>
-        {['all', 'raw', 'products', 'trade', 'curiosities', 'cooking'].map((k) => {
+        {['all', 'raw', 'products', 'trade', 'curiosities', 'cooking', 'fish'].map((k) => {
           const a = state.dbCat === k
           return (
             <button key={k} onClick={() => patch({ dbCat: k, dbLimit: 80 })} style={{
@@ -177,7 +196,7 @@ export default function Database() {
                 role="button"
                 tabIndex={0}
                 className="hv-row"
-                onClick={() => goRecipesFor(r.id)}
+                onClick={() => { if (r.cls !== 'fish') goRecipesFor(r.id) }}
                 style={{
                   cursor: 'pointer', display: 'grid', gridTemplateColumns: GRID, alignItems: 'center',
                   background: 'transparent', borderBottom: '1px solid rgba(120,150,220,.06)',

@@ -73,7 +73,13 @@ export interface MarketItem {
   id: string; name_fr?: string; name_en?: string; value?: number; icon?: string
   group_fr?: string; group_en?: string; cat?: string
 }
-export interface MarketData { categories?: Record<string, MarketItem[]> }
+export interface FishItem {
+  name_en: string; name_fr?: string
+  quality?: string; size?: string; time?: string
+  storm?: boolean; mission?: boolean
+  biomes?: string[]; value?: number; icon?: string
+}
+export interface MarketData { categories?: Record<string, MarketItem[]>; fish?: FishItem[] }
 
 export interface RedditPost { title: string; title_fr?: string; url: string; date: string; author?: string }
 export interface CommunityData {
@@ -151,6 +157,28 @@ export interface WorkshopDataset {
   updated_at?: string
 }
 
+/** Populated by the tracker while a community war effort is live. */
+export interface WarEvent {
+  name?: string
+  version?: string
+  status?: string
+  status_fr?: string
+  start?: string
+  end?: string
+  desc?: string
+  desc_en?: string
+  url?: string
+}
+
+/** Element-table substances resolved from the game catalogue. */
+export interface SubstanceDataset {
+  items?: Record<string, {
+    fr: string; en: string; gFr?: string; gEn?: string; dFr?: string; dEn?: string
+    v?: number | null; icon?: string
+  }>
+  updated_at?: string
+}
+
 export interface DataBundle {
   stats?: Stats
   stats_history?: StatsHistory
@@ -174,6 +202,9 @@ export interface DataBundle {
   recipes?: RecipesData
   multitool?: MultitoolData
   workshop?: WorkshopDataset
+  substances?: SubstanceDataset
+  /** live war-effort feed; `event` is null while no effort is running */
+  war?: { event?: WarEvent | null; updated_at?: string }
 }
 
 /** Payload of the shared detail modal (ships, creatures, search hits). */

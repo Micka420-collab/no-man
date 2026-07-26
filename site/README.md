@@ -1,8 +1,9 @@
 # Atlas Terminal — implementation
 
-Production implementation of the `Atlas Terminal v2` design (see `../project/Atlas Terminal v2.dc.html`
-and the handoff bundle at the repo root). React 19 + TypeScript + Vite; three.js powers the two
-workshop viewers and is code-split so it only downloads when a workshop is opened.
+Production implementation of the `Atlas Terminal v2` design exported from Claude Design (the
+`.dc.html` prototype and its `support.js` live in that handoff bundle, which is not part of this
+repo). React 19 + TypeScript + Vite; three.js powers the two workshop viewers and is code-split so
+it only downloads when a workshop is opened.
 
 ```bash
 npm install

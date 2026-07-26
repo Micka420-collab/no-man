@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import { useAtlas, type SortKey } from '../lib/store'
 import { fmt, norm } from '../lib/util'
 import SectionHeader from '../components/SectionHeader'
@@ -6,6 +6,19 @@ import ItemImg from '../components/ItemImg'
 
 const mono = "'Space Mono',monospace"
 const GRID = '52px 1.3fr 1fr 132px 52px'
+const GRID_NARROW = '42px 1fr 96px 34px'
+
+/** True sous `bp` px — pour les mises en page que le CSS seul ne peut pas replier (grilles inline). */
+function useNarrow(bp = 640): boolean {
+  const [n, setN] = useState(() => typeof window !== 'undefined' && window.innerWidth <= bp)
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width:${bp}px)`)
+    const on = () => setN(mq.matches)
+    mq.addEventListener('change', on)
+    return () => mq.removeEventListener('change', on)
+  }, [bp])
+  return n
+}
 
 /**
  * Unit shown after a value. Everything catalogued today is priced in credits, but the data names
@@ -35,6 +48,10 @@ function dbClass(id: string): string {
 export default function Database() {
   const store = useAtlas()
   const { state, patch, L, lang, data, marketMap, itemsMap, favs, toggleFav, goRecipesFor, revision, rcDesc } = store
+  // mobile : la table à 5 colonnes ne tient pas — on replie la catégorie sous le nom,
+  // pour que la valeur et l'étoile restent TOUJOURS visibles sans scroll horizontal
+  const narrow = useNarrow()
+  const gridCols = narrow ? GRID_NARROW : GRID
 
   // ligne dépliée : description réelle du jeu (« à quoi ça sert ») + résumé d'usage
   const [open, setOpen] = useState<string | null>(null)
@@ -198,16 +215,16 @@ export default function Database() {
 
       <div className="nms-scroll" style={{ marginTop: 20, overflowX: 'auto' }}>
         <div style={{
-          minWidth: 680, border: '1px solid rgba(120,150,220,.16)', borderRadius: 14, overflow: 'hidden',
+          minWidth: narrow ? 0 : 680, border: '1px solid rgba(120,150,220,.16)', borderRadius: 14, overflow: 'hidden',
           background: 'rgba(9,12,26,.5)',
         }}>
           <div style={{
-            display: 'grid', gridTemplateColumns: GRID, borderBottom: '1px solid rgba(120,150,220,.14)',
+            display: 'grid', gridTemplateColumns: gridCols, borderBottom: '1px solid rgba(120,150,220,.14)',
             background: 'rgba(12,17,34,.7)',
           }}>
             <div />
             {col('name', L.db_col_name, 'left')}
-            {col('group', L.db_col_group, 'left')}
+            {!narrow && col('group', L.db_col_group, 'left')}
             {col('value', L.db_col_value, 'right')}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffb347', fontSize: 12 }}>★</div>
           </div>
@@ -225,24 +242,35 @@ export default function Database() {
                   className="hv-row"
                   onClick={() => { if (r.cls !== 'fish') setOpen(isOpen ? null : r.id) }}
                   style={{
-                    cursor: 'pointer', display: 'grid', gridTemplateColumns: GRID, alignItems: 'center',
+                    cursor: 'pointer', display: 'grid', gridTemplateColumns: gridCols, alignItems: 'center',
                     background: isOpen ? 'rgba(95,208,224,.05)' : 'transparent',
                     borderBottom: isOpen ? 'none' : '1px solid rgba(120,150,220,.06)',
                   }}
                 >
                   <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '6px 0' }}>
-                    <ItemImg src={r.icon} size={30} />
+                    <ItemImg src={r.icon} size={narrow ? 26 : 30} />
                   </span>
+                  <span style={{ padding: '9px 10px', minWidth: 0 }}>
+                    <span style={{
+                      display: 'block', color: '#e8edfb', fontSize: 13.5, fontWeight: 600,
+                      whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                    }}>{r.name}</span>
+                    {narrow && (
+                      <span style={{
+                        display: 'block', color: '#8b97ba', fontSize: 10.5, marginTop: 2,
+                        whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                      }}>{r.group}</span>
+                    )}
+                  </span>
+                  {!narrow && (
+                    <span style={{
+                      padding: '9px 10px', color: '#8b97ba', fontSize: 12, minWidth: 0, whiteSpace: 'nowrap',
+                      overflow: 'hidden', textOverflow: 'ellipsis',
+                    }}>{r.group}</span>
+                  )}
                   <span style={{
-                    padding: '9px 10px', color: '#e8edfb', fontSize: 13.5, fontWeight: 600, minWidth: 0,
-                    whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-                  }}>{r.name}</span>
-                  <span style={{
-                    padding: '9px 10px', color: '#8b97ba', fontSize: 12, minWidth: 0, whiteSpace: 'nowrap',
-                    overflow: 'hidden', textOverflow: 'ellipsis',
-                  }}>{r.group}</span>
-                  <span style={{
-                    padding: '9px 10px', textAlign: 'right', fontFamily: mono, fontSize: 12.5, color: '#e8c24a',
+                    padding: narrow ? '9px 4px' : '9px 10px', textAlign: 'right', fontFamily: mono,
+                    fontSize: narrow ? 11.5 : 12.5, color: '#e8c24a',
                   }}>{r.value != null ? fmt(r.value) : '—'} <span style={{ color: '#7a6a3a', fontSize: 9 }}>{r.unit}</span></span>
                   <button
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFav(r.id) }}
@@ -256,7 +284,7 @@ export default function Database() {
                 {isOpen && (
                   <div style={{
                     borderBottom: '1px solid rgba(120,150,220,.06)', background: 'rgba(95,208,224,.04)',
-                    padding: '4px 14px 15px 62px', animation: 'nmsPop .2s both',
+                    padding: narrow ? '4px 14px 15px 14px' : '4px 14px 15px 62px', animation: 'nmsPop .2s both',
                   }}>
                     <div style={{
                       fontFamily: mono, fontSize: 9.5, letterSpacing: '.18em', color: '#ffb347',

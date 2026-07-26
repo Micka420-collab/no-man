@@ -38,6 +38,11 @@ button{font-family:inherit}
 
 @media (max-width:480px){ .nms-live-label{display:none!important} }
 
+/* ── Tactile : pas de molette ni de clavier — l'aide « MOLETTE zoom » chevauchait
+      le bouton RÉINITIALISER sur téléphone, et ⌘K n'a pas de sens sans clavier ── */
+@media (pointer:coarse){ .nms-canvas-hint{display:none!important} .nms-kbd-hint{display:none!important} }
+@media (max-width:560px){ .nms-canvas-hint{display:none!important} .nms-kbd-hint{display:none!important} }
+
 /* ── Workshop slot grid: tighter on narrow screens so 10 columns stay usable ── */
 @media (max-width:520px){ .nms-slots{gap:3px!important} }
 @media (max-width:380px){ .nms-slots{gap:2px!important} .nms-slot{font-size:9px!important} }

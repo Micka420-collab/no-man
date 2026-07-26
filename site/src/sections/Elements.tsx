@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useAtlas } from '../lib/store'
 import { fmt, rawIconFallback } from '../lib/util'
 import SectionHeader from '../components/SectionHeader'
+import ItemImg from '../components/ItemImg'
 import type { ElementCell } from '../types'
 
 const mono = "'Space Mono',monospace"
@@ -42,10 +43,11 @@ export default function Elements() {
       || (nm ? nm[lang === 'fr' ? 0 : 1] : '')
       || (fromRecipes !== c.raw ? fromRecipes : '')
     const icon = g?.icon || m?.icon || rcIcon(c.raw) || rawIconFallback(c.raw, color)
+    const iconFallback = rawIconFallback(c.raw, color)
     const value = g?.v != null ? g.v : (m?.value != null ? m.value : null)
     const active = state.elSel === c.raw
     return {
-      sym: c.sym, name, value: value != null ? fmt(value) : '', hasVal: value != null, icon,
+      sym: c.sym, name, value: value != null ? fmt(value) : '', hasVal: value != null, icon, iconFallback,
       bg: active ? 'rgba(95,208,224,.18)' : 'rgba(10,14,28,.55)',
       onClick: () => patch({ elSel: active ? null : c.raw, elCtx: { color, famLabel } }),
     }
@@ -93,6 +95,7 @@ export default function Elements() {
       || (nm ? nm[lang === 'fr' ? 0 : 1] : '')
       || (fromRecipes !== id ? fromRecipes : '') || id
     const icon = g?.icon || m?.icon || rcIcon(id) || rawIconFallback(id, ctx.color)
+    const iconFallback = rawIconFallback(id, ctx.color)
     const source = (g ? (lang === 'fr' ? g.gFr : g.gEn) : '')
       || (m ? (lang === 'fr' ? m.group_fr : m.group_en) : '') || ctx.famLabel || ''
     const ref = data.recipes?.refiner || []
@@ -108,7 +111,7 @@ export default function Elements() {
     scan(el.flora?.cells)
     ;(el.extra_rows || []).forEach((r) => scan(r.cells))
     return {
-      sym, name, icon,
+      sym, name, icon, iconFallback,
       value: g?.v != null ? fmt(g.v) : (m?.value != null ? fmt(m.value) : '—'),
       desc: (g ? (lang === 'fr' ? g.dFr : g.dEn) : '') || '',
       source,
@@ -129,12 +132,12 @@ export default function Elements() {
         background: c.bg, padding: '8px 8px 9px', textAlign: 'center', transition: 'transform .15s',
       }}
     >
-      {!!c.icon && (
-        <img src={c.icon} alt="" loading="lazy" style={{
-          width: 34, height: 34, objectFit: 'contain', display: 'block', margin: '0 auto 5px',
-          filter: 'drop-shadow(0 3px 7px rgba(0,0,0,.6))',
-        }} />
-      )}
+      <ItemImg
+        src={c.icon}
+        fallbackSrc={c.iconFallback}
+        size={34}
+        style={{ display: 'block', margin: '0 auto 5px', filter: 'drop-shadow(0 3px 7px rgba(0,0,0,.6))' }}
+      />
       <div style={{ fontFamily: mono, fontWeight: 700, fontSize: 15, color: '#fff', lineHeight: 1 }}>{c.sym}</div>
       {!!c.name && (
         <div style={{
@@ -173,7 +176,8 @@ export default function Elements() {
               background: 'rgba(10,14,28,.65)',
             }}>
               {sel.icon
-                ? <img src={sel.icon} alt={sel.name} style={{ width: 56, height: 56, objectFit: 'contain', filter: 'drop-shadow(0 6px 14px rgba(0,0,0,.65))' }} />
+                ? <ItemImg src={sel.icon} alt={sel.name} fallbackSrc={sel.iconFallback} size={56}
+                    style={{ filter: 'drop-shadow(0 6px 14px rgba(0,0,0,.65))' }} />
                 : <span style={{ fontFamily: mono, fontWeight: 700, fontSize: 26, color: '#fff' }}>{sel.sym}</span>}
             </div>
 

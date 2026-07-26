@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useAtlas } from '../lib/store'
 import { fmt, norm } from '../lib/util'
 import SectionHeader from '../components/SectionHeader'
+import ItemImg from '../components/ItemImg'
 
 const mono = "'Space Mono',monospace"
 
@@ -64,7 +65,7 @@ export default function Recipes() {
           color: hl ? '#ffd98a' : '#dbe4ff', fontSize: 12,
         }}
       >
-        {!!icon && <img src={icon} alt="" loading="lazy" style={{ width: 17, height: 17, objectFit: 'contain' }} />}
+        <ItemImg src={icon} size={17} />
         {rcName(id)} <span style={{ fontFamily: mono, fontSize: 10, color: '#8b97ba' }}>×{x[1] || 1}</span>
       </button>
     )
@@ -107,7 +108,7 @@ export default function Recipes() {
                 borderRadius: 18, border: '1px solid rgba(120,150,220,.22)', background: 'rgba(120,150,220,.07)',
                 color: '#dbe4ff', fontSize: 12.5,
               }}>
-                {!!c.icon && <img src={c.icon} alt="" loading="lazy" style={{ width: 17, height: 17, objectFit: 'contain' }} />}
+                <ItemImg src={c.icon} size={17} />
                 {c.label}
               </button>
             )
@@ -129,7 +130,7 @@ export default function Recipes() {
                   borderRadius: 11, border: '1px solid rgba(120,150,220,.2)', background: 'rgba(16,22,44,.55)',
                   color: '#dbe4ff', fontSize: 13, fontWeight: 500,
                 }}>
-                  {!!c.icon && <img src={c.icon} alt="" loading="lazy" style={{ width: 20, height: 20, objectFit: 'contain' }} />}
+                  <ItemImg src={c.icon} size={20} />
                   {c.label}
                 </button>
               )
@@ -155,7 +156,7 @@ export default function Recipes() {
                   width: 58, height: 58, display: 'flex', alignItems: 'center', justifyContent: 'center',
                   border: '1px solid rgba(232,194,74,.35)', borderRadius: 12, background: 'rgba(10,14,28,.65)',
                 }}>
-                  <img src={selIcon} alt={rcName(sel)} style={{ width: 42, height: 42, objectFit: 'contain' }} />
+                  <ItemImg src={selIcon} alt={rcName(sel)} size={42} />
                 </div>
               )}
               <div>
@@ -234,7 +235,7 @@ export default function Recipes() {
                           borderRadius: 9, border: '1px solid rgba(139,240,160,.3)', background: 'rgba(87,198,106,.08)',
                           color: '#bfe6d4', fontSize: 12,
                         }}>
-                          {!!oicon && <img src={oicon} alt="" loading="lazy" style={{ width: 17, height: 17, objectFit: 'contain' }} />}
+                          <ItemImg src={oicon} size={17} />
                           {rcName(oid)} <span style={{ fontFamily: mono, fontSize: 10, color: '#8b97ba' }}>×{(r.o || [])[1] || 1}</span>
                         </button>
                       </div>

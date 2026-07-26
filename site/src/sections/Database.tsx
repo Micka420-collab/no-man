@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useAtlas, type SortKey } from '../lib/store'
 import { fmt, norm } from '../lib/util'
 import SectionHeader from '../components/SectionHeader'
+import ItemImg from '../components/ItemImg'
 
 const mono = "'Space Mono',monospace"
 const GRID = '52px 1.3fr 1fr 132px 52px'
@@ -203,7 +204,7 @@ export default function Database() {
                 }}
               >
                 <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '6px 0' }}>
-                  {!!r.icon && <img src={r.icon} alt="" loading="lazy" style={{ width: 30, height: 30, objectFit: 'contain' }} />}
+                  <ItemImg src={r.icon} size={30} />
                 </span>
                 <span style={{
                   padding: '9px 10px', color: '#e8edfb', fontSize: 13.5, fontWeight: 600, minWidth: 0,

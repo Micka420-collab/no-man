@@ -82,7 +82,8 @@ export default function Viewer3D({ kind, type, accent, activeParts, mode, height
     const envRT = pmrem.fromScene(new RoomEnvironment(), 0.04)
     scene.environment = envRT.texture
     // the generated room is a bright studio — dial it back so it reads as reflection, not floodlight
-    scene.environmentIntensity = 0.3
+    // (0.42: assez pour que le clearcoat des coques accroche des reflets, sans délaver les couleurs)
+    scene.environmentIntensity = 0.42
 
     scene.add(new THREE.HemisphereLight(0x8ab4ff, 0x0a0f1c, 0.28))
     const key = new THREE.DirectionalLight(0xffffff, 1.7)
@@ -188,6 +189,11 @@ export default function Viewer3D({ kind, type, accent, activeParts, mode, height
         if (holo) {
           mat.userData.savedColor ??= mat.color.getHex()
           mat.userData.savedEmissive ??= mat.emissive.getHex()
+          // les cartes de plaques/rugosité saliraient le fil de fer : on les retire en holo
+          if (!mat.userData.savedMaps) {
+            mat.userData.savedMaps = { map: mat.map, rough: mat.roughnessMap, bump: mat.bumpMap }
+            mat.map = null; mat.roughnessMap = null; mat.bumpMap = null
+          }
           mat.color.set(0x5fd0e0)
           mat.emissive.set(0x2e6f80)
           mat.transparent = true
@@ -195,6 +201,12 @@ export default function Viewer3D({ kind, type, accent, activeParts, mode, height
         } else if (mat.userData.savedColor != null) {
           mat.color.setHex(mat.userData.savedColor)
           mat.emissive.setHex(mat.userData.savedEmissive)
+          if (mat.userData.savedMaps) {
+            mat.map = mat.userData.savedMaps.map
+            mat.roughnessMap = mat.userData.savedMaps.rough
+            mat.bumpMap = mat.userData.savedMaps.bump
+            delete mat.userData.savedMaps
+          }
           mat.transparent = false
           mat.opacity = 1
         }

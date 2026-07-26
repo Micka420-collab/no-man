@@ -72,6 +72,8 @@ export interface ElementsData {
 export interface MarketItem {
   id: string; name_fr?: string; name_en?: string; value?: number; icon?: string
   group_fr?: string; group_en?: string; cat?: string
+  /** every catalogued item is priced in credits today, but the data names the currency per item */
+  currency?: string
 }
 export interface FishItem {
   name_en: string; name_fr?: string
@@ -86,8 +88,14 @@ export interface CommunityData {
   top_week?: RedditPost[]; hot?: RedditPost[]; coordinates?: RedditPost[]; french?: RedditPost[]
 }
 
-export interface NewsItem { title: string; url: string; date: string; source?: string; excerpt?: string }
-export interface VideoItem { title: string; url: string; channel?: string; thumbnail?: string; views?: number }
+export interface NewsItem {
+  title: string; url: string; date: string; source?: string; excerpt?: string
+  /** true for Hello Games' own community announcements, false for third-party press */
+  is_official?: boolean
+}
+export interface VideoItem {
+  title: string; url: string; channel?: string; thumbnail?: string; views?: number; date?: string
+}
 export interface Achievement { percent: number; name: string; desc: string; name_en?: string; desc_en?: string }
 export interface Challenge { id: string; icon: string; diff: number; fr: string; en: string }
 

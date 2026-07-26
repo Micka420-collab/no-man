@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useAtlas } from '../lib/store'
 import { fmt, rawIconFallback } from '../lib/util'
 import SectionHeader from '../components/SectionHeader'
@@ -118,6 +118,33 @@ export default function Elements() {
       famLabel: ctx.famLabel || '', color: ctx.color || '#5fd0e0', prod, used,
     }
   }, [state.elSel, state.elCtx, marketMap, sub, lang, rcIcon, rcName, data, el])
+
+  /**
+   * The 17 columns are wider than the page at every viewport, so the strip scrolls sideways.
+   * Without a cue the cut-off column just looks clipped, so each end fades while there is more
+   * to reach — and the fade disappears once you get there.
+   */
+  const strip = useRef<HTMLDivElement>(null)
+  const [edges, setEdges] = useState({ left: false, right: false })
+  const syncEdges = useCallback(() => {
+    const n = strip.current
+    if (!n) return
+    const max = n.scrollWidth - n.clientWidth
+    setEdges({ left: n.scrollLeft > 4, right: n.scrollLeft < max - 4 })
+  }, [])
+  useEffect(() => {
+    syncEdges()
+    window.addEventListener('resize', syncEdges)
+    return () => window.removeEventListener('resize', syncEdges)
+  }, [syncEdges, columns.length])
+
+  const fade = (side: 'left' | 'right', on: boolean) => (
+    <div aria-hidden="true" style={{
+      position: 'absolute', top: 0, bottom: 0, [side]: 0, width: 44, pointerEvents: 'none',
+      opacity: on ? 1 : 0, transition: 'opacity .2s',
+      background: `linear-gradient(to ${side}, rgba(6,9,20,.92), rgba(6,9,20,0))`,
+    }} />
+  )
 
   const cellTile = (c: ReturnType<typeof cellVM>, color: string, key: string) => (
     <div
@@ -259,19 +286,26 @@ export default function Elements() {
         ))}
       </div>
 
-      <div className="nms-scroll" style={{
-        display: 'flex', gap: 8, overflowX: 'auto', padding: '24px 0 14px', alignItems: 'flex-start',
-      }}>
-        {columns.map((col, ci) => (
-          <div key={ci} style={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', gap: 7, minWidth: 96 }}>
-            <div style={{
-              fontFamily: mono, fontSize: 9.5, letterSpacing: '.06em', color: col.color, textAlign: 'center',
-              height: 26, display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1.05,
-            }}>{col.head}</div>
-            {col.cells.map((c, i) => cellTile(c, col.color, ci + '-' + i))}
-          </div>
-        ))}
+      <div style={{ position: 'relative' }}>
+        <div ref={strip} className="nms-scroll" onScroll={syncEdges} style={{
+          display: 'flex', gap: 8, overflowX: 'auto', padding: '24px 0 14px', alignItems: 'flex-start',
+        }}>
+          {columns.map((col, ci) => (
+            <div key={ci} style={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', gap: 7, minWidth: 96 }}>
+              <div style={{
+                fontFamily: mono, fontSize: 9.5, letterSpacing: '.06em', color: col.color, textAlign: 'center',
+                height: 26, display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1.05,
+              }}>{col.head}</div>
+              {col.cells.map((c, i) => cellTile(c, col.color, ci + '-' + i))}
+            </div>
+          ))}
+        </div>
+        {fade('left', edges.left)}
+        {fade('right', edges.right)}
       </div>
+      {edges.right && (
+        <div style={{ fontFamily: mono, fontSize: 10, color: '#57628a' }}>{L.el_scroll}</div>
+      )}
 
       {extraSections.map((sec) => (
         <div key={sec.key} style={{ marginTop: 22 }}>

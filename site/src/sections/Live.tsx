@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useAtlas } from '../lib/store'
 import { fmt } from '../lib/util'
 import SectionHeader from '../components/SectionHeader'
@@ -9,23 +9,34 @@ const mono = "'Space Mono',monospace"
 
 export default function Live() {
   const { state, data, L, lang, date } = useAtlas()
+  const [allAch, setAllAch] = useState(false)
+  const [allPatch, setAllPatch] = useState(false)
 
   const live = useMemo(() => {
-    const pts = (data.stats_history?.points || []).map((p) => p.players)
+    const raw = data.stats_history?.points || []
+    const pts = raw.map((p) => p.players)
     let spark: {
-      hasData: boolean; path?: string; area?: string; endX?: number; endY?: number; min?: string; max?: string
+      hasData: boolean; path?: string; area?: string; endX?: number; endY?: number
+      min?: string; max?: string; from?: string; to?: string
     } = { hasData: false }
     if (pts.length > 1) {
       const W = 560, H = 92, pad = 8
       const mn = Math.min.apply(null, pts), mx = Math.max.apply(null, pts)
       const rng = mx - mn || 1
-      const xs = pts.map((_, i) => +((i / (pts.length - 1)) * W).toFixed(1))
+      // each point carries its own timestamp, and the sampling is not perfectly regular — placing
+      // them by time rather than by index keeps a gap in the feed looking like a gap
+      const ts = raw.map((p) => new Date(p.t).getTime())
+      const t0 = ts[0], t1 = ts[ts.length - 1]
+      const span = t1 - t0
+      const usable = ts.every((t) => Number.isFinite(t)) && span > 0
+      const xs = ts.map((t, i) => +((usable ? (t - t0) / span : i / (pts.length - 1)) * W).toFixed(1))
       const ys = pts.map((v) => +(H - pad - ((v - mn) / rng) * (H - 2 * pad)).toFixed(1))
       let path = 'M' + xs[0] + ' ' + ys[0]
       for (let i = 1; i < xs.length; i++) path += ' L' + xs[i] + ' ' + ys[i]
       spark = {
         hasData: true, path, area: path + ' L' + W + ' ' + H + ' L0 ' + H + ' Z',
         endX: xs[xs.length - 1], endY: ys[ys.length - 1], min: fmt(mn), max: fmt(mx),
+        from: usable ? date(raw[0].t) : '', to: usable ? date(raw[raw.length - 1].t) : '',
       }
     }
 
@@ -58,26 +69,43 @@ export default function Live() {
     }))
 
     const cm = data.community || {}
-    const ach = (data.achievements?.items || []).slice().sort((a, b) => b.percent - a.percent).slice(0, 10)
+    // rarest last: the tail is the interesting part, so the full list is one click away
+    const ach = (data.achievements?.items || []).slice().sort((a, b) => b.percent - a.percent)
       .map((a) => ({
         name: lang === 'fr' ? a.name : (a.name_en || a.name),
         desc: lang === 'fr' ? a.desc : (a.desc_en || a.desc),
         pct: a.percent + '%', bar: Math.max(3, a.percent) + '%',
       }))
 
-    const patch = (data.official?.items || []).slice(0, 7)
+    const patch = (data.official?.items || [])
       .map((p) => ({ title: p.title, date: p.date, excerpt: p.excerpt, url: p.url }))
 
     const s = data.stats || {}
+    const rev = s.reviews || {}
     return {
       spark, chal, rally,
       communaute: feed(cm.top_week, 9), coords: feed(cm.coordinates, 8), french: feed(cm.french, 7),
       ach, patch,
       peak24: fmt(s.peak_24h), peakAll: fmt(s.peak_all),
-      reviewsPct: s.reviews?.percent_positive != null ? s.reviews.percent_positive + '%' : '—',
+      reviewsPct: rev.percent_positive != null ? rev.percent_positive + '%' : '—',
+      reviewsSub: rev.total != null
+        ? fmt(rev.positive) + ' / ' + fmt(rev.total) + (lang === 'fr' ? ' avis' : ' reviews')
+        : '',
       updatedStr: (lang === 'fr' ? 'MAJ ' : 'UPD ') + date(s.updated_at),
     }
   }, [data, lang, date])
+
+  const ACH_PREVIEW = 10, PATCH_PREVIEW = 7
+  const achShown = allAch ? live.ach : live.ach.slice(0, ACH_PREVIEW)
+  const patchShown = allPatch ? live.patch : live.patch.slice(0, PATCH_PREVIEW)
+
+  const moreBtn = (label: string, color: string, onClick: () => void) => (
+    <button className="hv-cyan-border" onClick={onClick} style={{
+      cursor: 'pointer', marginTop: 12, width: '100%', padding: '9px 0', borderRadius: 9,
+      border: '1px solid rgba(120,150,220,.22)', background: 'rgba(120,150,220,.07)',
+      color, fontFamily: mono, fontSize: 11, letterSpacing: '.06em',
+    }}>{label}</button>
+  )
 
   const feedCard = (title: string, color: string, sub: string, rows: { title: string; author: string; date: string; url: string }[], size = 12.5) => (
     <div style={{
@@ -151,19 +179,27 @@ export default function Live() {
                 color: '#6b78a0', marginTop: 2,
               }}>
                 <span>{L.dr_min} {live.spark.min}</span>
+                {!!live.spark.from && <span>{live.spark.from} → {live.spark.to}</span>}
                 <span>{L.dr_max} {live.spark.max}</span>
               </div>
             </>
           )}
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 9, marginTop: 14 }}>
-            {[[L.peak24, live.peak24, '#e8edfb'], [L.peakall, live.peakAll, '#e8edfb'], [L.positivity, live.reviewsPct, '#8bf0a0']].map(([k, v, c]) => (
+            {[
+              [L.peak24, live.peak24, '#e8edfb', ''],
+              [L.peakall, live.peakAll, '#e8edfb', ''],
+              [L.positivity, live.reviewsPct, '#8bf0a0', live.reviewsSub],
+            ].map(([k, v, c, sub]) => (
               <div key={k} style={{
                 border: '1px solid rgba(120,150,220,.14)', borderRadius: 9, padding: '9px 10px',
                 background: 'rgba(10,14,28,.5)',
               }}>
                 <div style={{ fontFamily: mono, fontSize: 8.5, letterSpacing: '.14em', color: '#6b78a0' }}>{k}</div>
                 <div style={{ fontWeight: 700, fontSize: 16, color: c, marginTop: 2 }}>{v}</div>
+                {!!sub && (
+                  <div style={{ fontFamily: mono, fontSize: 8.5, color: '#6b78a0', marginTop: 2 }}>{sub}</div>
+                )}
               </div>
             ))}
           </div>
@@ -226,7 +262,7 @@ export default function Live() {
           <div style={{ fontFamily: mono, fontSize: 10, letterSpacing: '.2em', color: '#5fd0e0' }}>{L.dr_ach}</div>
           <div style={{ fontSize: 11.5, color: '#6b78a0', marginTop: 5 }}>{L.dr_ach_sub}</div>
           <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 11 }}>
-            {live.ach.map((a, i) => (
+            {achShown.map((a, i) => (
               <div key={i}>
                 <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 10 }}>
                   <span style={{ color: '#dbe4ff', fontSize: 13, fontWeight: 600 }}>{a.name}</span>
@@ -243,6 +279,11 @@ export default function Live() {
               </div>
             ))}
           </div>
+          {live.ach.length > ACH_PREVIEW && moreBtn(
+            allAch ? L.show_less : '+ ' + fmt(live.ach.length - ACH_PREVIEW) + ' ' + L.dr_ach_more,
+            '#5fd0e0',
+            () => setAllAch((v) => !v),
+          )}
         </div>
 
         <div style={{
@@ -251,7 +292,7 @@ export default function Live() {
         }}>
           <div style={{ fontFamily: mono, fontSize: 10, letterSpacing: '.2em', color: '#ffb347' }}>{L.dr_patch}</div>
           <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 2 }}>
-            {live.patch.map((p, i) => (
+            {patchShown.map((p, i) => (
               <a key={i} href={p.url} target="_blank" rel="noopener" style={{
                 display: 'block', padding: '11px 0', borderBottom: '1px solid rgba(120,150,220,.07)',
               }}>
@@ -266,6 +307,11 @@ export default function Live() {
               </a>
             ))}
           </div>
+          {live.patch.length > PATCH_PREVIEW && moreBtn(
+            allPatch ? L.show_less : '+ ' + fmt(live.patch.length - PATCH_PREVIEW) + ' ' + L.dr_patch_more,
+            '#ffb347',
+            () => setAllPatch((v) => !v),
+          )}
         </div>
       </div>
     </section>

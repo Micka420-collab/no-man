@@ -7,6 +7,12 @@ import ItemImg from '../components/ItemImg'
 const mono = "'Space Mono',monospace"
 const GRID = '52px 1.3fr 1fr 132px 52px'
 
+/**
+ * Unit shown after a value. Everything catalogued today is priced in credits, but the data names
+ * the currency per item, so the label follows it rather than being hardcoded.
+ */
+const UNIT: Record<string, string> = { Credits: 'u', Nanites: '⬡', Quicksilver: '✦' }
+
 const CAT_LABELS: Record<string, [string, string]> = {
   all: ['Tout', 'All'],
   raw: ['Matériaux bruts', 'Raw materials'],
@@ -33,7 +39,7 @@ export default function Database() {
   const catLabel = (k: string) => (CAT_LABELS[k] || CAT_LABELS.all)[lang === 'fr' ? 0 : 1]
 
   const all = useMemo(() => {
-    const rows: { id: string; cls: string; name: string; icon: string; value: number | null; group: string; key: string }[] = []
+    const rows: { id: string; cls: string; name: string; icon: string; value: number | null; unit: string; group: string; key: string }[] = []
     const seen: Record<string, 1> = {}
     Object.keys(itemsMap).forEach((id) => {
       seen[id] = 1
@@ -45,6 +51,7 @@ export default function Database() {
         name: (lang === 'fr' ? it.fr : it.en) || it.fr || id,
         icon: it.icon || m?.icon || '',
         value: m?.value != null ? m.value : (it.v != null ? it.v : null),
+        unit: UNIT[m?.currency || 'Credits'] || 'u',
         group: (m ? (lang === 'fr' ? m.group_fr : m.group_en) : '') || catLabel(cls),
         key: '',
       })
@@ -58,6 +65,7 @@ export default function Database() {
         name: (lang === 'fr' ? m.name_fr : m.name_en) || id,
         icon: m.icon || '',
         value: m.value != null ? m.value : null,
+        unit: UNIT[m.currency || 'Credits'] || 'u',
         group: (lang === 'fr' ? m.group_fr : m.group_en) || catLabel(cls),
         key: '',
       })
@@ -75,6 +83,7 @@ export default function Database() {
         name: (lang === 'fr' ? f.name_fr : f.name_en) || f.name_en,
         icon: f.icon || '',
         value: f.value != null ? f.value : null,
+        unit: 'u',
         group: [lang === 'fr' ? (qualityFr[quality] || quality) : quality, f.size].filter(Boolean).join(' · ')
           || catLabel('fish'),
         key: '',
@@ -216,7 +225,7 @@ export default function Database() {
                 }}>{r.group}</span>
                 <span style={{
                   padding: '9px 10px', textAlign: 'right', fontFamily: mono, fontSize: 12.5, color: '#e8c24a',
-                }}>{r.value != null ? fmt(r.value) : '—'} <span style={{ color: '#7a6a3a', fontSize: 9 }}>u</span></span>
+                }}>{r.value != null ? fmt(r.value) : '—'} <span style={{ color: '#7a6a3a', fontSize: 9 }}>{r.unit}</span></span>
                 <button
                   onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFav(r.id) }}
                   aria-label="Favori"

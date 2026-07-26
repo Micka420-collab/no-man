@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useAtlas } from '../lib/store'
 import { daysBetween, fmt, fmtViews } from '../lib/util'
 import { LivePip } from '../components/TopBar'
+import Thumb from '../components/Thumb'
 
 const mono = "'Space Mono',monospace"
 
@@ -59,11 +60,17 @@ export default function Home() {
 
     const vids = (data.videos?.items || []).slice(0, 4).map((v) => ({
       title: v.title, channel: v.channel, thumb: v.thumbnail, url: v.url, views: fmtViews(v.views),
+      date: v.date ? date(v.date) : '',
     }))
 
-    const news = (data.news?.items || []).slice(0, 4).map((n) => ({
-      title: n.title, source: n.source, excerpt: n.excerpt, date: date(n.date), url: n.url,
-    }))
+    // Hello Games' own announcements lead, then the press — the feed mixes the two
+    const news = (data.news?.items || []).slice()
+      .sort((a, b) => Number(!!b.is_official) - Number(!!a.is_official))
+      .slice(0, 4)
+      .map((n) => ({
+        title: n.title, source: n.source, excerpt: n.excerpt, date: date(n.date), url: n.url,
+        official: !!n.is_official,
+      }))
 
     return {
       peak24: fmt(s.peak_24h), peakAll: fmt(s.peak_all),
@@ -300,7 +307,7 @@ export default function Home() {
                     position: 'relative', flex: '0 0 108px', height: 61, borderRadius: 8, overflow: 'hidden',
                     background: '#0a0f1f', border: '1px solid rgba(120,150,220,.14)',
                   }}>
-                    <img src={v.thumb} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    <Thumb src={v.thumb} />
                     <span style={{
                       position: 'absolute', right: 5, bottom: 5, fontFamily: mono, fontSize: 9, color: '#fff',
                       background: 'rgba(0,0,0,.7)', padding: '1px 5px', borderRadius: 4,
@@ -311,7 +318,9 @@ export default function Home() {
                       color: '#dbe4ff', fontSize: 13, lineHeight: 1.35, fontWeight: 500, overflow: 'hidden',
                       textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
                     }}>{v.title}</span>
-                    <span style={{ display: 'block', fontFamily: mono, fontSize: 10, color: '#6b78a0', marginTop: 4 }}>{v.channel}</span>
+                    <span style={{ display: 'block', fontFamily: mono, fontSize: 10, color: '#6b78a0', marginTop: 4 }}>
+                      {v.channel}{v.date ? ' · ' + v.date : ''}
+                    </span>
                   </span>
                 </a>
               ))}
@@ -333,7 +342,18 @@ export default function Home() {
                 display: 'block', border: '1px solid rgba(120,150,220,.12)', borderRadius: 12,
                 padding: '15px 16px', background: 'rgba(10,14,28,.45)',
               }}>
-                <div style={{ fontFamily: mono, fontSize: 10, letterSpacing: '.1em', color: '#ffb347' }}>{n.source} · {n.date}</div>
+                <div style={{
+                  display: 'flex', alignItems: 'center', gap: 7, flexWrap: 'wrap',
+                  fontFamily: mono, fontSize: 10, letterSpacing: '.1em', color: '#ffb347',
+                }}>
+                  {n.official && (
+                    <span style={{
+                      color: '#8bf0a0', border: '1px solid rgba(139,240,160,.4)', borderRadius: 4,
+                      padding: '1px 5px', fontSize: 8.5, letterSpacing: '.12em',
+                    }}>{L.press_official}</span>
+                  )}
+                  <span>{n.source} · {n.date}</span>
+                </div>
                 <div style={{ color: '#dbe4ff', fontSize: 14, fontWeight: 600, marginTop: 8, lineHeight: 1.35 }}>{n.title}</div>
                 <div style={{
                   color: '#8b97ba', fontSize: 12, marginTop: 7, lineHeight: 1.5, overflow: 'hidden',

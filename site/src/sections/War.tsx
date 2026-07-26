@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useAtlas } from '../lib/store'
 import { fmtViews } from '../lib/util'
+import Thumb from '../components/Thumb'
 
 const mono = "'Space Mono',monospace"
 
@@ -36,8 +37,12 @@ export default function War() {
     const trailer = vids.find((v) => /swarm trailer/i.test(v.title)) || vids.find((v) => /swarm/i.test(v.title))
     const news = (data.news?.items || [])
       .filter((n) => /swarm|hive/i.test((n.title || '') + ' ' + (n.excerpt || '')))
+      // Hello Games' own announcements outrank third-party coverage of the same event
+      .sort((a, b) => Number(!!b.is_official) - Number(!!a.is_official))
       .slice(0, 4)
-      .map((n) => ({ title: n.title, source: n.source, date: date(n.date), url: n.url }))
+      .map((n) => ({
+        title: n.title, source: n.source, date: date(n.date), url: n.url, official: !!n.is_official,
+      }))
 
     return {
       name: liveEvent?.name || sw.name || 'The Swarm',
@@ -130,9 +135,7 @@ export default function War() {
             background: 'rgba(9,12,26,.5)',
           }}>
             <div style={{ position: 'relative', aspectRatio: '16/9', background: '#0a0f1f' }}>
-              <img src={war.trailer.thumb} alt="" loading="lazy" style={{
-                width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-              }} />
+              <Thumb src={war.trailer.thumb} />
               <div style={{
                 position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
                 background: 'radial-gradient(circle,rgba(0,0,0,.25),rgba(0,0,0,.5))',
@@ -170,8 +173,17 @@ export default function War() {
                 display: 'block', padding: '11px 0', borderBottom: '1px solid rgba(120,150,220,.07)',
               }}>
                 <div style={{
+                  display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap',
                   fontFamily: mono, fontSize: 9.5, letterSpacing: '.08em', color: '#ffb347',
-                }}>{n.source} · {n.date}</div>
+                }}>
+                  {n.official && (
+                    <span style={{
+                      color: '#8bf0a0', border: '1px solid rgba(139,240,160,.4)', borderRadius: 4,
+                      padding: '1px 5px', fontSize: 8.5,
+                    }}>{L.press_official}</span>
+                  )}
+                  <span>{n.source} · {n.date}</span>
+                </div>
                 <div style={{
                   color: '#dbe4ff', fontSize: 13, fontWeight: 600, marginTop: 5, lineHeight: 1.35,
                 }}>{n.title}</div>

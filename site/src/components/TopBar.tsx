@@ -49,7 +49,7 @@ export default function TopBar() {
         }}
       >
         ⌕ <span className="nms-topbar-tag">{L.se_btn}</span>
-        <span style={{
+        <span className="nms-kbd-hint" style={{
           border: '1px solid rgba(120,150,220,.25)', borderRadius: 5, padding: '1px 6px',
           fontSize: 9.5, color: '#6b78a0',
         }}>⌘K</span>

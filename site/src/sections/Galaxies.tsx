@@ -90,7 +90,7 @@ export default function Galaxies() {
               resetToken={resetToken}
               lang={lang}
             />
-            <div style={{
+            <div className="nms-canvas-hint" style={{
               position: 'absolute', left: 12, bottom: 12, display: 'flex', alignItems: 'center', gap: 10,
               pointerEvents: 'none',
             }}>

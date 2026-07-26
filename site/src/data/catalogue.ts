@@ -1,15 +1,13 @@
-import type { Lang } from '../types'
-
 /**
- * Technology catalogue for the multi-tool and starship workshops.
+ * Curated metadata for the workshop technology families.
  *
- * Names, families and slot rules follow the game. Nanite prices and bonus percentages are
- * community-observed *ranges*: in No Man's Sky every upgrade module rolls random stats inside a
- * class-dependent window, and Hello Games does not publish the exact tables — the UI labels these
- * values as estimates rather than presenting them as exact.
+ * The *content* — technology names, descriptions, nanite prices and item icons — is not written
+ * here: it comes from `public/data/workshop.json`, generated from `data/catalogue.json` in the
+ * source repo (itself sourced from the community Assistant NMS dataset). This file only carries
+ * what the game data does not model: which family a technology belongs to on the bench, the colour
+ * and glyph used in the UI, the part of the 3D model it sits on, and which stat it drives.
  *
- * If `data/catalogue.json` (generated in the source repo) is ever dropped into `public/data/`,
- * `resolveIcon()` in the workshop picks up the real item icons automatically.
+ * See `lib/workshopData.ts` for the resolver that joins the two.
  */
 
 export type ClassKey = 'C' | 'B' | 'A' | 'S' | 'X'
@@ -23,41 +21,18 @@ export type PartKey = 'barrel' | 'scope' | 'grip' | 'core' | 'engine' | 'wing' |
 
 export interface Range { min: number; max: number }
 
-export interface Tier {
-  cl: ClassKey
-  /** typical nanite price at a tech merchant */
-  nanites: Range
-  /** typical bonus applied to the family's primary stat, in % */
-  bonus: Range
-}
-
-export interface CoreTech {
-  id: string
-  fr: string
-  en: string
-  dFr: string
-  dEn: string
-  part: PartKey
-  /** how you obtain it in game */
-  srcFr: string
-  srcEn: string
-}
-
-export interface Family {
+export interface FamilyMeta {
   key: string
-  emoji: string
-  /** 24×24 stroke path — the in-inventory technology glyph */
+  /** 24×24 stroke path — drawn until the real item icon loads */
   glyph: string
   color: string
+  /** fallback family label when workshop.json is unavailable */
   fr: string
   en: string
   part: PartKey
   primary: StatKey
   /** extra stats the family contributes to, at half weight */
   secondary?: StatKey[]
-  core: CoreTech[]
-  /** null when the family has no upgrade modules (unique technologies) */
-  module: { fr: string; en: string; tiers: Tier[] } | null
 }
 
 export const STAT_LABEL: Record<StatKey, [string, string]> = {
@@ -86,428 +61,115 @@ export const AVAILABILITY: Record<ClassKey, [string, string]> = {
   X: ['Station hors-la-loi · stats aléatoires', 'Outlaw station · random stats'],
 }
 
-/** Weapon-grade module tiers (damage-oriented families). */
-const WEAPON_TIERS: Tier[] = [
-  { cl: 'C', nanites: { min: 80, max: 160 }, bonus: { min: 4, max: 9 } },
-  { cl: 'B', nanites: { min: 150, max: 320 }, bonus: { min: 8, max: 14 } },
-  { cl: 'A', nanites: { min: 320, max: 600 }, bonus: { min: 13, max: 19 } },
-  { cl: 'S', nanites: { min: 600, max: 1000 }, bonus: { min: 17, max: 24 } },
-  { cl: 'X', nanites: { min: 400, max: 900 }, bonus: { min: 2, max: 26 } },
-]
+/**
+ * Module ids come in blocks of four (C, B, A, S) followed by the "suspicious" X variant — the
+ * nanite price attached to each id in the game data confirms the order (60 / 140 / 300 / 480).
+ */
+export const TIER_ORDER: ClassKey[] = ['C', 'B', 'A', 'S', 'X']
 
-/** Utility/mobility module tiers — cheaper, smaller windows. */
-const UTIL_TIERS: Tier[] = [
-  { cl: 'C', nanites: { min: 60, max: 130 }, bonus: { min: 3, max: 7 } },
-  { cl: 'B', nanites: { min: 130, max: 260 }, bonus: { min: 6, max: 11 } },
-  { cl: 'A', nanites: { min: 260, max: 500 }, bonus: { min: 10, max: 16 } },
-  { cl: 'S', nanites: { min: 500, max: 900 }, bonus: { min: 15, max: 21 } },
-  { cl: 'X', nanites: { min: 350, max: 800 }, bonus: { min: 2, max: 23 } },
-]
+/**
+ * Bonus windows per class, in %. The game data carries prices but not the stat rolls: every module
+ * rolls random stats inside a class-dependent window that Hello Games does not publish, so these
+ * stay community-observed estimates and the UI labels them as such.
+ */
+export const TIER_BONUS: Record<ClassKey, Range> = {
+  C: { min: 4, max: 9 },
+  B: { min: 8, max: 14 },
+  A: { min: 13, max: 19 },
+  S: { min: 17, max: 24 },
+  X: { min: 2, max: 26 },
+}
+
+/** Per-technology 3D anchor override, where the family default would be wrong. */
+export const PART_OVERRIDE: Record<string, PartKey> = {
+  tech62: 'scope',   // Analysis Visor
+  tech63: 'scope',   // Scanner
+  tech64: 'scope',   // Waveform Recycler
+  tech65: 'scope',   // Survey Device
+  tech66: 'barrel',  // Terrain Manipulator
+  tech67: 'grip',    // Personal Forcefield
+  tech204: 'grip',   // Cloaking Device
+  tech249: 'barrel', // Runic Lens
+  tech28: 'hull',    // Teleport Receiver
+  tech39: 'hull',    // Economy Scanner
+  tech40: 'hull',    // Conflict Scanner
+}
 
 // ─────────────────────────────── MULTI-TOOL ───────────────────────────────
 
-export const TOOL_FAMILIES: Family[] = [
-  {
-    key: 'mining', emoji: '⛏️', glyph: 'M4 20 14 10M12 4l8 8M14 4l6 6M4 20l2.5-.5.5-2.5',
-    color: '#e0a13a', fr: "Rayon d'extraction", en: 'Mining Beam',
+export const TOOL_META: FamilyMeta[] = [
+  { key: 'mining', color: '#e0a13a', fr: "Rayon d'extraction", en: 'Mining Beam',
     part: 'barrel', primary: 'mine', secondary: ['reach'],
-    core: [
-      { id: 'mining-beam', fr: "Rayon d'extraction", en: 'Mining Beam', part: 'barrel',
-        dFr: "Le laser de base : extrait ressources et minerais, chauffe puis se coupe s'il n'est pas géré.",
-        dEn: 'The base laser: harvests resources and ore, overheats and cuts out if mismanaged.',
-        srcFr: 'Installé d’origine', srcEn: 'Installed by default' },
-      { id: 'advanced-mining', fr: "Laser d'extraction avancé", en: 'Advanced Mining Laser', part: 'barrel',
-        dFr: 'Augmente fortement le rendement de minage et réduit la surchauffe.',
-        dEn: 'Sharply raises mining yield and reduces overheating.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-      { id: 'optical-drill', fr: 'Foreuse optique', en: 'Optical Drill', part: 'barrel',
-        dFr: 'Rendement supplémentaire sur chaque dépôt miné.',
-        dEn: 'Extra yield from every deposit mined.',
-        srcFr: 'Plan · Anomalie spatiale', srcEn: 'Blueprint · Space Anomaly' },
-      { id: 'runic-lens', fr: 'Lentille runique', en: 'Runic Lens', part: 'barrel',
-        dFr: 'Lentille d’origine atlantide : bonus de minage majeur, exige du multi-outil de classe supérieure.',
-        dEn: 'Atlantid lens: major mining bonus, wants a higher-class tool.',
-        srcFr: 'Plan · récompense d’expédition', srcEn: 'Blueprint · expedition reward' },
-    ],
-    module: { fr: "Module d'extraction", en: 'Mining Upgrade', tiers: UTIL_TIERS },
-  },
-  {
-    key: 'scanner', emoji: '📡', glyph: 'M12 20a8 8 0 0 1 0-16M12 17a5 5 0 0 1 0-10M12 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M16 6l4-2M16 18l4 2',
-    color: '#5fd0e0', fr: 'Scanner', en: 'Scanner',
+    glyph: 'M4 20 14 10M12 4l8 8M14 4l6 6M4 20l2.5-.5.5-2.5' },
+  { key: 'scanner', color: '#5fd0e0', fr: 'Scanner', en: 'Scanner',
     part: 'scope', primary: 'scan', secondary: ['reach'],
-    core: [
-      { id: 'scanner', fr: 'Scanner', en: 'Scanner', part: 'scope',
-        dFr: 'Impulsion qui révèle ressources, faune et points d’intérêt autour de toi.',
-        dEn: 'Pulse that reveals resources, fauna and points of interest around you.',
-        srcFr: 'Installé d’origine', srcEn: 'Installed by default' },
-      { id: 'analysis-visor', fr: "Visière d'analyse", en: 'Analysis Visor', part: 'scope',
-        dFr: 'Identifie faune, flore et minéraux — chaque découverte rapporte des unités.',
-        dEn: 'Identifies fauna, flora and minerals — each discovery pays units.',
-        srcFr: 'Installé d’origine', srcEn: 'Installed by default' },
-      { id: 'waveform-recycler', fr: "Recycleur d'ondes", en: 'Waveform Recycler', part: 'scope',
-        dFr: 'Réduit fortement le temps de recharge du scanner.',
-        dEn: 'Sharply cuts scanner recharge time.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-      { id: 'scanner-harmoniser', fr: 'Harmoniseur de scanner', en: 'Scanner Harmoniser', part: 'scope',
-        dFr: 'Augmente la portée du scanner et la valeur des découvertes.',
-        dEn: 'Boosts scanner range and discovery value.',
-        srcFr: 'Plan · Anomalie spatiale', srcEn: 'Blueprint · Space Anomaly' },
-      { id: 'survey-device', fr: 'Appareil de prospection', en: 'Survey Device', part: 'scope',
-        dFr: 'Traque un type de ressource précis et guide vers les enterrés.',
-        dEn: 'Tracks a chosen resource type and guides you to buried caches.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-    ],
-    module: { fr: 'Module de scanner', en: 'Scanner Upgrade', tiers: UTIL_TIERS },
-  },
-  {
-    key: 'boltcaster', emoji: '🔫', glyph: 'M3 12h11M17 9.5l4 2.5-4 2.5zM6 8v8M9.5 9v6',
-    color: '#ff7a1a', fr: 'Fulgurateur', en: 'Boltcaster',
+    glyph: 'M12 20a8 8 0 0 1 0-16M12 17a5 5 0 0 1 0-10M12 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M16 6l4-2M16 18l4 2' },
+  { key: 'boltcaster', color: '#ff7a1a', fr: 'Lance-foudre', en: 'Boltcaster',
     part: 'barrel', primary: 'dmg', secondary: ['rate'],
-    core: [
-      { id: 'boltcaster', fr: 'Fulgurateur', en: 'Boltcaster', part: 'barrel',
-        dFr: 'Arme automatique polyvalente, chargeur large, dégâts moyens.',
-        dEn: 'All-round automatic weapon, big clip, medium damage.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-      { id: 'barrel-ioniser', fr: 'Ioniseur de canon', en: 'Barrel Ioniser', part: 'barrel',
-        dFr: 'Améliore dégâts et précision du Fulgurateur.',
-        dEn: 'Improves Boltcaster damage and accuracy.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-      { id: 'ricochet-module-bc', fr: 'Module ricochet', en: 'Ricochet Module', part: 'barrel',
-        dFr: 'Les projectiles rebondissent sur les surfaces.',
-        dEn: 'Projectiles bounce off surfaces.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-    ],
-    module: { fr: 'Module de fulgurateur', en: 'Boltcaster Upgrade', tiers: WEAPON_TIERS },
-  },
-  {
-    key: 'scatter', emoji: '💥', glyph: 'M4 12h4M10 8.5l2.5-1M10 15.5l2.5 1M15 6.5l1.5-1M15 17.5l1.5 1M14 12h6M18 9l2 3-2 3',
-    color: '#f05a5a', fr: 'Fusil à dispersion', en: 'Scatter Blaster',
-    part: 'barrel', primary: 'dmg', secondary: [],
-    core: [
-      { id: 'scatter-blaster', fr: 'Fusil à dispersion', en: 'Scatter Blaster', part: 'barrel',
-        dFr: 'Fusil à pompe : dégâts énormes à bout portant, inutile à distance.',
-        dEn: 'Shotgun: enormous point-blank damage, useless at range.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-      { id: 'shell-greaser', fr: 'Graisseur de cartouches', en: 'Shell Greaser', part: 'barrel',
-        dFr: 'Accélère nettement le rechargement.',
-        dEn: 'Markedly speeds up reloading.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-    ],
-    module: { fr: 'Module de dispersion', en: 'Scatter Blaster Upgrade', tiers: WEAPON_TIERS },
-  },
-  {
-    key: 'spitter', emoji: '🔥', glyph: 'M3 12h5M11 12h2M16 12h2M20.5 12h.5M7 7.5l1.5 1M7 16.5l1.5-1',
-    color: '#ffb347', fr: 'Cracheur à impulsions', en: 'Pulse Spitter',
+    glyph: 'M3 12h11M17 9.5l4 2.5-4 2.5zM6 8v8M9.5 9v6' },
+  { key: 'scatter', color: '#f05a5a', fr: 'Canon à dispersion', en: 'Scatter Blaster',
+    part: 'barrel', primary: 'dmg',
+    glyph: 'M4 12h4M10 8.5l2.5-1M10 15.5l2.5 1M15 6.5l1.5-1M15 17.5l1.5 1M14 12h6M18 9l2 3-2 3' },
+  { key: 'spitter', color: '#ffb347', fr: 'Souffle destructeur', en: 'Pulse Spitter',
     part: 'barrel', primary: 'rate', secondary: ['dmg'],
-    core: [
-      { id: 'pulse-spitter', fr: 'Cracheur à impulsions', en: 'Pulse Spitter', part: 'barrel',
-        dFr: 'Cadence de tir très élevée, consomme beaucoup de munitions.',
-        dEn: 'Very high rate of fire, burns through ammo.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-      { id: 'impact-igniter', fr: 'Allumeur à impact', en: 'Impact Igniter', part: 'barrel',
-        dFr: 'Les projectiles enflamment la cible.',
-        dEn: 'Rounds set the target on fire.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-      { id: 'ricochet-module-ps', fr: 'Module ricochet', en: 'Ricochet Module', part: 'barrel',
-        dFr: 'Les projectiles rebondissent sur les surfaces.',
-        dEn: 'Projectiles bounce off surfaces.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-    ],
-    module: { fr: 'Module de cracheur', en: 'Pulse Spitter Upgrade', tiers: WEAPON_TIERS },
-  },
-  {
-    key: 'javelin', emoji: '🎯', glyph: 'M3 21 21 3M15 3h6v6M9 12l3 3',
-    color: '#c98af0', fr: 'Javelot incandescent', en: 'Blaze Javelin',
+    glyph: 'M3 12h5M11 12h2M16 12h2M20.5 12h.5M7 7.5l1.5 1M7 16.5l1.5-1' },
+  { key: 'javelin', color: '#c98af0', fr: 'Dard ardent', en: 'Blaze Javelin',
     part: 'barrel', primary: 'dmg', secondary: ['reach'],
-    core: [
-      { id: 'blaze-javelin', fr: 'Javelot incandescent', en: 'Blaze Javelin', part: 'barrel',
-        dFr: 'Fusil de précision à charge : un tir chargé pulvérise une cible unique.',
-        dEn: 'Charged sniper rifle: one charged shot obliterates a single target.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-      { id: 'waveform-oscillator', fr: "Oscillateur d'ondes", en: 'Waveform Oscillator', part: 'barrel',
-        dFr: 'Charge plus rapide et dégâts accrus.',
-        dEn: 'Faster charge and higher damage.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-      { id: 'mass-accelerator', fr: 'Accélérateur de masse', en: 'Mass Accelerator', part: 'barrel',
-        dFr: 'Le tir traverse les cibles alignées.',
-        dEn: 'Shots punch through lined-up targets.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-    ],
-    module: { fr: 'Module de javelot', en: 'Blaze Javelin Upgrade', tiers: WEAPON_TIERS },
-  },
-  {
-    key: 'neutron', emoji: '☢️', glyph: 'M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4M12 3c4.5 4 4.5 14 0 18M12 3c-4.5 4-4.5 14 0 18M3.5 8c5.5-2 11.5-2 17 0M3.5 16c5.5 2 11.5 2 17 0',
-    color: '#8bf0a0', fr: 'Canon à neutrons', en: 'Neutron Cannon',
+    glyph: 'M3 21 21 3M15 3h6v6M9 12l3 3' },
+  { key: 'neutron', color: '#8bf0a0', fr: 'Canon à neutrons', en: 'Neutron Cannon',
     part: 'barrel', primary: 'dmg', secondary: ['reach'],
-    core: [
-      { id: 'neutron-cannon', fr: 'Canon à neutrons', en: 'Neutron Cannon', part: 'barrel',
-        dFr: 'Tir à charge dévastateur en zone, se recharge sur les ressources minées.',
-        dEn: 'Devastating charged area shot, recharges from mined resources.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-      { id: 'p-field-compressor', fr: 'Compresseur de champ P', en: 'P-Field Compressor', part: 'barrel',
-        dFr: 'Réduit le temps de charge et augmente la zone d’effet.',
-        dEn: 'Cuts charge time and widens the blast.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-    ],
-    module: { fr: 'Module de neutrons', en: 'Neutron Cannon Upgrade', tiers: WEAPON_TIERS },
-  },
-  {
-    key: 'plasma', emoji: '🧨', glyph: 'M12 3c1 3.5 5 4.5 5 9a5 5 0 0 1-10 0c0-4.5 4-5.5 5-9zM12 19a3 3 0 0 0 3-3',
-    color: '#b0805a', fr: 'Lance-plasma', en: 'Plasma Launcher',
-    part: 'barrel', primary: 'dmg', secondary: [],
-    core: [
-      { id: 'plasma-launcher', fr: 'Lance-plasma', en: 'Plasma Launcher', part: 'barrel',
-        dFr: 'Grenades à plasma : creusent le terrain et arrachent les structures.',
-        dEn: 'Plasma grenades: dig terrain and tear through structures.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-    ],
-    module: { fr: 'Module de plasma', en: 'Plasma Launcher Upgrade', tiers: WEAPON_TIERS },
-  },
-  {
-    key: 'geology', emoji: '🪨', glyph: 'M3 19h18L14.5 7 10 14l-2.5-3z',
-    color: '#8a96a8', fr: 'Canon géologique', en: 'Geology Cannon',
+    glyph: 'M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4M12 3c4.5 4 4.5 14 0 18M12 3c-4.5 4-4.5 14 0 18M3.5 8c5.5-2 11.5-2 17 0M3.5 16c5.5 2 11.5 2 17 0' },
+  { key: 'plasma', color: '#b0805a', fr: 'Lanceur de plasma', en: 'Plasma Launcher',
+    part: 'barrel', primary: 'dmg',
+    glyph: 'M12 3c1 3.5 5 4.5 5 9a5 5 0 0 1-10 0c0-4.5 4-5.5 5-9zM12 19a3 3 0 0 0 3-3' },
+  { key: 'geology', color: '#8a96a8', fr: 'Canon géologique', en: 'Geology Cannon',
     part: 'barrel', primary: 'mine', secondary: ['dmg'],
-    core: [
-      { id: 'geology-cannon', fr: 'Canon géologique', en: 'Geology Cannon', part: 'barrel',
-        dFr: 'Fait exploser le terrain et libère les ressources enfouies en masse.',
-        dEn: 'Blows up terrain and frees buried resources in bulk.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-    ],
-    module: { fr: 'Module géologique', en: 'Geology Cannon Upgrade', tiers: WEAPON_TIERS },
-  },
-  {
-    key: 'utility', emoji: '🛠️', glyph: 'M14.4 6.1a4.7 4.7 0 0 0-6 6L3 17.6 6.4 21l5.5-5.5a4.7 4.7 0 0 0 6-6l-3.2 3.2-3.5-3.5 3.2-3.1z',
-    color: '#6aa9ff', fr: 'Utilitaires', en: 'Utilities',
+    glyph: 'M3 19h18L14.5 7 10 14l-2.5-3z' },
+  { key: 'utility', color: '#6aa9ff', fr: 'Utilitaires', en: 'Utilities',
     part: 'grip', primary: 'reach', secondary: ['scan'],
-    core: [
-      { id: 'terrain-manipulator', fr: 'Manipulateur de terrain', en: 'Terrain Manipulator', part: 'barrel',
-        dFr: 'Creuse, sculpte et restaure le terrain — indispensable pour les bases et les grottes.',
-        dEn: 'Digs, sculpts and restores terrain — essential for bases and caves.',
-        srcFr: 'Plan · quête principale', srcEn: 'Blueprint · main quest' },
-      { id: 'personal-forcefield', fr: 'Champ de force personnel', en: 'Personal Forcefield', part: 'grip',
-        dFr: 'Bouclier frontal qui absorbe les tirs pendant que tu ripostes.',
-        dEn: 'Frontal shield that soaks incoming fire while you return it.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-      { id: 'combat-scope', fr: 'Lunette de combat', en: 'Combat Scope', part: 'scope',
-        dFr: 'Zoom de visée et précision accrue sur toutes les armes.',
-        dEn: 'Aim zoom and better accuracy on every weapon.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-      { id: 'cloaking-device', fr: "Dispositif d'occultation", en: 'Cloaking Device', part: 'grip',
-        dFr: 'Rend invisible aux sentinelles pendant un court instant.',
-        dEn: 'Turns you invisible to Sentinels for a short while.',
-        srcFr: 'Plan · récompense sentinelle', srcEn: 'Blueprint · Sentinel reward' },
-      { id: 'paralysis-mortar', fr: 'Mortier paralysant', en: 'Paralysis Mortar', part: 'barrel',
-        dFr: 'Onde de choc qui immobilise les ennemis proches.',
-        dEn: 'Shockwave that freezes nearby enemies.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-      { id: 'fishing-rig', fr: 'Kit de pêche', en: 'Fishing Rig', part: 'grip',
-        dFr: 'Transforme le multi-outil en canne à pêche.',
-        dEn: 'Turns the multi-tool into a fishing rod.',
-        srcFr: 'Plan · quête pêche', srcEn: 'Blueprint · fishing quest' },
-    ],
-    module: null,
-  },
+    glyph: 'M14.4 6.1a4.7 4.7 0 0 0-6 6L3 17.6 6.4 21l5.5-5.5a4.7 4.7 0 0 0 6-6l-3.2 3.2-3.5-3.5 3.2-3.1z' },
 ]
 
 // ──────────────────────────────── STARSHIP ────────────────────────────────
 
-export const SHIP_FAMILIES: Family[] = [
-  {
-    key: 'pulse', emoji: '🔥', glyph: 'M6 5l6 7-6 7M13 5l6 7-6 7',
-    color: '#ffb347', fr: 'Moteur à impulsion', en: 'Pulse Engine',
+export const SHIP_META: FamilyMeta[] = [
+  { key: 'pulse', color: '#ffb347', fr: 'Pulsoréacteur', en: 'Pulse Engine',
     part: 'engine', primary: 'pulse', secondary: ['agility'],
-    core: [
-      { id: 'pulse-engine', fr: 'Moteur à impulsion', en: 'Pulse Engine', part: 'engine',
-        dFr: 'Vol interplanétaire à haute vitesse à l’intérieur d’un système.',
-        dEn: 'High-speed interplanetary flight inside a system.',
-        srcFr: 'Installé d’origine', srcEn: 'Installed by default' },
-      { id: 'photonix-core', fr: 'Cœur photonix', en: 'Photonix Core', part: 'engine',
-        dFr: 'Impulsion plus rapide et recharge gratuite près d’une étoile.',
-        dEn: 'Faster pulse and free recharge close to a star.',
-        srcFr: 'Plan · quête Anomalie', srcEn: 'Blueprint · Anomaly quest' },
-      { id: 'instability-drive', fr: 'Réacteur d’instabilité', en: 'Instability Drive', part: 'engine',
-        dFr: 'Vitesse d’impulsion accrue au prix d’une consommation plus élevée.',
-        dEn: 'Higher pulse speed at the cost of fuel burn.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-    ],
-    module: { fr: 'Module d’impulsion', en: 'Pulse Engine Upgrade', tiers: UTIL_TIERS },
-  },
-  {
-    key: 'launch', emoji: '🛫', glyph: 'M12 3c2.5 3 3.5 6.5 3.5 10L12 16l-3.5-3c0-3.5 1-7 3.5-10zM8.5 17 6 21l4-1.5M15.5 17 18 21l-4-1.5M12 10.5h.01',
-    color: '#e0a13a', fr: 'Système de décollage', en: 'Launch System',
-    part: 'engine', primary: 'agility', secondary: [],
-    core: [
-      { id: 'launch-thruster', fr: 'Propulseur de décollage', en: 'Launch Thruster', part: 'engine',
-        dFr: 'Décollage depuis une planète — consomme du plutonium/tritium.',
-        dEn: 'Lifts off from a planet — burns launch fuel.',
-        srcFr: 'Installé d’origine', srcEn: 'Installed by default' },
-      { id: 'launch-recharger', fr: 'Recharge du système de décollage', en: 'Launch System Recharger', part: 'engine',
-        dFr: 'Recharge le décollage automatiquement au soleil.',
-        dEn: 'Recharges launch fuel automatically in sunlight.',
-        srcFr: 'Plan · Anomalie spatiale', srcEn: 'Blueprint · Space Anomaly' },
-      { id: 'efficient-thrusters', fr: 'Propulseurs économiques', en: 'Efficient Thrusters', part: 'engine',
-        dFr: 'Réduit fortement le carburant consommé au décollage.',
-        dEn: 'Sharply reduces launch fuel usage.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-    ],
-    module: { fr: 'Module de décollage', en: 'Launch Thruster Upgrade', tiers: UTIL_TIERS },
-  },
-  {
-    key: 'hyper', emoji: '🌌', glyph: 'M12 12a5 5 0 1 1-3.5-4.8M12 12c0-5 3.5-9 8-9M3 21c2.5-3.5 5.5-6.5 9-9',
-    color: '#c98af0', fr: 'Hyperpropulseur', en: 'Hyperdrive',
-    part: 'core', primary: 'hyper', secondary: [],
-    core: [
-      { id: 'hyperdrive', fr: 'Hyperpropulseur', en: 'Hyperdrive', part: 'core',
-        dFr: 'Saut entre systèmes stellaires — la base de toute exploration.',
-        dEn: 'Jump between star systems — the basis of all exploration.',
-        srcFr: 'Quête principale', srcEn: 'Main quest' },
-      { id: 'cadmium-drive', fr: 'Réacteur cadmium', en: 'Cadmium Drive', part: 'core',
-        dFr: 'Débloque les systèmes rouges.',
-        dEn: 'Unlocks red systems.',
-        srcFr: 'Plan · Anomalie spatiale', srcEn: 'Blueprint · Space Anomaly' },
-      { id: 'emeril-drive', fr: 'Réacteur émeril', en: 'Emeril Drive', part: 'core',
-        dFr: 'Débloque les systèmes verts.',
-        dEn: 'Unlocks green systems.',
-        srcFr: 'Plan · Anomalie spatiale', srcEn: 'Blueprint · Space Anomaly' },
-      { id: 'indium-drive', fr: 'Réacteur indium', en: 'Indium Drive', part: 'core',
-        dFr: 'Débloque les systèmes bleus.',
-        dEn: 'Unlocks blue systems.',
-        srcFr: 'Plan · Anomalie spatiale', srcEn: 'Blueprint · Space Anomaly' },
-      { id: 'emergency-warp', fr: 'Unité de saut d’urgence', en: 'Emergency Warp Unit', part: 'core',
-        dFr: 'Permet de fuir un combat par un saut immédiat.',
-        dEn: 'Lets you escape a fight with an immediate warp.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-    ],
-    module: { fr: 'Module d’hyperpropulseur', en: 'Hyperdrive Upgrade', tiers: UTIL_TIERS },
-  },
-  {
-    key: 'shield', emoji: '🛡️', glyph: 'M12 3l8 3.5v5.5c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6.5L12 3z',
-    color: '#5fd0e0', fr: 'Bouclier déflecteur', en: 'Deflector Shield',
-    part: 'hull', primary: 'shield', secondary: [],
-    core: [
-      { id: 'deflector-shield', fr: 'Bouclier déflecteur', en: 'Deflector Shield', part: 'hull',
-        dFr: 'Absorbe les tirs ennemis et les impacts d’astéroïdes.',
-        dEn: 'Soaks enemy fire and asteroid impacts.',
-        srcFr: 'Installé d’origine', srcEn: 'Installed by default' },
-      { id: 'ablative-armour', fr: 'Blindage ablatif', en: 'Ablative Armour', part: 'hull',
-        dFr: 'Couche de coque supplémentaire sous le bouclier.',
-        dEn: 'Extra hull layer underneath the shield.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-    ],
-    module: { fr: 'Module de bouclier', en: 'Shield Upgrade', tiers: UTIL_TIERS },
-  },
-  {
-    key: 'photon', emoji: '💥', glyph: 'M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.8 2.8M15.2 15.2 18 18M18 6l-2.8 2.8M8.8 15.2 6 18M12 14.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5',
-    color: '#ff7a1a', fr: 'Canon à photons', en: 'Photon Cannon',
+    glyph: 'M6 5l6 7-6 7M13 5l6 7-6 7' },
+  { key: 'launch', color: '#e0a13a', fr: 'Système de décollage', en: 'Launch System',
+    part: 'engine', primary: 'agility',
+    glyph: 'M12 3c2.5 3 3.5 6.5 3.5 10L12 16l-3.5-3c0-3.5 1-7 3.5-10zM8.5 17 6 21l4-1.5M15.5 17 18 21l-4-1.5M12 10.5h.01' },
+  { key: 'hyper', color: '#c98af0', fr: 'Hyperpropulsion', en: 'Hyperdrive',
+    part: 'core', primary: 'hyper',
+    glyph: 'M12 12a5 5 0 1 1-3.5-4.8M12 12c0-5 3.5-9 8-9M3 21c2.5-3.5 5.5-6.5 9-9' },
+  { key: 'shield', color: '#5fd0e0', fr: 'Bouclier déflecteur', en: 'Deflector Shield',
+    part: 'hull', primary: 'shield',
+    glyph: 'M12 3l8 3.5v5.5c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6.5L12 3z' },
+  { key: 'photon', color: '#ff7a1a', fr: 'Canon à photons', en: 'Photon Cannon',
     part: 'weapon', primary: 'dmg', secondary: ['rate'],
-    core: [
-      { id: 'photon-cannon', fr: 'Canon à photons', en: 'Photon Cannon', part: 'weapon',
-        dFr: 'Arme de vaisseau standard, équilibrée, sans munitions.',
-        dEn: 'Standard ship weapon, balanced, no ammo.',
-        srcFr: 'Installé d’origine', srcEn: 'Installed by default' },
-    ],
-    module: { fr: 'Module de canon à photons', en: 'Photon Cannon Upgrade', tiers: WEAPON_TIERS },
-  },
-  {
-    key: 'phase', emoji: '🔆', glyph: 'M3 12h13M16 8.5 21 12l-5 3.5zM6 8.5v7M10 9.5v5',
-    color: '#7fe08a', fr: 'Rayon de phase', en: 'Phase Beam',
+    glyph: 'M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.8 2.8M15.2 15.2 18 18M18 6l-2.8 2.8M8.8 15.2 6 18M12 14.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5' },
+  { key: 'phase', color: '#7fe08a', fr: 'Rayon phasique', en: 'Phase Beam',
     part: 'weapon', primary: 'dmg', secondary: ['reach'],
-    core: [
-      { id: 'phase-beam', fr: 'Rayon de phase', en: 'Phase Beam', part: 'weapon',
-        dFr: 'Laser continu, excellent contre les boucliers, mine les astéroïdes.',
-        dEn: 'Continuous laser, great against shields, mines asteroids.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-      { id: 'fourier-delimiter', fr: 'Dé-limiteur de Fourier', en: 'Fourier De-Limiter', part: 'weapon',
-        dFr: 'Augmente les dégâts et réduit la surchauffe du rayon.',
-        dEn: 'Raises damage and cuts beam overheating.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-    ],
-    module: { fr: 'Module de rayon de phase', en: 'Phase Beam Upgrade', tiers: WEAPON_TIERS },
-  },
-  {
-    key: 'positron', emoji: '✴️', glyph: 'M4 12h4M12 12h2M11 7l3-1.5M11 17l3 1.5M17 5l3-1.5M17 19l3 1.5M17 12h4',
-    color: '#f05a5a', fr: 'Éjecteur de positrons', en: 'Positron Ejector',
-    part: 'weapon', primary: 'dmg', secondary: [],
-    core: [
-      { id: 'positron-ejector', fr: 'Éjecteur de positrons', en: 'Positron Ejector', part: 'weapon',
-        dFr: 'Fusil à pompe spatial : dégâts massifs à courte portée.',
-        dEn: 'Space shotgun: massive damage at close range.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-    ],
-    module: { fr: 'Module de positrons', en: 'Positron Ejector Upgrade', tiers: WEAPON_TIERS },
-  },
-  {
-    key: 'infra', emoji: '🗡️', glyph: 'M4 18 14 6l2 2-8 11zM14 6l2-3 3 2-3 3M6 20l3-2',
-    color: '#ffd166', fr: 'Accélérateur infra-lame', en: 'Infra-Knife Accelerator',
+    glyph: 'M3 12h13M16 8.5 21 12l-5 3.5zM6 8.5v7M10 9.5v5' },
+  { key: 'positron', color: '#f05a5a', fr: 'Éjecteur à positrons', en: 'Positron Ejector',
+    part: 'weapon', primary: 'dmg',
+    glyph: 'M4 12h4M12 12h2M11 7l3-1.5M11 17l3 1.5M17 5l3-1.5M17 19l3 1.5M17 12h4' },
+  { key: 'infra', color: '#ffd166', fr: 'Accélérateur infra-couteau', en: 'Infra-Knife Accelerator',
     part: 'weapon', primary: 'rate', secondary: ['dmg'],
-    core: [
-      { id: 'infra-knife', fr: 'Accélérateur infra-lame', en: 'Infra-Knife Accelerator', part: 'weapon',
-        dFr: 'Mitrailleuse à très haute cadence — le DPS le plus élevé une fois modulée.',
-        dEn: 'Very high rate-of-fire cannon — the top DPS once modded.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-    ],
-    module: { fr: 'Module infra-lame', en: 'Infra-Knife Upgrade', tiers: WEAPON_TIERS },
-  },
-  {
-    key: 'cyclotron', emoji: '🌀', glyph: 'M12 12a3 3 0 1 1-2.1-2.9M12 12c0-4 2.5-7 6-8M12 12c0 4-2.5 7-6 8M20 4c-1 6-4 10-9 12',
-    color: '#6aa9ff', fr: 'Baliste cyclotron', en: 'Cyclotron Ballista',
-    part: 'weapon', primary: 'dmg', secondary: [],
-    core: [
-      { id: 'cyclotron', fr: 'Baliste cyclotron', en: 'Cyclotron Ballista', part: 'weapon',
-        dFr: 'Projectiles lourds à forte pénétration de bouclier.',
-        dEn: 'Heavy projectiles with strong shield penetration.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-    ],
-    module: { fr: 'Module de baliste', en: 'Cyclotron Upgrade', tiers: WEAPON_TIERS },
-  },
-  {
-    key: 'rockets', emoji: '🚀', glyph: 'M12 3c2.5 3 3.5 6.5 3.5 10L12 16l-3.5-3c0-3.5 1-7 3.5-10zM12 9.5h.01M9 18l-2 3 3-1M15 18l2 3-3-1',
-    color: '#b0805a', fr: 'Lance-roquettes', en: 'Rocket Launcher',
-    part: 'weapon', primary: 'dmg', secondary: [],
-    core: [
-      { id: 'rocket-launcher', fr: 'Lance-roquettes', en: 'Rocket Launcher', part: 'weapon',
-        dFr: 'Roquettes à munitions, gros dégâts par tir contre les cargos.',
-        dEn: 'Ammo-fed rockets, big per-shot damage against freighters.',
-        srcFr: 'Plan · marchand de technologie', srcEn: 'Blueprint · tech merchant' },
-      { id: 'large-rocket', fr: 'Grande soute à roquettes', en: 'Large Rocket Tubes', part: 'weapon',
-        dFr: 'Augmente la réserve de roquettes embarquée.',
-        dEn: 'Increases carried rocket capacity.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-    ],
-    module: null,
-  },
-  {
-    key: 'sutility', emoji: '📡', glyph: 'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6M6.5 6.5a8 8 0 0 0 0 11M17.5 6.5a8 8 0 0 1 0 11M4 4a11.5 11.5 0 0 0 0 16M20 4a11.5 11.5 0 0 1 0 16',
-    color: '#8a96a8', fr: 'Utilitaires', en: 'Utilities',
-    part: 'hull', primary: 'scan', secondary: [],
-    core: [
-      { id: 'teleport-receiver', fr: 'Récepteur de téléportation', en: 'Teleport Receiver', part: 'hull',
-        dFr: 'Téléporte vers le vaisseau depuis une base ou une station.',
-        dEn: 'Teleport to the ship from a base or station.',
-        srcFr: 'Plan · Anomalie spatiale', srcEn: 'Blueprint · Space Anomaly' },
-      { id: 'economy-scanner', fr: 'Scanner économique', en: 'Economy Scanner', part: 'hull',
-        dFr: 'Affiche la richesse des systèmes sur la carte galactique.',
-        dEn: 'Shows system wealth on the galaxy map.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-      { id: 'conflict-scanner', fr: 'Scanner de conflit', en: 'Conflict Scanner', part: 'hull',
-        dFr: 'Affiche le niveau de conflit des systèmes.',
-        dEn: 'Shows system conflict level.',
-        srcFr: 'Plan · marchand', srcEn: 'Blueprint · merchant' },
-      { id: 'cargo-deflector', fr: 'Déflecteur de scan de cargaison', en: 'Cargo Scan Deflector', part: 'hull',
-        dFr: 'Masque la contrebande aux scans des sentinelles spatiales.',
-        dEn: 'Hides contraband from space Sentinel scans.',
-        srcFr: 'Plan · station hors-la-loi', srcEn: 'Blueprint · outlaw station' },
-    ],
-    module: null,
-  },
+    glyph: 'M4 18 14 6l2 2-8 11zM14 6l2-3 3 2-3 3M6 20l3-2' },
+  { key: 'cyclotron', color: '#6aa9ff', fr: 'Baliste cyclotron', en: 'Cyclotron Ballista',
+    part: 'weapon', primary: 'dmg',
+    glyph: 'M12 12a3 3 0 1 1-2.1-2.9M12 12c0-4 2.5-7 6-8M12 12c0 4-2.5 7-6 8M20 4c-1 6-4 10-9 12' },
+  { key: 'rockets', color: '#b0805a', fr: 'Lance-roquettes', en: 'Rocket Launcher',
+    part: 'weapon', primary: 'dmg',
+    glyph: 'M12 3c2.5 3 3.5 6.5 3.5 10L12 16l-3.5-3c0-3.5 1-7 3.5-10zM12 9.5h.01M9 18l-2 3 3-1M15 18l2 3-3-1' },
+  { key: 'sutility', color: '#8a96a8', fr: 'Utilitaires', en: 'Utilities',
+    part: 'hull', primary: 'scan',
+    glyph: 'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6M6.5 6.5a8 8 0 0 0 0 11M17.5 6.5a8 8 0 0 1 0 11M4 4a11.5 11.5 0 0 0 0 16M20 4a11.5 11.5 0 0 1 0 16' },
 ]
 
-export function families(kind: 'tool' | 'ship'): Family[] {
-  return kind === 'tool' ? TOOL_FAMILIES : SHIP_FAMILIES
-}
-
-export function famName(f: Family, lang: Lang): string {
-  return lang === 'fr' ? f.fr : f.en
+export function familyMeta(kind: 'tool' | 'ship'): FamilyMeta[] {
+  return kind === 'tool' ? TOOL_META : SHIP_META
 }
 
 /** Base 0–5 profile per multi-tool type / starship archetype. */
@@ -535,15 +197,6 @@ export const SHIP_PROFILE: Record<string, Partial<Record<StatKey, number>>> = {
   corvette: { dmg: 3, shield: 3, hyper: 3, agility: 2, pulse: 3 },
 }
 
-/** Class multiplier applied to the hull/frame itself (C → S). */
-export const CLASS_MULT: Record<string, number> = { C: 1, B: 1.1, A: 1.2, S: 1.35 }
-
-/** A tech installed in a supercharged slot is worth roughly half again as much. */
-export const SUPERCHARGE_MULT = 1.5
-
-/** Each neighbouring tech of the same family adds this much, in %. */
-export const ADJACENCY_BONUS = 5
-
 /**
  * Base hyperdrive range per starship archetype, in light years — the one ship stat the game
  * shows as a hard number. Community-observed order of magnitude for a fully-fuelled drive.
@@ -552,6 +205,15 @@ export const BASE_HYPERDRIVE_LY: Record<string, number> = {
   fighter: 100, hauler: 150, explorer: 300, shuttle: 150, exotic: 250,
   solar: 200, interceptor: 100, living: 250, freighter: 200, corvette: 200,
 }
+
+/** Class multiplier applied to the hull/frame itself (C → S). */
+export const CLASS_MULT: Record<string, number> = { C: 1, B: 1.1, A: 1.2, S: 1.35 }
+
+/** A tech installed in a supercharged slot is worth roughly half again as much. */
+export const SUPERCHARGE_MULT = 1.5
+
+/** Each neighbouring tech of the same family adds this much, in %. */
+export const ADJACENCY_BONUS = 5
 
 /** Maximum upgrade modules of one family before the whole family shuts down. */
 export const MODULE_LIMIT = 3

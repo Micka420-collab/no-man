@@ -2,12 +2,13 @@ import { Suspense, lazy, useEffect, useMemo, useState } from 'react'
 import { useAtlas } from '../lib/store'
 import { fmt, hexA, readJSON, writeJSON } from '../lib/util'
 import type { BuildSlot } from '../types'
+import TechIcon from './TechIcon'
 import {
-  ADJACENCY_BONUS, AVAILABILITY, BASE_HYPERDRIVE_LY, CLASS_MULT, MODULE_LIMIT, SHIP_PROFILE,
-  STAT_COLOR, STAT_LABEL,
-  SUPERCHARGE_MULT, TOOL_PROFILE, families,
-  type ClassKey, type Family, type PartKey, type StatKey,
+  ADJACENCY_BONUS, BASE_HYPERDRIVE_LY, CLASS_MULT, MODULE_LIMIT, SHIP_PROFILE,
+  STAT_COLOR, STAT_LABEL, SUPERCHARGE_MULT, TOOL_PROFILE,
+  type ClassKey, type PartKey, type StatKey,
 } from '../data/catalogue'
+import { resolveFamilies, type ResolvedFamily } from '../lib/workshopData'
 
 /** three.js is ~450 kB — only pulled in when a workshop is actually opened. */
 const Viewer3D = lazy(() => import('./Viewer3D'))
@@ -28,7 +29,7 @@ export interface WorkshopConfig {
   onClass: (c: string) => void
   fam: string
   onFam: (f: string) => void
-  types: { key: string; emoji: string; label: string; desc?: string }[]
+  types: { key: string; emoji: string; label: string }[]
   total: number
   scN: number
   holoName: string
@@ -49,21 +50,27 @@ function superchargedSlots(total: number, n: number): number[] {
 }
 
 interface Installed extends BuildSlot {
-  fam?: Family
+  fam?: ResolvedFamily
   sc: boolean
   over: boolean
   linked: boolean
+  icon?: string
 }
 
 export default function Workshop(cfg: WorkshopConfig) {
-  const { L, lang, bump } = useAtlas()
+  const { L, lang, bump, data } = useAtlas()
   const [hover, setHover] = useState<number | null>(null)
   /** slot index currently picked up — the game's "move technology" mode */
   const [held, setHeld] = useState<number | null>(null)
+  const [mode, setMode] = useState<'solid' | 'holo'>('solid')
 
-  const fams = useMemo(() => families(cfg.kind), [cfg.kind])
+  // families, names, prices and icons all come from the game's own data
+  const fams = useMemo(
+    () => resolveFamilies(cfg.kind, data.workshop, lang),
+    [cfg.kind, data.workshop, lang],
+  )
   const famBy = useMemo(() => {
-    const m: Record<string, Family> = {}
+    const m: Record<string, ResolvedFamily> = {}
     fams.forEach((f) => { m[f.key] = f })
     return m
   }, [fams])
@@ -107,12 +114,20 @@ export default function Workshop(cfg: WorkshopConfig) {
     }
   }
 
+  const iconFor = (b: BuildSlot): string | undefined => {
+    const f = famBy[b.f]
+    if (!f) return undefined
+    return b.k === 'mod'
+      ? f.mods.find((m) => m.id === b.id)?.icon
+      : f.core.find((c) => c.id === b.id)?.icon
+  }
+
   const slots: (Installed | null)[] = Array.from({ length: cfg.total }, (_, i) => {
     const b = occ[i]
     if (!b) return null
     return {
       ...b, fam: famBy[b.f], sc: scPos.includes(i), over: b.k === 'mod' && !!over[b.f],
-      linked: (linkCount[i] || 0) > 0,
+      linked: (linkCount[i] || 0) > 0, icon: iconFor(b),
     }
   })
 
@@ -126,7 +141,8 @@ export default function Workshop(cfg: WorkshopConfig) {
     const b = (bonus[stat] ||= { min: 0, max: 0 })
     b.min += min; b.max += max
   }
-  let naniteMin = 0, naniteMax = 0
+  /** real nanite spend, summed from the prices in the game data */
+  let nanites = 0
 
   build.forEach((b) => {
     const f = famBy[b.f]
@@ -137,11 +153,11 @@ export default function Workshop(cfg: WorkshopConfig) {
       addBonus(f.primary, 6 * mult, 10 * mult)
       ;(f.secondary || []).forEach((s) => addBonus(s, 3 * mult, 5 * mult))
     } else {
-      const tier = f.module?.tiers.find((t) => t.cl === b.c)
-      if (!tier) return
-      addBonus(f.primary, tier.bonus.min * mult, tier.bonus.max * mult)
-      ;(f.secondary || []).forEach((s) => addBonus(s, (tier.bonus.min / 2) * mult, (tier.bonus.max / 2) * mult))
-      naniteMin += tier.nanites.min; naniteMax += tier.nanites.max
+      const mod = f.mods.find((m) => m.id === b.id)
+      if (!mod) return
+      addBonus(f.primary, mod.bonus.min * mult, mod.bonus.max * mult)
+      ;(f.secondary || []).forEach((s) => addBonus(s, (mod.bonus.min / 2) * mult, (mod.bonus.max / 2) * mult))
+      if (mod.nanites != null) nanites += mod.nanites
     }
   })
 
@@ -152,7 +168,6 @@ export default function Workshop(cfg: WorkshopConfig) {
       key: s,
       label: STAT_LABEL[s][lang === 'fr' ? 0 : 1],
       color: STAT_COLOR[s],
-      base: Math.min(5, base),
       pct: Math.min(100, (base / 5) * 100),
       bonusPct: Math.min(100, (base / 5) * 100 * (1 + (b ? b.max : 0) / 100)),
       bMin: b ? Math.round(b.min) : 0,
@@ -175,9 +190,7 @@ export default function Workshop(cfg: WorkshopConfig) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(build), famBy])
 
-  const [mode, setMode] = useState<'solid' | 'holo'>('solid')
-
-  /** Compact technical sheet: the numbers a player actually compares builds on. */
+  /** Technical sheet: the numbers a player actually compares builds on. */
   const hyperB = bonus.hyper
   const baseLy = BASE_HYPERDRIVE_LY[cfg.type] || 0
   const sheet: { k: string; v: string; color: string }[] = [
@@ -194,21 +207,10 @@ export default function Workshop(cfg: WorkshopConfig) {
       : []),
     {
       k: lang === 'fr' ? 'COÛT BUILD' : 'BUILD COST',
-      v: naniteMax > 0 ? '≈ ' + fmt(naniteMin) + '–' + fmt(naniteMax) + ' ⬡' : '—',
+      v: nanites > 0 ? fmt(nanites) + ' ⬡' : '—',
       color: '#ffd98a',
     },
   ]
-
-  useEffect(() => {
-    if (held == null) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { e.stopPropagation(); setHeld(null) }
-      if (e.key === 'Delete' || e.key === 'Backspace') removeSlot(held)
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [held])
 
   // ── actions ───────────────────────────────────────────────────────────────
   const firstFree = (arr: BuildSlot[]) => {
@@ -220,24 +222,25 @@ export default function Workshop(cfg: WorkshopConfig) {
     return -1
   }
 
-  const installCore = (f: Family, coreId: string, target?: number) => {
+  const installCore = (f: ResolvedFamily, coreId: string, target?: number) => {
     const arr = load()
-    if (arr.some((b) => b.k === 'tech' && b.id === coreId)) return   // one of each core tech
+    if (arr.some((b) => b.k === 'tech' && b.id === coreId)) return   // one of each technology
     const core = f.core.find((c) => c.id === coreId)
     if (!core) return
     const slot = target != null && !arr.some((b) => b.i === target) ? target : firstFree(arr)
     if (slot < 0) return
-    arr.push({ i: slot, f: f.key, k: 'tech', c: '', n: lang === 'fr' ? core.fr : core.en, id: coreId })
+    arr.push({ i: slot, f: f.key, k: 'tech', c: '', n: core.name, id: coreId })
     save(arr)
   }
 
-  const installModule = (f: Family, cl: ClassKey, target?: number) => {
+  const installModule = (f: ResolvedFamily, cl: ClassKey, target?: number) => {
     const arr = load()
     if (arr.filter((b) => b.k === 'mod' && b.f === f.key).length >= MODULE_LIMIT + 1) return
+    const mod = f.mods.find((m) => m.cl === cl)
+    if (!mod) return
     const slot = target != null && !arr.some((b) => b.i === target) ? target : firstFree(arr)
     if (slot < 0) return
-    const label = (lang === 'fr' ? f.module?.fr : f.module?.en) || f.fr
-    arr.push({ i: slot, f: f.key, k: 'mod', c: cl, n: label, id: f.key + '-' + cl })
+    arr.push({ i: slot, f: f.key, k: 'mod', c: cl, n: mod.name, id: mod.id })
     save(arr)
   }
 
@@ -260,20 +263,32 @@ export default function Workshop(cfg: WorkshopConfig) {
     setHeld(null)
   }
 
+  const curF = famBy[cfg.fam] || fams[0]
+
   /** Click an empty cell: drop the next thing that makes sense for the selected family. */
   const dropInto = (i: number) => {
     if (!curF) return
     const installed = new Set(load().filter((b) => b.k === 'tech').map((b) => b.id))
     const next = curF.core.find((c) => !installed.has(c.id))
     if (next) { installCore(curF, next.id, i); return }
-    if (curF.module) {
+    if (curF.mods.length) {
       const cl = (['C', 'B', 'A', 'S'] as ClassKey[]).includes(cfg.cls as ClassKey)
         ? (cfg.cls as ClassKey) : 'C'
       installModule(curF, cl, i)
     }
   }
 
-  const curF = famBy[cfg.fam] || fams[0]
+  useEffect(() => {
+    if (held == null) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { e.stopPropagation(); setHeld(null) }
+      if (e.key === 'Delete' || e.key === 'Backspace') removeSlot(held)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [held])
+
   const chipHover = cfg.accent === 'cyan' ? 'hv-chip-cyan' : 'hv-chip-gold'
   const activeChipBg = cfg.accent === 'cyan' ? '#5fd0e0' : '#ffb347'
   const activeChipFg = cfg.accent === 'cyan' ? '#03151a' : '#1a0d02'
@@ -281,10 +296,9 @@ export default function Workshop(cfg: WorkshopConfig) {
 
   const installedCoreIds = new Set(build.filter((b) => b.k === 'tech').map((b) => b.id))
   const full = build.length >= cfg.total
-  const overNames = Object.keys(over).map((k) => famBy[k]?.[lang === 'fr' ? 'fr' : 'en'] || k).join(', ')
+  const overNames = Object.keys(over).map((k) => famBy[k]?.name || k).join(', ')
   const hovered = hover != null ? slots[hover] : null
   const detail = held != null ? slots[held] : hovered
-  const scUsed = scUsedCount
 
   return (
     <div className="nms-hl-even" style={{
@@ -343,7 +357,6 @@ export default function Workshop(cfg: WorkshopConfig) {
         </div>
         <div style={{ fontSize: 12.5, color: '#9aa6c8', lineHeight: 1.55, marginTop: 7 }}>{cfg.holoDesc}</div>
 
-        {/* live stat estimate */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 14 }}>
           {statRows.map((r) => (
             <div key={r.key}>
@@ -352,9 +365,7 @@ export default function Workshop(cfg: WorkshopConfig) {
                 fontFamily: mono, fontSize: 9, letterSpacing: '.14em', color: '#6b78a0',
               }}>
                 <span>{r.label}</span>
-                {r.bMax > 0 && (
-                  <span style={{ color: r.color }}>+{r.bMin}–{r.bMax}%</span>
-                )}
+                {r.bMax > 0 && <span style={{ color: r.color }}>+{r.bMin}–{r.bMax}%</span>}
               </div>
               <div style={{
                 position: 'relative', height: 6, borderRadius: 4, background: 'rgba(120,150,220,.14)',
@@ -373,7 +384,6 @@ export default function Workshop(cfg: WorkshopConfig) {
           ))}
         </div>
 
-        {/* technical sheet */}
         <div style={{
           display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(96px,1fr))', gap: 7, marginTop: 13,
           paddingTop: 12, borderTop: '1px solid rgba(120,150,220,.12)',
@@ -388,8 +398,8 @@ export default function Workshop(cfg: WorkshopConfig) {
 
         <div style={{ fontFamily: mono, fontSize: 9, color: '#465073', marginTop: 'auto', paddingTop: 12, lineHeight: 1.6 }}>
           {lang === 'fr'
-            ? 'Glisser pour pivoter · molette pour zoomer · modèles stylisés (assets du jeu propriétaires)'
-            : 'Drag to orbit · wheel to zoom · stylised models (game assets are proprietary)'}
+            ? 'Glisser pour pivoter · Ctrl+molette ou ± pour zoomer · modèles stylisés (assets 3D du jeu propriétaires)'
+            : 'Drag to orbit · Ctrl+wheel or ± to zoom · stylised models (the game 3D assets are proprietary)'}
         </div>
       </div>
 
@@ -424,7 +434,7 @@ export default function Workshop(cfg: WorkshopConfig) {
             )
           })}
           <span style={{ fontFamily: mono, fontSize: 10.5, color: '#8b97ba', marginLeft: 6 }}>
-            {build.length} / {cfg.total} {L.mt_used} · ⚡ {scUsed} / {cfg.scN}
+            {build.length} / {cfg.total} {L.mt_used} · ⚡ {scUsedCount} / {cfg.scN}
           </span>
         </div>
 
@@ -471,21 +481,21 @@ export default function Workshop(cfg: WorkshopConfig) {
                       + (b.over ? '#f05a5a' : b.sc ? '#5fd0e0' : hexA(color, 0.6))),
                     opacity: held === i ? 0.55 : 1,
                     background: b.over ? 'rgba(240,90,90,.18)' : hexA(color, b.sc ? 0.3 : 0.16),
-                    color: b.k === 'mod' ? '#fff' : '#dbe4ff',
-                    fontFamily: "'Chakra Petch',sans-serif", fontWeight: 700,
-                    fontSize: b.k === 'mod' ? 13 : 12,
+                    color: '#dbe4ff',
                     boxShadow: b.over ? '0 0 10px rgba(240,90,90,.5)'
                       : b.linked ? '0 0 9px ' + hexA(color, 0.65)
                         : b.sc ? '0 0 9px rgba(95,208,224,.5)' : 'none',
-                    padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1,
-                    outlineOffset: 2,
+                    padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    position: 'relative', outlineOffset: 2,
                   }}
                 >
-                  {b.k === 'mod' ? b.c : (
-                    <svg width="60%" height="60%" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d={f?.glyph || 'M12 12h.01'} />
-                    </svg>
+                  <TechIcon icon={b.icon} glyph={f?.glyph || 'M12 12h.01'} color="#dbe4ff" size={22} />
+                  {b.k === 'mod' && (
+                    <span style={{
+                      position: 'absolute', right: 2, bottom: 1, fontFamily: "'Chakra Petch',sans-serif",
+                      fontSize: 10, fontWeight: 700, color: CLASS_COLOR[b.c],
+                      textShadow: '0 0 4px rgba(0,0,0,.95)',
+                    }}>{b.c}</span>
                   )}
                 </button>
               )
@@ -501,12 +511,12 @@ export default function Workshop(cfg: WorkshopConfig) {
           }}>
             {detail ? (
               <>
-                <span style={{ color: detail.fam?.color || '#8a96a8', display: 'flex', flex: '0 0 auto' }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d={detail.fam?.glyph || 'M12 12h.01'} />
-                  </svg>
-                </span>
+                <TechIcon
+                  icon={detail.icon}
+                  glyph={detail.fam?.glyph || 'M12 12h.01'}
+                  color={detail.fam?.color || '#8a96a8'}
+                  size={24}
+                />
                 <span style={{ flex: 1, minWidth: 0 }}>
                   <span style={{ display: 'block', color: '#fff', fontSize: 12.5, fontWeight: 600 }}>
                     {detail.n}{detail.k === 'mod' && (
@@ -514,7 +524,7 @@ export default function Workshop(cfg: WorkshopConfig) {
                     )}
                   </span>
                   <span style={{ display: 'block', fontFamily: mono, fontSize: 9.5, color: '#8b97ba', marginTop: 2 }}>
-                    {detail.fam ? (lang === 'fr' ? detail.fam.fr : detail.fam.en) : ''}
+                    {detail.fam?.name}
                     {detail.sc && <span style={{ color: '#5fd0e0' }}> · ⚡ {lang === 'fr' ? 'survolté ×1,5' : 'supercharged ×1.5'}</span>}
                     {detail.linked && <span style={{ color: '#8bf0a0' }}> · ▣ +{ADJACENCY_BONUS}% {lang === 'fr' ? 'adjacence' : 'adjacency'}</span>}
                     {detail.over && <span style={{ color: '#ff8a8a' }}> · ⚠ {L.mt_over}</span>}
@@ -578,9 +588,9 @@ export default function Workshop(cfg: WorkshopConfig) {
               fontFamily: mono, fontSize: 10, letterSpacing: '.18em',
               color: cfg.accent === 'cyan' ? '#5fd0e0' : '#ffb347',
             }}>{L.mt_pal}</div>
-            {naniteMax > 0 && (
+            {nanites > 0 && (
               <div style={{ fontFamily: mono, fontSize: 10, color: '#c9a8ff' }}>
-                ≈ {fmt(naniteMin)} – {fmt(naniteMax)} {lang === 'fr' ? 'nanites' : 'nanites'}
+                {fmt(nanites)} {lang === 'fr' ? 'nanites' : 'nanites'}
               </div>
             )}
           </div>
@@ -600,7 +610,7 @@ export default function Workshop(cfg: WorkshopConfig) {
                     strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d={f.glyph} />
                   </svg>
-                  {lang === 'fr' ? f.fr : f.en}
+                  {f.name}
                   {n > 0 && (
                     <span style={{
                       fontFamily: mono, fontSize: 9, color: a ? '#05070f' : over[f.key] ? '#ff8a8a' : '#8b97ba',
@@ -634,24 +644,26 @@ export default function Workshop(cfg: WorkshopConfig) {
                     opacity: done ? 0.85 : full ? 0.45 : 1, transition: 'transform .15s',
                   }}
                 >
-                  <span style={{ flex: '0 0 auto', color: curF.color, display: 'flex', width: 16 }}>
-                    {done ? <span style={{ fontSize: 14, color: '#8bf0a0' }}>✓</span> : (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d={curF.glyph} />
-                      </svg>
+                  <span style={{ position: 'relative', flex: '0 0 auto', display: 'flex' }}>
+                    <TechIcon icon={c.icon} glyph={curF.glyph} color={curF.color} size={28} />
+                    {done && (
+                      <span style={{
+                        position: 'absolute', right: -4, bottom: -4, fontSize: 11, color: '#8bf0a0',
+                        textShadow: '0 0 4px rgba(0,0,0,.9)',
+                      }}>✓</span>
                     )}
                   </span>
                   <span style={{ flex: 1, minWidth: 0 }}>
-                    <span style={{ display: 'block', color: '#fff', fontSize: 12.5, fontWeight: 600 }}>
-                      {lang === 'fr' ? c.fr : c.en}
-                    </span>
-                    <span style={{ display: 'block', fontSize: 11, color: '#9aa6c8', marginTop: 3, lineHeight: 1.5 }}>
-                      {lang === 'fr' ? c.dFr : c.dEn}
-                    </span>
-                    <span style={{ display: 'block', fontFamily: mono, fontSize: 9, color: '#57628a', marginTop: 4 }}>
-                      {lang === 'fr' ? c.srcFr : c.srcEn}
-                    </span>
+                    <span style={{ display: 'block', color: '#fff', fontSize: 12.5, fontWeight: 600 }}>{c.name}</span>
+                    {!!c.desc && (
+                      <span style={{
+                        display: '-webkit-box', fontSize: 11, color: '#9aa6c8', marginTop: 3, lineHeight: 1.5,
+                        overflow: 'hidden', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
+                      }}>{c.desc}</span>
+                    )}
+                    {!!c.group && (
+                      <span style={{ display: 'block', fontFamily: mono, fontSize: 9, color: '#57628a', marginTop: 4 }}>{c.group}</span>
+                    )}
                   </span>
                 </button>
               )
@@ -669,39 +681,44 @@ export default function Workshop(cfg: WorkshopConfig) {
             )}
           </div>
 
-          {curF?.module ? (
+          {curF && curF.mods.length > 0 ? (
             <div style={{
-              display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(148px,1fr))', gap: 7, marginTop: 7,
+              display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(158px,1fr))', gap: 7, marginTop: 7,
             }}>
-              {curF.module.tiers.map((t) => (
+              {curF.mods.map((m) => (
                 <button
-                  key={t.cl}
+                  key={m.id}
                   className="hv-lift1"
                   disabled={full}
-                  title={full ? (lang === 'fr' ? 'Inventaire plein' : 'Inventory full') : ''}
-                  onClick={() => installModule(curF, t.cl)}
+                  title={full ? (lang === 'fr' ? 'Inventaire plein' : 'Inventory full') : m.name}
+                  onClick={() => installModule(curF, m.cl)}
                   style={{
+                    cursor: full ? 'default' : 'pointer', textAlign: 'left', display: 'flex',
+                    flexDirection: 'column', gap: 3, padding: '9px 11px', borderRadius: 10,
                     opacity: full ? 0.45 : 1,
-                    cursor: 'pointer', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 3,
-                    padding: '9px 11px', borderRadius: 10,
-                    border: '1px solid ' + hexA(CLASS_COLOR[t.cl], 0.45),
-                    background: hexA(CLASS_COLOR[t.cl], 0.09), transition: 'transform .15s',
+                    border: '1px solid ' + hexA(CLASS_COLOR[m.cl], 0.45),
+                    background: hexA(CLASS_COLOR[m.cl], 0.09), transition: 'transform .15s',
                   }}
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                    <TechIcon icon={m.icon} glyph={curF.glyph} color={curF.color} size={22} />
                     <span style={{
                       fontFamily: "'Chakra Petch',sans-serif", fontWeight: 700, fontSize: 14,
-                      color: '#05070f', background: CLASS_COLOR[t.cl], borderRadius: 5, padding: '0 7px',
-                    }}>{t.cl}</span>
+                      color: '#05070f', background: CLASS_COLOR[m.cl], borderRadius: 5, padding: '0 7px',
+                    }}>{m.cl}</span>
                     <span style={{ color: '#fff', fontSize: 11.5, fontWeight: 600 }}>
-                      +{t.bonus.min}–{t.bonus.max}%
+                      +{m.bonus.min}–{m.bonus.max}%
                     </span>
                   </span>
+                  <span style={{
+                    fontSize: 10.5, color: '#dbe4ff', overflow: 'hidden', textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}>{m.name}</span>
                   <span style={{ fontFamily: mono, fontSize: 9.5, color: '#ffd98a' }}>
-                    ≈ {fmt(t.nanites.min)}–{fmt(t.nanites.max)} ⬡
+                    {m.nanites != null ? fmt(m.nanites) + ' ⬡' : '—'}
                   </span>
                   <span style={{ fontFamily: mono, fontSize: 8.5, color: '#8b97ba', lineHeight: 1.45 }}>
-                    {AVAILABILITY[t.cl][lang === 'fr' ? 0 : 1]}
+                    {m.availability}
                   </span>
                 </button>
               ))}
@@ -712,8 +729,8 @@ export default function Workshop(cfg: WorkshopConfig) {
 
           <div style={{ fontSize: 10.5, color: '#57628a', marginTop: 12, lineHeight: 1.6 }}>
             {lang === 'fr'
-              ? 'Prix et bonus : fourchettes observées par la communauté — chaque module tire ses stats au hasard dans la fenêtre de sa classe. Max 3 modules par famille, au-delà toute la famille se désactive.'
-              : 'Prices and bonuses are community-observed ranges — every module rolls random stats inside its class window. Max 3 modules per family; beyond that the whole family shuts down.'}
+              ? 'Noms, descriptions, prix en nanites et icônes proviennent des données du jeu (data/catalogue.json du dépôt). Les pourcentages de bonus restent des fourchettes communautaires : chaque module tire ses stats au hasard dans la fenêtre de sa classe. Max 3 modules par famille, au-delà toute la famille se désactive.'
+              : 'Names, descriptions, nanite prices and icons come from the game data (data/catalogue.json in the repo). Bonus percentages stay community-observed ranges — every module rolls random stats inside its class window. Max 3 modules per family; beyond that the whole family shuts down.'}
           </div>
         </div>
       </div>

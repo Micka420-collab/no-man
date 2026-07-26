@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useAtlas } from '../lib/store'
 import SectionHeader from '../components/SectionHeader'
 import Workshop, { CLASS_COLOR } from '../components/Workshop'
-import { families as catalogueFamilies } from '../data/catalogue'
+import { resolveFamilies } from '../lib/workshopData'
 
 const mono = "'Space Mono',monospace"
 
@@ -25,11 +25,10 @@ export default function Multitool() {
     desc: dec(lang === 'fr' ? t.desc_fr : t.desc_en),
   }))
 
-  const famRows = useMemo(() => catalogueFamilies('tool').map((f) => ({
-    key: f.key, emoji: f.emoji, color: f.color,
-    name: lang === 'fr' ? f.fr : f.en,
-    core: f.core.length, mods: f.module ? f.module.tiers.length : 0,
-  })), [lang])
+  const famRows = useMemo(() => resolveFamilies('tool', data.workshop, lang).map((f) => ({
+    key: f.key, glyph: f.glyph, color: f.color, name: f.name,
+    core: f.core.length, mods: f.mods.length,
+  })), [data.workshop, lang])
 
   const curT = (mt.types || []).find((t) => t.key === state.mtType) || (mt.types || [])[0] || {}
   const total = SB[state.mtClass] || 40
@@ -131,7 +130,10 @@ export default function Multitool() {
             background: 'rgba(10,14,28,.55)', padding: '13px 15px',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ fontSize: 16 }}>{f.emoji}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={f.color}
+                strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d={f.glyph} />
+              </svg>
               <span style={{ fontWeight: 600, fontSize: 13.5, color: '#fff' }}>{f.name}</span>
             </div>
             <div style={{ fontFamily: mono, fontSize: 10.5, color: '#8b97ba', marginTop: 7 }}>

@@ -138,6 +138,16 @@ export interface MultitoolData {
   families?: MultitoolFamily[]
 }
 
+export interface WorkshopFamilyIds { key: string; coreIds: string[]; modIds: string[] }
+export interface WorkshopDataset {
+  families?: { tool?: WorkshopFamilyIds[]; ship?: WorkshopFamilyIds[] }
+  items?: Record<string, {
+    fr: string; en: string; gFr?: string; gEn?: string; dFr?: string; dEn?: string
+    v?: number | null; cur?: string | null; icon?: string
+  }>
+  updated_at?: string
+}
+
 export interface DataBundle {
   stats?: Stats
   stats_history?: StatsHistory
@@ -160,6 +170,7 @@ export interface DataBundle {
   missions?: MissionsData
   recipes?: RecipesData
   multitool?: MultitoolData
+  workshop?: WorkshopDataset
 }
 
 /** Payload of the shared detail modal (ships, creatures, search hits). */

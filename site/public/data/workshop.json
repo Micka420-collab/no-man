@@ -1,0 +1,2041 @@
+{
+"note": "Technologies et modules d'amélioration réels de No Man's Sky, extraits de data/catalogue.json du dépôt (source : Assistant NMS). Ids, noms, descriptions, valeurs et icônes proviennent du jeu.",
+"source": "https://github.com/Micka420-collab/no-man/blob/main/data/catalogue.json",
+"updated_at": "2026-07-26T03:59:54.851562+00:00",
+"families": {
+"tool": [
+{
+"key": "mining",
+"coreIds": [
+"tech69",
+"tech70",
+"tech75",
+"tech241"
+],
+"modIds": [
+"upgrade1",
+"upgrade2",
+"upgrade3",
+"upgrade4",
+"upgrade148"
+]
+},
+{
+"key": "scanner",
+"coreIds": [
+"tech63",
+"tech62",
+"tech65",
+"tech64",
+"tech247"
+],
+"modIds": [
+"upgrade5",
+"upgrade6",
+"upgrade7",
+"upgrade8",
+"upgrade149"
+]
+},
+{
+"key": "boltcaster",
+"coreIds": [
+"tech72",
+"tech74",
+"tech73",
+"tech184"
+],
+"modIds": [
+"upgrade9",
+"upgrade10",
+"upgrade11",
+"upgrade12",
+"upgrade150"
+]
+},
+{
+"key": "scatter",
+"coreIds": [
+"tech80",
+"tech81"
+],
+"modIds": [
+"upgrade25",
+"upgrade26",
+"upgrade27",
+"upgrade28",
+"upgrade154"
+]
+},
+{
+"key": "spitter",
+"coreIds": [
+"tech82",
+"tech83",
+"tech185",
+"tech207"
+],
+"modIds": [
+"upgrade29",
+"upgrade30",
+"upgrade31",
+"upgrade32",
+"upgrade155"
+]
+},
+{
+"key": "javelin",
+"coreIds": [
+"tech78",
+"tech79",
+"tech206"
+],
+"modIds": [
+"upgrade21",
+"upgrade22",
+"upgrade23",
+"upgrade24",
+"upgrade153"
+]
+},
+{
+"key": "neutron",
+"coreIds": [
+"tech208",
+"tech209"
+],
+"modIds": [
+"prod161",
+"prod162",
+"prod163",
+"prod164",
+"prod165"
+]
+},
+{
+"key": "plasma",
+"coreIds": [
+"tech76"
+],
+"modIds": [
+"upgrade13",
+"upgrade14",
+"upgrade15",
+"upgrade16",
+"upgrade151"
+]
+},
+{
+"key": "geology",
+"coreIds": [
+"tech77"
+],
+"modIds": [
+"upgrade17",
+"upgrade18",
+"upgrade19",
+"upgrade20",
+"upgrade152"
+]
+},
+{
+"key": "utility",
+"coreIds": [
+"tech66",
+"tech67",
+"tech204",
+"tech205",
+"tech210",
+"tech168",
+"tech249",
+"prod166"
+],
+"modIds": []
+}
+],
+"ship": [
+{
+"key": "pulse",
+"coreIds": [
+"tech23",
+"tech24",
+"tech144",
+"tech145",
+"tech188"
+],
+"modIds": [
+"upgrade59",
+"upgrade60",
+"upgrade61",
+"upgrade62",
+"upgrade160"
+]
+},
+{
+"key": "launch",
+"coreIds": [
+"tech25",
+"tech26",
+"tech27",
+"tech187"
+],
+"modIds": [
+"upgrade168",
+"upgrade169",
+"upgrade170",
+"upgrade171",
+"upgrade172"
+]
+},
+{
+"key": "hyper",
+"coreIds": [
+"tech29",
+"tech30",
+"tech31",
+"tech32",
+"tech146",
+"tech286"
+],
+"modIds": [
+"upgrade63",
+"upgrade64",
+"upgrade65",
+"upgrade66",
+"upgrade161"
+]
+},
+{
+"key": "shield",
+"coreIds": [
+"tech33",
+"tech34"
+],
+"modIds": [
+"upgrade67",
+"upgrade68",
+"upgrade69",
+"upgrade70",
+"upgrade162"
+]
+},
+{
+"key": "photon",
+"coreIds": [
+"tech37"
+],
+"modIds": [
+"upgrade71",
+"upgrade72",
+"upgrade73",
+"upgrade74",
+"upgrade163"
+]
+},
+{
+"key": "phase",
+"coreIds": [
+"tech41",
+"tech42"
+],
+"modIds": [
+"upgrade75",
+"upgrade76",
+"upgrade77",
+"upgrade78",
+"upgrade164"
+]
+},
+{
+"key": "positron",
+"coreIds": [
+"tech43",
+"tech44"
+],
+"modIds": [
+"upgrade79",
+"upgrade80",
+"upgrade81",
+"upgrade82",
+"upgrade165"
+]
+},
+{
+"key": "infra",
+"coreIds": [
+"tech45",
+"tech46"
+],
+"modIds": [
+"upgrade83",
+"upgrade84",
+"upgrade85",
+"upgrade86",
+"upgrade166"
+]
+},
+{
+"key": "cyclotron",
+"coreIds": [
+"tech47",
+"tech48"
+],
+"modIds": [
+"upgrade87",
+"upgrade88",
+"upgrade89",
+"upgrade90",
+"upgrade167"
+]
+},
+{
+"key": "rockets",
+"coreIds": [
+"tech35",
+"tech36"
+],
+"modIds": []
+},
+{
+"key": "sutility",
+"coreIds": [
+"tech28",
+"tech39",
+"tech40",
+"tech216",
+"tech230"
+],
+"modIds": []
+}
+]
+},
+"items": {
+"prod161": {
+"fr": "Module pour le canon à neutrons",
+"en": "Neutron Cannon Module",
+"gFr": "Amélioration du canon à neutrons",
+"gEn": "Neutron Cannon Upgrade",
+"dFr": "Une amélioration modérée pour le canon à neutrons. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est…",
+"dEn": "A moderate upgrade for the Neutron Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: projectile speed,…",
+"v": 60.0,
+"cur": "Credits",
+"icon": "https://app.nmsassistant.com/assets/images/products/161.png"
+},
+"prod162": {
+"fr": "Module pour le canon à neutrons",
+"en": "Neutron Cannon Module",
+"gFr": "Amélioration significative pour le canon à neutrons",
+"gEn": "Significant Neutron Cannon Upgrade",
+"dFr": "Une amélioration significative pour le canon à neutrons. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A significant upgrade for the Neutron Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: projectile speed,…",
+"v": 140.0,
+"cur": "Credits",
+"icon": "https://app.nmsassistant.com/assets/images/products/162.png"
+},
+"prod163": {
+"fr": "Module pour le canon à neutrons",
+"en": "Neutron Cannon Module",
+"gFr": "Amélioration puissante pour le canon à neutrons",
+"gEn": "Powerful Neutron Cannon Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour le canon à neutrons. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "An extremely powerful upgrade for the Neutron Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include:…",
+"v": 300.0,
+"cur": "Credits",
+"icon": "https://app.nmsassistant.com/assets/images/products/163.png"
+},
+"prod164": {
+"fr": "Module pour le canon à neutrons",
+"en": "Neutron Cannon Module",
+"gFr": "Amélioration ultime pour le canon à neutrons",
+"gEn": "Supreme Neutron Cannon Upgrade",
+"dFr": "Une amélioration ultime pour le canon à neutrons. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est…",
+"dEn": "A supremely powerful upgrade for the Neutron Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: projectile…",
+"v": 480.0,
+"cur": "Credits",
+"icon": "https://app.nmsassistant.com/assets/images/products/164.png"
+},
+"prod165": {
+"fr": "Module de canon à neutrons suspect",
+"en": "Suspicious Neutron Cannon Module",
+"gFr": "Amélioration du canon à neutrons bannie",
+"gEn": "Banned Neutron Cannon Upgrade",
+"dFr": "Une modification de marché noir pour le canon à neutrons. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A black-market modification for the Neutron Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: projectile…",
+"v": 320.0,
+"cur": "Credits",
+"icon": "https://app.nmsassistant.com/assets/images/products/165.png"
+},
+"prod166": {
+"fr": "Fragment d'armes sentinelles",
+"en": "Sentinel Weapons Shard",
+"gFr": "Module de multi-outil interdit",
+"gEn": "Forbidden Multi-Tool Module",
+"dFr": "Une amélioration anormale pour les systèmes d'armes du multi-outil. Utilisez FE_ALT1 pour lancer le processus d'installation de l'amélioration. Ce fragment de verre étrange a été récupéré dans des débris sentinelles. Son effet sur le…",
+"dEn": "An anomalous upgrade for the Multi-Tool's Weapon Systems. Use FE_ALT1 to begin upgrade installation process. This eerie, glassy shard has been extracted from Sentinel debris. Its exact effect upon the Multi-Tool will not be known until…",
+"v": 480.0,
+"cur": "Credits",
+"icon": "https://app.nmsassistant.com/assets/images/products/166.png"
+},
+"tech144": {
+"fr": "Propulseur à instabilité",
+"en": "Instability Drive",
+"gFr": "Amélioration de pulsoréacteur",
+"gEn": "Pulse Engine Augmentation",
+"dFr": "Une amélioration avant-gardiste pour le pulsoréacteur, qui augmente grandement l'efficacité du carburant. Les ressources en tritium sont redirigées à travers un cycle de trous noirs miniatures. Les fluctuations de la micro-gravité qui en…",
+"dEn": "A highly-advanced upgrade for the Pulse Engine, vastly increasing fuel efficiency. Tritium supplies are redirected into a cycle of miniature black holes. Resulting micro-gravity fluctuations are harnessed to boost starship propulsion…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/144.png"
+},
+"tech145": {
+"fr": "Amplificateur de sous-lumière",
+"en": "Sub-Light Amplifier",
+"gFr": "Amélioration de pulsoréacteur",
+"gEn": "Pulse Engine Augmentation",
+"dFr": "Une amélioration avant-gardiste pour le pulsoréacteur, qui augmente grandement la vitesse interplanétaire. Les effets de décalage qui surviennent naturellement au sein du pulsoréacteur sont amplifiés par les réacteurs fonctionnant au…",
+"dEn": "A highly-advanced upgrade for the Pulse Engine, vastly increasing interplanetary speed. Naturally occuring frameshift effects within the Pulse Engine are amplified by tritium-based resonators, increasing its maximum sub-light speed.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/144.png"
+},
+"tech146": {
+"fr": "Unité de distorsion d'urgence",
+"en": "Emergency Warp Unit",
+"gFr": "Amélioration de l'hyperpropulsion",
+"gEn": "Hyperdrive Augmentation",
+"dFr": "Une amélioration importante pour l'hyperpropulseur qui permet une distorsion instantanée, même si les systèmes habituels sont bloqués par un combat de vaisseau. Accédez au système de distorsion d'urgence via le menu rapide. ATTENTION : Les…",
+"dEn": "A significant upgrade to the Hyperdrive that allows an instantaneous warp even while conventional systems are blocked by starship combat. Access to the emergency warp system is via the Quick Menu. WARNING: Fast scramble systems mean the…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/146.png"
+},
+"tech168": {
+"fr": "Rayon Animus",
+"en": "Animus Beam",
+"gFr": "Extracteur d'âmes",
+"gEn": "Soul Extractor",
+"dFr": "Une surcharge unique pour le laser d'extraction standard du multi-outil. La fréquence du rayon est modulée précisément dans une boucle de rétroaction grâce aux vagues delta générées par la cible de l'impact. Les enregistrements des…",
+"dEn": "A unique overload to the Multi-Tool's standard mining laser. Beam frequency is modulated precisely in a feedback loop with the delta-waves generated by the impact target. Recordings of the target's experiences are thus etched into tiny…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/168.png"
+},
+"tech184": {
+"fr": "Module de ricochet de lance-foudre",
+"en": "Boltcaster Ricochet Module",
+"gFr": "Amélioration du lance-foudre",
+"gEn": "Boltcaster Upgrade",
+"dFr": "Crée un champ d'antimatière autour des tirs du lance-foudre, les repoussant des surfaces non endommagées. Active le ricochet, faisant rebondir les projectiles s'ils touchent une cible à laquelle ils ne causent pas de dégâts.",
+"dEn": "Creates an antimatter field around the shots of the Boltcaster, causing them to be repelled by non-damaged surfaces. Enables ricochet, causing projectiles to bounce if they hit a target they do not damage.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/73.png"
+},
+"tech185": {
+"fr": "Module de ricochet de souffle destructeur",
+"en": "Pulse Spitter Ricochet Module",
+"gFr": "Amélioration du souffle destructeur",
+"gEn": "Pulse Spitter Upgrade",
+"dFr": "Crée un champ d'antimatière autour des tirs du souffle destructeur, les repoussant des surfaces non endommagées. Active le ricochet, faisant rebondir les projectiles s'ils touchent une cible à laquelle ils ne causent pas de dégâts.",
+"dEn": "Creates an antimatter field around the shots of the Pulse Spitter, causing them to be repelled by non-damaged surfaces. Enables ricochet, causing projectiles to bounce if they hit a target they do not damage.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/83.png"
+},
+"tech187": {
+"fr": "Système de décollage avancé",
+"en": "Advanced Launch System",
+"gFr": "Équipement d'atterrissage sur mesure",
+"gEn": "Bespoke Landing Gear",
+"dFr": "Un système de décollage personnalisé pour les vaisseaux les plus performants. Gyroscopes sensibles et circuits de contrôle spécialisés personnalisés pour un décollage plus rapide et plus efficace. Du carburant spécial, à base de…",
+"dEn": "A custom-made launch control system for high-performance starships. Sensitive gyroscopes and specialised control circuits plot custom take-off routines for increased launch speed and efficiency. Specialised, deuterium-derived fuel is…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/90.png"
+},
+"tech188": {
+"fr": "Moteur de forme d'onde",
+"en": "Waveform Engine",
+"gFr": "Moteur de vaisseau hautement personnalisé",
+"gEn": "Highly Customised Starship Engine",
+"dFr": "Une version retravaillée du pulsoréacteur d'un vaisseau conventionnel. La forme d'onde a été poussée à sa limite, créant une expérience de pulsion à la fois efficace et hautement réactive. Veuillez noter que du tritium est nécessaire pour…",
+"dEn": "A highly-tuned version of the conventional starship Pulse Engine. Wavefront occupancy has been pushed to the limit, creating a pulse experience that is both efficient and highly responsive. User is advised that Tritium is required to…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/products/79.png"
+},
+"tech204": {
+"fr": "Système de camouflage",
+"en": "Cloaking Device",
+"gFr": "Unité de camouflage actif",
+"gEn": "Active Camouflage Unit",
+"dFr": "Lors de l'activation, ce module est alimenté par les systèmes de survie de l'exocombinaison pour manipuler le champ gravitationnel autour de l'utilisateur, réfracter la lumière et créer un effet de camouflage actif. Cet effet temporaire…",
+"dEn": "On activation, this module draws power from Exosuit Life Support systems to manipulate the gravitational field around the user, refracting the light and creating an active camouflage effect. This temporary effect can be used to escape…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/204.png"
+},
+"tech205": {
+"fr": "Mortier paralysant",
+"en": "Paralysis Mortar",
+"gFr": "Grenades étourdissantes",
+"gEn": "Stun Grenades",
+"dFr": "Une arme de jet non violente. Les projectiles lancés neutralisent les cibles proches à l'aide d'une décharge électrique. Efficace contre les entités biologiques et électroniques. Se charge avec du plasma instable. Appuyez sur ALTATTACK…",
+"dEn": "Non-violent projectile weapon. Launched projectiles will incapacitate nearby targets with a burst of electrical energy. Effective against both biological and electronic entities. Charged with Unstable Plasma. Press ALTATTACK to activate.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/205.png"
+},
+"tech206": {
+"fr": "Oscillateur de forme d'onde",
+"en": "Waveform Oscillator",
+"gFr": "Amélioration du dard ardent",
+"gEn": "Blaze Javelin Upgrade",
+"dFr": "Surcharge le faisceau d'énergie généré par le dard ardent, l'amenant à délivrer une charge électrique puissante à son point d'impact. Étourdit brièvement toutes les entités organiques et inorganiques qui croisent le faisceau du dard ardent.",
+"dEn": "Overloads the energy beam generated by the Blaze Javelin, causing it to deliver a power electrical charge at its point of impact. Will briefly stun any organic and inorganic entities that intersect the Blaze Javelin's beam.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/79.png"
+},
+"tech207": {
+"fr": "Igniteur à impact",
+"en": "Impact Igniter",
+"gFr": "Amélioration du souffle destructeur",
+"gEn": "Pulse Spitter Upgrade",
+"dFr": "Une amélioration de combat puissante pour le souffle destructeur. Ce module installe une série de buses d'injection de carburant délicatement calibrées dans la chambre de tir, utilisées pour initier une combustion contrôlée dans ses…",
+"dEn": "A powerful combat upgrade for the Pulse Spitter. This module installs series of delicately calibrated fuel-injection nozzles within the firing chamber, which are used to initiate a controlled burn within its plasma projectiles. Causes…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/83.png"
+},
+"tech208": {
+"fr": "Canon à neutrons",
+"en": "Neutron Cannon",
+"gFr": "Arme à énergie explosive",
+"gEn": "Explosive Energy Weapon",
+"dFr": "Un accessoire d'arme à haute énergie pour le multi-outil. Le canon à neutrons stimule des particules atmosphériques avant de les propulser vers les cibles ennemies, infligeant des dégâts de zone importants. Accédez au mode de tir avec…",
+"dEn": "A high-energy weapon attachment for the Multi-Tool. The Neutron Cannon energises atmospheric particles before propelling them towards hostile targets, delivering significant area damage Access fire mode by pressing CYCLEWEAPON. Charge the…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/208.png"
+},
+"tech209": {
+"fr": "Compresseur de champ-P",
+"en": "P-Field Compressor",
+"gFr": "Amélioration du canon à neutrons",
+"gEn": "Neutron Cannon Upgrade",
+"dFr": "Une amélioration puissante pour le canon à neutrons. Des compresseurs à résonance supplémentaires permettent d'acheminer beaucoup plus d'énergie à travers le noyau central du canon, augmentant considérablement sa puissance. Cette…",
+"dEn": "A powerful upgrade to the Neutron Cannon. Additional resonance compressors allow significantly more energy to be routed through the cannon's central core, dramatically increasing operating power. Installation will allow a fully-charged…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/209.png"
+},
+"tech210": {
+"fr": "Amplificateur voltaïque",
+"en": "Voltaic Amplifier",
+"gFr": "Module de surcharge des dégâts",
+"gEn": "Damage Overload Module",
+"dFr": "Une mise à jour généralisée pour tous les systèmes d'armes du multi-outil, faisant résonner ses projectiles de façon spectaculaire lors de l'impact avec n'importe quel champ électromagnétique adapté. Augmente considérablement les dégâts…",
+"dEn": "A generalised upgrade for all Multi-Tool weapon systems, causing its projectiles to resonate dramatically upon impact with any appropriate electromagnetic field. Will significantly increase the damage dealt to any organic and inorganic…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/210.png"
+},
+"tech216": {
+"fr": "DÉFLECTEUR D'ANALYSE DE CARGAISON",
+"en": "Cargo Scan Deflector",
+"gFr": "Contre-mesures anti-sondes",
+"gEn": "Anti-Probe Countermeasures",
+"dFr": "Un brouilleur de résonance spécialement réglé pour interférer avec les analyses de cargaison à distance déployées par les autorités du système à la recherche de marchandises de contrebande. Déployez-le à partir du menu rapide (QUICK_MENU)…",
+"dEn": "A specially tuned resonance jammer, designed to interfere with the remote cargo scans deployed by system authorities in the search for smuggled goods. Deploy from the Quick Menu (QUICK_MENU) while a scan is in progress to deflect the…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/216.png"
+},
+"tech23": {
+"fr": "Pulsoréacteur",
+"en": "Pulse Engine",
+"gFr": "Assistance de vol spatial",
+"gEn": "Starship Flight Booster",
+"dFr": "Propulsion de vaisseau, accélération et saut assisté à la demande à travers un système local. Veuillez noter que du tritium est nécessaire pour charger le pulsoréacteur. Le tritium se trouve en abondance dans les champs d'astéroïdes…",
+"dEn": "Spaceflight propulsion, boosts and on-demand Pulse Jumps through local system. User is advised that Tritium is required to charge Pulse Engine. Tritium is abundant in near-space asteroid fields. Locate Tritium with the starship scanner…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/23.png"
+},
+"tech230": {
+"fr": "Scanner de vaisseau",
+"en": "Starship Scanner",
+"gFr": "Scanner de vaisseau",
+"gEn": "Starship Scanner",
+"dFr": "Scanner de vaisseau",
+"dEn": "Starship Scanner",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/39.png"
+},
+"tech24": {
+"fr": "Noyau de photonix",
+"en": "Photonix Core",
+"gFr": "Unité complémentaire du pulsoréacteur",
+"gEn": "Pulse Engine Companion Unit",
+"dFr": "Offre une manœuvrabilité accrue et des accélérations prolongées au cours des vols spatiaux.",
+"dEn": "Provides increased manoeuvrability and longer boosts during spaceflight.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/23.png"
+},
+"tech241": {
+"fr": "Laser détourné",
+"en": "Hijacked Laser",
+"gFr": "Rayon à haute énergie remanié",
+"gEn": "Repurposed High-Energy Beam",
+"dFr": "Ce multi-outil a été conçu avec des matériaux et des méthodes inconnues des fabricants conventionnels. En son centre se trouve une énigmatique panoplie de matière optique impossible et de mousse vitreuse. Il contient néanmoins une couche…",
+"dEn": "This Multi-Tool is made with material and methods known to no conventional manufacturer, its core a unfathomable array of impossible optics and glassy foam. Nonetheless, there is a layer of recogniseable technology. It shows signs of…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/241.png"
+},
+"tech247": {
+"fr": "Harmonisateur de scan",
+"en": "Scan Harmoniser",
+"gFr": "Amélioration du multi-outil",
+"gEn": "Multi-Tool Upgrade",
+"dFr": "Un accessoire pour le scanner du multi-outil qui permet à l'appareil de détecter et décoder le signal de camouflage des unités autophages à proximité. Utilisez SCAN pour activer le scanner. Lorsque la forme d'onde du détecteur passe…",
+"dEn": "An attachment for the Multi-Tool Scanner that allows the device to detect and decode the cloaking signal of nearby Autophage units. Use SCAN to activate the Scanner. As its detector waveform passes over the local area, it will…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/242.png"
+},
+"tech249": {
+"fr": "Lentille runique",
+"en": "Runic Lens",
+"gFr": "Anomalie géométrique",
+"gEn": "Geometric Anomaly",
+"dFr": "Le cœur géométrique de cette arme ancienne est la lentille runique. Sa géométrie inconcevable concentre non seulement la lumière dans un puissant laser d'extraction, mais peut également distordre le champ électromagnétique local afin de…",
+"dEn": "The geometric heart of this ancient weapon is the Runic Lens. Its impossible geometry not only concentrates light into a high-powered Mining Laser, but can also warp the local electromagnetic field so as to render the user invisible.…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/249.png"
+},
+"tech25": {
+"fr": "Propulseur de décollage",
+"en": "Launch Thruster",
+"gFr": "Système de décollage vertical",
+"gEn": "Vertical Take-off System",
+"dFr": "Système vital de décollage et d'atterrissage. Attention : du carburant spécial, à base de dihydrogène, est requis pour recharger le propulseur. Les procédures de lancement nécessitent des réserves de carburant suffisantes avant activation.…",
+"dEn": "Vital launch and landing gear system. User is advised that specialised, Deuterium-derived fuel is required to recharge thruster. Launch procedures require sufficient fuel levels before activation. Hold THRUST to take off from planet. Hold…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/25.png"
+},
+"tech26": {
+"fr": "Propulseurs efficaces",
+"en": "Efficient Thrusters",
+"gFr": "Amélioration du système de décollage du vaisseau",
+"gEn": "Starship Launch System Upgrade",
+"dFr": "Améliore les systèmes de décollage du vaisseau, diminuant le coût en carburant au décollage.",
+"dEn": "Upgrades the starship launch systems, decreasing the fuel cost of takeoff.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/26.png"
+},
+"tech27": {
+"fr": "Chargeur automatique de décollage",
+"en": "Launch Auto-Charger",
+"gFr": "Amélioration du système de décollage du vaisseau",
+"gEn": "Starship Launch System Upgrade",
+"dFr": "Panneaux photovoltaïques intégrés au vaisseau, les propulseurs de décollage permettent une charge lente au compte-gouttes lorsque le vaisseau n’est pas en marche. La lumière récoltée est utilisée pour faire fusionner le dihydrogène…",
+"dEn": "Photovoltaic panels fitted to the starship Launch Thrusters allow for a slow trickle charge while the ship is not in operation. Harvested light is used to fuse di-hydrogen from the atmosphere and over time will refuel the Launch Thrusters…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/26.png"
+},
+"tech28": {
+"fr": "Récepteur de téléportation",
+"en": "Teleport Receiver",
+"gFr": "Dispositif de téléportation intégré au vaisseau",
+"gEn": "Ship-Mounted Teleportation Device",
+"dFr": "Un appareil qui module les signaux de communication standard des vaisseaux pour permettre le transport de matière en plus des données. Les vaisseaux équipés de tels dispositifs peuvent envoyer et recevoir des produits et des substances…",
+"dEn": "A device that modulates standard starship communication signals to enable the transport of matter as well as data. Starships fitted with such a device can send and receive products and substances to a user's exosuit over a long distance.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/28.png"
+},
+"tech286": {
+"fr": "Propulseur Atlantide",
+"en": "Atlantid Drive",
+"gFr": "Amélioration de l'hyperpropulsion : systèmes violets",
+"gEn": "Hyperdrive Upgrade: Purple Systems",
+"dFr": "Installe un paquet de mémoire résonnante sur votre ordinateur de distorsion, pour permettre au vaisseau de franchir l'espace dissonant entourant les corps stellaires violets. Il est conseillé à l'utilisateur d'accéder aux systèmes…",
+"dEn": "Sideloads a resonant memory packet into your warp computer, allowing the ship to pass through the dissonant space surrounding purple stellar bodies. User is advised to access Hyperdrive systems via the Galactic Map.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/286.png"
+},
+"tech29": {
+"fr": "Hyperpropulsion",
+"en": "Hyperdrive",
+"gFr": "Générateur de distorsion supraluminique",
+"gEn": "Lightspeed Warp Drive",
+"dFr": "Propulseur VSL permettant aux vaisseaux d'atteindre la vitesse de distorsion et de sauter d'un système à un autre système voisin. Veuillez accéder aux systèmes d'hyperpropulsion depuis la carte galactique.",
+"dEn": "FTL propulsion drive that allows starship to attain warp speed and jump between neighbouring systems. User is advised to access Hyperdrive systems through Galactic Map.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/29.png"
+},
+"tech30": {
+"fr": "Générateur au cadmium",
+"en": "Cadmium Drive",
+"gFr": "Amélioration de l'hyperpropulsion : systèmes rouges",
+"gEn": "Hyperdrive Upgrade: Red Systems",
+"dFr": "Améliore les aimants au cœur de l'hyperpropulseur, ce qui évite tout désassemblage soudain lors d'une tentative d'accès à des corps stellaires rouges rares. Veuillez accéder aux systèmes d'hyperpropulsion depuis la carte galactique.",
+"dEn": "Upgrades the hyperdrive's core bounding magnets, preventing rapid disassembly when attempting to reach rare-class red stellar bodies. User is advised to access Hyperdrive systems via the Galactic Map.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/30.png"
+},
+"tech31": {
+"fr": "Générateur à l'émeril",
+"en": "Emeril Drive",
+"gFr": "Amélioration de l'hyperpropulsion : systèmes verts",
+"gEn": "Hyperdrive Upgrade: Green Systems",
+"dFr": "Améliore, l'intégrité des boucliers de l'hyperpropulseur, ce qui évite tout bug de réalité lors d'une tentative d'accès à des corps stellaires verts rares. Veuillez accéder aux systèmes d'hyperpropulsion depuis la carte galactique.",
+"dEn": "Upgrades the hyperdrive's shield integrity, preventing reality glitches when attempting to reach rare-class green stellar bodies. User is advised to access Hyperdrive systems via the Galactic Map.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/31.png"
+},
+"tech32": {
+"fr": "Générateur à l'indium",
+"en": "Indium Drive",
+"gFr": "Amélioration de l'hyperpropulsion : systèmes bleus",
+"gEn": "Hyperdrive Upgrade: Blue Systems",
+"dFr": "Améliore la matrice de calcul de l'hyperpropulseur, ce qui évite toute anomalie temporelle lors d'une tentative d'accès à des corps stellaires bleus rares. Veuillez accéder aux systèmes d'hyperpropulsion depuis la carte galactique.",
+"dEn": "Upgrades the hyperdrive's computational matrix, preventing temporal anomalies when attempting to reach rare-class blue stellar bodies. User is advised to access Hyperdrive systems via the Galactic Map.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/32.png"
+},
+"tech33": {
+"fr": "Bouclier déflecteur",
+"en": "Deflector Shield",
+"gFr": "Protection de coque pour vaisseau",
+"gEn": "Spacecraft Hull Protection",
+"dFr": "Champ d'énergie protégeant un vaisseau contre les tirs de laser, les projectiles rencontrés en vol et les collisions fortuites avec des débris spatiaux. Attention : des éléments catalytiques sont requis pour recharger le dispositif. Activé…",
+"dEn": "Energy shield that protects spacecraft from laser fire, in-flight projectiles and accidental space debris interaction. User is advised that catalytic elements are required to recharge device. Operates automatically once constructed within…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/33.png"
+},
+"tech34": {
+"fr": "Blindage ablatif",
+"en": "Ablative Armour",
+"gFr": "Amélioration du blindage des vaisseaux",
+"gEn": "Starship Shield Upgrade",
+"dFr": "Il ajoute une couche de blindage surchauffée au système de défense du vaisseau. Il améliore ainsi considérablement l'efficacité de sa protection.",
+"dEn": "Adds a layer of superheated shielding to the starship's defense array, vaporising incoming fire. Significantly increases starship shield performance.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/34.png"
+},
+"tech35": {
+"fr": "Lance-roquettes",
+"en": "Rocket Launcher",
+"gFr": "Arme de vaisseau à longue portée",
+"gEn": "Long Range Starship Weapon",
+"dFr": "Une arme de vaisseau à longue portée, capable de lancer une torpille hautement explosive sur des distances importantes. Attention : les dégâts explosifs sont très efficaces contre les cibles sans bouclier, mais inefficaces contre les…",
+"dEn": "A long range starship weapon, capable of delivering a highly explosive torpedo across massive distances. Note: explosive damage is highly effective against unshielded targets, but ineffective against shielded targets. Use CYCLEWEAPON to…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/35.png"
+},
+"tech36": {
+"fr": "Grands tubes propulsés",
+"en": "Large Rocket Tubes",
+"gFr": "Amélioration des roquettes du vaisseau",
+"gEn": "Starship Rockets Upgrade",
+"dFr": "Ils agrandissent la chambre de chargement du lance-roquettes et améliorent ainsi leur projection tout en permettant une récupération thermique bien plus rapide.",
+"dEn": "Expands the loading chamber of the starship Rocket Launcher, improving exhaust performance and allowing for significantly faster heat recovery.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/36.png"
+},
+"tech37": {
+"fr": "Canon à photons",
+"en": "Photon Cannon",
+"gFr": "Arme pour vaisseau lançant des projectiles",
+"gEn": "Starship Projectile Weapon",
+"dFr": "Un lanceur de projectiles pour vaisseau destructeur, un système d'arme de choix pour les marchands interstellaires comme pour les pirates. Utilisez CYCLEWEAPON pour changer de mode d'arme. Appuyez sur SHIPFIRE pour tirer.",
+"dEn": "A destructive starship projectile launcher, the weapons system of choice for the interstellar trader and pirate alike. Use CYCLEWEAPON to change weapon mode. Press SHIPFIRE to fire.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/37.png"
+},
+"tech39": {
+"fr": "Scanner d'économie",
+"en": "Economy Scanner",
+"gFr": "Technologie de capteur à longue portée",
+"gEn": "Long-range Sensor Technology",
+"dFr": "Une amélioration pour les capteurs à échelle galactique du vaisseau. Ce dispositif permet à l'utilisateur d'accéder aux données économiques détaillées d'un système sans avoir à le visiter. Consultez les données collectées automatiquement…",
+"dEn": "An upgrade to the starship's galactic-scale sensors. This device allows the user to access detailed economic data about a system without having to visit. See collected data automatically on the Galaxy Map. Active the scanner's internal…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/39.png"
+},
+"tech40": {
+"fr": "Scanner de conflit",
+"en": "Conflict Scanner",
+"gFr": "Technologie de capteur à longue portée",
+"gEn": "Long-range Sensor Technology",
+"dFr": "Une amélioration pour les capteurs à échelle galactique du vaisseau. Ce dispositif permet à l'utilisateur d'accéder aux données de conflit dans la carte galactique, sans avoir à se mettre en danger.",
+"dEn": "An upgrade to the starship's galactic-scale sensors. This device allows the user to access conflict data in the galaxy map, without having to put themselves in harm's way.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/40.png"
+},
+"tech41": {
+"fr": "Rayon phasique",
+"en": "Phase Beam",
+"gFr": "Arme à énergie de vaisseau spatial",
+"gEn": "Starship Energy Weapon",
+"dFr": "Une arme aux rayons à haute énergie pour les combats spatiaux. Bien qu'elles soient vulnérables à la surchauffe, ces armes laser à haute précision peuvent recharger les boucliers de leur utilisateur en aspirant l'énergie des systèmes…",
+"dEn": "A high-energy beam weapon for ship-to-ship combat. Though vulnerable to overheating, these highly accurate laser weapons can recharge the users's shields by leeching energy from target shield systems. Use CYCLEWEAPON to change weapon mode.…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/41.png"
+},
+"tech42": {
+"fr": "Délimiteur de Fourier",
+"en": "Fourier De-Limiter",
+"gFr": "Amélioration du rayon phasique",
+"gEn": "Phase Beam Upgrade",
+"dFr": "Cette amélioration permet de remanier le câblage du rayon phasique avec des circuits à base de nanites, le faisant passer au-delà des limites réelles et conventionnelles de la puissance laser. Elle augmente considérablement la dissipation…",
+"dEn": "Rewires the Phase Beam with nanite-based circuitry, bypassing conventional reality limits on laser power. Significantly improves heat performance.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/42.png"
+},
+"tech43": {
+"fr": "Éjecteur à positrons",
+"en": "Positron Ejector",
+"gFr": "Arme de vaisseau à courte portée",
+"gEn": "Close Range Starship Weapon",
+"dFr": "Une arme de vaisseau puissante, capable d'infliger des dégâts massifs à courte portée. Attention : ces particules sont moins efficaces contre les cibles avec bouclier. Utilisez CYCLEWEAPON pour changer de mode d'arme. Appuyez sur SHIPFIRE…",
+"dEn": "A powerful starship weapon, capable of delivering extreme destruction at close range. Note: these particles show decreased effectiveness against shielded targets. Use CYCLEWEAPON to change weapon mode. Press SHIPFIRE to fire.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/43.png"
+},
+"tech44": {
+"fr": "Compresseur de fragments",
+"en": "Fragment Supercharger",
+"gFr": "Amélioration de l'éjecteur à positrons des vaisseaux",
+"gEn": "Starship Positron Ejector Upgrade",
+"dFr": "Il permet de remanier le mécanisme de tir de l'éjecteur à positrons afin de générer des particules plus rapides et plus précises. Il augmente la portée et la précision des tirs.",
+"dEn": "Overhauls the firing mechanism of the Positron Ejector, resulting in faster, more accurate particles. Improves range and accuracy.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/44.png"
+},
+"tech45": {
+"fr": "Accélérateur infra-couteau",
+"en": "Infra-Knife Accelerator",
+"gFr": "Arme de vaisseau à tir rapide",
+"gEn": "Rapid Fire Starship Weapon",
+"dFr": "Une arme de vaisseau à tir rapide qui lance des globes de métal liquide surchauffé sur les cibles hostiles. Ces projectiles sont très efficaces contre les coques de vaisseau sans bouclier. Remarque : les composants internes de…",
+"dEn": "A rapid fire starship weapon that launches superheated globes of liquid metal at hostile targets. These projectiles are extremely effective against unshielded starship hulls. Note: the Accelerator's internal components are vulnerable to…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/45.png"
+},
+"tech46": {
+"fr": "Système optique non linéaire",
+"en": "Nonlinear Optics",
+"gFr": "Amélioration du canon à photons",
+"gEn": "Photon Cannon Upgrade",
+"dFr": "Il remplace le système optique conventionnel du canon à photons par une série de verres expérimentaux, ce qui augmente ses performances lors des combats. Il améliore considérablement sa capacité à dissiper la chaleur.",
+"dEn": "Replaces the conventional Photon Cannon optics with an experimental glass array, boosting combat performance. Significantly improves heat sink capacity.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/46.png"
+},
+"tech47": {
+"fr": "Baliste cyclotron",
+"en": "Cyclotron Ballista",
+"gFr": "Arme de vaisseau anti-électronique",
+"gEn": "Anti-Electronics Starship Weapon",
+"dFr": "Une arme de combat spatial puissante qui lance des balles de plasma au rayonnement ionisant sur la cible. Ces projectiles peuvent désactiver les moteurs des vaisseaux, rendant votre cible vulnérable aux attaques d'autres armes. Ces…",
+"dEn": "A powerful ship-to-ship weapon, flinging plasmatic balls of ionising radiation towards the selected target. These projectiles can disable starship engines, leaving the target vulnerable to attack from other weapons. These charged particles…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/47.png"
+},
+"tech48": {
+"fr": "Pompe Dyson",
+"en": "Dyson Pump",
+"gFr": "Amélioration du cyclotron des vaisseaux",
+"gEn": "Starship Cyclotron Upgrade",
+"dFr": "Il permet de remplacer tout le système de dissipation de la chaleur de la baliste cyclotron en le regroupant dans une mégastructure d'absorption de la chaleur. La chaleur générée est alors recyclée pour améliorer son efficacité lors des…",
+"dEn": "Replaces the heat sink of the Cyclotron Ballista by encompassing the entire unit with a heat-absorbing megastructure. Heat output is recycled to boost combat efficiency. Significantly improves heat performance.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/48.png"
+},
+"tech62": {
+"fr": "Visière d'analyse",
+"en": "Analysis Visor",
+"gFr": "Dispositif de marquage binoculaire",
+"gEn": "Binocular Tagging Device",
+"dFr": "Unité spécialisée de découverte et de sondage. Accroît les capacités normales du scanner en projetant des données environnementales détaillées directement dans la visière de l'utilisateur. Permet l'identification de points d'intérêt…",
+"dEn": "Specialist Discovery and Survey unit. Augments standard Scanner capabilities by projecting detailed environmental data directly over the user's visor. Allows the identification of distant points of interest. The Visor will generate…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/62.png"
+},
+"tech63": {
+"fr": "Scanner",
+"en": "Scanner",
+"gFr": "Étude topographique",
+"gEn": "Topographic Survey",
+"dFr": "Amélioration du radar de surface personnel pour multi-outil. Le scanner libère une impulsion intense révélant les ressources de survie essentielles des environs immédiats. Les données sont transmises via l'exocombinaison directement dans…",
+"dEn": "A Personal Surface Radar augmentation for the Multi-Tool. The Scanner releases a high-energy pulse that reveals any critical survival resources in the immediate area. Data is transmitted via the Exosuit directly into the user's visual…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/63.png"
+},
+"tech64": {
+"fr": "Recycleur de formes d'ondes",
+"en": "Waveform Recycler",
+"gFr": "Amélioration du multi-outil",
+"gEn": "Multi-Tool Upgrade",
+"dFr": "Un puissant processeur latéral inséré dans le système de scan du multi-outil permet à l'appareil de se recharger beaucoup plus rapidement. Il augmente également la fréquence des scanographies.",
+"dEn": "A powerful lateral processor inserted into the Multi-Tool Scanning System allows the device to recharge at a significantly improved rate. Increases potential scan frequency.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/64.png"
+},
+"tech65": {
+"fr": "Dispositif de sondage",
+"en": "Survey Device",
+"gFr": "Amélioration de la visière d’analyse",
+"gEn": "Analysis Visor Upgrade",
+"dFr": "Une amélioration autonome du système de circuits pour la visière d’analyse qui ajoute l’analyse de terrain en temps réel au réseau de balayage. Changez de mode de visière avec SURVEYFILTERL/SURVEYFILTERR. Utilisez le mode sondage pour…",
+"dEn": "A self-contained circuitry upgrade for the Analysis Visor, adding real-time terrain analysis to the scanning array. Toggle between Visor modes with SURVEYFILTERL/SURVEYFILTERR. Use Surveying Mode to detect hidden terrain resources.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/65.png"
+},
+"tech66": {
+"fr": "Opérateur du terrain",
+"en": "Terrain Manipulator",
+"gFr": "Outil de modelage du paysage",
+"gEn": "Landscape Shaping Tool",
+"dFr": "Appareil de terraformation avancé. Ce module surcharge les systèmes de multi-outils existants, permettant à l'utilisateur de reformer les régions à sa guise. Se charge à l'aide d'éléments métalliques.",
+"dEn": "Advanced terraforming device. This module overloads existing multi-tool systems, allowing the user to reshape regions as they wish. Charged with metallic elements.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/66.png"
+},
+"tech67": {
+"fr": "Champ de force personnel",
+"en": "Personal Forcefield",
+"gFr": "Technologie de bouclier défensif",
+"gEn": "Defensive Shield Technology",
+"dFr": "À l'activation, ce module puise dans l'énergie du système de survie de l'exocombinaison pour surcharger le multi-outil, générant une distorsion du champ électromagnétique autour de son porteur, créant ainsi un puissant bouclier individuel.…",
+"dEn": "On activation, this module draws power from Exosuit Life Support systems to overload the Multi-Tool, distorting the electromagnetic field around the user and creating a powerful personal shield. While this field offers substantial…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/67.png"
+},
+"tech69": {
+"fr": "Rayon d'extraction",
+"en": "Mining Beam",
+"gFr": "Laser d'extraction minérale",
+"gEn": "Mineral Extraction Laser",
+"dFr": "Rayon d'extraction du multi-outil alimenté par des éléments à base de carbone. Tirez avec ATTACK. Installe des lentilles de précision dans le multi-outil, ce qui lui permet d'émettre un rayon intense. Le rayon est calibré de façon à…",
+"dEn": "Multi-Tool Mining Beam powered by Carbon-based Elements. Fire the beam with ATTACK. Installs focusing optics within the Multi-Tool, allowing it to emit a high-energy beam. The beam is calibrated to excite molecules within common organic or…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/69.png"
+},
+"tech70": {
+"fr": "Laser d'extraction avancé",
+"en": "Advanced Mining Laser",
+"gFr": "Unité complémentaire du rayon d'extraction",
+"gEn": "Mining Beam Companion Unit",
+"dFr": "Remplace la lentille standard du rayon d'extraction par du verre vivant de haute qualité, permettant ainsi au rayon de traiter des dépôts de ressources rares et/ou imposants. La lentille s'adapte automatiquement aux légères fluctuations de…",
+"dEn": "Replaces standard Mining Beam optics with high-grade Living Glass, allowing the beam to be effective against large and/or rare resource deposits. The lens adapts automatically to minute fluctuations in the beam waveform, minimising scatter…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/70.png"
+},
+"tech72": {
+"fr": "Lance-foudre",
+"en": "Boltcaster",
+"gFr": "Arme lançant des projectiles d'énergie",
+"gEn": "Energy Projectile Weapon",
+"dFr": "Accessoire d'armement généraliste pour multi-outil. Accédez au mode de tir en appuyant sur CYCLEWEAPON et tirez avec ATTACK. Le lance-foudre reconfigure le multi-outil de façon à ce qu'il surcharge les éléments métalliques afin de les…",
+"dEn": "Generalist weapon attachment for the Multi-Tool. Access fire mode by pressing CYCLEWEAPON and fire weapon with ATTACK. The Boltcaster reconfigures the Multi-Tool to supercharge Metallic Elements, firing them as high-velocity projectiles…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/72.png"
+},
+"tech73": {
+"fr": "Ioniseur à cylindres",
+"en": "Barrel Ioniser",
+"gFr": "Amélioration du lance-foudre",
+"gEn": "Boltcaster Upgrade",
+"dFr": "Il insère un puissant appareil d’ionisation de champ dans le cylindre du lance-foudre afin d'améliorer la stabilité aérienne de ses projectiles. Il améliore la précision de l'appareil et permet à l'utilisateur de tirer sur de plus longues…",
+"dEn": "Inserts a powerful field ionisation device into the barrel of the Boltcaster, increasing projectile stability through the air. Improves device accuracy and allows the user to fire for longer periods without degrading combat performance.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/73.png"
+},
+"tech74": {
+"fr": "Lance-foudre SM",
+"en": "Boltcaster SM",
+"gFr": "Unité complémentaire du lance-foudre",
+"gEn": "Boltcaster Companion Unit",
+"dFr": "Les tirs de lance-foudre infligent des dégâts physiques accrus à l'impact. Confère une énergie cinétique supplémentaire aux systèmes de distribution de plasma ionisé de l'utilisateur. Activé automatiquement une fois construit dans…",
+"dEn": "Boltcaster shots deliver added physical damage upon impact. Grants additional kinetic energy to the user's ionised plasma distribution systems. Operates automatically once constructed within user's Multi-Tool inventory.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/73.png"
+},
+"tech75": {
+"fr": "Refroidisseur du rayon Sigma",
+"en": "Plasma Resonator",
+"gFr": "Amélioration du rayon d'extraction",
+"gEn": "Mining Beam Upgrade",
+"dFr": "Une amélioration significative pour le rayon d'extraction. Elle insère davantage d'éléments réfléchissants dans la chambre du cristal primaire. Elle augmente ainsi l'énergie centrale du noyau tout en diminuant les fuites de chaleur…",
+"dEn": "A significant upgrade for the Mining Beam. Upgrades the Mining Laser's primary crystal chamber, boosting core beam energy while decreasing unwanted heat spill.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/75.png"
+},
+"tech76": {
+"fr": "Lanceur de plasma",
+"en": "Plasma Launcher",
+"gFr": "Grenades explosives",
+"gEn": "Explosive Grenades",
+"dFr": "Arme de tir à forte énergie d'impact. Les cartouches de plasma tirées ricochent sur les surfaces jusqu'à ce que la minuterie interne ne déclenche une explosion importante. Se charge à l'aide de plasma instable. Peut infliger des dégâts à…",
+"dEn": "High-impact projectile weapon. Launched plasma shells bounce off surfaces until their internal timer triggers a large explosion. Charged with Unstable Plasma. Careless use can result in damage to user. Press ALTATTACK to activate.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/76.png"
+},
+"tech77": {
+"fr": "Canon géologique",
+"en": "Geology Cannon",
+"gFr": "Appareil de destruction du terrain",
+"gEn": "Terrain Destruction Device",
+"dFr": "Arme lançant des projectiles à plasma de grande taille conçu pour une excavation rapide. Rechargeable à l'aide de plasma instable. Attention : la création de cavités par explosion peut endommager les matières organiques proches. Appuyez…",
+"dEn": "Large-bore projectile launcher. Propels plasma shells designed for rapid ground excavation. Charged with Unstable Plasma. Warning: Explosive hole creation may also damage nearby organic matter. Press ALTATTACK to activate.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/77.png"
+},
+"tech78": {
+"fr": "Dard ardent",
+"en": "Blaze Javelin",
+"gFr": "Arme à rayon d'énergie",
+"gEn": "Energy Beam Weapon",
+"dFr": "Accessoire d'arme offensif pour le multi-outil. Appuyez sur CYCLEWEAPON pour accéder au mode de tir et appuyez sur ATTACK pour tirer. Le dard ardent inflige des dégâts instantanés aux cibles. Le processus de charge de plasma crée un arc de…",
+"dEn": "Aggressive weapon attachment for the Multi-Tool. Access fire mode by pressing CYCLEWEAPON and fire weapon with ATTACK. The Blaze Javelin delivers instantaneous damage on targets. Plasma charge process creates an ionised gas arc to propel…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/78.png"
+},
+"tech79": {
+"fr": "Accélérateur de masse",
+"en": "Mass Accelerator",
+"gFr": "Amélioration du dard ardent",
+"gEn": "Blaze Javelin Upgrade",
+"dFr": "Il agrandit la chambre de tir du dard ardent afin que ses accélérateurs de particules puissent augmenter en vitesse et en masse. Il augmente considérablement les dégâts infligés.",
+"dEn": "Extends the firing chamber of the Blaze Javelin, allowing the internal particle accelerators to reach both greater mass and speed. Significantly improves weapon damage.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/79.png"
+},
+"tech80": {
+"fr": "Canon à dispersion",
+"en": "Scatter Blaster",
+"gFr": "Arme à large zone d'effet lançant des projectiles",
+"gEn": "Scatter Shot Projectile Weapon",
+"dFr": "Accessoire d'armement spécialisé pour multi-outil réservé au combat rapproché. Accédez au mode de tir en appuyant sur CYCLEWEAPON et tirez avec ATTACK. Le canon à dispersion reconfigure le multi-outil de façon à ce qu'il chauffe et broie…",
+"dEn": "Specialist close combat weapon attachment for the Multi-Tool. Access fire mode by pressing CYCLEWEAPON and fire weapon with ATTACK. The Scatter Blaster reconfigures the Multi-Tool to heat and shatter Metallic Elements, firing them in a…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/80.png"
+},
+"tech81": {
+"fr": "Graisseur de cartouche",
+"en": "Shell Greaser",
+"gFr": "Amélioration du canon à dispersion",
+"gEn": "Scatter Blaster Upgrade",
+"dFr": "Ces composants avancés autolubrifiés réduisent les frictions à l'intérieur du canon à dispersion, ce qui diminue considérablement le temps de recharge.",
+"dEn": "Advanced self-lubricating components decrease friction within the Scatter Blaster, offering significant improvements to reload times.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/81.png"
+},
+"tech82": {
+"fr": "Souffle destructeur",
+"en": "Pulse Spitter",
+"gFr": "Arme à cadence de tir élevée lançant des projectiles",
+"gEn": "Rapid Fire Projectile Weapon",
+"dFr": "Accessoire d'armement spécialisé à tir rapide pour multi-outil . Accédez au mode de tir en appuyant sur CYCLEWEAPON et tirez avec ATTACK. Le souffle destructeur redirige les lentilles du multi-outil de façon à ioniser les éléments…",
+"dEn": "Specialist rapid fire weapon attachment for the Multi-Tool. Access fire mode by pressing CYCLEWEAPON and fire weapon with ATTACK. The Pulse Spitter redirects Multi-Tool optics to ionise inserted Metallic Elements. These projectiles are…",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/82.png"
+},
+"tech83": {
+"fr": "Cartouches amplifiées",
+"en": "Amplified Cartridges",
+"gFr": "Amélioration du souffle destructeur",
+"gEn": "Pulse Spitter Upgrade",
+"dFr": "Des résonateurs harmoniques de spécialiste permettent au souffle destructeur de scinder en deux les munitions qu'il possède afin de pouvoir générer plus de tirs avec moins de ressources. Cette amélioration augmente la taille du chargeur.",
+"dEn": "Specialist harmonic resonators allow the Pulse Spitter to split inserted ammunition, effective manufacturing more shots from fewer materials. Increases weapon clip size.",
+"v": 1.0,
+"cur": null,
+"icon": "https://app.nmsassistant.com/assets/images/technology/83.png"
+},
+"upgrade1": {
+"fr": "Module de rayon d'extraction",
+"en": "Mining Beam Module",
+"gFr": "Amélioration du rayon d'extraction",
+"gEn": "Mining Beam Upgrade",
+"dFr": "Une amélioration modérée pour le rayon d'extraction. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A moderate upgrade for the Mining Beam. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: power output, heat…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/1.png"
+},
+"upgrade10": {
+"fr": "Module de lance-foudre",
+"en": "Boltcaster Module",
+"gFr": "Amélioration significative du lance-foudre",
+"gEn": "Significant Boltcaster Upgrade",
+"dFr": "Une amélioration significative pour le lance-foudre. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A significant upgrade for the Boltcaster. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage output, reload…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/10.png"
+},
+"upgrade11": {
+"fr": "Module de lance-foudre",
+"en": "Boltcaster Module",
+"gFr": "Amélioration puissante du lance-foudre",
+"gEn": "Powerful Boltcaster Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour le lance-foudre. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "An extremely powerful upgrade for the Boltcaster. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/11.png"
+},
+"upgrade12": {
+"fr": "Module de lance-foudre",
+"en": "Boltcaster Module",
+"gFr": "Amélioration ultime du lance-foudre",
+"gEn": "Supreme Boltcaster Upgrade",
+"dFr": "Une amélioration ultime pour le lance-foudre. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est pas…",
+"dEn": "A supremely powerful upgrade for the Boltcaster. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage output,…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/12.png"
+},
+"upgrade13": {
+"fr": "Module de lanceur de plasma",
+"en": "Plasma Launcher Module",
+"gFr": "Amélioration du lanceur de plasma",
+"gEn": "Plasma Launcher Upgrade",
+"dFr": "Une amélioration modérée pour le lanceur de plasma. Utilisez FE_ALT1 pour démarrer l'installation de cette amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est pas…",
+"dEn": "A moderate upgrade for the Plasma Launcher. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Offers improvements to explosion damage and…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/13.png"
+},
+"upgrade14": {
+"fr": "Module de lanceur de plasma",
+"en": "Plasma Launcher Module",
+"gFr": "Amélioration significative du lanceur de plasma",
+"gEn": "Significant Plasma Launcher Upgrade",
+"dFr": "Une amélioration significative pour le lanceur de plasma. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A significant upgrade for the Plasma Launcher. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: Explosion damage…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/14.png"
+},
+"upgrade148": {
+"fr": "Module de rayon d'extraction suspect",
+"en": "Suspicious Mining Beam Module",
+"gFr": "Amélioration du rayon d'extraction bannie",
+"gEn": "Banned Mining Beam Upgrade",
+"dFr": "Une modification de marché noir pour le rayon d'extraction. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A black-market modification for the Mining Beam. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: power output,…",
+"v": 280.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/148.png"
+},
+"upgrade149": {
+"fr": "Module de scanner suspect",
+"en": "Suspicious Scanner Module",
+"gFr": "Amélioration du système de balayage bannie",
+"gEn": "Banned Scanning System Upgrade",
+"dFr": "Une modification de marché noir pour les systèmes de balayage de multi-outils. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues…",
+"dEn": "A black-market modification for the Multi-Tool Scanning Systems. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades…",
+"v": 280.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/149.png"
+},
+"upgrade15": {
+"fr": "Module de lanceur de plasma",
+"en": "Plasma Launcher Module",
+"gFr": "Amélioration puissante du lanceur de plasma",
+"gEn": "Powerful Plasma Launcher Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour le lanceur de plasma. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "An extremely powerful upgrade for the Plasma Launcher. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include:…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/15.png"
+},
+"upgrade150": {
+"fr": "Module de lance-foudre suspect",
+"en": "Suspicious Boltcaster Module",
+"gFr": "Amélioration du lance-foudre bannie",
+"gEn": "Banned Boltcaster Upgrade",
+"dFr": "Une modification de marché noir pour le lance-foudre. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A black-market modification for the Boltcaster. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage output,…",
+"v": 320.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/150.png"
+},
+"upgrade151": {
+"fr": "Module de lanceur de plasma suspect",
+"en": "Suspicious Plasma Launcher Module",
+"gFr": "Amélioration du lanceur de plasma bannie",
+"gEn": "Banned Plasma Launcher Upgrade",
+"dFr": "Une modification de marché noir pour le lanceur de plasma. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A black-market modification for the Plasma Launcher. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: Explosion…",
+"v": 280.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/151.png"
+},
+"upgrade152": {
+"fr": "Module de canon géologique suspect",
+"en": "Suspicious Geology Cannon Module",
+"gFr": "Amélioration du canon géologique bannie",
+"gEn": "Banned Geology Cannon Upgrade",
+"dFr": "Une modification de marché noir pour le canon géologique. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A black-market modification for the Geology Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Increases both explosion damage and…",
+"v": 280.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/152.png"
+},
+"upgrade153": {
+"fr": "Module de dard ardent suspect",
+"en": "Suspicious Blaze Javelin Module",
+"gFr": "Amélioration du dard ardent bannie",
+"gEn": "Banned Blaze Javelin Upgrade",
+"dFr": "Une modification de marché noir pour le dard ardent. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A black-market modification for the Blaze Javelin. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: laser damage…",
+"v": 320.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/153.png"
+},
+"upgrade154": {
+"fr": "Module de canon à dispersion suspect",
+"en": "Suspicious Scatter Blaster Module",
+"gFr": "Amélioration du canon à dispersion bannie",
+"gEn": "Banned Scatter Blaster Upgrade",
+"dFr": "Une modification de marché noir pour le canon à dispersion. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A black-market modification for the Scatter Blaster. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage…",
+"v": 320.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/154.png"
+},
+"upgrade155": {
+"fr": "Module de souffle destructeur suspect",
+"en": "Suspicious Pulse Spitter Module",
+"gFr": "Amélioration du souffle destructeur bannie",
+"gEn": "Banned Pulse Spitter Upgrade",
+"dFr": "Une modification de marché noir pour le souffle destructeur. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A black-market modification for the Pulse Spitter. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage…",
+"v": 320.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/155.png"
+},
+"upgrade16": {
+"fr": "Module de lanceur de plasma",
+"en": "Plasma Launcher Module",
+"gFr": "Amélioration ultime du lanceur de plasma",
+"gEn": "Supreme Plasma Launcher Upgrade",
+"dFr": "Une amélioration ultime pour le lanceur de plasma. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est…",
+"dEn": "A supremely powerful upgrade for the Plasma Launcher. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: Explosion…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/16.png"
+},
+"upgrade160": {
+"fr": "Module de pulsoréacteur suspect",
+"en": "Suspicious Pulse Engine Module",
+"gFr": "Amélioration du pulsoréacteur bannie",
+"gEn": "Banned Pulse Engine Upgrade",
+"dFr": "Une modification de marché noir pour le pulsoréacteur du vaisseau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A black-market modification for the Starship Pulse Engine. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 280.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/160.png"
+},
+"upgrade161": {
+"fr": "Module d'hyperpropulsion suspect",
+"en": "Suspicious Hyperdrive Module",
+"gFr": "Amélioration de l'hyperpropulsion bannie",
+"gEn": "Banned Hyperdrive Upgrade",
+"dFr": "Une modification de marché noir pour l'hyperpropulsion. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A black-market modification for the Hyperdrive. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: warp-drive…",
+"v": 280.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/161.png"
+},
+"upgrade162": {
+"fr": "Module de blindage des vaisseaux suspect",
+"en": "Suspicious Starship Shield Module",
+"gFr": "Amélioration du blindage des vaisseaux bannie",
+"gEn": "Banned Starship Shield Upgrade",
+"dFr": "Une modification de marché noir pour le blindage défensif des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant…",
+"dEn": "A black-market modification for the Starship Defensive Shielding. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Dramatically improves…",
+"v": 280.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/162.png"
+},
+"upgrade163": {
+"fr": "Module de canon à photons suspect",
+"en": "Suspicious Photon Cannon Module",
+"gFr": "Amélioration d'armement de vaisseau bannie",
+"gEn": "Banned Starship Weapon Upgrade",
+"dFr": "Une modification de marché noir pour le canon à photons des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A black-market modification for the Starship Photon Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 320.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/163.png"
+},
+"upgrade164": {
+"fr": "Module de rayon phasique suspect",
+"en": "Suspicious Phase Beam Module",
+"gFr": "Amélioration d'armement de vaisseau bannie",
+"gEn": "Banned Starship Weapon Upgrade",
+"dFr": "Une modification de marché noir pour le rayon phasique des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A black-market modification for the Starship Phase Beam. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 320.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/164.png"
+},
+"upgrade165": {
+"fr": "Module de positron suspect",
+"en": "Suspicious Positron Module",
+"gFr": "Amélioration d'armement de vaisseau bannie",
+"gEn": "Banned Starship Weapon Upgrade",
+"dFr": "Une modification de marché noir pour l'éjecteur à positrons. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A black-market modification for the Positron Ejector. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 320.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/165.png"
+},
+"upgrade166": {
+"fr": "Module d'infra-couteau suspect",
+"en": "Suspicious Infra-Knife Module",
+"gFr": "Amélioration d'armement de vaisseau bannie",
+"gEn": "Banned Starship Weapon Upgrade",
+"dFr": "Une modification de marché noir pour l'accélérateur infra-couteau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A black-market modification for the Infra-Knife Accelerator. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements…",
+"v": 320.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/166.png"
+},
+"upgrade167": {
+"fr": "Module de cyclotron suspect",
+"en": "Suspicious Cyclotron Module",
+"gFr": "Amélioration d'armement de vaisseau bannie",
+"gEn": "Banned Starship Weapon Upgrade",
+"dFr": "Une modification de marché noir pour la baliste cyclotron. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A black-market modification for the Cyclotron Ballista. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 320.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/167.png"
+},
+"upgrade168": {
+"fr": "Module : propulseurs de décollage",
+"en": "Launch Thrusters Module",
+"gFr": "Amélioration des propulseurs de décollage",
+"gEn": "Launch Thrusters Upgrade",
+"dFr": "Une amélioration modérée pour les propulseurs de décollage du vaisseau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A moderate upgrade for the Starship Launch Thrusters. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/168.png"
+},
+"upgrade169": {
+"fr": "Module : propulseurs de décollage",
+"en": "Launch Thrusters Module",
+"gFr": "Amélioration significative des propulseurs de décollage",
+"gEn": "Significant Launch Thrusters Upgrade",
+"dFr": "Une amélioration significative pour les propulseurs de décollage du vaisseau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues…",
+"dEn": "A significant upgrade for the Starship Launch Thrusters. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/169.png"
+},
+"upgrade17": {
+"fr": "Module de canon géologique",
+"en": "Geology Cannon Module",
+"gFr": "Amélioration du canon géologique",
+"gEn": "Geology Cannon Upgrade",
+"dFr": "Une amélioration modérée pour le canon géologique. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est…",
+"dEn": "A moderate upgrade for the Geology Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potentially increases explosion damage or crater…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/17.png"
+},
+"upgrade170": {
+"fr": "Module : propulseurs de décollage",
+"en": "Launch Thrusters Module",
+"gFr": "Amélioration puissante des propulseurs de décollage",
+"gEn": "Powerful Launch Thrusters Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour les propulseurs de décollage du vaisseau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont…",
+"dEn": "An extremely powerful upgrade for the Starship Launch Thrusters. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/170.png"
+},
+"upgrade171": {
+"fr": "Module : propulseurs de décollage",
+"en": "Launch Thrusters Module",
+"gFr": "Amélioration ultime des propulseurs de décollage",
+"gEn": "Supreme Launch Thrusters Upgrade",
+"dFr": "Une amélioration ultime pour les propulseurs de décollage du vaisseau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A supremely powerful upgrade for the Starship Launch Thrusters. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/171.png"
+},
+"upgrade172": {
+"fr": "Module suspect : propulseurs de décollage",
+"en": "Suspicious Launch Thrusters Module",
+"gFr": "Amélioration interdite des propulseurs de décollage",
+"gEn": "Banned Launch Thrusters Upgrade",
+"dFr": "Une amélioration de marché noir pour les propulseurs de décollage du vaisseau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues…",
+"dEn": "A black-market modification for the Starship Launch Thrusters. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements…",
+"v": 280.0,
+"cur": "Nanites",
+"icon": "https://app.nmsassistant.com/assets/images/upgradeModules/172.png"
+},
+"upgrade18": {
+"fr": "Module de canon géologique",
+"en": "Geology Cannon Module",
+"gFr": "Amélioration significative du canon géologique",
+"gEn": "Significant Geology Cannon Upgrade",
+"dFr": "Une amélioration significative pour le canon géologique. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A significant upgrade for the Geology Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potentially increases both explosion damage…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/18.png"
+},
+"upgrade19": {
+"fr": "Module de canon géologique",
+"en": "Geology Cannon Module",
+"gFr": "Amélioration puissante du canon géologique",
+"gEn": "Powerful Geology Cannon Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour le canon géologique. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "An extremely powerful upgrade for the Geology Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Increases both explosion damage and…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/19.png"
+},
+"upgrade2": {
+"fr": "Module de rayon d'extraction",
+"en": "Mining Beam Module",
+"gFr": "Amélioration significative du rayon d'extraction",
+"gEn": "Significant Mining Beam Upgrade",
+"dFr": "Une amélioration significative pour le rayon d'extraction. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A significant upgrade for the Mining Beam. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: power output, heat…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/2.png"
+},
+"upgrade20": {
+"fr": "Module de canon géologique",
+"en": "Geology Cannon Module",
+"gFr": "Amélioration ultime du canon géologique",
+"gEn": "Supreme Geology Cannon Upgrade",
+"dFr": "Une amélioration ultime pour le canon géologique. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est…",
+"dEn": "A supremely powerful upgrade for the Geology Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Increases both explosion damage and…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/20.png"
+},
+"upgrade21": {
+"fr": "Module de dard ardent",
+"en": "Blaze Javelin Module",
+"gFr": "Amélioration du dard ardent",
+"gEn": "Blaze Javelin Upgrade",
+"dFr": "Une amélioration modérée pour le dard ardent. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est pas…",
+"dEn": "A moderate upgrade for the Blaze Javelin. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: laser damage and…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/21.png"
+},
+"upgrade22": {
+"fr": "Module de dard ardent",
+"en": "Blaze Javelin Module",
+"gFr": "Amélioration significative du dard ardent",
+"gEn": "Significant Blaze Javelin Upgrade",
+"dFr": "Une amélioration significative pour le dard ardent. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A significant upgrade for the Blaze Javelin. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: laser damage and…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/22.png"
+},
+"upgrade23": {
+"fr": "Module de dard ardent",
+"en": "Blaze Javelin Module",
+"gFr": "Amélioration puissante du dard ardent",
+"gEn": "Powerful Blaze Javelin Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour le dard ardent. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "An extremely powerful upgrade for the Blaze Javelin. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: laser…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/23.png"
+},
+"upgrade24": {
+"fr": "Module de dard ardent",
+"en": "Blaze Javelin Module",
+"gFr": "Amélioration ultime du dard ardent",
+"gEn": "Supreme Blaze Javelin Upgrade",
+"dFr": "Une amélioration ultime pour le dard ardent. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est pas…",
+"dEn": "A supremely powerful upgrade for the Blaze Javelin. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: laser…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/24.png"
+},
+"upgrade25": {
+"fr": "Module de canon à dispersion",
+"en": "Scatter Blaster Module",
+"gFr": "Amélioration du canon à dispersion",
+"gEn": "Scatter Blaster Upgrade",
+"dFr": "Une amélioration modérée pour le canon à dispersion. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A moderate upgrade for the Scatter Blaster. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage output,…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/25.png"
+},
+"upgrade26": {
+"fr": "Module de canon à dispersion",
+"en": "Scatter Blaster Module",
+"gFr": "Amélioration significative du canon à dispersion",
+"gEn": "Significant Scatter Blaster Upgrade",
+"dFr": "Une amélioration significative pour le canon à dispersion. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A significant upgrade for the Scatter Blaster. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage output,…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/26.png"
+},
+"upgrade27": {
+"fr": "Module de canon à dispersion",
+"en": "Scatter Blaster Module",
+"gFr": "Amélioration puissante du canon à dispersion",
+"gEn": "Powerful Scatter Blaster Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour le canon à dispersion. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "An extremely powerful upgrade for the Scatter Blaster. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/27.png"
+},
+"upgrade28": {
+"fr": "Module de canon à dispersion",
+"en": "Scatter Blaster Module",
+"gFr": "Amélioration ultime du canon à dispersion",
+"gEn": "Supreme Scatter Blaster Upgrade",
+"dFr": "Une amélioration ultime pour le canon à dispersion. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A supremely powerful upgrade for the Scatter Blaster. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/28.png"
+},
+"upgrade29": {
+"fr": "Module de souffle destructeur",
+"en": "Pulse Spitter Module",
+"gFr": "Amélioration du souffle destructeur",
+"gEn": "Pulse Spitter Upgrade",
+"dFr": "Une amélioration modérée pour le souffle destructeur. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A moderate upgrade for the Pulse Spitter. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage output, reload…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/29.png"
+},
+"upgrade3": {
+"fr": "Module de rayon d'extraction",
+"en": "Mining Beam Module",
+"gFr": "Amélioration puissante du rayon d'extraction",
+"gEn": "Powerful Mining Beam Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour le rayon d'extraction. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "An extremely powerful upgrade for the Mining Beam. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: power…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/3.png"
+},
+"upgrade30": {
+"fr": "Module de souffle destructeur",
+"en": "Pulse Spitter Module",
+"gFr": "Amélioration significative du souffle destructeur",
+"gEn": "Significant Pulse Spitter Upgrade",
+"dFr": "Une amélioration significative pour le souffle destructeur. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A significant upgrade for the Pulse Spitter. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage output,…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/30.png"
+},
+"upgrade31": {
+"fr": "Module de souffle destructeur",
+"en": "Pulse Spitter Module",
+"gFr": "Amélioration puissante du souffle destructeur",
+"gEn": "Powerful Pulse Spitter Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour le souffle destructeur. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "An extremely powerful upgrade for the Pulse Spitter. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/31.png"
+},
+"upgrade32": {
+"fr": "Module de souffle destructeur",
+"en": "Pulse Spitter Module",
+"gFr": "Amélioration ultime pour le souffle destructeur",
+"gEn": "Supreme Pulse Spitter Upgrade",
+"dFr": "Une amélioration ultime pour le souffle destructeur. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A supremely powerful upgrade for the Pulse Spitter. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/32.png"
+},
+"upgrade4": {
+"fr": "Module de rayon d'extraction",
+"en": "Mining Beam Module",
+"gFr": "Amélioration ultime du rayon d'extraction",
+"gEn": "Supreme Mining Beam Upgrade",
+"dFr": "Une amélioration ultime pour le rayon d'extraction. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A supremely powerful upgrade for the Mining Beam. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: power output,…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/4.png"
+},
+"upgrade5": {
+"fr": "Module de scanner",
+"en": "Scanner Module",
+"gFr": "Amélioration du système de balayage",
+"gEn": "Scanning System Upgrade",
+"dFr": "Une amélioration modérée pour les systèmes de balayage de multi-outils. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A moderate upgrade for the Multi-Tool Scanning Systems. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: scan…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/5.png"
+},
+"upgrade59": {
+"fr": "Module de pulsoréacteur",
+"en": "Pulse Engine Module",
+"gFr": "Amélioration du pulsoréacteur",
+"gEn": "Pulse Engine Upgrade",
+"dFr": "Une amélioration modérée pour le pulsoréacteur du vaisseau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A moderate upgrade for the Starship Pulse Engine. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: starship…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/59.png"
+},
+"upgrade6": {
+"fr": "Module de scanner",
+"en": "Scanner Module",
+"gFr": "Amélioration significative du système de balayage",
+"gEn": "Significant Scanning System Upgrade",
+"dFr": "Une amélioration significative pour les systèmes de balayage de multi-outils. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues…",
+"dEn": "A significant upgrade for the Multi-Tool Scanning Systems. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: scan…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/6.png"
+},
+"upgrade60": {
+"fr": "Module de pulsoréacteur",
+"en": "Pulse Engine Module",
+"gFr": "Amélioration significative du pulsoréacteur",
+"gEn": "Significant Pulse Engine Upgrade",
+"dFr": "Une amélioration significative pour le pulsoréacteur du vaisseau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A significant upgrade for the Starship Pulse Engine. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/60.png"
+},
+"upgrade61": {
+"fr": "Module de pulsoréacteur",
+"en": "Pulse Engine Module",
+"gFr": "Amélioration puissante du pulsoréacteur",
+"gEn": "Powerful Pulse Engine Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour le pulsoréacteur du vaisseau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant…",
+"dEn": "An extremely powerful upgrade for the Starship Pulse Engine. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/61.png"
+},
+"upgrade62": {
+"fr": "Module de pulsoréacteur",
+"en": "Pulse Engine Module",
+"gFr": "Amélioration ultime du pulsoréacteur",
+"gEn": "Supreme Pulse Engine Upgrade",
+"dFr": "Une amélioration ultime pour le pulsoréacteur du vaisseau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A supremely powerful upgrade for the Starship Pulse Engine. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/62.png"
+},
+"upgrade63": {
+"fr": "Module d'hyperpropulsion",
+"en": "Hyperdrive Module",
+"gFr": "Amélioration de l'hyperpropulsion",
+"gEn": "Hyperdrive Upgrade",
+"dFr": "Une amélioration modérée pour l'hyperpropulsion. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est…",
+"dEn": "A moderate upgrade for the Hyperdrive. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: warp-drive…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/63.png"
+},
+"upgrade64": {
+"fr": "Module d'hyperpropulsion",
+"en": "Hyperdrive Module",
+"gFr": "Amélioration significative de l'hyperpropulsion",
+"gEn": "Significant Hyperdrive Upgrade",
+"dFr": "Une amélioration significative pour l'hyperpropulsion. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A significant upgrade for the Hyperdrive. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: warp-drive…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/64.png"
+},
+"upgrade65": {
+"fr": "Module d'hyperpropulsion",
+"en": "Hyperdrive Module",
+"gFr": "Amélioration puissante de l'hyperpropulsion",
+"gEn": "Powerful Hyperdrive Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour l'hyperpropulsion. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "An extremely powerful upgrade for the Hyperdrive. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/65.png"
+},
+"upgrade66": {
+"fr": "Module d'hyperpropulsion",
+"en": "Hyperdrive Module",
+"gFr": "Amélioration ultime de l'hyperpropulsion",
+"gEn": "Supreme Hyperdrive Upgrade",
+"dFr": "Une amélioration ultime pour l'hyperpropulsion. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est…",
+"dEn": "A supremely powerful upgrade for the Hyperdrive. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: warp-drive…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/66.png"
+},
+"upgrade67": {
+"fr": "Module de blindage des vaisseaux",
+"en": "Starship Shield Module",
+"gFr": "Amélioration du blindage des vaisseaux",
+"gEn": "Starship Shield Upgrade",
+"dFr": "Une amélioration modérée pour le blindage défensif des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A moderate upgrade for the Starship Defensive Shielding. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Improves ship strength for…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/67.png"
+},
+"upgrade68": {
+"fr": "Module de blindage des vaisseaux",
+"en": "Starship Shield Module",
+"gFr": "Amélioration significative du blindage des vaisseaux",
+"gEn": "Significant Starship Shield Upgrade",
+"dFr": "Une amélioration significative pour le blindage défensif des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A significant upgrade for the Starship Defensive Shielding. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Significantly improves ship…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/68.png"
+},
+"upgrade69": {
+"fr": "Module de blindage des vaisseaux",
+"en": "Starship Shield Module",
+"gFr": "Amélioration puissante du blindage des vaisseaux",
+"gEn": "Powerful Starship Shield Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour le blindage défensif des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues…",
+"dEn": "An extremely powerful upgrade for the Starship Defensive Shielding. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Dramatically improves…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/69.png"
+},
+"upgrade7": {
+"fr": "Module de scanner",
+"en": "Scanner Module",
+"gFr": "Amélioration puissante du système de balayage",
+"gEn": "Powerful Scanning System Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour les systèmes de balayage de multi-outils. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont…",
+"dEn": "An extremely powerful upgrade for the Multi-Tool Scanning Systems. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/7.png"
+},
+"upgrade70": {
+"fr": "Module de blindage des vaisseaux",
+"en": "Starship Shield Module",
+"gFr": "Amélioration ultime du blindage des vaisseaux",
+"gEn": "Supreme Starship Shield Upgrade",
+"dFr": "Une amélioration ultime pour le blindage défensif des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A supremely powerful upgrade for the Starship Defensive Shielding. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Dramatically improves…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/70.png"
+},
+"upgrade71": {
+"fr": "Module de canon à photons",
+"en": "Photon Cannon Module",
+"gFr": "Amélioration d'armement de vaisseau",
+"gEn": "Starship Weapon Upgrade",
+"dFr": "Une amélioration modérée pour le canon à photons des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A moderate upgrade for the Starship Photon Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: damage,…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/71.png"
+},
+"upgrade72": {
+"fr": "Module de canon à photons",
+"en": "Photon Cannon Module",
+"gFr": "Amélioration significative d'armement de vaisseau",
+"gEn": "Significant Starship Weapon Upgrade",
+"dFr": "Une amélioration significative pour le canon à photons des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A significant upgrade for the Starship Photon Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/72.png"
+},
+"upgrade73": {
+"fr": "Module de canon à photons",
+"en": "Photon Cannon Module",
+"gFr": "Amélioration puissante d'armement de vaisseau",
+"gEn": "Powerful Starship Weapon Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour le canon à photons des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues…",
+"dEn": "An extremely powerful upgrade for the Starship Photon Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/73.png"
+},
+"upgrade74": {
+"fr": "Module de canon à photons",
+"en": "Photon Cannon Module",
+"gFr": "Amélioration ultime d'armement de vaisseau",
+"gEn": "Supreme Starship Weapon Upgrade",
+"dFr": "Une amélioration ultime pour le canon à photons des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A supremely powerful upgrade for the Starship Photon Cannon. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/74.png"
+},
+"upgrade75": {
+"fr": "Module de rayon phasique",
+"en": "Phase Beam Module",
+"gFr": "Amélioration d'armement de vaisseau",
+"gEn": "Starship Weapon Upgrade",
+"dFr": "Une amélioration modérée pour le rayon phasique des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A moderate upgrade for the Starship Phase Beam. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: damage…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/75.png"
+},
+"upgrade76": {
+"fr": "Module de rayon phasique",
+"en": "Phase Beam Module",
+"gFr": "Amélioration significative d'armement de vaisseau",
+"gEn": "Significant Starship Weapon Upgrade",
+"dFr": "Une amélioration significative pour le rayon phasique des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A significant upgrade for the Starship Phase Beam. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: damage…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/76.png"
+},
+"upgrade77": {
+"fr": "Module de rayon phasique",
+"en": "Phase Beam Module",
+"gFr": "Amélioration puissante d'armement de vaisseau",
+"gEn": "Powerful Starship Weapon Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour le rayon phasique des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues…",
+"dEn": "An extremely powerful upgrade for the Starship Phase Beam. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/77.png"
+},
+"upgrade78": {
+"fr": "Module de rayon phasique",
+"en": "Phase Beam Module",
+"gFr": "Amélioration ultime d'armement de vaisseau",
+"gEn": "Supreme Starship Weapon Upgrade",
+"dFr": "Une amélioration ultime pour le rayon phasique des vaisseaux. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A supremely powerful upgrade for the Starship Phase Beam. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/78.png"
+},
+"upgrade79": {
+"fr": "Module de positrons",
+"en": "Positron Module",
+"gFr": "Amélioration d'armement de vaisseau",
+"gEn": "Starship Weapon Upgrade",
+"dFr": "Une amélioration modérée pour l'éjecteur à positrons. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A moderate upgrade for the Positron Ejector. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: damage output,…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/79.png"
+},
+"upgrade8": {
+"fr": "Module de scanner",
+"en": "Scanner Module",
+"gFr": "Amélioration ultime du système de balayage",
+"gEn": "Supreme Scanning System Upgrade",
+"dFr": "Une amélioration ultime pour les systèmes de balayage de multi-outils. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A supremely powerful upgrade for the Multi-Tool Scanning Systems. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/8.png"
+},
+"upgrade80": {
+"fr": "Module de positrons",
+"en": "Positron Module",
+"gFr": "Amélioration significative d'armement de vaisseau",
+"gEn": "Significant Starship Weapon Upgrade",
+"dFr": "Une amélioration significative pour l'éjecteur à positrons. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A significant upgrade for the Positron Ejector. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: damage…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/80.png"
+},
+"upgrade81": {
+"fr": "Module de positrons",
+"en": "Positron Module",
+"gFr": "Amélioration puissante d'armement de vaisseau",
+"gEn": "Powerful Starship Weapon Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour l'éjecteur à positrons. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "An extremely powerful upgrade for the Positron Ejector. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/81.png"
+},
+"upgrade82": {
+"fr": "Module de positrons",
+"en": "Positron Module",
+"gFr": "Amélioration ultime d'armement de vaisseau",
+"gEn": "Supreme Starship Weapon Upgrade",
+"dFr": "Une amélioration ultime pour l'éjecteur à positrons. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A supremely powerful upgrade for the Positron Ejector. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/82.png"
+},
+"upgrade83": {
+"fr": "Mod. d'accélérateur infra-couteau",
+"en": "Infra-Knife Module",
+"gFr": "Amélioration d'armement de vaisseau",
+"gEn": "Starship Weapon Upgrade",
+"dFr": "Une amélioration modérée pour l'accélérateur infra-couteau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A moderate upgrade for the Infra-Knife Accelerator. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: damage…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/83.png"
+},
+"upgrade84": {
+"fr": "Mod. d'accélérateur infra-couteau",
+"en": "Infra-Knife Module",
+"gFr": "Amélioration significative d'armement de vaisseau",
+"gEn": "Significant Starship Weapon Upgrade",
+"dFr": "Une amélioration significative pour l'accélérateur infra-couteau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A significant upgrade for the Infra-Knife Accelerator. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/84.png"
+},
+"upgrade85": {
+"fr": "Mod. d'accélérateur infra-couteau",
+"en": "Infra-Knife Module",
+"gFr": "Amélioration puissante d'armement de vaisseau",
+"gEn": "Powerful Starship Weapon Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour l'accélérateur infra-couteau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant…",
+"dEn": "An extremely powerful upgrade for the Infra-Knife Accelerator. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/85.png"
+},
+"upgrade86": {
+"fr": "Mod. d'accélérateur infra-couteau",
+"en": "Infra-Knife Module",
+"gFr": "Amélioration ultime d'armement de vaisseau",
+"gEn": "Supreme Starship Weapon Upgrade",
+"dFr": "Une amélioration ultime pour l'accélérateur infra-couteau. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A supremely powerful upgrade for the Infra-Knife Accelerator. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/86.png"
+},
+"upgrade87": {
+"fr": "Module de cyclotrons",
+"en": "Cyclotron Module",
+"gFr": "Amélioration d'armement de vaisseau",
+"gEn": "Starship Weapon Upgrade",
+"dFr": "Une amélioration modérée pour la baliste cyclotron. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation…",
+"dEn": "A moderate upgrade for the Cyclotron Ballista. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: damage…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/87.png"
+},
+"upgrade88": {
+"fr": "Module de cyclotrons",
+"en": "Cyclotron Module",
+"gFr": "Amélioration significative d'armement de vaisseau",
+"gEn": "Significant Starship Weapon Upgrade",
+"dFr": "Une amélioration significative pour la baliste cyclotron. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "A significant upgrade for the Cyclotron Ballista. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include: damage…",
+"v": 140.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/88.png"
+},
+"upgrade89": {
+"fr": "Module de cyclotrons",
+"en": "Cyclotron Module",
+"gFr": "Amélioration puissante d'armement de vaisseau",
+"gEn": "Powerful Starship Weapon Upgrade",
+"dFr": "Une amélioration extrêmement puissante pour la baliste cyclotron. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que…",
+"dEn": "An extremely powerful upgrade for the Cyclotron Ballista. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 300.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/89.png"
+},
+"upgrade9": {
+"fr": "Module de lance-foudre",
+"en": "Boltcaster Module",
+"gFr": "Amélioration du lance-foudre",
+"gEn": "Boltcaster Upgrade",
+"dFr": "Une amélioration modérée pour le lance-foudre. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est pas…",
+"dEn": "A moderate upgrade for the Boltcaster. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential upgrades include: damage output, reload…",
+"v": 60.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/9.png"
+},
+"upgrade90": {
+"fr": "Module de cyclotrons",
+"en": "Cyclotron Module",
+"gFr": "Amélioration ultime d'armement de vaisseau",
+"gEn": "Supreme Starship Weapon Upgrade",
+"dFr": "Une amélioration ultime pour la baliste cyclotron. Utilisez FE_ALT1 pour démarrer le processus d'installation de l'amélioration. Le module est flexible et les statistiques d'amélioration exactes sont inconnues tant que l'installation n'est…",
+"dEn": "A supremely powerful upgrade for the Cyclotron Ballista. Use FE_ALT1 to begin upgrade installation process. The module is flexible, and exact upgrade statistics are unknown until installation is complete. Potential improvements include:…",
+"v": 480.0,
+"cur": "Nanites",
+"icon": "https://cdn.nmsassistant.com/upgradeModules/90.png"
+}
+}
+}

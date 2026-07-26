@@ -52,18 +52,29 @@ Both benches share `components/Workshop.tsx` and `components/Viewer3D.tsx`:
   to place it, and it swaps with whatever is there; `Esc` cancels, `Suppr` removes, and the detail
   strip carries a Remove button. This is what makes supercharged slots and adjacency clusters
   something you actually arrange rather than just observe.
-- **Technology glyphs** — each family draws its own inventory icon in the slot grid, the family chips
-  and the catalogue rows.
-- **Catalogue** — the game's real technology names per family with what each one does and how it is
-  obtained, plus C/B/A/S/X upgrade-module tiers carrying nanite price ranges and bonus ranges.
+- **Icons** — the real item icon is shown wherever a technology appears (slot grid, catalogue rows,
+  module cards, detail strip), with a drawn family glyph as the offline fallback so a missing image
+  never renders broken. Icon URLs are *read* from the data, never synthesised from the id: 128 of
+  692 items in the dataset have an icon whose number differs from their id, so building URLs by hand
+  would show wrong icons.
+- **The game's own item data** — technology names, in-game descriptions, nanite prices and the real
+  item icons all come from `public/data/workshop.json`, generated from `data/catalogue.json` in the
+  source repo (the community Assistant NMS dataset). Nothing in the catalogue is hand-written any
+  more: `src/data/catalogue.ts` only carries what the game data does not model — family grouping,
+  UI colour and glyph, 3D anchor, and which stat a family drives.
 - **In-game rules** — per-class slot counts, a contiguous supercharged cluster (×1.5), orthogonal
   adjacency bonuses (+5% each), and the 3-modules-per-family overload that shuts the family down.
 - **Live estimate + technical sheet** — stat bars show the archetype's base profile plus the computed
   bonus window, and a sheet gives slots used, supercharged used, adjacency links, total nanite cost
   and — for starships — the resulting hyperdrive range in light years.
 
-Prices and percentages are community-observed *ranges*, shown as ranges and labelled as estimates:
-in game every module rolls random stats inside its class window, and the exact tables are unpublished.
+Nanite prices are the game's own values (60 / 140 / 300 / 480 for C→S, ~280–320 for the X
+"suspicious" variants), so a build's cost is exact. Bonus percentages stay community-observed ranges
+and are labelled as estimates: every module rolls random stats inside its class window and the exact
+tables are unpublished.
+
+To refresh the technology data, regenerate `public/data/workshop.json` from `data/catalogue.json`
+(the family id lists live at the top of that file; everything else is a straight lookup).
 
 The 3D models are original stylised builds in the game's visual language — Hello Games' own meshes
 and item icons are proprietary and are not used. If `data/catalogue.json` (generated in the source

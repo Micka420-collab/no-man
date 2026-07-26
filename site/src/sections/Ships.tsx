@@ -3,6 +3,7 @@ import { useAtlas } from '../lib/store'
 import { asset } from '../lib/util'
 import SectionHeader from '../components/SectionHeader'
 import Workshop from '../components/Workshop'
+import { SHIP_SC_BY_CLASS, SHIP_TECH_SLOTS } from '../data/catalogue'
 
 const mono = "'Space Mono',monospace"
 
@@ -34,7 +35,7 @@ export default function Ships() {
   }))
 
   const curT = ships.find((t) => t.id === state.shType) || ships[0] || {}
-  const scN = ({ C: 1, B: 2, A: 3, S: 4 } as Record<string, number>)[state.shClass] || 2
+  const scN = SHIP_SC_BY_CLASS[state.shClass] || 2
 
   return (
     <section className="nms-pad" style={{
@@ -133,7 +134,7 @@ export default function Ships() {
           fam={state.shFam}
           onFam={(f) => patch({ shFam: f })}
           types={ships.map((t) => ({ key: t.id, emoji: t.icon || '', label: t2(t, 'name') }))}
-          total={30}
+          total={SHIP_TECH_SLOTS}
           scN={scN}
           holoEmoji={curT.icon || ''}
           holoName={t2(curT, 'name')}

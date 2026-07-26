@@ -17,13 +17,14 @@ a GitHub Pages project subpath, or a plain static host — without rebuilding.
 ## Layout
 
 ```
-public/data/*.json          the 21 datasets, fetched at runtime (same names as data/ in the no-man repo)
+public/data/*.json          the 22 fetched datasets + 2 generated ones (same names as data/ in the no-man repo)
+scripts/build-workshop-data.mjs  regenerates workshop.json + substances.json from data/catalogue.json
 public/assets/creatures/    57 creature webp
 public/assets/ships/        10 starship webp
 src/lib/store.tsx           app state, data loading, shared item/market lookups
 src/lib/sprite.ts           procedural galaxy sprite (background + galaxy map)
 src/lib/meshes.ts           three.js models for the 10 starships and 8 multi-tools
-src/data/catalogue.ts       technology catalogue: families, core techs, module tiers, prices, stats
+src/data/catalogue.ts       what the game data doesn't model: family grouping, glyphs, 3D anchors, stat weights
 src/i18n/                   FR/EN copy deck + navigation
 src/components/             shell (rail, topbar, ticker, bottom nav), ⌘K palette, detail sheet, canvases, workshop bench
 src/sections/               one file per screen
@@ -57,28 +58,30 @@ Both benches share `components/Workshop.tsx` and `components/Viewer3D.tsx`:
   never renders broken. Icon URLs are *read* from the data, never synthesised from the id: 128 of
   692 items in the dataset have an icon whose number differs from their id, so building URLs by hand
   would show wrong icons.
-- **The game's own item data** — technology names, in-game descriptions, nanite prices and the real
-  item icons all come from `public/data/workshop.json`, generated from `data/catalogue.json` in the
-  source repo (the community Assistant NMS dataset). Nothing in the catalogue is hand-written any
-  more: `src/data/catalogue.ts` only carries what the game data does not model — family grouping,
-  UI colour and glyph, 3D anchor, and which stat a family drives.
+- **The game's own item data** — technology names, in-game descriptions, prices, currencies, module
+  classes and the real item icons all come from `public/data/workshop.json`, generated from
+  `data/catalogue.json` in the source repo (the community Assistant NMS dataset). Multi-tool family
+  names and colours come from `multitool.json`, which declares its own. Nothing in the catalogue is
+  hand-written: `src/data/catalogue.ts` only carries what the game data does not model — family
+  grouping, UI glyph, 3D anchor, and which stat a family drives.
+- **Classes read, not inferred** — a module's class comes from the data, taken from the explicit
+  "C-Class …" labels in the catalogue's `modules` category where they exist and from the
+  60 / 140 / 300 / 480 price ladder otherwise. The generator fails the build rather than fall back
+  to guessing from list order.
 - **In-game rules** — per-class slot counts, a contiguous supercharged cluster (×1.5), orthogonal
   adjacency bonuses (+5% each), and the 3-modules-per-family overload that shuts the family down.
 - **Live estimate + technical sheet** — stat bars show the archetype's base profile plus the computed
-  bonus window, and a sheet gives slots used, supercharged used, adjacency links, total nanite cost
-  and — for starships — the resulting hyperdrive range in light years.
+  bonus window, and a sheet gives slots used, supercharged used, adjacency links, build cost and —
+  for starships — the resulting hyperdrive range in light years.
 
-Nanite prices are the game's own values (60 / 140 / 300 / 480 for C→S, ~280–320 for the X
-"suspicious" variants), so a build's cost is exact. Bonus percentages stay community-observed ranges
-and are labelled as estimates: every module rolls random stats inside its class window and the exact
-tables are unpublished.
-
-To refresh the technology data, regenerate `public/data/workshop.json` from `data/catalogue.json`
-(the family id lists live at the top of that file; everything else is a straight lookup).
+Prices are the game's own values (60 / 140 / 300 / 480 for C→S, ~280–320 for the X "suspicious"
+variants), so a build's cost is exact. The cost is kept per currency: most modules are bought with
+nanites (⬡) but the Neutron Cannon family is priced in units (u), and adding the two together would
+be meaningless. Bonus percentages stay community-observed ranges and are labelled as estimates:
+every module rolls random stats inside its class window and the exact tables are unpublished.
 
 The 3D models are original stylised builds in the game's visual language — Hello Games' own meshes
-and item icons are proprietary and are not used. If `data/catalogue.json` (generated in the source
-repo) is ever added to `public/data/`, the workshop can pick up the real item icons from it.
+are proprietary and are not used.
 
 ## Persistence
 
@@ -113,10 +116,19 @@ for f in stats stats_history timeline expeditions ships creatures galaxies galax
 done
 ```
 
-`workshop.json` is generated, not fetched: it joins `data/catalogue.json` (2.7 MB, the full item
-catalogue) down to the ~157 technologies and upgrade modules the workshops use, keeping the game's
-names, descriptions, nanite prices and icon URLs. Regenerate it whenever the catalogue moves — the
-family id lists live at the top of the generator, everything else is a lookup.
+`workshop.json` and `substances.json` are generated, not fetched — `data/catalogue.json` is 2.7 MB
+and far too much to ship to the browser, so they project out only what the site renders (165
+technologies and upgrade modules, 72 substances), keeping the game's names, descriptions, prices,
+currencies and icon URLs:
+
+```bash
+cd site
+node scripts/build-workshop-data.mjs            # downloads the catalogue
+node scripts/build-workshop-data.mjs path.json  # or reads a local copy
+```
+
+The starship family id lists live at the top of that script; multi-tool families and the substance
+list are read from `multitool.json` and `elements.json`, so those need no editing.
 
 ## Deploying to GitHub Pages
 

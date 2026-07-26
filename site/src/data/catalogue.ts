@@ -1,11 +1,12 @@
 /**
  * Curated metadata for the workshop technology families.
  *
- * The *content* — technology names, descriptions, nanite prices and item icons — is not written
- * here: it comes from `public/data/workshop.json`, generated from `data/catalogue.json` in the
- * source repo (itself sourced from the community Assistant NMS dataset). This file only carries
- * what the game data does not model: which family a technology belongs to on the bench, the colour
- * and glyph used in the UI, the part of the 3D model it sits on, and which stat it drives.
+ * The *content* — technology names, descriptions, prices, currencies, module classes and item
+ * icons — is not written here: it comes from `public/data/workshop.json`, generated from
+ * `data/catalogue.json` in the source repo (itself sourced from the community Assistant NMS
+ * dataset) by `scripts/build-workshop-data.mjs`. This file only carries what the game data does not
+ * model: which family a technology belongs to on the bench, the glyph used in the UI, the part of
+ * the 3D model it sits on, and which stat it drives.
  *
  * See `lib/workshopData.ts` for the resolver that joins the two.
  */
@@ -25,8 +26,9 @@ export interface FamilyMeta {
   key: string
   /** 24×24 stroke path — drawn until the real item icon loads */
   glyph: string
+  /** used only where the dataset declares no colour of its own; multi-tool families do */
   color: string
-  /** fallback family label when workshop.json is unavailable */
+  /** fallback family label, for the same case — kept in step with multitool.json */
   fr: string
   en: string
   part: PartKey
@@ -62,8 +64,10 @@ export const AVAILABILITY: Record<ClassKey, [string, string]> = {
 }
 
 /**
- * Module ids come in blocks of four (C, B, A, S) followed by the "suspicious" X variant — the
- * nanite price attached to each id in the game data confirms the order (60 / 140 / 300 / 480).
+ * Fallback module order, for a workshop.json built before classes were written into it.
+ * The generator now reads each module's class from the game data — from the explicit "C-Class …"
+ * labels where they exist, otherwise from the 60 / 140 / 300 / 480 price ladder — and this ordering
+ * is what the two agreed on.
  */
 export const TIER_ORDER: ClassKey[] = ['C', 'B', 'A', 'S', 'X']
 
@@ -97,35 +101,39 @@ export const PART_OVERRIDE: Record<string, PartKey> = {
 
 // ─────────────────────────────── MULTI-TOOL ───────────────────────────────
 
+/**
+ * Labels and colours here mirror `public/data/multitool.json`, which is the authority: the resolver
+ * takes the family name and colour from the dataset and only falls back to these when it is absent.
+ */
 export const TOOL_META: FamilyMeta[] = [
   { key: 'mining', color: '#e0a13a', fr: "Rayon d'extraction", en: 'Mining Beam',
     part: 'barrel', primary: 'mine', secondary: ['reach'],
     glyph: 'M4 20 14 10M12 4l8 8M14 4l6 6M4 20l2.5-.5.5-2.5' },
-  { key: 'scanner', color: '#5fd0e0', fr: 'Scanner', en: 'Scanner',
+  { key: 'scanner', color: '#5fd0e0', fr: 'Scanner & Visière', en: 'Scanner & Visor',
     part: 'scope', primary: 'scan', secondary: ['reach'],
     glyph: 'M12 20a8 8 0 0 1 0-16M12 17a5 5 0 0 1 0-10M12 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M16 6l4-2M16 18l4 2' },
-  { key: 'boltcaster', color: '#ff7a1a', fr: 'Lance-foudre', en: 'Boltcaster',
+  { key: 'boltcaster', color: '#ff7a1a', fr: 'Fulgurateur', en: 'Boltcaster',
     part: 'barrel', primary: 'dmg', secondary: ['rate'],
     glyph: 'M3 12h11M17 9.5l4 2.5-4 2.5zM6 8v8M9.5 9v6' },
-  { key: 'scatter', color: '#f05a5a', fr: 'Canon à dispersion', en: 'Scatter Blaster',
+  { key: 'scatter', color: '#f05a5a', fr: 'Fusil à dispersion', en: 'Scatter Blaster',
     part: 'barrel', primary: 'dmg',
     glyph: 'M4 12h4M10 8.5l2.5-1M10 15.5l2.5 1M15 6.5l1.5-1M15 17.5l1.5 1M14 12h6M18 9l2 3-2 3' },
-  { key: 'spitter', color: '#ffb347', fr: 'Souffle destructeur', en: 'Pulse Spitter',
+  { key: 'spitter', color: '#c98af0', fr: 'Cracheur à impulsions', en: 'Pulse Spitter',
     part: 'barrel', primary: 'rate', secondary: ['dmg'],
     glyph: 'M3 12h5M11 12h2M16 12h2M20.5 12h.5M7 7.5l1.5 1M7 16.5l1.5-1' },
-  { key: 'javelin', color: '#c98af0', fr: 'Dard ardent', en: 'Blaze Javelin',
+  { key: 'javelin', color: '#ffd166', fr: 'Javelot incandescent', en: 'Blaze Javelin',
     part: 'barrel', primary: 'dmg', secondary: ['reach'],
     glyph: 'M3 21 21 3M15 3h6v6M9 12l3 3' },
-  { key: 'neutron', color: '#8bf0a0', fr: 'Canon à neutrons', en: 'Neutron Cannon',
+  { key: 'neutron', color: '#7fe08a', fr: 'Canon à neutrons', en: 'Neutron Cannon',
     part: 'barrel', primary: 'dmg', secondary: ['reach'],
     glyph: 'M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4M12 3c4.5 4 4.5 14 0 18M12 3c-4.5 4-4.5 14 0 18M3.5 8c5.5-2 11.5-2 17 0M3.5 16c5.5 2 11.5 2 17 0' },
-  { key: 'plasma', color: '#b0805a', fr: 'Lanceur de plasma', en: 'Plasma Launcher',
+  { key: 'plasma', color: '#f08a3a', fr: 'Lance-plasma', en: 'Plasma Launcher',
     part: 'barrel', primary: 'dmg',
     glyph: 'M12 3c1 3.5 5 4.5 5 9a5 5 0 0 1-10 0c0-4.5 4-5.5 5-9zM12 19a3 3 0 0 0 3-3' },
-  { key: 'geology', color: '#8a96a8', fr: 'Canon géologique', en: 'Geology Cannon',
+  { key: 'geology', color: '#b0805a', fr: 'Canon géologique', en: 'Geology Cannon',
     part: 'barrel', primary: 'mine', secondary: ['dmg'],
     glyph: 'M3 19h18L14.5 7 10 14l-2.5-3z' },
-  { key: 'utility', color: '#6aa9ff', fr: 'Utilitaires', en: 'Utilities',
+  { key: 'utility', color: '#8a96a8', fr: 'Utilitaires & spéciaux', en: 'Utilities & specials',
     part: 'grip', primary: 'reach', secondary: ['scan'],
     glyph: 'M14.4 6.1a4.7 4.7 0 0 0-6 6L3 17.6 6.4 21l5.5-5.5a4.7 4.7 0 0 0 6-6l-3.2 3.2-3.5-3.5 3.2-3.1z' },
 ]
@@ -208,6 +216,16 @@ export const BASE_HYPERDRIVE_LY: Record<string, number> = {
 
 /** Class multiplier applied to the hull/frame itself (C → S). */
 export const CLASS_MULT: Record<string, number> = { C: 1, B: 1.1, A: 1.2, S: 1.35 }
+
+/**
+ * Starship tech-inventory rules.
+ *
+ * `multitool.json` ships a `rules` block that the multi-tool bench reads directly; `ships.json` has
+ * no equivalent, so the starship numbers live here. A starship's technology inventory is a fixed
+ * 30 slots regardless of class, and the class decides only how many of them are supercharged.
+ */
+export const SHIP_TECH_SLOTS = 30
+export const SHIP_SC_BY_CLASS: Record<string, number> = { C: 1, B: 2, A: 3, S: 4 }
 
 /** A tech installed in a supercharged slot is worth roughly half again as much. */
 export const SUPERCHARGE_MULT = 1.5

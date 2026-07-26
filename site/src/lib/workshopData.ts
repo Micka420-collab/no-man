@@ -8,9 +8,11 @@ import {
  * Joins the curated family metadata with the game's own item data.
  *
  * `public/data/workshop.json` is generated from `data/catalogue.json` in the source repo — the
- * Assistant NMS dataset — so technology names, descriptions, nanite prices and item icons are the
- * game's, not hand-written. Family membership comes from `multitool.json` for the multi-tool and
- * from the resolved starship technology ids for ships.
+ * Assistant NMS dataset — so technology names, descriptions, prices, currencies and item icons are
+ * the game's, not hand-written. Family membership, labels and colours come from `multitool.json`
+ * for the multi-tool; ships have no equivalent block in the data, so those fall back to SHIP_META.
+ *
+ * The data always wins over `src/data/catalogue.ts`, which only fills the gaps.
  */
 
 export interface WorkshopItem {
@@ -25,8 +27,20 @@ export interface WorkshopItem {
   icon?: string
 }
 
+export interface WorkshopFamily {
+  key: string
+  coreIds: string[]
+  modIds: string[]
+  /** class of each module, read from the game data at generation time */
+  modClasses?: string[]
+  /** label and colour, where the dataset declares them (multi-tool families do) */
+  fr?: string
+  en?: string
+  color?: string
+}
+
 export interface WorkshopData {
-  families?: { tool?: { key: string; coreIds: string[]; modIds: string[] }[]; ship?: { key: string; coreIds: string[]; modIds: string[] }[] }
+  families?: { tool?: WorkshopFamily[]; ship?: WorkshopFamily[] }
   items?: Record<string, WorkshopItem>
   updated_at?: string
 }
@@ -66,6 +80,16 @@ function pick(it: WorkshopItem | undefined, lang: Lang, a: 'fr' | 'gFr' | 'dFr',
 }
 
 /**
+ * A handful of catalogue entries are shouted — "DÉFLECTEUR D'ANALYSE DE CARGAISON" among cards that
+ * are otherwise sentence case. Lower-casing the tail keeps the grid uniform without touching names
+ * that are genuinely capitalised, initialisms included.
+ */
+function sentenceCase(s: string): string {
+  if (!s || s !== s.toLocaleUpperCase() || s.length < 5) return s
+  return s.charAt(0) + s.slice(1).toLocaleLowerCase()
+}
+
+/**
  * Resolve every family of a workshop kind. Families with no ids in the data still appear, using
  * their curated label and glyph, so the bench never collapses if the dataset is missing.
  */
@@ -77,32 +101,40 @@ export function resolveFamilies(
   const wd = data || EMPTY
   const items = wd.items || {}
   const groups = wd.families?.[kind] || []
-  const byKey: Record<string, { coreIds: string[]; modIds: string[] }> = {}
-  groups.forEach((g) => { byKey[g.key] = { coreIds: g.coreIds || [], modIds: g.modIds || [] } })
+  const byKey: Record<string, WorkshopFamily> = {}
+  groups.forEach((g) => { byKey[g.key] = g })
 
   return familyMeta(kind).map((meta) => {
-    const ids = byKey[meta.key] || { coreIds: [], modIds: [] }
+    const fam = byKey[meta.key]
+    const coreIds = fam?.coreIds || []
+    const modIds = fam?.modIds || []
 
-    const core: ResolvedTech[] = ids.coreIds.map((id) => {
+    const core: ResolvedTech[] = coreIds.map((id) => {
       const it = items[id]
+      const name = sentenceCase(pick(it, lang, 'fr', 'en')) || id
+      // a few entries repeat the name into their description and group; showing it three times
+      // stacked reads as a rendering fault, so the duplicates are dropped
+      const desc = pick(it, lang, 'dFr', 'dEn')
+      const group = pick(it, lang, 'gFr', 'gEn')
       return {
         id,
-        name: pick(it, lang, 'fr', 'en') || id,
-        desc: pick(it, lang, 'dFr', 'dEn'),
-        group: pick(it, lang, 'gFr', 'gEn'),
+        name,
+        desc: desc === name ? '' : desc,
+        group: group === name ? '' : sentenceCase(group),
         icon: it?.icon,
         part: PART_OVERRIDE[id] || meta.part,
       }
     })
 
-    // module ids arrive as C, B, A, S then the "suspicious" X variant
-    const mods: ResolvedModule[] = ids.modIds.map((id, i) => {
+    const mods: ResolvedModule[] = modIds.map((id, i) => {
       const it = items[id]
-      const cl = TIER_ORDER[i] || 'X'
+      // the generator reads each module's class out of the game data; the positional C/B/A/S/X
+      // order is only a fallback for a dataset built before that field existed
+      const cl = (fam?.modClasses?.[i] as ClassKey) || TIER_ORDER[i] || 'X'
       return {
         id,
         cl,
-        name: pick(it, lang, 'fr', 'en') || id,
+        name: sentenceCase(pick(it, lang, 'fr', 'en')) || id,
         icon: it?.icon,
         nanites: it?.v != null ? it.v : null,
         currency: it?.cur || 'Nanites',
@@ -113,7 +145,9 @@ export function resolveFamilies(
 
     return {
       ...meta,
-      name: (lang === 'fr' ? meta.fr : meta.en),
+      // multitool.json names and colours its own families; ships have no such block in the data
+      color: fam?.color || meta.color,
+      name: (lang === 'fr' ? fam?.fr : fam?.en) || (lang === 'fr' ? meta.fr : meta.en),
       core,
       mods,
     }

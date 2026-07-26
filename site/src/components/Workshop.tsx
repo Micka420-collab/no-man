@@ -20,6 +20,15 @@ export const CLASS_COLOR: Record<string, string> = {
 
 const COLS = 10
 
+/**
+ * Unit shown after a price. The game data names the currency per item — most upgrade modules are
+ * bought with nanites, the Neutron Cannon family with credits — so the glyph follows the data
+ * rather than being assumed.
+ */
+const CURRENCY_GLYPH: Record<string, string> = { Nanites: '⬡', Credits: 'u', Quicksilver: '✦' }
+const unit = (cur: string) => CURRENCY_GLYPH[cur] || cur
+const price = (v: number | null, cur: string) => (v == null ? '—' : fmt(v) + ' ' + unit(cur))
+
 export interface WorkshopConfig {
   kind: 'ship' | 'tool'
   storageKey: string
@@ -141,8 +150,12 @@ export default function Workshop(cfg: WorkshopConfig) {
     const b = (bonus[stat] ||= { min: 0, max: 0 })
     b.min += min; b.max += max
   }
-  /** real nanite spend, summed from the prices in the game data */
-  let nanites = 0
+  /**
+   * Real spend, summed from the prices in the game data — kept per currency.
+   * Most modules cost nanites, but the Neutron Cannon family is priced in credits, so a single
+   * total would both mislabel those and add two different currencies together.
+   */
+  const spend: Record<string, number> = {}
 
   build.forEach((b) => {
     const f = famBy[b.f]
@@ -157,7 +170,7 @@ export default function Workshop(cfg: WorkshopConfig) {
       if (!mod) return
       addBonus(f.primary, mod.bonus.min * mult, mod.bonus.max * mult)
       ;(f.secondary || []).forEach((s) => addBonus(s, (mod.bonus.min / 2) * mult, (mod.bonus.max / 2) * mult))
-      if (mod.nanites != null) nanites += mod.nanites
+      if (mod.nanites != null) spend[mod.currency] = (spend[mod.currency] || 0) + mod.nanites
     }
   })
 
@@ -191,6 +204,8 @@ export default function Workshop(cfg: WorkshopConfig) {
   }, [JSON.stringify(build), famBy])
 
   /** Technical sheet: the numbers a player actually compares builds on. */
+  const spendRows = Object.keys(spend).sort()
+  const spendLabel = spendRows.length ? spendRows.map((c) => price(spend[c], c)).join(' · ') : '—'
   const hyperB = bonus.hyper
   const baseLy = BASE_HYPERDRIVE_LY[cfg.type] || 0
   const sheet: { k: string; v: string; color: string }[] = [
@@ -207,7 +222,7 @@ export default function Workshop(cfg: WorkshopConfig) {
       : []),
     {
       k: lang === 'fr' ? 'COÛT BUILD' : 'BUILD COST',
-      v: nanites > 0 ? fmt(nanites) + ' ⬡' : '—',
+      v: spendLabel,
       color: '#ffd98a',
     },
   ]
@@ -588,10 +603,8 @@ export default function Workshop(cfg: WorkshopConfig) {
               fontFamily: mono, fontSize: 10, letterSpacing: '.18em',
               color: cfg.accent === 'cyan' ? '#5fd0e0' : '#ffb347',
             }}>{L.mt_pal}</div>
-            {nanites > 0 && (
-              <div style={{ fontFamily: mono, fontSize: 10, color: '#c9a8ff' }}>
-                {fmt(nanites)} {lang === 'fr' ? 'nanites' : 'nanites'}
-              </div>
+            {spendRows.length > 0 && (
+              <div style={{ fontFamily: mono, fontSize: 10, color: '#c9a8ff' }}>{spendLabel}</div>
             )}
           </div>
 
@@ -715,7 +728,7 @@ export default function Workshop(cfg: WorkshopConfig) {
                     whiteSpace: 'nowrap',
                   }}>{m.name}</span>
                   <span style={{ fontFamily: mono, fontSize: 9.5, color: '#ffd98a' }}>
-                    {m.nanites != null ? fmt(m.nanites) + ' ⬡' : '—'}
+                    {price(m.nanites, m.currency)}
                   </span>
                   <span style={{ fontFamily: mono, fontSize: 8.5, color: '#8b97ba', lineHeight: 1.45 }}>
                     {m.availability}
@@ -729,8 +742,8 @@ export default function Workshop(cfg: WorkshopConfig) {
 
           <div style={{ fontSize: 10.5, color: '#57628a', marginTop: 12, lineHeight: 1.6 }}>
             {lang === 'fr'
-              ? 'Noms, descriptions, prix en nanites et icônes proviennent des données du jeu (data/catalogue.json du dépôt). Les pourcentages de bonus restent des fourchettes communautaires : chaque module tire ses stats au hasard dans la fenêtre de sa classe. Max 3 modules par famille, au-delà toute la famille se désactive.'
-              : 'Names, descriptions, nanite prices and icons come from the game data (data/catalogue.json in the repo). Bonus percentages stay community-observed ranges — every module rolls random stats inside its class window. Max 3 modules per family; beyond that the whole family shuts down.'}
+              ? 'Noms, descriptions, classes, prix (⬡ nanites, u unités) et icônes proviennent des données du jeu (data/catalogue.json du dépôt). Les pourcentages de bonus restent des fourchettes communautaires : chaque module tire ses stats au hasard dans la fenêtre de sa classe. Max 3 modules par famille, au-delà toute la famille se désactive.'
+              : 'Names, descriptions, classes, prices (⬡ nanites, u units) and icons come from the game data (data/catalogue.json in the repo). Bonus percentages stay community-observed ranges — every module rolls random stats inside its class window. Max 3 modules per family; beyond that the whole family shuts down.'}
           </div>
         </div>
       </div>

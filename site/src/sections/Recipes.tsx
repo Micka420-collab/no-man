@@ -8,7 +8,7 @@ const mono = "'Space Mono',monospace"
 
 /** Refiner + cooking in one browser: pick an item, walk the tree in either direction. */
 export default function Recipes() {
-  const { state, patch, data, L, itemsMap, rcName, rcIcon, rcVal, rcOp } = useAtlas()
+  const { state, patch, data, L, itemsMap, rcName, rcIcon, rcVal, rcOp, rcDesc } = useAtlas()
 
   const all = useMemo(() => {
     const rec = data.recipes || {}
@@ -167,6 +167,16 @@ export default function Recipes() {
                 </div>
               </div>
             </div>
+            {!!rcDesc(sel) && (
+              <div style={{ marginTop: 14, paddingTop: 13, borderTop: '1px solid rgba(232,194,74,.16)' }}>
+                <div style={{
+                  fontFamily: mono, fontSize: 9.5, letterSpacing: '.18em', color: '#ffb347',
+                }}>// {L.rc_desc_h}</div>
+                <p style={{ margin: '7px 0 0', color: '#c6d1ec', fontSize: 13.5, lineHeight: 1.65, maxWidth: 860 }}>
+                  {rcDesc(sel)}
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="nms-hl-even" style={{

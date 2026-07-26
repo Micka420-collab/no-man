@@ -13,6 +13,7 @@ const DATA_FILES = [
   'stats', 'stats_history', 'timeline', 'expeditions', 'ships', 'creatures', 'galaxies',
   'galaxy_hubs', 'elements', 'market', 'community', 'news', 'official', 'videos',
   'achievements', 'challenges', 'progress', 'guide', 'missions', 'recipes', 'multitool', 'workshop', 'substances', 'war',
+  'descriptions',
 ] as const
 
 export type SortKey = 'name' | 'group' | 'value'
@@ -97,6 +98,8 @@ export interface AtlasStore {
   rcIcon: (id: string) => string
   rcVal: (id: string) => number | null
   rcOp: (op: string) => string
+  /** real in-game description of an item ("what is it for"), '' when the data has none */
+  rcDesc: (id: string) => string
 }
 
 const Ctx = createContext<AtlasStore | null>(null)
@@ -211,6 +214,12 @@ export function AtlasProvider({ children }: { children: ReactNode }) {
     return data.recipes?.op_fr?.[op] || op
   }, [data, lang])
 
+  const rcDesc = useCallback((id: string) => {
+    const d = data.descriptions?.items?.[id]
+    if (!d) return ''
+    return (lang === 'fr' ? d.fr : d.en) || d.fr || d.en || ''
+  }, [data, lang])
+
   const nav = useCallback((tab: Tab) => {
     setState((s) => ({ ...s, tab }))
     const m = document.getElementById('nms-main')
@@ -235,7 +244,7 @@ export function AtlasProvider({ children }: { children: ReactNode }) {
     goRecipesFor: (id) => { patch({ rcSel: id, rcQ: '', seOpen: false, detail: null }); nav('recipes') },
     t2: (o, base) => L2(o, base, lang),
     date: (iso) => fmtDate(iso, lang),
-    marketMap, itemsMap, rcName, rcIcon, rcVal, rcOp,
+    marketMap, itemsMap, rcName, rcIcon, rcVal, rcOp, rcDesc,
   }
 
   return <Ctx.Provider value={store}>{children}</Ctx.Provider>

@@ -208,9 +208,53 @@ fs.writeFileSync(path.join(DATA, 'substances.json'), JSON.stringify({
   items: subItems,
 }, null, 1) + '\n')
 
+// ── descriptions (« à quoi ça sert ») ──────────────────────────────────────────────────────────
+// La Base de données et les Recettes affichent la description réelle du jeu pour chaque objet.
+// Elle vit dans catalogue.json (2,7 Mo, jamais servi au navigateur) : on projette ici uniquement
+// les ids que l'app référence — les 692 objets des recettes et les classements du marché.
+
+const DESC_FULL = 400
+function clipFull(s) {
+  const t = String(s || '').trim()
+  if (t.length <= DESC_FULL) return t
+  const cut = t.slice(0, DESC_FULL)
+  const sp = cut.lastIndexOf(' ')
+  return (sp > DESC_FULL - 40 ? cut.slice(0, sp) : cut).trimEnd() + '…'
+}
+
+const descIds = new Set()
+const recipesData = readJSON(path.join(DATA, 'recipes.json'))
+for (const id of Object.keys(recipesData.items || {})) descIds.add(id)
+const marketData = readJSON(path.join(DATA, 'market.json'))
+for (const list of Object.values(marketData.categories || {}))
+  for (const it of list || []) if (it && it.id) descIds.add(it.id)
+
+const descItems = {}
+let descMissing = 0
+for (const id of descIds) {
+  const it = index[id]
+  if (!it) { descMissing++; continue }  // pas bloquant : la fiche s'affiche alors sans description
+  const o = {}
+  const dFr = clipFull(it.desc_fr), dEn = clipFull(it.desc_en)
+  if (dFr) o.fr = dFr
+  if (dEn) o.en = dEn
+  if (Object.keys(o).length) descItems[id] = o
+}
+
+fs.writeFileSync(path.join(DATA, 'descriptions.json'), JSON.stringify({
+  note: 'Descriptions réelles des objets (« à quoi ça sert »), extraites de data/catalogue.json '
+    + 'du dépôt (source : Assistant NMS). Texte du jeu, tronqué à ' + DESC_FULL + ' caractères ; '
+    + 'rien n\'est rédigé ici.',
+  source: SOURCE,
+  updated_at: catalogue.updated_at,
+  items: descItems,
+}, null, 1) + '\n')
+
 const modCount = Object.values(families).flat().reduce((n, f) => n + f.modIds.length, 0)
 console.log(
   `workshop.json    ${Object.keys(items).length} items · ${families.tool.length} tool + `
   + `${families.ship.length} ship families · ${modCount} modules, all classes read from the data\n`
-  + `substances.json  ${Object.keys(subItems).length} substances`,
+  + `substances.json  ${Object.keys(subItems).length} substances\n`
+  + `descriptions.json ${Object.keys(descItems).length} descriptions`
+  + (descMissing ? ` (${descMissing} id(s) sans entrée catalogue, ignorés)` : ''),
 )

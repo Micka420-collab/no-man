@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import { useAtlas, type SortKey } from '../lib/store'
 import { fmt, norm } from '../lib/util'
 import SectionHeader from '../components/SectionHeader'
@@ -34,7 +34,21 @@ function dbClass(id: string): string {
 /** Every tradeable item with its real icon and value — filter, sort, search, pin favourites. */
 export default function Database() {
   const store = useAtlas()
-  const { state, patch, L, lang, data, marketMap, itemsMap, favs, toggleFav, goRecipesFor, revision } = store
+  const { state, patch, L, lang, data, marketMap, itemsMap, favs, toggleFav, goRecipesFor, revision, rcDesc } = store
+
+  // ligne dépliée : description réelle du jeu (« à quoi ça sert ») + résumé d'usage
+  const [open, setOpen] = useState<string | null>(null)
+  const usage = useMemo(() => {
+    if (!open) return null
+    const rec = data.recipes || {}
+    const all = (rec.refiner || []).concat(rec.cooking || [])
+    let prod = 0, used = 0
+    all.forEach((rr) => {
+      if ((rr.o || [])[0] === open) prod++
+      if ((rr.i || []).some((x) => x[0] === open)) used++
+    })
+    return { prod, used }
+  }, [open, data])
 
   const catLabel = (k: string) => (CAT_LABELS[k] || CAT_LABELS.all)[lang === 'fr' ? 0 : 1]
 
@@ -200,41 +214,77 @@ export default function Database() {
 
           {rows.map((r) => {
             const fav = favs.has(r.id)
+            const isOpen = open === r.id
+            const desc = r.cls === 'fish' ? '' : rcDesc(r.id)
             return (
-              <div
-                key={r.id}
-                role="button"
-                tabIndex={0}
-                className="hv-row"
-                onClick={() => { if (r.cls !== 'fish') goRecipesFor(r.id) }}
-                style={{
-                  cursor: 'pointer', display: 'grid', gridTemplateColumns: GRID, alignItems: 'center',
-                  background: 'transparent', borderBottom: '1px solid rgba(120,150,220,.06)',
-                }}
-              >
-                <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '6px 0' }}>
-                  <ItemImg src={r.icon} size={30} />
-                </span>
-                <span style={{
-                  padding: '9px 10px', color: '#e8edfb', fontSize: 13.5, fontWeight: 600, minWidth: 0,
-                  whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-                }}>{r.name}</span>
-                <span style={{
-                  padding: '9px 10px', color: '#8b97ba', fontSize: 12, minWidth: 0, whiteSpace: 'nowrap',
-                  overflow: 'hidden', textOverflow: 'ellipsis',
-                }}>{r.group}</span>
-                <span style={{
-                  padding: '9px 10px', textAlign: 'right', fontFamily: mono, fontSize: 12.5, color: '#e8c24a',
-                }}>{r.value != null ? fmt(r.value) : '—'} <span style={{ color: '#7a6a3a', fontSize: 9 }}>{r.unit}</span></span>
-                <button
-                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFav(r.id) }}
-                  aria-label="Favori"
+              <Fragment key={r.id}>
+                <div
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={r.cls === 'fish' ? undefined : isOpen}
+                  className="hv-row"
+                  onClick={() => { if (r.cls !== 'fish') setOpen(isOpen ? null : r.id) }}
                   style={{
-                    cursor: 'pointer', border: 0, background: 'transparent', fontSize: 15,
-                    color: fav ? '#ffb347' : 'rgba(120,150,220,.3)', padding: '9px 0',
+                    cursor: 'pointer', display: 'grid', gridTemplateColumns: GRID, alignItems: 'center',
+                    background: isOpen ? 'rgba(95,208,224,.05)' : 'transparent',
+                    borderBottom: isOpen ? 'none' : '1px solid rgba(120,150,220,.06)',
                   }}
-                >★</button>
-              </div>
+                >
+                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '6px 0' }}>
+                    <ItemImg src={r.icon} size={30} />
+                  </span>
+                  <span style={{
+                    padding: '9px 10px', color: '#e8edfb', fontSize: 13.5, fontWeight: 600, minWidth: 0,
+                    whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                  }}>{r.name}</span>
+                  <span style={{
+                    padding: '9px 10px', color: '#8b97ba', fontSize: 12, minWidth: 0, whiteSpace: 'nowrap',
+                    overflow: 'hidden', textOverflow: 'ellipsis',
+                  }}>{r.group}</span>
+                  <span style={{
+                    padding: '9px 10px', textAlign: 'right', fontFamily: mono, fontSize: 12.5, color: '#e8c24a',
+                  }}>{r.value != null ? fmt(r.value) : '—'} <span style={{ color: '#7a6a3a', fontSize: 9 }}>{r.unit}</span></span>
+                  <button
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFav(r.id) }}
+                    aria-label="Favori"
+                    style={{
+                      cursor: 'pointer', border: 0, background: 'transparent', fontSize: 15,
+                      color: fav ? '#ffb347' : 'rgba(120,150,220,.3)', padding: '9px 0',
+                    }}
+                  >★</button>
+                </div>
+                {isOpen && (
+                  <div style={{
+                    borderBottom: '1px solid rgba(120,150,220,.06)', background: 'rgba(95,208,224,.04)',
+                    padding: '4px 14px 15px 62px', animation: 'nmsPop .2s both',
+                  }}>
+                    <div style={{
+                      fontFamily: mono, fontSize: 9.5, letterSpacing: '.18em', color: '#ffb347',
+                    }}>// {L.rc_desc_h}</div>
+                    <p style={{ margin: '7px 0 0', color: '#c6d1ec', fontSize: 13, lineHeight: 1.6, maxWidth: 820 }}>
+                      {desc || L.db_no_desc}
+                    </p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12, marginTop: 11 }}>
+                      {usage && (
+                        <span style={{ fontFamily: mono, fontSize: 11, color: '#9aa6c8' }}>
+                          {usage.prod} {L.rc_prod_n} · {usage.used} {L.rc_used_n}
+                        </span>
+                      )}
+                      {usage != null && (usage.prod > 0 || usage.used > 0) && (
+                        <button
+                          className="hv-cyan-border"
+                          onClick={(e) => { e.stopPropagation(); goRecipesFor(r.id) }}
+                          style={{
+                            cursor: 'pointer', padding: '6px 13px', borderRadius: 9,
+                            border: '1px solid rgba(95,208,224,.35)', background: 'rgba(95,208,224,.08)',
+                            color: '#5fd0e0', fontFamily: mono, fontSize: 11, letterSpacing: '.05em',
+                          }}
+                        >{L.db_open_rec}</button>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </Fragment>
             )
           })}
         </div>

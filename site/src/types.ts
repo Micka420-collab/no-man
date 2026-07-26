@@ -211,6 +211,8 @@ export interface DataBundle {
   multitool?: MultitoolData
   workshop?: WorkshopDataset
   substances?: SubstanceDataset
+  /** real in-game item descriptions ("what is it for"), projected from the repo catalogue */
+  descriptions?: { items?: Record<string, { fr?: string; en?: string }> }
   /** live war-effort feed; `event` is null while no effort is running */
   war?: { event?: WarEvent | null; updated_at?: string }
 }

@@ -2,63 +2,12 @@ import { useMemo } from 'react'
 import { useAtlas } from '../lib/store'
 import { asset } from '../lib/util'
 import SectionHeader from '../components/SectionHeader'
-import Workshop, { type WorkshopFamily } from '../components/Workshop'
-import type { Lang } from '../types'
+import Workshop from '../components/Workshop'
 
 const mono = "'Space Mono',monospace"
 
-/** Starship technology families with the game's real names (catalogue.json is generated, not in the repo). */
-function shipFamilies(lang: Lang): WorkshopFamily[] {
-  const raw: { key: string; emoji: string; color: string; fr: string; en: string; core: [string, string][]; mods: number }[] = [
-    { key: 'pulse', emoji: '🔥', color: '#ffb347', fr: 'Moteur à impulsion', en: 'Pulse Engine', mods: 5,
-      core: [['Moteur à impulsion', 'Pulse Engine'], ['Cœur photonix', 'Photonix Core']] },
-    { key: 'launch', emoji: '🛫', color: '#e0a13a', fr: 'Décollage', en: 'Launch', mods: 5,
-      core: [['Propulseur de décollage', 'Launch Thruster'], ['Recharge de décollage', 'Launch System Recharger'], ['Propulseurs économiques', 'Efficient Thrusters']] },
-    { key: 'hyper', emoji: '🌌', color: '#c98af0', fr: 'Hyperpropulseur', en: 'Hyperdrive', mods: 5,
-      core: [['Hyperpropulseur', 'Hyperdrive'], ['Réacteur cadmium', 'Cadmium Drive'], ['Réacteur émeril', 'Emeril Drive'], ['Réacteur indium', 'Indium Drive']] },
-    { key: 'shield', emoji: '🛡️', color: '#5fd0e0', fr: 'Bouclier déflecteur', en: 'Deflector Shield', mods: 5,
-      core: [['Bouclier déflecteur', 'Deflector Shield'], ['Blindage ablatif', 'Ablative Armour']] },
-    { key: 'photon', emoji: '💥', color: '#ff7a1a', fr: 'Canon à photons', en: 'Photon Cannon', mods: 5,
-      core: [['Canon à photons', 'Photon Cannon']] },
-    { key: 'phase', emoji: '🔆', color: '#7fe08a', fr: 'Rayon de phase', en: 'Phase Beam', mods: 5,
-      core: [['Rayon de phase', 'Phase Beam']] },
-    { key: 'positron', emoji: '✴️', color: '#f05a5a', fr: 'Éjecteur de positrons', en: 'Positron Ejector', mods: 5,
-      core: [['Éjecteur de positrons', 'Positron Ejector']] },
-    { key: 'infra', emoji: '🗡️', color: '#ffd166', fr: 'Accélérateur infra-lame', en: 'Infra-Knife', mods: 5,
-      core: [['Accélérateur infra-lame', 'Infra-Knife Accelerator']] },
-    { key: 'cyclotron', emoji: '🌀', color: '#6aa9ff', fr: 'Baliste cyclotron', en: 'Cyclotron Ballista', mods: 5,
-      core: [['Baliste cyclotron', 'Cyclotron Ballista']] },
-    { key: 'rockets', emoji: '🧨', color: '#b0805a', fr: 'Lance-roquettes', en: 'Rocket Launcher', mods: 0,
-      core: [['Lance-roquettes', 'Rocket Launcher']] },
-    { key: 'sutility', emoji: '📡', color: '#8a96a8', fr: 'Utilitaires', en: 'Utilities', mods: 0,
-      core: [['Récepteur de téléportation', 'Teleport Receiver'], ['Scanner économique', 'Economy Scanner'], ['Scanner de conflit', 'Conflict Scanner']] },
-  ]
-  return raw.map((f) => ({
-    key: f.key, emoji: f.emoji, color: f.color, name: lang === 'fr' ? f.fr : f.en,
-    coreLabels: f.core.map((c) => (lang === 'fr' ? c[0] : c[1])), modsCount: f.mods,
-  }))
-}
-
-/** Per-archetype damage / shield / hyperdrive / agility ratings. */
-function shipBars(id: string, lang: Lang) {
-  const T: Record<string, number[]> = {
-    fighter: [5, 2, 1, 4], hauler: [1, 5, 2, 1], explorer: [1, 1, 5, 3], shuttle: [2, 2, 2, 2],
-    exotic: [4, 4, 4, 5], solar: [3, 2, 2, 5], interceptor: [5, 3, 1, 3], living: [3, 3, 4, 3],
-    freighter: [1, 4, 3, 1], corvette: [3, 3, 3, 2],
-  }
-  const v = T[id] || [2, 2, 2, 2]
-  const cols = ['#f05a5a', '#5fd0e0', '#c98af0', '#8bf0a0']
-  const labels = lang === 'fr'
-    ? ['DÉGÂTS', 'BOUCLIER', 'HYPERDRIVE', 'AGILITÉ']
-    : ['DAMAGE', 'SHIELD', 'HYPERDRIVE', 'AGILITY']
-  return labels.map((label, j) => ({
-    label,
-    dots: [1, 2, 3, 4, 5].map((n) => ({ bg: n <= v[j] ? cols[j] : 'rgba(120,150,220,.14)' })),
-  }))
-}
-
 export default function Ships() {
-  const { state, patch, data, L, lang, t2, openDetail } = useAtlas()
+  const { state, patch, data, L, t2, openDetail } = useAtlas()
 
   const ships = useMemo(() => data.ships?.items || [], [data])
 
@@ -84,7 +33,6 @@ export default function Ships() {
     title: t2(st, 'title'), body: t2(st, 'body'),
   }))
 
-  const fams = useMemo(() => shipFamilies(lang), [lang])
   const curT = ships.find((t) => t.id === state.shType) || ships[0] || {}
   const scN = ({ C: 1, B: 2, A: 3, S: 4 } as Record<string, number>)[state.shClass] || 2
 
@@ -185,15 +133,11 @@ export default function Ships() {
           fam={state.shFam}
           onFam={(f) => patch({ shFam: f })}
           types={ships.map((t) => ({ key: t.id, emoji: t.icon || '', label: t2(t, 'name') }))}
-          fams={fams}
           total={30}
           scN={scN}
-          scPos={[13, 2, 27, 6].slice(0, scN)}
-          classLabel={(lang === 'fr' ? 'CLASSE ' : 'CLASS ') + state.shClass + ' · 30 SLOTS TECH'}
           holoEmoji={curT.icon || ''}
           holoName={t2(curT, 'name')}
           holoDesc={t2(curT, 'bonus')}
-          bars={shipBars(curT.id || state.shType, lang)}
           note={L.shw_note}
         />
       </div>

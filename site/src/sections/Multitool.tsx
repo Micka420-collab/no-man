@@ -1,37 +1,10 @@
 import { useMemo } from 'react'
 import { useAtlas } from '../lib/store'
 import SectionHeader from '../components/SectionHeader'
-import Workshop, { CLASS_COLOR, type WorkshopFamily } from '../components/Workshop'
+import Workshop, { CLASS_COLOR } from '../components/Workshop'
+import { families as catalogueFamilies } from '../data/catalogue'
 
 const mono = "'Space Mono',monospace"
-
-/** Real in-game technology names per family (catalogue.json is generated and not in the repo). */
-const MT_NAMES: Record<string, [string, string][]> = {
-  mining: [["Rayon d'extraction", 'Mining Beam'], ["Laser d'extraction avancé", 'Advanced Mining Laser'], ['Foreuse optique', 'Optical Drill'], ['Lentille runique', 'Runic Lens']],
-  scanner: [['Scanner', 'Scanner'], ["Visière d'analyse", 'Analysis Visor'], ["Recycleur d'ondes", 'Waveform Recycler'], ['Harmoniseur de scanner', 'Scanner Harmonizer'], ['Appareil de prospection', 'Survey Device']],
-  boltcaster: [['Fulgurateur', 'Boltcaster'], ['Ioniseur de canon', 'Barrel Ioniser'], ['Module ricochet', 'Ricochet Module']],
-  scatter: [['Fusil à dispersion', 'Scatter Blaster']],
-  spitter: [['Cracheur à impulsions', 'Pulse Spitter'], ['Allumeur à impact', 'Impact Igniter'], ['Module ricochet', 'Ricochet Module']],
-  javelin: [['Javelot incandescent', 'Blaze Javelin'], ["Oscillateur d'ondes", 'Waveform Oscillator'], ['Accélérateur de masse', 'Mass Accelerator']],
-  neutron: [['Canon à neutrons', 'Neutron Cannon'], ['Compresseur de champ P', 'P-Field Compressor']],
-  plasma: [['Lance-plasma', 'Plasma Launcher']],
-  geology: [['Canon géologique', 'Geology Cannon']],
-  utility: [['Manipulateur de terrain', 'Terrain Manipulator'], ['Champ de force personnel', 'Personal Forcefield'], ['Lunette de combat', 'Combat Scope'], ["Dispositif d'occultation", 'Cloaking Device'], ['Mortier paralysant', 'Paralysis Mortar'], ['Kit de pêche', 'Fishing Rig']],
-}
-
-/** damage / mining / scanner rating per multi-tool type */
-function mtBars(key: string, labels: string[]) {
-  const T: Record<string, number[]> = {
-    pistol: [0, 5, 2], rifle: [2, 2, 2], experimental: [1, 2, 5], alien: [4, 3, 3],
-    royal: [3, 3, 5], sentinel: [4, 2, 2], atlantid: [3, 5, 2], staff: [4, 2, 3],
-  }
-  const v = T[key] || [2, 2, 2]
-  const cols = ['#f05a5a', '#e0a13a', '#5fd0e0']
-  return labels.map((label, j) => ({
-    label,
-    dots: [1, 2, 3, 4, 5].map((n) => ({ bg: n <= v[j] ? cols[j] : 'rgba(120,150,220,.14)' })),
-  }))
-}
 
 const dec = (s: string | undefined) => String(s || '').replace(/&amp;/g, '&')
 
@@ -52,27 +25,15 @@ export default function Multitool() {
     desc: dec(lang === 'fr' ? t.desc_fr : t.desc_en),
   }))
 
-  const fams: WorkshopFamily[] = useMemo(() => (mt.families || []).map((f) => {
-    const named = MT_NAMES[f.key] || []
-    const coreIds = f.core || []
-    const coreLabels = named.slice(0, coreIds.length).map((nm) => (lang === 'fr' ? nm[0] : nm[1]))
-    return {
-      key: f.key, emoji: f.emoji || '▦', color: f.color || '#8a96a8',
-      name: dec(lang === 'fr' ? f.fr : f.en),
-      coreLabels, modsCount: (f.mods || []).length, othersCount: coreIds.length - coreLabels.length,
-    }
-  }), [mt, lang])
-
-  const famRows = (mt.families || []).map((f) => ({
-    key: f.key, emoji: f.emoji, color: f.color || '#8a96a8',
-    name: dec(lang === 'fr' ? f.fr : f.en),
-    core: (f.core || []).length, mods: (f.mods || []).length,
-  }))
+  const famRows = useMemo(() => catalogueFamilies('tool').map((f) => ({
+    key: f.key, emoji: f.emoji, color: f.color,
+    name: lang === 'fr' ? f.fr : f.en,
+    core: f.core.length, mods: f.module ? f.module.tiers.length : 0,
+  })), [lang])
 
   const curT = (mt.types || []).find((t) => t.key === state.mtType) || (mt.types || [])[0] || {}
   const total = SB[state.mtClass] || 40
   const scN = SCB[state.mtClass] || 2
-  const barLabels = [L.mt_b_dmg, L.mt_b_mine, L.mt_b_scan]
 
   return (
     <section className="nms-pad" style={{
@@ -91,15 +52,11 @@ export default function Multitool() {
         fam={state.mtFam}
         onFam={(f) => patch({ mtFam: f })}
         types={types.map((t) => ({ key: t.key, emoji: t.emoji, label: t.name }))}
-        fams={fams}
         total={total}
         scN={scN}
-        scPos={[13, 32, 7, 46].filter((i) => i < total).slice(0, scN)}
-        classLabel={(lang === 'fr' ? 'CLASSE ' : 'CLASS ') + state.mtClass + ' · ' + total + ' SLOTS'}
         holoEmoji={curT.emoji || ''}
         holoName={dec(lang === 'fr' ? curT.fr : curT.en)}
         holoDesc={dec(lang === 'fr' ? curT.desc_fr : curT.desc_en)}
-        bars={mtBars(curT.key || state.mtType, barLabels)}
       />
 
       <div style={{

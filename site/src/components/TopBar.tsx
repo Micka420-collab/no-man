@@ -31,7 +31,7 @@ export default function TopBar() {
       }}>
         <LivePip />
         <span style={{ color: '#8bf0a0', fontWeight: 700 }}>{fmt(state.live)}</span>
-        <span style={{ color: '#6b78a0' }}>{L.live_now}</span>
+        <span className="nms-live-label" style={{ color: '#6b78a0' }}>{L.live_now}</span>
       </div>
       <div style={{ flex: 1 }} />
       <div className="nms-topbar-tag" style={{

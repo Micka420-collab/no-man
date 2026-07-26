@@ -178,9 +178,15 @@ export interface DetailData {
 
 /** A single installed technology in a multi-tool / starship build. */
 export interface BuildSlot {
+  /** slot index in the tech inventory */
   i: number
+  /** family key */
   f: string
   k: 'tech' | 'mod'
+  /** class letter for modules ('' for core technologies) */
   c: string
+  /** display name at install time */
   n: string
+  /** catalogue id — core tech id, or "<family>-<class>" for modules */
+  id?: string
 }

@@ -36,6 +36,12 @@ button{font-family:inherit}
 @media (max-width:720px){ .nms-hl-even{grid-template-columns:1fr!important} .nms-cd{gap:8px!important} .nms-cd-cell{min-width:62px!important} }
 @media (max-width:560px){ .nms-cd-cell{min-width:0!important;flex:1 1 42%!important} }
 
+@media (max-width:480px){ .nms-live-label{display:none!important} }
+
+/* ── Workshop slot grid: tighter on narrow screens so 10 columns stay usable ── */
+@media (max-width:520px){ .nms-slots{gap:3px!important} }
+@media (max-width:380px){ .nms-slots{gap:2px!important} .nms-slot{font-size:9px!important} }
+
 /* ── Hover behaviours (the prototype's style-hover="…" attributes) ── */
 .hv-search:hover{border-color:rgba(95,208,224,.5)!important;color:#dbe4ff!important}
 .hv-marquee:hover{animation-play-state:paused}

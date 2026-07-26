@@ -1,8 +1,8 @@
 # Atlas Terminal — implementation
 
 Production implementation of the `Atlas Terminal v2` design (see `../project/Atlas Terminal v2.dc.html`
-and the handoff bundle at the repo root). React 19 + TypeScript + Vite, no runtime dependencies
-beyond React.
+and the handoff bundle at the repo root). React 19 + TypeScript + Vite; three.js powers the two
+workshop viewers and is code-split so it only downloads when a workshop is opened.
 
 ```bash
 npm install
@@ -21,7 +21,9 @@ public/data/*.json          the 21 datasets, fetched at runtime (same names as d
 public/assets/creatures/    57 creature webp
 public/assets/ships/        10 starship webp
 src/lib/store.tsx           app state, data loading, shared item/market lookups
-src/lib/{sprite,models}.ts  procedural galaxy sprite · wireframe hologram meshes
+src/lib/sprite.ts           procedural galaxy sprite (background + galaxy map)
+src/lib/meshes.ts           three.js models for the 10 starships and 8 multi-tools
+src/data/catalogue.ts       technology catalogue: families, core techs, module tiers, prices, stats
 src/i18n/                   FR/EN copy deck + navigation
 src/components/             shell (rail, topbar, ticker, bottom nav), ⌘K palette, detail sheet, canvases, workshop bench
 src/sections/               one file per screen
@@ -36,6 +38,28 @@ Accueil (live panel + 10-year countdown) · En direct (player curve, community f
 Ma progression · Vaisseaux (gallery + upgrade workshop) · Faune (57 archetypes) · Galaxies
 (interactive 255-star spiral) · Éléments (periodic table) · Multi-outil (workshop) · Expéditions ·
 Bulletin de guerre · Mises à jour · Guides & Wiki · Base de données · Recettes · Portail (glyph decoder).
+
+## Workshops (Vaisseaux · Multi-outil)
+
+Both benches share `components/Workshop.tsx` and `components/Viewer3D.tsx`:
+
+- **Real-time 3D** — solid-shaded models with panel lines, three-point lighting, hangar rings,
+  drag-to-orbit, ±/reset buttons and `Ctrl`/`⌘` + wheel zoom. A `SOLIDE / HOLO` switch keeps the
+  prototype's wireframe look available. The part of the model a technology belongs to (engine, wing,
+  barrel, scope, hyperdrive core…) pulses while that family is installed.
+- **Catalogue** — the game's real technology names per family with what each one does and how it is
+  obtained, plus C/B/A/S/X upgrade-module tiers carrying nanite price ranges and bonus ranges.
+- **In-game rules** — per-class slot counts, a contiguous supercharged cluster (×1.5), orthogonal
+  adjacency bonuses (+5% each), and the 3-modules-per-family overload that shuts the family down.
+- **Live estimate** — stat bars show the archetype's base profile plus the computed bonus window
+  from the current build, and the catalogue header totals the nanite cost.
+
+Prices and percentages are community-observed *ranges*, shown as ranges and labelled as estimates:
+in game every module rolls random stats inside its class window, and the exact tables are unpublished.
+
+The 3D models are original stylised builds in the game's visual language — Hello Games' own meshes
+and item icons are proprietary and are not used. If `data/catalogue.json` (generated in the source
+repo) is ever added to `public/data/`, the workshop can pick up the real item icons from it.
 
 ## Persistence
 

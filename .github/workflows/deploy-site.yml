@@ -1,16 +1,18 @@
 # Builds site/ and publishes it to GitHub Pages.
 #
-# ⚠️ Enabling this REPLACES what is currently served at the Pages URL. The existing
-# single-file index.html at the repo root stays in git either way — this only changes
-# what Pages serves. Review before merging.
+# ⚠️ MANUAL ONLY, ON PURPOSE. This repo already publishes Pages from the root
+# index.html via deploy-pages.yml, which runs on every push to main. Running this
+# workflow REPLACES what the Pages URL serves with the React app in site/, and the
+# two workflows share the "pages" concurrency group, so whichever finishes last wins.
 #
-# Set Settings → Pages → Source to "GitHub Actions" for this to take effect.
+# There is no automatic trigger here so that merging this branch changes nothing about
+# the live site. To switch over deliberately:
+#   1. run this workflow by hand (Actions → Deploy site → Run workflow), or
+#   2. add a push trigger here AND remove/disable deploy-pages.yml.
+# The root index.html stays in git either way — this only changes what Pages serves.
 name: Deploy site
 
 on:
-  push:
-    branches: [main]
-    paths: ['site/**', '.github/workflows/deploy-site.yml']
   workflow_dispatch:
 
 permissions:

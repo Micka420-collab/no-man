@@ -133,8 +133,15 @@ list are read from `multitool.json` and `elements.json`, so those need no editin
 ## Deploying to GitHub Pages
 
 `.github/workflows/deploy-site.yml` (repo root) builds `site/` and publishes `site/dist` to Pages.
-It is **not** active until Settings → Pages → Source is set to "GitHub Actions", and enabling it
-replaces whatever that URL serves today — the existing root `index.html` stays in git regardless.
+
+It is **`workflow_dispatch` only, deliberately.** The repo already publishes Pages from the root
+`index.html` through `deploy-pages.yml`, which fires on every push to `main`; both workflows use the
+`pages` concurrency group, so if this one also ran automatically the two would race and the live site
+would flip between them. Merging this branch therefore changes nothing about what is served.
+
+To switch the Pages URL over to the React app, either run this workflow by hand (Actions → Deploy
+site → Run workflow), or add a `push` trigger to it *and* disable `deploy-pages.yml`. The root
+`index.html` stays in git either way.
 
 Unofficial community tool. Not affiliated with Hello Games; game item icons are served from the
 community Assistant NMS CDN, and the hologram meshes are original stylised silhouettes rather than

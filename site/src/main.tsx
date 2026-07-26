@@ -8,3 +8,11 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>,
 )
+
+// PWA : installable et utilisable hors-ligne (mêmes stratégies de cache que le site d'origine).
+// Enregistré après `load` pour ne pas concurrencer le premier rendu.
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register(import.meta.env.BASE_URL + 'sw.js').catch(() => {})
+  })
+}

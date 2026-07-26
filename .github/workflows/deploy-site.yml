@@ -1,18 +1,22 @@
-# Builds site/ and publishes it to GitHub Pages.
+# Construit site/ (Atlas Terminal) et le publie sur GitHub Pages.
 #
-# ⚠️ MANUAL ONLY, ON PURPOSE. This repo already publishes Pages from the root
-# index.html via deploy-pages.yml, which runs on every push to main. Running this
-# workflow REPLACES what the Pages URL serves with the React app in site/, and the
-# two workflows share the "pages" concurrency group, so whichever finishes last wins.
+# C'est LE workflow de déploiement du site en ligne depuis la bascule vers l'Atlas
+# Terminal (l'ancien deploy-pages.yml, qui servait l'index.html racine, a été retiré —
+# le fichier reste dans git, seul ce qui est servi a changé).
 #
-# There is no automatic trigger here so that merging this branch changes nothing about
-# the live site. To switch over deliberately:
-#   1. run this workflow by hand (Actions → Deploy site → Run workflow), or
-#   2. add a push trigger here AND remove/disable deploy-pages.yml.
-# The root index.html stays in git either way — this only changes what Pages serves.
+# Fraîcheur des données : avant chaque build, les JSON de data/ (racine, mis à jour
+# toutes les 3 h par update-news.yml) sont recopiés dans site/public/data/, et les
+# deux fichiers dérivés (workshop.json, substances.json) sont régénérés depuis le
+# catalogue frais. Le déclencheur workflow_run est indispensable : les commits poussés
+# par update-news.yml avec le GITHUB_TOKEN ne déclenchent PAS les workflows `push`.
 name: Deploy site
 
 on:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: ["Mise à jour des actualités NMS"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -29,16 +33,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: site/package-lock.json
+
+      - name: Synchroniser les données fraîches (data/ racine → site)
+        run: |
+          for f in data/*.json; do
+            case "$(basename "$f")" in
+              catalogue.json) ;;  # 2,7 Mo — jamais servi au navigateur, sert à régénérer ci-dessous
+              *) cp -f "$f" site/public/data/ ;;
+            esac
+          done
+          node site/scripts/build-workshop-data.mjs data/catalogue.json
       - run: npm ci
         working-directory: site
       - run: npm run build
         working-directory: site
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site/dist

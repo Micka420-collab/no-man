@@ -134,15 +134,16 @@ list are read from `multitool.json` and `elements.json`, so those need no editin
 ## Deploying to GitHub Pages
 
 `.github/workflows/deploy-site.yml` (repo root) builds `site/` and publishes `site/dist` to Pages.
+**This is the live deployment**: it runs on every push to `main`, and also after each run of the
+data-update workflow ("Mise à jour des actualités NMS") — a `workflow_run` trigger is required
+because commits pushed with the default `GITHUB_TOKEN` never fire `push` workflows. The old
+`deploy-pages.yml`, which served the historical single-file root `index.html`, has been removed;
+that `index.html` stays in git, it is simply no longer what Pages serves.
 
-It is **`workflow_dispatch` only, deliberately.** The repo already publishes Pages from the root
-`index.html` through `deploy-pages.yml`, which fires on every push to `main`; both workflows use the
-`pages` concurrency group, so if this one also ran automatically the two would race and the live site
-would flip between them. Merging this branch therefore changes nothing about what is served.
-
-To switch the Pages URL over to the React app, either run this workflow by hand (Actions → Deploy
-site → Run workflow), or add a `push` trigger to it *and* disable `deploy-pages.yml`. The root
-`index.html` stays in git either way.
+Data freshness: before each build the workflow copies the root `data/*.json` (updated every 3 h)
+into `site/public/data/` and regenerates `workshop.json` + `substances.json` from the fresh
+catalogue, so the deployed app always ships current numbers. The app is a full PWA (manifest +
+service worker): installable, works offline, data network-first / shell cache-first.
 
 Unofficial community tool. Not affiliated with Hello Games; game item icons are served from the
 community Assistant NMS CDN, and the hologram meshes are original stylised silhouettes rather than

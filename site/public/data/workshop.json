@@ -1,7 +1,7 @@
 {
  "note": "Technologies et modules d'amélioration réels de No Man's Sky, extraits de data/catalogue.json du dépôt (source : Assistant NMS). Ids, noms, descriptions, valeurs, devises et icônes proviennent du jeu ; les classes des modules sont lues dans les données, pas déduites de leur ordre.",
  "source": "https://github.com/Micka420-collab/no-man/blob/main/data/catalogue.json",
- "updated_at": "2026-07-26T03:59:54.851562+00:00",
+ "updated_at": "2026-07-26T08:41:53.196719+00:00",
  "families": {
   "tool": [
    {

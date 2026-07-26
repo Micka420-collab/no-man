@@ -1,0 +1,12 @@
+{
+  "name": "Atlas Terminal — No Man's Sky",
+  "short_name": "Atlas Terminal",
+  "description": "Le centre de suivi non officiel de No Man's Sky : activité en direct, vaisseaux, faune, galaxies, éléments, recettes et guides.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#05070f",
+  "theme_color": "#05070f",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

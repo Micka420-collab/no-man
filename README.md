@@ -5,6 +5,12 @@ Un système complet pour suivre **tout ce qui se passe autour de No Man's Sky** 
 
 **➡️ Site en ligne : https://micka420-collab.github.io/no-man/**
 
+> 🖥️ **Le site en ligne est désormais l'« Atlas Terminal »** — la refonte React/TypeScript
+> qui vit dans [`site/`](site/) (design terminal, ateliers 3D multi-outil & vaisseau,
+> PWA installable et hors-ligne). Il est reconstruit **avec les données fraîches** à chaque
+> mise à jour automatique (toutes les 3 h). La version historique mono-fichier décrite
+> ci-dessous (`index.html` à la racine) reste dans le dépôt mais n'est plus servie.
+
 ✨ Interface **bilingue français/anglais**, thèmes **sombre/clair**, champ d'étoiles animé,
 recherche et filtres dans chaque onglet, **fiches détaillées au clic** sur les objets/vaisseaux,
 **compte à rebours des 10 ans du jeu**, **mode hors-ligne (PWA installable)**, suivi personnel

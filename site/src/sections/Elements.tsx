@@ -50,14 +50,23 @@ export default function Elements() {
     return { head, color, cells: (col.cells || []).map((c) => cellVM(c, color, head)) }
   })
 
-  const flora = el.flora
-    ? {
-      head: lang === 'fr' ? el.flora.fr : el.flora.en,
-      color: el.flora.color || '#7fbf4a',
-      cells: (el.flora.cells || []).map((c) =>
-        cellVM(c, el.flora!.color || '#7fbf4a', lang === 'fr' ? el.flora!.fr : el.flora!.en)),
-    }
-    : null
+  /** flora plus any extra_rows the dataset adds, rendered as full-width sections */
+  const extraSections = [
+    ...(el.flora
+      ? [{
+        key: 'flora',
+        head: lang === 'fr' ? el.flora.fr : el.flora.en,
+        color: el.flora.color || '#7fbf4a',
+        cells: el.flora.cells || [],
+      }]
+      : []),
+    ...(el.extra_rows || []).map((r) => ({
+      key: r.key,
+      head: lang === 'fr' ? r.fr : r.en,
+      color: fams[r.key]?.color || '#8a96a8',
+      cells: r.cells || [],
+    })),
+  ]
 
   const legend = Object.keys(fams).map((k) => ({
     label: lang === 'fr' ? fams[k].fr : fams[k].en, color: fams[k].color,
@@ -233,16 +242,16 @@ export default function Elements() {
         ))}
       </div>
 
-      {flora && (
-        <div style={{ marginTop: 22 }}>
+      {extraSections.map((sec) => (
+        <div key={sec.key} style={{ marginTop: 22 }}>
           <div style={{
-            fontFamily: mono, fontSize: 10, letterSpacing: '.1em', color: flora.color, marginBottom: 10,
-          }}>{flora.head}</div>
+            fontFamily: mono, fontSize: 10, letterSpacing: '.1em', color: sec.color, marginBottom: 10,
+          }}>{sec.head}</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(96px,1fr))', gap: 8 }}>
-            {flora.cells.map((c, i) => cellTile(c, flora.color, 'fl-' + i))}
+            {sec.cells.map((c, i) => cellTile(cellVM(c, sec.color, sec.head), sec.color, sec.key + '-' + i))}
           </div>
         </div>
-      )}
+      ))}
     </section>
   )
 }

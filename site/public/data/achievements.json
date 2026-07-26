@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-23T03:48:33.773540+00:00",
+  "updated_at": "2026-07-26T03:59:03.493393+00:00",
   "items": [
     {
       "percent": 73.1,
@@ -23,7 +23,7 @@
       "desc_en": "Attain ‘Confused’ status in Words Collected"
     },
     {
-      "percent": 53.7,
+      "percent": 53.6,
       "name": "Contact",
       "desc": "Obtenir le statut « Connu » dans Aliens colons rencontrés",
       "name_en": "Contact",
@@ -100,7 +100,7 @@
       "desc_en": "Attain ‘Notorious’ status in Ships Destroyed"
     },
     {
-      "percent": 22.1,
+      "percent": 22.0,
       "name": "L'Univers en folie",
       "desc": "Obtenir le statut « Ambassadeur » dans Aliens colons rencontrés",
       "name_en": "What Mad Universe",

@@ -60,10 +60,13 @@ export interface GalaxyHub {
 export interface ElementFamily { fr: string; en: string; color: string }
 export interface ElementCell { raw: string; sym: string }
 export interface ElementColumn { head_fr: string; head_en: string; fam: string; cells: ElementCell[] }
+export interface ElementRow { key: string; fr: string; en: string; cells: ElementCell[] }
 export interface ElementsData {
   families?: Record<string, ElementFamily>
   columns?: ElementColumn[]
   flora?: { fr: string; en: string; color: string; cells: ElementCell[] }
+  /** full-width sections added after the periodic columns (waste, lore substances…) */
+  extra_rows?: ElementRow[]
 }
 
 export interface MarketItem {

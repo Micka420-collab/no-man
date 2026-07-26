@@ -101,9 +101,28 @@ read from the query string and remembered on the device:
 
 ## Data refresh
 
-The JSON under `public/data/` is a snapshot from the handoff bundle. To refresh, copy the files from
-`data/` in the [Micka420-collab/no-man](https://github.com/Micka420-collab/no-man) repo over
-`public/data/`, and `assets/` over `public/assets/` — no code changes needed.
+`public/data/` tracks `data/` in the [Micka420-collab/no-man](https://github.com/Micka420-collab/no-man)
+repo — the same files the live site loads. To refresh:
+
+```bash
+cd site/public/data
+for f in stats stats_history timeline expeditions ships creatures galaxies galaxy_hubs \
+         elements market community news official videos achievements challenges \
+         progress guide missions recipes multitool war; do
+  curl -sO "https://raw.githubusercontent.com/Micka420-collab/no-man/main/data/$f.json"
+done
+```
+
+`workshop.json` is generated, not fetched: it joins `data/catalogue.json` (2.7 MB, the full item
+catalogue) down to the ~157 technologies and upgrade modules the workshops use, keeping the game's
+names, descriptions, nanite prices and icon URLs. Regenerate it whenever the catalogue moves — the
+family id lists live at the top of the generator, everything else is a lookup.
+
+## Deploying to GitHub Pages
+
+`.github/workflows/deploy-site.yml` (repo root) builds `site/` and publishes `site/dist` to Pages.
+It is **not** active until Settings → Pages → Source is set to "GitHub Actions", and enabling it
+replaces whatever that URL serves today — the existing root `index.html` stays in git regardless.
 
 Unofficial community tool. Not affiliated with Hello Games; game item icons are served from the
 community Assistant NMS CDN, and the hologram meshes are original stylised silhouettes rather than

@@ -1,17 +1,17 @@
 {
-  "player_count": 10384,
+  "player_count": 10725,
   "reviews": {
-    "total": 412567,
-    "positive": 350549,
+    "total": 412582,
+    "positive": 350564,
     "percent_positive": 85.0,
     "score_desc": "Very Positive"
   },
   "price": {
-    "final": "23,59€",
-    "initial": "58,99€",
-    "discount_percent": 60
+    "final": "58,99€",
+    "initial": "",
+    "discount_percent": 0
   },
-  "peak_24h": 13442,
+  "peak_24h": 12972,
   "peak_all": 212321,
-  "updated_at": "2026-07-27T15:17:13.126965+00:00"
+  "updated_at": "2026-07-27T19:58:10.468421+00:00"
 }

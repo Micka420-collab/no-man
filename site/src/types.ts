@@ -218,6 +218,16 @@ export interface DataBundle {
     updated_at?: string
     families?: Record<string, string>[]
     steps?: Record<string, string>[]
+    /** every documented hull type with an in-game example image */
+    types?: Record<string, string>[]
+    types_note?: string
+  }
+  /** frigate fleet: the 5 specialisms + organic, with abilities, loot and running costs */
+  frigates?: {
+    updated_at?: string
+    note?: string
+    types?: Record<string, string>[]
+    tips?: Record<string, string>[]
   }
   /** live war-effort feed; `event` is null while no effort is running */
   war?: { event?: WarEvent | null; updated_at?: string }

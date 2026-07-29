@@ -1,0 +1,142 @@
+{
+  "note": "Frégates de No Man's Sky : types, capacités, expéditions et pièges. Faits documentés par le wiki communautaire (nomanssky.fandom.com/wiki/Frigate, /wiki/Organic_Frigate, /wiki/Starship_Catalogue_-_Frigate). Les chiffres cités (production, durées, prix, carburant) sont ceux relevés par la communauté dans le jeu ; rien n'est estimé ici. Images : planche des types et icônes officielles du jeu hébergées par le wiki.",
+  "updated_at": "2026-07-29",
+  "types": [
+    {
+      "key": "combat",
+      "icon": "assets/frigates/combat.png",
+      "image": "assets/frigates/ship_combat.webp",
+      "name_fr": "Frégate de combat",
+      "name_en": "Combat frigate",
+      "trait_fr": "Trait obligatoire : Spécialiste du combat (+15 en Combat)",
+      "trait_en": "Mandatory trait: Combat Specialist (+15 Combat)",
+      "power_fr": "Vient t'épauler pendant un combat spatial : elle se déploie à proximité et lâche des chasseurs alliés. Ne fonctionne que si TON cargo est dans le même système et que la frégate n'est pas déjà en expédition.",
+      "power_en": "Backs you up in space combat: it warps in nearby and launches friendly fighters. Only works if YOUR freighter is in the same system and the frigate is not already on an expedition.",
+      "loot_fr": "Rapporte surtout des unités et du butin pris à l'ennemi ou récupéré sur épave (géodésite, iridésite).",
+      "loot_en": "Brings back mostly units and loot taken from enemies or salvaged (Geodesite, Iridesite)."
+    },
+    {
+      "key": "explore",
+      "icon": "assets/frigates/explore.png",
+      "image": "assets/frigates/ship_explore.webp",
+      "name_fr": "Frégate d'exploration",
+      "name_en": "Exploration frigate",
+      "trait_fr": "Trait obligatoire : Spécialiste de l'exploration (+15 en Exploration)",
+      "trait_en": "Mandatory trait: Exploration Specialist (+15 Exploration)",
+      "power_fr": "Active son scanner d'artefacts pour localiser une ruine antique dans le système où tu te trouves.",
+      "power_en": "Activates its Artifact Scanner to pinpoint an Ancient Ruin in the system you're in.",
+      "loot_fr": "Rapporte des objets de découverte (boule de gravitino, artefacts) et des unités.",
+      "loot_en": "Brings back discovery items (Gravitino Ball, Artifacts) and units."
+    },
+    {
+      "key": "industrial",
+      "icon": "assets/frigates/industrial.png",
+      "image": "assets/frigates/ship_industrial.webp",
+      "name_fr": "Frégate industrielle",
+      "name_en": "Industrial frigate",
+      "trait_fr": "Trait obligatoire : Spécialiste industriel (+15 en Industrie)",
+      "trait_en": "Mandatory trait: Industrial Specialist (+15 Industry)",
+      "power_fr": "Produit 2 ferrite magnétisée toutes les 30 secondes, jusqu'à 100 au bout de 25 minutes — à récupérer en montant à bord.",
+      "power_en": "Produces 2 Magnetised Ferrite every 30 seconds, up to 100 after 25 minutes — collect it by boarding.",
+      "loot_fr": "Rapporte des unités, des métaux stellaires raffinés (cuivre activé…) et des curiosités (cristal de carbone, élément métallique rare).",
+      "loot_en": "Brings back units, refined stellar metals (Activated Copper…) and curiosities (Carbon Crystal, Rare Metal Element)."
+    },
+    {
+      "key": "trade",
+      "icon": "assets/frigates/trade.png",
+      "image": "assets/frigates/ship_trade.webp",
+      "name_fr": "Frégate commerciale",
+      "name_en": "Trade frigate",
+      "trait_fr": "Trait obligatoire : Spécialiste du commerce (+15 en Commerce)",
+      "trait_en": "Mandatory trait: Trade Specialist (+15 Trading)",
+      "power_fr": "Produit 1 000 unités toutes les 30 secondes, jusqu'à 125 000 unités au bout de 62 min 30 — à récupérer en montant à bord. C'est le revenu passif le plus direct de la flotte.",
+      "power_en": "Produces 1,000 units every 30 seconds, up to 125,000 units after 62 min 30 s — collect it by boarding. The fleet's most direct passive income.",
+      "loot_fr": "Rapporte les unités des accords commerciaux passés en route, plus des marchandises.",
+      "loot_en": "Brings back units from trade deals made en route, plus trade goods."
+    },
+    {
+      "key": "support",
+      "icon": "assets/frigates/support.png",
+      "image": "assets/frigates/ship_support.webp",
+      "name_fr": "Frégate de soutien",
+      "name_en": "Support frigate",
+      "trait_fr": "Trait obligatoire : Spécialiste du soutien (−15 sur le coût en carburant de l'expédition)",
+      "trait_en": "Mandatory trait: Support Specialist (−15 expedition fuel cost)",
+      "power_fr": "Statistiques équilibrées et production de 2 carbone condensé toutes les 30 secondes, jusqu'à 100 au bout de 25 minutes. Elle renforce un peu la flotte partout sans alourdir la facture de carburant.",
+      "power_en": "Balanced stats plus 2 Condensed Carbon every 30 seconds, up to 100 after 25 minutes. It lifts the fleet a little everywhere without inflating the fuel bill.",
+      "loot_fr": "Expéditions « équilibrées » : un mélange aléatoire de toutes les récompenses des autres types.",
+      "loot_en": "“Balanced” expeditions: a random mix of every other type's rewards."
+    },
+    {
+      "key": "organic",
+      "icon": "",
+      "image": "assets/freighters/organic.webp",
+      "name_fr": "Frégate organique (« baleine de l'espace »)",
+      "name_en": "Organic frigate (“space whale”)",
+      "trait_fr": "Vaisseau vivant introduit par la mise à jour Endurance",
+      "trait_en": "Living ship introduced in the Endurance update",
+      "power_fr": "Coque organique, tentacules, bioluminescence : elle rejoint la flotte comme les autres frégates. C'est le seul vaisseau organique de cette taille — le jeu n'a pas de cargo organique.",
+      "power_en": "Organic hull, tentacles, bioluminescence: it joins the fleet like any other frigate. It is the only organic ship of this size — the game has no organic freighter.",
+      "loot_fr": "Obtention : construis l'Antenne des rêves (plan obtenu au hasard en récompense d'expéditions de frégates), puis utilise un Détecteur d'anomalie en propulsion à impulsion. Le Leviathan de l'Expédition 7 est l'exception, récupérable via le Compagnon de synthèse de mercure.",
+      "loot_en": "How to get one: build the Dream Aerial (blueprint dropped at random by frigate expeditions), then use an Anomaly Detector while pulsing. The Leviathan from Expedition 7 is the exception, claimable from the Quicksilver Synthesis Companion."
+    }
+  ],
+  "tips": [
+    {
+      "icon": "🤝",
+      "title_fr": "Recruter une frégate",
+      "title_en": "Hiring a frigate",
+      "body_fr": "Approche-toi d'une frégate qui escorte un cargo PNJ, ouvre l'interphone (menu rapide) et propose de l'embaucher. Toutes ne sont pas à vendre. Compte environ 1,5 à 12,5 millions d'unités selon la classe. Il faut posséder un cargo pour commander une flotte.",
+      "body_en": "Fly close to a frigate escorting an NPC freighter, open the intercom (quick menu) and offer to hire it. Not all are for sale. Budget roughly 1.5 to 12.5 million units depending on class. You need a freighter to command a fleet."
+    },
+    {
+      "icon": "🚩",
+      "title_fr": "Flotte : 30 frégates maximum",
+      "title_en": "Fleet: 30 frigates max",
+      "body_fr": "La flotte plafonne à 30 frégates — les réunir décroche le titre d'Amiral. Elle se pilote depuis la Salle de commandement de la flotte, sur ton cargo ; construire plusieurs salles permet de lancer plusieurs missions en parallèle.",
+      "body_en": "The fleet caps at 30 frigates — gathering them earns the Admiral title. It is run from the Fleet Command Room on your freighter; building several rooms lets you run several missions at once."
+    },
+    {
+      "icon": "🗺️",
+      "title_fr": "Expéditions : 5 par jour, 5 frégates chacune",
+      "title_en": "Expeditions: 5 a day, 5 frigates each",
+      "body_fr": "Le navigateur de la passerelle propose 5 nouvelles expéditions par jour (réinitialisation à 00 h 00 UTC), chacune pouvant emmener jusqu'à 5 frégates. Difficulté notée de 1 à 5 étoiles — attention, les voyants affichés dans le menu de flotte ne sont PAS la note de difficulté mais le nombre de traits positifs.",
+      "body_en": "The bridge navigator offers 5 new expeditions a day (reset at 00:00 UTC), each taking up to 5 frigates. Difficulty is rated 1 to 5 stars — careful, the lights shown in the fleet menu are NOT the difficulty rating but the number of positive traits."
+    },
+    {
+      "icon": "🎯",
+      "title_fr": "Classes C → S : ce sont les traits qui comptent",
+      "title_en": "Classes C → S: traits are what count",
+      "body_fr": "La classe dépend du nombre de traits bénéfiques. Chaque frégate porte 1 trait obligatoire lié à sa spécialité, plus jusqu'à 4 traits aléatoires (bons ou mauvais). À chaque montée en grade, un trait négatif disparaît (ou un positif s'ajoute) et les statistiques montent. Une fois classe S, elle continue de gagner des statistiques jusqu'à 55 expéditions, puis plafonne.",
+      "body_en": "Class depends on the number of beneficial traits. Every frigate carries 1 mandatory trait tied to its specialism plus up to 4 random ones (good or bad). Each rank-up removes a negative trait (or adds a positive one) and raises stats. Once S-class it keeps gaining stats until 55 expeditions, then caps out."
+    },
+    {
+      "icon": "⚠️",
+      "title_fr": "Le piège des frégates « buggées »",
+      "title_en": "The “glitched frigate” trap",
+      "body_fr": "Vérifie TOUJOURS les statistiques de base avant d'acheter. Une frégate aux statistiques de base négatives est probablement buggée ; une frégate dont le nombre d'expéditions tombe pile sur un palier de montée en grade (4, 8, 15, 25…) l'est à coup sûr : elle n'a pas reçu son dernier gain de grade.",
+      "body_en": "ALWAYS check base stats before buying. A frigate with negative base stats is probably glitched; one whose expedition count lands exactly on a rank-up threshold (4, 8, 15, 25…) definitely is: it never received its latest rank-up."
+    },
+    {
+      "icon": "⛽",
+      "title_fr": "Carburant : la vraie dépense",
+      "title_en": "Fuel: the real running cost",
+      "body_fr": "Compte 8 à 12 tonnes par frégate (jusqu'à 16 avec des traits négatifs). Le carburant se fabrique avec 1 part de di-hydrogène et 1 part de tritium, en 3 tailles ; les plans viennent de la mission Commandement du cargo. La distance est arrondie au multiple de 250 années-lumière et la facture arrondie au multiple de 50 tonnes — d'où l'intérêt des frégates de soutien sur les COURTES expéditions : sur les longues, elles peuvent au contraire coûter plus cher qu'elles ne font économiser.",
+      "body_en": "Budget 8 to 12 tonnes per frigate (up to 16 with negative traits). Fuel is crafted from 1 part Di-hydrogen and 1 part Tritium in 3 sizes; blueprints come from the Freighter Command mission. Distance rounds to the nearest 250 light years and the bill rounds up to a multiple of 50 tonnes — which is why support frigates pay off on SHORT expeditions: on long ones they can cost more than they save."
+    },
+    {
+      "icon": "🛠️",
+      "title_fr": "Réparer et booster",
+      "title_en": "Repair and boost",
+      "body_fr": "Une frégate abîmée revient marquée en rouge : pose-toi sur une de ses plateformes (ou passe par le téléporteur de frégate) pour que le capitaine te signale les composants endommagés. La renvoyer en l'état aggrave les dégâts. Chaque expédition offre 3 emplacements de consommables : drones explosifs (combat), oxydant (durée), analyseur holographique (exploration), dispositif de contrôle mental (commerce), compresseur minéral (industrie).",
+      "body_en": "A damaged frigate comes back flagged red: land on one of its pads (or use the Frigate Teleporter) so the captain marks the damaged components. Sending it out as-is makes things worse. Each expedition has 3 consumable slots: Explosive Drones (combat), Fuel Oxidiser (duration), Holographic Analyser (exploration), Mind Control Device (trade), Mineral Compressor (industrial)."
+    },
+    {
+      "icon": "📈",
+      "title_fr": "Petite flotte = petites missions",
+      "title_en": "Small fleet = small missions",
+      "body_fr": "Avec 3 frégates ou moins, les expéditions sont bien plus courtes (environ 1 h à 4 h 30), plus faciles… et moins généreuses. Tout change à partir de la 4ᵉ frégate : durée, difficulté et récompenses montent d'un cran. Et même en expédition spécialisée, le jeu glisse des rencontres d'autres types : évite de laisser une statistique à zéro dans la flotte.",
+      "body_en": "With 3 frigates or fewer, expeditions are far shorter (roughly 1 to 4.5 hours), easier… and less rewarding. Everything changes from the 4th frigate on: duration, difficulty and rewards all step up. And even on a specialised expedition the game slips in encounters of other types: avoid leaving any fleet stat at zero."
+    }
+  ]
+}

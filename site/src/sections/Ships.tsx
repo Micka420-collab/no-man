@@ -39,6 +39,9 @@ export default function Ships() {
 
   const frFams = data.freighters?.families || []
   const frSteps = data.freighters?.steps || []
+  const frTypes = data.freighters?.types || []
+  const fgTypes = data.frigates?.types || []
+  const fgTips = data.frigates?.tips || []
 
   return (
     <section className="nms-pad" style={{
@@ -243,7 +246,161 @@ export default function Ships() {
             </>
           )}
 
-          <div style={{ fontFamily: mono, fontSize: 10.5, color: '#57628a', marginTop: 16 }}>{L.fr_src}</div>
+          {/* GALERIE — chaque type documenté avec sa capture du jeu */}
+          {frTypes.length > 0 && (
+            <>
+              <div style={{
+                fontFamily: mono, fontSize: 10, letterSpacing: '.18em', color: '#5fd0e0', marginTop: 34,
+              }}>// {L.fr_types_h}</div>
+
+              {(['capital', 'regular', 'organic'] as const).map((grp) => {
+                const list = frTypes.filter((t) => t.group === grp)
+                if (!list.length) return null
+                const gLabel = grp === 'capital' ? L.fr_g_capital : grp === 'regular' ? L.fr_g_regular : L.fr_g_organic
+                const gColor = grp === 'capital' ? '#c9a8ff' : grp === 'regular' ? '#5fd0e0' : '#8bf0a0'
+                return (
+                  <div key={grp} style={{ marginTop: 20 }}>
+                    <div style={{
+                      display: 'flex', alignItems: 'center', gap: 10, fontFamily: mono, fontSize: 11,
+                      letterSpacing: '.1em', color: gColor,
+                    }}>
+                      <span>▸ {gLabel}</span>
+                      <span style={{ opacity: 0.55, fontSize: 10 }}>{list.length}</span>
+                      <span style={{ flex: 1, height: 1, background: 'currentColor', opacity: 0.18 }} />
+                    </div>
+                    <div style={{
+                      display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(260px,1fr))',
+                      gap: 15, marginTop: 13,
+                    }}>
+                      {list.map((t) => (
+                        <figure key={String(t.key)} className="hv-lift2" style={{
+                          margin: 0, border: '1px solid ' + gColor + '30', borderRadius: 14, overflow: 'hidden',
+                          background: 'rgba(9,12,26,.55)', transition: 'transform .18s,border-color .18s',
+                        }}>
+                          <img
+                            src={asset(String(t.image || ''))}
+                            alt={t2(t, 'name')}
+                            loading="lazy"
+                            style={{
+                              display: 'block', width: '100%', aspectRatio: '16 / 9', objectFit: 'cover',
+                              background: 'rgba(5,7,15,.8)',
+                            }}
+                          />
+                          <figcaption style={{ padding: '13px 15px 16px' }}>
+                            <div style={{ fontWeight: 700, fontSize: 15, color: '#fff', lineHeight: 1.25 }}>{t2(t, 'name')}</div>
+                            <div style={{
+                              marginTop: 5, fontFamily: mono, fontSize: 10.5, lineHeight: 1.5, color: gColor,
+                            }}>{t2(t, 'size')}</div>
+                            <div style={{ marginTop: 10 }}>
+                              <div style={{ fontFamily: mono, fontSize: 9, letterSpacing: '.16em', color: '#6b78a0' }}>{L.fr_t_look}</div>
+                              <div style={{ marginTop: 3, fontSize: 12.5, lineHeight: 1.55, color: '#c6d1ec' }}>{t2(t, 'look')}</div>
+                            </div>
+                            <div style={{ marginTop: 9 }}>
+                              <div style={{ fontFamily: mono, fontSize: 9, letterSpacing: '.16em', color: '#6b78a0' }}>{L.fr_t_def}</div>
+                              <div style={{ marginTop: 3, fontSize: 12.5, lineHeight: 1.55, color: '#9aa6c8' }}>{t2(t, 'def')}</div>
+                            </div>
+                          </figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
+
+              {!!data.freighters?.types_note && (
+                <div style={{
+                  fontFamily: mono, fontSize: 10.5, lineHeight: 1.6, color: '#57628a', marginTop: 16,
+                }}>{data.freighters.types_note}</div>
+              )}
+            </>
+          )}
+
+          <div style={{ fontFamily: mono, fontSize: 10.5, color: '#57628a', marginTop: 10 }}>{L.fr_src}</div>
+        </div>
+      )}
+
+      {/* FRÉGATES — la flotte qui escorte le cargo */}
+      {fgTypes.length > 0 && (
+        <div style={{ marginTop: 44 }}>
+          <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: '.22em', color: '#8bf0a0' }}>// {L.fg_kicker}</div>
+          <h3 style={{ margin: '10px 0 0', fontWeight: 700, fontSize: 24, color: '#fff' }}>{L.fg_title}</h3>
+          <p style={{ margin: '9px 0 0', maxWidth: 760, fontSize: 14, lineHeight: 1.6, color: '#aab6d6' }}>{L.fg_intro}</p>
+
+          <div style={{
+            display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(272px,1fr))', gap: 15, marginTop: 22,
+          }}>
+            {fgTypes.map((f) => (
+              <figure key={String(f.key)} className="hv-lift2" style={{
+                margin: 0, border: '1px solid rgba(139,240,160,.22)', borderRadius: 14, overflow: 'hidden',
+                background: 'linear-gradient(165deg,rgba(30,80,55,.14),rgba(9,12,26,.55) 55%)',
+                transition: 'transform .18s,border-color .18s',
+              }}>
+                <img
+                  src={asset(String(f.image || ''))}
+                  alt={t2(f, 'name')}
+                  loading="lazy"
+                  style={{
+                    display: 'block', width: '100%', aspectRatio: '16 / 9', objectFit: 'cover',
+                    background: 'rgba(5,7,15,.8)',
+                  }}
+                />
+                <figcaption style={{ padding: '13px 15px 16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
+                    {!!f.icon && (
+                      <img src={asset(String(f.icon))} alt="" width={22} height={22}
+                        style={{ flex: '0 0 auto', imageRendering: 'pixelated' }} />
+                    )}
+                    <span style={{ fontWeight: 700, fontSize: 15, color: '#fff', lineHeight: 1.25 }}>{t2(f, 'name')}</span>
+                  </div>
+                  <div style={{
+                    marginTop: 6, fontFamily: mono, fontSize: 10.5, lineHeight: 1.5, color: '#8bf0a0',
+                  }}>{t2(f, 'trait')}</div>
+                  <div style={{ marginTop: 10 }}>
+                    <div style={{ fontFamily: mono, fontSize: 9, letterSpacing: '.16em', color: '#6b78a0' }}>{L.fg_power}</div>
+                    <div style={{ marginTop: 3, fontSize: 12.5, lineHeight: 1.55, color: '#c6d1ec' }}>{t2(f, 'power')}</div>
+                  </div>
+                  <div style={{ marginTop: 9 }}>
+                    <div style={{ fontFamily: mono, fontSize: 9, letterSpacing: '.16em', color: '#6b78a0' }}>{L.fg_loot}</div>
+                    <div style={{ marginTop: 3, fontSize: 12.5, lineHeight: 1.55, color: '#9aa6c8' }}>{t2(f, 'loot')}</div>
+                  </div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          {fgTips.length > 0 && (
+            <>
+              <div style={{
+                fontFamily: mono, fontSize: 10, letterSpacing: '.18em', color: '#ffb347', marginTop: 30,
+              }}>// {L.fg_tips}</div>
+              <div style={{
+                display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(300px,1fr))', gap: 15, marginTop: 14,
+              }}>
+                {fgTips.map((t, i) => (
+                  <div key={i} style={{
+                    border: '1px solid rgba(120,150,220,.14)', borderRadius: 12, background: 'rgba(10,14,28,.5)',
+                    padding: '16px 17px',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 11 }}>
+                      <span style={{
+                        fontFamily: mono, fontWeight: 700, fontSize: 12, color: '#8bf0a0',
+                        border: '1px solid rgba(139,240,160,.35)', borderRadius: 7, padding: '4px 8px',
+                      }}>{String(i + 1).padStart(2, '0')}</span>
+                      <span style={{ fontSize: 20 }}>{t.icon}</span>
+                      <span style={{ fontWeight: 600, fontSize: 14.5, color: '#fff', lineHeight: 1.2 }}>{t2(t, 'title')}</span>
+                    </div>
+                    <p style={{ margin: '11px 0 0', fontSize: 13, lineHeight: 1.55, color: '#9aa6c8' }}>{t2(t, 'body')}</p>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {!!data.frigates?.note && (
+            <div style={{
+              fontFamily: mono, fontSize: 10.5, lineHeight: 1.6, color: '#57628a', marginTop: 16,
+            }}>{data.frigates.note}</div>
+          )}
         </div>
       )}
     </section>

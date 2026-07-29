@@ -13,7 +13,7 @@ const DATA_FILES = [
   'stats', 'stats_history', 'timeline', 'expeditions', 'ships', 'creatures', 'galaxies',
   'galaxy_hubs', 'elements', 'market', 'community', 'news', 'official', 'videos',
   'achievements', 'challenges', 'progress', 'guide', 'missions', 'recipes', 'multitool', 'workshop', 'substances', 'war',
-  'descriptions', 'freighters',
+  'descriptions', 'freighters', 'frigates',
 ] as const
 
 export type SortKey = 'name' | 'group' | 'value'

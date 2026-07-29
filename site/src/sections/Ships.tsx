@@ -39,6 +39,7 @@ export default function Ships() {
 
   const frFams = data.freighters?.families || []
   const frSteps = data.freighters?.steps || []
+  const frTypes = data.freighters?.types || []
 
   return (
     <section className="nms-pad" style={{
@@ -243,7 +244,76 @@ export default function Ships() {
             </>
           )}
 
-          <div style={{ fontFamily: mono, fontSize: 10.5, color: '#57628a', marginTop: 16 }}>{L.fr_src}</div>
+          {/* GALERIE — chaque type documenté avec sa capture du jeu */}
+          {frTypes.length > 0 && (
+            <>
+              <div style={{
+                fontFamily: mono, fontSize: 10, letterSpacing: '.18em', color: '#5fd0e0', marginTop: 34,
+              }}>// {L.fr_types_h}</div>
+
+              {(['capital', 'regular', 'organic'] as const).map((grp) => {
+                const list = frTypes.filter((t) => t.group === grp)
+                if (!list.length) return null
+                const gLabel = grp === 'capital' ? L.fr_g_capital : grp === 'regular' ? L.fr_g_regular : L.fr_g_organic
+                const gColor = grp === 'capital' ? '#c9a8ff' : grp === 'regular' ? '#5fd0e0' : '#8bf0a0'
+                return (
+                  <div key={grp} style={{ marginTop: 20 }}>
+                    <div style={{
+                      display: 'flex', alignItems: 'center', gap: 10, fontFamily: mono, fontSize: 11,
+                      letterSpacing: '.1em', color: gColor,
+                    }}>
+                      <span>▸ {gLabel}</span>
+                      <span style={{ opacity: 0.55, fontSize: 10 }}>{list.length}</span>
+                      <span style={{ flex: 1, height: 1, background: 'currentColor', opacity: 0.18 }} />
+                    </div>
+                    <div style={{
+                      display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(260px,1fr))',
+                      gap: 15, marginTop: 13,
+                    }}>
+                      {list.map((t) => (
+                        <figure key={String(t.key)} className="hv-lift2" style={{
+                          margin: 0, border: '1px solid ' + gColor + '30', borderRadius: 14, overflow: 'hidden',
+                          background: 'rgba(9,12,26,.55)', transition: 'transform .18s,border-color .18s',
+                        }}>
+                          <img
+                            src={asset(String(t.image || ''))}
+                            alt={t2(t, 'name')}
+                            loading="lazy"
+                            style={{
+                              display: 'block', width: '100%', aspectRatio: '16 / 9', objectFit: 'cover',
+                              background: 'rgba(5,7,15,.8)',
+                            }}
+                          />
+                          <figcaption style={{ padding: '13px 15px 16px' }}>
+                            <div style={{ fontWeight: 700, fontSize: 15, color: '#fff', lineHeight: 1.25 }}>{t2(t, 'name')}</div>
+                            <div style={{
+                              marginTop: 5, fontFamily: mono, fontSize: 10.5, lineHeight: 1.5, color: gColor,
+                            }}>{t2(t, 'size')}</div>
+                            <div style={{ marginTop: 10 }}>
+                              <div style={{ fontFamily: mono, fontSize: 9, letterSpacing: '.16em', color: '#6b78a0' }}>{L.fr_t_look}</div>
+                              <div style={{ marginTop: 3, fontSize: 12.5, lineHeight: 1.55, color: '#c6d1ec' }}>{t2(t, 'look')}</div>
+                            </div>
+                            <div style={{ marginTop: 9 }}>
+                              <div style={{ fontFamily: mono, fontSize: 9, letterSpacing: '.16em', color: '#6b78a0' }}>{L.fr_t_def}</div>
+                              <div style={{ marginTop: 3, fontSize: 12.5, lineHeight: 1.55, color: '#9aa6c8' }}>{t2(t, 'def')}</div>
+                            </div>
+                          </figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
+
+              {!!data.freighters?.types_note && (
+                <div style={{
+                  fontFamily: mono, fontSize: 10.5, lineHeight: 1.6, color: '#57628a', marginTop: 16,
+                }}>{data.freighters.types_note}</div>
+              )}
+            </>
+          )}
+
+          <div style={{ fontFamily: mono, fontSize: 10.5, color: '#57628a', marginTop: 10 }}>{L.fr_src}</div>
         </div>
       )}
     </section>

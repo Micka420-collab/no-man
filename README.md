@@ -1,121 +1,230 @@
-# 🌌 No Man's Sky — Centre de suivi
+<div align="center">
 
-Un système complet pour suivre **tout ce qui se passe autour de No Man's Sky** et
-**ta propre progression dans le jeu**, en un seul endroit.
+# Atlas Terminal
 
-**➡️ Site en ligne : https://micka420-collab.github.io/no-man/**
+**Le centre de suivi non officiel de No Man's Sky** — activité en direct, encyclopédie complète du jeu et suivi de progression, réunis dans une seule interface.
 
-> 🖥️ **Le site en ligne est désormais l'« Atlas Terminal »** — la refonte React/TypeScript
-> qui vit dans [`site/`](site/) (design terminal, ateliers 3D multi-outil & vaisseau,
-> PWA installable et hors-ligne). Il est reconstruit **avec les données fraîches** à chaque
-> mise à jour automatique (toutes les 3 h). La version historique mono-fichier décrite
-> ci-dessous (`index.html` à la racine) reste dans le dépôt mais n'est plus servie.
+[![Déploiement](https://github.com/Micka420-collab/no-man/actions/workflows/deploy-site.yml/badge.svg)](https://github.com/Micka420-collab/no-man/actions/workflows/deploy-site.yml)
+[![Données](https://github.com/Micka420-collab/no-man/actions/workflows/update-news.yml/badge.svg)](https://github.com/Micka420-collab/no-man/actions/workflows/update-news.yml)
+![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white)
+![PWA](https://img.shields.io/badge/PWA-installable%20%C2%B7%20hors--ligne-5fd0e0)
+![Bilingue](https://img.shields.io/badge/i18n-FR%20%2F%20EN-ff7a1a)
 
-✨ Interface **bilingue français/anglais**, thèmes **sombre/clair**, champ d'étoiles animé,
-recherche et filtres dans chaque onglet, **fiches détaillées au clic** sur les objets/vaisseaux,
-**compte à rebours des 10 ans du jeu**, **mode hors-ligne (PWA installable)**, suivi personnel
-des succès comparé à la communauté mondiale, accessible (clavier, lecteurs d'écran,
-`prefers-reduced-motion`). **Optimisée mobile** : barre de navigation basse type application,
-feuille « Plus » pour toutes les sections, et **balayage gauche/droite** pour changer d'onglet. **Favoris** (⭐) et **liens directs partageables** vers un objet, vaisseau, créature, recette, expédition, galaxie ou **adresse de portail** précise. Le **geste Retour** (Android/iOS/navigateur) est intégré : il ferme d'abord la fiche/le menu ouvert puis revient à la section précédente, au lieu de quitter le site.
+**[→ Ouvrir le site](https://micka420-collab.github.io/no-man/)**
 
-## Ce que ça fait
+<img src="docs/preview.webp" alt="Interface de l'Atlas Terminal : compteur de joueurs en direct, navigation par section et compte à rebours des 10 ans du jeu" width="900">
 
-| Volet | Contenu | Source |
-|---|---|---|
-| 🏠 **Vue d'ensemble** | Bloc **EN DIRECT** : joueurs en jeu en temps réel (compteur animé), pic 24 h, record absolu, et **flux d'activité de la communauté** (posts FR + EN, vidéos, actus) avec pseudos et horodatages qui défilent | APIs Steam + SteamCharts + Reddit + YouTube |
-| 📚 **Guides** | 13 guides pratiques bilingues avec sélecteur : Débuter, Frégates & flotte, Portails & glyphes, Agriculture rentable, Combat spatial & vaisseaux S, **Vaisseaux & Corvettes** (où les trouver + construire une Corvette modulaire), **Corvette : conception & optimisation** (ordre de montage, propulseurs, réacteurs Zenith/Medusa/Azimuth/Ceto, emplacements survoltés, 160 pièces), Exocraft & véhicules, Construction de base, Multijoueur & coopération, Événement de guerre, Exploration & récompenses, **Mode photo** | Guides rédigés + guides communautaires |
-| 📖 **Wiki** | Le **wiki central** du site, façon encyclopédie : **masthead + recherche interne au wiki** (tolérante aux fautes), **sommaire numéroté** (façon Wikipédia), **articles avec infobox** (fiche récap), et un **portail** (cartes cliquables avec compteurs) vers chaque section — base de données, éléments, faune, recettes, marché/vaisseaux, galaxies, guides, expéditions — puis la **trame & les 14 missions** : histoire principale (Éveils, Chemin d'Artémis, Chemin de l'Atlas, La Purge), grandes quêtes annexes (Autophages/Bâton Voltaïque, Naissance stellaire, base & recrutement, **Les Colons**, **Sentinelles « Une trace de métal »**, **Épaves de porte-vaisseaux**, **Rêves des profondeurs**, **obtenir un porte-vaisseaux gratuit**) et missions de l'Anomalie (Nexus/Quicksilver, Expéditions), avec objectifs, étapes, récompenses et **détails cachés**. Présenté comme un **vrai wiki** (sommaire latéral + articles par section). En vedette : **« Le secret du 16 »** (16 minutes de l'Atlas, 16 glyphes, 16¹⁶ planètes, Loop16/Waking Titan, Telamon) et une section **« Easter eggs & secrets »** (clins d'œil Star Wars/Star Trek/2001/H2G2/Stargate/Skyrim, secrets de lore Nada & Polo, tombes de Voyageurs…) | Wiki No Man's Sky + forums |
-| 🗓️ **Expéditions** | Calendrier des **22 expéditions communautaires** (2021→2026) : numéro, dates, thème et statut (terminée / en cours / à venir), bandeau « prochaine expédition », et **rappel dans la Vue d'ensemble** quand une expédition en cours se termine bientôt | Wiki No Man's Sky (API) |
-| 🌀 **Portail** | **« Le Cadran des 16 »** : compose une **adresse de portail** de 12 glyphes sur un pavé hexadécimal (0–F, la notation communautaire des 16 glyphes du jeu) et obtiens instantanément — hors-ligne — l'indice de planète, l'indice de système, la position galactique (voxels depuis le centre), la conversion **balise de signal** (format `XXXX:YYYY:ZZZZ:SSSS` de r/NMSCoordinateExchange, collable dans les deux sens) et la **distance du centre** (≈ convention communautaire, 1 voxel ≈ 400 al). **Carnet d'adresses** : nomme tes adresses (« ma base »…), mets-les en favori ⭐ et partage-les en lien direct `#portal=…` — et un clin d'œil vers « Le secret du 16 » du wiki. Et la **🌌 Carte stellaire 3D** : ton carnet d'adresses **visualisé en 3D dans une galaxie aux proportions réelles du jeu** (canvas maison, zéro dépendance) — grille 4096 × 4096 × 256 voxels (≈ 1,64 M al de large, ≈ 102 000 al d'épaisseur **à l'échelle exacte**), chaque marqueur à la **position mathématique exacte** de son adresse, anneaux et **barre d'échelle** gradués en années-lumière, **distance réelle vers ton favori le plus proche**, **l'adresse en cours bouge en direct pendant que tu composes**, caméra orbitale (glisser/molette/pincement), clic sur un marqueur pour le recharger ; fond étoilé (bras spiraux, bulbe, nébuleuses) clairement étiqueté décoratif | Mécanique réelle du jeu (calcul client pur) |
-| 🔍 **Recherche globale** | Un champ unique (bouton 🔍 ou touche `/`) qui cherche **dans tout le site d'un coup** : objets, recettes, créatures, vaisseaux, poissons, galaxies, guides et expéditions — résultats groupés, **navigation clavier** (↑/↓ + Entrée), clic direct vers la fiche ou l'onglet. **Tolérante aux accents et aux fautes de frappe** (FR & EN) : « fesium », « fèsium » ou « faecum » trouvent quand même *Fècium / Faecium*. À l'ouverture (champ vide) : tes **fiches consultées récemment** et tes **épingles 📌** pour y revenir en un geste. Et la **⌘ palette de commandes « ATLAS:// »** (`Ctrl+K` ou préfixe `>`) : aller à n'importe quelle section, basculer thème ou langue, copier le lien — au clavier, style terminal. Chaque fiche a aussi un bouton **💬 Discord** qui copie sa fiche formatée en Markdown, prête à coller sur un serveur | Toutes les données du site |
-| 📖 **Base de données** | **plus de 3 500 objets** du jeu (matériaux, technologies, modules, améliorations, constructions, marchandises, curiosités, produits procéduraux, cuisine, divers…) cherchables, avec valeur, groupe, description et icône — bilingue, avec **filtres avancés** (par devise, valeur minimale, tri par valeur ou nom) | Données du jeu via Assistant NMS |
-| ⚛️ **Éléments** | Le **tableau périodique** des substances réelles du jeu, **complet** : 14 familles (organiques, ferrites, métaux stellaires, gaz, précieux, terrestres, aquatiques, flore… + **déchets à recycler** et **substances spéciales & lore**) — les jetons de récompense internes (UNITÉS, réputations…) sont exclus volontairement car ce ne sont pas des substances. Symbole chimique réel quand la substance en est un (Na, Au, O₂, He, U, Cl…) sinon abréviation du nom in-game, valeur et icône. **Légende interactive** : clique une famille pour la mettre en évidence. Clic sur un élément → fiche détaillée **reliée à la chimie du jeu** : « ⚗️ se raffine depuis » / « → sert d'ingrédient » avec les vraies recettes **cliquables**, favori ⭐ et partage 🔗 | Données du jeu via Assistant NMS (mise en page maison) |
-| 🦋 **Faune** | Les **57 archétypes de créatures** du jeu avec **image d'exemple d'espèce en jeu** : ce que chacun permet de récolter (lait, œufs, miel, nectar, graisse…), la méthode, l'objet obtenu avec icône, un lien vers le wiki, et des **filtres** (par récolte, tri A→Z/Z→A) | Données du jeu via Assistant NMS + images du wiki NMS |
-| 🧪 **Recettes** | **Toutes les recettes de raffinage (357) et de cuisine (1 300+)** : ingrédients, quantités, résultat et opération, cherchables par ingrédient ou par résultat, avec **filtres** (nombre d'ingrédients, tri par durée), bilingue. Et le **💰 Labo de rentabilité** : chaque recette de raffinage évaluée aux **valeurs réelles du catalogue** (coût des entrées → valeur de sortie), gain net ≈, rendement %, gain/seconde, **détection automatique des ♻️ boucles d'expansion** (la recette produit plus de l'ingrédient qu'elle n'en consomme), filtres rentables/à perte/boucles — les recettes payées en nanites sont écartées du classement par honnêteté, et le **bilan économique** s'affiche aussi dans la fiche de chaque recette. Enfin, l'**⛓️ optimiseur de chaînes** — une première : le site **parcourt automatiquement le graphe complet des recettes** (jusqu'à 3 étapes, cycles exclus, ingrédients annexes comptés) et **découvre tout seul** les ~16 000 enchaînements rentables, du meilleur rendement (*Métal chromatique → Émeril → Or*, ≈ 2 900 %) au meilleur gain net (*Platine → Bronze sale → Argent*, ≈ +2 M u) — chaque étape cliquable vers sa recette. Et le **🧺 Garde-manger** : dis ce que tu as dans l'inventaire (autocomplétion floue sur les 692 ingrédients réels) et le site filtre les 1 680 recettes — **« réalisables maintenant »** et **« à un ingrédient près »** (avec l'ingrédient manquant affiché) ; garde-manger persisté dans ton navigateur | Données du jeu via Assistant NMS (calcul local) |
-| 🛠️ **Multi-outil** | L'**Atelier multi-outil** : les **8 types réels** du jeu (Pistolet, Fusil, Expérimental, Alien, Royal, Sentinelle, Atlantide, Bâton voltaïque) avec leurs tendances de bonus documentées, une **grille interactive** (classe C/B/A/S → 30/40/50/60 emplacements, curseur de taille) où tu **places les vraies technologies et modules** du catalogue (79 : rayons de minage, scanner, fulgurateur, canon à dispersion, cracheur, javelot, canon à neutrons, lance-plasma, canon géologique, utilitaires…), marque tes **cases survoltées ⚡** (1/2/3/4 selon la classe, plafond appliqué), visualise les **liens d'adjacence** (les cases d'une même famille qui se touchent brillent — qualitatif : Hello Games ne publie pas les pourcentages, on ne les invente pas), et l'**analyse en direct** compte les liens et applique la **règle de surcharge** (au-delà de 3 modules d'une même famille → ⚠ la technologie se désactive). **3 presets** d'exemple (Mineur, Combat, Explorateur) + configuration persistée dans ton navigateur | Données du jeu via Assistant NMS + règles documentées (wiki) |
-| ⚓ **Cargos & frégates** | Dans l'onglet Vaisseaux (Atlas Terminal) : le **comparatif des cargos** (familles Venator/Sentinelle, Dreadnought pirate, réguliers — silhouette, tailles, emplacements 24–34, où le trouver, comment l'avoir) et un **guide d'obtention en 6 étapes** (batailles ≈ 3 h + 5 sauts, cargo gratuit, méthode du rechargement pour viser la classe S, capture du Dreadnought pirate). Puis la **galerie des 17 types en images du jeu** — 7 amiraux (Venator/Imperial/Resurgent, Sentinel/Cuirassé/Dreadnought, pirate) et 9 réguliers (Lame, Cargo, Centrifugeuse, Enterprise, Galion, Marteau, Iris, Oculus, Revolver), chacun avec son design et ses angles morts au combat. Enfin les **6 types de frégates** (combat, exploration, industrielle, commerciale, soutien + **organique**) avec leur capacité, leur production réelle (2 ferrite / 30 s, 1 000 unités / 30 s jusqu'à 125 000…), leur butin d'expédition et **l'essentiel pour commander sa flotte** (30 frégates max, 5 expéditions/jour, classes C→S par traits, piège des frégates buggées, calcul du carburant). Les probabilités que Hello Games ne publie pas restent **qualitatives**, jamais inventées | Wiki No Man's Sky (Freighter, Freighter Types, Pirate Dreadnought, Frigate, Organic Frigate) + images du wiki |
-| 🖼️ **Galerie** | Les vaisseaux et créatures **en grand** (images en jeu), en deux sous-onglets ; clic pour ouvrir la fiche et la partager | Images vaisseaux (wiki) + créatures (wiki) |
-| ⭐ **Favoris** | Marque objets, vaisseaux, créatures, recettes et galaxies avec l'étoile ☆ et retrouve-les en un clic — enregistré dans ton navigateur | Toi ! |
-| ⚔️ **Bulletin de guerre** | **Onglet dédié** : classement en direct des 3 escouades de l'événement communautaire, compte à rebours, objectifs, choix de ton camp, et lien vers le guide de l'événement (aussi résumé dans la Vue d'ensemble) | API officielle de l'Atlas Galactique |
-| 🎯 **Défi du jour** | Un défi mondial par jour (48 défis bilingues), série de jours et record | Généré localement |
-| 🗺️ **Galaxies** | Carte galactique immersive **façon Galactic Atlas** : galaxie spirale lumineuse (cœur brillant, bras spiraux logarithmiques, voies de poussière, halo/bloom) **qui tourne lentement dans son plan**, zoom, navigation, chemin parcouru, marqueur « je suis ici », **visite guidée** (zoom cinématique vers ta galaxie), **infos au survol** (nom, type, hub), **mini-aperçu unique par galaxie** dans la fiche, avec les **galaxies les plus vivantes** mises en avant (Euclid, Eissentam…) | Rendu maison + hubs communautaires |
-| 💎 **Marché** | Classements des objets les plus précieux, **assistant de pêche « quoi pêcher ici, maintenant ? »** (croise les **225 poissons** avec ton biome, le moment jour/nuit et la tempête — tri par valeur, compteur et badges de conditions), guide des vaisseaux avec **vraies images en jeu**, conseils d'obtention et **guide d'amélioration au max** (emplacements survolimentés, adjacence, classes S/X). Et l'**💼 estimateur de cargaison** : liste ce que tu transportes avec les quantités (autocomplétion sur le catalogue) → valeur totale ≈ aux prix moyens galactiques, **totaux séparés unités / nanites / mercure** (les additionner serait faux), top contributeur, cargaison persistée | Données Assistant NMS + images du wiki NMS |
-| 🛸 **Actus officielles** | Patch notes et annonces Hello Games | [nomanssky.com/news](https://www.nomanssky.com/news/) |
-| 📰 **Presse & Steam** | Annonces Steam + couverture presse (PC Gamer, RPS…) | API Steam News |
-| 👥 **Communauté** | Top de la semaine, tendances, coordonnées partagées + **communauté française**. Les titres anglophones sont **traduits automatiquement en français** (titre original conservé au survol) | r/NoMansSkyTheGame, r/NMSCoordinateExchange, r/NoMansSkyFrance (RSS) |
-| 🏆 **Succès des joueurs** | % de la communauté Steam ayant débloqué chaque succès — pour te situer par rapport aux autres voyageurs | Page Steam des succès globaux |
-| 🎬 **Vidéos** | Dernières vidéos de Hello Games et des créateurs communautaires (KhrazeGaming, Beeblebum, Xaine's World) | Flux RSS YouTube |
-| 🕰️ **Mises à jour** | Frise chronologique des mises à jour majeures, de la sortie (2016) à The Swarm (2026) | `data/timeline.json` |
-| 👁️ **Fréquentation** | Tuile « vues » dans la Vue d'ensemble : trafic de la **page GitHub du projet** (7 derniers jours + visiteurs uniques 14 j), collecté par le workflow via l'API officielle de trafic GitHub — étiqueté honnêtement : GitHub Pages ne fournit pas les visites du site lui-même. Pour compter les **vrais visiteurs du site web** : crée un compte gratuit sur [GoatCounter](https://www.goatcounter.com) (mesure sans cookies, RGPD) et renseigne ton code dans la constante `GOAT_CODE` d'`index.html` — le comptage et la tuile « visiteurs du site » s'activent tout seuls | API trafic GitHub + GoatCounter (optionnel) |
-| 🧭 **Ma progression** | Checklist interactive de ~35 objectifs du jeu (histoire, quêtes, équipement, bases, exploration, multijoueur) avec pourcentage global | Toi ! |
+</div>
 
-Les données sont **mises à jour automatiquement toutes les 3 heures** par GitHub Actions
-(workflow `update-news.yml`), qui committe les fichiers JSON dans `data/`.
+---
 
-### Crédits des images et données
+## Sommaire
 
-- **Icônes et données d'objets** : [Assistant for No Man's Sky](https://nmsassistant.com/) (données extraites du jeu, CDN `cdn.nmsassistant.com`).
-- **Images des types de vaisseaux** (`assets/ships/`) : captures et rendus issus du [wiki No Man's Sky](https://nomanssky.fandom.com/) (Fandom, CC-BY-SA), redimensionnées et hébergées localement.
-- **Images des créatures** (`assets/creatures/`) : miniatures d'exemples d'espèces issues du [wiki No Man's Sky](https://nomanssky.fandom.com/) (Fandom, CC-BY-SA), récupérées via l'API du wiki et hébergées localement.
-- No Man's Sky est une marque de **Hello Games**. Ce projet est un outil communautaire non officiel, sans but lucratif.
+- [Aperçu](#aperçu)
+- [Fonctionnalités](#fonctionnalités)
+- [Architecture](#architecture)
+- [Chaîne de données](#chaîne-de-données)
+- [Développement](#développement)
+- [Principes de données](#principes-de-données)
+- [Sources et crédits](#sources-et-crédits)
+- [Mentions légales](#mentions-légales)
 
-## Voir le tableau de bord
+---
 
-### Option 1 — GitHub Pages (recommandé)
+## Aperçu
 
-1. Va dans **Settings → Pages** du dépôt.
-2. Source : **Deploy from a branch**, branche `main`, dossier `/ (root)`.
-3. Le tableau de bord sera accessible à `https://micka420-collab.github.io/no-man/`.
+Atlas Terminal rassemble en un seul endroit ce qui est habituellement éparpillé entre une
+douzaine de sites : les statistiques Steam en temps réel, les actualités officielles, les
+bases de données d'objets et de recettes, les guides, la cartographie galactique et les
+outils de planification.
 
-### Option 2 — En local
+L'application est **entièrement statique** : aucun serveur, aucune base de données, aucun
+compte. Les données sont collectées en amont par des workflows GitHub Actions, versionnées
+dans le dépôt, puis servies telles quelles au navigateur. Les préférences et la progression
+restent dans le `localStorage` de l'utilisateur.
 
-```bash
-git clone https://github.com/micka420-collab/no-man.git
-cd no-man
-python3 -m http.server 8000
-# puis ouvre http://localhost:8000
+| | |
+|---|---|
+| **Interface** | Bilingue FR/EN, thèmes sombre/clair, navigation clavier, `prefers-reduced-motion` respecté |
+| **Mobile** | Barre de navigation basse, mise en page adaptative testée de 360 px à 1920 px |
+| **Hors-ligne** | PWA installable, coquille en cache, données en réseau-d'abord avec repli local |
+| **Performance** | Chargement différé par section, bundle initial de 83 ko compressé |
+| **Fraîcheur** | Données rafraîchies toutes les 3 heures, site redéployé automatiquement dans la foulée |
+
+## Fonctionnalités
+
+<details open>
+<summary><b>Suivi en direct et communauté</b></summary>
+
+- **Accueil / En direct** — joueurs connectés en temps réel, pic 24 h, record absolu, courbe
+  historique, avis Steam et prix courant ; flux d'activité mêlant Reddit (FR + EN), vidéos et
+  actualités officielles.
+- **Bulletin de guerre** — classement des escouades de l'événement communautaire en cours.
+- **Expéditions** — calendrier des 22 expéditions communautaires (2021 → 2026) avec statut.
+- **Mises à jour** — frise chronologique des versions majeures depuis 2016.
+
+</details>
+
+<details open>
+<summary><b>Encyclopédie du jeu</b></summary>
+
+- **Base de données** — plus de 3 500 objets avec valeur, catégorie, icône réelle et
+  description du jeu ; filtres par devise, valeur minimale et tri.
+- **Recettes** — 357 recettes de raffinage et plus de 1 300 recettes de cuisine, navigables
+  dans les deux sens (« comment l'obtenir » / « ce qu'il permet de fabriquer »).
+- **Éléments** — tableau périodique des 72 substances réelles, relié à la chimie du jeu.
+- **Faune** — 57 archétypes de créatures et leurs récoltes.
+- **Vaisseaux** — archétypes, comparatif complet des cargos (17 types en images), 6 types de
+  frégates, guide d'optimisation.
+- **Guides & Wiki** — 13 guides pratiques et l'encyclopédie narrative (trame, 14 missions,
+  secrets et clins d'œil).
+
+</details>
+
+<details open>
+<summary><b>Outils</b></summary>
+
+- **Ateliers 3D** — bancs d'essai multi-outil et vaisseau : modèles procéduraux en temps réel
+  (rendu PBR, plaques de coque, adjacence des technologies, emplacements survoltés).
+- **Portail** — décodeur d'adresses de portail (les 16 glyphes), conversion en balise de
+  signal, carnet d'adresses et carte stellaire 3D aux proportions réelles du jeu.
+- **Galaxies** — cartographie interactive des 255 galaxies.
+- **Recherche universelle** — `⌘K` / `Ctrl+K`, tolérante aux accents et aux fautes de frappe,
+  sur l'ensemble des données du site.
+- **Ma progression** — checklist d'objectifs, sauvegarde et restauration de toutes les
+  données locales dans un fichier.
+
+</details>
+
+## Architecture
+
+Le dépôt héberge **deux applications**, volontairement :
+
 ```
-
-## Mettre à jour les actualités manuellement
-
-```bash
-python3 scripts/fetch_news.py
-```
-
-Aucune dépendance requise (bibliothèque standard Python uniquement). Tu peux aussi
-déclencher le workflow depuis l'onglet **Actions** → « Mise à jour des actualités NMS »
-→ **Run workflow**.
-
-## Ta progression
-
-- Coche les objectifs accomplis dans l'onglet **Ma progression** — c'est sauvegardé
-  automatiquement dans ton navigateur (localStorage).
-- **💾 Tout sauvegarder / Restaurer** : boutons en bas de l'onglet — exporte **toutes**
-  tes données du site (favoris, épingles, garde-manger, cargaison, succès cochés,
-  adresses de portail nommées, progression, préférences) dans un fichier
-  `nms-sauvegarde.json`, à restaurer ici ou sur un autre appareil. Les anciens
-  fichiers d'export (progression seule) restent acceptés.
-- Pour personnaliser la liste des objectifs, édite `data/progress.json`
-  (les cases cochées sont conservées tant que les `id` ne changent pas).
-
-## Structure du projet
-
-```
-├── index.html                     # Tableau de bord (HTML/CSS/JS, aucune dépendance)
-├── favicon.svg                    # Icône du site
-├── manifest.webmanifest           # Manifeste PWA (site installable)
-├── data/
-│   ├── news.json                  # Actualités Steam (auto)
-│   ├── official.json              # Articles nomanssky.com (auto)
-│   ├── community.json             # Posts Reddit : top, tendances, coordonnées (auto)
-│   ├── stats.json                 # Joueurs en ligne, avis, prix (auto)
-│   ├── stats_history.json         # Historique des relevés de joueurs (auto)
-│   ├── achievements.json          # Succès globaux de la communauté Steam (auto)
-│   ├── videos.json                # Dernières vidéos YouTube (auto)
-│   ├── timeline.json              # Frise des mises à jour majeures 2016→2026
-│   └── progress.json              # Définition des objectifs de progression
-├── scripts/
-│   └── fetch_news.py              # Script de collecte (stdlib Python uniquement)
+no-man/
+├── site/                        ← Atlas Terminal — l'application servie en production
+│   ├── src/
+│   │   ├── sections/            ·  15 sections (Home, Live, Ships, Recipes…)
+│   │   ├── components/          ·  Viewer3D, Workshop, NavRail, SearchOverlay…
+│   │   ├── lib/                 ·  store, meshes procéduraux, utilitaires
+│   │   ├── data/ · i18n/        ·  catalogue statique, chaînes FR/EN
+│   │   └── styles/global.css
+│   ├── public/
+│   │   ├── data/*.json          ·  copie servie au navigateur (synchronisée au build)
+│   │   ├── assets/              ·  vaisseaux, créatures, cargos, frégates
+│   │   └── sw.js · manifest     ·  service worker et manifeste PWA
+│   └── scripts/
+│       └── build-workshop-data.mjs   ·  régénère workshop / substances / descriptions
+│
+├── index.html                   ← version historique mono-fichier (conservée, non servie)
+├── data/*.json                  ← source de vérité des données, mise à jour par le cron
+├── scripts/fetch_*.py           ← collecteurs (bibliothèque standard Python uniquement)
 └── .github/workflows/
-    └── update-news.yml            # Mise à jour automatique toutes les 6 h
+    ├── update-news.yml          ·  collecte, toutes les 3 h
+    └── deploy-site.yml          ·  build + publication GitHub Pages
 ```
+
+**Pourquoi deux applications ?** Le site a d'abord existé sous la forme d'un unique
+`index.html` sans dépendance. La refonte React/TypeScript (`site/`) l'a remplacé en
+production ; le fichier d'origine reste versionné à titre de référence et n'est plus servi.
+
+**Pile technique** — React 19, TypeScript, Vite, Three.js pour les ateliers 3D, oxlint.
+Aucune dépendance d'exécution au-delà de React et Three.js ; aucun service tiers.
+
+## Chaîne de données
+
+```
+                 ┌──────────────────────── toutes les 3 h (cron 17 */3 * * *)
+                 ▼
+  APIs externes ──▶ scripts/fetch_*.py ──▶ data/*.json ──▶ commit automatique
+  (Steam, Reddit,                                              │
+   YouTube, wiki,                                              ▼
+   Assistant NMS)                                    workflow « Deploy site »
+                                                              │
+                              ┌───────────────────────────────┤
+                              ▼                               ▼
+                  data/ copié vers site/public/     build-workshop-data.mjs
+                              │                     (workshop, substances,
+                              └──────────┬───────────  descriptions)
+                                         ▼
+                                  vite build ──▶ GitHub Pages
+```
+
+Le déclencheur `workflow_run` est indispensable : les commits poussés par un workflow avec le
+`GITHUB_TOKEN` par défaut ne déclenchent jamais les workflows `push`. Sans lui, le site
+resterait figé sur les données du dernier commit humain.
+
+Trois fichiers sont **dérivés** et ne doivent pas être édités à la main — ils sont régénérés à
+chaque build depuis `data/catalogue.json` : `workshop.json`, `substances.json`,
+`descriptions.json`.
+
+## Développement
+
+**Prérequis** : Node.js 22+ et Python 3.11+ (aucune dépendance Python externe).
+
+```bash
+git clone https://github.com/Micka420-collab/no-man.git
+cd no-man/site
+
+npm ci             # installation
+npm run dev        # serveur de développement (http://localhost:5173)
+npm run build      # vérification des types + build de production
+npm run preview    # prévisualisation du build
+npm run lint       # oxlint
+```
+
+Rafraîchir les données en local ou régénérer les fichiers dérivés :
+
+```bash
+python3 scripts/fetch_news.py           # actualités, statistiques, communauté
+python3 scripts/fetch_catalogue.py      # catalogue d'objets
+node site/scripts/build-workshop-data.mjs data/catalogue.json
+```
+
+Les workflows sont aussi déclenchables à la main depuis l'onglet **Actions**.
+
+## Principes de données
+
+Ce projet applique une règle simple : **ne jamais afficher un chiffre qui n'a pas été
+vérifié.** Concrètement —
+
+- **Rien n'est inventé.** Les valeurs, recettes, descriptions et statistiques proviennent des
+  données du jeu ou de sources citées. Ce que Hello Games ne publie pas — les pourcentages de
+  bonus d'adjacence, les probabilités de classe — est présenté **qualitativement**, jamais
+  sous forme de nombre inventé.
+- **Les devises ne sont jamais mélangées.** Unités, nanites et mercure sont totalisés
+  séparément : les additionner produirait un résultat faux.
+- **Les approximations sont signalées** par le symbole `≈` et une note explicative.
+- **Les exclusions sont documentées.** Par exemple, les jetons de récompense internes sont
+  retirés du tableau des éléments parce que ce ne sont pas des substances.
+- **La nomenclature communautaire est identifiée comme telle** lorsqu'elle diffère des noms
+  officiels du jeu.
+
+Chaque fonctionnalité est vérifiée par une suite Playwright avant fusion : rendu réel,
+absence d'erreur JavaScript, recalcul indépendant des valeurs économiques, traduction EN et
+mise en page mobile.
+
+## Sources et crédits
+
+| Source | Usage |
+|---|---|
+| [Steam Web API](https://steamcommunity.com/) & SteamCharts | Joueurs connectés, avis, prix, succès globaux |
+| [nomanssky.com](https://www.nomanssky.com/news/) | Actualités officielles Hello Games |
+| Reddit (r/NoMansSkyTheGame, r/NMSCoordinateExchange, r/NoMansSkyFrance) | Activité communautaire |
+| YouTube RSS | Vidéos officielles et créateurs |
+| [Assistant for No Man's Sky](https://nmsassistant.com/) | Objets, recettes, icônes (données extraites du jeu) |
+| [Wiki No Man's Sky](https://nomanssky.fandom.com/) (Fandom, CC-BY-SA) | Images de vaisseaux, créatures, cargos et frégates ; mécaniques documentées |
+
+Les images du wiki sont redimensionnées et hébergées localement dans `site/public/assets/`.
+Les mécaniques de jeu citées (classes de cargos, règles des ateliers, types de frégates)
+renvoient à leur page source dans l'interface.
+
+## Mentions légales
+
+Projet **communautaire, non officiel et sans but lucratif**. No Man's Sky est une marque de
+**Hello Games** ; ce dépôt n'est ni affilié, ni approuvé par Hello Games. Les contenus tiers
+restent la propriété de leurs auteurs respectifs et sont utilisés sous leurs licences
+d'origine (CC-BY-SA pour les contenus du wiki).
+
+Aucun fichier de licence n'accompagne encore le code de ce dépôt.

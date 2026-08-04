@@ -1,8 +1,8 @@
 {
-  "player_count": 8284,
+  "player_count": 6757,
   "reviews": {
-    "total": 412998,
-    "positive": 350972,
+    "total": 413005,
+    "positive": 350976,
     "percent_positive": 85.0,
     "score_desc": "Very Positive"
   },
@@ -13,5 +13,5 @@
   },
   "peak_24h": 8656,
   "peak_all": 212321,
-  "updated_at": "2026-08-04T19:59:29.542249+00:00"
+  "updated_at": "2026-08-04T22:30:40.144573+00:00"
 }

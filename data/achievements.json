@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-09T20:58:58.965232+00:00",
+  "updated_at": "2026-09-09T23:18:31.693308+00:00",
   "items": [
     {
       "percent": 73.1,
@@ -9,7 +9,7 @@
       "desc_en": "Claim a Base or Buy a Freighter"
     },
     {
-      "percent": 60.9,
+      "percent": 60.8,
       "name": "Fondation",
       "desc": "Obtenir le statut « Entrepreneur » dans Unités accumulées",
       "name_en": "Foundation",
@@ -142,7 +142,7 @@
       "desc_en": "Attain ‘Naturalist’ status in Planet Zoology Scanned"
     },
     {
-      "percent": 13.7,
+      "percent": 13.6,
       "name": "Odyssées de l'espace",
       "desc": "Obtenir le statut « Argonaute » dans Exploration spatiale",
       "name_en": "A Space Odyssey",

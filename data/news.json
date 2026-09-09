@@ -1,6 +1,30 @@
 {
-  "updated_at": "2026-09-09T11:30:16.269747+00:00",
+  "updated_at": "2026-09-09T16:42:34.842412+00:00",
   "items": [
+    {
+      "title": "'What if you could own a space station?' asks No Man's Sky's Sean Murray, as he lets you own a space station",
+      "url": "https://steamstore-a.akamaihd.net/news/externalpost/PC Gamer/1843481262689676",
+      "date": "2026-09-09T16:35:55+00:00",
+      "source": "PC Gamer",
+      "excerpt": "Somehow, it's been 10 years since No Man's Sky launched on Steam, an infamously inauspicious occasion that over the space of that decade evolved from a cautionary tale about the excesses of hype to one of the best and most enduring exploration adventures you can play. And it's not done yet: Hello Games has now released No Man's Sky's 7.0 update, Cosmos , and it's another big one... Read more.",
+      "is_official": false
+    },
+    {
+      "title": "No Man's Sky overhauls space after conquering basically everything else",
+      "url": "https://steamstore-a.akamaihd.net/news/externalpost/PCGamesN/1843481262689210",
+      "date": "2026-09-09T13:00:19+00:00",
+      "source": "PCGamesN",
+      "excerpt": "No Man's Sky update, Cosmos, overhauls space, adding salvage operations, orbital station ownership, and some possible biohazard threats. Read the full story on PCGamesN: No Man's Sky overhauls space after conquering basically everything else",
+      "is_official": false
+    },
+    {
+      "title": "A complete overhaul to space arrives in the form of No Man's Sky COSMOS (7.0)",
+      "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1843481262688949",
+      "date": "2026-09-09T13:00:12+00:00",
+      "source": "Community Announcements",
+      "excerpt": "Hello everyone,Thank you for helping us celebrate our 10th Anniversary last month. It was emotional to hear people’s stories and memories from playing over the years. We feel lucky to still be able do big crazy things with No Man’s Sky after ten years, and our next update COSMOS is one of our biggest and craziest! Full patch notes here.No Man’s Sky is often referred to as “a Space Game”, it’s a hu",
+      "is_official": false
+    },
     {
       "title": "Light No Fire от авторов No Man’s Sky будет крайне амбициозной игрой, но поклонников просят запастись терпением",
       "url": "https://steamstore-a.akamaihd.net/news/externalpost/Gamemag.ru/1840944183775832",
@@ -215,30 +239,6 @@
       "date": "2025-10-22T20:34:27+00:00",
       "source": "PC Gamer",
       "excerpt": "new update for No Man's Sky, called Breach, introduces space wrecks, expanded ship building, and a unique expedition. It also arrives with a press release from your man Sean Murray, who immediately cranks up the organ and starts singing mournfully about the \"tiny team\" that's \"poured a lot of love into it\", which makes me wonder if Hello Games is now staffed by Oompa Loompas... Read more.",
-      "is_official": false
-    },
-    {
-      "title": "No Man's Sky adds ship wreck salvaging for new bits to stick on your own craft with the Breach update",
-      "url": "https://steamstore-a.akamaihd.net/news/externalpost/rps/1814309641417002",
-      "date": "2025-10-22T16:18:40+00:00",
-      "source": "Rock, Paper, Shotgun",
-      "excerpt": "If the interstellar equivalent of scrabbling around under the sofa for loose change or dragging a slightly rusty bumper out of a scrapyard is something you yearn for, No Man's Sky 's latest update sounds right up your slightly grimy alley. It's dubbed Breach and adds in a bunch of mysterious shipwrecks to strip for new parts you can then glue to your own vessel. High stakes recycling, basically. R",
-      "is_official": false
-    },
-    {
-      "title": "New No Man's Sky update makes the most of its brilliant ship overhaul, giving you more reasons to explore the stars",
-      "url": "https://steamstore-a.akamaihd.net/news/externalpost/PCGamesN/1814309641413442",
-      "date": "2025-10-22T15:00:34+00:00",
-      "source": "PCGamesN",
-      "excerpt": "The new No Man's Sky Breach update has just arrived, and developer Hello Games is building on the huge success of its Voyagers expansion with a cargo hold full of reasons to spend more time out in the void. It's comfortably one of the best space games on PC these days, but the No Man's Sky team shows no signs of slowing down. The Breach update packs in plenty of fresh opportunities among the stars",
-      "is_official": false
-    },
-    {
-      "title": "Introducing...No Man's Sky Breach",
-      "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1814309641410480",
-      "date": "2025-10-22T12:58:44+00:00",
-      "source": "Community Announcements",
-      "excerpt": "Hello,Well, we suspected that the No Man’s Sky Voyagers update was going to cause some excitement in the universe, but never did we expect such a huge influx- seeing player numbers we’ve not seen since launch… nine years ago!Our update for Halloween is called Breach, and it leans into the thrill of custom ship assembly, space-walking, skydiving, and community spirit introduced in Voyagers. It is f",
       "is_official": false
     }
   ]

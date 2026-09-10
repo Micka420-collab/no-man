@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-09T23:18:31.693308+00:00",
+  "updated_at": "2026-09-10T04:49:37.842649+00:00",
   "items": [
     {
       "percent": 73.1,
@@ -16,7 +16,7 @@
       "desc_en": "Attain ‘Entrepreneur’ status in Most Units Accrued"
     },
     {
-      "percent": 55.1,
+      "percent": 55.0,
       "name": "Babel 17",
       "desc": "Obtenir le statut « Confus » dans Mots obtenus",
       "name_en": "Babel-17",
@@ -30,7 +30,7 @@
       "desc_en": "Attain ‘Known’ status in Alien Colonist Encounters"
     },
     {
-      "percent": 51.0,
+      "percent": 50.9,
       "name": "L'Usage des armes",
       "desc": "Obtenir le statut « Novice » dans Vaisseaux détruits",
       "name_en": "Use of Weapons",
@@ -44,7 +44,7 @@
       "desc_en": "Attain ‘Trader’ status in Most Units Accrued"
     },
     {
-      "percent": 48.2,
+      "percent": 48.1,
       "name": "Symphonie pour un voyageur égaré",
       "desc": "Obtenir le statut « Nomade » dans Distance à pied",
       "name_en": "Symphony For A Lost Traveler",
@@ -65,7 +65,7 @@
       "desc_en": "Attain 'Trailblazer' status in Space Exploration"
     },
     {
-      "percent": 35.4,
+      "percent": 35.3,
       "name": "Les Langages de Pao",
       "desc": "Obtenir le statut « Interprète » dans Mots obtenus",
       "name_en": "The Languages of Pao",
@@ -107,7 +107,7 @@
       "desc_en": "Attain ‘Ambassador’ status in Alien Colonist Encounters"
     },
     {
-      "percent": 21.8,
+      "percent": 21.7,
       "name": "La Guerre éternelle",
       "desc": "Obtenir le statut « Légende » dans Vaisseaux détruits",
       "name_en": "The Forever War",

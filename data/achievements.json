@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-11T16:32:58.342534+00:00",
+  "updated_at": "2026-09-11T21:00:48.202114+00:00",
   "items": [
     {
       "percent": 73.1,
@@ -86,7 +86,7 @@
       "desc_en": "Build an Exocraft"
     },
     {
-      "percent": 30.8,
+      "percent": 30.7,
       "name": "Le ciel est mort",
       "desc": "Obtenir le statut « Diplomate » dans Aliens colons rencontrés",
       "name_en": "Who Goes There?",
@@ -114,7 +114,7 @@
       "desc_en": "Attain ‘Legend’ status in Ships Destroyed"
     },
     {
-      "percent": 21.3,
+      "percent": 21.2,
       "name": "Long Cours",
       "desc": "Obtenir le statut « Voyageur » dans Exploration spatiale",
       "name_en": "The Longest Voyage",

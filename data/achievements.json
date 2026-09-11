@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-11T04:46:51.849270+00:00",
+  "updated_at": "2026-09-11T11:28:22.835484+00:00",
   "items": [
     {
       "percent": 73.1,
@@ -51,7 +51,7 @@
       "desc_en": "Attain ‘Nomad’ status in On-foot Exploration"
     },
     {
-      "percent": 46.4,
+      "percent": 46.3,
       "name": "L'Âge de diamant",
       "desc": "Obtenir le statut « Magnat » dans Unités accumulées",
       "name_en": "The Diamond Age",
@@ -128,7 +128,7 @@
       "desc_en": "Visit another Player's Base"
     },
     {
-      "percent": 19.2,
+      "percent": 19.1,
       "name": "Citoyen de la galaxie",
       "desc": "Obtenir le statut « Poisson Babel » dans Mots obtenus",
       "name_en": "Citizen of the Galaxy",

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-11T23:18:34.540623+00:00",
+  "updated_at": "2026-09-12T04:41:16.082771+00:00",
   "items": [
     {
       "percent": 73.1,
@@ -9,7 +9,7 @@
       "desc_en": "Claim a Base or Buy a Freighter"
     },
     {
-      "percent": 60.8,
+      "percent": 60.7,
       "name": "Fondation",
       "desc": "Obtenir le statut « Entrepreneur » dans Unités accumulées",
       "name_en": "Foundation",
@@ -30,7 +30,7 @@
       "desc_en": "Attain ‘Known’ status in Alien Colonist Encounters"
     },
     {
-      "percent": 50.9,
+      "percent": 50.8,
       "name": "L'Usage des armes",
       "desc": "Obtenir le statut « Novice » dans Vaisseaux détruits",
       "name_en": "Use of Weapons",
@@ -44,7 +44,7 @@
       "desc_en": "Attain ‘Trader’ status in Most Units Accrued"
     },
     {
-      "percent": 48.1,
+      "percent": 48.0,
       "name": "Symphonie pour un voyageur égaré",
       "desc": "Obtenir le statut « Nomade » dans Distance à pied",
       "name_en": "Symphony For A Lost Traveler",
@@ -72,7 +72,7 @@
       "desc_en": "Attain ‘Interpreter’ status in Words Collected"
     },
     {
-      "percent": 31.2,
+      "percent": 31.1,
       "name": "Le Jeune homme et l'espace",
       "desc": "Obtenir le statut « Aventurier » dans Distance à pied",
       "name_en": "Have Spacesuit - Will Travel",
@@ -93,7 +93,7 @@
       "desc_en": "Attain ‘Diplomat’ status in Alien Colonist Encounters"
     },
     {
-      "percent": 28.5,
+      "percent": 28.4,
       "name": "Plan de conquête",
       "desc": "Obtenir le statut « Criminel notoire » dans Vaisseaux détruits",
       "name_en": "Pattern for Conquest",

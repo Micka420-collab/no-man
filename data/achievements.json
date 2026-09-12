@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-12T10:53:01.734241+00:00",
+  "updated_at": "2026-09-12T15:35:23.607265+00:00",
   "items": [
     {
       "percent": 73.1,
@@ -37,7 +37,7 @@
       "desc_en": "Attain ‘Novice’ status in Ships Destroyed"
     },
     {
-      "percent": 50.2,
+      "percent": 50.1,
       "name": "Planète à gogos",
       "desc": "Obtenir le statut « Commerçant » dans Unités accumulées",
       "name_en": "The Space Merchants",
@@ -65,7 +65,7 @@
       "desc_en": "Attain 'Trailblazer' status in Space Exploration"
     },
     {
-      "percent": 35.3,
+      "percent": 35.2,
       "name": "Les Langages de Pao",
       "desc": "Obtenir le statut « Interprète » dans Mots obtenus",
       "name_en": "The Languages of Pao",

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-14T12:56:31.951671+00:00",
+  "updated_at": "2026-09-14T19:51:23.260866+00:00",
   "items": [
     {
       "percent": 73.1,
@@ -72,7 +72,7 @@
       "desc_en": "Attain ‘Interpreter’ status in Words Collected"
     },
     {
-      "percent": 31.1,
+      "percent": 31.0,
       "name": "Le Jeune homme et l'espace",
       "desc": "Obtenir le statut « Aventurier » dans Distance à pied",
       "name_en": "Have Spacesuit - Will Travel",
@@ -135,7 +135,7 @@
       "desc_en": "Attain ‘Babelfish’ status in Words Collected"
     },
     {
-      "percent": 13.8,
+      "percent": 13.7,
       "name": "Substance Mort",
       "desc": "Obtenir le statut « Naturaliste » dans Faune planétaire scannée.",
       "name_en": "A Scanner Darkly",

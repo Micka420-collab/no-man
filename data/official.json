@@ -1,11 +1,17 @@
 {
-  "updated_at": "2026-09-16T11:43:16.687341+00:00",
+  "updated_at": "2026-09-16T17:04:18.421345+00:00",
   "items": [
     {
       "title": "Cosmos 7.03",
       "url": "https://www.nomanssky.com/2026/09/cosmos-7-03/",
       "date": "2026-09",
       "excerpt": "Hello Everyone, Thank you to everyone playing No Man’s Sky – Cosmos, especially those taking the time to report any issues they encounter via Zendesk or console crash reporting. We are listening closely to your feedback, and have identified and resolved a number of issues. These fixes are included in patch 7.03, which is now live on Steam,..."
+    },
+    {
+      "title": "Cosmos 7.03.1",
+      "url": "https://www.nomanssky.com/2026/09/cosmos-7-03-1/",
+      "date": "2026-09",
+      "excerpt": "Hello Everyone, Thank you to everyone playing No Man’s Sky – Cosmos, especially those taking the time to report any issues they encounter via Zendesk or console crash reporting. We are listening closely to your feedback, and have identified and resolved a number of issues. These fixes are included in patch 7.03.1, which is now live on Steam,..."
     },
     {
       "title": "Cosmos 7.02",
@@ -138,18 +144,6 @@
       "url": "https://www.nomanssky.com/2025/11/holiday-expeditions-2025-6-17-2/",
       "date": "2025-11",
       "excerpt": "Hello Everyone, Thank you to everyone playing No Man’s Sky – Holiday Expeditions 2025, especially those taking the time to report any issues they encounter via Zendesk or console crash reporting. We are listening closely to your feedback, and have identified and resolved a number of issues. These fixes are included in patch 6.17.2, which is now live..."
-    },
-    {
-      "title": "Expedition Twenty: Breach 6.12",
-      "url": "https://www.nomanssky.com/2025/10/expedition-twenty-breach-6-12/",
-      "date": "2025-10",
-      "excerpt": "Hello Everyone, Thank you to everyone playing No Man’s Sky – Expedition Twenty: Breach, especially those taking the time to report any issues they encounter via Zendesk or console crash reporting. We are listening closely to your feedback, and have identified and resolved a number of issues. These fixes are included in patch 6.12, which is now live..."
-    },
-    {
-      "title": "Expedition Twenty: Breach 6.11",
-      "url": "https://www.nomanssky.com/2025/10/expedition-twenty-breach-6-11/",
-      "date": "2025-10",
-      "excerpt": "Hello Everyone, Thank you to everyone playing No Man’s Sky – Expedition Twenty: Breach, especially those taking the time to report any issues they encounter via Zendesk or console crash reporting. We are listening closely to your feedback, and have identified and resolved a number of issues. These fixes are included in patch 6.11, which is now live..."
     }
   ]
 }

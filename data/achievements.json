@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-15T21:25:42.392623+00:00",
+  "updated_at": "2026-09-16T04:54:41.130490+00:00",
   "items": [
     {
       "percent": 73.1,
@@ -72,14 +72,14 @@
       "desc_en": "Attain ‘Interpreter’ status in Words Collected"
     },
     {
-      "percent": 31.0,
+      "percent": 31.1,
       "name": "Le Jeune homme et l'espace",
       "desc": "Obtenir le statut « Aventurier » dans Distance à pied",
       "name_en": "Have Spacesuit - Will Travel",
       "desc_en": "Attain ‘Adventurer’ status in On-foot Exploration"
     },
     {
-      "percent": 30.8,
+      "percent": 30.9,
       "name": "Navigateurs",
       "desc": "Construire un exonef",
       "name_en": "Navigators",
@@ -135,7 +135,7 @@
       "desc_en": "Attain ‘Babelfish’ status in Words Collected"
     },
     {
-      "percent": 13.7,
+      "percent": 13.8,
       "name": "Substance Mort",
       "desc": "Obtenir le statut « Naturaliste » dans Faune planétaire scannée.",
       "name_en": "A Scanner Darkly",

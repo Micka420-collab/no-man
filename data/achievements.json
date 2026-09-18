@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-18T20:57:17.906513+00:00",
+  "updated_at": "2026-09-18T23:20:24.660734+00:00",
   "items": [
     {
       "percent": 73.1,
@@ -128,14 +128,14 @@
       "desc_en": "Visit another Player's Base"
     },
     {
-      "percent": 19.1,
+      "percent": 19.0,
       "name": "Citoyen de la galaxie",
       "desc": "Obtenir le statut « Poisson Babel » dans Mots obtenus",
       "name_en": "Citizen of the Galaxy",
       "desc_en": "Attain ‘Babelfish’ status in Words Collected"
     },
     {
-      "percent": 13.8,
+      "percent": 13.7,
       "name": "Substance Mort",
       "desc": "Obtenir le statut « Naturaliste » dans Faune planétaire scannée.",
       "name_en": "A Scanner Darkly",

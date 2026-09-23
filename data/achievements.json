@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-22T21:23:34.796364+00:00",
+  "updated_at": "2026-09-23T04:50:15.478192+00:00",
   "items": [
     {
       "percent": 73.1,
@@ -72,7 +72,7 @@
       "desc_en": "Attain ‘Interpreter’ status in Words Collected"
     },
     {
-      "percent": 31.0,
+      "percent": 31.1,
       "name": "Le Jeune homme et l'espace",
       "desc": "Obtenir le statut « Aventurier » dans Distance à pied",
       "name_en": "Have Spacesuit - Will Travel",
@@ -128,7 +128,7 @@
       "desc_en": "Visit another Player's Base"
     },
     {
-      "percent": 19.0,
+      "percent": 19.1,
       "name": "Citoyen de la galaxie",
       "desc": "Obtenir le statut « Poisson Babel » dans Mots obtenus",
       "name_en": "Citizen of the Galaxy",

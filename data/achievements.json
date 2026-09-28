@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-27T21:24:26.823788+00:00",
+  "updated_at": "2026-09-28T05:30:44.966588+00:00",
   "items": [
     {
       "percent": 73.2,
@@ -79,7 +79,7 @@
       "desc_en": "Attain ‘Adventurer’ status in On-foot Exploration"
     },
     {
-      "percent": 31.0,
+      "percent": 31.1,
       "name": "Navigateurs",
       "desc": "Construire un exonef",
       "name_en": "Navigators",
@@ -93,7 +93,7 @@
       "desc_en": "Attain ‘Diplomat’ status in Alien Colonist Encounters"
     },
     {
-      "percent": 28.3,
+      "percent": 28.4,
       "name": "Plan de conquête",
       "desc": "Obtenir le statut « Criminel notoire » dans Vaisseaux détruits",
       "name_en": "Pattern for Conquest",
@@ -114,7 +114,7 @@
       "desc_en": "Attain ‘Legend’ status in Ships Destroyed"
     },
     {
-      "percent": 21.2,
+      "percent": 21.3,
       "name": "Long Cours",
       "desc": "Obtenir le statut « Voyageur » dans Exploration spatiale",
       "name_en": "The Longest Voyage",

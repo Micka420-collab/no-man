@@ -1,6 +1,14 @@
 {
-  "updated_at": "2026-09-29T18:06:51.769609+00:00",
+  "updated_at": "2026-09-29T22:20:13.742955+00:00",
   "items": [
+    {
+      "title": "The weird experience of liking a game before it's 'fixed'",
+      "url": "https://steamstore-a.akamaihd.net/news/externalpost/PC Gamer/1844751498235463",
+      "date": "2026-09-29T20:58:57+00:00",
+      "source": "PC Gamer",
+      "excerpt": "I was one of the weirdos who gave Battlefield 2042 a positive review at the same time as it was being called the worst Battlefield of all time... Read more.",
+      "is_official": false
+    },
     {
       "title": "\"Our Journey Continues\" 10th Anniversary Expedition",
       "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1844115010491191",
@@ -231,14 +239,6 @@
       "date": "2025-11-24T18:01:18+00:00",
       "source": "Community Announcements",
       "excerpt": "Hello,Well, we’re coming to the end of another incredibly busy year for No Man’s Sky, one that has seen us hit our highest player numbers since launch, and we couldn’t be more grateful for being able to continue this journey with you all nine years after our initial launch. It would mean the world to our tiny team if you could take a few moments to nominate us for the “Labor of Love” category in t",
-      "is_official": false
-    },
-    {
-      "title": "No Man's Sky is rerunning all of its expeditions from 2025, while also giving players another chance to add Mass Effect's Normandy to their spaceship collection",
-      "url": "https://steamstore-a.akamaihd.net/news/externalpost/PC Gamer/1815580768360030",
-      "date": "2025-11-09T14:00:00+00:00",
-      "source": "PC Gamer",
-      "excerpt": "It's been a big year for No Man's Sky , although you could argue that every year since 2016 has been a big year for Hello Games' spectacularly redeemed space exploration sim. 2025 brought another helping of reworks to its universe simulation in Worlds: Part 2 , as well as space palaeontology in its Relics update, stellar towns you could preside over in Beacon , and multi-crew spacecraft and ship d",
       "is_official": false
     }
   ]

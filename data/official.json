@@ -1,11 +1,17 @@
 {
-  "updated_at": "2026-09-30T05:38:46.631517+00:00",
+  "updated_at": "2026-09-30T12:42:11.592274+00:00",
   "items": [
+    {
+      "title": "Cosmos 7.05",
+      "url": "https://www.nomanssky.com/2026/09/cosmos-7-05/",
+      "date": "2026-09",
+      "excerpt": "Hello Everyone, Thank you to everyone playing No Man’s Sky – Cosmos, especially those taking the time to report any issues they encounter via Zendesk or console crash reporting. We are listening closely to your feedback, and have identified and resolved a number of issues. These fixes are included in patch 7.05, which is now live on Steam,..."
+    },
     {
       "title": "Cosmos 7.04",
       "url": "https://www.nomanssky.com/2026/09/cosmos-7-04/",
       "date": "2026-09",
-      "excerpt": "Hello Everyone, Thank you to everyone playing No Man’s Sky – Cosmos, especially those taking the time to report any issues they encounter via Zendesk or console crash reporting. We are listening closely to your feedback, and have identified and resolved a number of issues. These fixes are included in patch 7.03, which is now live on Steam,..."
+      "excerpt": "Hello Everyone, Thank you to everyone playing No Man’s Sky – Cosmos, especially those taking the time to report any issues they encounter via Zendesk or console crash reporting. We are listening closely to your feedback, and have identified and resolved a number of issues. These fixes are included in patch 7.04, which is now live on Steam,..."
     },
     {
       "title": "Cosmos 7.03",
@@ -144,12 +150,6 @@
       "url": "https://www.nomanssky.com/2025/11/holiday-expeditions-2025-6-17-1/",
       "date": "2025-11",
       "excerpt": "Hello Everyone, Thank you to everyone playing No Man’s Sky – Holiday Expeditions 2025, especially those taking the time to report any issues they encounter via Zendesk or console crash reporting. We are listening closely to your feedback, and have identified and resolved a number of issues. These fixes are included in patch 6.17.1, which is now live..."
-    },
-    {
-      "title": "Holiday Expeditions 2025 6.17.2",
-      "url": "https://www.nomanssky.com/2025/11/holiday-expeditions-2025-6-17-2/",
-      "date": "2025-11",
-      "excerpt": "Hello Everyone, Thank you to everyone playing No Man’s Sky – Holiday Expeditions 2025, especially those taking the time to report any issues they encounter via Zendesk or console crash reporting. We are listening closely to your feedback, and have identified and resolved a number of issues. These fixes are included in patch 6.17.2, which is now live..."
     }
   ]
 }

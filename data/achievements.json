@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-02T09:51:34.451484+00:00",
+  "updated_at": "2026-10-02T17:53:35.024907+00:00",
   "items": [
     {
       "percent": 73.2,
@@ -30,7 +30,7 @@
       "desc_en": "Attain ‘Known’ status in Alien Colonist Encounters"
     },
     {
-      "percent": 50.9,
+      "percent": 50.8,
       "name": "L'Usage des armes",
       "desc": "Obtenir le statut « Novice » dans Vaisseaux détruits",
       "name_en": "Use of Weapons",
@@ -51,7 +51,7 @@
       "desc_en": "Attain ‘Nomad’ status in On-foot Exploration"
     },
     {
-      "percent": 46.4,
+      "percent": 46.3,
       "name": "L'Âge de diamant",
       "desc": "Obtenir le statut « Magnat » dans Unités accumulées",
       "name_en": "The Diamond Age",

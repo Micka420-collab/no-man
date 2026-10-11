@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-11T12:58:48.712578+00:00",
+  "updated_at": "2026-10-11T19:35:03.103730+00:00",
   "items": [
     {
       "percent": 73.2,
@@ -65,7 +65,7 @@
       "desc_en": "Attain 'Trailblazer' status in Space Exploration"
     },
     {
-      "percent": 35.2,
+      "percent": 35.3,
       "name": "Les Langages de Pao",
       "desc": "Obtenir le statut « Interprète » dans Mots obtenus",
       "name_en": "The Languages of Pao",
@@ -93,7 +93,7 @@
       "desc_en": "Attain ‘Diplomat’ status in Alien Colonist Encounters"
     },
     {
-      "percent": 28.3,
+      "percent": 28.4,
       "name": "Plan de conquête",
       "desc": "Obtenir le statut « Criminel notoire » dans Vaisseaux détruits",
       "name_en": "Pattern for Conquest",
